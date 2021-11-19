@@ -9,7 +9,7 @@ package CP.GPBinFiles;
 import java.io.*;
 import CP.CPJ.CPJ;
 import CP.GPFiles.GPFiles.*;
-import CP.ProgArgs.ProgArgs.*;
+// import CP.ProgArgs.ProgArgs.*;
 
 public class GPBinFiles {
 
