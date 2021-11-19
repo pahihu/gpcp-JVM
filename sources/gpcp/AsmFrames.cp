@@ -987,25 +987,17 @@ MODULE AsmFrames;
   END AddRefParam;
 
  (* ================================================ *)
-PROCEDURE remSigS( obj : RTS.NativeObject ): RTS.NativeObject;
-VAR i, len : INTEGER;
-    str : ARRAY 1024 OF CHAR;
-    sig : RTS.NativeString;
-BEGIN
-  IF obj IS RTS.NativeString THEN
-    sig := obj(RTS.NativeString);
-    len := RTS.Length( sig );
-    IF (len > 2) &
-       (RTS.CharAtIndex( sig, 0 ) = 'L') &
-       (RTS.CharAtIndex( sig, len-1 ) = ';')
-    THEN
-      FOR i := 1 TO len-2 DO str[i-1] := RTS.CharAtIndex( sig, i ) END;
-      str[len-2] := 0X;
-      RETURN MKSTR( str$ );
-    END;
-  END; 
-  RETURN obj
-END remSigS;
+  PROCEDURE remSigS( obj : RTS.NativeObject ): RTS.NativeObject;
+  VAR sig : RTS.NativeString;
+  BEGIN
+    IF obj IS RTS.NativeString THEN
+      sig := obj(RTS.NativeString);
+      IF sig.startsWith("L") & sig.endsWith(";") THEN
+        RETURN sig.substring( 1, sig.length()-1 );
+      END;
+    END; 
+    RETURN obj
+  END remSigS;
 
   PROCEDURE ( mFrm : MethodFrame )GetLocalArr*() : Def.JloArr,NEW;
     VAR indx, count : INTEGER;
