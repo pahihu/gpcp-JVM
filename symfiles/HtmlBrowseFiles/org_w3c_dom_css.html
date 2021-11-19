@@ -1,0 +1,886 @@
+<html><head><title>org_w3c_dom_css</title>
+<style>
+<!-- BEGIN Inline CSS -->
+/* Popup container */
+.popup {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+/* The actual popup (appears on top) */
+.popup .popuptext {
+    visibility: hidden;
+    width: 430px;
+    background-color: white;
+    color: black;
+    text-align: left;
+    border-radius: 6px;
+    border-style: solid;
+    border-color: black;
+    padding: 8px 8px 8px 8px;
+    position: absolute;
+    z-index: 1;
+    margin-top: 30px;
+}
+
+/* Toggle this class when clicking on the popup container (hide and show the popup) */
+.popup .show {
+    visibility: visible;
+    opacity: 1;
+}
+
+</style>
+<!-- END Inline CSS -->
+</head><body bgcolor="white">
+<hr><pre>
+<font color="green">(*</font>
+<font color="green"> *  Creator j2cps version 1.4.07 (March 2018)</font>
+<font color="green"> *  Compiled from jar-file rt.jar</font>
+<font color="green"> *)</font>
+<b>FOREIGN MODULE </b><font color="#cc0033">org_w3c_dom_css</font>;
+
+<b>IMPORT</b>
+    <a href="java_lang.html">java_lang</a> := "java.lang",
+    <a href="org_w3c_dom.html">org_w3c_dom</a> := "org.w3c.dom",
+    <a href="org_w3c_dom_stylesheets.html">org_w3c_dom_stylesheets</a> := "org.w3c.dom.stylesheets",
+    <a href="org_w3c_dom_views.html">org_w3c_dom_views</a> := "org.w3c.dom.views";
+
+<b>TYPE</b>
+
+  <a name="type-Counter"></a><font color="#cc0033">Counter</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+             <font color="green"><b> (* </b><a href="#meths-Counter">Typebound Procedures</a><b> *)</b></font>
+             <b>END</b>;
+
+  <a name="type-CSS2Properties"></a><font color="#cc0033">CSS2Properties</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                    <font color="green"><b> (* </b><a href="#meths-CSS2Properties">Typebound Procedures</a><b> *)</b></font>
+                    <b>END</b>;
+
+  <a name="type-CSSCharsetRule"></a><font color="#cc0033">CSSCharsetRule</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <b>CSSRule</b>)
+                    <font color="green"><b> (* </b><a href="#meths-CSSCharsetRule">Typebound Procedures</a><b> *)</b></font>
+                    <b>END</b>;
+
+  <a name="type-CSSFontFaceRule"></a><font color="#cc0033">CSSFontFaceRule</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <b>CSSRule</b>)
+                     <font color="green"><b> (* </b><a href="#meths-CSSFontFaceRule">Typebound Procedures</a><b> *)</b></font>
+                     <b>END</b>;
+
+  <a name="type-CSSImportRule"></a><font color="#cc0033">CSSImportRule</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <b>CSSRule</b>)
+                   <font color="green"><b> (* </b><a href="#meths-CSSImportRule">Typebound Procedures</a><b> *)</b></font>
+                   <b>END</b>;
+
+  <a name="type-CSSMediaRule"></a><font color="#cc0033">CSSMediaRule</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <b>CSSRule</b>)
+                  <font color="green"><b> (* </b><a href="#meths-CSSMediaRule">Typebound Procedures</a><b> *)</b></font>
+                  <b>END</b>;
+
+  <a name="type-CSSPageRule"></a><font color="#cc0033">CSSPageRule</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <b>CSSRule</b>)
+                 <font color="green"><b> (* </b><a href="#meths-CSSPageRule">Typebound Procedures</a><b> *)</b></font>
+                 <b>END</b>;
+
+  <a name="type-CSSPrimitiveValue"></a><font color="#cc0033">CSSPrimitiveValue</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <b>CSSValue</b>)
+                       <font color="green"><b> (* </b><a href="#meths-CSSPrimitiveValue">Typebound Procedures</a><b> *)</b></font>
+                       <b>STATIC</b>
+                         <font color="#cc0033">CSS_ATTR</font>*       = 22;
+                         <font color="#cc0033">CSS_CM</font>*         = 6;
+                         <font color="#cc0033">CSS_COUNTER</font>*    = 23;
+                         <font color="#cc0033">CSS_DEG</font>*        = 11;
+                         <font color="#cc0033">CSS_DIMENSION</font>*  = 18;
+                         <font color="#cc0033">CSS_EMS</font>*        = 3;
+                         <font color="#cc0033">CSS_EXS</font>*        = 4;
+                         <font color="#cc0033">CSS_GRAD</font>*       = 13;
+                         <font color="#cc0033">CSS_HZ</font>*         = 16;
+                         <font color="#cc0033">CSS_IDENT</font>*      = 21;
+                         <font color="#cc0033">CSS_IN</font>*         = 8;
+                         <font color="#cc0033">CSS_KHZ</font>*        = 17;
+                         <font color="#cc0033">CSS_MM</font>*         = 7;
+                         <font color="#cc0033">CSS_MS</font>*         = 14;
+                         <font color="#cc0033">CSS_NUMBER</font>*     = 1;
+                         <font color="#cc0033">CSS_PC</font>*         = 10;
+                         <font color="#cc0033">CSS_PERCENTAGE</font>* = 2;
+                         <font color="#cc0033">CSS_PT</font>*         = 9;
+                         <font color="#cc0033">CSS_PX</font>*         = 5;
+                         <font color="#cc0033">CSS_RAD</font>*        = 12;
+                         <font color="#cc0033">CSS_RECT</font>*       = 24;
+                         <font color="#cc0033">CSS_RGBCOLOR</font>*   = 25;
+                         <font color="#cc0033">CSS_S</font>*          = 15;
+                         <font color="#cc0033">CSS_STRING</font>*     = 19;
+                         <font color="#cc0033">CSS_UNKNOWN</font>*    = 0;
+                         <font color="#cc0033">CSS_URI</font>*        = 20;
+                       <b>END</b>;
+
+  <a name="type-CSSRule"></a><font color="#cc0033">CSSRule</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+             <font color="green"><b> (* </b><a href="#meths-CSSRule">Typebound Procedures</a><b> *)</b></font>
+             <b>STATIC</b>
+               <font color="#cc0033">CHARSET_RULE</font>*   = 2;
+               <font color="#cc0033">FONT_FACE_RULE</font>* = 5;
+               <font color="#cc0033">IMPORT_RULE</font>*    = 3;
+               <font color="#cc0033">MEDIA_RULE</font>*     = 4;
+               <font color="#cc0033">PAGE_RULE</font>*      = 6;
+               <font color="#cc0033">STYLE_RULE</font>*     = 1;
+               <font color="#cc0033">UNKNOWN_RULE</font>*   = 0;
+             <b>END</b>;
+
+  <a name="type-CSSRuleList"></a><font color="#cc0033">CSSRuleList</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                 <font color="green"><b> (* </b><a href="#meths-CSSRuleList">Typebound Procedures</a><b> *)</b></font>
+                 <b>END</b>;
+
+  <a name="type-CSSStyleDeclaration"></a><font color="#cc0033">CSSStyleDeclaration</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                         <font color="green"><b> (* </b><a href="#meths-CSSStyleDeclaration">Typebound Procedures</a><b> *)</b></font>
+                         <b>END</b>;
+
+  <a name="type-CSSStyleRule"></a><font color="#cc0033">CSSStyleRule</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-CSSRule">CSSRule</a>)
+                  <font color="green"><b> (* </b><a href="#meths-CSSStyleRule">Typebound Procedures</a><b> *)</b></font>
+                  <b>END</b>;
+
+  <a name="type-CSSStyleSheet"></a><font color="#cc0033">CSSStyleSheet</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="org_w3c_dom_stylesheets.html#type-StyleSheet">org_w3c_dom_stylesheets.StyleSheet</a>)
+                   <font color="green"><b> (* </b><a href="#meths-CSSStyleSheet">Typebound Procedures</a><b> *)</b></font>
+                   <b>END</b>;
+
+  <a name="type-CSSUnknownRule"></a><font color="#cc0033">CSSUnknownRule</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-CSSRule">CSSRule</a>)
+                    <b>END</b>;
+
+  <a name="type-CSSValue"></a><font color="#cc0033">CSSValue</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+              <font color="green"><b> (* </b><a href="#meths-CSSValue">Typebound Procedures</a><b> *)</b></font>
+              <b>STATIC</b>
+                <font color="#cc0033">CSS_CUSTOM</font>*          = 3;
+                <font color="#cc0033">CSS_INHERIT</font>*         = 0;
+                <font color="#cc0033">CSS_PRIMITIVE_VALUE</font>* = 1;
+                <font color="#cc0033">CSS_VALUE_LIST</font>*      = 2;
+              <b>END</b>;
+
+  <a name="type-CSSValueList"></a><font color="#cc0033">CSSValueList</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-CSSValue">CSSValue</a>)
+                  <font color="green"><b> (* </b><a href="#meths-CSSValueList">Typebound Procedures</a><b> *)</b></font>
+                  <b>END</b>;
+
+  <a name="type-DocumentCSS"></a><font color="#cc0033">DocumentCSS</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="org_w3c_dom_stylesheets.html#type-DocumentStyle">org_w3c_dom_stylesheets.DocumentStyle</a>)
+                 <font color="green"><b> (* </b><a href="#meths-DocumentCSS">Typebound Procedures</a><b> *)</b></font>
+                 <b>END</b>;
+
+  <a name="type-DOMImplementationCSS"></a><font color="#cc0033">DOMImplementationCSS</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="org_w3c_dom.html#type-DOMImplementation">org_w3c_dom.DOMImplementation</a>)
+                          <font color="green"><b> (* </b><a href="#meths-DOMImplementationCSS">Typebound Procedures</a><b> *)</b></font>
+                          <b>END</b>;
+
+  <a name="type-ElementCSSInlineStyle"></a><font color="#cc0033">ElementCSSInlineStyle</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                           <font color="green"><b> (* </b><a href="#meths-ElementCSSInlineStyle">Typebound Procedures</a><b> *)</b></font>
+                           <b>END</b>;
+
+  <a name="type-Rect"></a><font color="#cc0033">Rect</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+          <font color="green"><b> (* </b><a href="#meths-Rect">Typebound Procedures</a><b> *)</b></font>
+          <b>END</b>;
+
+  <a name="type-RGBColor"></a><font color="#cc0033">RGBColor</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+              <font color="green"><b> (* </b><a href="#meths-RGBColor">Typebound Procedures</a><b> *)</b></font>
+              <b>END</b>;
+
+  <a name="type-ViewCSS"></a><font color="#cc0033">ViewCSS</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="org_w3c_dom_views.html#type-AbstractView">org_w3c_dom_views.AbstractView</a>)
+             <font color="green"><b> (* </b><a href="#meths-ViewCSS">Typebound Procedures</a><b> *)</b></font>
+             <b>END</b>;
+
+
+
+<a name="meths-Counter"></a>
+<b>PROCEDURE </b>(self:Counter) <font color="#cc0033">getIdentifier</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Counter) <font color="#cc0033">getListStyle</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Counter) <font color="#cc0033">getSeparator</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-CSS2Properties"></a>
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">getAzimuth</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">getBackground</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">getBackgroundAttachment</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">getBackgroundColor</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">getBackgroundImage</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">getBackgroundPosition</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">getBackgroundRepeat</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">getBorder</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">getBorderBottom</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">getBorderBottomColor</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">getBorderBottomStyle</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">getBorderBottomWidth</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">getBorderCollapse</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">getBorderColor</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">getBorderLeft</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">getBorderLeftColor</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">getBorderLeftStyle</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">getBorderLeftWidth</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">getBorderRight</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">getBorderRightColor</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">getBorderRightStyle</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">getBorderRightWidth</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">getBorderSpacing</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">getBorderStyle</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">getBorderTop</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">getBorderTopColor</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">getBorderTopStyle</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">getBorderTopWidth</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">getBorderWidth</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">getBottom</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">getCaptionSide</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">getClear</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">getClip</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">getColor</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">getContent</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">getCounterIncrement</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">getCounterReset</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">getCssFloat</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">getCue</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">getCueAfter</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">getCueBefore</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">getCursor</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">getDirection</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">getDisplay</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">getElevation</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">getEmptyCells</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">getFont</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">getFontFamily</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">getFontSize</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">getFontSizeAdjust</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">getFontStretch</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">getFontStyle</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">getFontVariant</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">getFontWeight</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">getHeight</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">getLeft</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">getLetterSpacing</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">getLineHeight</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">getListStyle</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">getListStyleImage</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">getListStylePosition</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">getListStyleType</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">getMargin</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">getMarginBottom</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">getMarginLeft</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">getMarginRight</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">getMarginTop</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">getMarkerOffset</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">getMarks</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">getMaxHeight</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">getMaxWidth</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">getMinHeight</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">getMinWidth</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">getOrphans</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">getOutline</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">getOutlineColor</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">getOutlineStyle</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">getOutlineWidth</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">getOverflow</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">getPadding</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">getPaddingBottom</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">getPaddingLeft</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">getPaddingRight</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">getPaddingTop</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">getPage</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">getPageBreakAfter</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">getPageBreakBefore</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">getPageBreakInside</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">getPause</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">getPauseAfter</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">getPauseBefore</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">getPitch</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">getPitchRange</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">getPlayDuring</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">getPosition</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">getQuotes</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">getRichness</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">getRight</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">getSize</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">getSpeak</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">getSpeakHeader</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">getSpeakNumeral</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">getSpeakPunctuation</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">getSpeechRate</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">getStress</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">getTableLayout</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">getTextAlign</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">getTextDecoration</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">getTextIndent</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">getTextShadow</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">getTextTransform</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">getTop</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">getUnicodeBidi</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">getVerticalAlign</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">getVisibility</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">getVoiceFamily</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">getVolume</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">getWhiteSpace</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">getWidows</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">getWidth</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">getWordSpacing</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">getZIndex</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">setAzimuth</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">setBackground</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">setBackgroundAttachment</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">setBackgroundColor</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">setBackgroundImage</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">setBackgroundPosition</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">setBackgroundRepeat</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">setBorder</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">setBorderBottom</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">setBorderBottomColor</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">setBorderBottomStyle</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">setBorderBottomWidth</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">setBorderCollapse</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">setBorderColor</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">setBorderLeft</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">setBorderLeftColor</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">setBorderLeftStyle</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">setBorderLeftWidth</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">setBorderRight</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">setBorderRightColor</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">setBorderRightStyle</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">setBorderRightWidth</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">setBorderSpacing</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">setBorderStyle</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">setBorderTop</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">setBorderTopColor</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">setBorderTopStyle</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">setBorderTopWidth</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">setBorderWidth</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">setBottom</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">setCaptionSide</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">setClear</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">setClip</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">setColor</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">setContent</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">setCounterIncrement</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">setCounterReset</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">setCssFloat</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">setCue</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">setCueAfter</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">setCueBefore</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">setCursor</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">setDirection</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">setDisplay</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">setElevation</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">setEmptyCells</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">setFont</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">setFontFamily</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">setFontSize</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">setFontSizeAdjust</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">setFontStretch</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">setFontStyle</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">setFontVariant</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">setFontWeight</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">setHeight</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">setLeft</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">setLetterSpacing</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">setLineHeight</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">setListStyle</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">setListStyleImage</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">setListStylePosition</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">setListStyleType</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">setMargin</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">setMarginBottom</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">setMarginLeft</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">setMarginRight</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">setMarginTop</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">setMarkerOffset</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">setMarks</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">setMaxHeight</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">setMaxWidth</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">setMinHeight</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">setMinWidth</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">setOrphans</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">setOutline</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">setOutlineColor</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">setOutlineStyle</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">setOutlineWidth</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">setOverflow</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">setPadding</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">setPaddingBottom</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">setPaddingLeft</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">setPaddingRight</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">setPaddingTop</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">setPage</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">setPageBreakAfter</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">setPageBreakBefore</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">setPageBreakInside</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">setPause</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">setPauseAfter</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">setPauseBefore</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">setPitch</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">setPitchRange</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">setPlayDuring</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">setPosition</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">setQuotes</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">setRichness</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">setRight</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">setSize</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">setSpeak</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">setSpeakHeader</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">setSpeakNumeral</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">setSpeakPunctuation</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">setSpeechRate</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">setStress</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">setTableLayout</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">setTextAlign</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">setTextDecoration</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">setTextIndent</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">setTextShadow</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">setTextTransform</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">setTop</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">setUnicodeBidi</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">setVerticalAlign</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">setVisibility</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">setVoiceFamily</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">setVolume</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">setWhiteSpace</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">setWidows</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">setWidth</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">setWordSpacing</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSS2Properties) <font color="#cc0033">setZIndex</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-CSSCharsetRule"></a>
+<b>PROCEDURE </b>(self:CSSCharsetRule) <font color="#cc0033">getEncoding</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSSCharsetRule) <font color="#cc0033">setEncoding</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-CSSFontFaceRule"></a>
+<b>PROCEDURE </b>(self:CSSFontFaceRule) <font color="#cc0033">getStyle</font>*() : <b>CSSStyleDeclaration</b><b>,NEW,ABSTRACT</b>;
+<a name="meths-CSSImportRule"></a>
+<b>PROCEDURE </b>(self:CSSImportRule) <font color="#cc0033">getHref</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSSImportRule) <font color="#cc0033">getMedia</font>*() : <a href="org_w3c_dom_stylesheets.html#type-MediaList">org_w3c_dom_stylesheets.MediaList</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSSImportRule) <font color="#cc0033">getStyleSheet</font>*() : <b>CSSStyleSheet</b><b>,NEW,ABSTRACT</b>;
+<a name="meths-CSSMediaRule"></a>
+<b>PROCEDURE </b>(self:CSSMediaRule) <font color="#cc0033">deleteRule</font>*(p0 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSSMediaRule) <font color="#cc0033">getCssRules</font>*() : <b>CSSRuleList</b><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSSMediaRule) <font color="#cc0033">getMedia</font>*() : <a href="org_w3c_dom_stylesheets.html#type-MediaList">org_w3c_dom_stylesheets.MediaList</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSSMediaRule) <font color="#cc0033">insertRule</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                          p1 : INTEGER) : INTEGER<b>,NEW,ABSTRACT</b>;
+<a name="meths-CSSPageRule"></a>
+<b>PROCEDURE </b>(self:CSSPageRule) <font color="#cc0033">getSelectorText</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSSPageRule) <font color="#cc0033">getStyle</font>*() : <b>CSSStyleDeclaration</b><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSSPageRule) <font color="#cc0033">setSelectorText</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-CSSPrimitiveValue"></a>
+<b>PROCEDURE </b>(self:CSSPrimitiveValue) <font color="#cc0033">getCounterValue</font>*() : <b>Counter</b><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSSPrimitiveValue) <font color="#cc0033">getFloatValue</font>*(p0 : SHORTINT) : SHORTREAL<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSSPrimitiveValue) <font color="#cc0033">getPrimitiveType</font>*() : SHORTINT<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSSPrimitiveValue) <font color="#cc0033">getRectValue</font>*() : <b>Rect</b><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSSPrimitiveValue) <font color="#cc0033">getRGBColorValue</font>*() : <b>RGBColor</b><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSSPrimitiveValue) <font color="#cc0033">getStringValue</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSSPrimitiveValue) <font color="#cc0033">setFloatValue</font>*(p0 : SHORTINT;
+                                                  p1 : SHORTREAL)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSSPrimitiveValue) <font color="#cc0033">setStringValue</font>*(p0 : SHORTINT;
+                                                   p1 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-CSSRule"></a>
+<b>PROCEDURE </b>(self:CSSRule) <font color="#cc0033">getCssText</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSSRule) <font color="#cc0033">getParentRule</font>*() : <a href="#type-CSSRule">CSSRule</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSSRule) <font color="#cc0033">getParentStyleSheet</font>*() : <b>CSSStyleSheet</b><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSSRule) <font color="#cc0033">getType</font>*() : SHORTINT<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSSRule) <font color="#cc0033">setCssText</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-CSSRuleList"></a>
+<b>PROCEDURE </b>(self:CSSRuleList) <font color="#cc0033">getLength</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSSRuleList) <font color="#cc0033">item</font>*(p0 : INTEGER) : <a href="#type-CSSRule">CSSRule</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-CSSStyleDeclaration"></a>
+<b>PROCEDURE </b>(self:CSSStyleDeclaration) <font color="#cc0033">getCssText</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSSStyleDeclaration) <font color="#cc0033">getLength</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSSStyleDeclaration) <font color="#cc0033">getParentRule</font>*() : <a href="#type-CSSRule">CSSRule</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSSStyleDeclaration) <font color="#cc0033">getPropertyCSSValue</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <b>CSSValue</b><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSSStyleDeclaration) <font color="#cc0033">getPropertyPriority</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSSStyleDeclaration) <font color="#cc0033">getPropertyValue</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSSStyleDeclaration) <font color="#cc0033">item</font>*(p0 : INTEGER) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSSStyleDeclaration) <font color="#cc0033">removeProperty</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSSStyleDeclaration) <font color="#cc0033">setCssText</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSSStyleDeclaration) <font color="#cc0033">setProperty</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                  p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                  p2 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-CSSStyleRule"></a>
+<b>PROCEDURE </b>(self:CSSStyleRule) <font color="#cc0033">getSelectorText</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSSStyleRule) <font color="#cc0033">getStyle</font>*() : <a href="#type-CSSStyleDeclaration">CSSStyleDeclaration</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSSStyleRule) <font color="#cc0033">setSelectorText</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-CSSStyleSheet"></a>
+<b>PROCEDURE </b>(self:CSSStyleSheet) <font color="#cc0033">deleteRule</font>*(p0 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSSStyleSheet) <font color="#cc0033">getCssRules</font>*() : <a href="#type-CSSRuleList">CSSRuleList</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSSStyleSheet) <font color="#cc0033">getOwnerRule</font>*() : <a href="#type-CSSRule">CSSRule</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSSStyleSheet) <font color="#cc0033">insertRule</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                           p1 : INTEGER) : INTEGER<b>,NEW,ABSTRACT</b>;
+<a name="meths-CSSValue"></a>
+<b>PROCEDURE </b>(self:CSSValue) <font color="#cc0033">getCssText</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSSValue) <font color="#cc0033">getCssValueType</font>*() : SHORTINT<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSSValue) <font color="#cc0033">setCssText</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-CSSValueList"></a>
+<b>PROCEDURE </b>(self:CSSValueList) <font color="#cc0033">getLength</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CSSValueList) <font color="#cc0033">item</font>*(p0 : INTEGER) : <a href="#type-CSSValue">CSSValue</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-DocumentCSS"></a>
+<b>PROCEDURE </b>(self:DocumentCSS) <font color="#cc0033">getOverrideStyle</font>*(p0 : <a href="org_w3c_dom.html#type-Element">org_w3c_dom.Element</a>;
+                                               p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-CSSStyleDeclaration">CSSStyleDeclaration</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-DOMImplementationCSS"></a>
+<b>PROCEDURE </b>(self:DOMImplementationCSS) <font color="#cc0033">createCSSStyleSheet</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                           p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-CSSStyleSheet">CSSStyleSheet</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-ElementCSSInlineStyle"></a>
+<b>PROCEDURE </b>(self:ElementCSSInlineStyle) <font color="#cc0033">getStyle</font>*() : <a href="#type-CSSStyleDeclaration">CSSStyleDeclaration</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-Rect"></a>
+<b>PROCEDURE </b>(self:Rect) <font color="#cc0033">getBottom</font>*() : <a href="#type-CSSPrimitiveValue">CSSPrimitiveValue</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Rect) <font color="#cc0033">getLeft</font>*() : <a href="#type-CSSPrimitiveValue">CSSPrimitiveValue</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Rect) <font color="#cc0033">getRight</font>*() : <a href="#type-CSSPrimitiveValue">CSSPrimitiveValue</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Rect) <font color="#cc0033">getTop</font>*() : <a href="#type-CSSPrimitiveValue">CSSPrimitiveValue</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-RGBColor"></a>
+<b>PROCEDURE </b>(self:RGBColor) <font color="#cc0033">getBlue</font>*() : <a href="#type-CSSPrimitiveValue">CSSPrimitiveValue</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RGBColor) <font color="#cc0033">getGreen</font>*() : <a href="#type-CSSPrimitiveValue">CSSPrimitiveValue</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RGBColor) <font color="#cc0033">getRed</font>*() : <a href="#type-CSSPrimitiveValue">CSSPrimitiveValue</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-ViewCSS"></a>
+<b>PROCEDURE </b>(self:ViewCSS) <font color="#cc0033">getComputedStyle</font>*(p0 : <a href="org_w3c_dom.html#type-Element">org_w3c_dom.Element</a>;
+                                           p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-CSSStyleDeclaration">CSSStyleDeclaration</a><b>,NEW,ABSTRACT</b>;
+
+<b>END </b><font color="#cc0033">org_w3c_dom_css</font>.
+</font></pre></hr>
+<!-- BEGIN JavaScript -->
+<script>
+function toggle(node) {
+    node.classList.toggle("show"); 
+  }
+
+function cls(node) {
+    var prnt = node.parentNode;
+    var next = prnt.previousSibling;
+    var text = next.lastChild;
+    text.innerHTML = 
+        "The <b>class</b> property asserts that this type will be<br>" +
+        "implemented as a reference class in the underlying framework.";
+    text.classList.toggle("show");
+  }
+
+function newOk(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>has noArg-ctor</b> property asserts that this reference<br>" +
+        "class has a no-arg constructor, and thus objects of this<br>" +
+        "type can be allocated with NEW(). Component Pascal types<br>" +
+        "derived from this type can also be allocated using NEW().";
+    popuptext.classList.toggle("show"); 
+  }
+
+function noNew(node) { 
+    var prnt = node.parentNode; 
+    var next = prnt.previousSibling; 
+    var text = next.lastChild; 
+    text.innerHTML =  
+        "The <b>no noArg-ctor</b> property asserts that this reference<br>" +
+        "class does not have a noArg constructor. Objects of this<br>" +
+        "type cannot be allocated using NEW(), and Component<br>" +
+        "Pascal types  derived from this type also cannot be<br>" +
+        "allocated using NEW().";
+    text.classList.toggle("show");
+  }
+
+function noCpy(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>no value-assign</b> property asserts that this reference<br>" + 
+        "class does not have a value copy method. Therefore, it<br>" +
+        "is not possible to perform value assignments using<br>" +
+        "statements like <i>dst^</i> := <i>src^</i>";
+    popuptext.classList.toggle("show");
+  }
+
+function valueclass(node) { 
+        var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>valueclass</b> property asserts that this RECORD type is<br>" + 
+        "implemented as a value class in the CLR. It follows that<br>" +  
+        "value assignments can be made of these types. They can<br>" + 
+        "also be passed by value. Even pointers to records of<br>" + 
+        "such types may be dereferenced and copied using syntax<br>" + 
+        "such as  <i>dst^</i> := <i>src^</i>"; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+function argCtor(node) { 
+    var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>has arg-ctor</b> property asserts that this reference<br>" +  
+        "class has one or more constructors that take arguments.<br>" + 
+        "These constructors can be called from Component Pascal<br>" + 
+        "by calling an <i>init</i>(...) method from the static list<br>" + 
+        "here. Component Pascal types derived from this type<br>" + 
+        "can define constructors with arguments which call the<br>" + 
+        "super-type constructor.<br>" + 
+        "See <i>'Interfacing to constructors'</i> in the Release Notes."; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+</script>
+<!-- END JavaScript --> 
+
+</body></html>

@@ -1,0 +1,683 @@
+<html><head><title>org_w3c_dom</title>
+<style>
+<!-- BEGIN Inline CSS -->
+/* Popup container */
+.popup {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+/* The actual popup (appears on top) */
+.popup .popuptext {
+    visibility: hidden;
+    width: 430px;
+    background-color: white;
+    color: black;
+    text-align: left;
+    border-radius: 6px;
+    border-style: solid;
+    border-color: black;
+    padding: 8px 8px 8px 8px;
+    position: absolute;
+    z-index: 1;
+    margin-top: 30px;
+}
+
+/* Toggle this class when clicking on the popup container (hide and show the popup) */
+.popup .show {
+    visibility: visible;
+    opacity: 1;
+}
+
+</style>
+<!-- END Inline CSS -->
+</head><body bgcolor="white">
+<hr><pre>
+<font color="green">(*</font>
+<font color="green"> *  Creator j2cps version 1.4.07 (March 2018)</font>
+<font color="green"> *  Compiled from jar-file rt.jar</font>
+<font color="green"> *)</font>
+<b>FOREIGN MODULE </b><font color="#cc0033">org_w3c_dom</font>;
+
+<b>IMPORT</b>
+    <a href="java_lang.html">java_lang</a> := "java.lang";
+
+<b>TYPE</b>
+
+  <a name="type-Attr"></a><font color="#cc0033">Attr</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <b>Node</b>)
+          <font color="green"><b> (* </b><a href="#meths-Attr">Typebound Procedures</a><b> *)</b></font>
+          <b>END</b>;
+
+  <a name="type-CDATASection"></a><font color="#cc0033">CDATASection</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-Text">Text</a>)
+                  <b>END</b>;
+
+  <a name="type-CharacterData"></a><font color="#cc0033">CharacterData</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <b>Node</b>)
+                   <font color="green"><b> (* </b><a href="#meths-CharacterData">Typebound Procedures</a><b> *)</b></font>
+                   <b>END</b>;
+
+  <a name="type-Comment"></a><font color="#cc0033">Comment</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <b>CharacterData</b>)
+             <b>END</b>;
+
+  <a name="type-Document"></a><font color="#cc0033">Document</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <b>Node</b>)
+              <font color="green"><b> (* </b><a href="#meths-Document">Typebound Procedures</a><b> *)</b></font>
+              <b>END</b>;
+
+  <a name="type-DocumentFragment"></a><font color="#cc0033">DocumentFragment</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <b>Node</b>)
+                      <b>END</b>;
+
+  <a name="type-DocumentType"></a><font color="#cc0033">DocumentType</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <b>Node</b>)
+                  <font color="green"><b> (* </b><a href="#meths-DocumentType">Typebound Procedures</a><b> *)</b></font>
+                  <b>END</b>;
+
+  <a name="type-DOMConfiguration"></a><font color="#cc0033">DOMConfiguration</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                      <font color="green"><b> (* </b><a href="#meths-DOMConfiguration">Typebound Procedures</a><b> *)</b></font>
+                      <b>END</b>;
+
+  <a name="type-DOMError"></a><font color="#cc0033">DOMError</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+              <font color="green"><b> (* </b><a href="#meths-DOMError">Typebound Procedures</a><b> *)</b></font>
+              <b>STATIC</b>
+                <font color="#cc0033">SEVERITY_ERROR</font>*       = 2;
+                <font color="#cc0033">SEVERITY_FATAL_ERROR</font>* = 3;
+                <font color="#cc0033">SEVERITY_WARNING</font>*     = 1;
+              <b>END</b>;
+
+  <a name="type-DOMErrorHandler"></a><font color="#cc0033">DOMErrorHandler</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                     <font color="green"><b> (* </b><a href="#meths-DOMErrorHandler">Typebound Procedures</a><b> *)</b></font>
+                     <b>END</b>;
+
+  <a name="type-DOMException"></a><font color="#cc0033">DOMException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-RuntimeException">java_lang.RuntimeException</a>)
+                  <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                    <font color="#cc0033">code</font>* : SHORTINT;
+                  <b>STATIC</b>
+                    <font color="#cc0033">DOMSTRING_SIZE_ERR</font>*          = 2;
+                    <font color="#cc0033">HIERARCHY_REQUEST_ERR</font>*       = 3;
+                    <font color="#cc0033">INDEX_SIZE_ERR</font>*              = 1;
+                    <font color="#cc0033">INUSE_ATTRIBUTE_ERR</font>*         = 10;
+                    <font color="#cc0033">INVALID_ACCESS_ERR</font>*          = 15;
+                    <font color="#cc0033">INVALID_CHARACTER_ERR</font>*       = 5;
+                    <font color="#cc0033">INVALID_MODIFICATION_ERR</font>*    = 13;
+                    <font color="#cc0033">INVALID_STATE_ERR</font>*           = 11;
+                    <font color="#cc0033">NAMESPACE_ERR</font>*               = 14;
+                    <font color="#cc0033">NOT_FOUND_ERR</font>*               = 8;
+                    <font color="#cc0033">NOT_SUPPORTED_ERR</font>*           = 9;
+                    <font color="#cc0033">NO_DATA_ALLOWED_ERR</font>*         = 6;
+                    <font color="#cc0033">NO_MODIFICATION_ALLOWED_ERR</font>* = 7;
+                    <font color="#cc0033">SYNTAX_ERR</font>*                  = 12;
+                    <font color="#cc0033">TYPE_MISMATCH_ERR</font>*           = 17;
+                    <font color="#cc0033">VALIDATION_ERR</font>*              = 16;
+                    <font color="#cc0033">WRONG_DOCUMENT_ERR</font>*          = 4;
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : SHORTINT;
+                                    p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-DOMException">DOMException</a><b>,CONSTRUCTOR</b>;
+                  <b>END</b>;
+
+  <a name="type-DOMImplementation"></a><font color="#cc0033">DOMImplementation</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                       <font color="green"><b> (* </b><a href="#meths-DOMImplementation">Typebound Procedures</a><b> *)</b></font>
+                       <b>END</b>;
+
+  <a name="type-DOMImplementationList"></a><font color="#cc0033">DOMImplementationList</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                           <font color="green"><b> (* </b><a href="#meths-DOMImplementationList">Typebound Procedures</a><b> *)</b></font>
+                           <b>END</b>;
+
+  <a name="type-DOMImplementationSource"></a><font color="#cc0033">DOMImplementationSource</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                             <font color="green"><b> (* </b><a href="#meths-DOMImplementationSource">Typebound Procedures</a><b> *)</b></font>
+                             <b>END</b>;
+
+  <a name="type-DOMLocator"></a><font color="#cc0033">DOMLocator</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                <font color="green"><b> (* </b><a href="#meths-DOMLocator">Typebound Procedures</a><b> *)</b></font>
+                <b>END</b>;
+
+  <a name="type-DOMStringList"></a><font color="#cc0033">DOMStringList</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                   <font color="green"><b> (* </b><a href="#meths-DOMStringList">Typebound Procedures</a><b> *)</b></font>
+                   <b>END</b>;
+
+  <a name="type-Element"></a><font color="#cc0033">Element</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <b>Node</b>)
+             <font color="green"><b> (* </b><a href="#meths-Element">Typebound Procedures</a><b> *)</b></font>
+             <b>END</b>;
+
+  <a name="type-Entity"></a><font color="#cc0033">Entity</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <b>Node</b>)
+            <font color="green"><b> (* </b><a href="#meths-Entity">Typebound Procedures</a><b> *)</b></font>
+            <b>END</b>;
+
+  <a name="type-EntityReference"></a><font color="#cc0033">EntityReference</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <b>Node</b>)
+                     <b>END</b>;
+
+  <a name="type-NamedNodeMap"></a><font color="#cc0033">NamedNodeMap</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                  <font color="green"><b> (* </b><a href="#meths-NamedNodeMap">Typebound Procedures</a><b> *)</b></font>
+                  <b>END</b>;
+
+  <a name="type-NameList"></a><font color="#cc0033">NameList</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+              <font color="green"><b> (* </b><a href="#meths-NameList">Typebound Procedures</a><b> *)</b></font>
+              <b>END</b>;
+
+  <a name="type-Node"></a><font color="#cc0033">Node</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+          <font color="green"><b> (* </b><a href="#meths-Node">Typebound Procedures</a><b> *)</b></font>
+          <b>STATIC</b>
+            <font color="#cc0033">ATTRIBUTE_NODE</font>*                            = 2;
+            <font color="#cc0033">CDATA_SECTION_NODE</font>*                        = 4;
+            <font color="#cc0033">COMMENT_NODE</font>*                              = 8;
+            <font color="#cc0033">DOCUMENT_FRAGMENT_NODE</font>*                    = 11;
+            <font color="#cc0033">DOCUMENT_NODE</font>*                             = 9;
+            <font color="#cc0033">DOCUMENT_POSITION_CONTAINED_BY</font>*            = 16;
+            <font color="#cc0033">DOCUMENT_POSITION_CONTAINS</font>*                = 8;
+            <font color="#cc0033">DOCUMENT_POSITION_DISCONNECTED</font>*            = 1;
+            <font color="#cc0033">DOCUMENT_POSITION_FOLLOWING</font>*               = 4;
+            <font color="#cc0033">DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC</font>* = 32;
+            <font color="#cc0033">DOCUMENT_POSITION_PRECEDING</font>*               = 2;
+            <font color="#cc0033">DOCUMENT_TYPE_NODE</font>*                        = 10;
+            <font color="#cc0033">ELEMENT_NODE</font>*                              = 1;
+            <font color="#cc0033">ENTITY_NODE</font>*                               = 6;
+            <font color="#cc0033">ENTITY_REFERENCE_NODE</font>*                     = 5;
+            <font color="#cc0033">NOTATION_NODE</font>*                             = 12;
+            <font color="#cc0033">PROCESSING_INSTRUCTION_NODE</font>*               = 7;
+            <font color="#cc0033">TEXT_NODE</font>*                                 = 3;
+          <b>END</b>;
+
+  <a name="type-NodeList"></a><font color="#cc0033">NodeList</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+              <font color="green"><b> (* </b><a href="#meths-NodeList">Typebound Procedures</a><b> *)</b></font>
+              <b>END</b>;
+
+  <a name="type-Notation"></a><font color="#cc0033">Notation</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <b>Node</b>)
+              <font color="green"><b> (* </b><a href="#meths-Notation">Typebound Procedures</a><b> *)</b></font>
+              <b>END</b>;
+
+  <a name="type-ProcessingInstruction"></a><font color="#cc0033">ProcessingInstruction</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <b>Node</b>)
+                           <font color="green"><b> (* </b><a href="#meths-ProcessingInstruction">Typebound Procedures</a><b> *)</b></font>
+                           <b>END</b>;
+
+  <a name="type-Text"></a><font color="#cc0033">Text</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <b>CharacterData</b>)
+          <font color="green"><b> (* </b><a href="#meths-Text">Typebound Procedures</a><b> *)</b></font>
+          <b>END</b>;
+
+  <a name="type-TypeInfo"></a><font color="#cc0033">TypeInfo</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+              <font color="green"><b> (* </b><a href="#meths-TypeInfo">Typebound Procedures</a><b> *)</b></font>
+              <b>STATIC</b>
+                <font color="#cc0033">DERIVATION_EXTENSION</font>*   = 2;
+                <font color="#cc0033">DERIVATION_LIST</font>*        = 8;
+                <font color="#cc0033">DERIVATION_RESTRICTION</font>* = 1;
+                <font color="#cc0033">DERIVATION_UNION</font>*       = 4;
+              <b>END</b>;
+
+  <a name="type-UserDataHandler"></a><font color="#cc0033">UserDataHandler</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                     <font color="green"><b> (* </b><a href="#meths-UserDataHandler">Typebound Procedures</a><b> *)</b></font>
+                     <b>STATIC</b>
+                       <font color="#cc0033">NODE_ADOPTED</font>*  = 5;
+                       <font color="#cc0033">NODE_CLONED</font>*   = 1;
+                       <font color="#cc0033">NODE_DELETED</font>*  = 3;
+                       <font color="#cc0033">NODE_IMPORTED</font>* = 2;
+                       <font color="#cc0033">NODE_RENAMED</font>*  = 4;
+                     <b>END</b>;
+
+
+
+<a name="meths-Attr"></a>
+<b>PROCEDURE </b>(self:Attr) <font color="#cc0033">getName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Attr) <font color="#cc0033">getOwnerElement</font>*() : <b>Element</b><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Attr) <font color="#cc0033">getSchemaTypeInfo</font>*() : <a href="#type-TypeInfo">TypeInfo</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Attr) <font color="#cc0033">getSpecified</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Attr) <font color="#cc0033">getValue</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Attr) <font color="#cc0033">isId</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Attr) <font color="#cc0033">setValue</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-CharacterData"></a>
+<b>PROCEDURE </b>(self:CharacterData) <font color="#cc0033">appendData</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CharacterData) <font color="#cc0033">deleteData</font>*(p0 : INTEGER;
+                                           p1 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CharacterData) <font color="#cc0033">getData</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CharacterData) <font color="#cc0033">getLength</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CharacterData) <font color="#cc0033">insertData</font>*(p0 : INTEGER;
+                                           p1 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CharacterData) <font color="#cc0033">replaceData</font>*(p0 : INTEGER;
+                                            p1 : INTEGER;
+                                            p2 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CharacterData) <font color="#cc0033">setData</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CharacterData) <font color="#cc0033">substringData</font>*(p0 : INTEGER;
+                                              p1 : INTEGER) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-Document"></a>
+<b>PROCEDURE </b>(self:Document) <font color="#cc0033">adoptNode</font>*(p0 : <b>Node</b>) : <b>Node</b><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Document) <font color="#cc0033">createAttribute</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-Attr">Attr</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Document) <font color="#cc0033">createAttributeNS</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                             p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-Attr">Attr</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Document) <font color="#cc0033">createCDATASection</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-CDATASection">CDATASection</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Document) <font color="#cc0033">createComment</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-Comment">Comment</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Document) <font color="#cc0033">createDocumentFragment</font>*() : <a href="#type-DocumentFragment">DocumentFragment</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Document) <font color="#cc0033">createElement</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-Element">Element</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Document) <font color="#cc0033">createElementNS</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                           p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-Element">Element</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Document) <font color="#cc0033">createEntityReference</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-EntityReference">EntityReference</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Document) <font color="#cc0033">createProcessingInstruction</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                       p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-ProcessingInstruction">ProcessingInstruction</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Document) <font color="#cc0033">createTextNode</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-Text">Text</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Document) <font color="#cc0033">getDoctype</font>*() : <a href="#type-DocumentType">DocumentType</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Document) <font color="#cc0033">getDocumentElement</font>*() : <a href="#type-Element">Element</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Document) <font color="#cc0033">getDocumentURI</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Document) <font color="#cc0033">getDomConfig</font>*() : <a href="#type-DOMConfiguration">DOMConfiguration</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Document) <font color="#cc0033">getElementById</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-Element">Element</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Document) <font color="#cc0033">getElementsByTagName</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-NodeList">NodeList</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Document) <font color="#cc0033">getElementsByTagNameNS</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                  p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-NodeList">NodeList</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Document) <font color="#cc0033">getImplementation</font>*() : <a href="#type-DOMImplementation">DOMImplementation</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Document) <font color="#cc0033">getInputEncoding</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Document) <font color="#cc0033">getStrictErrorChecking</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Document) <font color="#cc0033">getXmlEncoding</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Document) <font color="#cc0033">getXmlStandalone</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Document) <font color="#cc0033">getXmlVersion</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Document) <font color="#cc0033">importNode</font>*(p0 : <b>Node</b>;
+                                      p1 : BOOLEAN) : <b>Node</b><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Document) <font color="#cc0033">normalizeDocument</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Document) <font color="#cc0033">renameNode</font>*(p0 : <b>Node</b>;
+                                      p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                      p2 : <a href="java_lang.html#type-String">java_lang.String</a>) : <b>Node</b><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Document) <font color="#cc0033">setDocumentURI</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Document) <font color="#cc0033">setStrictErrorChecking</font>*(p0 : BOOLEAN)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Document) <font color="#cc0033">setXmlStandalone</font>*(p0 : BOOLEAN)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Document) <font color="#cc0033">setXmlVersion</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-DocumentType"></a>
+<b>PROCEDURE </b>(self:DocumentType) <font color="#cc0033">getEntities</font>*() : <a href="#type-NamedNodeMap">NamedNodeMap</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DocumentType) <font color="#cc0033">getInternalSubset</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DocumentType) <font color="#cc0033">getName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DocumentType) <font color="#cc0033">getNotations</font>*() : <a href="#type-NamedNodeMap">NamedNodeMap</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DocumentType) <font color="#cc0033">getPublicId</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DocumentType) <font color="#cc0033">getSystemId</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-DOMConfiguration"></a>
+<b>PROCEDURE </b>(self:DOMConfiguration) <font color="#cc0033">canSetParameter</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                   p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DOMConfiguration) <font color="#cc0033">getParameter</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DOMConfiguration) <font color="#cc0033">getParameterNames</font>*() : <b>DOMStringList</b><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DOMConfiguration) <font color="#cc0033">setParameter</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-DOMError"></a>
+<b>PROCEDURE </b>(self:DOMError) <font color="#cc0033">getLocation</font>*() : <b>DOMLocator</b><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DOMError) <font color="#cc0033">getMessage</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DOMError) <font color="#cc0033">getRelatedData</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DOMError) <font color="#cc0033">getRelatedException</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DOMError) <font color="#cc0033">getSeverity</font>*() : SHORTINT<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DOMError) <font color="#cc0033">getType</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-DOMErrorHandler"></a>
+<b>PROCEDURE </b>(self:DOMErrorHandler) <font color="#cc0033">handleError</font>*(p0 : <a href="#type-DOMError">DOMError</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+<a name="meths-DOMImplementation"></a>
+<b>PROCEDURE </b>(self:DOMImplementation) <font color="#cc0033">createDocument</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                   p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                   p2 : <b>DocumentType</b>) : <b>Document</b><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DOMImplementation) <font color="#cc0033">createDocumentType</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                       p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                       p2 : <a href="java_lang.html#type-String">java_lang.String</a>) : <b>DocumentType</b><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DOMImplementation) <font color="#cc0033">getFeature</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                               p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DOMImplementation) <font color="#cc0033">hasFeature</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                               p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+<a name="meths-DOMImplementationList"></a>
+<b>PROCEDURE </b>(self:DOMImplementationList) <font color="#cc0033">getLength</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DOMImplementationList) <font color="#cc0033">item</font>*(p0 : INTEGER) : <a href="#type-DOMImplementation">DOMImplementation</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-DOMImplementationSource"></a>
+<b>PROCEDURE </b>(self:DOMImplementationSource) <font color="#cc0033">getDOMImplementation</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-DOMImplementation">DOMImplementation</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DOMImplementationSource) <font color="#cc0033">getDOMImplementationList</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-DOMImplementationList">DOMImplementationList</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-DOMLocator"></a>
+<b>PROCEDURE </b>(self:DOMLocator) <font color="#cc0033">getByteOffset</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DOMLocator) <font color="#cc0033">getColumnNumber</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DOMLocator) <font color="#cc0033">getLineNumber</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DOMLocator) <font color="#cc0033">getRelatedNode</font>*() : <b>Node</b><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DOMLocator) <font color="#cc0033">getUri</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DOMLocator) <font color="#cc0033">getUtf16Offset</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+<a name="meths-DOMStringList"></a>
+<b>PROCEDURE </b>(self:DOMStringList) <font color="#cc0033">contains</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DOMStringList) <font color="#cc0033">getLength</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DOMStringList) <font color="#cc0033">item</font>*(p0 : INTEGER) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-Element"></a>
+<b>PROCEDURE </b>(self:Element) <font color="#cc0033">getAttribute</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Element) <font color="#cc0033">getAttributeNode</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-Attr">Attr</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Element) <font color="#cc0033">getAttributeNodeNS</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                             p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-Attr">Attr</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Element) <font color="#cc0033">getAttributeNS</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                         p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Element) <font color="#cc0033">getElementsByTagName</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <b>NodeList</b><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Element) <font color="#cc0033">getElementsByTagNameNS</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                 p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <b>NodeList</b><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Element) <font color="#cc0033">getSchemaTypeInfo</font>*() : <a href="#type-TypeInfo">TypeInfo</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Element) <font color="#cc0033">getTagName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Element) <font color="#cc0033">hasAttribute</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Element) <font color="#cc0033">hasAttributeNS</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                         p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Element) <font color="#cc0033">removeAttribute</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Element) <font color="#cc0033">removeAttributeNode</font>*(p0 : <a href="#type-Attr">Attr</a>) : <a href="#type-Attr">Attr</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Element) <font color="#cc0033">removeAttributeNS</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                            p1 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Element) <font color="#cc0033">setAttribute</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                       p1 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Element) <font color="#cc0033">setAttributeNode</font>*(p0 : <a href="#type-Attr">Attr</a>) : <a href="#type-Attr">Attr</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Element) <font color="#cc0033">setAttributeNodeNS</font>*(p0 : <a href="#type-Attr">Attr</a>) : <a href="#type-Attr">Attr</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Element) <font color="#cc0033">setAttributeNS</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                         p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                         p2 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Element) <font color="#cc0033">setIdAttribute</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                         p1 : BOOLEAN)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Element) <font color="#cc0033">setIdAttributeNode</font>*(p0 : <a href="#type-Attr">Attr</a>;
+                                             p1 : BOOLEAN)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Element) <font color="#cc0033">setIdAttributeNS</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                           p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                           p2 : BOOLEAN)<b>,NEW,ABSTRACT</b>;
+<a name="meths-Entity"></a>
+<b>PROCEDURE </b>(self:Entity) <font color="#cc0033">getInputEncoding</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Entity) <font color="#cc0033">getNotationName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Entity) <font color="#cc0033">getPublicId</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Entity) <font color="#cc0033">getSystemId</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Entity) <font color="#cc0033">getXmlEncoding</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Entity) <font color="#cc0033">getXmlVersion</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-NamedNodeMap"></a>
+<b>PROCEDURE </b>(self:NamedNodeMap) <font color="#cc0033">getLength</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:NamedNodeMap) <font color="#cc0033">getNamedItem</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <b>Node</b><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:NamedNodeMap) <font color="#cc0033">getNamedItemNS</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                              p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <b>Node</b><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:NamedNodeMap) <font color="#cc0033">item</font>*(p0 : INTEGER) : <b>Node</b><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:NamedNodeMap) <font color="#cc0033">removeNamedItem</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <b>Node</b><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:NamedNodeMap) <font color="#cc0033">removeNamedItemNS</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                 p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <b>Node</b><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:NamedNodeMap) <font color="#cc0033">setNamedItem</font>*(p0 : <b>Node</b>) : <b>Node</b><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:NamedNodeMap) <font color="#cc0033">setNamedItemNS</font>*(p0 : <b>Node</b>) : <b>Node</b><b>,NEW,ABSTRACT</b>;
+<a name="meths-NameList"></a>
+<b>PROCEDURE </b>(self:NameList) <font color="#cc0033">contains</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:NameList) <font color="#cc0033">containsNS</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                      p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:NameList) <font color="#cc0033">getLength</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:NameList) <font color="#cc0033">getName</font>*(p0 : INTEGER) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:NameList) <font color="#cc0033">getNamespaceURI</font>*(p0 : INTEGER) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-Node"></a>
+<b>PROCEDURE </b>(self:Node) <font color="#cc0033">appendChild</font>*(p0 : <a href="#type-Node">Node</a>) : <a href="#type-Node">Node</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Node) <font color="#cc0033">cloneNode</font>*(p0 : BOOLEAN) : <a href="#type-Node">Node</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Node) <font color="#cc0033">compareDocumentPosition</font>*(p0 : <a href="#type-Node">Node</a>) : SHORTINT<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Node) <font color="#cc0033">getAttributes</font>*() : <a href="#type-NamedNodeMap">NamedNodeMap</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Node) <font color="#cc0033">getBaseURI</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Node) <font color="#cc0033">getChildNodes</font>*() : <a href="#type-NodeList">NodeList</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Node) <font color="#cc0033">getFeature</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                  p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Node) <font color="#cc0033">getFirstChild</font>*() : <a href="#type-Node">Node</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Node) <font color="#cc0033">getLastChild</font>*() : <a href="#type-Node">Node</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Node) <font color="#cc0033">getLocalName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Node) <font color="#cc0033">getNamespaceURI</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Node) <font color="#cc0033">getNextSibling</font>*() : <a href="#type-Node">Node</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Node) <font color="#cc0033">getNodeName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Node) <font color="#cc0033">getNodeType</font>*() : SHORTINT<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Node) <font color="#cc0033">getNodeValue</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Node) <font color="#cc0033">getOwnerDocument</font>*() : <a href="#type-Document">Document</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Node) <font color="#cc0033">getParentNode</font>*() : <a href="#type-Node">Node</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Node) <font color="#cc0033">getPrefix</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Node) <font color="#cc0033">getPreviousSibling</font>*() : <a href="#type-Node">Node</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Node) <font color="#cc0033">getTextContent</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Node) <font color="#cc0033">getUserData</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Node) <font color="#cc0033">hasAttributes</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Node) <font color="#cc0033">hasChildNodes</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Node) <font color="#cc0033">insertBefore</font>*(p0 : <a href="#type-Node">Node</a>;
+                                    p1 : <a href="#type-Node">Node</a>) : <a href="#type-Node">Node</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Node) <font color="#cc0033">isDefaultNamespace</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Node) <font color="#cc0033">isEqualNode</font>*(p0 : <a href="#type-Node">Node</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Node) <font color="#cc0033">isSameNode</font>*(p0 : <a href="#type-Node">Node</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Node) <font color="#cc0033">isSupported</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                   p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Node) <font color="#cc0033">lookupNamespaceURI</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Node) <font color="#cc0033">lookupPrefix</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Node) <font color="#cc0033">normalize</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Node) <font color="#cc0033">removeChild</font>*(p0 : <a href="#type-Node">Node</a>) : <a href="#type-Node">Node</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Node) <font color="#cc0033">replaceChild</font>*(p0 : <a href="#type-Node">Node</a>;
+                                    p1 : <a href="#type-Node">Node</a>) : <a href="#type-Node">Node</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Node) <font color="#cc0033">setNodeValue</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Node) <font color="#cc0033">setPrefix</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Node) <font color="#cc0033">setTextContent</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Node) <font color="#cc0033">setUserData</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                   p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                   p2 : <a href="#type-UserDataHandler">UserDataHandler</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-NodeList"></a>
+<b>PROCEDURE </b>(self:NodeList) <font color="#cc0033">getLength</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:NodeList) <font color="#cc0033">item</font>*(p0 : INTEGER) : <b>Node</b><b>,NEW,ABSTRACT</b>;
+<a name="meths-Notation"></a>
+<b>PROCEDURE </b>(self:Notation) <font color="#cc0033">getPublicId</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Notation) <font color="#cc0033">getSystemId</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-ProcessingInstruction"></a>
+<b>PROCEDURE </b>(self:ProcessingInstruction) <font color="#cc0033">getData</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ProcessingInstruction) <font color="#cc0033">getTarget</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ProcessingInstruction) <font color="#cc0033">setData</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-Text"></a>
+<b>PROCEDURE </b>(self:Text) <font color="#cc0033">getWholeText</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Text) <font color="#cc0033">isElementContentWhitespace</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Text) <font color="#cc0033">replaceWholeText</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-Text">Text</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Text) <font color="#cc0033">splitText</font>*(p0 : INTEGER) : <a href="#type-Text">Text</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-TypeInfo"></a>
+<b>PROCEDURE </b>(self:TypeInfo) <font color="#cc0033">getTypeName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TypeInfo) <font color="#cc0033">getTypeNamespace</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TypeInfo) <font color="#cc0033">isDerivedFrom</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                         p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                         p2 : INTEGER) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+<a name="meths-UserDataHandler"></a>
+<b>PROCEDURE </b>(self:UserDataHandler) <font color="#cc0033">handle</font>*(p0 : SHORTINT;
+                                         p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                         p2 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                         p3 : <b>Node</b>;
+                                         p4 : <b>Node</b>)<b>,NEW,ABSTRACT</b>;
+
+<b>END </b><font color="#cc0033">org_w3c_dom</font>.
+</font></pre></hr>
+<!-- BEGIN JavaScript -->
+<script>
+function toggle(node) {
+    node.classList.toggle("show"); 
+  }
+
+function cls(node) {
+    var prnt = node.parentNode;
+    var next = prnt.previousSibling;
+    var text = next.lastChild;
+    text.innerHTML = 
+        "The <b>class</b> property asserts that this type will be<br>" +
+        "implemented as a reference class in the underlying framework.";
+    text.classList.toggle("show");
+  }
+
+function newOk(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>has noArg-ctor</b> property asserts that this reference<br>" +
+        "class has a no-arg constructor, and thus objects of this<br>" +
+        "type can be allocated with NEW(). Component Pascal types<br>" +
+        "derived from this type can also be allocated using NEW().";
+    popuptext.classList.toggle("show"); 
+  }
+
+function noNew(node) { 
+    var prnt = node.parentNode; 
+    var next = prnt.previousSibling; 
+    var text = next.lastChild; 
+    text.innerHTML =  
+        "The <b>no noArg-ctor</b> property asserts that this reference<br>" +
+        "class does not have a noArg constructor. Objects of this<br>" +
+        "type cannot be allocated using NEW(), and Component<br>" +
+        "Pascal types  derived from this type also cannot be<br>" +
+        "allocated using NEW().";
+    text.classList.toggle("show");
+  }
+
+function noCpy(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>no value-assign</b> property asserts that this reference<br>" + 
+        "class does not have a value copy method. Therefore, it<br>" +
+        "is not possible to perform value assignments using<br>" +
+        "statements like <i>dst^</i> := <i>src^</i>";
+    popuptext.classList.toggle("show");
+  }
+
+function valueclass(node) { 
+        var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>valueclass</b> property asserts that this RECORD type is<br>" + 
+        "implemented as a value class in the CLR. It follows that<br>" +  
+        "value assignments can be made of these types. They can<br>" + 
+        "also be passed by value. Even pointers to records of<br>" + 
+        "such types may be dereferenced and copied using syntax<br>" + 
+        "such as  <i>dst^</i> := <i>src^</i>"; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+function argCtor(node) { 
+    var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>has arg-ctor</b> property asserts that this reference<br>" +  
+        "class has one or more constructors that take arguments.<br>" + 
+        "These constructors can be called from Component Pascal<br>" + 
+        "by calling an <i>init</i>(...) method from the static list<br>" + 
+        "here. Component Pascal types derived from this type<br>" + 
+        "can define constructors with arguments which call the<br>" + 
+        "super-type constructor.<br>" + 
+        "See <i>'Interfacing to constructors'</i> in the Release Notes."; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+</script>
+<!-- END JavaScript --> 
+
+</body></html>

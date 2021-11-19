@@ -1,0 +1,231 @@
+<html><head><title>java_security_acl</title>
+<style>
+<!-- BEGIN Inline CSS -->
+/* Popup container */
+.popup {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+/* The actual popup (appears on top) */
+.popup .popuptext {
+    visibility: hidden;
+    width: 430px;
+    background-color: white;
+    color: black;
+    text-align: left;
+    border-radius: 6px;
+    border-style: solid;
+    border-color: black;
+    padding: 8px 8px 8px 8px;
+    position: absolute;
+    z-index: 1;
+    margin-top: 30px;
+}
+
+/* Toggle this class when clicking on the popup container (hide and show the popup) */
+.popup .show {
+    visibility: visible;
+    opacity: 1;
+}
+
+</style>
+<!-- END Inline CSS -->
+</head><body bgcolor="white">
+<hr><pre>
+<font color="green">(*</font>
+<font color="green"> *  Creator j2cps version 1.4.07 (March 2018)</font>
+<font color="green"> *  Compiled from jar-file rt.jar</font>
+<font color="green"> *)</font>
+<b>FOREIGN MODULE </b><font color="#cc0033">java_security_acl</font>;
+
+<b>IMPORT</b>
+    <a href="java_lang.html">java_lang</a> := "java.lang",
+    <a href="java_security.html">java_security</a> := "java.security",
+    <a href="java_util.html">java_util</a> := "java.util";
+
+<b>TYPE</b>
+
+  <a name="type-Acl"></a><font color="#cc0033">Acl</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <b>Owner</b>)
+         <font color="green"><b> (* </b><a href="#meths-Acl">Typebound Procedures</a><b> *)</b></font>
+         <b>END</b>;
+
+  <a name="type-AclEntry"></a><font color="#cc0033">AclEntry</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_lang.html#type-Cloneable">java_lang.Cloneable</a>)
+              <font color="green"><b> (* </b><a href="#meths-AclEntry">Typebound Procedures</a><b> *)</b></font>
+              <b>END</b>;
+
+  <a name="type-AclNotFoundException"></a><font color="#cc0033">AclNotFoundException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Exception">java_lang.Exception</a>)
+                          <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                          <b>STATIC</b>
+                            <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-AclNotFoundException">AclNotFoundException</a><b>,CONSTRUCTOR</b>;
+                          <b>END</b>;
+
+  <a name="type-Group"></a><font color="#cc0033">Group</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_security.html#type-Principal">java_security.Principal</a>)
+           <font color="green"><b> (* </b><a href="#meths-Group">Typebound Procedures</a><b> *)</b></font>
+           <b>END</b>;
+
+  <a name="type-LastOwnerException"></a><font color="#cc0033">LastOwnerException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Exception">java_lang.Exception</a>)
+                        <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                        <b>STATIC</b>
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-LastOwnerException">LastOwnerException</a><b>,CONSTRUCTOR</b>;
+                        <b>END</b>;
+
+  <a name="type-NotOwnerException"></a><font color="#cc0033">NotOwnerException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Exception">java_lang.Exception</a>)
+                       <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                       <b>STATIC</b>
+                         <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-NotOwnerException">NotOwnerException</a><b>,CONSTRUCTOR</b>;
+                       <b>END</b>;
+
+  <a name="type-Owner"></a><font color="#cc0033">Owner</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+           <font color="green"><b> (* </b><a href="#meths-Owner">Typebound Procedures</a><b> *)</b></font>
+           <b>END</b>;
+
+  <a name="type-Permission"></a><font color="#cc0033">Permission</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                <font color="green"><b> (* </b><a href="#meths-Permission">Typebound Procedures</a><b> *)</b></font>
+                <b>END</b>;
+
+
+
+<a name="meths-Acl"></a>
+<b>PROCEDURE </b>(self:Acl) <font color="#cc0033">addEntry</font>*(p0 : <a href="java_security.html#type-Principal">java_security.Principal</a>;
+                               p1 : <b>AclEntry</b>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Acl) <font color="#cc0033">checkPermission</font>*(p0 : <a href="java_security.html#type-Principal">java_security.Principal</a>;
+                                      p1 : <b>Permission</b>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Acl) <font color="#cc0033">entries</font>*() : <a href="java_util.html#type-Enumeration">java_util.Enumeration</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Acl) <font color="#cc0033">getName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Acl) <font color="#cc0033">getPermissions</font>*(p0 : <a href="java_security.html#type-Principal">java_security.Principal</a>) : <a href="java_util.html#type-Enumeration">java_util.Enumeration</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Acl) <font color="#cc0033">removeEntry</font>*(p0 : <a href="java_security.html#type-Principal">java_security.Principal</a>;
+                                  p1 : <b>AclEntry</b>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Acl) <font color="#cc0033">setName</font>*(p0 : <a href="java_security.html#type-Principal">java_security.Principal</a>;
+                              p1 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Acl) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-AclEntry"></a>
+<b>PROCEDURE </b>(self:AclEntry) <font color="#cc0033">addPermission</font>*(p0 : <b>Permission</b>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AclEntry) <font color="#cc0033">checkPermission</font>*(p0 : <b>Permission</b>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AclEntry) <font color="#cc0033">clone</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AclEntry) <font color="#cc0033">getPrincipal</font>*() : <a href="java_security.html#type-Principal">java_security.Principal</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AclEntry) <font color="#cc0033">isNegative</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AclEntry) <font color="#cc0033">permissions</font>*() : <a href="java_util.html#type-Enumeration">java_util.Enumeration</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AclEntry) <font color="#cc0033">removePermission</font>*(p0 : <b>Permission</b>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AclEntry) <font color="#cc0033">setNegativePermissions</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AclEntry) <font color="#cc0033">setPrincipal</font>*(p0 : <a href="java_security.html#type-Principal">java_security.Principal</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AclEntry) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-Group"></a>
+<b>PROCEDURE </b>(self:Group) <font color="#cc0033">addMember</font>*(p0 : <a href="java_security.html#type-Principal">java_security.Principal</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Group) <font color="#cc0033">isMember</font>*(p0 : <a href="java_security.html#type-Principal">java_security.Principal</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Group) <font color="#cc0033">members</font>*() : <a href="java_util.html#type-Enumeration">java_util.Enumeration</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Group) <font color="#cc0033">removeMember</font>*(p0 : <a href="java_security.html#type-Principal">java_security.Principal</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+<a name="meths-Owner"></a>
+<b>PROCEDURE </b>(self:Owner) <font color="#cc0033">addOwner</font>*(p0 : <a href="java_security.html#type-Principal">java_security.Principal</a>;
+                                 p1 : <a href="java_security.html#type-Principal">java_security.Principal</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Owner) <font color="#cc0033">deleteOwner</font>*(p0 : <a href="java_security.html#type-Principal">java_security.Principal</a>;
+                                    p1 : <a href="java_security.html#type-Principal">java_security.Principal</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Owner) <font color="#cc0033">isOwner</font>*(p0 : <a href="java_security.html#type-Principal">java_security.Principal</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+<a name="meths-Permission"></a>
+<b>PROCEDURE </b>(self:Permission) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Permission) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>END </b><font color="#cc0033">java_security_acl</font>.
+</font></pre></hr>
+<!-- BEGIN JavaScript -->
+<script>
+function toggle(node) {
+    node.classList.toggle("show"); 
+  }
+
+function cls(node) {
+    var prnt = node.parentNode;
+    var next = prnt.previousSibling;
+    var text = next.lastChild;
+    text.innerHTML = 
+        "The <b>class</b> property asserts that this type will be<br>" +
+        "implemented as a reference class in the underlying framework.";
+    text.classList.toggle("show");
+  }
+
+function newOk(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>has noArg-ctor</b> property asserts that this reference<br>" +
+        "class has a no-arg constructor, and thus objects of this<br>" +
+        "type can be allocated with NEW(). Component Pascal types<br>" +
+        "derived from this type can also be allocated using NEW().";
+    popuptext.classList.toggle("show"); 
+  }
+
+function noNew(node) { 
+    var prnt = node.parentNode; 
+    var next = prnt.previousSibling; 
+    var text = next.lastChild; 
+    text.innerHTML =  
+        "The <b>no noArg-ctor</b> property asserts that this reference<br>" +
+        "class does not have a noArg constructor. Objects of this<br>" +
+        "type cannot be allocated using NEW(), and Component<br>" +
+        "Pascal types  derived from this type also cannot be<br>" +
+        "allocated using NEW().";
+    text.classList.toggle("show");
+  }
+
+function noCpy(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>no value-assign</b> property asserts that this reference<br>" + 
+        "class does not have a value copy method. Therefore, it<br>" +
+        "is not possible to perform value assignments using<br>" +
+        "statements like <i>dst^</i> := <i>src^</i>";
+    popuptext.classList.toggle("show");
+  }
+
+function valueclass(node) { 
+        var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>valueclass</b> property asserts that this RECORD type is<br>" + 
+        "implemented as a value class in the CLR. It follows that<br>" +  
+        "value assignments can be made of these types. They can<br>" + 
+        "also be passed by value. Even pointers to records of<br>" + 
+        "such types may be dereferenced and copied using syntax<br>" + 
+        "such as  <i>dst^</i> := <i>src^</i>"; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+function argCtor(node) { 
+    var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>has arg-ctor</b> property asserts that this reference<br>" +  
+        "class has one or more constructors that take arguments.<br>" + 
+        "These constructors can be called from Component Pascal<br>" + 
+        "by calling an <i>init</i>(...) method from the static list<br>" + 
+        "here. Component Pascal types derived from this type<br>" + 
+        "can define constructors with arguments which call the<br>" + 
+        "super-type constructor.<br>" + 
+        "See <i>'Interfacing to constructors'</i> in the Release Notes."; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+</script>
+<!-- END JavaScript --> 
+
+</body></html>

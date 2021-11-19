@@ -1,0 +1,686 @@
+<html><head><title>javax_sql</title>
+<style>
+<!-- BEGIN Inline CSS -->
+/* Popup container */
+.popup {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+/* The actual popup (appears on top) */
+.popup .popuptext {
+    visibility: hidden;
+    width: 430px;
+    background-color: white;
+    color: black;
+    text-align: left;
+    border-radius: 6px;
+    border-style: solid;
+    border-color: black;
+    padding: 8px 8px 8px 8px;
+    position: absolute;
+    z-index: 1;
+    margin-top: 30px;
+}
+
+/* Toggle this class when clicking on the popup container (hide and show the popup) */
+.popup .show {
+    visibility: visible;
+    opacity: 1;
+}
+
+</style>
+<!-- END Inline CSS -->
+</head><body bgcolor="white">
+<hr><pre>
+<font color="green">(*</font>
+<font color="green"> *  Creator j2cps version 1.4.07 (March 2018)</font>
+<font color="green"> *  Compiled from jar-file rt.jar</font>
+<font color="green"> *)</font>
+<b>FOREIGN MODULE </b><font color="#cc0033">javax_sql</font>;
+
+<b>IMPORT</b>
+    <a href="javax_transaction_xa.html">javax_transaction_xa</a> := "javax.transaction.xa",
+    <a href="java_io.html">java_io</a> := "java.io",
+    <a href="java_lang.html">java_lang</a> := "java.lang",
+    <a href="java_math.html">java_math</a> := "java.math",
+    <a href="java_net.html">java_net</a> := "java.net",
+    <a href="java_sql.html">java_sql</a> := "java.sql",
+    <a href="java_util.html">java_util</a> := "java.util",
+    <a href="java_util_logging.html">java_util_logging</a> := "java.util.logging";
+
+<b>TYPE</b>
+
+  <a name="type-CommonDataSource"></a><font color="#cc0033">CommonDataSource</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                      <font color="green"><b> (* </b><a href="#meths-CommonDataSource">Typebound Procedures</a><b> *)</b></font>
+                      <b>END</b>;
+
+  <a name="type-ConnectionEvent"></a><font color="#cc0033">ConnectionEvent</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_util.html#type-EventObject">java_util.EventObject</a>)
+                     <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                     <font color="green"><b> (* </b><a href="#meths-ConnectionEvent">Typebound Procedures</a><b> *)</b></font>
+                     <b>STATIC</b>
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <b>PooledConnection</b>;
+                                       p1 : <a href="java_sql.html#type-SQLException">java_sql.SQLException</a>) : <a href="#type-ConnectionEvent">ConnectionEvent</a><b>,CONSTRUCTOR</b>;
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <b>PooledConnection</b>) : <a href="#type-ConnectionEvent">ConnectionEvent</a><b>,CONSTRUCTOR</b>;
+                     <b>END</b>;
+
+  <a name="type-ConnectionEventListener"></a><font color="#cc0033">ConnectionEventListener</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_util.html#type-EventListener">java_util.EventListener</a>)
+                             <font color="green"><b> (* </b><a href="#meths-ConnectionEventListener">Typebound Procedures</a><b> *)</b></font>
+                             <b>END</b>;
+
+  <a name="type-ConnectionPoolDataSource"></a><font color="#cc0033">ConnectionPoolDataSource</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-CommonDataSource">CommonDataSource</a>)
+                              <font color="green"><b> (* </b><a href="#meths-ConnectionPoolDataSource">Typebound Procedures</a><b> *)</b></font>
+                              <b>END</b>;
+
+  <a name="type-DataSource"></a><font color="#cc0033">DataSource</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-CommonDataSource">CommonDataSource</a> + <a href="java_sql.html#type-Wrapper">java_sql.Wrapper</a>)
+                <font color="green"><b> (* </b><a href="#meths-DataSource">Typebound Procedures</a><b> *)</b></font>
+                <b>END</b>;
+
+  <a name="type-PooledConnection"></a><font color="#cc0033">PooledConnection</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                      <font color="green"><b> (* </b><a href="#meths-PooledConnection">Typebound Procedures</a><b> *)</b></font>
+                      <b>END</b>;
+
+  <a name="type-RowSet"></a><font color="#cc0033">RowSet</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_sql.html#type-ResultSet">java_sql.ResultSet</a>)
+            <font color="green"><b> (* </b><a href="#meths-RowSet">Typebound Procedures</a><b> *)</b></font>
+            <b>END</b>;
+
+  <a name="type-RowSetEvent"></a><font color="#cc0033">RowSetEvent</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_util.html#type-EventObject">java_util.EventObject</a>)
+                 <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                 <b>STATIC</b>
+                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="#type-RowSet">RowSet</a>) : <a href="#type-RowSetEvent">RowSetEvent</a><b>,CONSTRUCTOR</b>;
+                 <b>END</b>;
+
+  <a name="type-RowSetInternal"></a><font color="#cc0033">RowSetInternal</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                    <font color="green"><b> (* </b><a href="#meths-RowSetInternal">Typebound Procedures</a><b> *)</b></font>
+                    <b>END</b>;
+
+  <a name="type-RowSetListener"></a><font color="#cc0033">RowSetListener</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_util.html#type-EventListener">java_util.EventListener</a>)
+                    <font color="green"><b> (* </b><a href="#meths-RowSetListener">Typebound Procedures</a><b> *)</b></font>
+                    <b>END</b>;
+
+  <a name="type-RowSetMetaData"></a><font color="#cc0033">RowSetMetaData</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_sql.html#type-ResultSetMetaData">java_sql.ResultSetMetaData</a>)
+                    <font color="green"><b> (* </b><a href="#meths-RowSetMetaData">Typebound Procedures</a><b> *)</b></font>
+                    <b>END</b>;
+
+  <a name="type-RowSetReader"></a><font color="#cc0033">RowSetReader</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                  <font color="green"><b> (* </b><a href="#meths-RowSetReader">Typebound Procedures</a><b> *)</b></font>
+                  <b>END</b>;
+
+  <a name="type-RowSetWriter"></a><font color="#cc0033">RowSetWriter</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                  <font color="green"><b> (* </b><a href="#meths-RowSetWriter">Typebound Procedures</a><b> *)</b></font>
+                  <b>END</b>;
+
+  <a name="type-StatementEvent"></a><font color="#cc0033">StatementEvent</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_util.html#type-EventObject">java_util.EventObject</a>)
+                    <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                    <font color="green"><b> (* </b><a href="#meths-StatementEvent">Typebound Procedures</a><b> *)</b></font>
+                    <b>STATIC</b>
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="#type-PooledConnection">PooledConnection</a>;
+                                      p1 : <a href="java_sql.html#type-PreparedStatement">java_sql.PreparedStatement</a>;
+                                      p2 : <a href="java_sql.html#type-SQLException">java_sql.SQLException</a>) : <a href="#type-StatementEvent">StatementEvent</a><b>,CONSTRUCTOR</b>;
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="#type-PooledConnection">PooledConnection</a>;
+                                      p1 : <a href="java_sql.html#type-PreparedStatement">java_sql.PreparedStatement</a>) : <a href="#type-StatementEvent">StatementEvent</a><b>,CONSTRUCTOR</b>;
+                    <b>END</b>;
+
+  <a name="type-StatementEventListener"></a><font color="#cc0033">StatementEventListener</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_util.html#type-EventListener">java_util.EventListener</a>)
+                            <font color="green"><b> (* </b><a href="#meths-StatementEventListener">Typebound Procedures</a><b> *)</b></font>
+                            <b>END</b>;
+
+  <a name="type-XAConnection"></a><font color="#cc0033">XAConnection</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-PooledConnection">PooledConnection</a>)
+                  <font color="green"><b> (* </b><a href="#meths-XAConnection">Typebound Procedures</a><b> *)</b></font>
+                  <b>END</b>;
+
+  <a name="type-XADataSource"></a><font color="#cc0033">XADataSource</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-CommonDataSource">CommonDataSource</a>)
+                  <font color="green"><b> (* </b><a href="#meths-XADataSource">Typebound Procedures</a><b> *)</b></font>
+                  <b>END</b>;
+
+
+
+<a name="meths-CommonDataSource"></a>
+<b>PROCEDURE </b>(self:CommonDataSource) <font color="#cc0033">getLoginTimeout</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CommonDataSource) <font color="#cc0033">getLogWriter</font>*() : <a href="java_io.html#type-PrintWriter">java_io.PrintWriter</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CommonDataSource) <font color="#cc0033">getParentLogger</font>*() : <a href="java_util_logging.html#type-Logger">java_util_logging.Logger</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CommonDataSource) <font color="#cc0033">setLoginTimeout</font>*(p0 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CommonDataSource) <font color="#cc0033">setLogWriter</font>*(p0 : <a href="java_io.html#type-PrintWriter">java_io.PrintWriter</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-ConnectionEvent"></a>
+<b>PROCEDURE </b>(self:ConnectionEvent) <font color="#cc0033">getSQLException</font>*() : <a href="java_sql.html#type-SQLException">java_sql.SQLException</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-ConnectionEventListener"></a>
+<b>PROCEDURE </b>(self:ConnectionEventListener) <font color="#cc0033">connectionClosed</font>*(p0 : <a href="#type-ConnectionEvent">ConnectionEvent</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ConnectionEventListener) <font color="#cc0033">connectionErrorOccurred</font>*(p0 : <a href="#type-ConnectionEvent">ConnectionEvent</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-ConnectionPoolDataSource"></a>
+<b>PROCEDURE </b>(self:ConnectionPoolDataSource) <font color="#cc0033">getPooledConnection</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                               p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <b>PooledConnection</b><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ConnectionPoolDataSource) <font color="#cc0033">getPooledConnection</font>*() : <b>PooledConnection</b><b>,NEW,ABSTRACT</b>;
+<a name="meths-DataSource"></a>
+<b>PROCEDURE </b>(self:DataSource) <font color="#cc0033">getConnection</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                           p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_sql.html#type-Connection">java_sql.Connection</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DataSource) <font color="#cc0033">getConnection</font>*() : <a href="java_sql.html#type-Connection">java_sql.Connection</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-PooledConnection"></a>
+<b>PROCEDURE </b>(self:PooledConnection) <font color="#cc0033">addConnectionEventListener</font>*(p0 : <a href="#type-ConnectionEventListener">ConnectionEventListener</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:PooledConnection) <font color="#cc0033">addStatementEventListener</font>*(p0 : <b>StatementEventListener</b>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:PooledConnection) <font color="#cc0033">close</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:PooledConnection) <font color="#cc0033">getConnection</font>*() : <a href="java_sql.html#type-Connection">java_sql.Connection</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:PooledConnection) <font color="#cc0033">removeConnectionEventListener</font>*(p0 : <a href="#type-ConnectionEventListener">ConnectionEventListener</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:PooledConnection) <font color="#cc0033">removeStatementEventListener</font>*(p0 : <b>StatementEventListener</b>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-RowSet"></a>
+<b>PROCEDURE </b>(self:RowSet) <font color="#cc0033">addRowSetListener</font>*(p0 : <b>RowSetListener</b>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RowSet) <font color="#cc0033">clearParameters</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RowSet) <font color="#cc0033">execute</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RowSet) <font color="#cc0033">getCommand</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RowSet) <font color="#cc0033">getDataSourceName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RowSet) <font color="#cc0033">getEscapeProcessing</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RowSet) <font color="#cc0033">getMaxFieldSize</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RowSet) <font color="#cc0033">getMaxRows</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RowSet) <font color="#cc0033">getPassword</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RowSet) <font color="#cc0033">getQueryTimeout</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RowSet) <font color="#cc0033">getTransactionIsolation</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RowSet) <font color="#cc0033">getTypeMap</font>*() : <a href="java_util.html#type-Map">java_util.Map</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RowSet) <font color="#cc0033">getUrl</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RowSet) <font color="#cc0033">getUsername</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RowSet) <font color="#cc0033">isReadOnly</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RowSet) <font color="#cc0033">removeRowSetListener</font>*(p0 : <b>RowSetListener</b>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RowSet) <font color="#cc0033">setArray</font>*(p0 : INTEGER;
+                                  p1 : <a href="java_sql.html#type-Array">java_sql.Array</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RowSet) <font color="#cc0033">setAsciiStream</font>*(p0 : INTEGER;
+                                        p1 : <a href="java_io.html#type-InputStream">java_io.InputStream</a>;
+                                        p2 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RowSet) <font color="#cc0033">setAsciiStream</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                        p1 : <a href="java_io.html#type-InputStream">java_io.InputStream</a>;
+                                        p2 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RowSet) <font color="#cc0033">setAsciiStream</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                        p1 : <a href="java_io.html#type-InputStream">java_io.InputStream</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RowSet) <font color="#cc0033">setAsciiStream</font>*(p0 : INTEGER;
+                                        p1 : <a href="java_io.html#type-InputStream">java_io.InputStream</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RowSet) <font color="#cc0033">setBigDecimal</font>*(p0 : INTEGER;
+                                       p1 : <a href="java_math.html#type-BigDecimal">java_math.BigDecimal</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RowSet) <font color="#cc0033">setBigDecimal</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                       p1 : <a href="java_math.html#type-BigDecimal">java_math.BigDecimal</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RowSet) <font color="#cc0033">setBinaryStream</font>*(p0 : INTEGER;
+                                         p1 : <a href="java_io.html#type-InputStream">java_io.InputStream</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RowSet) <font color="#cc0033">setBinaryStream</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                         p1 : <a href="java_io.html#type-InputStream">java_io.InputStream</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RowSet) <font color="#cc0033">setBinaryStream</font>*(p0 : INTEGER;
+                                         p1 : <a href="java_io.html#type-InputStream">java_io.InputStream</a>;
+                                         p2 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RowSet) <font color="#cc0033">setBinaryStream</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                         p1 : <a href="java_io.html#type-InputStream">java_io.InputStream</a>;
+                                         p2 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RowSet) <font color="#cc0033">setBlob</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                 p1 : <a href="java_io.html#type-InputStream">java_io.InputStream</a>;
+                                 p2 : LONGINT)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RowSet) <font color="#cc0033">setBlob</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                 p1 : <a href="java_sql.html#type-Blob">java_sql.Blob</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RowSet) <font color="#cc0033">setBlob</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                 p1 : <a href="java_io.html#type-InputStream">java_io.InputStream</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RowSet) <font color="#cc0033">setBlob</font>*(p0 : INTEGER;
+                                 p1 : <a href="java_sql.html#type-Blob">java_sql.Blob</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RowSet) <font color="#cc0033">setBlob</font>*(p0 : INTEGER;
+                                 p1 : <a href="java_io.html#type-InputStream">java_io.InputStream</a>;
+                                 p2 : LONGINT)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RowSet) <font color="#cc0033">setBlob</font>*(p0 : INTEGER;
+                                 p1 : <a href="java_io.html#type-InputStream">java_io.InputStream</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RowSet) <font color="#cc0033">setBoolean</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                    p1 : BOOLEAN)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RowSet) <font color="#cc0033">setBoolean</font>*(p0 : INTEGER;
+                                    p1 : BOOLEAN)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RowSet) <font color="#cc0033">setByte</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                 p1 : BYTE)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RowSet) <font color="#cc0033">setByte</font>*(p0 : INTEGER;
+                                 p1 : BYTE)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RowSet) <font color="#cc0033">setBytes</font>*(    p0 : INTEGER;
+                                  IN  p1 : <b>ARRAY </b><b>OF </b>BYTE)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RowSet) <font color="#cc0033">setBytes</font>*(    p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                  IN  p1 : <b>ARRAY </b><b>OF </b>BYTE)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RowSet) <font color="#cc0033">setCharacterStream</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                            p1 : <a href="java_io.html#type-Reader">java_io.Reader</a>;
+                                            p2 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RowSet) <font color="#cc0033">setCharacterStream</font>*(p0 : INTEGER;
+                                            p1 : <a href="java_io.html#type-Reader">java_io.Reader</a>;
+                                            p2 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RowSet) <font color="#cc0033">setCharacterStream</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                            p1 : <a href="java_io.html#type-Reader">java_io.Reader</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RowSet) <font color="#cc0033">setCharacterStream</font>*(p0 : INTEGER;
+                                            p1 : <a href="java_io.html#type-Reader">java_io.Reader</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RowSet) <font color="#cc0033">setClob</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                 p1 : <a href="java_io.html#type-Reader">java_io.Reader</a>;
+                                 p2 : LONGINT)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RowSet) <font color="#cc0033">setClob</font>*(p0 : INTEGER;
+                                 p1 : <a href="java_io.html#type-Reader">java_io.Reader</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RowSet) <font color="#cc0033">setClob</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                 p1 : <a href="java_io.html#type-Reader">java_io.Reader</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RowSet) <font color="#cc0033">setClob</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                 p1 : <a href="java_sql.html#type-Clob">java_sql.Clob</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RowSet) <font color="#cc0033">setClob</font>*(p0 : INTEGER;
+                                 p1 : <a href="java_io.html#type-Reader">java_io.Reader</a>;
+                                 p2 : LONGINT)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RowSet) <font color="#cc0033">setClob</font>*(p0 : INTEGER;
+                                 p1 : <a href="java_sql.html#type-Clob">java_sql.Clob</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RowSet) <font color="#cc0033">setCommand</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RowSet) <font color="#cc0033">setConcurrency</font>*(p0 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RowSet) <font color="#cc0033">setDataSourceName</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RowSet) <font color="#cc0033">setDate</font>*(p0 : INTEGER;
+                                 p1 : <a href="java_sql.html#type-Date">java_sql.Date</a>;
+                                 p2 : <a href="java_util.html#type-Calendar">java_util.Calendar</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RowSet) <font color="#cc0033">setDate</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                 p1 : <a href="java_sql.html#type-Date">java_sql.Date</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RowSet) <font color="#cc0033">setDate</font>*(p0 : INTEGER;
+                                 p1 : <a href="java_sql.html#type-Date">java_sql.Date</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RowSet) <font color="#cc0033">setDate</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                 p1 : <a href="java_sql.html#type-Date">java_sql.Date</a>;
+                                 p2 : <a href="java_util.html#type-Calendar">java_util.Calendar</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RowSet) <font color="#cc0033">setDouble</font>*(p0 : INTEGER;
+                                   p1 : REAL)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RowSet) <font color="#cc0033">setDouble</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                   p1 : REAL)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RowSet) <font color="#cc0033">setEscapeProcessing</font>*(p0 : BOOLEAN)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RowSet) <font color="#cc0033">setFloat</font>*(p0 : INTEGER;
+                                  p1 : SHORTREAL)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RowSet) <font color="#cc0033">setFloat</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                  p1 : SHORTREAL)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RowSet) <font color="#cc0033">setInt</font>*(p0 : INTEGER;
+                                p1 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RowSet) <font color="#cc0033">setInt</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                p1 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RowSet) <font color="#cc0033">setLong</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                 p1 : LONGINT)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RowSet) <font color="#cc0033">setLong</font>*(p0 : INTEGER;
+                                 p1 : LONGINT)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RowSet) <font color="#cc0033">setMaxFieldSize</font>*(p0 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RowSet) <font color="#cc0033">setMaxRows</font>*(p0 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RowSet) <font color="#cc0033">setNCharacterStream</font>*(p0 : INTEGER;
+                                             p1 : <a href="java_io.html#type-Reader">java_io.Reader</a>;
+                                             p2 : LONGINT)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RowSet) <font color="#cc0033">setNCharacterStream</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                             p1 : <a href="java_io.html#type-Reader">java_io.Reader</a>;
+                                             p2 : LONGINT)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RowSet) <font color="#cc0033">setNCharacterStream</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                             p1 : <a href="java_io.html#type-Reader">java_io.Reader</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RowSet) <font color="#cc0033">setNCharacterStream</font>*(p0 : INTEGER;
+                                             p1 : <a href="java_io.html#type-Reader">java_io.Reader</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RowSet) <font color="#cc0033">setNClob</font>*(p0 : INTEGER;
+                                  p1 : <a href="java_io.html#type-Reader">java_io.Reader</a>;
+                                  p2 : LONGINT)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RowSet) <font color="#cc0033">setNClob</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                  p1 : <a href="java_io.html#type-Reader">java_io.Reader</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RowSet) <font color="#cc0033">setNClob</font>*(p0 : INTEGER;
+                                  p1 : <a href="java_io.html#type-Reader">java_io.Reader</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RowSet) <font color="#cc0033">setNClob</font>*(p0 : INTEGER;
+                                  p1 : <a href="java_sql.html#type-NClob">java_sql.NClob</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RowSet) <font color="#cc0033">setNClob</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                  p1 : <a href="java_sql.html#type-NClob">java_sql.NClob</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RowSet) <font color="#cc0033">setNClob</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                  p1 : <a href="java_io.html#type-Reader">java_io.Reader</a>;
+                                  p2 : LONGINT)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RowSet) <font color="#cc0033">setNString</font>*(p0 : INTEGER;
+                                    p1 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RowSet) <font color="#cc0033">setNString</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                    p1 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RowSet) <font color="#cc0033">setNull</font>*(p0 : INTEGER;
+                                 p1 : INTEGER;
+                                 p2 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RowSet) <font color="#cc0033">setNull</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                 p1 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RowSet) <font color="#cc0033">setNull</font>*(p0 : INTEGER;
+                                 p1 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RowSet) <font color="#cc0033">setNull</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                 p1 : INTEGER;
+                                 p2 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RowSet) <font color="#cc0033">setObject</font>*(p0 : INTEGER;
+                                   p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                   p2 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RowSet) <font color="#cc0033">setObject</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                   p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                   p2 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RowSet) <font color="#cc0033">setObject</font>*(p0 : INTEGER;
+                                   p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                   p2 : INTEGER;
+                                   p3 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RowSet) <font color="#cc0033">setObject</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                   p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                   p2 : INTEGER;
+                                   p3 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RowSet) <font color="#cc0033">setObject</font>*(p0 : INTEGER;
+                                   p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RowSet) <font color="#cc0033">setObject</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                   p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RowSet) <font color="#cc0033">setPassword</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RowSet) <font color="#cc0033">setQueryTimeout</font>*(p0 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RowSet) <font color="#cc0033">setReadOnly</font>*(p0 : BOOLEAN)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RowSet) <font color="#cc0033">setRef</font>*(p0 : INTEGER;
+                                p1 : <a href="java_sql.html#type-Ref">java_sql.Ref</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RowSet) <font color="#cc0033">setRowId</font>*(p0 : INTEGER;
+                                  p1 : <a href="java_sql.html#type-RowId">java_sql.RowId</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RowSet) <font color="#cc0033">setRowId</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                  p1 : <a href="java_sql.html#type-RowId">java_sql.RowId</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RowSet) <font color="#cc0033">setShort</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                  p1 : SHORTINT)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RowSet) <font color="#cc0033">setShort</font>*(p0 : INTEGER;
+                                  p1 : SHORTINT)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RowSet) <font color="#cc0033">setSQLXML</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                   p1 : <a href="java_sql.html#type-SQLXML">java_sql.SQLXML</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RowSet) <font color="#cc0033">setSQLXML</font>*(p0 : INTEGER;
+                                   p1 : <a href="java_sql.html#type-SQLXML">java_sql.SQLXML</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RowSet) <font color="#cc0033">setString</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                   p1 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RowSet) <font color="#cc0033">setString</font>*(p0 : INTEGER;
+                                   p1 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RowSet) <font color="#cc0033">setTime</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                 p1 : <a href="java_sql.html#type-Time">java_sql.Time</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RowSet) <font color="#cc0033">setTime</font>*(p0 : INTEGER;
+                                 p1 : <a href="java_sql.html#type-Time">java_sql.Time</a>;
+                                 p2 : <a href="java_util.html#type-Calendar">java_util.Calendar</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RowSet) <font color="#cc0033">setTime</font>*(p0 : INTEGER;
+                                 p1 : <a href="java_sql.html#type-Time">java_sql.Time</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RowSet) <font color="#cc0033">setTime</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                 p1 : <a href="java_sql.html#type-Time">java_sql.Time</a>;
+                                 p2 : <a href="java_util.html#type-Calendar">java_util.Calendar</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RowSet) <font color="#cc0033">setTimestamp</font>*(p0 : INTEGER;
+                                      p1 : <a href="java_sql.html#type-Timestamp">java_sql.Timestamp</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RowSet) <font color="#cc0033">setTimestamp</font>*(p0 : INTEGER;
+                                      p1 : <a href="java_sql.html#type-Timestamp">java_sql.Timestamp</a>;
+                                      p2 : <a href="java_util.html#type-Calendar">java_util.Calendar</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RowSet) <font color="#cc0033">setTimestamp</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                      p1 : <a href="java_sql.html#type-Timestamp">java_sql.Timestamp</a>;
+                                      p2 : <a href="java_util.html#type-Calendar">java_util.Calendar</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RowSet) <font color="#cc0033">setTimestamp</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                      p1 : <a href="java_sql.html#type-Timestamp">java_sql.Timestamp</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RowSet) <font color="#cc0033">setTransactionIsolation</font>*(p0 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RowSet) <font color="#cc0033">setType</font>*(p0 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RowSet) <font color="#cc0033">setTypeMap</font>*(p0 : <a href="java_util.html#type-Map">java_util.Map</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RowSet) <font color="#cc0033">setURL</font>*(p0 : INTEGER;
+                                p1 : <a href="java_net.html#type-URL">java_net.URL</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RowSet) <font color="#cc0033">setUrl</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RowSet) <font color="#cc0033">setUsername</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-RowSetInternal"></a>
+<b>PROCEDURE </b>(self:RowSetInternal) <font color="#cc0033">getConnection</font>*() : <a href="java_sql.html#type-Connection">java_sql.Connection</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RowSetInternal) <font color="#cc0033">getOriginal</font>*() : <a href="java_sql.html#type-ResultSet">java_sql.ResultSet</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RowSetInternal) <font color="#cc0033">getOriginalRow</font>*() : <a href="java_sql.html#type-ResultSet">java_sql.ResultSet</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RowSetInternal) <font color="#cc0033">getParams</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RowSetInternal) <font color="#cc0033">setMetaData</font>*(p0 : <b>RowSetMetaData</b>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-RowSetListener"></a>
+<b>PROCEDURE </b>(self:RowSetListener) <font color="#cc0033">cursorMoved</font>*(p0 : <a href="#type-RowSetEvent">RowSetEvent</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RowSetListener) <font color="#cc0033">rowChanged</font>*(p0 : <a href="#type-RowSetEvent">RowSetEvent</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RowSetListener) <font color="#cc0033">rowSetChanged</font>*(p0 : <a href="#type-RowSetEvent">RowSetEvent</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-RowSetMetaData"></a>
+<b>PROCEDURE </b>(self:RowSetMetaData) <font color="#cc0033">setAutoIncrement</font>*(p0 : INTEGER;
+                                                  p1 : BOOLEAN)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RowSetMetaData) <font color="#cc0033">setCaseSensitive</font>*(p0 : INTEGER;
+                                                  p1 : BOOLEAN)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RowSetMetaData) <font color="#cc0033">setCatalogName</font>*(p0 : INTEGER;
+                                                p1 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RowSetMetaData) <font color="#cc0033">setColumnCount</font>*(p0 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RowSetMetaData) <font color="#cc0033">setColumnDisplaySize</font>*(p0 : INTEGER;
+                                                      p1 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RowSetMetaData) <font color="#cc0033">setColumnLabel</font>*(p0 : INTEGER;
+                                                p1 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RowSetMetaData) <font color="#cc0033">setColumnName</font>*(p0 : INTEGER;
+                                               p1 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RowSetMetaData) <font color="#cc0033">setColumnType</font>*(p0 : INTEGER;
+                                               p1 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RowSetMetaData) <font color="#cc0033">setColumnTypeName</font>*(p0 : INTEGER;
+                                                   p1 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RowSetMetaData) <font color="#cc0033">setCurrency</font>*(p0 : INTEGER;
+                                             p1 : BOOLEAN)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RowSetMetaData) <font color="#cc0033">setNullable</font>*(p0 : INTEGER;
+                                             p1 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RowSetMetaData) <font color="#cc0033">setPrecision</font>*(p0 : INTEGER;
+                                              p1 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RowSetMetaData) <font color="#cc0033">setScale</font>*(p0 : INTEGER;
+                                          p1 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RowSetMetaData) <font color="#cc0033">setSchemaName</font>*(p0 : INTEGER;
+                                               p1 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RowSetMetaData) <font color="#cc0033">setSearchable</font>*(p0 : INTEGER;
+                                               p1 : BOOLEAN)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RowSetMetaData) <font color="#cc0033">setSigned</font>*(p0 : INTEGER;
+                                           p1 : BOOLEAN)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RowSetMetaData) <font color="#cc0033">setTableName</font>*(p0 : INTEGER;
+                                              p1 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-RowSetReader"></a>
+<b>PROCEDURE </b>(self:RowSetReader) <font color="#cc0033">readData</font>*(p0 : <a href="#type-RowSetInternal">RowSetInternal</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-RowSetWriter"></a>
+<b>PROCEDURE </b>(self:RowSetWriter) <font color="#cc0033">writeData</font>*(p0 : <a href="#type-RowSetInternal">RowSetInternal</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+<a name="meths-StatementEvent"></a>
+<b>PROCEDURE </b>(self:StatementEvent) <font color="#cc0033">getSQLException</font>*() : <a href="java_sql.html#type-SQLException">java_sql.SQLException</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:StatementEvent) <font color="#cc0033">getStatement</font>*() : <a href="java_sql.html#type-PreparedStatement">java_sql.PreparedStatement</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-StatementEventListener"></a>
+<b>PROCEDURE </b>(self:StatementEventListener) <font color="#cc0033">statementClosed</font>*(p0 : <a href="#type-StatementEvent">StatementEvent</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:StatementEventListener) <font color="#cc0033">statementErrorOccurred</font>*(p0 : <a href="#type-StatementEvent">StatementEvent</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-XAConnection"></a>
+<b>PROCEDURE </b>(self:XAConnection) <font color="#cc0033">getXAResource</font>*() : <a href="javax_transaction_xa.html#type-XAResource">javax_transaction_xa.XAResource</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-XADataSource"></a>
+<b>PROCEDURE </b>(self:XADataSource) <font color="#cc0033">getXAConnection</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                               p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-XAConnection">XAConnection</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XADataSource) <font color="#cc0033">getXAConnection</font>*() : <a href="#type-XAConnection">XAConnection</a><b>,NEW,ABSTRACT</b>;
+
+<b>END </b><font color="#cc0033">javax_sql</font>.
+</font></pre></hr>
+<!-- BEGIN JavaScript -->
+<script>
+function toggle(node) {
+    node.classList.toggle("show"); 
+  }
+
+function cls(node) {
+    var prnt = node.parentNode;
+    var next = prnt.previousSibling;
+    var text = next.lastChild;
+    text.innerHTML = 
+        "The <b>class</b> property asserts that this type will be<br>" +
+        "implemented as a reference class in the underlying framework.";
+    text.classList.toggle("show");
+  }
+
+function newOk(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>has noArg-ctor</b> property asserts that this reference<br>" +
+        "class has a no-arg constructor, and thus objects of this<br>" +
+        "type can be allocated with NEW(). Component Pascal types<br>" +
+        "derived from this type can also be allocated using NEW().";
+    popuptext.classList.toggle("show"); 
+  }
+
+function noNew(node) { 
+    var prnt = node.parentNode; 
+    var next = prnt.previousSibling; 
+    var text = next.lastChild; 
+    text.innerHTML =  
+        "The <b>no noArg-ctor</b> property asserts that this reference<br>" +
+        "class does not have a noArg constructor. Objects of this<br>" +
+        "type cannot be allocated using NEW(), and Component<br>" +
+        "Pascal types  derived from this type also cannot be<br>" +
+        "allocated using NEW().";
+    text.classList.toggle("show");
+  }
+
+function noCpy(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>no value-assign</b> property asserts that this reference<br>" + 
+        "class does not have a value copy method. Therefore, it<br>" +
+        "is not possible to perform value assignments using<br>" +
+        "statements like <i>dst^</i> := <i>src^</i>";
+    popuptext.classList.toggle("show");
+  }
+
+function valueclass(node) { 
+        var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>valueclass</b> property asserts that this RECORD type is<br>" + 
+        "implemented as a value class in the CLR. It follows that<br>" +  
+        "value assignments can be made of these types. They can<br>" + 
+        "also be passed by value. Even pointers to records of<br>" + 
+        "such types may be dereferenced and copied using syntax<br>" + 
+        "such as  <i>dst^</i> := <i>src^</i>"; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+function argCtor(node) { 
+    var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>has arg-ctor</b> property asserts that this reference<br>" +  
+        "class has one or more constructors that take arguments.<br>" + 
+        "These constructors can be called from Component Pascal<br>" + 
+        "by calling an <i>init</i>(...) method from the static list<br>" + 
+        "here. Component Pascal types derived from this type<br>" + 
+        "can define constructors with arguments which call the<br>" + 
+        "super-type constructor.<br>" + 
+        "See <i>'Interfacing to constructors'</i> in the Release Notes."; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+</script>
+<!-- END JavaScript --> 
+
+</body></html>

@@ -1,0 +1,412 @@
+<html><head><title>java_util_prefs</title>
+<style>
+<!-- BEGIN Inline CSS -->
+/* Popup container */
+.popup {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+/* The actual popup (appears on top) */
+.popup .popuptext {
+    visibility: hidden;
+    width: 430px;
+    background-color: white;
+    color: black;
+    text-align: left;
+    border-radius: 6px;
+    border-style: solid;
+    border-color: black;
+    padding: 8px 8px 8px 8px;
+    position: absolute;
+    z-index: 1;
+    margin-top: 30px;
+}
+
+/* Toggle this class when clicking on the popup container (hide and show the popup) */
+.popup .show {
+    visibility: visible;
+    opacity: 1;
+}
+
+</style>
+<!-- END Inline CSS -->
+</head><body bgcolor="white">
+<hr><pre>
+<font color="green">(*</font>
+<font color="green"> *  Creator j2cps version 1.4.07 (March 2018)</font>
+<font color="green"> *  Compiled from jar-file rt.jar</font>
+<font color="green"> *)</font>
+<b>FOREIGN MODULE </b><font color="#cc0033">java_util_prefs</font>;
+
+<b>IMPORT</b>
+    <a href="java_io.html">java_io</a> := "java.io",
+    <a href="java_lang.html">java_lang</a> := "java.lang",
+    <a href="java_util.html">java_util</a> := "java.util";
+
+<b>TYPE</b>
+
+  <a name="type-AbstractPreferences"></a><font color="#cc0033">AbstractPreferences</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<b>Preferences</b>)
+                         <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                         <font color="green"><b> (* </b><a href="#meths-AbstractPreferences">Typebound Procedures</a><b> *)</b></font>
+                           <font color="#cc0033">newNode</font>! : BOOLEAN;
+                           <font color="#cc0033">lock</font>!    : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : <a href="#type-AbstractPreferences">AbstractPreferences</a>;
+                                           p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-AbstractPreferences">AbstractPreferences</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-BackingStoreException"></a><font color="#cc0033">BackingStoreException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Exception">java_lang.Exception</a>)
+                           <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                           <b>STATIC</b>
+                             <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-Throwable">java_lang.Throwable</a>) : <a href="#type-BackingStoreException">BackingStoreException</a><b>,CONSTRUCTOR</b>;
+                             <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-BackingStoreException">BackingStoreException</a><b>,CONSTRUCTOR</b>;
+                           <b>END</b>;
+
+  <a name="type-InvalidPreferencesFormatException"></a><font color="#cc0033">InvalidPreferencesFormatException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Exception">java_lang.Exception</a>)
+                                       <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                                       <b>STATIC</b>
+                                         <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                         p1 : <a href="java_lang.html#type-Throwable">java_lang.Throwable</a>) : <a href="#type-InvalidPreferencesFormatException">InvalidPreferencesFormatException</a><b>,CONSTRUCTOR</b>;
+                                         <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-InvalidPreferencesFormatException">InvalidPreferencesFormatException</a><b>,CONSTRUCTOR</b>;
+                                         <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-Throwable">java_lang.Throwable</a>) : <a href="#type-InvalidPreferencesFormatException">InvalidPreferencesFormatException</a><b>,CONSTRUCTOR</b>;
+                                       <b>END</b>;
+
+  <a name="type-NodeChangeEvent"></a><font color="#cc0033">NodeChangeEvent</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_util.html#type-EventObject">java_util.EventObject</a>)
+                     <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                     <font color="green"><b> (* </b><a href="#meths-NodeChangeEvent">Typebound Procedures</a><b> *)</b></font>
+                     <b>STATIC</b>
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <b>Preferences</b>;
+                                       p1 : <b>Preferences</b>) : <a href="#type-NodeChangeEvent">NodeChangeEvent</a><b>,CONSTRUCTOR</b>;
+                     <b>END</b>;
+
+  <a name="type-NodeChangeListener"></a><font color="#cc0033">NodeChangeListener</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_util.html#type-EventListener">java_util.EventListener</a>)
+                        <font color="green"><b> (* </b><a href="#meths-NodeChangeListener">Typebound Procedures</a><b> *)</b></font>
+                        <b>END</b>;
+
+  <a name="type-PreferenceChangeEvent"></a><font color="#cc0033">PreferenceChangeEvent</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_util.html#type-EventObject">java_util.EventObject</a>)
+                           <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                           <font color="green"><b> (* </b><a href="#meths-PreferenceChangeEvent">Typebound Procedures</a><b> *)</b></font>
+                           <b>STATIC</b>
+                             <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <b>Preferences</b>;
+                                             p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                             p2 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-PreferenceChangeEvent">PreferenceChangeEvent</a><b>,CONSTRUCTOR</b>;
+                           <b>END</b>;
+
+  <a name="type-PreferenceChangeListener"></a><font color="#cc0033">PreferenceChangeListener</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_util.html#type-EventListener">java_util.EventListener</a>)
+                              <font color="green"><b> (* </b><a href="#meths-PreferenceChangeListener">Typebound Procedures</a><b> *)</b></font>
+                              <b>END</b>;
+
+  <a name="type-Preferences"></a><font color="#cc0033">Preferences</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                 <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                 <font color="green"><b> (* </b><a href="#meths-Preferences">Typebound Procedures</a><b> *)</b></font>
+                 <b>STATIC</b>
+                   <font color="#cc0033">MAX_KEY_LENGTH</font>*       = 80;
+                   <font color="#cc0033">MAX_NAME_LENGTH</font>*      = 80;
+                   <font color="#cc0033">MAX_VALUE_LENGTH</font>*     = 8192;
+                   <b>PROCEDURE </b><font color="#cc0033">importPreferences</font>*(p0 : <a href="java_io.html#type-InputStream">java_io.InputStream</a>);
+                   <b>PROCEDURE </b><font color="#cc0033">Init</font>!() : <a href="#type-Preferences">Preferences</a><b>,CONSTRUCTOR</b>;
+                   <b>PROCEDURE </b><font color="#cc0033">systemNodeForPackage</font>*(p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>) : <a href="#type-Preferences">Preferences</a>;
+                   <b>PROCEDURE </b><font color="#cc0033">systemRoot</font>*() : <a href="#type-Preferences">Preferences</a>;
+                   <b>PROCEDURE </b><font color="#cc0033">userNodeForPackage</font>*(p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>) : <a href="#type-Preferences">Preferences</a>;
+                   <b>PROCEDURE </b><font color="#cc0033">userRoot</font>*() : <a href="#type-Preferences">Preferences</a>;
+                 <b>END</b>;
+
+  <a name="type-PreferencesFactory"></a><font color="#cc0033">PreferencesFactory</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                        <font color="green"><b> (* </b><a href="#meths-PreferencesFactory">Typebound Procedures</a><b> *)</b></font>
+                        <b>END</b>;
+
+
+
+<a name="meths-AbstractPreferences"></a>
+<b>PROCEDURE </b>(self:AbstractPreferences) <font color="#cc0033">absolutePath</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AbstractPreferences) <font color="#cc0033">addNodeChangeListener</font>*(p0 : <b>NodeChangeListener</b>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AbstractPreferences) <font color="#cc0033">addPreferenceChangeListener</font>*(p0 : <b>PreferenceChangeListener</b>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AbstractPreferences) <font color="#cc0033">cachedChildren</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-AbstractPreferences">AbstractPreferences</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AbstractPreferences) <font color="#cc0033">childrenNames</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AbstractPreferences) <font color="#cc0033">childrenNamesSpi</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AbstractPreferences) <font color="#cc0033">childSpi</font>!(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-AbstractPreferences">AbstractPreferences</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AbstractPreferences) <font color="#cc0033">clear</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AbstractPreferences) <font color="#cc0033">exportNode</font>*(p0 : <a href="java_io.html#type-OutputStream">java_io.OutputStream</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AbstractPreferences) <font color="#cc0033">exportSubtree</font>*(p0 : <a href="java_io.html#type-OutputStream">java_io.OutputStream</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AbstractPreferences) <font color="#cc0033">flush</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AbstractPreferences) <font color="#cc0033">flushSpi</font>!()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AbstractPreferences) <font color="#cc0033">get</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                          p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AbstractPreferences) <font color="#cc0033">getBoolean</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                 p1 : BOOLEAN) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AbstractPreferences) <font color="#cc0033">getByteArray</font>*(    p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                   IN  p1 : <b>ARRAY </b><b>OF </b>BYTE) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AbstractPreferences) <font color="#cc0033">getChild</font>!(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-AbstractPreferences">AbstractPreferences</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AbstractPreferences) <font color="#cc0033">getDouble</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                p1 : REAL) : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AbstractPreferences) <font color="#cc0033">getFloat</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                               p1 : SHORTREAL) : SHORTREAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AbstractPreferences) <font color="#cc0033">getInt</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                             p1 : INTEGER) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AbstractPreferences) <font color="#cc0033">getLong</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                              p1 : LONGINT) : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AbstractPreferences) <font color="#cc0033">getSpi</font>!(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AbstractPreferences) <font color="#cc0033">isRemoved</font>!() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AbstractPreferences) <font color="#cc0033">isUserNode</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AbstractPreferences) <font color="#cc0033">keys</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AbstractPreferences) <font color="#cc0033">keysSpi</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AbstractPreferences) <font color="#cc0033">name</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AbstractPreferences) <font color="#cc0033">node</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <b>Preferences</b><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AbstractPreferences) <font color="#cc0033">nodeExists</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AbstractPreferences) <font color="#cc0033">parent</font>*() : <b>Preferences</b><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AbstractPreferences) <font color="#cc0033">put</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                          p1 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AbstractPreferences) <font color="#cc0033">putBoolean</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                 p1 : BOOLEAN)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AbstractPreferences) <font color="#cc0033">putByteArray</font>*(    p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                   IN  p1 : <b>ARRAY </b><b>OF </b>BYTE)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AbstractPreferences) <font color="#cc0033">putDouble</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                p1 : REAL)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AbstractPreferences) <font color="#cc0033">putFloat</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                               p1 : SHORTREAL)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AbstractPreferences) <font color="#cc0033">putInt</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                             p1 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AbstractPreferences) <font color="#cc0033">putLong</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                              p1 : LONGINT)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AbstractPreferences) <font color="#cc0033">putSpi</font>!(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                             p1 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AbstractPreferences) <font color="#cc0033">remove</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AbstractPreferences) <font color="#cc0033">removeNode</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AbstractPreferences) <font color="#cc0033">removeNodeChangeListener</font>*(p0 : <b>NodeChangeListener</b>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AbstractPreferences) <font color="#cc0033">removeNodeSpi</font>!()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AbstractPreferences) <font color="#cc0033">removePreferenceChangeListener</font>*(p0 : <b>PreferenceChangeListener</b>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AbstractPreferences) <font color="#cc0033">removeSpi</font>!(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AbstractPreferences) <font color="#cc0033">sync</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AbstractPreferences) <font color="#cc0033">syncSpi</font>!()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AbstractPreferences) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-NodeChangeEvent"></a>
+<b>PROCEDURE </b>(self:NodeChangeEvent) <font color="#cc0033">getChild</font>*() : <b>Preferences</b><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:NodeChangeEvent) <font color="#cc0033">getParent</font>*() : <b>Preferences</b><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-NodeChangeListener"></a>
+<b>PROCEDURE </b>(self:NodeChangeListener) <font color="#cc0033">childAdded</font>*(p0 : <a href="#type-NodeChangeEvent">NodeChangeEvent</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:NodeChangeListener) <font color="#cc0033">childRemoved</font>*(p0 : <a href="#type-NodeChangeEvent">NodeChangeEvent</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-PreferenceChangeEvent"></a>
+<b>PROCEDURE </b>(self:PreferenceChangeEvent) <font color="#cc0033">getKey</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PreferenceChangeEvent) <font color="#cc0033">getNewValue</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PreferenceChangeEvent) <font color="#cc0033">getNode</font>*() : <b>Preferences</b><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-PreferenceChangeListener"></a>
+<b>PROCEDURE </b>(self:PreferenceChangeListener) <font color="#cc0033">preferenceChange</font>*(p0 : <a href="#type-PreferenceChangeEvent">PreferenceChangeEvent</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-Preferences"></a>
+<b>PROCEDURE </b>(self:Preferences) <font color="#cc0033">absolutePath</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Preferences) <font color="#cc0033">addNodeChangeListener</font>*(p0 : <a href="#type-NodeChangeListener">NodeChangeListener</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Preferences) <font color="#cc0033">addPreferenceChangeListener</font>*(p0 : <a href="#type-PreferenceChangeListener">PreferenceChangeListener</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Preferences) <font color="#cc0033">childrenNames</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Preferences) <font color="#cc0033">clear</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Preferences) <font color="#cc0033">exportNode</font>*(p0 : <a href="java_io.html#type-OutputStream">java_io.OutputStream</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Preferences) <font color="#cc0033">exportSubtree</font>*(p0 : <a href="java_io.html#type-OutputStream">java_io.OutputStream</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Preferences) <font color="#cc0033">flush</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Preferences) <font color="#cc0033">get</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                  p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Preferences) <font color="#cc0033">getBoolean</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                         p1 : BOOLEAN) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Preferences) <font color="#cc0033">getByteArray</font>*(    p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                           IN  p1 : <b>ARRAY </b><b>OF </b>BYTE) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Preferences) <font color="#cc0033">getDouble</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                        p1 : REAL) : REAL<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Preferences) <font color="#cc0033">getFloat</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                       p1 : SHORTREAL) : SHORTREAL<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Preferences) <font color="#cc0033">getInt</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                     p1 : INTEGER) : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Preferences) <font color="#cc0033">getLong</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                      p1 : LONGINT) : LONGINT<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Preferences) <font color="#cc0033">isUserNode</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Preferences) <font color="#cc0033">keys</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Preferences) <font color="#cc0033">name</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Preferences) <font color="#cc0033">node</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-Preferences">Preferences</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Preferences) <font color="#cc0033">nodeExists</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Preferences) <font color="#cc0033">parent</font>*() : <a href="#type-Preferences">Preferences</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Preferences) <font color="#cc0033">put</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                  p1 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Preferences) <font color="#cc0033">putBoolean</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                         p1 : BOOLEAN)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Preferences) <font color="#cc0033">putByteArray</font>*(    p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                           IN  p1 : <b>ARRAY </b><b>OF </b>BYTE)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Preferences) <font color="#cc0033">putDouble</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                        p1 : REAL)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Preferences) <font color="#cc0033">putFloat</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                       p1 : SHORTREAL)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Preferences) <font color="#cc0033">putInt</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                     p1 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Preferences) <font color="#cc0033">putLong</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                      p1 : LONGINT)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Preferences) <font color="#cc0033">remove</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Preferences) <font color="#cc0033">removeNode</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Preferences) <font color="#cc0033">removeNodeChangeListener</font>*(p0 : <a href="#type-NodeChangeListener">NodeChangeListener</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Preferences) <font color="#cc0033">removePreferenceChangeListener</font>*(p0 : <a href="#type-PreferenceChangeListener">PreferenceChangeListener</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Preferences) <font color="#cc0033">sync</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Preferences) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-PreferencesFactory"></a>
+<b>PROCEDURE </b>(self:PreferencesFactory) <font color="#cc0033">systemRoot</font>*() : <a href="#type-Preferences">Preferences</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:PreferencesFactory) <font color="#cc0033">userRoot</font>*() : <a href="#type-Preferences">Preferences</a><b>,NEW,ABSTRACT</b>;
+
+<b>END </b><font color="#cc0033">java_util_prefs</font>.
+</font></pre></hr>
+<!-- BEGIN JavaScript -->
+<script>
+function toggle(node) {
+    node.classList.toggle("show"); 
+  }
+
+function cls(node) {
+    var prnt = node.parentNode;
+    var next = prnt.previousSibling;
+    var text = next.lastChild;
+    text.innerHTML = 
+        "The <b>class</b> property asserts that this type will be<br>" +
+        "implemented as a reference class in the underlying framework.";
+    text.classList.toggle("show");
+  }
+
+function newOk(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>has noArg-ctor</b> property asserts that this reference<br>" +
+        "class has a no-arg constructor, and thus objects of this<br>" +
+        "type can be allocated with NEW(). Component Pascal types<br>" +
+        "derived from this type can also be allocated using NEW().";
+    popuptext.classList.toggle("show"); 
+  }
+
+function noNew(node) { 
+    var prnt = node.parentNode; 
+    var next = prnt.previousSibling; 
+    var text = next.lastChild; 
+    text.innerHTML =  
+        "The <b>no noArg-ctor</b> property asserts that this reference<br>" +
+        "class does not have a noArg constructor. Objects of this<br>" +
+        "type cannot be allocated using NEW(), and Component<br>" +
+        "Pascal types  derived from this type also cannot be<br>" +
+        "allocated using NEW().";
+    text.classList.toggle("show");
+  }
+
+function noCpy(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>no value-assign</b> property asserts that this reference<br>" + 
+        "class does not have a value copy method. Therefore, it<br>" +
+        "is not possible to perform value assignments using<br>" +
+        "statements like <i>dst^</i> := <i>src^</i>";
+    popuptext.classList.toggle("show");
+  }
+
+function valueclass(node) { 
+        var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>valueclass</b> property asserts that this RECORD type is<br>" + 
+        "implemented as a value class in the CLR. It follows that<br>" +  
+        "value assignments can be made of these types. They can<br>" + 
+        "also be passed by value. Even pointers to records of<br>" + 
+        "such types may be dereferenced and copied using syntax<br>" + 
+        "such as  <i>dst^</i> := <i>src^</i>"; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+function argCtor(node) { 
+    var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>has arg-ctor</b> property asserts that this reference<br>" +  
+        "class has one or more constructors that take arguments.<br>" + 
+        "These constructors can be called from Component Pascal<br>" + 
+        "by calling an <i>init</i>(...) method from the static list<br>" + 
+        "here. Component Pascal types derived from this type<br>" + 
+        "can define constructors with arguments which call the<br>" + 
+        "super-type constructor.<br>" + 
+        "See <i>'Interfacing to constructors'</i> in the Release Notes."; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+</script>
+<!-- END JavaScript --> 
+
+</body></html>

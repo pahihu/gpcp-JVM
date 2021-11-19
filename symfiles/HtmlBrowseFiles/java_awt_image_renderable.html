@@ -1,0 +1,389 @@
+<html><head><title>java_awt_image_renderable</title>
+<style>
+<!-- BEGIN Inline CSS -->
+/* Popup container */
+.popup {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+/* The actual popup (appears on top) */
+.popup .popuptext {
+    visibility: hidden;
+    width: 430px;
+    background-color: white;
+    color: black;
+    text-align: left;
+    border-radius: 6px;
+    border-style: solid;
+    border-color: black;
+    padding: 8px 8px 8px 8px;
+    position: absolute;
+    z-index: 1;
+    margin-top: 30px;
+}
+
+/* Toggle this class when clicking on the popup container (hide and show the popup) */
+.popup .show {
+    visibility: visible;
+    opacity: 1;
+}
+
+</style>
+<!-- END Inline CSS -->
+</head><body bgcolor="white">
+<hr><pre>
+<font color="green">(*</font>
+<font color="green"> *  Creator j2cps version 1.4.07 (March 2018)</font>
+<font color="green"> *  Compiled from jar-file rt.jar</font>
+<font color="green"> *)</font>
+<b>FOREIGN MODULE </b><font color="#cc0033">java_awt_image_renderable</font>;
+
+<b>IMPORT</b>
+    <a href="java_awt.html">java_awt</a> := "java.awt",
+    <a href="java_awt_geom.html">java_awt_geom</a> := "java.awt.geom",
+    <a href="java_awt_image.html">java_awt_image</a> := "java.awt.image",
+    <a href="java_io.html">java_io</a> := "java.io",
+    <a href="java_lang.html">java_lang</a> := "java.lang",
+    <a href="java_util.html">java_util</a> := "java.util";
+
+<b>TYPE</b>
+
+  <a name="type-ContextualRenderedImageFactory"></a><font color="#cc0033">ContextualRenderedImageFactory</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <b>RenderedImageFactory</b>)
+                                    <font color="green"><b> (* </b><a href="#meths-ContextualRenderedImageFactory">Typebound Procedures</a><b> *)</b></font>
+                                    <b>END</b>;
+
+  <a name="type-ParameterBlock"></a><font color="#cc0033">ParameterBlock</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_lang.html#type-Cloneable">java_lang.Cloneable</a> + <a href="java_io.html#type-Serializable">java_io.Serializable</a>)
+                    <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                    <font color="green"><b> (* </b><a href="#meths-ParameterBlock">Typebound Procedures</a><b> *)</b></font>
+                      <font color="#cc0033">sources</font>!    : <a href="java_util.html#type-Vector">java_util.Vector</a>;
+                      <font color="#cc0033">parameters</font>! : <a href="java_util.html#type-Vector">java_util.Vector</a>;
+                    <b>STATIC</b>
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_util.html#type-Vector">java_util.Vector</a>;
+                                      p1 : <a href="java_util.html#type-Vector">java_util.Vector</a>) : <a href="#type-ParameterBlock">ParameterBlock</a><b>,CONSTRUCTOR</b>;
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_util.html#type-Vector">java_util.Vector</a>) : <a href="#type-ParameterBlock">ParameterBlock</a><b>,CONSTRUCTOR</b>;
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-ParameterBlock">ParameterBlock</a><b>,CONSTRUCTOR</b>;
+                    <b>END</b>;
+
+  <a name="type-RenderableImage"></a><font color="#cc0033">RenderableImage</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                     <font color="green"><b> (* </b><a href="#meths-RenderableImage">Typebound Procedures</a><b> *)</b></font>
+                     <b>STATIC</b>
+                       <font color="#cc0033">HINTS_OBSERVED</font>* = "HINTS_OBSERVED";
+                     <b>END</b>;
+
+  <a name="type-RenderableImageOp"></a><font color="#cc0033">RenderableImageOp</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-RenderableImage">RenderableImage</a>)
+                       <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                       <font color="green"><b> (* </b><a href="#meths-RenderableImageOp">Typebound Procedures</a><b> *)</b></font>
+                       <b>STATIC</b>
+                         <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="#type-ContextualRenderedImageFactory">ContextualRenderedImageFactory</a>;
+                                         p1 : <a href="#type-ParameterBlock">ParameterBlock</a>) : <a href="#type-RenderableImageOp">RenderableImageOp</a><b>,CONSTRUCTOR</b>;
+                       <b>END</b>;
+
+  <a name="type-RenderableImageProducer"></a><font color="#cc0033">RenderableImageProducer</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_awt_image.html#type-ImageProducer">java_awt_image.ImageProducer</a> + <a href="java_lang.html#type-Runnable">java_lang.Runnable</a>)
+                             <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                             <font color="green"><b> (* </b><a href="#meths-RenderableImageProducer">Typebound Procedures</a><b> *)</b></font>
+                             <b>STATIC</b>
+                               <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="#type-RenderableImage">RenderableImage</a>;
+                                               p1 : <a href="#type-RenderContext">RenderContext</a>) : <a href="#type-RenderableImageProducer">RenderableImageProducer</a><b>,CONSTRUCTOR</b>;
+                             <b>END</b>;
+
+  <a name="type-RenderContext"></a><font color="#cc0033">RenderContext</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_lang.html#type-Cloneable">java_lang.Cloneable</a>)
+                   <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                   <font color="green"><b> (* </b><a href="#meths-RenderContext">Typebound Procedures</a><b> *)</b></font>
+                   <b>STATIC</b>
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_awt_geom.html#type-AffineTransform">java_awt_geom.AffineTransform</a>;
+                                     p1 : <a href="java_awt.html#type-RenderingHints">java_awt.RenderingHints</a>) : <a href="#type-RenderContext">RenderContext</a><b>,CONSTRUCTOR</b>;
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_awt_geom.html#type-AffineTransform">java_awt_geom.AffineTransform</a>;
+                                     p1 : <a href="java_awt.html#type-Shape">java_awt.Shape</a>) : <a href="#type-RenderContext">RenderContext</a><b>,CONSTRUCTOR</b>;
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_awt_geom.html#type-AffineTransform">java_awt_geom.AffineTransform</a>;
+                                     p1 : <a href="java_awt.html#type-Shape">java_awt.Shape</a>;
+                                     p2 : <a href="java_awt.html#type-RenderingHints">java_awt.RenderingHints</a>) : <a href="#type-RenderContext">RenderContext</a><b>,CONSTRUCTOR</b>;
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_awt_geom.html#type-AffineTransform">java_awt_geom.AffineTransform</a>) : <a href="#type-RenderContext">RenderContext</a><b>,CONSTRUCTOR</b>;
+                   <b>END</b>;
+
+  <a name="type-RenderedImageFactory"></a><font color="#cc0033">RenderedImageFactory</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                          <font color="green"><b> (* </b><a href="#meths-RenderedImageFactory">Typebound Procedures</a><b> *)</b></font>
+                          <b>END</b>;
+
+
+
+<a name="meths-ContextualRenderedImageFactory"></a>
+<b>PROCEDURE </b>(self:ContextualRenderedImageFactory) <font color="#cc0033">create</font>*(p0 : <b>RenderContext</b>;
+                                                        p1 : <b>ParameterBlock</b>) : <a href="java_awt_image.html#type-RenderedImage">java_awt_image.RenderedImage</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ContextualRenderedImageFactory) <font color="#cc0033">getBounds2D</font>*(p0 : <b>ParameterBlock</b>) : <a href="java_awt_geom.html#type-Rectangle2D">java_awt_geom.Rectangle2D</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ContextualRenderedImageFactory) <font color="#cc0033">getProperty</font>*(p0 : <b>ParameterBlock</b>;
+                                                             p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ContextualRenderedImageFactory) <font color="#cc0033">getPropertyNames</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ContextualRenderedImageFactory) <font color="#cc0033">isDynamic</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ContextualRenderedImageFactory) <font color="#cc0033">mapRenderContext</font>*(p0 : INTEGER;
+                                                                  p1 : <b>RenderContext</b>;
+                                                                  p2 : <b>ParameterBlock</b>;
+                                                                  p3 : <b>RenderableImage</b>) : <b>RenderContext</b><b>,NEW,ABSTRACT</b>;
+<a name="meths-ParameterBlock"></a>
+<b>PROCEDURE </b>(self:ParameterBlock) <font color="#cc0033">add</font>*(p0 : CHAR) : <a href="#type-ParameterBlock">ParameterBlock</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ParameterBlock) <font color="#cc0033">add</font>*(p0 : SHORTINT) : <a href="#type-ParameterBlock">ParameterBlock</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ParameterBlock) <font color="#cc0033">add</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="#type-ParameterBlock">ParameterBlock</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ParameterBlock) <font color="#cc0033">add</font>*(p0 : BYTE) : <a href="#type-ParameterBlock">ParameterBlock</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ParameterBlock) <font color="#cc0033">add</font>*(p0 : SHORTREAL) : <a href="#type-ParameterBlock">ParameterBlock</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ParameterBlock) <font color="#cc0033">add</font>*(p0 : REAL) : <a href="#type-ParameterBlock">ParameterBlock</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ParameterBlock) <font color="#cc0033">add</font>*(p0 : INTEGER) : <a href="#type-ParameterBlock">ParameterBlock</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ParameterBlock) <font color="#cc0033">add</font>*(p0 : LONGINT) : <a href="#type-ParameterBlock">ParameterBlock</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ParameterBlock) <font color="#cc0033">addSource</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="#type-ParameterBlock">ParameterBlock</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ParameterBlock) <font color="#cc0033">clone</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ParameterBlock) <font color="#cc0033">getByteParameter</font>*(p0 : INTEGER) : BYTE<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ParameterBlock) <font color="#cc0033">getCharParameter</font>*(p0 : INTEGER) : CHAR<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ParameterBlock) <font color="#cc0033">getDoubleParameter</font>*(p0 : INTEGER) : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ParameterBlock) <font color="#cc0033">getFloatParameter</font>*(p0 : INTEGER) : SHORTREAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ParameterBlock) <font color="#cc0033">getIntParameter</font>*(p0 : INTEGER) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ParameterBlock) <font color="#cc0033">getLongParameter</font>*(p0 : INTEGER) : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ParameterBlock) <font color="#cc0033">getNumParameters</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ParameterBlock) <font color="#cc0033">getNumSources</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ParameterBlock) <font color="#cc0033">getObjectParameter</font>*(p0 : INTEGER) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ParameterBlock) <font color="#cc0033">getParamClasses</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Class">java_lang.Class</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ParameterBlock) <font color="#cc0033">getParameters</font>*() : <a href="java_util.html#type-Vector">java_util.Vector</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ParameterBlock) <font color="#cc0033">getRenderableSource</font>*(p0 : INTEGER) : <b>RenderableImage</b><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ParameterBlock) <font color="#cc0033">getRenderedSource</font>*(p0 : INTEGER) : <a href="java_awt_image.html#type-RenderedImage">java_awt_image.RenderedImage</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ParameterBlock) <font color="#cc0033">getShortParameter</font>*(p0 : INTEGER) : SHORTINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ParameterBlock) <font color="#cc0033">getSource</font>*(p0 : INTEGER) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ParameterBlock) <font color="#cc0033">getSources</font>*() : <a href="java_util.html#type-Vector">java_util.Vector</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ParameterBlock) <font color="#cc0033">removeParameters</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ParameterBlock) <font color="#cc0033">removeSources</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ParameterBlock) <font color="#cc0033">set</font>*(p0 : REAL;
+                                     p1 : INTEGER) : <a href="#type-ParameterBlock">ParameterBlock</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ParameterBlock) <font color="#cc0033">set</font>*(p0 : SHORTREAL;
+                                     p1 : INTEGER) : <a href="#type-ParameterBlock">ParameterBlock</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ParameterBlock) <font color="#cc0033">set</font>*(p0 : CHAR;
+                                     p1 : INTEGER) : <a href="#type-ParameterBlock">ParameterBlock</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ParameterBlock) <font color="#cc0033">set</font>*(p0 : BYTE;
+                                     p1 : INTEGER) : <a href="#type-ParameterBlock">ParameterBlock</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ParameterBlock) <font color="#cc0033">set</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                     p1 : INTEGER) : <a href="#type-ParameterBlock">ParameterBlock</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ParameterBlock) <font color="#cc0033">set</font>*(p0 : LONGINT;
+                                     p1 : INTEGER) : <a href="#type-ParameterBlock">ParameterBlock</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ParameterBlock) <font color="#cc0033">set</font>*(p0 : INTEGER;
+                                     p1 : INTEGER) : <a href="#type-ParameterBlock">ParameterBlock</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ParameterBlock) <font color="#cc0033">set</font>*(p0 : SHORTINT;
+                                     p1 : INTEGER) : <a href="#type-ParameterBlock">ParameterBlock</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ParameterBlock) <font color="#cc0033">setParameters</font>*(p0 : <a href="java_util.html#type-Vector">java_util.Vector</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ParameterBlock) <font color="#cc0033">setSource</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                           p1 : INTEGER) : <a href="#type-ParameterBlock">ParameterBlock</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ParameterBlock) <font color="#cc0033">setSources</font>*(p0 : <a href="java_util.html#type-Vector">java_util.Vector</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ParameterBlock) <font color="#cc0033">shallowClone</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-RenderableImage"></a>
+<b>PROCEDURE </b>(self:RenderableImage) <font color="#cc0033">createDefaultRendering</font>*() : <a href="java_awt_image.html#type-RenderedImage">java_awt_image.RenderedImage</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RenderableImage) <font color="#cc0033">createRendering</font>*(p0 : <a href="#type-RenderContext">RenderContext</a>) : <a href="java_awt_image.html#type-RenderedImage">java_awt_image.RenderedImage</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RenderableImage) <font color="#cc0033">createScaledRendering</font>*(p0 : INTEGER;
+                                                        p1 : INTEGER;
+                                                        p2 : <a href="java_awt.html#type-RenderingHints">java_awt.RenderingHints</a>) : <a href="java_awt_image.html#type-RenderedImage">java_awt_image.RenderedImage</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RenderableImage) <font color="#cc0033">getHeight</font>*() : SHORTREAL<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RenderableImage) <font color="#cc0033">getMinX</font>*() : SHORTREAL<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RenderableImage) <font color="#cc0033">getMinY</font>*() : SHORTREAL<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RenderableImage) <font color="#cc0033">getProperty</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RenderableImage) <font color="#cc0033">getPropertyNames</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RenderableImage) <font color="#cc0033">getSources</font>*() : <a href="java_util.html#type-Vector">java_util.Vector</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RenderableImage) <font color="#cc0033">getWidth</font>*() : SHORTREAL<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RenderableImage) <font color="#cc0033">isDynamic</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+<a name="meths-RenderableImageOp"></a>
+<b>PROCEDURE </b>(self:RenderableImageOp) <font color="#cc0033">createDefaultRendering</font>*() : <a href="java_awt_image.html#type-RenderedImage">java_awt_image.RenderedImage</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RenderableImageOp) <font color="#cc0033">createRendering</font>*(p0 : <a href="#type-RenderContext">RenderContext</a>) : <a href="java_awt_image.html#type-RenderedImage">java_awt_image.RenderedImage</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RenderableImageOp) <font color="#cc0033">createScaledRendering</font>*(p0 : INTEGER;
+                                                          p1 : INTEGER;
+                                                          p2 : <a href="java_awt.html#type-RenderingHints">java_awt.RenderingHints</a>) : <a href="java_awt_image.html#type-RenderedImage">java_awt_image.RenderedImage</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RenderableImageOp) <font color="#cc0033">getHeight</font>*() : SHORTREAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RenderableImageOp) <font color="#cc0033">getMinX</font>*() : SHORTREAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RenderableImageOp) <font color="#cc0033">getMinY</font>*() : SHORTREAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RenderableImageOp) <font color="#cc0033">getParameterBlock</font>*() : <a href="#type-ParameterBlock">ParameterBlock</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RenderableImageOp) <font color="#cc0033">getProperty</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RenderableImageOp) <font color="#cc0033">getPropertyNames</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RenderableImageOp) <font color="#cc0033">getSources</font>*() : <a href="java_util.html#type-Vector">java_util.Vector</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RenderableImageOp) <font color="#cc0033">getWidth</font>*() : SHORTREAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RenderableImageOp) <font color="#cc0033">isDynamic</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RenderableImageOp) <font color="#cc0033">setParameterBlock</font>*(p0 : <a href="#type-ParameterBlock">ParameterBlock</a>) : <a href="#type-ParameterBlock">ParameterBlock</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-RenderableImageProducer"></a>
+<b>PROCEDURE </b>(self:RenderableImageProducer) <font color="#cc0033">addConsumer</font>*(p0 : <a href="java_awt_image.html#type-ImageConsumer">java_awt_image.ImageConsumer</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RenderableImageProducer) <font color="#cc0033">isConsumer</font>*(p0 : <a href="java_awt_image.html#type-ImageConsumer">java_awt_image.ImageConsumer</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RenderableImageProducer) <font color="#cc0033">removeConsumer</font>*(p0 : <a href="java_awt_image.html#type-ImageConsumer">java_awt_image.ImageConsumer</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RenderableImageProducer) <font color="#cc0033">requestTopDownLeftRightResend</font>*(p0 : <a href="java_awt_image.html#type-ImageConsumer">java_awt_image.ImageConsumer</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RenderableImageProducer) <font color="#cc0033">run</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RenderableImageProducer) <font color="#cc0033">setRenderContext</font>*(p0 : <a href="#type-RenderContext">RenderContext</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RenderableImageProducer) <font color="#cc0033">startProduction</font>*(p0 : <a href="java_awt_image.html#type-ImageConsumer">java_awt_image.ImageConsumer</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-RenderContext"></a>
+<b>PROCEDURE </b>(self:RenderContext) <font color="#cc0033">clone</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RenderContext) <font color="#cc0033">concatenateTransform</font>*(p0 : <a href="java_awt_geom.html#type-AffineTransform">java_awt_geom.AffineTransform</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RenderContext) <font color="#cc0033">concetenateTransform</font>*(p0 : <a href="java_awt_geom.html#type-AffineTransform">java_awt_geom.AffineTransform</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RenderContext) <font color="#cc0033">getAreaOfInterest</font>*() : <a href="java_awt.html#type-Shape">java_awt.Shape</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RenderContext) <font color="#cc0033">getRenderingHints</font>*() : <a href="java_awt.html#type-RenderingHints">java_awt.RenderingHints</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RenderContext) <font color="#cc0033">getTransform</font>*() : <a href="java_awt_geom.html#type-AffineTransform">java_awt_geom.AffineTransform</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RenderContext) <font color="#cc0033">preConcatenateTransform</font>*(p0 : <a href="java_awt_geom.html#type-AffineTransform">java_awt_geom.AffineTransform</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RenderContext) <font color="#cc0033">preConcetenateTransform</font>*(p0 : <a href="java_awt_geom.html#type-AffineTransform">java_awt_geom.AffineTransform</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RenderContext) <font color="#cc0033">setAreaOfInterest</font>*(p0 : <a href="java_awt.html#type-Shape">java_awt.Shape</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RenderContext) <font color="#cc0033">setRenderingHints</font>*(p0 : <a href="java_awt.html#type-RenderingHints">java_awt.RenderingHints</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RenderContext) <font color="#cc0033">setTransform</font>*(p0 : <a href="java_awt_geom.html#type-AffineTransform">java_awt_geom.AffineTransform</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-RenderedImageFactory"></a>
+<b>PROCEDURE </b>(self:RenderedImageFactory) <font color="#cc0033">create</font>*(p0 : <a href="#type-ParameterBlock">ParameterBlock</a>;
+                                              p1 : <a href="java_awt.html#type-RenderingHints">java_awt.RenderingHints</a>) : <a href="java_awt_image.html#type-RenderedImage">java_awt_image.RenderedImage</a><b>,NEW,ABSTRACT</b>;
+
+<b>END </b><font color="#cc0033">java_awt_image_renderable</font>.
+</font></pre></hr>
+<!-- BEGIN JavaScript -->
+<script>
+function toggle(node) {
+    node.classList.toggle("show"); 
+  }
+
+function cls(node) {
+    var prnt = node.parentNode;
+    var next = prnt.previousSibling;
+    var text = next.lastChild;
+    text.innerHTML = 
+        "The <b>class</b> property asserts that this type will be<br>" +
+        "implemented as a reference class in the underlying framework.";
+    text.classList.toggle("show");
+  }
+
+function newOk(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>has noArg-ctor</b> property asserts that this reference<br>" +
+        "class has a no-arg constructor, and thus objects of this<br>" +
+        "type can be allocated with NEW(). Component Pascal types<br>" +
+        "derived from this type can also be allocated using NEW().";
+    popuptext.classList.toggle("show"); 
+  }
+
+function noNew(node) { 
+    var prnt = node.parentNode; 
+    var next = prnt.previousSibling; 
+    var text = next.lastChild; 
+    text.innerHTML =  
+        "The <b>no noArg-ctor</b> property asserts that this reference<br>" +
+        "class does not have a noArg constructor. Objects of this<br>" +
+        "type cannot be allocated using NEW(), and Component<br>" +
+        "Pascal types  derived from this type also cannot be<br>" +
+        "allocated using NEW().";
+    text.classList.toggle("show");
+  }
+
+function noCpy(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>no value-assign</b> property asserts that this reference<br>" + 
+        "class does not have a value copy method. Therefore, it<br>" +
+        "is not possible to perform value assignments using<br>" +
+        "statements like <i>dst^</i> := <i>src^</i>";
+    popuptext.classList.toggle("show");
+  }
+
+function valueclass(node) { 
+        var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>valueclass</b> property asserts that this RECORD type is<br>" + 
+        "implemented as a value class in the CLR. It follows that<br>" +  
+        "value assignments can be made of these types. They can<br>" + 
+        "also be passed by value. Even pointers to records of<br>" + 
+        "such types may be dereferenced and copied using syntax<br>" + 
+        "such as  <i>dst^</i> := <i>src^</i>"; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+function argCtor(node) { 
+    var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>has arg-ctor</b> property asserts that this reference<br>" +  
+        "class has one or more constructors that take arguments.<br>" + 
+        "These constructors can be called from Component Pascal<br>" + 
+        "by calling an <i>init</i>(...) method from the static list<br>" + 
+        "here. Component Pascal types derived from this type<br>" + 
+        "can define constructors with arguments which call the<br>" + 
+        "super-type constructor.<br>" + 
+        "See <i>'Interfacing to constructors'</i> in the Release Notes."; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+</script>
+<!-- END JavaScript --> 
+
+</body></html>

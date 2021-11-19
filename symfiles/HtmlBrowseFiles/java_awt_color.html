@@ -1,0 +1,408 @@
+<html><head><title>java_awt_color</title>
+<style>
+<!-- BEGIN Inline CSS -->
+/* Popup container */
+.popup {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+/* The actual popup (appears on top) */
+.popup .popuptext {
+    visibility: hidden;
+    width: 430px;
+    background-color: white;
+    color: black;
+    text-align: left;
+    border-radius: 6px;
+    border-style: solid;
+    border-color: black;
+    padding: 8px 8px 8px 8px;
+    position: absolute;
+    z-index: 1;
+    margin-top: 30px;
+}
+
+/* Toggle this class when clicking on the popup container (hide and show the popup) */
+.popup .show {
+    visibility: visible;
+    opacity: 1;
+}
+
+</style>
+<!-- END Inline CSS -->
+</head><body bgcolor="white">
+<hr><pre>
+<font color="green">(*</font>
+<font color="green"> *  Creator j2cps version 1.4.07 (March 2018)</font>
+<font color="green"> *  Compiled from jar-file rt.jar</font>
+<font color="green"> *)</font>
+<b>FOREIGN MODULE </b><font color="#cc0033">java_awt_color</font>;
+
+<b>IMPORT</b>
+    <a href="java_io.html">java_io</a> := "java.io",
+    <a href="java_lang.html">java_lang</a> := "java.lang";
+
+<b>TYPE</b>
+
+  <a name="type-CMMException"></a><font color="#cc0033">CMMException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-RuntimeException">java_lang.RuntimeException</a>)
+                  <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                  <b>STATIC</b>
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-CMMException">CMMException</a><b>,CONSTRUCTOR</b>;
+                  <b>END</b>;
+
+  <a name="type-ColorSpace"></a><font color="#cc0033">ColorSpace</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_io.html#type-Serializable">java_io.Serializable</a>)
+                <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                <font color="green"><b> (* </b><a href="#meths-ColorSpace">Typebound Procedures</a><b> *)</b></font>
+                <b>STATIC</b>
+                  <font color="#cc0033">CS_CIEXYZ</font>*     = 1001;
+                  <font color="#cc0033">CS_GRAY</font>*       = 1003;
+                  <font color="#cc0033">CS_LINEAR_RGB</font>* = 1004;
+                  <font color="#cc0033">CS_PYCC</font>*       = 1002;
+                  <font color="#cc0033">CS_sRGB</font>*       = 1000;
+                  <font color="#cc0033">TYPE_2CLR</font>*     = 12;
+                  <font color="#cc0033">TYPE_3CLR</font>*     = 13;
+                  <font color="#cc0033">TYPE_4CLR</font>*     = 14;
+                  <font color="#cc0033">TYPE_5CLR</font>*     = 15;
+                  <font color="#cc0033">TYPE_6CLR</font>*     = 16;
+                  <font color="#cc0033">TYPE_7CLR</font>*     = 17;
+                  <font color="#cc0033">TYPE_8CLR</font>*     = 18;
+                  <font color="#cc0033">TYPE_9CLR</font>*     = 19;
+                  <font color="#cc0033">TYPE_ACLR</font>*     = 20;
+                  <font color="#cc0033">TYPE_BCLR</font>*     = 21;
+                  <font color="#cc0033">TYPE_CCLR</font>*     = 22;
+                  <font color="#cc0033">TYPE_CMY</font>*      = 11;
+                  <font color="#cc0033">TYPE_CMYK</font>*     = 9;
+                  <font color="#cc0033">TYPE_DCLR</font>*     = 23;
+                  <font color="#cc0033">TYPE_ECLR</font>*     = 24;
+                  <font color="#cc0033">TYPE_FCLR</font>*     = 25;
+                  <font color="#cc0033">TYPE_GRAY</font>*     = 6;
+                  <font color="#cc0033">TYPE_HLS</font>*      = 8;
+                  <font color="#cc0033">TYPE_HSV</font>*      = 7;
+                  <font color="#cc0033">TYPE_Lab</font>*      = 1;
+                  <font color="#cc0033">TYPE_Luv</font>*      = 2;
+                  <font color="#cc0033">TYPE_RGB</font>*      = 5;
+                  <font color="#cc0033">TYPE_XYZ</font>*      = 0;
+                  <font color="#cc0033">TYPE_YCbCr</font>*    = 3;
+                  <font color="#cc0033">TYPE_Yxy</font>*      = 4;
+                  <b>PROCEDURE </b><font color="#cc0033">getInstance</font>*(p0 : INTEGER) : <a href="#type-ColorSpace">ColorSpace</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : INTEGER;
+                                  p1 : INTEGER) : <a href="#type-ColorSpace">ColorSpace</a><b>,CONSTRUCTOR</b>;
+                <b>END</b>;
+
+  <a name="type-ICC_ColorSpace"></a><font color="#cc0033">ICC_ColorSpace</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<b>ColorSpace</b>)
+                    <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                    <font color="green"><b> (* </b><a href="#meths-ICC_ColorSpace">Typebound Procedures</a><b> *)</b></font>
+                    <b>STATIC</b>
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <b>ICC_Profile</b>) : <a href="#type-ICC_ColorSpace">ICC_ColorSpace</a><b>,CONSTRUCTOR</b>;
+                    <b>END</b>;
+
+  <a name="type-ICC_Profile"></a><font color="#cc0033">ICC_Profile</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_io.html#type-Serializable">java_io.Serializable</a>)
+                 <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                 <font color="green"><b> (* </b><a href="#meths-ICC_Profile">Typebound Procedures</a><b> *)</b></font>
+                 <b>STATIC</b>
+                   <font color="#cc0033">CLASS_ABSTRACT</font>*              = 5;
+                   <font color="#cc0033">CLASS_COLORSPACECONVERSION</font>*  = 4;
+                   <font color="#cc0033">CLASS_DEVICELINK</font>*            = 3;
+                   <font color="#cc0033">CLASS_DISPLAY</font>*               = 1;
+                   <font color="#cc0033">CLASS_INPUT</font>*                 = 0;
+                   <font color="#cc0033">CLASS_NAMEDCOLOR</font>*            = 6;
+                   <font color="#cc0033">CLASS_OUTPUT</font>*                = 2;
+                   <font color="#cc0033">icAbsoluteColorimetric</font>*      = 3;
+                   <font color="#cc0033">icCurveCount</font>*                = 8;
+                   <font color="#cc0033">icCurveData</font>*                 = 12;
+                   <font color="#cc0033">icHdrAttributes</font>*             = 56;
+                   <font color="#cc0033">icHdrCmmId</font>*                  = 4;
+                   <font color="#cc0033">icHdrColorSpace</font>*             = 16;
+                   <font color="#cc0033">icHdrCreator</font>*                = 80;
+                   <font color="#cc0033">icHdrDate</font>*                   = 24;
+                   <font color="#cc0033">icHdrDeviceClass</font>*            = 12;
+                   <font color="#cc0033">icHdrFlags</font>*                  = 44;
+                   <font color="#cc0033">icHdrIlluminant</font>*             = 68;
+                   <font color="#cc0033">icHdrMagic</font>*                  = 36;
+                   <font color="#cc0033">icHdrManufacturer</font>*           = 48;
+                   <font color="#cc0033">icHdrModel</font>*                  = 52;
+                   <font color="#cc0033">icHdrPcs</font>*                    = 20;
+                   <font color="#cc0033">icHdrPlatform</font>*               = 40;
+                   <font color="#cc0033">icHdrProfileID</font>*              = 84;
+                   <font color="#cc0033">icHdrRenderingIntent</font>*        = 64;
+                   <font color="#cc0033">icHdrSize</font>*                   = 0;
+                   <font color="#cc0033">icHdrVersion</font>*                = 8;
+                   <font color="#cc0033">icICCAbsoluteColorimetric</font>*   = 3;
+                   <font color="#cc0033">icMediaRelativeColorimetric</font>* = 1;
+                   <font color="#cc0033">icPerceptual</font>*                = 0;
+                   <font color="#cc0033">icRelativeColorimetric</font>*      = 1;
+                   <font color="#cc0033">icSaturation</font>*                = 2;
+                   <font color="#cc0033">icSigAbstractClass</font>*          = 1633842036;
+                   <font color="#cc0033">icSigAToB0Tag</font>*               = 1093812784;
+                   <font color="#cc0033">icSigAToB1Tag</font>*               = 1093812785;
+                   <font color="#cc0033">icSigAToB2Tag</font>*               = 1093812786;
+                   <font color="#cc0033">icSigBlueColorantTag</font>*        = 1649957210;
+                   <font color="#cc0033">icSigBlueMatrixColumnTag</font>*    = 1649957210;
+                   <font color="#cc0033">icSigBlueTRCTag</font>*             = 1649693251;
+                   <font color="#cc0033">icSigBToA0Tag</font>*               = 1110589744;
+                   <font color="#cc0033">icSigBToA1Tag</font>*               = 1110589745;
+                   <font color="#cc0033">icSigBToA2Tag</font>*               = 1110589746;
+                   <font color="#cc0033">icSigCalibrationDateTimeTag</font>* = 1667329140;
+                   <font color="#cc0033">icSigCharTargetTag</font>*          = 1952543335;
+                   <font color="#cc0033">icSigChromaticAdaptationTag</font>* = 1667785060;
+                   <font color="#cc0033">icSigChromaticityTag</font>*        = 1667789421;
+                   <font color="#cc0033">icSigCmyData</font>*                = 1129142560;
+                   <font color="#cc0033">icSigCmykData</font>*               = 1129142603;
+                   <font color="#cc0033">icSigColorantOrderTag</font>*       = 1668051567;
+                   <font color="#cc0033">icSigColorantTableTag</font>*       = 1668051572;
+                   <font color="#cc0033">icSigColorSpaceClass</font>*        = 1936744803;
+                   <font color="#cc0033">icSigCopyrightTag</font>*           = 1668313716;
+                   <font color="#cc0033">icSigCrdInfoTag</font>*             = 1668441193;
+                   <font color="#cc0033">icSigDeviceMfgDescTag</font>*       = 1684893284;
+                   <font color="#cc0033">icSigDeviceModelDescTag</font>*     = 1684890724;
+                   <font color="#cc0033">icSigDeviceSettingsTag</font>*      = 1684371059;
+                   <font color="#cc0033">icSigDisplayClass</font>*           = 1835955314;
+                   <font color="#cc0033">icSigGamutTag</font>*               = 1734438260;
+                   <font color="#cc0033">icSigGrayData</font>*               = 1196573017;
+                   <font color="#cc0033">icSigGrayTRCTag</font>*             = 1800688195;
+                   <font color="#cc0033">icSigGreenColorantTag</font>*       = 1733843290;
+                   <font color="#cc0033">icSigGreenMatrixColumnTag</font>*   = 1733843290;
+                   <font color="#cc0033">icSigGreenTRCTag</font>*            = 1733579331;
+                   <font color="#cc0033">icSigHead</font>*                   = 1751474532;
+                   <font color="#cc0033">icSigHlsData</font>*                = 1212961568;
+                   <font color="#cc0033">icSigHsvData</font>*                = 1213421088;
+                   <font color="#cc0033">icSigInputClass</font>*             = 1935896178;
+                   <font color="#cc0033">icSigLabData</font>*                = 1281450528;
+                   <font color="#cc0033">icSigLinkClass</font>*              = 1818848875;
+                   <font color="#cc0033">icSigLuminanceTag</font>*           = 1819635049;
+                   <font color="#cc0033">icSigLuvData</font>*                = 1282766368;
+                   <font color="#cc0033">icSigMeasurementTag</font>*         = 1835360627;
+                   <font color="#cc0033">icSigMediaBlackPointTag</font>*     = 1651208308;
+                   <font color="#cc0033">icSigMediaWhitePointTag</font>*     = 2004119668;
+                   <font color="#cc0033">icSigNamedColor2Tag</font>*         = 1852009522;
+                   <font color="#cc0033">icSigNamedColorClass</font>*        = 1852662636;
+                   <font color="#cc0033">icSigOutputClass</font>*            = 1886549106;
+                   <font color="#cc0033">icSigOutputResponseTag</font>*      = 1919251312;
+                   <font color="#cc0033">icSigPreview0Tag</font>*            = 1886545200;
+                   <font color="#cc0033">icSigPreview1Tag</font>*            = 1886545201;
+                   <font color="#cc0033">icSigPreview2Tag</font>*            = 1886545202;
+                   <font color="#cc0033">icSigProfileDescriptionTag</font>*  = 1684370275;
+                   <font color="#cc0033">icSigProfileSequenceDescTag</font>* = 1886610801;
+                   <font color="#cc0033">icSigPs2CRD0Tag</font>*             = 1886610480;
+                   <font color="#cc0033">icSigPs2CRD1Tag</font>*             = 1886610481;
+                   <font color="#cc0033">icSigPs2CRD2Tag</font>*             = 1886610482;
+                   <font color="#cc0033">icSigPs2CRD3Tag</font>*             = 1886610483;
+                   <font color="#cc0033">icSigPs2CSATag</font>*              = 1886597747;
+                   <font color="#cc0033">icSigPs2RenderingIntentTag</font>*  = 1886597737;
+                   <font color="#cc0033">icSigRedColorantTag</font>*         = 1918392666;
+                   <font color="#cc0033">icSigRedMatrixColumnTag</font>*     = 1918392666;
+                   <font color="#cc0033">icSigRedTRCTag</font>*              = 1918128707;
+                   <font color="#cc0033">icSigRgbData</font>*                = 1380401696;
+                   <font color="#cc0033">icSigScreeningDescTag</font>*       = 1935897188;
+                   <font color="#cc0033">icSigScreeningTag</font>*           = 1935897198;
+                   <font color="#cc0033">icSigSpace2CLR</font>*              = 843271250;
+                   <font color="#cc0033">icSigSpace3CLR</font>*              = 860048466;
+                   <font color="#cc0033">icSigSpace4CLR</font>*              = 876825682;
+                   <font color="#cc0033">icSigSpace5CLR</font>*              = 893602898;
+                   <font color="#cc0033">icSigSpace6CLR</font>*              = 910380114;
+                   <font color="#cc0033">icSigSpace7CLR</font>*              = 927157330;
+                   <font color="#cc0033">icSigSpace8CLR</font>*              = 943934546;
+                   <font color="#cc0033">icSigSpace9CLR</font>*              = 960711762;
+                   <font color="#cc0033">icSigSpaceACLR</font>*              = 1094929490;
+                   <font color="#cc0033">icSigSpaceBCLR</font>*              = 1111706706;
+                   <font color="#cc0033">icSigSpaceCCLR</font>*              = 1128483922;
+                   <font color="#cc0033">icSigSpaceDCLR</font>*              = 1145261138;
+                   <font color="#cc0033">icSigSpaceECLR</font>*              = 1162038354;
+                   <font color="#cc0033">icSigSpaceFCLR</font>*              = 1178815570;
+                   <font color="#cc0033">icSigTechnologyTag</font>*          = 1952801640;
+                   <font color="#cc0033">icSigUcrBgTag</font>*               = 1650877472;
+                   <font color="#cc0033">icSigViewingCondDescTag</font>*     = 1987405156;
+                   <font color="#cc0033">icSigViewingConditionsTag</font>*   = 1986618743;
+                   <font color="#cc0033">icSigXYZData</font>*                = 1482250784;
+                   <font color="#cc0033">icSigYCbCrData</font>*              = 1497588338;
+                   <font color="#cc0033">icSigYxyData</font>*                = 1501067552;
+                   <font color="#cc0033">icTagReserved</font>*               = 4;
+                   <font color="#cc0033">icTagType</font>*                   = 0;
+                   <font color="#cc0033">icXYZNumberX</font>*                = 8;
+                   <b>PROCEDURE </b><font color="#cc0033">getInstance</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-ICC_Profile">ICC_Profile</a>;
+                   <b>PROCEDURE </b><font color="#cc0033">getInstance</font>*(p0 : <a href="java_io.html#type-InputStream">java_io.InputStream</a>) : <a href="#type-ICC_Profile">ICC_Profile</a>;
+                   <b>PROCEDURE </b><font color="#cc0033">getInstance</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE) : <a href="#type-ICC_Profile">ICC_Profile</a>;
+                   <b>PROCEDURE </b><font color="#cc0033">getInstance</font>*(p0 : INTEGER) : <a href="#type-ICC_Profile">ICC_Profile</a>;
+                 <b>END</b>;
+
+  <a name="type-ICC_ProfileGray"></a><font color="#cc0033">ICC_ProfileGray</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<b>ICC_Profile</b>)
+                     <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                     <font color="green"><b> (* </b><a href="#meths-ICC_ProfileGray">Typebound Procedures</a><b> *)</b></font>
+                     <b>END</b>;
+
+  <a name="type-ICC_ProfileRGB"></a><font color="#cc0033">ICC_ProfileRGB</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<b>ICC_Profile</b>)
+                    <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                    <font color="green"><b> (* </b><a href="#meths-ICC_ProfileRGB">Typebound Procedures</a><b> *)</b></font>
+                    <b>STATIC</b>
+                      <font color="#cc0033">BLUECOMPONENT</font>*  = 2;
+                      <font color="#cc0033">GREENCOMPONENT</font>* = 1;
+                      <font color="#cc0033">REDCOMPONENT</font>*   = 0;
+                    <b>END</b>;
+
+  <a name="type-ProfileDataException"></a><font color="#cc0033">ProfileDataException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-RuntimeException">java_lang.RuntimeException</a>)
+                          <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                          <b>STATIC</b>
+                            <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-ProfileDataException">ProfileDataException</a><b>,CONSTRUCTOR</b>;
+                          <b>END</b>;
+
+
+
+<a name="meths-ColorSpace"></a>
+<b>PROCEDURE </b>(self:ColorSpace) <font color="#cc0033">fromCIEXYZ</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>SHORTREAL) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>SHORTREAL<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ColorSpace) <font color="#cc0033">fromRGB</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>SHORTREAL) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>SHORTREAL<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ColorSpace) <font color="#cc0033">getMaxValue</font>*(p0 : INTEGER) : SHORTREAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ColorSpace) <font color="#cc0033">getMinValue</font>*(p0 : INTEGER) : SHORTREAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ColorSpace) <font color="#cc0033">getName</font>*(p0 : INTEGER) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ColorSpace) <font color="#cc0033">getNumComponents</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ColorSpace) <font color="#cc0033">getType</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ColorSpace) <font color="#cc0033">isCS_sRGB</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ColorSpace) <font color="#cc0033">toCIEXYZ</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>SHORTREAL) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>SHORTREAL<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ColorSpace) <font color="#cc0033">toRGB</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>SHORTREAL) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>SHORTREAL<b>,NEW,ABSTRACT</b>;
+<a name="meths-ICC_ColorSpace"></a>
+<b>PROCEDURE </b>(self:ICC_ColorSpace) <font color="#cc0033">fromCIEXYZ</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>SHORTREAL) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>SHORTREAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ICC_ColorSpace) <font color="#cc0033">fromRGB</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>SHORTREAL) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>SHORTREAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ICC_ColorSpace) <font color="#cc0033">getMaxValue</font>*(p0 : INTEGER) : SHORTREAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ICC_ColorSpace) <font color="#cc0033">getMinValue</font>*(p0 : INTEGER) : SHORTREAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ICC_ColorSpace) <font color="#cc0033">getProfile</font>*() : <b>ICC_Profile</b><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ICC_ColorSpace) <font color="#cc0033">toCIEXYZ</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>SHORTREAL) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>SHORTREAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ICC_ColorSpace) <font color="#cc0033">toRGB</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>SHORTREAL) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>SHORTREAL<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-ICC_Profile"></a>
+<b>PROCEDURE </b>(self:ICC_Profile) <font color="#cc0033">finalize</font>!()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ICC_Profile) <font color="#cc0033">getColorSpaceType</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ICC_Profile) <font color="#cc0033">getData</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ICC_Profile) <font color="#cc0033">getData</font>*(p0 : INTEGER) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ICC_Profile) <font color="#cc0033">getMajorVersion</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ICC_Profile) <font color="#cc0033">getMinorVersion</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ICC_Profile) <font color="#cc0033">getNumComponents</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ICC_Profile) <font color="#cc0033">getPCSType</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ICC_Profile) <font color="#cc0033">getProfileClass</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ICC_Profile) <font color="#cc0033">readResolve</font>!() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ICC_Profile) <font color="#cc0033">setData</font>*(    p0 : INTEGER;
+                                      IN  p1 : <b>ARRAY </b><b>OF </b>BYTE)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ICC_Profile) <font color="#cc0033">write</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ICC_Profile) <font color="#cc0033">write</font>*(p0 : <a href="java_io.html#type-OutputStream">java_io.OutputStream</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-ICC_ProfileGray"></a>
+<b>PROCEDURE </b>(self:ICC_ProfileGray) <font color="#cc0033">getGamma</font>*() : SHORTREAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ICC_ProfileGray) <font color="#cc0033">getMediaWhitePoint</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>SHORTREAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ICC_ProfileGray) <font color="#cc0033">getTRC</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>SHORTINT<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-ICC_ProfileRGB"></a>
+<b>PROCEDURE </b>(self:ICC_ProfileRGB) <font color="#cc0033">getGamma</font>*(p0 : INTEGER) : SHORTREAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ICC_ProfileRGB) <font color="#cc0033">getMatrix</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><b>ARRAY </b><b>OF </b>SHORTREAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ICC_ProfileRGB) <font color="#cc0033">getMediaWhitePoint</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>SHORTREAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ICC_ProfileRGB) <font color="#cc0033">getTRC</font>*(p0 : INTEGER) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>SHORTINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>END </b><font color="#cc0033">java_awt_color</font>.
+</font></pre></hr>
+<!-- BEGIN JavaScript -->
+<script>
+function toggle(node) {
+    node.classList.toggle("show"); 
+  }
+
+function cls(node) {
+    var prnt = node.parentNode;
+    var next = prnt.previousSibling;
+    var text = next.lastChild;
+    text.innerHTML = 
+        "The <b>class</b> property asserts that this type will be<br>" +
+        "implemented as a reference class in the underlying framework.";
+    text.classList.toggle("show");
+  }
+
+function newOk(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>has noArg-ctor</b> property asserts that this reference<br>" +
+        "class has a no-arg constructor, and thus objects of this<br>" +
+        "type can be allocated with NEW(). Component Pascal types<br>" +
+        "derived from this type can also be allocated using NEW().";
+    popuptext.classList.toggle("show"); 
+  }
+
+function noNew(node) { 
+    var prnt = node.parentNode; 
+    var next = prnt.previousSibling; 
+    var text = next.lastChild; 
+    text.innerHTML =  
+        "The <b>no noArg-ctor</b> property asserts that this reference<br>" +
+        "class does not have a noArg constructor. Objects of this<br>" +
+        "type cannot be allocated using NEW(), and Component<br>" +
+        "Pascal types  derived from this type also cannot be<br>" +
+        "allocated using NEW().";
+    text.classList.toggle("show");
+  }
+
+function noCpy(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>no value-assign</b> property asserts that this reference<br>" + 
+        "class does not have a value copy method. Therefore, it<br>" +
+        "is not possible to perform value assignments using<br>" +
+        "statements like <i>dst^</i> := <i>src^</i>";
+    popuptext.classList.toggle("show");
+  }
+
+function valueclass(node) { 
+        var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>valueclass</b> property asserts that this RECORD type is<br>" + 
+        "implemented as a value class in the CLR. It follows that<br>" +  
+        "value assignments can be made of these types. They can<br>" + 
+        "also be passed by value. Even pointers to records of<br>" + 
+        "such types may be dereferenced and copied using syntax<br>" + 
+        "such as  <i>dst^</i> := <i>src^</i>"; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+function argCtor(node) { 
+    var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>has arg-ctor</b> property asserts that this reference<br>" +  
+        "class has one or more constructors that take arguments.<br>" + 
+        "These constructors can be called from Component Pascal<br>" + 
+        "by calling an <i>init</i>(...) method from the static list<br>" + 
+        "here. Component Pascal types derived from this type<br>" + 
+        "can define constructors with arguments which call the<br>" + 
+        "super-type constructor.<br>" + 
+        "See <i>'Interfacing to constructors'</i> in the Release Notes."; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+</script>
+<!-- END JavaScript --> 
+
+</body></html>

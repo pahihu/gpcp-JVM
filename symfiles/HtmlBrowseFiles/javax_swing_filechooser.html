@@ -1,0 +1,233 @@
+<html><head><title>javax_swing_filechooser</title>
+<style>
+<!-- BEGIN Inline CSS -->
+/* Popup container */
+.popup {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+/* The actual popup (appears on top) */
+.popup .popuptext {
+    visibility: hidden;
+    width: 430px;
+    background-color: white;
+    color: black;
+    text-align: left;
+    border-radius: 6px;
+    border-style: solid;
+    border-color: black;
+    padding: 8px 8px 8px 8px;
+    position: absolute;
+    z-index: 1;
+    margin-top: 30px;
+}
+
+/* Toggle this class when clicking on the popup container (hide and show the popup) */
+.popup .show {
+    visibility: visible;
+    opacity: 1;
+}
+
+</style>
+<!-- END Inline CSS -->
+</head><body bgcolor="white">
+<hr><pre>
+<font color="green">(*</font>
+<font color="green"> *  Creator j2cps version 1.4.07 (March 2018)</font>
+<font color="green"> *  Compiled from jar-file rt.jar</font>
+<font color="green"> *)</font>
+<b>FOREIGN MODULE </b><font color="#cc0033">javax_swing_filechooser</font>;
+
+<b>IMPORT</b>
+    <a href="javax_swing.html">javax_swing</a> := "javax.swing",
+    <a href="java_io.html">java_io</a> := "java.io",
+    <a href="java_lang.html">java_lang</a> := "java.lang";
+
+<b>TYPE</b>
+
+  <a name="type-FileFilter"></a><font color="#cc0033">FileFilter</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                <font color="green"><b> (* </b><a href="#meths-FileFilter">Typebound Procedures</a><b> *)</b></font>
+                <b>STATIC</b>
+                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-FileFilter">FileFilter</a><b>,CONSTRUCTOR</b>;
+                <b>END</b>;
+
+  <a name="type-FileNameExtensionFilter"></a><font color="#cc0033">FileNameExtensionFilter</font>* = <b>POINTER TO </b><b>RECORD</b> (<b>FileFilter</b>)
+                             <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                             <font color="green"><b> (* </b><a href="#meths-FileNameExtensionFilter">Typebound Procedures</a><b> *)</b></font>
+                             <b>STATIC</b>
+                               <b>PROCEDURE </b><font color="#cc0033">Init</font>*(    p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                               IN  p1 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-FileNameExtensionFilter">FileNameExtensionFilter</a><b>,CONSTRUCTOR</b>;
+                             <b>END</b>;
+
+  <a name="type-FileSystemView"></a><font color="#cc0033">FileSystemView</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                    <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                    <font color="green"><b> (* </b><a href="#meths-FileSystemView">Typebound Procedures</a><b> *)</b></font>
+                    <b>STATIC</b>
+                      <b>PROCEDURE </b><font color="#cc0033">getFileSystemView</font>*() : <a href="#type-FileSystemView">FileSystemView</a>;
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-FileSystemView">FileSystemView</a><b>,CONSTRUCTOR</b>;
+                    <b>END</b>;
+
+  <a name="type-FileView"></a><font color="#cc0033">FileView</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+              <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+              <font color="green"><b> (* </b><a href="#meths-FileView">Typebound Procedures</a><b> *)</b></font>
+              <b>STATIC</b>
+                <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-FileView">FileView</a><b>,CONSTRUCTOR</b>;
+              <b>END</b>;
+
+
+
+<a name="meths-FileFilter"></a>
+<b>PROCEDURE </b>(self:FileFilter) <font color="#cc0033">accept</font>*(p0 : <a href="java_io.html#type-File">java_io.File</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:FileFilter) <font color="#cc0033">getDescription</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-FileNameExtensionFilter"></a>
+<b>PROCEDURE </b>(self:FileNameExtensionFilter) <font color="#cc0033">accept</font>*(p0 : <a href="java_io.html#type-File">java_io.File</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FileNameExtensionFilter) <font color="#cc0033">getDescription</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FileNameExtensionFilter) <font color="#cc0033">getExtensions</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FileNameExtensionFilter) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-FileSystemView"></a>
+<b>PROCEDURE </b>(self:FileSystemView) <font color="#cc0033">createFileObject</font>*(p0 : <a href="java_io.html#type-File">java_io.File</a>;
+                                                  p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_io.html#type-File">java_io.File</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FileSystemView) <font color="#cc0033">createFileObject</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_io.html#type-File">java_io.File</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FileSystemView) <font color="#cc0033">createFileSystemRoot</font>!(p0 : <a href="java_io.html#type-File">java_io.File</a>) : <a href="java_io.html#type-File">java_io.File</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FileSystemView) <font color="#cc0033">createNewFolder</font>*(p0 : <a href="java_io.html#type-File">java_io.File</a>) : <a href="java_io.html#type-File">java_io.File</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:FileSystemView) <font color="#cc0033">getChild</font>*(p0 : <a href="java_io.html#type-File">java_io.File</a>;
+                                          p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_io.html#type-File">java_io.File</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FileSystemView) <font color="#cc0033">getDefaultDirectory</font>*() : <a href="java_io.html#type-File">java_io.File</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FileSystemView) <font color="#cc0033">getFiles</font>*(p0 : <a href="java_io.html#type-File">java_io.File</a>;
+                                          p1 : BOOLEAN) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_io.html#type-File">java_io.File</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FileSystemView) <font color="#cc0033">getHomeDirectory</font>*() : <a href="java_io.html#type-File">java_io.File</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FileSystemView) <font color="#cc0033">getParentDirectory</font>*(p0 : <a href="java_io.html#type-File">java_io.File</a>) : <a href="java_io.html#type-File">java_io.File</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FileSystemView) <font color="#cc0033">getRoots</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_io.html#type-File">java_io.File</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FileSystemView) <font color="#cc0033">getSystemDisplayName</font>*(p0 : <a href="java_io.html#type-File">java_io.File</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FileSystemView) <font color="#cc0033">getSystemIcon</font>*(p0 : <a href="java_io.html#type-File">java_io.File</a>) : <a href="javax_swing.html#type-Icon">javax_swing.Icon</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FileSystemView) <font color="#cc0033">getSystemTypeDescription</font>*(p0 : <a href="java_io.html#type-File">java_io.File</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FileSystemView) <font color="#cc0033">isComputerNode</font>*(p0 : <a href="java_io.html#type-File">java_io.File</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FileSystemView) <font color="#cc0033">isDrive</font>*(p0 : <a href="java_io.html#type-File">java_io.File</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FileSystemView) <font color="#cc0033">isFileSystem</font>*(p0 : <a href="java_io.html#type-File">java_io.File</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FileSystemView) <font color="#cc0033">isFileSystemRoot</font>*(p0 : <a href="java_io.html#type-File">java_io.File</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FileSystemView) <font color="#cc0033">isFloppyDrive</font>*(p0 : <a href="java_io.html#type-File">java_io.File</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FileSystemView) <font color="#cc0033">isHiddenFile</font>*(p0 : <a href="java_io.html#type-File">java_io.File</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FileSystemView) <font color="#cc0033">isParent</font>*(p0 : <a href="java_io.html#type-File">java_io.File</a>;
+                                          p1 : <a href="java_io.html#type-File">java_io.File</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FileSystemView) <font color="#cc0033">isRoot</font>*(p0 : <a href="java_io.html#type-File">java_io.File</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FileSystemView) <font color="#cc0033">isTraversable</font>*(p0 : <a href="java_io.html#type-File">java_io.File</a>) : <a href="java_lang.html#type-Boolean">java_lang.Boolean</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-FileView"></a>
+<b>PROCEDURE </b>(self:FileView) <font color="#cc0033">getDescription</font>*(p0 : <a href="java_io.html#type-File">java_io.File</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FileView) <font color="#cc0033">getIcon</font>*(p0 : <a href="java_io.html#type-File">java_io.File</a>) : <a href="javax_swing.html#type-Icon">javax_swing.Icon</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FileView) <font color="#cc0033">getName</font>*(p0 : <a href="java_io.html#type-File">java_io.File</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FileView) <font color="#cc0033">getTypeDescription</font>*(p0 : <a href="java_io.html#type-File">java_io.File</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FileView) <font color="#cc0033">isTraversable</font>*(p0 : <a href="java_io.html#type-File">java_io.File</a>) : <a href="java_lang.html#type-Boolean">java_lang.Boolean</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>END </b><font color="#cc0033">javax_swing_filechooser</font>.
+</font></pre></hr>
+<!-- BEGIN JavaScript -->
+<script>
+function toggle(node) {
+    node.classList.toggle("show"); 
+  }
+
+function cls(node) {
+    var prnt = node.parentNode;
+    var next = prnt.previousSibling;
+    var text = next.lastChild;
+    text.innerHTML = 
+        "The <b>class</b> property asserts that this type will be<br>" +
+        "implemented as a reference class in the underlying framework.";
+    text.classList.toggle("show");
+  }
+
+function newOk(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>has noArg-ctor</b> property asserts that this reference<br>" +
+        "class has a no-arg constructor, and thus objects of this<br>" +
+        "type can be allocated with NEW(). Component Pascal types<br>" +
+        "derived from this type can also be allocated using NEW().";
+    popuptext.classList.toggle("show"); 
+  }
+
+function noNew(node) { 
+    var prnt = node.parentNode; 
+    var next = prnt.previousSibling; 
+    var text = next.lastChild; 
+    text.innerHTML =  
+        "The <b>no noArg-ctor</b> property asserts that this reference<br>" +
+        "class does not have a noArg constructor. Objects of this<br>" +
+        "type cannot be allocated using NEW(), and Component<br>" +
+        "Pascal types  derived from this type also cannot be<br>" +
+        "allocated using NEW().";
+    text.classList.toggle("show");
+  }
+
+function noCpy(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>no value-assign</b> property asserts that this reference<br>" + 
+        "class does not have a value copy method. Therefore, it<br>" +
+        "is not possible to perform value assignments using<br>" +
+        "statements like <i>dst^</i> := <i>src^</i>";
+    popuptext.classList.toggle("show");
+  }
+
+function valueclass(node) { 
+        var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>valueclass</b> property asserts that this RECORD type is<br>" + 
+        "implemented as a value class in the CLR. It follows that<br>" +  
+        "value assignments can be made of these types. They can<br>" + 
+        "also be passed by value. Even pointers to records of<br>" + 
+        "such types may be dereferenced and copied using syntax<br>" + 
+        "such as  <i>dst^</i> := <i>src^</i>"; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+function argCtor(node) { 
+    var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>has arg-ctor</b> property asserts that this reference<br>" +  
+        "class has one or more constructors that take arguments.<br>" + 
+        "These constructors can be called from Component Pascal<br>" + 
+        "by calling an <i>init</i>(...) method from the static list<br>" + 
+        "here. Component Pascal types derived from this type<br>" + 
+        "can define constructors with arguments which call the<br>" + 
+        "super-type constructor.<br>" + 
+        "See <i>'Interfacing to constructors'</i> in the Release Notes."; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+</script>
+<!-- END JavaScript --> 
+
+</body></html>

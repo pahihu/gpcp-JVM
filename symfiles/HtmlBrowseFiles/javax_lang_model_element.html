@@ -1,0 +1,437 @@
+<html><head><title>javax_lang_model_element</title>
+<style>
+<!-- BEGIN Inline CSS -->
+/* Popup container */
+.popup {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+/* The actual popup (appears on top) */
+.popup .popuptext {
+    visibility: hidden;
+    width: 430px;
+    background-color: white;
+    color: black;
+    text-align: left;
+    border-radius: 6px;
+    border-style: solid;
+    border-color: black;
+    padding: 8px 8px 8px 8px;
+    position: absolute;
+    z-index: 1;
+    margin-top: 30px;
+}
+
+/* Toggle this class when clicking on the popup container (hide and show the popup) */
+.popup .show {
+    visibility: visible;
+    opacity: 1;
+}
+
+</style>
+<!-- END Inline CSS -->
+</head><body bgcolor="white">
+<hr><pre>
+<font color="green">(*</font>
+<font color="green"> *  Creator j2cps version 1.4.07 (March 2018)</font>
+<font color="green"> *  Compiled from jar-file rt.jar</font>
+<font color="green"> *)</font>
+<b>FOREIGN MODULE </b><font color="#cc0033">javax_lang_model_element</font>;
+
+<b>IMPORT</b>
+    <a href="javax_lang_model.html">javax_lang_model</a> := "javax.lang.model",
+    <a href="javax_lang_model_type.html">javax_lang_model_type</a> := "javax.lang.model.type",
+    <a href="java_lang.html">java_lang</a> := "java.lang",
+    <a href="java_lang_annotation.html">java_lang_annotation</a> := "java.lang.annotation",
+    <a href="java_util.html">java_util</a> := "java.util";
+
+<b>TYPE</b>
+
+  <a name="type-AnnotationMirror"></a><font color="#cc0033">AnnotationMirror</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                      <font color="green"><b> (* </b><a href="#meths-AnnotationMirror">Typebound Procedures</a><b> *)</b></font>
+                      <b>END</b>;
+
+  <a name="type-AnnotationValue"></a><font color="#cc0033">AnnotationValue</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                     <font color="green"><b> (* </b><a href="#meths-AnnotationValue">Typebound Procedures</a><b> *)</b></font>
+                     <b>END</b>;
+
+  <a name="type-AnnotationValueVisitor"></a><font color="#cc0033">AnnotationValueVisitor</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                            <font color="green"><b> (* </b><a href="#meths-AnnotationValueVisitor">Typebound Procedures</a><b> *)</b></font>
+                            <b>END</b>;
+
+  <a name="type-Element"></a><font color="#cc0033">Element</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+             <font color="green"><b> (* </b><a href="#meths-Element">Typebound Procedures</a><b> *)</b></font>
+             <b>END</b>;
+
+  <a name="type-ElementKind"></a><font color="#cc0033">ElementKind</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Enum">java_lang.Enum</a>)
+                 <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                 <font color="green"><b> (* </b><a href="#meths-ElementKind">Typebound Procedures</a><b> *)</b></font>
+                 <b>STATIC</b>
+                   <a name="type-ANNOTATION_TYPE"></a><font color="#cc0033">ANNOTATION_TYPE</font>*     : <a href="#type-ElementKind">ElementKind</a>;
+                   <a name="type-CLASS"></a><font color="#cc0033">CLASS</font>*               : <a href="#type-ElementKind">ElementKind</a>;
+                   <a name="type-CONSTRUCTOR"></a><font color="#cc0033">CONSTRUCTOR</font>*         : <a href="#type-ElementKind">ElementKind</a>;
+                   <a name="type-ENUM"></a><font color="#cc0033">ENUM</font>*                : <a href="#type-ElementKind">ElementKind</a>;
+                   <a name="type-ENUM_CONSTANT"></a><font color="#cc0033">ENUM_CONSTANT</font>*       : <a href="#type-ElementKind">ElementKind</a>;
+                   <a name="type-EXCEPTION_PARAMETER"></a><font color="#cc0033">EXCEPTION_PARAMETER</font>* : <a href="#type-ElementKind">ElementKind</a>;
+                   <a name="type-FIELD"></a><font color="#cc0033">FIELD</font>*               : <a href="#type-ElementKind">ElementKind</a>;
+                   <a name="type-INSTANCE_INIT"></a><font color="#cc0033">INSTANCE_INIT</font>*       : <a href="#type-ElementKind">ElementKind</a>;
+                   <a name="type-INTERFACE"></a><font color="#cc0033">INTERFACE</font>*           : <a href="#type-ElementKind">ElementKind</a>;
+                   <a name="type-LOCAL_VARIABLE"></a><font color="#cc0033">LOCAL_VARIABLE</font>*      : <a href="#type-ElementKind">ElementKind</a>;
+                   <a name="type-METHOD"></a><font color="#cc0033">METHOD</font>*              : <a href="#type-ElementKind">ElementKind</a>;
+                   <a name="type-OTHER"></a><font color="#cc0033">OTHER</font>*               : <a href="#type-ElementKind">ElementKind</a>;
+                   <a name="type-PACKAGE"></a><font color="#cc0033">PACKAGE</font>*             : <a href="#type-ElementKind">ElementKind</a>;
+                   <a name="type-PARAMETER"></a><font color="#cc0033">PARAMETER</font>*           : <a href="#type-ElementKind">ElementKind</a>;
+                   <a name="type-RESOURCE_VARIABLE"></a><font color="#cc0033">RESOURCE_VARIABLE</font>*   : <a href="#type-ElementKind">ElementKind</a>;
+                   <a name="type-STATIC_INIT"></a><font color="#cc0033">STATIC_INIT</font>*         : <a href="#type-ElementKind">ElementKind</a>;
+                   <a name="type-TYPE_PARAMETER"></a><font color="#cc0033">TYPE_PARAMETER</font>*      : <a href="#type-ElementKind">ElementKind</a>;
+                   <b>PROCEDURE </b><font color="#cc0033">valueOf</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-ElementKind">ElementKind</a>;
+                   <b>PROCEDURE </b><font color="#cc0033">values</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-ElementKind">ElementKind</a>;
+                 <b>END</b>;
+
+  <a name="type-ElementVisitor"></a><font color="#cc0033">ElementVisitor</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                    <font color="green"><b> (* </b><a href="#meths-ElementVisitor">Typebound Procedures</a><b> *)</b></font>
+                    <b>END</b>;
+
+  <a name="type-ExecutableElement"></a><font color="#cc0033">ExecutableElement</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-Element">Element</a> + <b>Parameterizable</b>)
+                       <font color="green"><b> (* </b><a href="#meths-ExecutableElement">Typebound Procedures</a><b> *)</b></font>
+                       <b>END</b>;
+
+  <a name="type-Modifier"></a><font color="#cc0033">Modifier</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Enum">java_lang.Enum</a>)
+              <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+              <font color="green"><b> (* </b><a href="#meths-Modifier">Typebound Procedures</a><b> *)</b></font>
+              <b>STATIC</b>
+                <a name="type-ABSTRACT"></a><font color="#cc0033">ABSTRACT</font>*     : <a href="#type-Modifier">Modifier</a>;
+                <a name="type-FINAL"></a><font color="#cc0033">FINAL</font>*        : <a href="#type-Modifier">Modifier</a>;
+                <a name="type-NATIVE"></a><font color="#cc0033">NATIVE</font>*       : <a href="#type-Modifier">Modifier</a>;
+                <a name="type-PRIVATE"></a><font color="#cc0033">PRIVATE</font>*      : <a href="#type-Modifier">Modifier</a>;
+                <a name="type-PROTECTED"></a><font color="#cc0033">PROTECTED</font>*    : <a href="#type-Modifier">Modifier</a>;
+                <a name="type-PUBLIC"></a><font color="#cc0033">PUBLIC</font>*       : <a href="#type-Modifier">Modifier</a>;
+                <a name="type-STATIC"></a><font color="#cc0033">STATIC</font>*       : <a href="#type-Modifier">Modifier</a>;
+                <a name="type-STRICTFP"></a><font color="#cc0033">STRICTFP</font>*     : <a href="#type-Modifier">Modifier</a>;
+                <a name="type-SYNCHRONIZED"></a><font color="#cc0033">SYNCHRONIZED</font>* : <a href="#type-Modifier">Modifier</a>;
+                <a name="type-TRANSIENT"></a><font color="#cc0033">TRANSIENT</font>*    : <a href="#type-Modifier">Modifier</a>;
+                <a name="type-VOLATILE"></a><font color="#cc0033">VOLATILE</font>*     : <a href="#type-Modifier">Modifier</a>;
+                <b>PROCEDURE </b><font color="#cc0033">valueOf</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-Modifier">Modifier</a>;
+                <b>PROCEDURE </b><font color="#cc0033">values</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-Modifier">Modifier</a>;
+              <b>END</b>;
+
+  <a name="type-Name"></a><font color="#cc0033">Name</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_lang.html#type-CharSequence">java_lang.CharSequence</a>)
+          <font color="green"><b> (* </b><a href="#meths-Name">Typebound Procedures</a><b> *)</b></font>
+          <b>END</b>;
+
+  <a name="type-NestingKind"></a><font color="#cc0033">NestingKind</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Enum">java_lang.Enum</a>)
+                 <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                 <font color="green"><b> (* </b><a href="#meths-NestingKind">Typebound Procedures</a><b> *)</b></font>
+                 <b>STATIC</b>
+                   <a name="type-ANONYMOUS"></a><font color="#cc0033">ANONYMOUS</font>* : <a href="#type-NestingKind">NestingKind</a>;
+                   <a name="type-LOCAL"></a><font color="#cc0033">LOCAL</font>*     : <a href="#type-NestingKind">NestingKind</a>;
+                   <a name="type-MEMBER"></a><font color="#cc0033">MEMBER</font>*    : <a href="#type-NestingKind">NestingKind</a>;
+                   <a name="type-TOP_LEVEL"></a><font color="#cc0033">TOP_LEVEL</font>* : <a href="#type-NestingKind">NestingKind</a>;
+                   <b>PROCEDURE </b><font color="#cc0033">valueOf</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-NestingKind">NestingKind</a>;
+                   <b>PROCEDURE </b><font color="#cc0033">values</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-NestingKind">NestingKind</a>;
+                 <b>END</b>;
+
+  <a name="type-PackageElement"></a><font color="#cc0033">PackageElement</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-Element">Element</a> + <b>QualifiedNameable</b>)
+                    <font color="green"><b> (* </b><a href="#meths-PackageElement">Typebound Procedures</a><b> *)</b></font>
+                    <b>END</b>;
+
+  <a name="type-Parameterizable"></a><font color="#cc0033">Parameterizable</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-Element">Element</a>)
+                     <font color="green"><b> (* </b><a href="#meths-Parameterizable">Typebound Procedures</a><b> *)</b></font>
+                     <b>END</b>;
+
+  <a name="type-QualifiedNameable"></a><font color="#cc0033">QualifiedNameable</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-Element">Element</a>)
+                       <font color="green"><b> (* </b><a href="#meths-QualifiedNameable">Typebound Procedures</a><b> *)</b></font>
+                       <b>END</b>;
+
+  <a name="type-TypeElement"></a><font color="#cc0033">TypeElement</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-Element">Element</a> + <a href="#type-Parameterizable">Parameterizable</a> + <a href="#type-QualifiedNameable">QualifiedNameable</a>)
+                 <font color="green"><b> (* </b><a href="#meths-TypeElement">Typebound Procedures</a><b> *)</b></font>
+                 <b>END</b>;
+
+  <a name="type-TypeParameterElement"></a><font color="#cc0033">TypeParameterElement</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-Element">Element</a>)
+                          <font color="green"><b> (* </b><a href="#meths-TypeParameterElement">Typebound Procedures</a><b> *)</b></font>
+                          <b>END</b>;
+
+  <a name="type-UnknownAnnotationValueException"></a><font color="#cc0033">UnknownAnnotationValueException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="javax_lang_model.html#type-UnknownEntityException">javax_lang_model.UnknownEntityException</a>)
+                                     <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                                     <font color="green"><b> (* </b><a href="#meths-UnknownAnnotationValueException">Typebound Procedures</a><b> *)</b></font>
+                                     <b>STATIC</b>
+                                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="#type-AnnotationValue">AnnotationValue</a>;
+                                                       p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="#type-UnknownAnnotationValueException">UnknownAnnotationValueException</a><b>,CONSTRUCTOR</b>;
+                                     <b>END</b>;
+
+  <a name="type-UnknownElementException"></a><font color="#cc0033">UnknownElementException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="javax_lang_model.html#type-UnknownEntityException">javax_lang_model.UnknownEntityException</a>)
+                             <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                             <font color="green"><b> (* </b><a href="#meths-UnknownElementException">Typebound Procedures</a><b> *)</b></font>
+                             <b>STATIC</b>
+                               <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="#type-Element">Element</a>;
+                                               p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="#type-UnknownElementException">UnknownElementException</a><b>,CONSTRUCTOR</b>;
+                             <b>END</b>;
+
+  <a name="type-VariableElement"></a><font color="#cc0033">VariableElement</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-Element">Element</a>)
+                     <font color="green"><b> (* </b><a href="#meths-VariableElement">Typebound Procedures</a><b> *)</b></font>
+                     <b>END</b>;
+
+
+
+<a name="meths-AnnotationMirror"></a>
+<b>PROCEDURE </b>(self:AnnotationMirror) <font color="#cc0033">getAnnotationType</font>*() : <a href="javax_lang_model_type.html#type-DeclaredType">javax_lang_model_type.DeclaredType</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AnnotationMirror) <font color="#cc0033">getElementValues</font>*() : <a href="java_util.html#type-Map">java_util.Map</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-AnnotationValue"></a>
+<b>PROCEDURE </b>(self:AnnotationValue) <font color="#cc0033">accept</font>*(p0 : <b>AnnotationValueVisitor</b>;
+                                         p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AnnotationValue) <font color="#cc0033">getValue</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AnnotationValue) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-AnnotationValueVisitor"></a>
+<b>PROCEDURE </b>(self:AnnotationValueVisitor) <font color="#cc0033">visit</font>*(p0 : <a href="#type-AnnotationValue">AnnotationValue</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AnnotationValueVisitor) <font color="#cc0033">visit</font>*(p0 : <a href="#type-AnnotationValue">AnnotationValue</a>;
+                                               p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AnnotationValueVisitor) <font color="#cc0033">visitAnnotation</font>*(p0 : <a href="#type-AnnotationMirror">AnnotationMirror</a>;
+                                                         p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AnnotationValueVisitor) <font color="#cc0033">visitArray</font>*(p0 : <a href="java_util.html#type-List">java_util.List</a>;
+                                                    p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AnnotationValueVisitor) <font color="#cc0033">visitBoolean</font>*(p0 : BOOLEAN;
+                                                      p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AnnotationValueVisitor) <font color="#cc0033">visitByte</font>*(p0 : BYTE;
+                                                   p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AnnotationValueVisitor) <font color="#cc0033">visitChar</font>*(p0 : CHAR;
+                                                   p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AnnotationValueVisitor) <font color="#cc0033">visitDouble</font>*(p0 : REAL;
+                                                     p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AnnotationValueVisitor) <font color="#cc0033">visitEnumConstant</font>*(p0 : <b>VariableElement</b>;
+                                                           p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AnnotationValueVisitor) <font color="#cc0033">visitFloat</font>*(p0 : SHORTREAL;
+                                                    p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AnnotationValueVisitor) <font color="#cc0033">visitInt</font>*(p0 : INTEGER;
+                                                  p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AnnotationValueVisitor) <font color="#cc0033">visitLong</font>*(p0 : LONGINT;
+                                                   p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AnnotationValueVisitor) <font color="#cc0033">visitShort</font>*(p0 : SHORTINT;
+                                                    p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AnnotationValueVisitor) <font color="#cc0033">visitString</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                     p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AnnotationValueVisitor) <font color="#cc0033">visitType</font>*(p0 : <a href="javax_lang_model_type.html#type-TypeMirror">javax_lang_model_type.TypeMirror</a>;
+                                                   p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AnnotationValueVisitor) <font color="#cc0033">visitUnknown</font>*(p0 : <a href="#type-AnnotationValue">AnnotationValue</a>;
+                                                      p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-Element"></a>
+<b>PROCEDURE </b>(self:Element) <font color="#cc0033">accept</font>*(p0 : <b>ElementVisitor</b>;
+                                 p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Element) <font color="#cc0033">asType</font>*() : <a href="javax_lang_model_type.html#type-TypeMirror">javax_lang_model_type.TypeMirror</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Element) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Element) <font color="#cc0033">getAnnotation</font>*(p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>) : <a href="java_lang_annotation.html#type-Annotation">java_lang_annotation.Annotation</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Element) <font color="#cc0033">getAnnotationMirrors</font>*() : <a href="java_util.html#type-List">java_util.List</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Element) <font color="#cc0033">getEnclosedElements</font>*() : <a href="java_util.html#type-List">java_util.List</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Element) <font color="#cc0033">getEnclosingElement</font>*() : <a href="#type-Element">Element</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Element) <font color="#cc0033">getKind</font>*() : <b>ElementKind</b><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Element) <font color="#cc0033">getModifiers</font>*() : <a href="java_util.html#type-Set">java_util.Set</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Element) <font color="#cc0033">getSimpleName</font>*() : <b>Name</b><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Element) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+<a name="meths-ElementKind"></a>
+<b>PROCEDURE </b>(self:ElementKind) <font color="#cc0033">isClass</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ElementKind) <font color="#cc0033">isField</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ElementKind) <font color="#cc0033">isInterface</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-ElementVisitor"></a>
+<b>PROCEDURE </b>(self:ElementVisitor) <font color="#cc0033">visit</font>*(p0 : <a href="#type-Element">Element</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ElementVisitor) <font color="#cc0033">visit</font>*(p0 : <a href="#type-Element">Element</a>;
+                                       p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ElementVisitor) <font color="#cc0033">visitExecutable</font>*(p0 : <b>ExecutableElement</b>;
+                                                 p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ElementVisitor) <font color="#cc0033">visitPackage</font>*(p0 : <b>PackageElement</b>;
+                                              p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ElementVisitor) <font color="#cc0033">visitType</font>*(p0 : <b>TypeElement</b>;
+                                           p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ElementVisitor) <font color="#cc0033">visitTypeParameter</font>*(p0 : <b>TypeParameterElement</b>;
+                                                    p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ElementVisitor) <font color="#cc0033">visitUnknown</font>*(p0 : <a href="#type-Element">Element</a>;
+                                              p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ElementVisitor) <font color="#cc0033">visitVariable</font>*(p0 : <b>VariableElement</b>;
+                                               p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-ExecutableElement"></a>
+<b>PROCEDURE </b>(self:ExecutableElement) <font color="#cc0033">getDefaultValue</font>*() : <a href="#type-AnnotationValue">AnnotationValue</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ExecutableElement) <font color="#cc0033">getParameters</font>*() : <a href="java_util.html#type-List">java_util.List</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ExecutableElement) <font color="#cc0033">getReturnType</font>*() : <a href="javax_lang_model_type.html#type-TypeMirror">javax_lang_model_type.TypeMirror</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ExecutableElement) <font color="#cc0033">getSimpleName</font>*() : <b>Name</b><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ExecutableElement) <font color="#cc0033">getThrownTypes</font>*() : <a href="java_util.html#type-List">java_util.List</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ExecutableElement) <font color="#cc0033">getTypeParameters</font>*() : <a href="java_util.html#type-List">java_util.List</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ExecutableElement) <font color="#cc0033">isVarArgs</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+<a name="meths-Modifier"></a>
+<b>PROCEDURE </b>(self:Modifier) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-Name"></a>
+<b>PROCEDURE </b>(self:Name) <font color="#cc0033">contentEquals</font>*(p0 : <a href="java_lang.html#type-CharSequence">java_lang.CharSequence</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Name) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Name) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+<a name="meths-NestingKind"></a>
+<b>PROCEDURE </b>(self:NestingKind) <font color="#cc0033">isNested</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-PackageElement"></a>
+<b>PROCEDURE </b>(self:PackageElement) <font color="#cc0033">getEnclosingElement</font>*() : <a href="#type-Element">Element</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:PackageElement) <font color="#cc0033">getQualifiedName</font>*() : <a href="#type-Name">Name</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:PackageElement) <font color="#cc0033">getSimpleName</font>*() : <a href="#type-Name">Name</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:PackageElement) <font color="#cc0033">isUnnamed</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+<a name="meths-Parameterizable"></a>
+<b>PROCEDURE </b>(self:Parameterizable) <font color="#cc0033">getTypeParameters</font>*() : <a href="java_util.html#type-List">java_util.List</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-QualifiedNameable"></a>
+<b>PROCEDURE </b>(self:QualifiedNameable) <font color="#cc0033">getQualifiedName</font>*() : <a href="#type-Name">Name</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-TypeElement"></a>
+<b>PROCEDURE </b>(self:TypeElement) <font color="#cc0033">getEnclosedElements</font>*() : <a href="java_util.html#type-List">java_util.List</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TypeElement) <font color="#cc0033">getEnclosingElement</font>*() : <a href="#type-Element">Element</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TypeElement) <font color="#cc0033">getInterfaces</font>*() : <a href="java_util.html#type-List">java_util.List</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TypeElement) <font color="#cc0033">getNestingKind</font>*() : <a href="#type-NestingKind">NestingKind</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TypeElement) <font color="#cc0033">getQualifiedName</font>*() : <a href="#type-Name">Name</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TypeElement) <font color="#cc0033">getSimpleName</font>*() : <a href="#type-Name">Name</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TypeElement) <font color="#cc0033">getSuperclass</font>*() : <a href="javax_lang_model_type.html#type-TypeMirror">javax_lang_model_type.TypeMirror</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TypeElement) <font color="#cc0033">getTypeParameters</font>*() : <a href="java_util.html#type-List">java_util.List</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-TypeParameterElement"></a>
+<b>PROCEDURE </b>(self:TypeParameterElement) <font color="#cc0033">getBounds</font>*() : <a href="java_util.html#type-List">java_util.List</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TypeParameterElement) <font color="#cc0033">getEnclosingElement</font>*() : <a href="#type-Element">Element</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TypeParameterElement) <font color="#cc0033">getGenericElement</font>*() : <a href="#type-Element">Element</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-UnknownAnnotationValueException"></a>
+<b>PROCEDURE </b>(self:UnknownAnnotationValueException) <font color="#cc0033">getArgument</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:UnknownAnnotationValueException) <font color="#cc0033">getUnknownAnnotationValue</font>*() : <a href="#type-AnnotationValue">AnnotationValue</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-UnknownElementException"></a>
+<b>PROCEDURE </b>(self:UnknownElementException) <font color="#cc0033">getArgument</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:UnknownElementException) <font color="#cc0033">getUnknownElement</font>*() : <a href="#type-Element">Element</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-VariableElement"></a>
+<b>PROCEDURE </b>(self:VariableElement) <font color="#cc0033">getConstantValue</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>END </b><font color="#cc0033">javax_lang_model_element</font>.
+</font></pre></hr>
+<!-- BEGIN JavaScript -->
+<script>
+function toggle(node) {
+    node.classList.toggle("show"); 
+  }
+
+function cls(node) {
+    var prnt = node.parentNode;
+    var next = prnt.previousSibling;
+    var text = next.lastChild;
+    text.innerHTML = 
+        "The <b>class</b> property asserts that this type will be<br>" +
+        "implemented as a reference class in the underlying framework.";
+    text.classList.toggle("show");
+  }
+
+function newOk(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>has noArg-ctor</b> property asserts that this reference<br>" +
+        "class has a no-arg constructor, and thus objects of this<br>" +
+        "type can be allocated with NEW(). Component Pascal types<br>" +
+        "derived from this type can also be allocated using NEW().";
+    popuptext.classList.toggle("show"); 
+  }
+
+function noNew(node) { 
+    var prnt = node.parentNode; 
+    var next = prnt.previousSibling; 
+    var text = next.lastChild; 
+    text.innerHTML =  
+        "The <b>no noArg-ctor</b> property asserts that this reference<br>" +
+        "class does not have a noArg constructor. Objects of this<br>" +
+        "type cannot be allocated using NEW(), and Component<br>" +
+        "Pascal types  derived from this type also cannot be<br>" +
+        "allocated using NEW().";
+    text.classList.toggle("show");
+  }
+
+function noCpy(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>no value-assign</b> property asserts that this reference<br>" + 
+        "class does not have a value copy method. Therefore, it<br>" +
+        "is not possible to perform value assignments using<br>" +
+        "statements like <i>dst^</i> := <i>src^</i>";
+    popuptext.classList.toggle("show");
+  }
+
+function valueclass(node) { 
+        var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>valueclass</b> property asserts that this RECORD type is<br>" + 
+        "implemented as a value class in the CLR. It follows that<br>" +  
+        "value assignments can be made of these types. They can<br>" + 
+        "also be passed by value. Even pointers to records of<br>" + 
+        "such types may be dereferenced and copied using syntax<br>" + 
+        "such as  <i>dst^</i> := <i>src^</i>"; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+function argCtor(node) { 
+    var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>has arg-ctor</b> property asserts that this reference<br>" +  
+        "class has one or more constructors that take arguments.<br>" + 
+        "These constructors can be called from Component Pascal<br>" + 
+        "by calling an <i>init</i>(...) method from the static list<br>" + 
+        "here. Component Pascal types derived from this type<br>" + 
+        "can define constructors with arguments which call the<br>" + 
+        "super-type constructor.<br>" + 
+        "See <i>'Interfacing to constructors'</i> in the Release Notes."; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+</script>
+<!-- END JavaScript --> 
+
+</body></html>

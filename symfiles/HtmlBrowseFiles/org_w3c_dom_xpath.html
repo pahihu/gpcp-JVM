@@ -1,0 +1,212 @@
+<html><head><title>org_w3c_dom_xpath</title>
+<style>
+<!-- BEGIN Inline CSS -->
+/* Popup container */
+.popup {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+/* The actual popup (appears on top) */
+.popup .popuptext {
+    visibility: hidden;
+    width: 430px;
+    background-color: white;
+    color: black;
+    text-align: left;
+    border-radius: 6px;
+    border-style: solid;
+    border-color: black;
+    padding: 8px 8px 8px 8px;
+    position: absolute;
+    z-index: 1;
+    margin-top: 30px;
+}
+
+/* Toggle this class when clicking on the popup container (hide and show the popup) */
+.popup .show {
+    visibility: visible;
+    opacity: 1;
+}
+
+</style>
+<!-- END Inline CSS -->
+</head><body bgcolor="white">
+<hr><pre>
+<font color="green">(*</font>
+<font color="green"> *  Creator j2cps version 1.4.07 (March 2018)</font>
+<font color="green"> *  Compiled from jar-file rt.jar</font>
+<font color="green"> *)</font>
+<b>FOREIGN MODULE </b><font color="#cc0033">org_w3c_dom_xpath</font>;
+
+<b>IMPORT</b>
+    <a href="java_lang.html">java_lang</a> := "java.lang",
+    <a href="org_w3c_dom.html">org_w3c_dom</a> := "org.w3c.dom";
+
+<b>TYPE</b>
+
+  <a name="type-XPathEvaluator"></a><font color="#cc0033">XPathEvaluator</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                    <font color="green"><b> (* </b><a href="#meths-XPathEvaluator">Typebound Procedures</a><b> *)</b></font>
+                    <b>END</b>;
+
+  <a name="type-XPathException"></a><font color="#cc0033">XPathException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-RuntimeException">java_lang.RuntimeException</a>)
+                    <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                      <font color="#cc0033">code</font>* : SHORTINT;
+                    <b>STATIC</b>
+                      <font color="#cc0033">INVALID_EXPRESSION_ERR</font>* = 1;
+                      <font color="#cc0033">TYPE_ERR</font>*               = 2;
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : SHORTINT;
+                                      p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-XPathException">XPathException</a><b>,CONSTRUCTOR</b>;
+                    <b>END</b>;
+
+  <a name="type-XPathExpression"></a><font color="#cc0033">XPathExpression</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                     <font color="green"><b> (* </b><a href="#meths-XPathExpression">Typebound Procedures</a><b> *)</b></font>
+                     <b>END</b>;
+
+  <a name="type-XPathNamespace"></a><font color="#cc0033">XPathNamespace</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="org_w3c_dom.html#type-Node">org_w3c_dom.Node</a>)
+                    <font color="green"><b> (* </b><a href="#meths-XPathNamespace">Typebound Procedures</a><b> *)</b></font>
+                    <b>STATIC</b>
+                      <font color="#cc0033">XPATH_NAMESPACE_NODE</font>* = 13;
+                    <b>END</b>;
+
+  <a name="type-XPathNSResolver"></a><font color="#cc0033">XPathNSResolver</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                     <font color="green"><b> (* </b><a href="#meths-XPathNSResolver">Typebound Procedures</a><b> *)</b></font>
+                     <b>END</b>;
+
+  <a name="type-XPathResult"></a><font color="#cc0033">XPathResult</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                 <font color="green"><b> (* </b><a href="#meths-XPathResult">Typebound Procedures</a><b> *)</b></font>
+                 <b>STATIC</b>
+                   <font color="#cc0033">ANY_TYPE</font>*                     = 0;
+                   <font color="#cc0033">ANY_UNORDERED_NODE_TYPE</font>*      = 8;
+                   <font color="#cc0033">BOOLEAN_TYPE</font>*                 = 3;
+                   <font color="#cc0033">FIRST_ORDERED_NODE_TYPE</font>*      = 9;
+                   <font color="#cc0033">NUMBER_TYPE</font>*                  = 1;
+                   <font color="#cc0033">ORDERED_NODE_ITERATOR_TYPE</font>*   = 5;
+                   <font color="#cc0033">ORDERED_NODE_SNAPSHOT_TYPE</font>*   = 7;
+                   <font color="#cc0033">STRING_TYPE</font>*                  = 2;
+                   <font color="#cc0033">UNORDERED_NODE_ITERATOR_TYPE</font>* = 4;
+                   <font color="#cc0033">UNORDERED_NODE_SNAPSHOT_TYPE</font>* = 6;
+                 <b>END</b>;
+
+
+
+<a name="meths-XPathEvaluator"></a>
+<b>PROCEDURE </b>(self:XPathEvaluator) <font color="#cc0033">createExpression</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                  p1 : <b>XPathNSResolver</b>) : <b>XPathExpression</b><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XPathEvaluator) <font color="#cc0033">createNSResolver</font>*(p0 : <a href="org_w3c_dom.html#type-Node">org_w3c_dom.Node</a>) : <b>XPathNSResolver</b><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XPathEvaluator) <font color="#cc0033">evaluate</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                          p1 : <a href="org_w3c_dom.html#type-Node">org_w3c_dom.Node</a>;
+                                          p2 : <b>XPathNSResolver</b>;
+                                          p3 : SHORTINT;
+                                          p4 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-XPathExpression"></a>
+<b>PROCEDURE </b>(self:XPathExpression) <font color="#cc0033">evaluate</font>*(p0 : <a href="org_w3c_dom.html#type-Node">org_w3c_dom.Node</a>;
+                                           p1 : SHORTINT;
+                                           p2 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-XPathNamespace"></a>
+<b>PROCEDURE </b>(self:XPathNamespace) <font color="#cc0033">getOwnerElement</font>*() : <a href="org_w3c_dom.html#type-Element">org_w3c_dom.Element</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-XPathNSResolver"></a>
+<b>PROCEDURE </b>(self:XPathNSResolver) <font color="#cc0033">lookupNamespaceURI</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-XPathResult"></a>
+<b>PROCEDURE </b>(self:XPathResult) <font color="#cc0033">getBooleanValue</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XPathResult) <font color="#cc0033">getInvalidIteratorState</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XPathResult) <font color="#cc0033">getNumberValue</font>*() : REAL<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XPathResult) <font color="#cc0033">getResultType</font>*() : SHORTINT<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XPathResult) <font color="#cc0033">getSingleNodeValue</font>*() : <a href="org_w3c_dom.html#type-Node">org_w3c_dom.Node</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XPathResult) <font color="#cc0033">getSnapshotLength</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XPathResult) <font color="#cc0033">getStringValue</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XPathResult) <font color="#cc0033">iterateNext</font>*() : <a href="org_w3c_dom.html#type-Node">org_w3c_dom.Node</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XPathResult) <font color="#cc0033">snapshotItem</font>*(p0 : INTEGER) : <a href="org_w3c_dom.html#type-Node">org_w3c_dom.Node</a><b>,NEW,ABSTRACT</b>;
+
+<b>END </b><font color="#cc0033">org_w3c_dom_xpath</font>.
+</font></pre></hr>
+<!-- BEGIN JavaScript -->
+<script>
+function toggle(node) {
+    node.classList.toggle("show"); 
+  }
+
+function cls(node) {
+    var prnt = node.parentNode;
+    var next = prnt.previousSibling;
+    var text = next.lastChild;
+    text.innerHTML = 
+        "The <b>class</b> property asserts that this type will be<br>" +
+        "implemented as a reference class in the underlying framework.";
+    text.classList.toggle("show");
+  }
+
+function newOk(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>has noArg-ctor</b> property asserts that this reference<br>" +
+        "class has a no-arg constructor, and thus objects of this<br>" +
+        "type can be allocated with NEW(). Component Pascal types<br>" +
+        "derived from this type can also be allocated using NEW().";
+    popuptext.classList.toggle("show"); 
+  }
+
+function noNew(node) { 
+    var prnt = node.parentNode; 
+    var next = prnt.previousSibling; 
+    var text = next.lastChild; 
+    text.innerHTML =  
+        "The <b>no noArg-ctor</b> property asserts that this reference<br>" +
+        "class does not have a noArg constructor. Objects of this<br>" +
+        "type cannot be allocated using NEW(), and Component<br>" +
+        "Pascal types  derived from this type also cannot be<br>" +
+        "allocated using NEW().";
+    text.classList.toggle("show");
+  }
+
+function noCpy(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>no value-assign</b> property asserts that this reference<br>" + 
+        "class does not have a value copy method. Therefore, it<br>" +
+        "is not possible to perform value assignments using<br>" +
+        "statements like <i>dst^</i> := <i>src^</i>";
+    popuptext.classList.toggle("show");
+  }
+
+function valueclass(node) { 
+        var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>valueclass</b> property asserts that this RECORD type is<br>" + 
+        "implemented as a value class in the CLR. It follows that<br>" +  
+        "value assignments can be made of these types. They can<br>" + 
+        "also be passed by value. Even pointers to records of<br>" + 
+        "such types may be dereferenced and copied using syntax<br>" + 
+        "such as  <i>dst^</i> := <i>src^</i>"; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+function argCtor(node) { 
+    var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>has arg-ctor</b> property asserts that this reference<br>" +  
+        "class has one or more constructors that take arguments.<br>" + 
+        "These constructors can be called from Component Pascal<br>" + 
+        "by calling an <i>init</i>(...) method from the static list<br>" + 
+        "here. Component Pascal types derived from this type<br>" + 
+        "can define constructors with arguments which call the<br>" + 
+        "super-type constructor.<br>" + 
+        "See <i>'Interfacing to constructors'</i> in the Release Notes."; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+</script>
+<!-- END JavaScript --> 
+
+</body></html>

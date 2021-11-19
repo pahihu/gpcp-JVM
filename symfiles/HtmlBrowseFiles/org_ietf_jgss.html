@@ -1,0 +1,496 @@
+<html><head><title>org_ietf_jgss</title>
+<style>
+<!-- BEGIN Inline CSS -->
+/* Popup container */
+.popup {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+/* The actual popup (appears on top) */
+.popup .popuptext {
+    visibility: hidden;
+    width: 430px;
+    background-color: white;
+    color: black;
+    text-align: left;
+    border-radius: 6px;
+    border-style: solid;
+    border-color: black;
+    padding: 8px 8px 8px 8px;
+    position: absolute;
+    z-index: 1;
+    margin-top: 30px;
+}
+
+/* Toggle this class when clicking on the popup container (hide and show the popup) */
+.popup .show {
+    visibility: visible;
+    opacity: 1;
+}
+
+</style>
+<!-- END Inline CSS -->
+</head><body bgcolor="white">
+<hr><pre>
+<font color="green">(*</font>
+<font color="green"> *  Creator j2cps version 1.4.07 (March 2018)</font>
+<font color="green"> *  Compiled from jar-file rt.jar</font>
+<font color="green"> *)</font>
+<b>FOREIGN MODULE </b><font color="#cc0033">org_ietf_jgss</font>;
+
+<b>IMPORT</b>
+    <a href="java_io.html">java_io</a> := "java.io",
+    <a href="java_lang.html">java_lang</a> := "java.lang",
+    <a href="java_net.html">java_net</a> := "java.net",
+    <a href="java_security.html">java_security</a> := "java.security";
+
+<b>TYPE</b>
+
+  <a name="type-ChannelBinding"></a><font color="#cc0033">ChannelBinding</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                    <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                    <font color="green"><b> (* </b><a href="#meths-ChannelBinding">Typebound Procedures</a><b> *)</b></font>
+                    <b>STATIC</b>
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE) : <a href="#type-ChannelBinding">ChannelBinding</a><b>,CONSTRUCTOR</b>;
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*(    p0 : <a href="java_net.html#type-InetAddress">java_net.InetAddress</a>;
+                                          p1 : <a href="java_net.html#type-InetAddress">java_net.InetAddress</a>;
+                                      IN  p2 : <b>ARRAY </b><b>OF </b>BYTE) : <a href="#type-ChannelBinding">ChannelBinding</a><b>,CONSTRUCTOR</b>;
+                    <b>END</b>;
+
+  <a name="type-GSSContext"></a><font color="#cc0033">GSSContext</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                <font color="green"><b> (* </b><a href="#meths-GSSContext">Typebound Procedures</a><b> *)</b></font>
+                <b>STATIC</b>
+                  <font color="#cc0033">DEFAULT_LIFETIME</font>*    = 0;
+                  <font color="#cc0033">INDEFINITE_LIFETIME</font>* = 2147483647;
+                <b>END</b>;
+
+  <a name="type-GSSCredential"></a><font color="#cc0033">GSSCredential</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_lang.html#type-Cloneable">java_lang.Cloneable</a>)
+                   <font color="green"><b> (* </b><a href="#meths-GSSCredential">Typebound Procedures</a><b> *)</b></font>
+                   <b>STATIC</b>
+                     <font color="#cc0033">ACCEPT_ONLY</font>*         = 2;
+                     <font color="#cc0033">DEFAULT_LIFETIME</font>*    = 0;
+                     <font color="#cc0033">INDEFINITE_LIFETIME</font>* = 2147483647;
+                     <font color="#cc0033">INITIATE_AND_ACCEPT</font>* = 0;
+                     <font color="#cc0033">INITIATE_ONLY</font>*       = 1;
+                   <b>END</b>;
+
+  <a name="type-GSSException"></a><font color="#cc0033">GSSException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Exception">java_lang.Exception</a>)
+                  <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                  <font color="green"><b> (* </b><a href="#meths-GSSException">Typebound Procedures</a><b> *)</b></font>
+                  <b>STATIC</b>
+                    <font color="#cc0033">BAD_BINDINGS</font>*         = 1;
+                    <font color="#cc0033">BAD_MECH</font>*             = 2;
+                    <font color="#cc0033">BAD_MIC</font>*              = 6;
+                    <font color="#cc0033">BAD_NAME</font>*             = 3;
+                    <font color="#cc0033">BAD_NAMETYPE</font>*         = 4;
+                    <font color="#cc0033">BAD_QOP</font>*              = 14;
+                    <font color="#cc0033">BAD_STATUS</font>*           = 5;
+                    <font color="#cc0033">CONTEXT_EXPIRED</font>*      = 7;
+                    <font color="#cc0033">CREDENTIALS_EXPIRED</font>*  = 8;
+                    <font color="#cc0033">DEFECTIVE_CREDENTIAL</font>* = 9;
+                    <font color="#cc0033">DEFECTIVE_TOKEN</font>*      = 10;
+                    <font color="#cc0033">DUPLICATE_ELEMENT</font>*    = 17;
+                    <font color="#cc0033">DUPLICATE_TOKEN</font>*      = 19;
+                    <font color="#cc0033">FAILURE</font>*              = 11;
+                    <font color="#cc0033">GAP_TOKEN</font>*            = 22;
+                    <font color="#cc0033">NAME_NOT_MN</font>*          = 18;
+                    <font color="#cc0033">NO_CONTEXT</font>*           = 12;
+                    <font color="#cc0033">NO_CRED</font>*              = 13;
+                    <font color="#cc0033">OLD_TOKEN</font>*            = 20;
+                    <font color="#cc0033">UNAUTHORIZED</font>*         = 15;
+                    <font color="#cc0033">UNAVAILABLE</font>*          = 16;
+                    <font color="#cc0033">UNSEQ_TOKEN</font>*          = 21;
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER;
+                                    p1 : INTEGER;
+                                    p2 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-GSSException">GSSException</a><b>,CONSTRUCTOR</b>;
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER) : <a href="#type-GSSException">GSSException</a><b>,CONSTRUCTOR</b>;
+                  <b>END</b>;
+
+  <a name="type-GSSManager"></a><font color="#cc0033">GSSManager</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                <font color="green"><b> (* </b><a href="#meths-GSSManager">Typebound Procedures</a><b> *)</b></font>
+                <b>STATIC</b>
+                  <b>PROCEDURE </b><font color="#cc0033">getInstance</font>*() : <a href="#type-GSSManager">GSSManager</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-GSSManager">GSSManager</a><b>,CONSTRUCTOR</b>;
+                <b>END</b>;
+
+  <a name="type-GSSName"></a><font color="#cc0033">GSSName</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+             <font color="green"><b> (* </b><a href="#meths-GSSName">Typebound Procedures</a><b> *)</b></font>
+             <b>STATIC</b>
+               <a name="type-NT_ANONYMOUS"></a><font color="#cc0033">NT_ANONYMOUS</font>*         : <b>Oid</b>;
+               <a name="type-NT_EXPORT_NAME"></a><font color="#cc0033">NT_EXPORT_NAME</font>*       : <b>Oid</b>;
+               <a name="type-NT_HOSTBASED_SERVICE"></a><font color="#cc0033">NT_HOSTBASED_SERVICE</font>* : <b>Oid</b>;
+               <a name="type-NT_MACHINE_UID_NAME"></a><font color="#cc0033">NT_MACHINE_UID_NAME</font>*  : <b>Oid</b>;
+               <a name="type-NT_STRING_UID_NAME"></a><font color="#cc0033">NT_STRING_UID_NAME</font>*   : <b>Oid</b>;
+               <a name="type-NT_USER_NAME"></a><font color="#cc0033">NT_USER_NAME</font>*         : <b>Oid</b>;
+             <b>END</b>;
+
+  <a name="type-MessageProp"></a><font color="#cc0033">MessageProp</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                 <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                 <font color="green"><b> (* </b><a href="#meths-MessageProp">Typebound Procedures</a><b> *)</b></font>
+                 <b>STATIC</b>
+                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER;
+                                   p1 : BOOLEAN) : <a href="#type-MessageProp">MessageProp</a><b>,CONSTRUCTOR</b>;
+                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : BOOLEAN) : <a href="#type-MessageProp">MessageProp</a><b>,CONSTRUCTOR</b>;
+                 <b>END</b>;
+
+  <a name="type-Oid"></a><font color="#cc0033">Oid</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+         <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+         <font color="green"><b> (* </b><a href="#meths-Oid">Typebound Procedures</a><b> *)</b></font>
+         <b>STATIC</b>
+           <b>PROCEDURE </b><font color="#cc0033">Init</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE) : <a href="#type-Oid">Oid</a><b>,CONSTRUCTOR</b>;
+           <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_io.html#type-InputStream">java_io.InputStream</a>) : <a href="#type-Oid">Oid</a><b>,CONSTRUCTOR</b>;
+           <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-Oid">Oid</a><b>,CONSTRUCTOR</b>;
+         <b>END</b>;
+
+
+
+<a name="meths-ChannelBinding"></a>
+<b>PROCEDURE </b>(self:ChannelBinding) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ChannelBinding) <font color="#cc0033">getAcceptorAddress</font>*() : <a href="java_net.html#type-InetAddress">java_net.InetAddress</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ChannelBinding) <font color="#cc0033">getApplicationData</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ChannelBinding) <font color="#cc0033">getInitiatorAddress</font>*() : <a href="java_net.html#type-InetAddress">java_net.InetAddress</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ChannelBinding) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-GSSContext"></a>
+<b>PROCEDURE </b>(self:GSSContext) <font color="#cc0033">acceptSecContext</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE;
+                                                  p1 : INTEGER;
+                                                  p2 : INTEGER) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:GSSContext) <font color="#cc0033">acceptSecContext</font>*(p0 : <a href="java_io.html#type-InputStream">java_io.InputStream</a>;
+                                              p1 : <a href="java_io.html#type-OutputStream">java_io.OutputStream</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:GSSContext) <font color="#cc0033">dispose</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:GSSContext) <font color="#cc0033">export</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:GSSContext) <font color="#cc0033">getAnonymityState</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:GSSContext) <font color="#cc0033">getConfState</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:GSSContext) <font color="#cc0033">getCredDelegState</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:GSSContext) <font color="#cc0033">getDelegCred</font>*() : <b>GSSCredential</b><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:GSSContext) <font color="#cc0033">getIntegState</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:GSSContext) <font color="#cc0033">getLifetime</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:GSSContext) <font color="#cc0033">getMech</font>*() : <b>Oid</b><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:GSSContext) <font color="#cc0033">getMIC</font>*(p0 : <a href="java_io.html#type-InputStream">java_io.InputStream</a>;
+                                    p1 : <a href="java_io.html#type-OutputStream">java_io.OutputStream</a>;
+                                    p2 : <b>MessageProp</b>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:GSSContext) <font color="#cc0033">getMIC</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE;
+                                        p1 : INTEGER;
+                                        p2 : INTEGER;
+                                        p3 : <b>MessageProp</b>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:GSSContext) <font color="#cc0033">getMutualAuthState</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:GSSContext) <font color="#cc0033">getReplayDetState</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:GSSContext) <font color="#cc0033">getSequenceDetState</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:GSSContext) <font color="#cc0033">getSrcName</font>*() : <b>GSSName</b><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:GSSContext) <font color="#cc0033">getTargName</font>*() : <b>GSSName</b><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:GSSContext) <font color="#cc0033">getWrapSizeLimit</font>*(p0 : INTEGER;
+                                              p1 : BOOLEAN;
+                                              p2 : INTEGER) : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:GSSContext) <font color="#cc0033">initSecContext</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE;
+                                                p1 : INTEGER;
+                                                p2 : INTEGER) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:GSSContext) <font color="#cc0033">initSecContext</font>*(p0 : <a href="java_io.html#type-InputStream">java_io.InputStream</a>;
+                                            p1 : <a href="java_io.html#type-OutputStream">java_io.OutputStream</a>) : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:GSSContext) <font color="#cc0033">isEstablished</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:GSSContext) <font color="#cc0033">isInitiator</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:GSSContext) <font color="#cc0033">isProtReady</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:GSSContext) <font color="#cc0033">isTransferable</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:GSSContext) <font color="#cc0033">requestAnonymity</font>*(p0 : BOOLEAN)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:GSSContext) <font color="#cc0033">requestConf</font>*(p0 : BOOLEAN)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:GSSContext) <font color="#cc0033">requestCredDeleg</font>*(p0 : BOOLEAN)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:GSSContext) <font color="#cc0033">requestInteg</font>*(p0 : BOOLEAN)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:GSSContext) <font color="#cc0033">requestLifetime</font>*(p0 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:GSSContext) <font color="#cc0033">requestMutualAuth</font>*(p0 : BOOLEAN)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:GSSContext) <font color="#cc0033">requestReplayDet</font>*(p0 : BOOLEAN)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:GSSContext) <font color="#cc0033">requestSequenceDet</font>*(p0 : BOOLEAN)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:GSSContext) <font color="#cc0033">setChannelBinding</font>*(p0 : <a href="#type-ChannelBinding">ChannelBinding</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:GSSContext) <font color="#cc0033">unwrap</font>*(p0 : <a href="java_io.html#type-InputStream">java_io.InputStream</a>;
+                                    p1 : <a href="java_io.html#type-OutputStream">java_io.OutputStream</a>;
+                                    p2 : <b>MessageProp</b>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:GSSContext) <font color="#cc0033">unwrap</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE;
+                                        p1 : INTEGER;
+                                        p2 : INTEGER;
+                                        p3 : <b>MessageProp</b>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:GSSContext) <font color="#cc0033">verifyMIC</font>*(p0 : <a href="java_io.html#type-InputStream">java_io.InputStream</a>;
+                                       p1 : <a href="java_io.html#type-InputStream">java_io.InputStream</a>;
+                                       p2 : <b>MessageProp</b>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:GSSContext) <font color="#cc0033">verifyMIC</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE;
+                                           p1 : INTEGER;
+                                           p2 : INTEGER;
+                                       IN  p3 : <b>ARRAY </b><b>OF </b>BYTE;
+                                           p4 : INTEGER;
+                                           p5 : INTEGER;
+                                           p6 : <b>MessageProp</b>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:GSSContext) <font color="#cc0033">wrap</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE;
+                                      p1 : INTEGER;
+                                      p2 : INTEGER;
+                                      p3 : <b>MessageProp</b>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:GSSContext) <font color="#cc0033">wrap</font>*(p0 : <a href="java_io.html#type-InputStream">java_io.InputStream</a>;
+                                  p1 : <a href="java_io.html#type-OutputStream">java_io.OutputStream</a>;
+                                  p2 : <b>MessageProp</b>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-GSSCredential"></a>
+<b>PROCEDURE </b>(self:GSSCredential) <font color="#cc0033">add</font>*(p0 : <b>GSSName</b>;
+                                    p1 : INTEGER;
+                                    p2 : INTEGER;
+                                    p3 : <b>Oid</b>;
+                                    p4 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:GSSCredential) <font color="#cc0033">dispose</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:GSSCredential) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:GSSCredential) <font color="#cc0033">getMechs</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><b>Oid</b><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:GSSCredential) <font color="#cc0033">getName</font>*() : <b>GSSName</b><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:GSSCredential) <font color="#cc0033">getName</font>*(p0 : <b>Oid</b>) : <b>GSSName</b><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:GSSCredential) <font color="#cc0033">getRemainingAcceptLifetime</font>*(p0 : <b>Oid</b>) : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:GSSCredential) <font color="#cc0033">getRemainingInitLifetime</font>*(p0 : <b>Oid</b>) : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:GSSCredential) <font color="#cc0033">getRemainingLifetime</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:GSSCredential) <font color="#cc0033">getUsage</font>*(p0 : <b>Oid</b>) : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:GSSCredential) <font color="#cc0033">getUsage</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:GSSCredential) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+<a name="meths-GSSException"></a>
+<b>PROCEDURE </b>(self:GSSException) <font color="#cc0033">getMajor</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:GSSException) <font color="#cc0033">getMajorString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:GSSException) <font color="#cc0033">getMessage</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:GSSException) <font color="#cc0033">getMinor</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:GSSException) <font color="#cc0033">getMinorString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:GSSException) <font color="#cc0033">setMinor</font>*(p0 : INTEGER;
+                                        p1 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:GSSException) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-GSSManager"></a>
+<b>PROCEDURE </b>(self:GSSManager) <font color="#cc0033">addProviderAtEnd</font>*(p0 : <a href="java_security.html#type-Provider">java_security.Provider</a>;
+                                              p1 : <b>Oid</b>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:GSSManager) <font color="#cc0033">addProviderAtFront</font>*(p0 : <a href="java_security.html#type-Provider">java_security.Provider</a>;
+                                                p1 : <b>Oid</b>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:GSSManager) <font color="#cc0033">createContext</font>*(p0 : <b>GSSName</b>;
+                                           p1 : <b>Oid</b>;
+                                           p2 : <a href="#type-GSSCredential">GSSCredential</a>;
+                                           p3 : INTEGER) : <a href="#type-GSSContext">GSSContext</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:GSSManager) <font color="#cc0033">createContext</font>*(p0 : <a href="#type-GSSCredential">GSSCredential</a>) : <a href="#type-GSSContext">GSSContext</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:GSSManager) <font color="#cc0033">createContext</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE) : <a href="#type-GSSContext">GSSContext</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:GSSManager) <font color="#cc0033">createCredential</font>*(p0 : <b>GSSName</b>;
+                                              p1 : INTEGER;
+                                              p2 : <b>Oid</b>;
+                                              p3 : INTEGER) : <a href="#type-GSSCredential">GSSCredential</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:GSSManager) <font color="#cc0033">createCredential</font>*(    p0 : <b>GSSName</b>;
+                                                  p1 : INTEGER;
+                                              IN  p2 : <b>ARRAY </b><b>OF </b><b>Oid</b>;
+                                                  p3 : INTEGER) : <a href="#type-GSSCredential">GSSCredential</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:GSSManager) <font color="#cc0033">createCredential</font>*(p0 : INTEGER) : <a href="#type-GSSCredential">GSSCredential</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:GSSManager) <font color="#cc0033">createName</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE;
+                                            p1 : <b>Oid</b>) : <b>GSSName</b><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:GSSManager) <font color="#cc0033">createName</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                        p1 : <b>Oid</b>) : <b>GSSName</b><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:GSSManager) <font color="#cc0033">createName</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE;
+                                            p1 : <b>Oid</b>;
+                                            p2 : <b>Oid</b>) : <b>GSSName</b><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:GSSManager) <font color="#cc0033">createName</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                        p1 : <b>Oid</b>;
+                                        p2 : <b>Oid</b>) : <b>GSSName</b><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:GSSManager) <font color="#cc0033">getMechs</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><b>Oid</b><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:GSSManager) <font color="#cc0033">getMechsForName</font>*(p0 : <b>Oid</b>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><b>Oid</b><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:GSSManager) <font color="#cc0033">getNamesForMech</font>*(p0 : <b>Oid</b>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><b>Oid</b><b>,NEW,ABSTRACT</b>;
+<a name="meths-GSSName"></a>
+<b>PROCEDURE </b>(self:GSSName) <font color="#cc0033">canonicalize</font>*(p0 : <b>Oid</b>) : <a href="#type-GSSName">GSSName</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:GSSName) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:GSSName) <font color="#cc0033">equals</font>*(p0 : <a href="#type-GSSName">GSSName</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:GSSName) <font color="#cc0033">export</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:GSSName) <font color="#cc0033">getStringNameType</font>*() : <b>Oid</b><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:GSSName) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:GSSName) <font color="#cc0033">isAnonymous</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:GSSName) <font color="#cc0033">isMN</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:GSSName) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-MessageProp"></a>
+<b>PROCEDURE </b>(self:MessageProp) <font color="#cc0033">getMinorStatus</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MessageProp) <font color="#cc0033">getMinorString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MessageProp) <font color="#cc0033">getPrivacy</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MessageProp) <font color="#cc0033">getQOP</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MessageProp) <font color="#cc0033">isDuplicateToken</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MessageProp) <font color="#cc0033">isGapToken</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MessageProp) <font color="#cc0033">isOldToken</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MessageProp) <font color="#cc0033">isUnseqToken</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MessageProp) <font color="#cc0033">setPrivacy</font>*(p0 : BOOLEAN)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MessageProp) <font color="#cc0033">setQOP</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MessageProp) <font color="#cc0033">setSupplementaryStates</font>*(p0 : BOOLEAN;
+                                                     p1 : BOOLEAN;
+                                                     p2 : BOOLEAN;
+                                                     p3 : BOOLEAN;
+                                                     p4 : INTEGER;
+                                                     p5 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-Oid"></a>
+<b>PROCEDURE </b>(self:Oid) <font color="#cc0033">containedIn</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="#type-Oid">Oid</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Oid) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Oid) <font color="#cc0033">getDER</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Oid) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Oid) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>END </b><font color="#cc0033">org_ietf_jgss</font>.
+</font></pre></hr>
+<!-- BEGIN JavaScript -->
+<script>
+function toggle(node) {
+    node.classList.toggle("show"); 
+  }
+
+function cls(node) {
+    var prnt = node.parentNode;
+    var next = prnt.previousSibling;
+    var text = next.lastChild;
+    text.innerHTML = 
+        "The <b>class</b> property asserts that this type will be<br>" +
+        "implemented as a reference class in the underlying framework.";
+    text.classList.toggle("show");
+  }
+
+function newOk(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>has noArg-ctor</b> property asserts that this reference<br>" +
+        "class has a no-arg constructor, and thus objects of this<br>" +
+        "type can be allocated with NEW(). Component Pascal types<br>" +
+        "derived from this type can also be allocated using NEW().";
+    popuptext.classList.toggle("show"); 
+  }
+
+function noNew(node) { 
+    var prnt = node.parentNode; 
+    var next = prnt.previousSibling; 
+    var text = next.lastChild; 
+    text.innerHTML =  
+        "The <b>no noArg-ctor</b> property asserts that this reference<br>" +
+        "class does not have a noArg constructor. Objects of this<br>" +
+        "type cannot be allocated using NEW(), and Component<br>" +
+        "Pascal types  derived from this type also cannot be<br>" +
+        "allocated using NEW().";
+    text.classList.toggle("show");
+  }
+
+function noCpy(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>no value-assign</b> property asserts that this reference<br>" + 
+        "class does not have a value copy method. Therefore, it<br>" +
+        "is not possible to perform value assignments using<br>" +
+        "statements like <i>dst^</i> := <i>src^</i>";
+    popuptext.classList.toggle("show");
+  }
+
+function valueclass(node) { 
+        var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>valueclass</b> property asserts that this RECORD type is<br>" + 
+        "implemented as a value class in the CLR. It follows that<br>" +  
+        "value assignments can be made of these types. They can<br>" + 
+        "also be passed by value. Even pointers to records of<br>" + 
+        "such types may be dereferenced and copied using syntax<br>" + 
+        "such as  <i>dst^</i> := <i>src^</i>"; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+function argCtor(node) { 
+    var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>has arg-ctor</b> property asserts that this reference<br>" +  
+        "class has one or more constructors that take arguments.<br>" + 
+        "These constructors can be called from Component Pascal<br>" + 
+        "by calling an <i>init</i>(...) method from the static list<br>" + 
+        "here. Component Pascal types derived from this type<br>" + 
+        "can define constructors with arguments which call the<br>" + 
+        "super-type constructor.<br>" + 
+        "See <i>'Interfacing to constructors'</i> in the Release Notes."; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+</script>
+<!-- END JavaScript --> 
+
+</body></html>

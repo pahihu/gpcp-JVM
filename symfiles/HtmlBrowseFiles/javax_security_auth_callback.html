@@ -1,0 +1,300 @@
+<html><head><title>javax_security_auth_callback</title>
+<style>
+<!-- BEGIN Inline CSS -->
+/* Popup container */
+.popup {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+/* The actual popup (appears on top) */
+.popup .popuptext {
+    visibility: hidden;
+    width: 430px;
+    background-color: white;
+    color: black;
+    text-align: left;
+    border-radius: 6px;
+    border-style: solid;
+    border-color: black;
+    padding: 8px 8px 8px 8px;
+    position: absolute;
+    z-index: 1;
+    margin-top: 30px;
+}
+
+/* Toggle this class when clicking on the popup container (hide and show the popup) */
+.popup .show {
+    visibility: visible;
+    opacity: 1;
+}
+
+</style>
+<!-- END Inline CSS -->
+</head><body bgcolor="white">
+<hr><pre>
+<font color="green">(*</font>
+<font color="green"> *  Creator j2cps version 1.4.07 (March 2018)</font>
+<font color="green"> *  Compiled from jar-file rt.jar</font>
+<font color="green"> *)</font>
+<b>FOREIGN MODULE </b><font color="#cc0033">javax_security_auth_callback</font>;
+
+<b>IMPORT</b>
+    <a href="java_io.html">java_io</a> := "java.io",
+    <a href="java_lang.html">java_lang</a> := "java.lang",
+    <a href="java_util.html">java_util</a> := "java.util";
+
+<b>TYPE</b>
+
+  <a name="type-Callback"></a><font color="#cc0033">Callback</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+              <b>END</b>;
+
+  <a name="type-CallbackHandler"></a><font color="#cc0033">CallbackHandler</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                     <font color="green"><b> (* </b><a href="#meths-CallbackHandler">Typebound Procedures</a><b> *)</b></font>
+                     <b>END</b>;
+
+  <a name="type-ChoiceCallback"></a><font color="#cc0033">ChoiceCallback</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-Callback">Callback</a> + <a href="java_io.html#type-Serializable">java_io.Serializable</a>)
+                    <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                    <font color="green"><b> (* </b><a href="#meths-ChoiceCallback">Typebound Procedures</a><b> *)</b></font>
+                    <b>STATIC</b>
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*(    p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                      IN  p1 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>;
+                                          p2 : INTEGER;
+                                          p3 : BOOLEAN) : <a href="#type-ChoiceCallback">ChoiceCallback</a><b>,CONSTRUCTOR</b>;
+                    <b>END</b>;
+
+  <a name="type-ConfirmationCallback"></a><font color="#cc0033">ConfirmationCallback</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-Callback">Callback</a> + <a href="java_io.html#type-Serializable">java_io.Serializable</a>)
+                          <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                          <font color="green"><b> (* </b><a href="#meths-ConfirmationCallback">Typebound Procedures</a><b> *)</b></font>
+                          <b>STATIC</b>
+                            <font color="#cc0033">CANCEL</font>*               = 2;
+                            <font color="#cc0033">ERROR</font>*                = 2;
+                            <font color="#cc0033">INFORMATION</font>*          = 0;
+                            <font color="#cc0033">NO</font>*                   = 1;
+                            <font color="#cc0033">OK</font>*                   = 3;
+                            <font color="#cc0033">OK_CANCEL_OPTION</font>*     = 2;
+                            <font color="#cc0033">UNSPECIFIED_OPTION</font>*   = -1;
+                            <font color="#cc0033">WARNING</font>*              = 1;
+                            <font color="#cc0033">YES</font>*                  = 0;
+                            <font color="#cc0033">YES_NO_CANCEL_OPTION</font>* = 1;
+                            <font color="#cc0033">YES_NO_OPTION</font>*        = 0;
+                            <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                            p1 : INTEGER;
+                                            p2 : INTEGER;
+                                            p3 : INTEGER) : <a href="#type-ConfirmationCallback">ConfirmationCallback</a><b>,CONSTRUCTOR</b>;
+                            <b>PROCEDURE </b><font color="#cc0033">Init</font>*(    p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                p1 : INTEGER;
+                                            IN  p2 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>;
+                                                p3 : INTEGER) : <a href="#type-ConfirmationCallback">ConfirmationCallback</a><b>,CONSTRUCTOR</b>;
+                            <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER;
+                                            p1 : INTEGER;
+                                            p2 : INTEGER) : <a href="#type-ConfirmationCallback">ConfirmationCallback</a><b>,CONSTRUCTOR</b>;
+                            <b>PROCEDURE </b><font color="#cc0033">Init</font>*(    p0 : INTEGER;
+                                            IN  p1 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>;
+                                                p2 : INTEGER) : <a href="#type-ConfirmationCallback">ConfirmationCallback</a><b>,CONSTRUCTOR</b>;
+                          <b>END</b>;
+
+  <a name="type-LanguageCallback"></a><font color="#cc0033">LanguageCallback</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-Callback">Callback</a> + <a href="java_io.html#type-Serializable">java_io.Serializable</a>)
+                      <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                      <font color="green"><b> (* </b><a href="#meths-LanguageCallback">Typebound Procedures</a><b> *)</b></font>
+                      <b>STATIC</b>
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-LanguageCallback">LanguageCallback</a><b>,CONSTRUCTOR</b>;
+                      <b>END</b>;
+
+  <a name="type-NameCallback"></a><font color="#cc0033">NameCallback</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-Callback">Callback</a> + <a href="java_io.html#type-Serializable">java_io.Serializable</a>)
+                  <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                  <font color="green"><b> (* </b><a href="#meths-NameCallback">Typebound Procedures</a><b> *)</b></font>
+                  <b>STATIC</b>
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                    p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-NameCallback">NameCallback</a><b>,CONSTRUCTOR</b>;
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-NameCallback">NameCallback</a><b>,CONSTRUCTOR</b>;
+                  <b>END</b>;
+
+  <a name="type-PasswordCallback"></a><font color="#cc0033">PasswordCallback</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-Callback">Callback</a> + <a href="java_io.html#type-Serializable">java_io.Serializable</a>)
+                      <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                      <font color="green"><b> (* </b><a href="#meths-PasswordCallback">Typebound Procedures</a><b> *)</b></font>
+                      <b>STATIC</b>
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                        p1 : BOOLEAN) : <a href="#type-PasswordCallback">PasswordCallback</a><b>,CONSTRUCTOR</b>;
+                      <b>END</b>;
+
+  <a name="type-TextInputCallback"></a><font color="#cc0033">TextInputCallback</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-Callback">Callback</a> + <a href="java_io.html#type-Serializable">java_io.Serializable</a>)
+                       <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                       <font color="green"><b> (* </b><a href="#meths-TextInputCallback">Typebound Procedures</a><b> *)</b></font>
+                       <b>STATIC</b>
+                         <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                         p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-TextInputCallback">TextInputCallback</a><b>,CONSTRUCTOR</b>;
+                         <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-TextInputCallback">TextInputCallback</a><b>,CONSTRUCTOR</b>;
+                       <b>END</b>;
+
+  <a name="type-TextOutputCallback"></a><font color="#cc0033">TextOutputCallback</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-Callback">Callback</a> + <a href="java_io.html#type-Serializable">java_io.Serializable</a>)
+                        <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                        <font color="green"><b> (* </b><a href="#meths-TextOutputCallback">Typebound Procedures</a><b> *)</b></font>
+                        <b>STATIC</b>
+                          <font color="#cc0033">ERROR</font>*       = 2;
+                          <font color="#cc0033">INFORMATION</font>* = 0;
+                          <font color="#cc0033">WARNING</font>*     = 1;
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER;
+                                          p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-TextOutputCallback">TextOutputCallback</a><b>,CONSTRUCTOR</b>;
+                        <b>END</b>;
+
+  <a name="type-UnsupportedCallbackException"></a><font color="#cc0033">UnsupportedCallbackException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Exception">java_lang.Exception</a>)
+                                  <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                                  <font color="green"><b> (* </b><a href="#meths-UnsupportedCallbackException">Typebound Procedures</a><b> *)</b></font>
+                                  <b>STATIC</b>
+                                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="#type-Callback">Callback</a>;
+                                                    p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-UnsupportedCallbackException">UnsupportedCallbackException</a><b>,CONSTRUCTOR</b>;
+                                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="#type-Callback">Callback</a>) : <a href="#type-UnsupportedCallbackException">UnsupportedCallbackException</a><b>,CONSTRUCTOR</b>;
+                                  <b>END</b>;
+
+
+
+<a name="meths-CallbackHandler"></a>
+<b>PROCEDURE </b>(self:CallbackHandler) <font color="#cc0033">handle</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="#type-Callback">Callback</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-ChoiceCallback"></a>
+<b>PROCEDURE </b>(self:ChoiceCallback) <font color="#cc0033">allowMultipleSelections</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ChoiceCallback) <font color="#cc0033">getChoices</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ChoiceCallback) <font color="#cc0033">getDefaultChoice</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ChoiceCallback) <font color="#cc0033">getPrompt</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ChoiceCallback) <font color="#cc0033">getSelectedIndexes</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ChoiceCallback) <font color="#cc0033">setSelectedIndex</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ChoiceCallback) <font color="#cc0033">setSelectedIndexes</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>INTEGER)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-ConfirmationCallback"></a>
+<b>PROCEDURE </b>(self:ConfirmationCallback) <font color="#cc0033">getDefaultOption</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConfirmationCallback) <font color="#cc0033">getMessageType</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConfirmationCallback) <font color="#cc0033">getOptions</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConfirmationCallback) <font color="#cc0033">getOptionType</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConfirmationCallback) <font color="#cc0033">getPrompt</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConfirmationCallback) <font color="#cc0033">getSelectedIndex</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConfirmationCallback) <font color="#cc0033">setSelectedIndex</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-LanguageCallback"></a>
+<b>PROCEDURE </b>(self:LanguageCallback) <font color="#cc0033">getLocale</font>*() : <a href="java_util.html#type-Locale">java_util.Locale</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LanguageCallback) <font color="#cc0033">setLocale</font>*(p0 : <a href="java_util.html#type-Locale">java_util.Locale</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-NameCallback"></a>
+<b>PROCEDURE </b>(self:NameCallback) <font color="#cc0033">getDefaultName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:NameCallback) <font color="#cc0033">getName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:NameCallback) <font color="#cc0033">getPrompt</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:NameCallback) <font color="#cc0033">setName</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-PasswordCallback"></a>
+<b>PROCEDURE </b>(self:PasswordCallback) <font color="#cc0033">clearPassword</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PasswordCallback) <font color="#cc0033">getPassword</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>CHAR<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PasswordCallback) <font color="#cc0033">getPrompt</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PasswordCallback) <font color="#cc0033">isEchoOn</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PasswordCallback) <font color="#cc0033">setPassword</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>CHAR)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-TextInputCallback"></a>
+<b>PROCEDURE </b>(self:TextInputCallback) <font color="#cc0033">getDefaultText</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TextInputCallback) <font color="#cc0033">getPrompt</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TextInputCallback) <font color="#cc0033">getText</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TextInputCallback) <font color="#cc0033">setText</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-TextOutputCallback"></a>
+<b>PROCEDURE </b>(self:TextOutputCallback) <font color="#cc0033">getMessage</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TextOutputCallback) <font color="#cc0033">getMessageType</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-UnsupportedCallbackException"></a>
+<b>PROCEDURE </b>(self:UnsupportedCallbackException) <font color="#cc0033">getCallback</font>*() : <a href="#type-Callback">Callback</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>END </b><font color="#cc0033">javax_security_auth_callback</font>.
+</font></pre></hr>
+<!-- BEGIN JavaScript -->
+<script>
+function toggle(node) {
+    node.classList.toggle("show"); 
+  }
+
+function cls(node) {
+    var prnt = node.parentNode;
+    var next = prnt.previousSibling;
+    var text = next.lastChild;
+    text.innerHTML = 
+        "The <b>class</b> property asserts that this type will be<br>" +
+        "implemented as a reference class in the underlying framework.";
+    text.classList.toggle("show");
+  }
+
+function newOk(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>has noArg-ctor</b> property asserts that this reference<br>" +
+        "class has a no-arg constructor, and thus objects of this<br>" +
+        "type can be allocated with NEW(). Component Pascal types<br>" +
+        "derived from this type can also be allocated using NEW().";
+    popuptext.classList.toggle("show"); 
+  }
+
+function noNew(node) { 
+    var prnt = node.parentNode; 
+    var next = prnt.previousSibling; 
+    var text = next.lastChild; 
+    text.innerHTML =  
+        "The <b>no noArg-ctor</b> property asserts that this reference<br>" +
+        "class does not have a noArg constructor. Objects of this<br>" +
+        "type cannot be allocated using NEW(), and Component<br>" +
+        "Pascal types  derived from this type also cannot be<br>" +
+        "allocated using NEW().";
+    text.classList.toggle("show");
+  }
+
+function noCpy(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>no value-assign</b> property asserts that this reference<br>" + 
+        "class does not have a value copy method. Therefore, it<br>" +
+        "is not possible to perform value assignments using<br>" +
+        "statements like <i>dst^</i> := <i>src^</i>";
+    popuptext.classList.toggle("show");
+  }
+
+function valueclass(node) { 
+        var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>valueclass</b> property asserts that this RECORD type is<br>" + 
+        "implemented as a value class in the CLR. It follows that<br>" +  
+        "value assignments can be made of these types. They can<br>" + 
+        "also be passed by value. Even pointers to records of<br>" + 
+        "such types may be dereferenced and copied using syntax<br>" + 
+        "such as  <i>dst^</i> := <i>src^</i>"; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+function argCtor(node) { 
+    var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>has arg-ctor</b> property asserts that this reference<br>" +  
+        "class has one or more constructors that take arguments.<br>" + 
+        "These constructors can be called from Component Pascal<br>" + 
+        "by calling an <i>init</i>(...) method from the static list<br>" + 
+        "here. Component Pascal types derived from this type<br>" + 
+        "can define constructors with arguments which call the<br>" + 
+        "super-type constructor.<br>" + 
+        "See <i>'Interfacing to constructors'</i> in the Release Notes."; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+</script>
+<!-- END JavaScript --> 
+
+</body></html>

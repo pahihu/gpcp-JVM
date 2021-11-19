@@ -1,0 +1,962 @@
+<html><head><title>java_awt_font</title>
+<style>
+<!-- BEGIN Inline CSS -->
+/* Popup container */
+.popup {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+/* The actual popup (appears on top) */
+.popup .popuptext {
+    visibility: hidden;
+    width: 430px;
+    background-color: white;
+    color: black;
+    text-align: left;
+    border-radius: 6px;
+    border-style: solid;
+    border-color: black;
+    padding: 8px 8px 8px 8px;
+    position: absolute;
+    z-index: 1;
+    margin-top: 30px;
+}
+
+/* Toggle this class when clicking on the popup container (hide and show the popup) */
+.popup .show {
+    visibility: visible;
+    opacity: 1;
+}
+
+</style>
+<!-- END Inline CSS -->
+</head><body bgcolor="white">
+<hr><pre>
+<font color="green">(*</font>
+<font color="green"> *  Creator j2cps version 1.4.07 (March 2018)</font>
+<font color="green"> *  Compiled from jar-file rt.jar</font>
+<font color="green"> *)</font>
+<b>FOREIGN MODULE </b><font color="#cc0033">java_awt_font</font>;
+
+<b>IMPORT</b>
+    <a href="java_awt.html">java_awt</a> := "java.awt",
+    <a href="java_awt_geom.html">java_awt_geom</a> := "java.awt.geom",
+    <a href="java_io.html">java_io</a> := "java.io",
+    <a href="java_lang.html">java_lang</a> := "java.lang",
+    <a href="java_text.html">java_text</a> := "java.text",
+    <a href="java_util.html">java_util</a> := "java.util";
+
+<b>TYPE</b>
+
+  <a name="type-FontRenderContext"></a><font color="#cc0033">FontRenderContext</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                       <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                       <font color="green"><b> (* </b><a href="#meths-FontRenderContext">Typebound Procedures</a><b> *)</b></font>
+                       <b>STATIC</b>
+                         <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_awt_geom.html#type-AffineTransform">java_awt_geom.AffineTransform</a>;
+                                         p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                         p2 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="#type-FontRenderContext">FontRenderContext</a><b>,CONSTRUCTOR</b>;
+                         <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_awt_geom.html#type-AffineTransform">java_awt_geom.AffineTransform</a>;
+                                         p1 : BOOLEAN;
+                                         p2 : BOOLEAN) : <a href="#type-FontRenderContext">FontRenderContext</a><b>,CONSTRUCTOR</b>;
+                         <b>PROCEDURE </b><font color="#cc0033">Init</font>!() : <a href="#type-FontRenderContext">FontRenderContext</a><b>,CONSTRUCTOR</b>;
+                       <b>END</b>;
+
+  <a name="type-GlyphJustificationInfo"></a><font color="#cc0033">GlyphJustificationInfo</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                            <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                              <font color="#cc0033">weight</font>*           : SHORTREAL;
+                              <font color="#cc0033">growPriority</font>*     : INTEGER;
+                              <font color="#cc0033">growAbsorb</font>*       : BOOLEAN;
+                              <font color="#cc0033">growLeftLimit</font>*    : SHORTREAL;
+                              <font color="#cc0033">growRightLimit</font>*   : SHORTREAL;
+                              <font color="#cc0033">shrinkPriority</font>*   : INTEGER;
+                              <font color="#cc0033">shrinkAbsorb</font>*     : BOOLEAN;
+                              <font color="#cc0033">shrinkLeftLimit</font>*  : SHORTREAL;
+                              <font color="#cc0033">shrinkRightLimit</font>* : SHORTREAL;
+                            <b>STATIC</b>
+                              <font color="#cc0033">PRIORITY_INTERCHAR</font>*  = 2;
+                              <font color="#cc0033">PRIORITY_KASHIDA</font>*    = 0;
+                              <font color="#cc0033">PRIORITY_NONE</font>*       = 3;
+                              <font color="#cc0033">PRIORITY_WHITESPACE</font>* = 1;
+                              <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : SHORTREAL;
+                                              p1 : BOOLEAN;
+                                              p2 : INTEGER;
+                                              p3 : SHORTREAL;
+                                              p4 : SHORTREAL;
+                                              p5 : BOOLEAN;
+                                              p6 : INTEGER;
+                                              p7 : SHORTREAL;
+                                              p8 : SHORTREAL) : <a href="#type-GlyphJustificationInfo">GlyphJustificationInfo</a><b>,CONSTRUCTOR</b>;
+                            <b>END</b>;
+
+  <a name="type-GlyphMetrics"></a><font color="#cc0033">GlyphMetrics</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                  <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                  <font color="green"><b> (* </b><a href="#meths-GlyphMetrics">Typebound Procedures</a><b> *)</b></font>
+                  <b>STATIC</b>
+                    <font color="#cc0033">COMBINING</font>*  = 2;
+                    <font color="#cc0033">COMPONENT</font>*  = 3;
+                    <font color="#cc0033">LIGATURE</font>*   = 1;
+                    <font color="#cc0033">STANDARD</font>*   = 0;
+                    <font color="#cc0033">WHITESPACE</font>* = 4;
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : BOOLEAN;
+                                    p1 : SHORTREAL;
+                                    p2 : SHORTREAL;
+                                    p3 : <a href="java_awt_geom.html#type-Rectangle2D">java_awt_geom.Rectangle2D</a>;
+                                    p4 : BYTE) : <a href="#type-GlyphMetrics">GlyphMetrics</a><b>,CONSTRUCTOR</b>;
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : SHORTREAL;
+                                    p1 : <a href="java_awt_geom.html#type-Rectangle2D">java_awt_geom.Rectangle2D</a>;
+                                    p2 : BYTE) : <a href="#type-GlyphMetrics">GlyphMetrics</a><b>,CONSTRUCTOR</b>;
+                  <b>END</b>;
+
+  <a name="type-GlyphVector"></a><font color="#cc0033">GlyphVector</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_lang.html#type-Cloneable">java_lang.Cloneable</a>)
+                 <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                 <font color="green"><b> (* </b><a href="#meths-GlyphVector">Typebound Procedures</a><b> *)</b></font>
+                 <b>STATIC</b>
+                   <font color="#cc0033">FLAG_COMPLEX_GLYPHS</font>*           = 8;
+                   <font color="#cc0033">FLAG_HAS_POSITION_ADJUSTMENTS</font>* = 2;
+                   <font color="#cc0033">FLAG_HAS_TRANSFORMS</font>*           = 1;
+                   <font color="#cc0033">FLAG_MASK</font>*                     = 15;
+                   <font color="#cc0033">FLAG_RUN_RTL</font>*                  = 4;
+                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-GlyphVector">GlyphVector</a><b>,CONSTRUCTOR</b>;
+                 <b>END</b>;
+
+  <a name="type-GraphicAttribute"></a><font color="#cc0033">GraphicAttribute</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                      <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                      <font color="green"><b> (* </b><a href="#meths-GraphicAttribute">Typebound Procedures</a><b> *)</b></font>
+                      <b>STATIC</b>
+                        <font color="#cc0033">BOTTOM_ALIGNMENT</font>* = -2;
+                        <font color="#cc0033">CENTER_BASELINE</font>*  = 1;
+                        <font color="#cc0033">HANGING_BASELINE</font>* = 2;
+                        <font color="#cc0033">ROMAN_BASELINE</font>*   = 0;
+                        <font color="#cc0033">TOP_ALIGNMENT</font>*    = -1;
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : INTEGER) : <a href="#type-GraphicAttribute">GraphicAttribute</a><b>,CONSTRUCTOR</b>;
+                      <b>END</b>;
+
+  <a name="type-ImageGraphicAttribute"></a><font color="#cc0033">ImageGraphicAttribute</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-GraphicAttribute">GraphicAttribute</a>)
+                           <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                           <font color="green"><b> (* </b><a href="#meths-ImageGraphicAttribute">Typebound Procedures</a><b> *)</b></font>
+                           <b>STATIC</b>
+                             <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_awt.html#type-Image">java_awt.Image</a>;
+                                             p1 : INTEGER;
+                                             p2 : SHORTREAL;
+                                             p3 : SHORTREAL) : <a href="#type-ImageGraphicAttribute">ImageGraphicAttribute</a><b>,CONSTRUCTOR</b>;
+                             <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_awt.html#type-Image">java_awt.Image</a>;
+                                             p1 : INTEGER) : <a href="#type-ImageGraphicAttribute">ImageGraphicAttribute</a><b>,CONSTRUCTOR</b>;
+                           <b>END</b>;
+
+  <a name="type-LayoutPath"></a><font color="#cc0033">LayoutPath</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                <font color="green"><b> (* </b><a href="#meths-LayoutPath">Typebound Procedures</a><b> *)</b></font>
+                <b>STATIC</b>
+                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-LayoutPath">LayoutPath</a><b>,CONSTRUCTOR</b>;
+                <b>END</b>;
+
+  <a name="type-LineBreakMeasurer"></a><font color="#cc0033">LineBreakMeasurer</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                       <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                       <font color="green"><b> (* </b><a href="#meths-LineBreakMeasurer">Typebound Procedures</a><b> *)</b></font>
+                       <b>STATIC</b>
+                         <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_text.html#type-AttributedCharacterIterator">java_text.AttributedCharacterIterator</a>;
+                                         p1 : <a href="java_text.html#type-BreakIterator">java_text.BreakIterator</a>;
+                                         p2 : <b>FontRenderContext</b>) : <a href="#type-LineBreakMeasurer">LineBreakMeasurer</a><b>,CONSTRUCTOR</b>;
+                         <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_text.html#type-AttributedCharacterIterator">java_text.AttributedCharacterIterator</a>;
+                                         p1 : <b>FontRenderContext</b>) : <a href="#type-LineBreakMeasurer">LineBreakMeasurer</a><b>,CONSTRUCTOR</b>;
+                       <b>END</b>;
+
+  <a name="type-LineMetrics"></a><font color="#cc0033">LineMetrics</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                 <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                 <font color="green"><b> (* </b><a href="#meths-LineMetrics">Typebound Procedures</a><b> *)</b></font>
+                 <b>STATIC</b>
+                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-LineMetrics">LineMetrics</a><b>,CONSTRUCTOR</b>;
+                 <b>END</b>;
+
+  <a name="type-MultipleMaster"></a><font color="#cc0033">MultipleMaster</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                    <font color="green"><b> (* </b><a href="#meths-MultipleMaster">Typebound Procedures</a><b> *)</b></font>
+                    <b>END</b>;
+
+  <a name="type-NumericShaper"></a><font color="#cc0033">NumericShaper</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_io.html#type-Serializable">java_io.Serializable</a>)
+                   <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                   <font color="green"><b> (* </b><a href="#meths-NumericShaper">Typebound Procedures</a><b> *)</b></font>
+                   <b>STATIC</b>
+                     <font color="#cc0033">ALL_RANGES</font>*          = 524287;
+                     <font color="#cc0033">ARABIC</font>*              = 2;
+                     <font color="#cc0033">BENGALI</font>*             = 16;
+                     <font color="#cc0033">DEVANAGARI</font>*          = 8;
+                     <font color="#cc0033">EASTERN_ARABIC</font>*      = 4;
+                     <font color="#cc0033">ETHIOPIC</font>*            = 65536;
+                     <font color="#cc0033">EUROPEAN</font>*            = 1;
+                     <font color="#cc0033">GUJARATI</font>*            = 64;
+                     <font color="#cc0033">GURMUKHI</font>*            = 32;
+                     <font color="#cc0033">KANNADA</font>*             = 1024;
+                     <font color="#cc0033">KHMER</font>*               = 131072;
+                     <font color="#cc0033">LAO</font>*                 = 8192;
+                     <font color="#cc0033">MALAYALAM</font>*           = 2048;
+                     <font color="#cc0033">MONGOLIAN</font>*           = 262144;
+                     <font color="#cc0033">MYANMAR</font>*             = 32768;
+                     <font color="#cc0033">ORIYA</font>*               = 128;
+                     <font color="#cc0033">TAMIL</font>*               = 256;
+                     <font color="#cc0033">TELUGU</font>*              = 512;
+                     <font color="#cc0033">THAI</font>*                = 4096;
+                     <font color="#cc0033">TIBETAN</font>*             = 16384;
+                     <b>PROCEDURE </b><font color="#cc0033">getContextualShaper</font>*(p0 : <a href="java_util.html#type-Set">java_util.Set</a>) : <a href="#type-NumericShaper">NumericShaper</a>;
+                     <b>PROCEDURE </b><font color="#cc0033">getContextualShaper</font>*(p0 : INTEGER;
+                                                    p1 : INTEGER) : <a href="#type-NumericShaper">NumericShaper</a>;
+                     <b>PROCEDURE </b><font color="#cc0033">getContextualShaper</font>*(p0 : <a href="java_util.html#type-Set">java_util.Set</a>;
+                                                    p1 : <a href="#type-NumericShaper$Range">NumericShaper$Range</a>) : <a href="#type-NumericShaper">NumericShaper</a>;
+                     <b>PROCEDURE </b><font color="#cc0033">getContextualShaper</font>*(p0 : INTEGER) : <a href="#type-NumericShaper">NumericShaper</a>;
+                     <b>PROCEDURE </b><font color="#cc0033">getShaper</font>*(p0 : INTEGER) : <a href="#type-NumericShaper">NumericShaper</a>;
+                     <b>PROCEDURE </b><font color="#cc0033">getShaper</font>*(p0 : <a href="#type-NumericShaper$Range">NumericShaper$Range</a>) : <a href="#type-NumericShaper">NumericShaper</a>;
+                   <b>END</b>;
+
+  <a name="type-NumericShaper$Range"></a><font color="#cc0033">NumericShaper$Range</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Enum">java_lang.Enum</a>)
+                         <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                         <b>STATIC</b>
+                           <a name="type-ARABIC"></a><font color="#cc0033">ARABIC</font>*         : <a href="#type-NumericShaper$Range">NumericShaper$Range</a>;
+                           <a name="type-BALINESE"></a><font color="#cc0033">BALINESE</font>*       : <a href="#type-NumericShaper$Range">NumericShaper$Range</a>;
+                           <a name="type-BENGALI"></a><font color="#cc0033">BENGALI</font>*        : <a href="#type-NumericShaper$Range">NumericShaper$Range</a>;
+                           <a name="type-CHAM"></a><font color="#cc0033">CHAM</font>*           : <a href="#type-NumericShaper$Range">NumericShaper$Range</a>;
+                           <a name="type-DEVANAGARI"></a><font color="#cc0033">DEVANAGARI</font>*     : <a href="#type-NumericShaper$Range">NumericShaper$Range</a>;
+                           <a name="type-EASTERN_ARABIC"></a><font color="#cc0033">EASTERN_ARABIC</font>* : <a href="#type-NumericShaper$Range">NumericShaper$Range</a>;
+                           <a name="type-ETHIOPIC"></a><font color="#cc0033">ETHIOPIC</font>*       : <a href="#type-NumericShaper$Range">NumericShaper$Range</a>;
+                           <a name="type-EUROPEAN"></a><font color="#cc0033">EUROPEAN</font>*       : <a href="#type-NumericShaper$Range">NumericShaper$Range</a>;
+                           <a name="type-GUJARATI"></a><font color="#cc0033">GUJARATI</font>*       : <a href="#type-NumericShaper$Range">NumericShaper$Range</a>;
+                           <a name="type-GURMUKHI"></a><font color="#cc0033">GURMUKHI</font>*       : <a href="#type-NumericShaper$Range">NumericShaper$Range</a>;
+                           <a name="type-JAVANESE"></a><font color="#cc0033">JAVANESE</font>*       : <a href="#type-NumericShaper$Range">NumericShaper$Range</a>;
+                           <a name="type-KANNADA"></a><font color="#cc0033">KANNADA</font>*        : <a href="#type-NumericShaper$Range">NumericShaper$Range</a>;
+                           <a name="type-KAYAH_LI"></a><font color="#cc0033">KAYAH_LI</font>*       : <a href="#type-NumericShaper$Range">NumericShaper$Range</a>;
+                           <a name="type-KHMER"></a><font color="#cc0033">KHMER</font>*          : <a href="#type-NumericShaper$Range">NumericShaper$Range</a>;
+                           <a name="type-LAO"></a><font color="#cc0033">LAO</font>*            : <a href="#type-NumericShaper$Range">NumericShaper$Range</a>;
+                           <a name="type-LEPCHA"></a><font color="#cc0033">LEPCHA</font>*         : <a href="#type-NumericShaper$Range">NumericShaper$Range</a>;
+                           <a name="type-LIMBU"></a><font color="#cc0033">LIMBU</font>*          : <a href="#type-NumericShaper$Range">NumericShaper$Range</a>;
+                           <a name="type-MALAYALAM"></a><font color="#cc0033">MALAYALAM</font>*      : <a href="#type-NumericShaper$Range">NumericShaper$Range</a>;
+                           <a name="type-MEETEI_MAYEK"></a><font color="#cc0033">MEETEI_MAYEK</font>*   : <a href="#type-NumericShaper$Range">NumericShaper$Range</a>;
+                           <a name="type-MONGOLIAN"></a><font color="#cc0033">MONGOLIAN</font>*      : <a href="#type-NumericShaper$Range">NumericShaper$Range</a>;
+                           <a name="type-MYANMAR"></a><font color="#cc0033">MYANMAR</font>*        : <a href="#type-NumericShaper$Range">NumericShaper$Range</a>;
+                           <a name="type-MYANMAR_SHAN"></a><font color="#cc0033">MYANMAR_SHAN</font>*   : <a href="#type-NumericShaper$Range">NumericShaper$Range</a>;
+                           <a name="type-NEW_TAI_LUE"></a><font color="#cc0033">NEW_TAI_LUE</font>*    : <a href="#type-NumericShaper$Range">NumericShaper$Range</a>;
+                           <a name="type-NKO"></a><font color="#cc0033">NKO</font>*            : <a href="#type-NumericShaper$Range">NumericShaper$Range</a>;
+                           <a name="type-OL_CHIKI"></a><font color="#cc0033">OL_CHIKI</font>*       : <a href="#type-NumericShaper$Range">NumericShaper$Range</a>;
+                           <a name="type-ORIYA"></a><font color="#cc0033">ORIYA</font>*          : <a href="#type-NumericShaper$Range">NumericShaper$Range</a>;
+                           <a name="type-SAURASHTRA"></a><font color="#cc0033">SAURASHTRA</font>*     : <a href="#type-NumericShaper$Range">NumericShaper$Range</a>;
+                           <a name="type-SUNDANESE"></a><font color="#cc0033">SUNDANESE</font>*      : <a href="#type-NumericShaper$Range">NumericShaper$Range</a>;
+                           <a name="type-TAI_THAM_HORA"></a><font color="#cc0033">TAI_THAM_HORA</font>*  : <a href="#type-NumericShaper$Range">NumericShaper$Range</a>;
+                           <a name="type-TAI_THAM_THAM"></a><font color="#cc0033">TAI_THAM_THAM</font>*  : <a href="#type-NumericShaper$Range">NumericShaper$Range</a>;
+                           <a name="type-TAMIL"></a><font color="#cc0033">TAMIL</font>*          : <a href="#type-NumericShaper$Range">NumericShaper$Range</a>;
+                           <a name="type-TELUGU"></a><font color="#cc0033">TELUGU</font>*         : <a href="#type-NumericShaper$Range">NumericShaper$Range</a>;
+                           <a name="type-THAI"></a><font color="#cc0033">THAI</font>*           : <a href="#type-NumericShaper$Range">NumericShaper$Range</a>;
+                           <a name="type-TIBETAN"></a><font color="#cc0033">TIBETAN</font>*        : <a href="#type-NumericShaper$Range">NumericShaper$Range</a>;
+                           <a name="type-VAI"></a><font color="#cc0033">VAI</font>*            : <a href="#type-NumericShaper$Range">NumericShaper$Range</a>;
+                           <b>PROCEDURE </b><font color="#cc0033">valueOf</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-NumericShaper$Range">NumericShaper$Range</a>;
+                           <b>PROCEDURE </b><font color="#cc0033">values</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-NumericShaper$Range">NumericShaper$Range</a>;
+                         <b>END</b>;
+
+  <a name="type-OpenType"></a><font color="#cc0033">OpenType</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+              <font color="green"><b> (* </b><a href="#meths-OpenType">Typebound Procedures</a><b> *)</b></font>
+              <b>STATIC</b>
+                <font color="#cc0033">TAG_ACNT</font>* = 1633906292;
+                <font color="#cc0033">TAG_AVAR</font>* = 1635148146;
+                <font color="#cc0033">TAG_BASE</font>* = 1111577413;
+                <font color="#cc0033">TAG_BDAT</font>* = 1650745716;
+                <font color="#cc0033">TAG_BLOC</font>* = 1651273571;
+                <font color="#cc0033">TAG_BSLN</font>* = 1651731566;
+                <font color="#cc0033">TAG_CFF</font>*  = 1128678944;
+                <font color="#cc0033">TAG_CMAP</font>* = 1668112752;
+                <font color="#cc0033">TAG_CVAR</font>* = 1668702578;
+                <font color="#cc0033">TAG_CVT</font>*  = 1668707360;
+                <font color="#cc0033">TAG_DSIG</font>* = 1146308935;
+                <font color="#cc0033">TAG_EBDT</font>* = 1161970772;
+                <font color="#cc0033">TAG_EBLC</font>* = 1161972803;
+                <font color="#cc0033">TAG_EBSC</font>* = 1161974595;
+                <font color="#cc0033">TAG_FDSC</font>* = 1717859171;
+                <font color="#cc0033">TAG_FEAT</font>* = 1717920116;
+                <font color="#cc0033">TAG_FMTX</font>* = 1718449272;
+                <font color="#cc0033">TAG_FPGM</font>* = 1718642541;
+                <font color="#cc0033">TAG_FVAR</font>* = 1719034226;
+                <font color="#cc0033">TAG_GASP</font>* = 1734439792;
+                <font color="#cc0033">TAG_GDEF</font>* = 1195656518;
+                <font color="#cc0033">TAG_GLYF</font>* = 1735162214;
+                <font color="#cc0033">TAG_GPOS</font>* = 1196445523;
+                <font color="#cc0033">TAG_GSUB</font>* = 1196643650;
+                <font color="#cc0033">TAG_GVAR</font>* = 1735811442;
+                <font color="#cc0033">TAG_HDMX</font>* = 1751412088;
+                <font color="#cc0033">TAG_HEAD</font>* = 1751474532;
+                <font color="#cc0033">TAG_HHEA</font>* = 1751672161;
+                <font color="#cc0033">TAG_HMTX</font>* = 1752003704;
+                <font color="#cc0033">TAG_JSTF</font>* = 1246975046;
+                <font color="#cc0033">TAG_JUST</font>* = 1786082164;
+                <font color="#cc0033">TAG_KERN</font>* = 1801810542;
+                <font color="#cc0033">TAG_LCAR</font>* = 1818452338;
+                <font color="#cc0033">TAG_LOCA</font>* = 1819239265;
+                <font color="#cc0033">TAG_LTSH</font>* = 1280594760;
+                <font color="#cc0033">TAG_MAXP</font>* = 1835104368;
+                <font color="#cc0033">TAG_MMFX</font>* = 1296909912;
+                <font color="#cc0033">TAG_MMSD</font>* = 1296913220;
+                <font color="#cc0033">TAG_MORT</font>* = 1836020340;
+                <font color="#cc0033">TAG_NAME</font>* = 1851878757;
+                <font color="#cc0033">TAG_OPBD</font>* = 1836020340;
+                <font color="#cc0033">TAG_OS2</font>*  = 1330851634;
+                <font color="#cc0033">TAG_PCLT</font>* = 1346587732;
+                <font color="#cc0033">TAG_POST</font>* = 1886352244;
+                <font color="#cc0033">TAG_PREP</font>* = 1886545264;
+                <font color="#cc0033">TAG_PROP</font>* = 1886547824;
+                <font color="#cc0033">TAG_TRAK</font>* = 1953653099;
+                <font color="#cc0033">TAG_TYP1</font>* = 1954115633;
+                <font color="#cc0033">TAG_VDMX</font>* = 1447316824;
+                <font color="#cc0033">TAG_VHEA</font>* = 1986553185;
+                <font color="#cc0033">TAG_VMTX</font>* = 1986884728;
+              <b>END</b>;
+
+  <a name="type-ShapeGraphicAttribute"></a><font color="#cc0033">ShapeGraphicAttribute</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-GraphicAttribute">GraphicAttribute</a>)
+                           <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                           <font color="green"><b> (* </b><a href="#meths-ShapeGraphicAttribute">Typebound Procedures</a><b> *)</b></font>
+                           <b>STATIC</b>
+                             <font color="#cc0033">FILL</font>*   = 0;
+                             <font color="#cc0033">STROKE</font>* = 1;
+                             <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_awt.html#type-Shape">java_awt.Shape</a>;
+                                             p1 : INTEGER;
+                                             p2 : BOOLEAN) : <a href="#type-ShapeGraphicAttribute">ShapeGraphicAttribute</a><b>,CONSTRUCTOR</b>;
+                           <b>END</b>;
+
+  <a name="type-TextAttribute"></a><font color="#cc0033">TextAttribute</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_text.html#type-AttributedCharacterIterator$Attribute">java_text.AttributedCharacterIterator$Attribute</a>)
+                   <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                   <font color="green"><b> (* </b><a href="#meths-TextAttribute">Typebound Procedures</a><b> *)</b></font>
+                   <b>STATIC</b>
+                     <a name="type-BACKGROUND"></a><font color="#cc0033">BACKGROUND</font>*              : <a href="#type-TextAttribute">TextAttribute</a>;
+                     <a name="type-BIDI_EMBEDDING"></a><font color="#cc0033">BIDI_EMBEDDING</font>*          : <a href="#type-TextAttribute">TextAttribute</a>;
+                     <a name="type-CHAR_REPLACEMENT"></a><font color="#cc0033">CHAR_REPLACEMENT</font>*        : <a href="#type-TextAttribute">TextAttribute</a>;
+                     <a name="type-FAMILY"></a><font color="#cc0033">FAMILY</font>*                  : <a href="#type-TextAttribute">TextAttribute</a>;
+                     <a name="type-FONT"></a><font color="#cc0033">FONT</font>*                    : <a href="#type-TextAttribute">TextAttribute</a>;
+                     <a name="type-FOREGROUND"></a><font color="#cc0033">FOREGROUND</font>*              : <a href="#type-TextAttribute">TextAttribute</a>;
+                     <a name="type-INPUT_METHOD_HIGHLIGHT"></a><font color="#cc0033">INPUT_METHOD_HIGHLIGHT</font>*  : <a href="#type-TextAttribute">TextAttribute</a>;
+                     <a name="type-INPUT_METHOD_UNDERLINE"></a><font color="#cc0033">INPUT_METHOD_UNDERLINE</font>*  : <a href="#type-TextAttribute">TextAttribute</a>;
+                     <a name="type-JUSTIFICATION"></a><font color="#cc0033">JUSTIFICATION</font>*           : <a href="#type-TextAttribute">TextAttribute</a>;
+                     <a name="type-JUSTIFICATION_FULL"></a><font color="#cc0033">JUSTIFICATION_FULL</font>*      : <a href="java_lang.html#type-Float">java_lang.Float</a>;
+                     <a name="type-JUSTIFICATION_NONE"></a><font color="#cc0033">JUSTIFICATION_NONE</font>*      : <a href="java_lang.html#type-Float">java_lang.Float</a>;
+                     <a name="type-KERNING"></a><font color="#cc0033">KERNING</font>*                 : <a href="#type-TextAttribute">TextAttribute</a>;
+                     <a name="type-KERNING_ON"></a><font color="#cc0033">KERNING_ON</font>*              : <a href="java_lang.html#type-Integer">java_lang.Integer</a>;
+                     <a name="type-LIGATURES"></a><font color="#cc0033">LIGATURES</font>*               : <a href="#type-TextAttribute">TextAttribute</a>;
+                     <a name="type-LIGATURES_ON"></a><font color="#cc0033">LIGATURES_ON</font>*            : <a href="java_lang.html#type-Integer">java_lang.Integer</a>;
+                     <a name="type-NUMERIC_SHAPING"></a><font color="#cc0033">NUMERIC_SHAPING</font>*         : <a href="#type-TextAttribute">TextAttribute</a>;
+                     <a name="type-POSTURE"></a><font color="#cc0033">POSTURE</font>*                 : <a href="#type-TextAttribute">TextAttribute</a>;
+                     <a name="type-POSTURE_OBLIQUE"></a><font color="#cc0033">POSTURE_OBLIQUE</font>*         : <a href="java_lang.html#type-Float">java_lang.Float</a>;
+                     <a name="type-POSTURE_REGULAR"></a><font color="#cc0033">POSTURE_REGULAR</font>*         : <a href="java_lang.html#type-Float">java_lang.Float</a>;
+                     <a name="type-RUN_DIRECTION"></a><font color="#cc0033">RUN_DIRECTION</font>*           : <a href="#type-TextAttribute">TextAttribute</a>;
+                     <a name="type-RUN_DIRECTION_LTR"></a><font color="#cc0033">RUN_DIRECTION_LTR</font>*       : <a href="java_lang.html#type-Boolean">java_lang.Boolean</a>;
+                     <a name="type-RUN_DIRECTION_RTL"></a><font color="#cc0033">RUN_DIRECTION_RTL</font>*       : <a href="java_lang.html#type-Boolean">java_lang.Boolean</a>;
+                     <a name="type-SIZE"></a><font color="#cc0033">SIZE</font>*                    : <a href="#type-TextAttribute">TextAttribute</a>;
+                     <a name="type-STRIKETHROUGH"></a><font color="#cc0033">STRIKETHROUGH</font>*           : <a href="#type-TextAttribute">TextAttribute</a>;
+                     <a name="type-STRIKETHROUGH_ON"></a><font color="#cc0033">STRIKETHROUGH_ON</font>*        : <a href="java_lang.html#type-Boolean">java_lang.Boolean</a>;
+                     <a name="type-SUPERSCRIPT"></a><font color="#cc0033">SUPERSCRIPT</font>*             : <a href="#type-TextAttribute">TextAttribute</a>;
+                     <a name="type-SUPERSCRIPT_SUB"></a><font color="#cc0033">SUPERSCRIPT_SUB</font>*         : <a href="java_lang.html#type-Integer">java_lang.Integer</a>;
+                     <a name="type-SUPERSCRIPT_SUPER"></a><font color="#cc0033">SUPERSCRIPT_SUPER</font>*       : <a href="java_lang.html#type-Integer">java_lang.Integer</a>;
+                     <a name="type-SWAP_COLORS"></a><font color="#cc0033">SWAP_COLORS</font>*             : <a href="#type-TextAttribute">TextAttribute</a>;
+                     <a name="type-SWAP_COLORS_ON"></a><font color="#cc0033">SWAP_COLORS_ON</font>*          : <a href="java_lang.html#type-Boolean">java_lang.Boolean</a>;
+                     <a name="type-TRACKING"></a><font color="#cc0033">TRACKING</font>*                : <a href="#type-TextAttribute">TextAttribute</a>;
+                     <a name="type-TRACKING_LOOSE"></a><font color="#cc0033">TRACKING_LOOSE</font>*          : <a href="java_lang.html#type-Float">java_lang.Float</a>;
+                     <a name="type-TRACKING_TIGHT"></a><font color="#cc0033">TRACKING_TIGHT</font>*          : <a href="java_lang.html#type-Float">java_lang.Float</a>;
+                     <a name="type-TRANSFORM"></a><font color="#cc0033">TRANSFORM</font>*               : <a href="#type-TextAttribute">TextAttribute</a>;
+                     <a name="type-UNDERLINE"></a><font color="#cc0033">UNDERLINE</font>*               : <a href="#type-TextAttribute">TextAttribute</a>;
+                     <a name="type-UNDERLINE_LOW_DASHED"></a><font color="#cc0033">UNDERLINE_LOW_DASHED</font>*    : <a href="java_lang.html#type-Integer">java_lang.Integer</a>;
+                     <a name="type-UNDERLINE_LOW_DOTTED"></a><font color="#cc0033">UNDERLINE_LOW_DOTTED</font>*    : <a href="java_lang.html#type-Integer">java_lang.Integer</a>;
+                     <a name="type-UNDERLINE_LOW_GRAY"></a><font color="#cc0033">UNDERLINE_LOW_GRAY</font>*      : <a href="java_lang.html#type-Integer">java_lang.Integer</a>;
+                     <a name="type-UNDERLINE_LOW_ONE_PIXEL"></a><font color="#cc0033">UNDERLINE_LOW_ONE_PIXEL</font>* : <a href="java_lang.html#type-Integer">java_lang.Integer</a>;
+                     <a name="type-UNDERLINE_LOW_TWO_PIXEL"></a><font color="#cc0033">UNDERLINE_LOW_TWO_PIXEL</font>* : <a href="java_lang.html#type-Integer">java_lang.Integer</a>;
+                     <a name="type-UNDERLINE_ON"></a><font color="#cc0033">UNDERLINE_ON</font>*            : <a href="java_lang.html#type-Integer">java_lang.Integer</a>;
+                     <a name="type-WEIGHT"></a><font color="#cc0033">WEIGHT</font>*                  : <a href="#type-TextAttribute">TextAttribute</a>;
+                     <a name="type-WEIGHT_BOLD"></a><font color="#cc0033">WEIGHT_BOLD</font>*             : <a href="java_lang.html#type-Float">java_lang.Float</a>;
+                     <a name="type-WEIGHT_DEMIBOLD"></a><font color="#cc0033">WEIGHT_DEMIBOLD</font>*         : <a href="java_lang.html#type-Float">java_lang.Float</a>;
+                     <a name="type-WEIGHT_DEMILIGHT"></a><font color="#cc0033">WEIGHT_DEMILIGHT</font>*        : <a href="java_lang.html#type-Float">java_lang.Float</a>;
+                     <a name="type-WEIGHT_EXTRABOLD"></a><font color="#cc0033">WEIGHT_EXTRABOLD</font>*        : <a href="java_lang.html#type-Float">java_lang.Float</a>;
+                     <a name="type-WEIGHT_EXTRA_LIGHT"></a><font color="#cc0033">WEIGHT_EXTRA_LIGHT</font>*      : <a href="java_lang.html#type-Float">java_lang.Float</a>;
+                     <a name="type-WEIGHT_HEAVY"></a><font color="#cc0033">WEIGHT_HEAVY</font>*            : <a href="java_lang.html#type-Float">java_lang.Float</a>;
+                     <a name="type-WEIGHT_LIGHT"></a><font color="#cc0033">WEIGHT_LIGHT</font>*            : <a href="java_lang.html#type-Float">java_lang.Float</a>;
+                     <a name="type-WEIGHT_MEDIUM"></a><font color="#cc0033">WEIGHT_MEDIUM</font>*           : <a href="java_lang.html#type-Float">java_lang.Float</a>;
+                     <a name="type-WEIGHT_REGULAR"></a><font color="#cc0033">WEIGHT_REGULAR</font>*          : <a href="java_lang.html#type-Float">java_lang.Float</a>;
+                     <a name="type-WEIGHT_SEMIBOLD"></a><font color="#cc0033">WEIGHT_SEMIBOLD</font>*         : <a href="java_lang.html#type-Float">java_lang.Float</a>;
+                     <a name="type-WEIGHT_ULTRABOLD"></a><font color="#cc0033">WEIGHT_ULTRABOLD</font>*        : <a href="java_lang.html#type-Float">java_lang.Float</a>;
+                     <a name="type-WIDTH"></a><font color="#cc0033">WIDTH</font>*                   : <a href="#type-TextAttribute">TextAttribute</a>;
+                     <a name="type-WIDTH_CONDENSED"></a><font color="#cc0033">WIDTH_CONDENSED</font>*         : <a href="java_lang.html#type-Float">java_lang.Float</a>;
+                     <a name="type-WIDTH_EXTENDED"></a><font color="#cc0033">WIDTH_EXTENDED</font>*          : <a href="java_lang.html#type-Float">java_lang.Float</a>;
+                     <a name="type-WIDTH_REGULAR"></a><font color="#cc0033">WIDTH_REGULAR</font>*           : <a href="java_lang.html#type-Float">java_lang.Float</a>;
+                     <a name="type-WIDTH_SEMI_CONDENSED"></a><font color="#cc0033">WIDTH_SEMI_CONDENSED</font>*    : <a href="java_lang.html#type-Float">java_lang.Float</a>;
+                     <a name="type-WIDTH_SEMI_EXTENDED"></a><font color="#cc0033">WIDTH_SEMI_EXTENDED</font>*     : <a href="java_lang.html#type-Float">java_lang.Float</a>;
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-TextAttribute">TextAttribute</a><b>,CONSTRUCTOR</b>;
+                   <b>END</b>;
+
+  <a name="type-TextHitInfo"></a><font color="#cc0033">TextHitInfo</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                 <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                 <font color="green"><b> (* </b><a href="#meths-TextHitInfo">Typebound Procedures</a><b> *)</b></font>
+                 <b>STATIC</b>
+                   <b>PROCEDURE </b><font color="#cc0033">afterOffset</font>*(p0 : INTEGER) : <a href="#type-TextHitInfo">TextHitInfo</a>;
+                   <b>PROCEDURE </b><font color="#cc0033">beforeOffset</font>*(p0 : INTEGER) : <a href="#type-TextHitInfo">TextHitInfo</a>;
+                   <b>PROCEDURE </b><font color="#cc0033">leading</font>*(p0 : INTEGER) : <a href="#type-TextHitInfo">TextHitInfo</a>;
+                   <b>PROCEDURE </b><font color="#cc0033">trailing</font>*(p0 : INTEGER) : <a href="#type-TextHitInfo">TextHitInfo</a>;
+                 <b>END</b>;
+
+  <a name="type-TextLayout"></a><font color="#cc0033">TextLayout</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_lang.html#type-Cloneable">java_lang.Cloneable</a>)
+                <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                <font color="green"><b> (* </b><a href="#meths-TextLayout">Typebound Procedures</a><b> *)</b></font>
+                <b>STATIC</b>
+                  <a name="type-DEFAULT_CARET_POLICY"></a><font color="#cc0033">DEFAULT_CARET_POLICY</font>* : <a href="#type-TextLayout$CaretPolicy">TextLayout$CaretPolicy</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_text.html#type-AttributedCharacterIterator">java_text.AttributedCharacterIterator</a>;
+                                  p1 : <b>FontRenderContext</b>) : <a href="#type-TextLayout">TextLayout</a><b>,CONSTRUCTOR</b>;
+                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                  p1 : <a href="java_util.html#type-Map">java_util.Map</a>;
+                                  p2 : <b>FontRenderContext</b>) : <a href="#type-TextLayout">TextLayout</a><b>,CONSTRUCTOR</b>;
+                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                  p1 : <a href="java_awt.html#type-Font">java_awt.Font</a>;
+                                  p2 : <b>FontRenderContext</b>) : <a href="#type-TextLayout">TextLayout</a><b>,CONSTRUCTOR</b>;
+                <b>END</b>;
+
+  <a name="type-TextLayout$CaretPolicy"></a><font color="#cc0033">TextLayout$CaretPolicy</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                            <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                            <font color="green"><b> (* </b><a href="#meths-TextLayout$CaretPolicy">Typebound Procedures</a><b> *)</b></font>
+                            <b>STATIC</b>
+                              <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-TextLayout$CaretPolicy">TextLayout$CaretPolicy</a><b>,CONSTRUCTOR</b>;
+                            <b>END</b>;
+
+  <a name="type-TextMeasurer"></a><font color="#cc0033">TextMeasurer</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_lang.html#type-Cloneable">java_lang.Cloneable</a>)
+                  <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                  <font color="green"><b> (* </b><a href="#meths-TextMeasurer">Typebound Procedures</a><b> *)</b></font>
+                  <b>STATIC</b>
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_text.html#type-AttributedCharacterIterator">java_text.AttributedCharacterIterator</a>;
+                                    p1 : <b>FontRenderContext</b>) : <a href="#type-TextMeasurer">TextMeasurer</a><b>,CONSTRUCTOR</b>;
+                  <b>END</b>;
+
+  <a name="type-TransformAttribute"></a><font color="#cc0033">TransformAttribute</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_io.html#type-Serializable">java_io.Serializable</a>)
+                        <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                        <font color="green"><b> (* </b><a href="#meths-TransformAttribute">Typebound Procedures</a><b> *)</b></font>
+                        <b>STATIC</b>
+                          <a name="type-IDENTITY"></a><font color="#cc0033">IDENTITY</font>* : <a href="#type-TransformAttribute">TransformAttribute</a>;
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_awt_geom.html#type-AffineTransform">java_awt_geom.AffineTransform</a>) : <a href="#type-TransformAttribute">TransformAttribute</a><b>,CONSTRUCTOR</b>;
+                        <b>END</b>;
+
+
+
+<a name="meths-FontRenderContext"></a>
+<b>PROCEDURE </b>(self:FontRenderContext) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FontRenderContext) <font color="#cc0033">equals</font>*(p0 : <a href="#type-FontRenderContext">FontRenderContext</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FontRenderContext) <font color="#cc0033">getAntiAliasingHint</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FontRenderContext) <font color="#cc0033">getFractionalMetricsHint</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FontRenderContext) <font color="#cc0033">getTransform</font>*() : <a href="java_awt_geom.html#type-AffineTransform">java_awt_geom.AffineTransform</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FontRenderContext) <font color="#cc0033">getTransformType</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FontRenderContext) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FontRenderContext) <font color="#cc0033">isAntiAliased</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FontRenderContext) <font color="#cc0033">isTransformed</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FontRenderContext) <font color="#cc0033">usesFractionalMetrics</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-GlyphMetrics"></a>
+<b>PROCEDURE </b>(self:GlyphMetrics) <font color="#cc0033">getAdvance</font>*() : SHORTREAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:GlyphMetrics) <font color="#cc0033">getAdvanceX</font>*() : SHORTREAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:GlyphMetrics) <font color="#cc0033">getAdvanceY</font>*() : SHORTREAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:GlyphMetrics) <font color="#cc0033">getBounds2D</font>*() : <a href="java_awt_geom.html#type-Rectangle2D">java_awt_geom.Rectangle2D</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:GlyphMetrics) <font color="#cc0033">getLSB</font>*() : SHORTREAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:GlyphMetrics) <font color="#cc0033">getRSB</font>*() : SHORTREAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:GlyphMetrics) <font color="#cc0033">getType</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:GlyphMetrics) <font color="#cc0033">isCombining</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:GlyphMetrics) <font color="#cc0033">isComponent</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:GlyphMetrics) <font color="#cc0033">isLigature</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:GlyphMetrics) <font color="#cc0033">isStandard</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:GlyphMetrics) <font color="#cc0033">isWhitespace</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-GlyphVector"></a>
+<b>PROCEDURE </b>(self:GlyphVector) <font color="#cc0033">equals</font>*(p0 : <a href="#type-GlyphVector">GlyphVector</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:GlyphVector) <font color="#cc0033">getFont</font>*() : <a href="java_awt.html#type-Font">java_awt.Font</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:GlyphVector) <font color="#cc0033">getFontRenderContext</font>*() : <b>FontRenderContext</b><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:GlyphVector) <font color="#cc0033">getGlyphCharIndex</font>*(p0 : INTEGER) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:GlyphVector) <font color="#cc0033">getGlyphCharIndices</font>*(    p0 : INTEGER;
+                                                      p1 : INTEGER;
+                                                  IN  p2 : <b>ARRAY </b><b>OF </b>INTEGER) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:GlyphVector) <font color="#cc0033">getGlyphCode</font>*(p0 : INTEGER) : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:GlyphVector) <font color="#cc0033">getGlyphCodes</font>*(    p0 : INTEGER;
+                                                p1 : INTEGER;
+                                            IN  p2 : <b>ARRAY </b><b>OF </b>INTEGER) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:GlyphVector) <font color="#cc0033">getGlyphJustificationInfo</font>*(p0 : INTEGER) : <a href="#type-GlyphJustificationInfo">GlyphJustificationInfo</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:GlyphVector) <font color="#cc0033">getGlyphLogicalBounds</font>*(p0 : INTEGER) : <a href="java_awt.html#type-Shape">java_awt.Shape</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:GlyphVector) <font color="#cc0033">getGlyphMetrics</font>*(p0 : INTEGER) : <a href="#type-GlyphMetrics">GlyphMetrics</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:GlyphVector) <font color="#cc0033">getGlyphOutline</font>*(p0 : INTEGER) : <a href="java_awt.html#type-Shape">java_awt.Shape</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:GlyphVector) <font color="#cc0033">getGlyphOutline</font>*(p0 : INTEGER;
+                                              p1 : SHORTREAL;
+                                              p2 : SHORTREAL) : <a href="java_awt.html#type-Shape">java_awt.Shape</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:GlyphVector) <font color="#cc0033">getGlyphPixelBounds</font>*(p0 : INTEGER;
+                                                  p1 : <b>FontRenderContext</b>;
+                                                  p2 : SHORTREAL;
+                                                  p3 : SHORTREAL) : <a href="java_awt.html#type-Rectangle">java_awt.Rectangle</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:GlyphVector) <font color="#cc0033">getGlyphPosition</font>*(p0 : INTEGER) : <a href="java_awt_geom.html#type-Point2D">java_awt_geom.Point2D</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:GlyphVector) <font color="#cc0033">getGlyphPositions</font>*(    p0 : INTEGER;
+                                                    p1 : INTEGER;
+                                                IN  p2 : <b>ARRAY </b><b>OF </b>SHORTREAL) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>SHORTREAL<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:GlyphVector) <font color="#cc0033">getGlyphTransform</font>*(p0 : INTEGER) : <a href="java_awt_geom.html#type-AffineTransform">java_awt_geom.AffineTransform</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:GlyphVector) <font color="#cc0033">getGlyphVisualBounds</font>*(p0 : INTEGER) : <a href="java_awt.html#type-Shape">java_awt.Shape</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:GlyphVector) <font color="#cc0033">getLayoutFlags</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:GlyphVector) <font color="#cc0033">getLogicalBounds</font>*() : <a href="java_awt_geom.html#type-Rectangle2D">java_awt_geom.Rectangle2D</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:GlyphVector) <font color="#cc0033">getNumGlyphs</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:GlyphVector) <font color="#cc0033">getOutline</font>*() : <a href="java_awt.html#type-Shape">java_awt.Shape</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:GlyphVector) <font color="#cc0033">getOutline</font>*(p0 : SHORTREAL;
+                                         p1 : SHORTREAL) : <a href="java_awt.html#type-Shape">java_awt.Shape</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:GlyphVector) <font color="#cc0033">getPixelBounds</font>*(p0 : <b>FontRenderContext</b>;
+                                             p1 : SHORTREAL;
+                                             p2 : SHORTREAL) : <a href="java_awt.html#type-Rectangle">java_awt.Rectangle</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:GlyphVector) <font color="#cc0033">getVisualBounds</font>*() : <a href="java_awt_geom.html#type-Rectangle2D">java_awt_geom.Rectangle2D</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:GlyphVector) <font color="#cc0033">performDefaultLayout</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:GlyphVector) <font color="#cc0033">setGlyphPosition</font>*(p0 : INTEGER;
+                                               p1 : <a href="java_awt_geom.html#type-Point2D">java_awt_geom.Point2D</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:GlyphVector) <font color="#cc0033">setGlyphTransform</font>*(p0 : INTEGER;
+                                                p1 : <a href="java_awt_geom.html#type-AffineTransform">java_awt_geom.AffineTransform</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-GraphicAttribute"></a>
+<b>PROCEDURE </b>(self:GraphicAttribute) <font color="#cc0033">draw</font>*(p0 : <a href="java_awt.html#type-Graphics2D">java_awt.Graphics2D</a>;
+                                        p1 : SHORTREAL;
+                                        p2 : SHORTREAL)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:GraphicAttribute) <font color="#cc0033">getAdvance</font>*() : SHORTREAL<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:GraphicAttribute) <font color="#cc0033">getAlignment</font>*() : INTEGER<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:GraphicAttribute) <font color="#cc0033">getAscent</font>*() : SHORTREAL<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:GraphicAttribute) <font color="#cc0033">getBounds</font>*() : <a href="java_awt_geom.html#type-Rectangle2D">java_awt_geom.Rectangle2D</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:GraphicAttribute) <font color="#cc0033">getDescent</font>*() : SHORTREAL<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:GraphicAttribute) <font color="#cc0033">getJustificationInfo</font>*() : <a href="#type-GlyphJustificationInfo">GlyphJustificationInfo</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:GraphicAttribute) <font color="#cc0033">getOutline</font>*(p0 : <a href="java_awt_geom.html#type-AffineTransform">java_awt_geom.AffineTransform</a>) : <a href="java_awt.html#type-Shape">java_awt.Shape</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-ImageGraphicAttribute"></a>
+<b>PROCEDURE </b>(self:ImageGraphicAttribute) <font color="#cc0033">draw</font>*(p0 : <a href="java_awt.html#type-Graphics2D">java_awt.Graphics2D</a>;
+                                             p1 : SHORTREAL;
+                                             p2 : SHORTREAL)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageGraphicAttribute) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageGraphicAttribute) <font color="#cc0033">equals</font>*(p0 : <a href="#type-ImageGraphicAttribute">ImageGraphicAttribute</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageGraphicAttribute) <font color="#cc0033">getAdvance</font>*() : SHORTREAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageGraphicAttribute) <font color="#cc0033">getAscent</font>*() : SHORTREAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageGraphicAttribute) <font color="#cc0033">getBounds</font>*() : <a href="java_awt_geom.html#type-Rectangle2D">java_awt_geom.Rectangle2D</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageGraphicAttribute) <font color="#cc0033">getDescent</font>*() : SHORTREAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageGraphicAttribute) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-LayoutPath"></a>
+<b>PROCEDURE </b>(self:LayoutPath) <font color="#cc0033">pathToPoint</font>*(p0 : <a href="java_awt_geom.html#type-Point2D">java_awt_geom.Point2D</a>;
+                                         p1 : BOOLEAN;
+                                         p2 : <a href="java_awt_geom.html#type-Point2D">java_awt_geom.Point2D</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:LayoutPath) <font color="#cc0033">pointToPath</font>*(p0 : <a href="java_awt_geom.html#type-Point2D">java_awt_geom.Point2D</a>;
+                                         p1 : <a href="java_awt_geom.html#type-Point2D">java_awt_geom.Point2D</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+<a name="meths-LineBreakMeasurer"></a>
+<b>PROCEDURE </b>(self:LineBreakMeasurer) <font color="#cc0033">deleteChar</font>*(p0 : <a href="java_text.html#type-AttributedCharacterIterator">java_text.AttributedCharacterIterator</a>;
+                                               p1 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LineBreakMeasurer) <font color="#cc0033">getPosition</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LineBreakMeasurer) <font color="#cc0033">insertChar</font>*(p0 : <a href="java_text.html#type-AttributedCharacterIterator">java_text.AttributedCharacterIterator</a>;
+                                               p1 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LineBreakMeasurer) <font color="#cc0033">nextLayout</font>*(p0 : SHORTREAL;
+                                               p1 : INTEGER;
+                                               p2 : BOOLEAN) : <b>TextLayout</b><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LineBreakMeasurer) <font color="#cc0033">nextLayout</font>*(p0 : SHORTREAL) : <b>TextLayout</b><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LineBreakMeasurer) <font color="#cc0033">nextOffset</font>*(p0 : SHORTREAL;
+                                               p1 : INTEGER;
+                                               p2 : BOOLEAN) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LineBreakMeasurer) <font color="#cc0033">nextOffset</font>*(p0 : SHORTREAL) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LineBreakMeasurer) <font color="#cc0033">setPosition</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-LineMetrics"></a>
+<b>PROCEDURE </b>(self:LineMetrics) <font color="#cc0033">getAscent</font>*() : SHORTREAL<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:LineMetrics) <font color="#cc0033">getBaselineIndex</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:LineMetrics) <font color="#cc0033">getBaselineOffsets</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>SHORTREAL<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:LineMetrics) <font color="#cc0033">getDescent</font>*() : SHORTREAL<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:LineMetrics) <font color="#cc0033">getHeight</font>*() : SHORTREAL<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:LineMetrics) <font color="#cc0033">getLeading</font>*() : SHORTREAL<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:LineMetrics) <font color="#cc0033">getNumChars</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:LineMetrics) <font color="#cc0033">getStrikethroughOffset</font>*() : SHORTREAL<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:LineMetrics) <font color="#cc0033">getStrikethroughThickness</font>*() : SHORTREAL<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:LineMetrics) <font color="#cc0033">getUnderlineOffset</font>*() : SHORTREAL<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:LineMetrics) <font color="#cc0033">getUnderlineThickness</font>*() : SHORTREAL<b>,NEW,ABSTRACT</b>;
+<a name="meths-MultipleMaster"></a>
+<b>PROCEDURE </b>(self:MultipleMaster) <font color="#cc0033">deriveMMFont</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>SHORTREAL) : <a href="java_awt.html#type-Font">java_awt.Font</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MultipleMaster) <font color="#cc0033">deriveMMFont</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>SHORTREAL;
+                                                  p1 : SHORTREAL;
+                                                  p2 : SHORTREAL;
+                                                  p3 : SHORTREAL;
+                                                  p4 : SHORTREAL) : <a href="java_awt.html#type-Font">java_awt.Font</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MultipleMaster) <font color="#cc0033">getDesignAxisDefaults</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>SHORTREAL<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MultipleMaster) <font color="#cc0033">getDesignAxisNames</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MultipleMaster) <font color="#cc0033">getDesignAxisRanges</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>SHORTREAL<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MultipleMaster) <font color="#cc0033">getNumDesignAxes</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+<a name="meths-NumericShaper"></a>
+<b>PROCEDURE </b>(self:NumericShaper) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:NumericShaper) <font color="#cc0033">getRanges</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:NumericShaper) <font color="#cc0033">getRangeSet</font>*() : <a href="java_util.html#type-Set">java_util.Set</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:NumericShaper) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:NumericShaper) <font color="#cc0033">isContextual</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:NumericShaper) <font color="#cc0033">shape</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>CHAR;
+                                          p1 : INTEGER;
+                                          p2 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:NumericShaper) <font color="#cc0033">shape</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>CHAR;
+                                          p1 : INTEGER;
+                                          p2 : INTEGER;
+                                          p3 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:NumericShaper) <font color="#cc0033">shape</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>CHAR;
+                                          p1 : INTEGER;
+                                          p2 : INTEGER;
+                                          p3 : <a href="#type-NumericShaper$Range">NumericShaper$Range</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:NumericShaper) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-OpenType"></a>
+<b>PROCEDURE </b>(self:OpenType) <font color="#cc0033">getFontTable</font>*(p0 : INTEGER;
+                                        p1 : INTEGER;
+                                        p2 : INTEGER) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:OpenType) <font color="#cc0033">getFontTable</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                        p1 : INTEGER;
+                                        p2 : INTEGER) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:OpenType) <font color="#cc0033">getFontTable</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:OpenType) <font color="#cc0033">getFontTable</font>*(p0 : INTEGER) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:OpenType) <font color="#cc0033">getFontTableSize</font>*(p0 : INTEGER) : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:OpenType) <font color="#cc0033">getFontTableSize</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:OpenType) <font color="#cc0033">getVersion</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+<a name="meths-ShapeGraphicAttribute"></a>
+<b>PROCEDURE </b>(self:ShapeGraphicAttribute) <font color="#cc0033">draw</font>*(p0 : <a href="java_awt.html#type-Graphics2D">java_awt.Graphics2D</a>;
+                                             p1 : SHORTREAL;
+                                             p2 : SHORTREAL)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShapeGraphicAttribute) <font color="#cc0033">equals</font>*(p0 : <a href="#type-ShapeGraphicAttribute">ShapeGraphicAttribute</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShapeGraphicAttribute) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShapeGraphicAttribute) <font color="#cc0033">getAdvance</font>*() : SHORTREAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShapeGraphicAttribute) <font color="#cc0033">getAscent</font>*() : SHORTREAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShapeGraphicAttribute) <font color="#cc0033">getBounds</font>*() : <a href="java_awt_geom.html#type-Rectangle2D">java_awt_geom.Rectangle2D</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShapeGraphicAttribute) <font color="#cc0033">getDescent</font>*() : SHORTREAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShapeGraphicAttribute) <font color="#cc0033">getOutline</font>*(p0 : <a href="java_awt_geom.html#type-AffineTransform">java_awt_geom.AffineTransform</a>) : <a href="java_awt.html#type-Shape">java_awt.Shape</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShapeGraphicAttribute) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-TextAttribute"></a>
+<b>PROCEDURE </b>(self:TextAttribute) <font color="#cc0033">readResolve</font>!() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-TextHitInfo"></a>
+<b>PROCEDURE </b>(self:TextHitInfo) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TextHitInfo) <font color="#cc0033">equals</font>*(p0 : <a href="#type-TextHitInfo">TextHitInfo</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TextHitInfo) <font color="#cc0033">getCharIndex</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TextHitInfo) <font color="#cc0033">getInsertionIndex</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TextHitInfo) <font color="#cc0033">getOffsetHit</font>*(p0 : INTEGER) : <a href="#type-TextHitInfo">TextHitInfo</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TextHitInfo) <font color="#cc0033">getOtherHit</font>*() : <a href="#type-TextHitInfo">TextHitInfo</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TextHitInfo) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TextHitInfo) <font color="#cc0033">isLeadingEdge</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TextHitInfo) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-TextLayout"></a>
+<b>PROCEDURE </b>(self:TextLayout) <font color="#cc0033">clone</font>!() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TextLayout) <font color="#cc0033">draw</font>*(p0 : <a href="java_awt.html#type-Graphics2D">java_awt.Graphics2D</a>;
+                                  p1 : SHORTREAL;
+                                  p2 : SHORTREAL)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TextLayout) <font color="#cc0033">equals</font>*(p0 : <a href="#type-TextLayout">TextLayout</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TextLayout) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TextLayout) <font color="#cc0033">getAdvance</font>*() : SHORTREAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TextLayout) <font color="#cc0033">getAscent</font>*() : SHORTREAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TextLayout) <font color="#cc0033">getBaseline</font>*() : BYTE<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TextLayout) <font color="#cc0033">getBaselineOffsets</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>SHORTREAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TextLayout) <font color="#cc0033">getBlackBoxBounds</font>*(p0 : INTEGER;
+                                               p1 : INTEGER) : <a href="java_awt.html#type-Shape">java_awt.Shape</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TextLayout) <font color="#cc0033">getBounds</font>*() : <a href="java_awt_geom.html#type-Rectangle2D">java_awt_geom.Rectangle2D</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TextLayout) <font color="#cc0033">getCaretInfo</font>*(p0 : <a href="#type-TextHitInfo">TextHitInfo</a>;
+                                          p1 : <a href="java_awt_geom.html#type-Rectangle2D">java_awt_geom.Rectangle2D</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>SHORTREAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TextLayout) <font color="#cc0033">getCaretInfo</font>*(p0 : <a href="#type-TextHitInfo">TextHitInfo</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>SHORTREAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TextLayout) <font color="#cc0033">getCaretShape</font>*(p0 : <a href="#type-TextHitInfo">TextHitInfo</a>) : <a href="java_awt.html#type-Shape">java_awt.Shape</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TextLayout) <font color="#cc0033">getCaretShape</font>*(p0 : <a href="#type-TextHitInfo">TextHitInfo</a>;
+                                           p1 : <a href="java_awt_geom.html#type-Rectangle2D">java_awt_geom.Rectangle2D</a>) : <a href="java_awt.html#type-Shape">java_awt.Shape</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TextLayout) <font color="#cc0033">getCaretShapes</font>*(p0 : INTEGER;
+                                            p1 : <a href="java_awt_geom.html#type-Rectangle2D">java_awt_geom.Rectangle2D</a>;
+                                            p2 : <a href="#type-TextLayout$CaretPolicy">TextLayout$CaretPolicy</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_awt.html#type-Shape">java_awt.Shape</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TextLayout) <font color="#cc0033">getCaretShapes</font>*(p0 : INTEGER;
+                                            p1 : <a href="java_awt_geom.html#type-Rectangle2D">java_awt_geom.Rectangle2D</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_awt.html#type-Shape">java_awt.Shape</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TextLayout) <font color="#cc0033">getCaretShapes</font>*(p0 : INTEGER) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_awt.html#type-Shape">java_awt.Shape</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TextLayout) <font color="#cc0033">getCharacterCount</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TextLayout) <font color="#cc0033">getCharacterLevel</font>*(p0 : INTEGER) : BYTE<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TextLayout) <font color="#cc0033">getDescent</font>*() : SHORTREAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TextLayout) <font color="#cc0033">getJustifiedLayout</font>*(p0 : SHORTREAL) : <a href="#type-TextLayout">TextLayout</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TextLayout) <font color="#cc0033">getLayoutPath</font>*() : <a href="#type-LayoutPath">LayoutPath</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TextLayout) <font color="#cc0033">getLeading</font>*() : SHORTREAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TextLayout) <font color="#cc0033">getLogicalHighlightShape</font>*(p0 : INTEGER;
+                                                      p1 : INTEGER) : <a href="java_awt.html#type-Shape">java_awt.Shape</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TextLayout) <font color="#cc0033">getLogicalHighlightShape</font>*(p0 : INTEGER;
+                                                      p1 : INTEGER;
+                                                      p2 : <a href="java_awt_geom.html#type-Rectangle2D">java_awt_geom.Rectangle2D</a>) : <a href="java_awt.html#type-Shape">java_awt.Shape</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TextLayout) <font color="#cc0033">getLogicalRangesForVisualSelection</font>*(p0 : <a href="#type-TextHitInfo">TextHitInfo</a>;
+                                                                p1 : <a href="#type-TextHitInfo">TextHitInfo</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TextLayout) <font color="#cc0033">getNextLeftHit</font>*(p0 : INTEGER;
+                                            p1 : <a href="#type-TextLayout$CaretPolicy">TextLayout$CaretPolicy</a>) : <a href="#type-TextHitInfo">TextHitInfo</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TextLayout) <font color="#cc0033">getNextLeftHit</font>*(p0 : <a href="#type-TextHitInfo">TextHitInfo</a>) : <a href="#type-TextHitInfo">TextHitInfo</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TextLayout) <font color="#cc0033">getNextLeftHit</font>*(p0 : INTEGER) : <a href="#type-TextHitInfo">TextHitInfo</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TextLayout) <font color="#cc0033">getNextRightHit</font>*(p0 : INTEGER;
+                                             p1 : <a href="#type-TextLayout$CaretPolicy">TextLayout$CaretPolicy</a>) : <a href="#type-TextHitInfo">TextHitInfo</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TextLayout) <font color="#cc0033">getNextRightHit</font>*(p0 : <a href="#type-TextHitInfo">TextHitInfo</a>) : <a href="#type-TextHitInfo">TextHitInfo</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TextLayout) <font color="#cc0033">getNextRightHit</font>*(p0 : INTEGER) : <a href="#type-TextHitInfo">TextHitInfo</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TextLayout) <font color="#cc0033">getOutline</font>*(p0 : <a href="java_awt_geom.html#type-AffineTransform">java_awt_geom.AffineTransform</a>) : <a href="java_awt.html#type-Shape">java_awt.Shape</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TextLayout) <font color="#cc0033">getPixelBounds</font>*(p0 : <b>FontRenderContext</b>;
+                                            p1 : SHORTREAL;
+                                            p2 : SHORTREAL) : <a href="java_awt.html#type-Rectangle">java_awt.Rectangle</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TextLayout) <font color="#cc0033">getVisibleAdvance</font>*() : SHORTREAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TextLayout) <font color="#cc0033">getVisualHighlightShape</font>*(p0 : <a href="#type-TextHitInfo">TextHitInfo</a>;
+                                                     p1 : <a href="#type-TextHitInfo">TextHitInfo</a>) : <a href="java_awt.html#type-Shape">java_awt.Shape</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TextLayout) <font color="#cc0033">getVisualHighlightShape</font>*(p0 : <a href="#type-TextHitInfo">TextHitInfo</a>;
+                                                     p1 : <a href="#type-TextHitInfo">TextHitInfo</a>;
+                                                     p2 : <a href="java_awt_geom.html#type-Rectangle2D">java_awt_geom.Rectangle2D</a>) : <a href="java_awt.html#type-Shape">java_awt.Shape</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TextLayout) <font color="#cc0033">getVisualOtherHit</font>*(p0 : <a href="#type-TextHitInfo">TextHitInfo</a>) : <a href="#type-TextHitInfo">TextHitInfo</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TextLayout) <font color="#cc0033">handleJustify</font>!(p0 : SHORTREAL)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TextLayout) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TextLayout) <font color="#cc0033">hitTestChar</font>*(p0 : SHORTREAL;
+                                         p1 : SHORTREAL;
+                                         p2 : <a href="java_awt_geom.html#type-Rectangle2D">java_awt_geom.Rectangle2D</a>) : <a href="#type-TextHitInfo">TextHitInfo</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TextLayout) <font color="#cc0033">hitTestChar</font>*(p0 : SHORTREAL;
+                                         p1 : SHORTREAL) : <a href="#type-TextHitInfo">TextHitInfo</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TextLayout) <font color="#cc0033">hitToPoint</font>*(p0 : <a href="#type-TextHitInfo">TextHitInfo</a>;
+                                        p1 : <a href="java_awt_geom.html#type-Point2D">java_awt_geom.Point2D</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TextLayout) <font color="#cc0033">isLeftToRight</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TextLayout) <font color="#cc0033">isVertical</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TextLayout) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-TextLayout$CaretPolicy"></a>
+<b>PROCEDURE </b>(self:TextLayout$CaretPolicy) <font color="#cc0033">getStrongCaret</font>*(p0 : <a href="#type-TextHitInfo">TextHitInfo</a>;
+                                                        p1 : <a href="#type-TextHitInfo">TextHitInfo</a>;
+                                                        p2 : <b>TextLayout</b>) : <a href="#type-TextHitInfo">TextHitInfo</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-TextMeasurer"></a>
+<b>PROCEDURE </b>(self:TextMeasurer) <font color="#cc0033">clone</font>!() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TextMeasurer) <font color="#cc0033">deleteChar</font>*(p0 : <a href="java_text.html#type-AttributedCharacterIterator">java_text.AttributedCharacterIterator</a>;
+                                          p1 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TextMeasurer) <font color="#cc0033">getAdvanceBetween</font>*(p0 : INTEGER;
+                                                 p1 : INTEGER) : SHORTREAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TextMeasurer) <font color="#cc0033">getLayout</font>*(p0 : INTEGER;
+                                         p1 : INTEGER) : <a href="#type-TextLayout">TextLayout</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TextMeasurer) <font color="#cc0033">getLineBreakIndex</font>*(p0 : INTEGER;
+                                                 p1 : SHORTREAL) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TextMeasurer) <font color="#cc0033">insertChar</font>*(p0 : <a href="java_text.html#type-AttributedCharacterIterator">java_text.AttributedCharacterIterator</a>;
+                                          p1 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-TransformAttribute"></a>
+<b>PROCEDURE </b>(self:TransformAttribute) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TransformAttribute) <font color="#cc0033">getTransform</font>*() : <a href="java_awt_geom.html#type-AffineTransform">java_awt_geom.AffineTransform</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TransformAttribute) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TransformAttribute) <font color="#cc0033">isIdentity</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>END </b><font color="#cc0033">java_awt_font</font>.
+</font></pre></hr>
+<!-- BEGIN JavaScript -->
+<script>
+function toggle(node) {
+    node.classList.toggle("show"); 
+  }
+
+function cls(node) {
+    var prnt = node.parentNode;
+    var next = prnt.previousSibling;
+    var text = next.lastChild;
+    text.innerHTML = 
+        "The <b>class</b> property asserts that this type will be<br>" +
+        "implemented as a reference class in the underlying framework.";
+    text.classList.toggle("show");
+  }
+
+function newOk(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>has noArg-ctor</b> property asserts that this reference<br>" +
+        "class has a no-arg constructor, and thus objects of this<br>" +
+        "type can be allocated with NEW(). Component Pascal types<br>" +
+        "derived from this type can also be allocated using NEW().";
+    popuptext.classList.toggle("show"); 
+  }
+
+function noNew(node) { 
+    var prnt = node.parentNode; 
+    var next = prnt.previousSibling; 
+    var text = next.lastChild; 
+    text.innerHTML =  
+        "The <b>no noArg-ctor</b> property asserts that this reference<br>" +
+        "class does not have a noArg constructor. Objects of this<br>" +
+        "type cannot be allocated using NEW(), and Component<br>" +
+        "Pascal types  derived from this type also cannot be<br>" +
+        "allocated using NEW().";
+    text.classList.toggle("show");
+  }
+
+function noCpy(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>no value-assign</b> property asserts that this reference<br>" + 
+        "class does not have a value copy method. Therefore, it<br>" +
+        "is not possible to perform value assignments using<br>" +
+        "statements like <i>dst^</i> := <i>src^</i>";
+    popuptext.classList.toggle("show");
+  }
+
+function valueclass(node) { 
+        var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>valueclass</b> property asserts that this RECORD type is<br>" + 
+        "implemented as a value class in the CLR. It follows that<br>" +  
+        "value assignments can be made of these types. They can<br>" + 
+        "also be passed by value. Even pointers to records of<br>" + 
+        "such types may be dereferenced and copied using syntax<br>" + 
+        "such as  <i>dst^</i> := <i>src^</i>"; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+function argCtor(node) { 
+    var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>has arg-ctor</b> property asserts that this reference<br>" +  
+        "class has one or more constructors that take arguments.<br>" + 
+        "These constructors can be called from Component Pascal<br>" + 
+        "by calling an <i>init</i>(...) method from the static list<br>" + 
+        "here. Component Pascal types derived from this type<br>" + 
+        "can define constructors with arguments which call the<br>" + 
+        "super-type constructor.<br>" + 
+        "See <i>'Interfacing to constructors'</i> in the Release Notes."; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+</script>
+<!-- END JavaScript --> 
+
+</body></html>

@@ -1,0 +1,885 @@
+<html><head><title>javax_net_ssl</title>
+<style>
+<!-- BEGIN Inline CSS -->
+/* Popup container */
+.popup {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+/* The actual popup (appears on top) */
+.popup .popuptext {
+    visibility: hidden;
+    width: 430px;
+    background-color: white;
+    color: black;
+    text-align: left;
+    border-radius: 6px;
+    border-style: solid;
+    border-color: black;
+    padding: 8px 8px 8px 8px;
+    position: absolute;
+    z-index: 1;
+    margin-top: 30px;
+}
+
+/* Toggle this class when clicking on the popup container (hide and show the popup) */
+.popup .show {
+    visibility: visible;
+    opacity: 1;
+}
+
+</style>
+<!-- END Inline CSS -->
+</head><body bgcolor="white">
+<hr><pre>
+<font color="green">(*</font>
+<font color="green"> *  Creator j2cps version 1.4.07 (March 2018)</font>
+<font color="green"> *  Compiled from jar-file rt.jar</font>
+<font color="green"> *)</font>
+<b>FOREIGN MODULE </b><font color="#cc0033">javax_net_ssl</font>;
+
+<b>IMPORT</b>
+    <a href="javax_net.html">javax_net</a> := "javax.net",
+    <a href="javax_security_cert.html">javax_security_cert</a> := "javax.security.cert",
+    <a href="java_io.html">java_io</a> := "java.io",
+    <a href="java_lang.html">java_lang</a> := "java.lang",
+    <a href="java_net.html">java_net</a> := "java.net",
+    <a href="java_nio.html">java_nio</a> := "java.nio",
+    <a href="java_security.html">java_security</a> := "java.security",
+    <a href="java_security_cert.html">java_security_cert</a> := "java.security.cert",
+    <a href="java_util.html">java_util</a> := "java.util";
+
+<b>TYPE</b>
+
+  <a name="type-CertPathTrustManagerParameters"></a><font color="#cc0033">CertPathTrustManagerParameters</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <b>ManagerFactoryParameters</b>)
+                                    <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                                    <font color="green"><b> (* </b><a href="#meths-CertPathTrustManagerParameters">Typebound Procedures</a><b> *)</b></font>
+                                    <b>STATIC</b>
+                                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_security_cert.html#type-CertPathParameters">java_security_cert.CertPathParameters</a>) : <a href="#type-CertPathTrustManagerParameters">CertPathTrustManagerParameters</a><b>,CONSTRUCTOR</b>;
+                                    <b>END</b>;
+
+  <a name="type-ExtendedSSLSession"></a><font color="#cc0033">ExtendedSSLSession</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <b>SSLSession</b>)
+                        <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                        <font color="green"><b> (* </b><a href="#meths-ExtendedSSLSession">Typebound Procedures</a><b> *)</b></font>
+                        <b>STATIC</b>
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-ExtendedSSLSession">ExtendedSSLSession</a><b>,CONSTRUCTOR</b>;
+                        <b>END</b>;
+
+  <a name="type-HandshakeCompletedEvent"></a><font color="#cc0033">HandshakeCompletedEvent</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_util.html#type-EventObject">java_util.EventObject</a>)
+                             <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                             <font color="green"><b> (* </b><a href="#meths-HandshakeCompletedEvent">Typebound Procedures</a><b> *)</b></font>
+                             <b>STATIC</b>
+                               <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <b>SSLSocket</b>;
+                                               p1 : <b>SSLSession</b>) : <a href="#type-HandshakeCompletedEvent">HandshakeCompletedEvent</a><b>,CONSTRUCTOR</b>;
+                             <b>END</b>;
+
+  <a name="type-HandshakeCompletedListener"></a><font color="#cc0033">HandshakeCompletedListener</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_util.html#type-EventListener">java_util.EventListener</a>)
+                                <font color="green"><b> (* </b><a href="#meths-HandshakeCompletedListener">Typebound Procedures</a><b> *)</b></font>
+                                <b>END</b>;
+
+  <a name="type-HostnameVerifier"></a><font color="#cc0033">HostnameVerifier</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                      <font color="green"><b> (* </b><a href="#meths-HostnameVerifier">Typebound Procedures</a><b> *)</b></font>
+                      <b>END</b>;
+
+  <a name="type-HttpsURLConnection"></a><font color="#cc0033">HttpsURLConnection</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_net.html#type-HttpURLConnection">java_net.HttpURLConnection</a>)
+                        <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                        <font color="green"><b> (* </b><a href="#meths-HttpsURLConnection">Typebound Procedures</a><b> *)</b></font>
+                          <font color="#cc0033">hostnameVerifier</font>! : <a href="#type-HostnameVerifier">HostnameVerifier</a>;
+                        <b>STATIC</b>
+                          <b>PROCEDURE </b><font color="#cc0033">getDefaultHostnameVerifier</font>*() : <a href="#type-HostnameVerifier">HostnameVerifier</a>;
+                          <b>PROCEDURE </b><font color="#cc0033">getDefaultSSLSocketFactory</font>*() : <b>SSLSocketFactory</b>;
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : <a href="java_net.html#type-URL">java_net.URL</a>) : <a href="#type-HttpsURLConnection">HttpsURLConnection</a><b>,CONSTRUCTOR</b>;
+                          <b>PROCEDURE </b><font color="#cc0033">setDefaultHostnameVerifier</font>*(p0 : <a href="#type-HostnameVerifier">HostnameVerifier</a>);
+                          <b>PROCEDURE </b><font color="#cc0033">setDefaultSSLSocketFactory</font>*(p0 : <b>SSLSocketFactory</b>);
+                        <b>END</b>;
+
+  <a name="type-KeyManager"></a><font color="#cc0033">KeyManager</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                <b>END</b>;
+
+  <a name="type-KeyManagerFactory"></a><font color="#cc0033">KeyManagerFactory</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                       <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                       <font color="green"><b> (* </b><a href="#meths-KeyManagerFactory">Typebound Procedures</a><b> *)</b></font>
+                       <b>STATIC</b>
+                         <b>PROCEDURE </b><font color="#cc0033">getDefaultAlgorithm</font>*() : <a href="java_lang.html#type-String">java_lang.String</a>;
+                         <b>PROCEDURE </b><font color="#cc0033">getInstance</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-KeyManagerFactory">KeyManagerFactory</a>;
+                         <b>PROCEDURE </b><font color="#cc0033">getInstance</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                p1 : <a href="java_security.html#type-Provider">java_security.Provider</a>) : <a href="#type-KeyManagerFactory">KeyManagerFactory</a>;
+                         <b>PROCEDURE </b><font color="#cc0033">getInstance</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-KeyManagerFactory">KeyManagerFactory</a>;
+                         <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : <b>KeyManagerFactorySpi</b>;
+                                         p1 : <a href="java_security.html#type-Provider">java_security.Provider</a>;
+                                         p2 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-KeyManagerFactory">KeyManagerFactory</a><b>,CONSTRUCTOR</b>;
+                       <b>END</b>;
+
+  <a name="type-KeyManagerFactorySpi"></a><font color="#cc0033">KeyManagerFactorySpi</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                          <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                          <font color="green"><b> (* </b><a href="#meths-KeyManagerFactorySpi">Typebound Procedures</a><b> *)</b></font>
+                          <b>STATIC</b>
+                            <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-KeyManagerFactorySpi">KeyManagerFactorySpi</a><b>,CONSTRUCTOR</b>;
+                          <b>END</b>;
+
+  <a name="type-KeyStoreBuilderParameters"></a><font color="#cc0033">KeyStoreBuilderParameters</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <b>ManagerFactoryParameters</b>)
+                               <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                               <font color="green"><b> (* </b><a href="#meths-KeyStoreBuilderParameters">Typebound Procedures</a><b> *)</b></font>
+                               <b>STATIC</b>
+                                 <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_util.html#type-List">java_util.List</a>) : <a href="#type-KeyStoreBuilderParameters">KeyStoreBuilderParameters</a><b>,CONSTRUCTOR</b>;
+                                 <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_security.html#type-KeyStore$Builder">java_security.KeyStore$Builder</a>) : <a href="#type-KeyStoreBuilderParameters">KeyStoreBuilderParameters</a><b>,CONSTRUCTOR</b>;
+                               <b>END</b>;
+
+  <a name="type-ManagerFactoryParameters"></a><font color="#cc0033">ManagerFactoryParameters</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                              <b>END</b>;
+
+  <a name="type-SSLContext"></a><font color="#cc0033">SSLContext</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                <font color="green"><b> (* </b><a href="#meths-SSLContext">Typebound Procedures</a><b> *)</b></font>
+                <b>STATIC</b>
+                  <b>PROCEDURE </b><font color="#cc0033">getDefault</font>*() : <a href="#type-SSLContext">SSLContext</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">getInstance</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-SSLContext">SSLContext</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">getInstance</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                         p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-SSLContext">SSLContext</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">getInstance</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                         p1 : <a href="java_security.html#type-Provider">java_security.Provider</a>) : <a href="#type-SSLContext">SSLContext</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : <b>SSLContextSpi</b>;
+                                  p1 : <a href="java_security.html#type-Provider">java_security.Provider</a>;
+                                  p2 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-SSLContext">SSLContext</a><b>,CONSTRUCTOR</b>;
+                  <b>PROCEDURE </b><font color="#cc0033">setDefault</font>*(p0 : <a href="#type-SSLContext">SSLContext</a>);
+                <b>END</b>;
+
+  <a name="type-SSLContextSpi"></a><font color="#cc0033">SSLContextSpi</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                   <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                   <font color="green"><b> (* </b><a href="#meths-SSLContextSpi">Typebound Procedures</a><b> *)</b></font>
+                   <b>STATIC</b>
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-SSLContextSpi">SSLContextSpi</a><b>,CONSTRUCTOR</b>;
+                   <b>END</b>;
+
+  <a name="type-SSLEngine"></a><font color="#cc0033">SSLEngine</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+               <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+               <font color="green"><b> (* </b><a href="#meths-SSLEngine">Typebound Procedures</a><b> *)</b></font>
+               <b>STATIC</b>
+                 <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                 p1 : INTEGER) : <a href="#type-SSLEngine">SSLEngine</a><b>,CONSTRUCTOR</b>;
+                 <b>PROCEDURE </b><font color="#cc0033">Init</font>!() : <a href="#type-SSLEngine">SSLEngine</a><b>,CONSTRUCTOR</b>;
+               <b>END</b>;
+
+  <a name="type-SSLEngineResult"></a><font color="#cc0033">SSLEngineResult</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                     <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                     <font color="green"><b> (* </b><a href="#meths-SSLEngineResult">Typebound Procedures</a><b> *)</b></font>
+                     <b>STATIC</b>
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="#type-SSLEngineResult$Status">SSLEngineResult$Status</a>;
+                                       p1 : <a href="#type-SSLEngineResult$HandshakeStatus">SSLEngineResult$HandshakeStatus</a>;
+                                       p2 : INTEGER;
+                                       p3 : INTEGER) : <a href="#type-SSLEngineResult">SSLEngineResult</a><b>,CONSTRUCTOR</b>;
+                     <b>END</b>;
+
+  <a name="type-SSLEngineResult$HandshakeStatus"></a><font color="#cc0033">SSLEngineResult$HandshakeStatus</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Enum">java_lang.Enum</a>)
+                                     <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                                     <b>STATIC</b>
+                                       <a name="type-FINISHED"></a><font color="#cc0033">FINISHED</font>*        : <a href="#type-SSLEngineResult$HandshakeStatus">SSLEngineResult$HandshakeStatus</a>;
+                                       <a name="type-NEED_TASK"></a><font color="#cc0033">NEED_TASK</font>*       : <a href="#type-SSLEngineResult$HandshakeStatus">SSLEngineResult$HandshakeStatus</a>;
+                                       <a name="type-NEED_UNWRAP"></a><font color="#cc0033">NEED_UNWRAP</font>*     : <a href="#type-SSLEngineResult$HandshakeStatus">SSLEngineResult$HandshakeStatus</a>;
+                                       <a name="type-NEED_WRAP"></a><font color="#cc0033">NEED_WRAP</font>*       : <a href="#type-SSLEngineResult$HandshakeStatus">SSLEngineResult$HandshakeStatus</a>;
+                                       <a name="type-NOT_HANDSHAKING"></a><font color="#cc0033">NOT_HANDSHAKING</font>* : <a href="#type-SSLEngineResult$HandshakeStatus">SSLEngineResult$HandshakeStatus</a>;
+                                       <b>PROCEDURE </b><font color="#cc0033">valueOf</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-SSLEngineResult$HandshakeStatus">SSLEngineResult$HandshakeStatus</a>;
+                                       <b>PROCEDURE </b><font color="#cc0033">values</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-SSLEngineResult$HandshakeStatus">SSLEngineResult$HandshakeStatus</a>;
+                                     <b>END</b>;
+
+  <a name="type-SSLEngineResult$Status"></a><font color="#cc0033">SSLEngineResult$Status</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Enum">java_lang.Enum</a>)
+                            <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                            <b>STATIC</b>
+                              <a name="type-BUFFER_OVERFLOW"></a><font color="#cc0033">BUFFER_OVERFLOW</font>*  : <a href="#type-SSLEngineResult$Status">SSLEngineResult$Status</a>;
+                              <a name="type-BUFFER_UNDERFLOW"></a><font color="#cc0033">BUFFER_UNDERFLOW</font>* : <a href="#type-SSLEngineResult$Status">SSLEngineResult$Status</a>;
+                              <a name="type-CLOSED"></a><font color="#cc0033">CLOSED</font>*           : <a href="#type-SSLEngineResult$Status">SSLEngineResult$Status</a>;
+                              <a name="type-OK"></a><font color="#cc0033">OK</font>*               : <a href="#type-SSLEngineResult$Status">SSLEngineResult$Status</a>;
+                              <b>PROCEDURE </b><font color="#cc0033">valueOf</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-SSLEngineResult$Status">SSLEngineResult$Status</a>;
+                              <b>PROCEDURE </b><font color="#cc0033">values</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-SSLEngineResult$Status">SSLEngineResult$Status</a>;
+                            <b>END</b>;
+
+  <a name="type-SSLException"></a><font color="#cc0033">SSLException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_io.html#type-IOException">java_io.IOException</a>)
+                  <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                  <b>STATIC</b>
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-Throwable">java_lang.Throwable</a>) : <a href="#type-SSLException">SSLException</a><b>,CONSTRUCTOR</b>;
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                    p1 : <a href="java_lang.html#type-Throwable">java_lang.Throwable</a>) : <a href="#type-SSLException">SSLException</a><b>,CONSTRUCTOR</b>;
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-SSLException">SSLException</a><b>,CONSTRUCTOR</b>;
+                  <b>END</b>;
+
+  <a name="type-SSLHandshakeException"></a><font color="#cc0033">SSLHandshakeException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-SSLException">SSLException</a>)
+                           <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                           <b>STATIC</b>
+                             <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-SSLHandshakeException">SSLHandshakeException</a><b>,CONSTRUCTOR</b>;
+                           <b>END</b>;
+
+  <a name="type-SSLKeyException"></a><font color="#cc0033">SSLKeyException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-SSLException">SSLException</a>)
+                     <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                     <b>STATIC</b>
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-SSLKeyException">SSLKeyException</a><b>,CONSTRUCTOR</b>;
+                     <b>END</b>;
+
+  <a name="type-SSLParameters"></a><font color="#cc0033">SSLParameters</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                   <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                   <font color="green"><b> (* </b><a href="#meths-SSLParameters">Typebound Procedures</a><b> *)</b></font>
+                   <b>STATIC</b>
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>;
+                                     IN  p1 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-SSLParameters">SSLParameters</a><b>,CONSTRUCTOR</b>;
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-SSLParameters">SSLParameters</a><b>,CONSTRUCTOR</b>;
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-SSLParameters">SSLParameters</a><b>,CONSTRUCTOR</b>;
+                   <b>END</b>;
+
+  <a name="type-SSLPeerUnverifiedException"></a><font color="#cc0033">SSLPeerUnverifiedException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-SSLException">SSLException</a>)
+                                <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                                <b>STATIC</b>
+                                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-SSLPeerUnverifiedException">SSLPeerUnverifiedException</a><b>,CONSTRUCTOR</b>;
+                                <b>END</b>;
+
+  <a name="type-SSLPermission"></a><font color="#cc0033">SSLPermission</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_security.html#type-BasicPermission">java_security.BasicPermission</a>)
+                   <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                   <b>STATIC</b>
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                     p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-SSLPermission">SSLPermission</a><b>,CONSTRUCTOR</b>;
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-SSLPermission">SSLPermission</a><b>,CONSTRUCTOR</b>;
+                   <b>END</b>;
+
+  <a name="type-SSLProtocolException"></a><font color="#cc0033">SSLProtocolException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-SSLException">SSLException</a>)
+                          <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                          <b>STATIC</b>
+                            <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-SSLProtocolException">SSLProtocolException</a><b>,CONSTRUCTOR</b>;
+                          <b>END</b>;
+
+  <a name="type-SSLServerSocket"></a><font color="#cc0033">SSLServerSocket</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_net.html#type-ServerSocket">java_net.ServerSocket</a>)
+                     <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                     <font color="green"><b> (* </b><a href="#meths-SSLServerSocket">Typebound Procedures</a><b> *)</b></font>
+                     <b>STATIC</b>
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : INTEGER;
+                                       p1 : INTEGER) : <a href="#type-SSLServerSocket">SSLServerSocket</a><b>,CONSTRUCTOR</b>;
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : INTEGER;
+                                       p1 : INTEGER;
+                                       p2 : <a href="java_net.html#type-InetAddress">java_net.InetAddress</a>) : <a href="#type-SSLServerSocket">SSLServerSocket</a><b>,CONSTRUCTOR</b>;
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>!() : <a href="#type-SSLServerSocket">SSLServerSocket</a><b>,CONSTRUCTOR</b>;
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : INTEGER) : <a href="#type-SSLServerSocket">SSLServerSocket</a><b>,CONSTRUCTOR</b>;
+                     <b>END</b>;
+
+  <a name="type-SSLServerSocketFactory"></a><font color="#cc0033">SSLServerSocketFactory</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="javax_net.html#type-ServerSocketFactory">javax_net.ServerSocketFactory</a>)
+                            <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                            <font color="green"><b> (* </b><a href="#meths-SSLServerSocketFactory">Typebound Procedures</a><b> *)</b></font>
+                            <b>STATIC</b>
+                              <b>PROCEDURE </b><font color="#cc0033">getDefault</font>*() : <a href="javax_net.html#type-ServerSocketFactory">javax_net.ServerSocketFactory</a>;
+                              <b>PROCEDURE </b><font color="#cc0033">Init</font>!() : <a href="#type-SSLServerSocketFactory">SSLServerSocketFactory</a><b>,CONSTRUCTOR</b>;
+                            <b>END</b>;
+
+  <a name="type-SSLSession"></a><font color="#cc0033">SSLSession</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                <font color="green"><b> (* </b><a href="#meths-SSLSession">Typebound Procedures</a><b> *)</b></font>
+                <b>END</b>;
+
+  <a name="type-SSLSessionBindingEvent"></a><font color="#cc0033">SSLSessionBindingEvent</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_util.html#type-EventObject">java_util.EventObject</a>)
+                            <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                            <font color="green"><b> (* </b><a href="#meths-SSLSessionBindingEvent">Typebound Procedures</a><b> *)</b></font>
+                            <b>STATIC</b>
+                              <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="#type-SSLSession">SSLSession</a>;
+                                              p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-SSLSessionBindingEvent">SSLSessionBindingEvent</a><b>,CONSTRUCTOR</b>;
+                            <b>END</b>;
+
+  <a name="type-SSLSessionBindingListener"></a><font color="#cc0033">SSLSessionBindingListener</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_util.html#type-EventListener">java_util.EventListener</a>)
+                               <font color="green"><b> (* </b><a href="#meths-SSLSessionBindingListener">Typebound Procedures</a><b> *)</b></font>
+                               <b>END</b>;
+
+  <a name="type-SSLSessionContext"></a><font color="#cc0033">SSLSessionContext</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                       <font color="green"><b> (* </b><a href="#meths-SSLSessionContext">Typebound Procedures</a><b> *)</b></font>
+                       <b>END</b>;
+
+  <a name="type-SSLSocket"></a><font color="#cc0033">SSLSocket</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_net.html#type-Socket">java_net.Socket</a>)
+               <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+               <font color="green"><b> (* </b><a href="#meths-SSLSocket">Typebound Procedures</a><b> *)</b></font>
+               <b>STATIC</b>
+                 <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                 p1 : INTEGER;
+                                 p2 : <a href="java_net.html#type-InetAddress">java_net.InetAddress</a>;
+                                 p3 : INTEGER) : <a href="#type-SSLSocket">SSLSocket</a><b>,CONSTRUCTOR</b>;
+                 <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : <a href="java_net.html#type-InetAddress">java_net.InetAddress</a>;
+                                 p1 : INTEGER;
+                                 p2 : <a href="java_net.html#type-InetAddress">java_net.InetAddress</a>;
+                                 p3 : INTEGER) : <a href="#type-SSLSocket">SSLSocket</a><b>,CONSTRUCTOR</b>;
+                 <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : <a href="java_net.html#type-InetAddress">java_net.InetAddress</a>;
+                                 p1 : INTEGER) : <a href="#type-SSLSocket">SSLSocket</a><b>,CONSTRUCTOR</b>;
+                 <b>PROCEDURE </b><font color="#cc0033">Init</font>!() : <a href="#type-SSLSocket">SSLSocket</a><b>,CONSTRUCTOR</b>;
+                 <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                 p1 : INTEGER) : <a href="#type-SSLSocket">SSLSocket</a><b>,CONSTRUCTOR</b>;
+               <b>END</b>;
+
+  <a name="type-SSLSocketFactory"></a><font color="#cc0033">SSLSocketFactory</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="javax_net.html#type-SocketFactory">javax_net.SocketFactory</a>)
+                      <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                      <font color="green"><b> (* </b><a href="#meths-SSLSocketFactory">Typebound Procedures</a><b> *)</b></font>
+                      <b>STATIC</b>
+                        <b>PROCEDURE </b><font color="#cc0033">getDefault</font>*() : <a href="javax_net.html#type-SocketFactory">javax_net.SocketFactory</a>;
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-SSLSocketFactory">SSLSocketFactory</a><b>,CONSTRUCTOR</b>;
+                      <b>END</b>;
+
+  <a name="type-TrustManager"></a><font color="#cc0033">TrustManager</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                  <b>END</b>;
+
+  <a name="type-TrustManagerFactory"></a><font color="#cc0033">TrustManagerFactory</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                         <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                         <font color="green"><b> (* </b><a href="#meths-TrustManagerFactory">Typebound Procedures</a><b> *)</b></font>
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">getDefaultAlgorithm</font>*() : <a href="java_lang.html#type-String">java_lang.String</a>;
+                           <b>PROCEDURE </b><font color="#cc0033">getInstance</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                  p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-TrustManagerFactory">TrustManagerFactory</a>;
+                           <b>PROCEDURE </b><font color="#cc0033">getInstance</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                  p1 : <a href="java_security.html#type-Provider">java_security.Provider</a>) : <a href="#type-TrustManagerFactory">TrustManagerFactory</a>;
+                           <b>PROCEDURE </b><font color="#cc0033">getInstance</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-TrustManagerFactory">TrustManagerFactory</a>;
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : <b>TrustManagerFactorySpi</b>;
+                                           p1 : <a href="java_security.html#type-Provider">java_security.Provider</a>;
+                                           p2 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-TrustManagerFactory">TrustManagerFactory</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-TrustManagerFactorySpi"></a><font color="#cc0033">TrustManagerFactorySpi</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                            <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                            <font color="green"><b> (* </b><a href="#meths-TrustManagerFactorySpi">Typebound Procedures</a><b> *)</b></font>
+                            <b>STATIC</b>
+                              <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-TrustManagerFactorySpi">TrustManagerFactorySpi</a><b>,CONSTRUCTOR</b>;
+                            <b>END</b>;
+
+  <a name="type-X509ExtendedKeyManager"></a><font color="#cc0033">X509ExtendedKeyManager</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <b>X509KeyManager</b>)
+                            <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                            <font color="green"><b> (* </b><a href="#meths-X509ExtendedKeyManager">Typebound Procedures</a><b> *)</b></font>
+                            <b>STATIC</b>
+                              <b>PROCEDURE </b><font color="#cc0033">Init</font>!() : <a href="#type-X509ExtendedKeyManager">X509ExtendedKeyManager</a><b>,CONSTRUCTOR</b>;
+                            <b>END</b>;
+
+  <a name="type-X509ExtendedTrustManager"></a><font color="#cc0033">X509ExtendedTrustManager</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <b>X509TrustManager</b>)
+                              <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                              <font color="green"><b> (* </b><a href="#meths-X509ExtendedTrustManager">Typebound Procedures</a><b> *)</b></font>
+                              <b>STATIC</b>
+                                <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-X509ExtendedTrustManager">X509ExtendedTrustManager</a><b>,CONSTRUCTOR</b>;
+                              <b>END</b>;
+
+  <a name="type-X509KeyManager"></a><font color="#cc0033">X509KeyManager</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-KeyManager">KeyManager</a>)
+                    <font color="green"><b> (* </b><a href="#meths-X509KeyManager">Typebound Procedures</a><b> *)</b></font>
+                    <b>END</b>;
+
+  <a name="type-X509TrustManager"></a><font color="#cc0033">X509TrustManager</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-TrustManager">TrustManager</a>)
+                      <font color="green"><b> (* </b><a href="#meths-X509TrustManager">Typebound Procedures</a><b> *)</b></font>
+                      <b>END</b>;
+
+
+
+<a name="meths-CertPathTrustManagerParameters"></a>
+<b>PROCEDURE </b>(self:CertPathTrustManagerParameters) <font color="#cc0033">getParameters</font>*() : <a href="java_security_cert.html#type-CertPathParameters">java_security_cert.CertPathParameters</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-ExtendedSSLSession"></a>
+<b>PROCEDURE </b>(self:ExtendedSSLSession) <font color="#cc0033">getLocalSupportedSignatureAlgorithms</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ExtendedSSLSession) <font color="#cc0033">getPeerSupportedSignatureAlgorithms</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-HandshakeCompletedEvent"></a>
+<b>PROCEDURE </b>(self:HandshakeCompletedEvent) <font color="#cc0033">getCipherSuite</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HandshakeCompletedEvent) <font color="#cc0033">getLocalCertificates</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_security_cert.html#type-Certificate">java_security_cert.Certificate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HandshakeCompletedEvent) <font color="#cc0033">getLocalPrincipal</font>*() : <a href="java_security.html#type-Principal">java_security.Principal</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HandshakeCompletedEvent) <font color="#cc0033">getPeerCertificateChain</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="javax_security_cert.html#type-X509Certificate">javax_security_cert.X509Certificate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HandshakeCompletedEvent) <font color="#cc0033">getPeerCertificates</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_security_cert.html#type-Certificate">java_security_cert.Certificate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HandshakeCompletedEvent) <font color="#cc0033">getPeerPrincipal</font>*() : <a href="java_security.html#type-Principal">java_security.Principal</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HandshakeCompletedEvent) <font color="#cc0033">getSession</font>*() : <b>SSLSession</b><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HandshakeCompletedEvent) <font color="#cc0033">getSocket</font>*() : <b>SSLSocket</b><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-HandshakeCompletedListener"></a>
+<b>PROCEDURE </b>(self:HandshakeCompletedListener) <font color="#cc0033">handshakeCompleted</font>*(p0 : <a href="#type-HandshakeCompletedEvent">HandshakeCompletedEvent</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-HostnameVerifier"></a>
+<b>PROCEDURE </b>(self:HostnameVerifier) <font color="#cc0033">verify</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                          p1 : <b>SSLSession</b>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+<a name="meths-HttpsURLConnection"></a>
+<b>PROCEDURE </b>(self:HttpsURLConnection) <font color="#cc0033">getCipherSuite</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:HttpsURLConnection) <font color="#cc0033">getHostnameVerifier</font>*() : <a href="#type-HostnameVerifier">HostnameVerifier</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HttpsURLConnection) <font color="#cc0033">getLocalCertificates</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_security_cert.html#type-Certificate">java_security_cert.Certificate</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:HttpsURLConnection) <font color="#cc0033">getLocalPrincipal</font>*() : <a href="java_security.html#type-Principal">java_security.Principal</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HttpsURLConnection) <font color="#cc0033">getPeerPrincipal</font>*() : <a href="java_security.html#type-Principal">java_security.Principal</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HttpsURLConnection) <font color="#cc0033">getServerCertificates</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_security_cert.html#type-Certificate">java_security_cert.Certificate</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:HttpsURLConnection) <font color="#cc0033">getSSLSocketFactory</font>*() : <b>SSLSocketFactory</b><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HttpsURLConnection) <font color="#cc0033">setHostnameVerifier</font>*(p0 : <a href="#type-HostnameVerifier">HostnameVerifier</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HttpsURLConnection) <font color="#cc0033">setSSLSocketFactory</font>*(p0 : <b>SSLSocketFactory</b>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-KeyManagerFactory"></a>
+<b>PROCEDURE </b>(self:KeyManagerFactory) <font color="#cc0033">getAlgorithm</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:KeyManagerFactory) <font color="#cc0033">getKeyManagers</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-KeyManager">KeyManager</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:KeyManagerFactory) <font color="#cc0033">getProvider</font>*() : <a href="java_security.html#type-Provider">java_security.Provider</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:KeyManagerFactory) <font color="#cc0033">init</font>*(p0 : <b>ManagerFactoryParameters</b>)<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:KeyManagerFactory) <font color="#cc0033">init</font>*(    p0 : <a href="java_security.html#type-KeyStore">java_security.KeyStore</a>;
+                                         IN  p1 : <b>ARRAY </b><b>OF </b>CHAR)<b>,NEW</b>;
+<a name="meths-KeyManagerFactorySpi"></a>
+<b>PROCEDURE </b>(self:KeyManagerFactorySpi) <font color="#cc0033">engineGetKeyManagers</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-KeyManager">KeyManager</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:KeyManagerFactorySpi) <font color="#cc0033">engineInit</font>!(p0 : <b>ManagerFactoryParameters</b>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:KeyManagerFactorySpi) <font color="#cc0033">engineInit</font>!(    p0 : <a href="java_security.html#type-KeyStore">java_security.KeyStore</a>;
+                                                  IN  p1 : <b>ARRAY </b><b>OF </b>CHAR)<b>,NEW,ABSTRACT</b>;
+<a name="meths-KeyStoreBuilderParameters"></a>
+<b>PROCEDURE </b>(self:KeyStoreBuilderParameters) <font color="#cc0033">getParameters</font>*() : <a href="java_util.html#type-List">java_util.List</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-SSLContext"></a>
+<b>PROCEDURE </b>(self:SSLContext) <font color="#cc0033">createSSLEngine</font>*() : <b>SSLEngine</b><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:SSLContext) <font color="#cc0033">createSSLEngine</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                             p1 : INTEGER) : <b>SSLEngine</b><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:SSLContext) <font color="#cc0033">getClientSessionContext</font>*() : <b>SSLSessionContext</b><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:SSLContext) <font color="#cc0033">getDefaultSSLParameters</font>*() : <b>SSLParameters</b><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:SSLContext) <font color="#cc0033">getProtocol</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:SSLContext) <font color="#cc0033">getProvider</font>*() : <a href="java_security.html#type-Provider">java_security.Provider</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:SSLContext) <font color="#cc0033">getServerSessionContext</font>*() : <b>SSLSessionContext</b><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:SSLContext) <font color="#cc0033">getServerSocketFactory</font>*() : <b>SSLServerSocketFactory</b><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:SSLContext) <font color="#cc0033">getSocketFactory</font>*() : <b>SSLSocketFactory</b><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:SSLContext) <font color="#cc0033">getSupportedSSLParameters</font>*() : <b>SSLParameters</b><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:SSLContext) <font color="#cc0033">init</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="#type-KeyManager">KeyManager</a>;
+                                  IN  p1 : <b>ARRAY </b><b>OF </b><b>TrustManager</b>;
+                                      p2 : <a href="java_security.html#type-SecureRandom">java_security.SecureRandom</a>)<b>,NEW</b>;
+<a name="meths-SSLContextSpi"></a>
+<b>PROCEDURE </b>(self:SSLContextSpi) <font color="#cc0033">engineCreateSSLEngine</font>!() : <b>SSLEngine</b><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SSLContextSpi) <font color="#cc0033">engineCreateSSLEngine</font>!(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                      p1 : INTEGER) : <b>SSLEngine</b><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SSLContextSpi) <font color="#cc0033">engineGetClientSessionContext</font>!() : <b>SSLSessionContext</b><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SSLContextSpi) <font color="#cc0033">engineGetDefaultSSLParameters</font>!() : <b>SSLParameters</b><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SSLContextSpi) <font color="#cc0033">engineGetServerSessionContext</font>!() : <b>SSLSessionContext</b><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SSLContextSpi) <font color="#cc0033">engineGetServerSocketFactory</font>!() : <b>SSLServerSocketFactory</b><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SSLContextSpi) <font color="#cc0033">engineGetSocketFactory</font>!() : <b>SSLSocketFactory</b><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SSLContextSpi) <font color="#cc0033">engineGetSupportedSSLParameters</font>!() : <b>SSLParameters</b><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SSLContextSpi) <font color="#cc0033">engineInit</font>!(IN  p0 : <b>ARRAY </b><b>OF </b><a href="#type-KeyManager">KeyManager</a>;
+                                           IN  p1 : <b>ARRAY </b><b>OF </b><b>TrustManager</b>;
+                                               p2 : <a href="java_security.html#type-SecureRandom">java_security.SecureRandom</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-SSLEngine"></a>
+<b>PROCEDURE </b>(self:SSLEngine) <font color="#cc0033">beginHandshake</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SSLEngine) <font color="#cc0033">closeInbound</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SSLEngine) <font color="#cc0033">closeOutbound</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SSLEngine) <font color="#cc0033">getDelegatedTask</font>*() : <a href="java_lang.html#type-Runnable">java_lang.Runnable</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SSLEngine) <font color="#cc0033">getEnabledCipherSuites</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SSLEngine) <font color="#cc0033">getEnabledProtocols</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SSLEngine) <font color="#cc0033">getEnableSessionCreation</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SSLEngine) <font color="#cc0033">getHandshakeSession</font>*() : <b>SSLSession</b><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SSLEngine) <font color="#cc0033">getHandshakeStatus</font>*() : <b>SSLEngineResult$HandshakeStatus</b><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SSLEngine) <font color="#cc0033">getNeedClientAuth</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SSLEngine) <font color="#cc0033">getPeerHost</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SSLEngine) <font color="#cc0033">getPeerPort</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SSLEngine) <font color="#cc0033">getSession</font>*() : <b>SSLSession</b><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SSLEngine) <font color="#cc0033">getSSLParameters</font>*() : <b>SSLParameters</b><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SSLEngine) <font color="#cc0033">getSupportedCipherSuites</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SSLEngine) <font color="#cc0033">getSupportedProtocols</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SSLEngine) <font color="#cc0033">getUseClientMode</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SSLEngine) <font color="#cc0033">getWantClientAuth</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SSLEngine) <font color="#cc0033">isInboundDone</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SSLEngine) <font color="#cc0033">isOutboundDone</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SSLEngine) <font color="#cc0033">setEnabledCipherSuites</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SSLEngine) <font color="#cc0033">setEnabledProtocols</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SSLEngine) <font color="#cc0033">setEnableSessionCreation</font>*(p0 : BOOLEAN)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SSLEngine) <font color="#cc0033">setNeedClientAuth</font>*(p0 : BOOLEAN)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SSLEngine) <font color="#cc0033">setSSLParameters</font>*(p0 : <b>SSLParameters</b>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SSLEngine) <font color="#cc0033">setUseClientMode</font>*(p0 : BOOLEAN)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SSLEngine) <font color="#cc0033">setWantClientAuth</font>*(p0 : BOOLEAN)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SSLEngine) <font color="#cc0033">unwrap</font>*(    p0 : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>;
+                                   IN  p1 : <b>ARRAY </b><b>OF </b><a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>) : <b>SSLEngineResult</b><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SSLEngine) <font color="#cc0033">unwrap</font>*(p0 : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>;
+                                   p1 : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>) : <b>SSLEngineResult</b><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SSLEngine) <font color="#cc0033">unwrap</font>*(    p0 : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>;
+                                   IN  p1 : <b>ARRAY </b><b>OF </b><a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>;
+                                       p2 : INTEGER;
+                                       p3 : INTEGER) : <b>SSLEngineResult</b><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SSLEngine) <font color="#cc0033">wrap</font>*(p0 : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>;
+                                 p1 : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>) : <b>SSLEngineResult</b><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SSLEngine) <font color="#cc0033">wrap</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>;
+                                     p1 : INTEGER;
+                                     p2 : INTEGER;
+                                     p3 : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>) : <b>SSLEngineResult</b><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SSLEngine) <font color="#cc0033">wrap</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>;
+                                     p1 : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>) : <b>SSLEngineResult</b><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-SSLEngineResult"></a>
+<b>PROCEDURE </b>(self:SSLEngineResult) <font color="#cc0033">bytesConsumed</font>*() : INTEGER<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:SSLEngineResult) <font color="#cc0033">bytesProduced</font>*() : INTEGER<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:SSLEngineResult) <font color="#cc0033">getHandshakeStatus</font>*() : <a href="#type-SSLEngineResult$HandshakeStatus">SSLEngineResult$HandshakeStatus</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:SSLEngineResult) <font color="#cc0033">getStatus</font>*() : <a href="#type-SSLEngineResult$Status">SSLEngineResult$Status</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:SSLEngineResult) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-SSLParameters"></a>
+<b>PROCEDURE </b>(self:SSLParameters) <font color="#cc0033">getAlgorithmConstraints</font>*() : <a href="java_security.html#type-AlgorithmConstraints">java_security.AlgorithmConstraints</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SSLParameters) <font color="#cc0033">getCipherSuites</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SSLParameters) <font color="#cc0033">getEndpointIdentificationAlgorithm</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SSLParameters) <font color="#cc0033">getNeedClientAuth</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SSLParameters) <font color="#cc0033">getProtocols</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SSLParameters) <font color="#cc0033">getWantClientAuth</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SSLParameters) <font color="#cc0033">setAlgorithmConstraints</font>*(p0 : <a href="java_security.html#type-AlgorithmConstraints">java_security.AlgorithmConstraints</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SSLParameters) <font color="#cc0033">setCipherSuites</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SSLParameters) <font color="#cc0033">setEndpointIdentificationAlgorithm</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SSLParameters) <font color="#cc0033">setNeedClientAuth</font>*(p0 : BOOLEAN)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SSLParameters) <font color="#cc0033">setProtocols</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SSLParameters) <font color="#cc0033">setWantClientAuth</font>*(p0 : BOOLEAN)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-SSLServerSocket"></a>
+<b>PROCEDURE </b>(self:SSLServerSocket) <font color="#cc0033">getEnabledCipherSuites</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SSLServerSocket) <font color="#cc0033">getEnabledProtocols</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SSLServerSocket) <font color="#cc0033">getEnableSessionCreation</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SSLServerSocket) <font color="#cc0033">getNeedClientAuth</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SSLServerSocket) <font color="#cc0033">getSSLParameters</font>*() : <a href="#type-SSLParameters">SSLParameters</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SSLServerSocket) <font color="#cc0033">getSupportedCipherSuites</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SSLServerSocket) <font color="#cc0033">getSupportedProtocols</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SSLServerSocket) <font color="#cc0033">getUseClientMode</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SSLServerSocket) <font color="#cc0033">getWantClientAuth</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SSLServerSocket) <font color="#cc0033">setEnabledCipherSuites</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SSLServerSocket) <font color="#cc0033">setEnabledProtocols</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SSLServerSocket) <font color="#cc0033">setEnableSessionCreation</font>*(p0 : BOOLEAN)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SSLServerSocket) <font color="#cc0033">setNeedClientAuth</font>*(p0 : BOOLEAN)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SSLServerSocket) <font color="#cc0033">setSSLParameters</font>*(p0 : <a href="#type-SSLParameters">SSLParameters</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SSLServerSocket) <font color="#cc0033">setUseClientMode</font>*(p0 : BOOLEAN)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SSLServerSocket) <font color="#cc0033">setWantClientAuth</font>*(p0 : BOOLEAN)<b>,NEW,ABSTRACT</b>;
+<a name="meths-SSLServerSocketFactory"></a>
+<b>PROCEDURE </b>(self:SSLServerSocketFactory) <font color="#cc0033">getDefaultCipherSuites</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SSLServerSocketFactory) <font color="#cc0033">getSupportedCipherSuites</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-SSLSession"></a>
+<b>PROCEDURE </b>(self:SSLSession) <font color="#cc0033">getApplicationBufferSize</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SSLSession) <font color="#cc0033">getCipherSuite</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SSLSession) <font color="#cc0033">getCreationTime</font>*() : LONGINT<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SSLSession) <font color="#cc0033">getId</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SSLSession) <font color="#cc0033">getLastAccessedTime</font>*() : LONGINT<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SSLSession) <font color="#cc0033">getLocalCertificates</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_security_cert.html#type-Certificate">java_security_cert.Certificate</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SSLSession) <font color="#cc0033">getLocalPrincipal</font>*() : <a href="java_security.html#type-Principal">java_security.Principal</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SSLSession) <font color="#cc0033">getPacketBufferSize</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SSLSession) <font color="#cc0033">getPeerCertificateChain</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="javax_security_cert.html#type-X509Certificate">javax_security_cert.X509Certificate</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SSLSession) <font color="#cc0033">getPeerCertificates</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_security_cert.html#type-Certificate">java_security_cert.Certificate</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SSLSession) <font color="#cc0033">getPeerHost</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SSLSession) <font color="#cc0033">getPeerPort</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SSLSession) <font color="#cc0033">getPeerPrincipal</font>*() : <a href="java_security.html#type-Principal">java_security.Principal</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SSLSession) <font color="#cc0033">getProtocol</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SSLSession) <font color="#cc0033">getSessionContext</font>*() : <b>SSLSessionContext</b><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SSLSession) <font color="#cc0033">getValue</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SSLSession) <font color="#cc0033">getValueNames</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SSLSession) <font color="#cc0033">invalidate</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SSLSession) <font color="#cc0033">isValid</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SSLSession) <font color="#cc0033">putValue</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                      p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SSLSession) <font color="#cc0033">removeValue</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-SSLSessionBindingEvent"></a>
+<b>PROCEDURE </b>(self:SSLSessionBindingEvent) <font color="#cc0033">getName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SSLSessionBindingEvent) <font color="#cc0033">getSession</font>*() : <a href="#type-SSLSession">SSLSession</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-SSLSessionBindingListener"></a>
+<b>PROCEDURE </b>(self:SSLSessionBindingListener) <font color="#cc0033">valueBound</font>*(p0 : <a href="#type-SSLSessionBindingEvent">SSLSessionBindingEvent</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SSLSessionBindingListener) <font color="#cc0033">valueUnbound</font>*(p0 : <a href="#type-SSLSessionBindingEvent">SSLSessionBindingEvent</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-SSLSessionContext"></a>
+<b>PROCEDURE </b>(self:SSLSessionContext) <font color="#cc0033">getIds</font>*() : <a href="java_util.html#type-Enumeration">java_util.Enumeration</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SSLSessionContext) <font color="#cc0033">getSession</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE) : <a href="#type-SSLSession">SSLSession</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SSLSessionContext) <font color="#cc0033">getSessionCacheSize</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SSLSessionContext) <font color="#cc0033">getSessionTimeout</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SSLSessionContext) <font color="#cc0033">setSessionCacheSize</font>*(p0 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SSLSessionContext) <font color="#cc0033">setSessionTimeout</font>*(p0 : INTEGER)<b>,NEW,ABSTRACT</b>;
+<a name="meths-SSLSocket"></a>
+<b>PROCEDURE </b>(self:SSLSocket) <font color="#cc0033">addHandshakeCompletedListener</font>*(p0 : <a href="#type-HandshakeCompletedListener">HandshakeCompletedListener</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SSLSocket) <font color="#cc0033">getEnabledCipherSuites</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SSLSocket) <font color="#cc0033">getEnabledProtocols</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SSLSocket) <font color="#cc0033">getEnableSessionCreation</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SSLSocket) <font color="#cc0033">getHandshakeSession</font>*() : <a href="#type-SSLSession">SSLSession</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SSLSocket) <font color="#cc0033">getNeedClientAuth</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SSLSocket) <font color="#cc0033">getSession</font>*() : <a href="#type-SSLSession">SSLSession</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SSLSocket) <font color="#cc0033">getSSLParameters</font>*() : <a href="#type-SSLParameters">SSLParameters</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SSLSocket) <font color="#cc0033">getSupportedCipherSuites</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SSLSocket) <font color="#cc0033">getSupportedProtocols</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SSLSocket) <font color="#cc0033">getUseClientMode</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SSLSocket) <font color="#cc0033">getWantClientAuth</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SSLSocket) <font color="#cc0033">removeHandshakeCompletedListener</font>*(p0 : <a href="#type-HandshakeCompletedListener">HandshakeCompletedListener</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SSLSocket) <font color="#cc0033">setEnabledCipherSuites</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SSLSocket) <font color="#cc0033">setEnabledProtocols</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SSLSocket) <font color="#cc0033">setEnableSessionCreation</font>*(p0 : BOOLEAN)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SSLSocket) <font color="#cc0033">setNeedClientAuth</font>*(p0 : BOOLEAN)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SSLSocket) <font color="#cc0033">setSSLParameters</font>*(p0 : <a href="#type-SSLParameters">SSLParameters</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SSLSocket) <font color="#cc0033">setUseClientMode</font>*(p0 : BOOLEAN)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SSLSocket) <font color="#cc0033">setWantClientAuth</font>*(p0 : BOOLEAN)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SSLSocket) <font color="#cc0033">startHandshake</font>*()<b>,NEW,ABSTRACT</b>;
+<a name="meths-SSLSocketFactory"></a>
+<b>PROCEDURE </b>(self:SSLSocketFactory) <font color="#cc0033">createSocket</font>*(p0 : <a href="java_net.html#type-Socket">java_net.Socket</a>;
+                                                p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                p2 : INTEGER;
+                                                p3 : BOOLEAN) : <a href="java_net.html#type-Socket">java_net.Socket</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SSLSocketFactory) <font color="#cc0033">getDefaultCipherSuites</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SSLSocketFactory) <font color="#cc0033">getSupportedCipherSuites</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-TrustManagerFactory"></a>
+<b>PROCEDURE </b>(self:TrustManagerFactory) <font color="#cc0033">getAlgorithm</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:TrustManagerFactory) <font color="#cc0033">getProvider</font>*() : <a href="java_security.html#type-Provider">java_security.Provider</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:TrustManagerFactory) <font color="#cc0033">getTrustManagers</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-TrustManager">TrustManager</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:TrustManagerFactory) <font color="#cc0033">init</font>*(p0 : <a href="#type-ManagerFactoryParameters">ManagerFactoryParameters</a>)<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:TrustManagerFactory) <font color="#cc0033">init</font>*(p0 : <a href="java_security.html#type-KeyStore">java_security.KeyStore</a>)<b>,NEW</b>;
+<a name="meths-TrustManagerFactorySpi"></a>
+<b>PROCEDURE </b>(self:TrustManagerFactorySpi) <font color="#cc0033">engineGetTrustManagers</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-TrustManager">TrustManager</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TrustManagerFactorySpi) <font color="#cc0033">engineInit</font>!(p0 : <a href="#type-ManagerFactoryParameters">ManagerFactoryParameters</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TrustManagerFactorySpi) <font color="#cc0033">engineInit</font>!(p0 : <a href="java_security.html#type-KeyStore">java_security.KeyStore</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-X509ExtendedKeyManager"></a>
+<b>PROCEDURE </b>(self:X509ExtendedKeyManager) <font color="#cc0033">chooseEngineClientAlias</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>;
+                                                                 IN  p1 : <b>ARRAY </b><b>OF </b><a href="java_security.html#type-Principal">java_security.Principal</a>;
+                                                                     p2 : <a href="#type-SSLEngine">SSLEngine</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:X509ExtendedKeyManager) <font color="#cc0033">chooseEngineServerAlias</font>*(    p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                                 IN  p1 : <b>ARRAY </b><b>OF </b><a href="java_security.html#type-Principal">java_security.Principal</a>;
+                                                                     p2 : <a href="#type-SSLEngine">SSLEngine</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-X509ExtendedTrustManager"></a>
+<b>PROCEDURE </b>(self:X509ExtendedTrustManager) <font color="#cc0033">checkClientTrusted</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="java_security_cert.html#type-X509Certificate">java_security_cert.X509Certificate</a>;
+                                                                  p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                                  p2 : <a href="#type-SSLEngine">SSLEngine</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:X509ExtendedTrustManager) <font color="#cc0033">checkClientTrusted</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="java_security_cert.html#type-X509Certificate">java_security_cert.X509Certificate</a>;
+                                                                  p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                                  p2 : <a href="java_net.html#type-Socket">java_net.Socket</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:X509ExtendedTrustManager) <font color="#cc0033">checkServerTrusted</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="java_security_cert.html#type-X509Certificate">java_security_cert.X509Certificate</a>;
+                                                                  p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                                  p2 : <a href="#type-SSLEngine">SSLEngine</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:X509ExtendedTrustManager) <font color="#cc0033">checkServerTrusted</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="java_security_cert.html#type-X509Certificate">java_security_cert.X509Certificate</a>;
+                                                                  p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                                  p2 : <a href="java_net.html#type-Socket">java_net.Socket</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-X509KeyManager"></a>
+<b>PROCEDURE </b>(self:X509KeyManager) <font color="#cc0033">chooseClientAlias</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>;
+                                                   IN  p1 : <b>ARRAY </b><b>OF </b><a href="java_security.html#type-Principal">java_security.Principal</a>;
+                                                       p2 : <a href="java_net.html#type-Socket">java_net.Socket</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:X509KeyManager) <font color="#cc0033">chooseServerAlias</font>*(    p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                   IN  p1 : <b>ARRAY </b><b>OF </b><a href="java_security.html#type-Principal">java_security.Principal</a>;
+                                                       p2 : <a href="java_net.html#type-Socket">java_net.Socket</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:X509KeyManager) <font color="#cc0033">getCertificateChain</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_security_cert.html#type-X509Certificate">java_security_cert.X509Certificate</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:X509KeyManager) <font color="#cc0033">getClientAliases</font>*(    p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                  IN  p1 : <b>ARRAY </b><b>OF </b><a href="java_security.html#type-Principal">java_security.Principal</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:X509KeyManager) <font color="#cc0033">getPrivateKey</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_security.html#type-PrivateKey">java_security.PrivateKey</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:X509KeyManager) <font color="#cc0033">getServerAliases</font>*(    p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                  IN  p1 : <b>ARRAY </b><b>OF </b><a href="java_security.html#type-Principal">java_security.Principal</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-X509TrustManager"></a>
+<b>PROCEDURE </b>(self:X509TrustManager) <font color="#cc0033">checkClientTrusted</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="java_security_cert.html#type-X509Certificate">java_security_cert.X509Certificate</a>;
+                                                          p1 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:X509TrustManager) <font color="#cc0033">checkServerTrusted</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="java_security_cert.html#type-X509Certificate">java_security_cert.X509Certificate</a>;
+                                                          p1 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:X509TrustManager) <font color="#cc0033">getAcceptedIssuers</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_security_cert.html#type-X509Certificate">java_security_cert.X509Certificate</a><b>,NEW,ABSTRACT</b>;
+
+<b>END </b><font color="#cc0033">javax_net_ssl</font>.
+</font></pre></hr>
+<!-- BEGIN JavaScript -->
+<script>
+function toggle(node) {
+    node.classList.toggle("show"); 
+  }
+
+function cls(node) {
+    var prnt = node.parentNode;
+    var next = prnt.previousSibling;
+    var text = next.lastChild;
+    text.innerHTML = 
+        "The <b>class</b> property asserts that this type will be<br>" +
+        "implemented as a reference class in the underlying framework.";
+    text.classList.toggle("show");
+  }
+
+function newOk(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>has noArg-ctor</b> property asserts that this reference<br>" +
+        "class has a no-arg constructor, and thus objects of this<br>" +
+        "type can be allocated with NEW(). Component Pascal types<br>" +
+        "derived from this type can also be allocated using NEW().";
+    popuptext.classList.toggle("show"); 
+  }
+
+function noNew(node) { 
+    var prnt = node.parentNode; 
+    var next = prnt.previousSibling; 
+    var text = next.lastChild; 
+    text.innerHTML =  
+        "The <b>no noArg-ctor</b> property asserts that this reference<br>" +
+        "class does not have a noArg constructor. Objects of this<br>" +
+        "type cannot be allocated using NEW(), and Component<br>" +
+        "Pascal types  derived from this type also cannot be<br>" +
+        "allocated using NEW().";
+    text.classList.toggle("show");
+  }
+
+function noCpy(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>no value-assign</b> property asserts that this reference<br>" + 
+        "class does not have a value copy method. Therefore, it<br>" +
+        "is not possible to perform value assignments using<br>" +
+        "statements like <i>dst^</i> := <i>src^</i>";
+    popuptext.classList.toggle("show");
+  }
+
+function valueclass(node) { 
+        var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>valueclass</b> property asserts that this RECORD type is<br>" + 
+        "implemented as a value class in the CLR. It follows that<br>" +  
+        "value assignments can be made of these types. They can<br>" + 
+        "also be passed by value. Even pointers to records of<br>" + 
+        "such types may be dereferenced and copied using syntax<br>" + 
+        "such as  <i>dst^</i> := <i>src^</i>"; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+function argCtor(node) { 
+    var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>has arg-ctor</b> property asserts that this reference<br>" +  
+        "class has one or more constructors that take arguments.<br>" + 
+        "These constructors can be called from Component Pascal<br>" + 
+        "by calling an <i>init</i>(...) method from the static list<br>" + 
+        "here. Component Pascal types derived from this type<br>" + 
+        "can define constructors with arguments which call the<br>" + 
+        "super-type constructor.<br>" + 
+        "See <i>'Interfacing to constructors'</i> in the Release Notes."; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+</script>
+<!-- END JavaScript --> 
+
+</body></html>

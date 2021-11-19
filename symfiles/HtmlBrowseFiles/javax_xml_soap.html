@@ -1,0 +1,764 @@
+<html><head><title>javax_xml_soap</title>
+<style>
+<!-- BEGIN Inline CSS -->
+/* Popup container */
+.popup {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+/* The actual popup (appears on top) */
+.popup .popuptext {
+    visibility: hidden;
+    width: 430px;
+    background-color: white;
+    color: black;
+    text-align: left;
+    border-radius: 6px;
+    border-style: solid;
+    border-color: black;
+    padding: 8px 8px 8px 8px;
+    position: absolute;
+    z-index: 1;
+    margin-top: 30px;
+}
+
+/* Toggle this class when clicking on the popup container (hide and show the popup) */
+.popup .show {
+    visibility: visible;
+    opacity: 1;
+}
+
+</style>
+<!-- END Inline CSS -->
+</head><body bgcolor="white">
+<hr><pre>
+<font color="green">(*</font>
+<font color="green"> *  Creator j2cps version 1.4.07 (March 2018)</font>
+<font color="green"> *  Compiled from jar-file rt.jar</font>
+<font color="green"> *)</font>
+<b>FOREIGN MODULE </b><font color="#cc0033">javax_xml_soap</font>;
+
+<b>IMPORT</b>
+    <a href="javax_activation.html">javax_activation</a> := "javax.activation",
+    <a href="javax_xml_namespace.html">javax_xml_namespace</a> := "javax.xml.namespace",
+    <a href="javax_xml_transform.html">javax_xml_transform</a> := "javax.xml.transform",
+    <a href="javax_xml_transform_dom.html">javax_xml_transform_dom</a> := "javax.xml.transform.dom",
+    <a href="java_io.html">java_io</a> := "java.io",
+    <a href="java_lang.html">java_lang</a> := "java.lang",
+    <a href="java_util.html">java_util</a> := "java.util",
+    <a href="org_w3c_dom.html">org_w3c_dom</a> := "org.w3c.dom";
+
+<b>TYPE</b>
+
+  <a name="type-AttachmentPart"></a><font color="#cc0033">AttachmentPart</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                    <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                    <font color="green"><b> (* </b><a href="#meths-AttachmentPart">Typebound Procedures</a><b> *)</b></font>
+                    <b>STATIC</b>
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-AttachmentPart">AttachmentPart</a><b>,CONSTRUCTOR</b>;
+                    <b>END</b>;
+
+  <a name="type-Detail"></a><font color="#cc0033">Detail</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <b>SOAPFaultElement</b>)
+            <font color="green"><b> (* </b><a href="#meths-Detail">Typebound Procedures</a><b> *)</b></font>
+            <b>END</b>;
+
+  <a name="type-DetailEntry"></a><font color="#cc0033">DetailEntry</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <b>SOAPElement</b>)
+                 <b>END</b>;
+
+  <a name="type-MessageFactory"></a><font color="#cc0033">MessageFactory</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                    <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                    <font color="green"><b> (* </b><a href="#meths-MessageFactory">Typebound Procedures</a><b> *)</b></font>
+                    <b>STATIC</b>
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-MessageFactory">MessageFactory</a><b>,CONSTRUCTOR</b>;
+                      <b>PROCEDURE </b><font color="#cc0033">newInstance</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-MessageFactory">MessageFactory</a>;
+                      <b>PROCEDURE </b><font color="#cc0033">newInstance</font>*() : <a href="#type-MessageFactory">MessageFactory</a>;
+                    <b>END</b>;
+
+  <a name="type-MimeHeader"></a><font color="#cc0033">MimeHeader</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                <font color="green"><b> (* </b><a href="#meths-MimeHeader">Typebound Procedures</a><b> *)</b></font>
+                <b>STATIC</b>
+                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                  p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-MimeHeader">MimeHeader</a><b>,CONSTRUCTOR</b>;
+                <b>END</b>;
+
+  <a name="type-MimeHeaders"></a><font color="#cc0033">MimeHeaders</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                 <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                 <font color="green"><b> (* </b><a href="#meths-MimeHeaders">Typebound Procedures</a><b> *)</b></font>
+                 <b>STATIC</b>
+                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-MimeHeaders">MimeHeaders</a><b>,CONSTRUCTOR</b>;
+                 <b>END</b>;
+
+  <a name="type-Name"></a><font color="#cc0033">Name</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+          <font color="green"><b> (* </b><a href="#meths-Name">Typebound Procedures</a><b> *)</b></font>
+          <b>END</b>;
+
+  <a name="type-Node"></a><font color="#cc0033">Node</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="org_w3c_dom.html#type-Node">org_w3c_dom.Node</a>)
+          <font color="green"><b> (* </b><a href="#meths-Node">Typebound Procedures</a><b> *)</b></font>
+          <b>END</b>;
+
+  <a name="type-SAAJMetaFactory"></a><font color="#cc0033">SAAJMetaFactory</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                     <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                     <font color="green"><b> (* </b><a href="#meths-SAAJMetaFactory">Typebound Procedures</a><b> *)</b></font>
+                     <b>STATIC</b>
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>!() : <a href="#type-SAAJMetaFactory">SAAJMetaFactory</a><b>,CONSTRUCTOR</b>;
+                     <b>END</b>;
+
+  <a name="type-SAAJResult"></a><font color="#cc0033">SAAJResult</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="javax_xml_transform_dom.html#type-DOMResult">javax_xml_transform_dom.DOMResult</a>)
+                <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                <font color="green"><b> (* </b><a href="#meths-SAAJResult">Typebound Procedures</a><b> *)</b></font>
+                <b>STATIC</b>
+                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <b>SOAPMessage</b>) : <a href="#type-SAAJResult">SAAJResult</a><b>,CONSTRUCTOR</b>;
+                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <b>SOAPElement</b>) : <a href="#type-SAAJResult">SAAJResult</a><b>,CONSTRUCTOR</b>;
+                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-SAAJResult">SAAJResult</a><b>,CONSTRUCTOR</b>;
+                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-SAAJResult">SAAJResult</a><b>,CONSTRUCTOR</b>;
+                <b>END</b>;
+
+  <a name="type-SOAPBody"></a><font color="#cc0033">SOAPBody</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <b>SOAPElement</b>)
+              <font color="green"><b> (* </b><a href="#meths-SOAPBody">Typebound Procedures</a><b> *)</b></font>
+              <b>END</b>;
+
+  <a name="type-SOAPBodyElement"></a><font color="#cc0033">SOAPBodyElement</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <b>SOAPElement</b>)
+                     <b>END</b>;
+
+  <a name="type-SOAPConnection"></a><font color="#cc0033">SOAPConnection</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                    <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                    <font color="green"><b> (* </b><a href="#meths-SOAPConnection">Typebound Procedures</a><b> *)</b></font>
+                    <b>STATIC</b>
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-SOAPConnection">SOAPConnection</a><b>,CONSTRUCTOR</b>;
+                    <b>END</b>;
+
+  <a name="type-SOAPConnectionFactory"></a><font color="#cc0033">SOAPConnectionFactory</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                           <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                           <font color="green"><b> (* </b><a href="#meths-SOAPConnectionFactory">Typebound Procedures</a><b> *)</b></font>
+                           <b>STATIC</b>
+                             <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-SOAPConnectionFactory">SOAPConnectionFactory</a><b>,CONSTRUCTOR</b>;
+                             <b>PROCEDURE </b><font color="#cc0033">newInstance</font>*() : <a href="#type-SOAPConnectionFactory">SOAPConnectionFactory</a>;
+                           <b>END</b>;
+
+  <a name="type-SOAPConstants"></a><font color="#cc0033">SOAPConstants</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                   <b>STATIC</b>
+                     <font color="#cc0033">DEFAULT_SOAP_PROTOCOL</font>*               = "SOAP 1.1 Protocol";
+                     <font color="#cc0033">DYNAMIC_SOAP_PROTOCOL</font>*               = "Dynamic Protocol";
+                     <font color="#cc0033">SOAP_1_1_CONTENT_TYPE</font>*               = "text/xml";
+                     <font color="#cc0033">SOAP_1_1_PROTOCOL</font>*                   = "SOAP 1.1 Protocol";
+                     <font color="#cc0033">SOAP_1_2_CONTENT_TYPE</font>*               = "application/soap+xml";
+                     <font color="#cc0033">SOAP_1_2_PROTOCOL</font>*                   = "SOAP 1.2 Protocol";
+                     <a name="type-SOAP_DATAENCODINGUNKNOWN_FAULT"></a><font color="#cc0033">SOAP_DATAENCODINGUNKNOWN_FAULT</font>*      : <a href="javax_xml_namespace.html#type-QName">javax_xml_namespace.QName</a>;
+                     <font color="#cc0033">SOAP_ENV_PREFIX</font>*                     = "env";
+                     <a name="type-SOAP_MUSTUNDERSTAND_FAULT"></a><font color="#cc0033">SOAP_MUSTUNDERSTAND_FAULT</font>*           : <a href="javax_xml_namespace.html#type-QName">javax_xml_namespace.QName</a>;
+                     <a name="type-SOAP_RECEIVER_FAULT"></a><font color="#cc0033">SOAP_RECEIVER_FAULT</font>*                 : <a href="javax_xml_namespace.html#type-QName">javax_xml_namespace.QName</a>;
+                     <a name="type-SOAP_SENDER_FAULT"></a><font color="#cc0033">SOAP_SENDER_FAULT</font>*                   : <a href="javax_xml_namespace.html#type-QName">javax_xml_namespace.QName</a>;
+                     <a name="type-SOAP_VERSIONMISMATCH_FAULT"></a><font color="#cc0033">SOAP_VERSIONMISMATCH_FAULT</font>*          : <a href="javax_xml_namespace.html#type-QName">javax_xml_namespace.QName</a>;
+                     <font color="#cc0033">URI_NS_SOAP_1_1_ENVELOPE</font>*            = "http://schemas.xmlsoap.org/soap/envelope/";
+                     <font color="#cc0033">URI_NS_SOAP_1_2_ENCODING</font>*            = "http://www.w3.org/2003/05/soap-encoding";
+                     <font color="#cc0033">URI_NS_SOAP_1_2_ENVELOPE</font>*            = "http://www.w3.org/2003/05/soap-envelope";
+                     <font color="#cc0033">URI_NS_SOAP_ENCODING</font>*                = "http://schemas.xmlsoap.org/soap/encoding/";
+                     <font color="#cc0033">URI_NS_SOAP_ENVELOPE</font>*                = "http://schemas.xmlsoap.org/soap/envelope/";
+                     <font color="#cc0033">URI_SOAP_1_2_ROLE_NEXT</font>*              = "http://www.w3.org/2003/05/soap-envelope/role/next";
+                     <font color="#cc0033">URI_SOAP_1_2_ROLE_NONE</font>*              = "http://www.w3.org/2003/05/soap-envelope/role/none";
+                     <font color="#cc0033">URI_SOAP_1_2_ROLE_ULTIMATE_RECEIVER</font>* = "http://www.w3.org/2003/05/soap-envelope/role/ultimateReceiver";
+                     <font color="#cc0033">URI_SOAP_ACTOR_NEXT</font>*                 = "http://schemas.xmlsoap.org/soap/actor/next";
+                   <b>END</b>;
+
+  <a name="type-SOAPElement"></a><font color="#cc0033">SOAPElement</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-Node">Node</a> + <a href="org_w3c_dom.html#type-Element">org_w3c_dom.Element</a>)
+                 <font color="green"><b> (* </b><a href="#meths-SOAPElement">Typebound Procedures</a><b> *)</b></font>
+                 <b>END</b>;
+
+  <a name="type-SOAPElementFactory"></a><font color="#cc0033">SOAPElementFactory</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                        <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                        <font color="green"><b> (* </b><a href="#meths-SOAPElementFactory">Typebound Procedures</a><b> *)</b></font>
+                        <b>STATIC</b>
+                          <b>PROCEDURE </b><font color="#cc0033">newInstance</font>*() : <a href="#type-SOAPElementFactory">SOAPElementFactory</a>;
+                        <b>END</b>;
+
+  <a name="type-SOAPEnvelope"></a><font color="#cc0033">SOAPEnvelope</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-SOAPElement">SOAPElement</a>)
+                  <font color="green"><b> (* </b><a href="#meths-SOAPEnvelope">Typebound Procedures</a><b> *)</b></font>
+                  <b>END</b>;
+
+  <a name="type-SOAPException"></a><font color="#cc0033">SOAPException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Exception">java_lang.Exception</a>)
+                   <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                   <font color="green"><b> (* </b><a href="#meths-SOAPException">Typebound Procedures</a><b> *)</b></font>
+                   <b>STATIC</b>
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                     p1 : <a href="java_lang.html#type-Throwable">java_lang.Throwable</a>) : <a href="#type-SOAPException">SOAPException</a><b>,CONSTRUCTOR</b>;
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-Throwable">java_lang.Throwable</a>) : <a href="#type-SOAPException">SOAPException</a><b>,CONSTRUCTOR</b>;
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-SOAPException">SOAPException</a><b>,CONSTRUCTOR</b>;
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-SOAPException">SOAPException</a><b>,CONSTRUCTOR</b>;
+                   <b>END</b>;
+
+  <a name="type-SOAPFactory"></a><font color="#cc0033">SOAPFactory</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                 <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                 <font color="green"><b> (* </b><a href="#meths-SOAPFactory">Typebound Procedures</a><b> *)</b></font>
+                 <b>STATIC</b>
+                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-SOAPFactory">SOAPFactory</a><b>,CONSTRUCTOR</b>;
+                   <b>PROCEDURE </b><font color="#cc0033">newInstance</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-SOAPFactory">SOAPFactory</a>;
+                   <b>PROCEDURE </b><font color="#cc0033">newInstance</font>*() : <a href="#type-SOAPFactory">SOAPFactory</a>;
+                 <b>END</b>;
+
+  <a name="type-SOAPFault"></a><font color="#cc0033">SOAPFault</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-SOAPBodyElement">SOAPBodyElement</a>)
+               <font color="green"><b> (* </b><a href="#meths-SOAPFault">Typebound Procedures</a><b> *)</b></font>
+               <b>END</b>;
+
+  <a name="type-SOAPFaultElement"></a><font color="#cc0033">SOAPFaultElement</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-SOAPElement">SOAPElement</a>)
+                      <b>END</b>;
+
+  <a name="type-SOAPHeader"></a><font color="#cc0033">SOAPHeader</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-SOAPElement">SOAPElement</a>)
+                <font color="green"><b> (* </b><a href="#meths-SOAPHeader">Typebound Procedures</a><b> *)</b></font>
+                <b>END</b>;
+
+  <a name="type-SOAPHeaderElement"></a><font color="#cc0033">SOAPHeaderElement</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-SOAPElement">SOAPElement</a>)
+                       <font color="green"><b> (* </b><a href="#meths-SOAPHeaderElement">Typebound Procedures</a><b> *)</b></font>
+                       <b>END</b>;
+
+  <a name="type-SOAPMessage"></a><font color="#cc0033">SOAPMessage</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                 <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                 <font color="green"><b> (* </b><a href="#meths-SOAPMessage">Typebound Procedures</a><b> *)</b></font>
+                 <b>STATIC</b>
+                   <font color="#cc0033">CHARACTER_SET_ENCODING</font>* = "javax.xml.soap.character-set-encoding";
+                   <font color="#cc0033">WRITE_XML_DECLARATION</font>*  = "javax.xml.soap.write-xml-declaration";
+                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-SOAPMessage">SOAPMessage</a><b>,CONSTRUCTOR</b>;
+                 <b>END</b>;
+
+  <a name="type-SOAPPart"></a><font color="#cc0033">SOAPPart</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="org_w3c_dom.html#type-Document">org_w3c_dom.Document</a> + <a href="#type-Node">Node</a>)
+              <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+              <font color="green"><b> (* </b><a href="#meths-SOAPPart">Typebound Procedures</a><b> *)</b></font>
+              <b>STATIC</b>
+                <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-SOAPPart">SOAPPart</a><b>,CONSTRUCTOR</b>;
+              <b>END</b>;
+
+  <a name="type-Text"></a><font color="#cc0033">Text</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-Node">Node</a> + <a href="org_w3c_dom.html#type-Text">org_w3c_dom.Text</a>)
+          <font color="green"><b> (* </b><a href="#meths-Text">Typebound Procedures</a><b> *)</b></font>
+          <b>END</b>;
+
+
+
+<a name="meths-AttachmentPart"></a>
+<b>PROCEDURE </b>(self:AttachmentPart) <font color="#cc0033">addMimeHeader</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                               p1 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AttachmentPart) <font color="#cc0033">clearContent</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AttachmentPart) <font color="#cc0033">getAllMimeHeaders</font>*() : <a href="java_util.html#type-Iterator">java_util.Iterator</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AttachmentPart) <font color="#cc0033">getBase64Content</font>*() : <a href="java_io.html#type-InputStream">java_io.InputStream</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AttachmentPart) <font color="#cc0033">getContent</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AttachmentPart) <font color="#cc0033">getContentId</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AttachmentPart) <font color="#cc0033">getContentLocation</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AttachmentPart) <font color="#cc0033">getContentType</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AttachmentPart) <font color="#cc0033">getDataHandler</font>*() : <a href="javax_activation.html#type-DataHandler">javax_activation.DataHandler</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AttachmentPart) <font color="#cc0033">getMatchingMimeHeaders</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_util.html#type-Iterator">java_util.Iterator</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AttachmentPart) <font color="#cc0033">getMimeHeader</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AttachmentPart) <font color="#cc0033">getNonMatchingMimeHeaders</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_util.html#type-Iterator">java_util.Iterator</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AttachmentPart) <font color="#cc0033">getRawContent</font>*() : <a href="java_io.html#type-InputStream">java_io.InputStream</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AttachmentPart) <font color="#cc0033">getRawContentBytes</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AttachmentPart) <font color="#cc0033">getSize</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AttachmentPart) <font color="#cc0033">removeAllMimeHeaders</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AttachmentPart) <font color="#cc0033">removeMimeHeader</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AttachmentPart) <font color="#cc0033">setBase64Content</font>*(p0 : <a href="java_io.html#type-InputStream">java_io.InputStream</a>;
+                                                  p1 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AttachmentPart) <font color="#cc0033">setContent</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                            p1 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AttachmentPart) <font color="#cc0033">setContentId</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AttachmentPart) <font color="#cc0033">setContentLocation</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AttachmentPart) <font color="#cc0033">setContentType</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AttachmentPart) <font color="#cc0033">setDataHandler</font>*(p0 : <a href="javax_activation.html#type-DataHandler">javax_activation.DataHandler</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AttachmentPart) <font color="#cc0033">setMimeHeader</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                               p1 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AttachmentPart) <font color="#cc0033">setRawContent</font>*(p0 : <a href="java_io.html#type-InputStream">java_io.InputStream</a>;
+                                               p1 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AttachmentPart) <font color="#cc0033">setRawContentBytes</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE;
+                                                        p1 : INTEGER;
+                                                        p2 : INTEGER;
+                                                        p3 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-Detail"></a>
+<b>PROCEDURE </b>(self:Detail) <font color="#cc0033">addDetailEntry</font>*(p0 : <a href="javax_xml_namespace.html#type-QName">javax_xml_namespace.QName</a>) : <b>DetailEntry</b><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Detail) <font color="#cc0033">addDetailEntry</font>*(p0 : <b>Name</b>) : <b>DetailEntry</b><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Detail) <font color="#cc0033">getDetailEntries</font>*() : <a href="java_util.html#type-Iterator">java_util.Iterator</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-MessageFactory"></a>
+<b>PROCEDURE </b>(self:MessageFactory) <font color="#cc0033">createMessage</font>*(p0 : <b>MimeHeaders</b>;
+                                               p1 : <a href="java_io.html#type-InputStream">java_io.InputStream</a>) : <b>SOAPMessage</b><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MessageFactory) <font color="#cc0033">createMessage</font>*() : <b>SOAPMessage</b><b>,NEW,ABSTRACT</b>;
+<a name="meths-MimeHeader"></a>
+<b>PROCEDURE </b>(self:MimeHeader) <font color="#cc0033">getName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MimeHeader) <font color="#cc0033">getValue</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-MimeHeaders"></a>
+<b>PROCEDURE </b>(self:MimeHeaders) <font color="#cc0033">addHeader</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                        p1 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MimeHeaders) <font color="#cc0033">getAllHeaders</font>*() : <a href="java_util.html#type-Iterator">java_util.Iterator</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MimeHeaders) <font color="#cc0033">getHeader</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MimeHeaders) <font color="#cc0033">getMatchingHeaders</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_util.html#type-Iterator">java_util.Iterator</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MimeHeaders) <font color="#cc0033">getNonMatchingHeaders</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_util.html#type-Iterator">java_util.Iterator</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MimeHeaders) <font color="#cc0033">removeAllHeaders</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MimeHeaders) <font color="#cc0033">removeHeader</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MimeHeaders) <font color="#cc0033">setHeader</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                        p1 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-Name"></a>
+<b>PROCEDURE </b>(self:Name) <font color="#cc0033">getLocalName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Name) <font color="#cc0033">getPrefix</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Name) <font color="#cc0033">getQualifiedName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Name) <font color="#cc0033">getURI</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-Node"></a>
+<b>PROCEDURE </b>(self:Node) <font color="#cc0033">detachNode</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Node) <font color="#cc0033">getParentElement</font>*() : <b>SOAPElement</b><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Node) <font color="#cc0033">getValue</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Node) <font color="#cc0033">recycleNode</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Node) <font color="#cc0033">setParentElement</font>*(p0 : <b>SOAPElement</b>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Node) <font color="#cc0033">setValue</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-SAAJMetaFactory"></a>
+<b>PROCEDURE </b>(self:SAAJMetaFactory) <font color="#cc0033">newMessageFactory</font>!(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-MessageFactory">MessageFactory</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SAAJMetaFactory) <font color="#cc0033">newSOAPFactory</font>!(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <b>SOAPFactory</b><b>,NEW,ABSTRACT</b>;
+<a name="meths-SAAJResult"></a>
+<b>PROCEDURE </b>(self:SAAJResult) <font color="#cc0033">getResult</font>*() : <a href="#type-Node">Node</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-SOAPBody"></a>
+<b>PROCEDURE </b>(self:SOAPBody) <font color="#cc0033">addBodyElement</font>*(p0 : <a href="#type-Name">Name</a>) : <b>SOAPBodyElement</b><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SOAPBody) <font color="#cc0033">addBodyElement</font>*(p0 : <a href="javax_xml_namespace.html#type-QName">javax_xml_namespace.QName</a>) : <b>SOAPBodyElement</b><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SOAPBody) <font color="#cc0033">addDocument</font>*(p0 : <a href="org_w3c_dom.html#type-Document">org_w3c_dom.Document</a>) : <b>SOAPBodyElement</b><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SOAPBody) <font color="#cc0033">addFault</font>*(p0 : <a href="javax_xml_namespace.html#type-QName">javax_xml_namespace.QName</a>;
+                                    p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <b>SOAPFault</b><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SOAPBody) <font color="#cc0033">addFault</font>*(p0 : <a href="javax_xml_namespace.html#type-QName">javax_xml_namespace.QName</a>;
+                                    p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                    p2 : <a href="java_util.html#type-Locale">java_util.Locale</a>) : <b>SOAPFault</b><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SOAPBody) <font color="#cc0033">addFault</font>*(p0 : <a href="#type-Name">Name</a>;
+                                    p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                    p2 : <a href="java_util.html#type-Locale">java_util.Locale</a>) : <b>SOAPFault</b><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SOAPBody) <font color="#cc0033">addFault</font>*() : <b>SOAPFault</b><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SOAPBody) <font color="#cc0033">addFault</font>*(p0 : <a href="#type-Name">Name</a>;
+                                    p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <b>SOAPFault</b><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SOAPBody) <font color="#cc0033">extractContentAsDocument</font>*() : <a href="org_w3c_dom.html#type-Document">org_w3c_dom.Document</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SOAPBody) <font color="#cc0033">getFault</font>*() : <b>SOAPFault</b><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SOAPBody) <font color="#cc0033">hasFault</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+<a name="meths-SOAPConnection"></a>
+<b>PROCEDURE </b>(self:SOAPConnection) <font color="#cc0033">call</font>*(p0 : <b>SOAPMessage</b>;
+                                      p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <b>SOAPMessage</b><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SOAPConnection) <font color="#cc0033">close</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SOAPConnection) <font color="#cc0033">get</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <b>SOAPMessage</b><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-SOAPConnectionFactory"></a>
+<b>PROCEDURE </b>(self:SOAPConnectionFactory) <font color="#cc0033">createConnection</font>*() : <a href="#type-SOAPConnection">SOAPConnection</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-SOAPElement"></a>
+<b>PROCEDURE </b>(self:SOAPElement) <font color="#cc0033">addAttribute</font>*(p0 : <a href="#type-Name">Name</a>;
+                                           p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-SOAPElement">SOAPElement</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SOAPElement) <font color="#cc0033">addAttribute</font>*(p0 : <a href="javax_xml_namespace.html#type-QName">javax_xml_namespace.QName</a>;
+                                           p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-SOAPElement">SOAPElement</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SOAPElement) <font color="#cc0033">addChildElement</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                              p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                              p2 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-SOAPElement">SOAPElement</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SOAPElement) <font color="#cc0033">addChildElement</font>*(p0 : <a href="#type-SOAPElement">SOAPElement</a>) : <a href="#type-SOAPElement">SOAPElement</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SOAPElement) <font color="#cc0033">addChildElement</font>*(p0 : <a href="#type-Name">Name</a>) : <a href="#type-SOAPElement">SOAPElement</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SOAPElement) <font color="#cc0033">addChildElement</font>*(p0 : <a href="javax_xml_namespace.html#type-QName">javax_xml_namespace.QName</a>) : <a href="#type-SOAPElement">SOAPElement</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SOAPElement) <font color="#cc0033">addChildElement</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                              p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-SOAPElement">SOAPElement</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SOAPElement) <font color="#cc0033">addChildElement</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-SOAPElement">SOAPElement</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SOAPElement) <font color="#cc0033">addNamespaceDeclaration</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                      p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-SOAPElement">SOAPElement</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SOAPElement) <font color="#cc0033">addTextNode</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-SOAPElement">SOAPElement</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SOAPElement) <font color="#cc0033">createQName</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                          p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="javax_xml_namespace.html#type-QName">javax_xml_namespace.QName</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SOAPElement) <font color="#cc0033">getAllAttributes</font>*() : <a href="java_util.html#type-Iterator">java_util.Iterator</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SOAPElement) <font color="#cc0033">getAllAttributesAsQNames</font>*() : <a href="java_util.html#type-Iterator">java_util.Iterator</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SOAPElement) <font color="#cc0033">getAttributeValue</font>*(p0 : <a href="#type-Name">Name</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SOAPElement) <font color="#cc0033">getAttributeValue</font>*(p0 : <a href="javax_xml_namespace.html#type-QName">javax_xml_namespace.QName</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SOAPElement) <font color="#cc0033">getChildElements</font>*() : <a href="java_util.html#type-Iterator">java_util.Iterator</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SOAPElement) <font color="#cc0033">getChildElements</font>*(p0 : <a href="#type-Name">Name</a>) : <a href="java_util.html#type-Iterator">java_util.Iterator</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SOAPElement) <font color="#cc0033">getChildElements</font>*(p0 : <a href="javax_xml_namespace.html#type-QName">javax_xml_namespace.QName</a>) : <a href="java_util.html#type-Iterator">java_util.Iterator</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SOAPElement) <font color="#cc0033">getElementName</font>*() : <a href="#type-Name">Name</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SOAPElement) <font color="#cc0033">getElementQName</font>*() : <a href="javax_xml_namespace.html#type-QName">javax_xml_namespace.QName</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SOAPElement) <font color="#cc0033">getEncodingStyle</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SOAPElement) <font color="#cc0033">getNamespacePrefixes</font>*() : <a href="java_util.html#type-Iterator">java_util.Iterator</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SOAPElement) <font color="#cc0033">getNamespaceURI</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SOAPElement) <font color="#cc0033">getVisibleNamespacePrefixes</font>*() : <a href="java_util.html#type-Iterator">java_util.Iterator</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SOAPElement) <font color="#cc0033">removeAttribute</font>*(p0 : <a href="#type-Name">Name</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SOAPElement) <font color="#cc0033">removeAttribute</font>*(p0 : <a href="javax_xml_namespace.html#type-QName">javax_xml_namespace.QName</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SOAPElement) <font color="#cc0033">removeContents</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SOAPElement) <font color="#cc0033">removeNamespaceDeclaration</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SOAPElement) <font color="#cc0033">setElementQName</font>*(p0 : <a href="javax_xml_namespace.html#type-QName">javax_xml_namespace.QName</a>) : <a href="#type-SOAPElement">SOAPElement</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SOAPElement) <font color="#cc0033">setEncodingStyle</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-SOAPElementFactory"></a>
+<b>PROCEDURE </b>(self:SOAPElementFactory) <font color="#cc0033">create</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                            p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                            p2 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-SOAPElement">SOAPElement</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SOAPElementFactory) <font color="#cc0033">create</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-SOAPElement">SOAPElement</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SOAPElementFactory) <font color="#cc0033">create</font>*(p0 : <a href="#type-Name">Name</a>) : <a href="#type-SOAPElement">SOAPElement</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-SOAPEnvelope"></a>
+<b>PROCEDURE </b>(self:SOAPEnvelope) <font color="#cc0033">addBody</font>*() : <a href="#type-SOAPBody">SOAPBody</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SOAPEnvelope) <font color="#cc0033">addHeader</font>*() : <b>SOAPHeader</b><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SOAPEnvelope) <font color="#cc0033">createName</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                          p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                          p2 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-Name">Name</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SOAPEnvelope) <font color="#cc0033">createName</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-Name">Name</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SOAPEnvelope) <font color="#cc0033">getBody</font>*() : <a href="#type-SOAPBody">SOAPBody</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SOAPEnvelope) <font color="#cc0033">getHeader</font>*() : <b>SOAPHeader</b><b>,NEW,ABSTRACT</b>;
+<a name="meths-SOAPException"></a>
+<b>PROCEDURE </b>(self:SOAPException) <font color="#cc0033">getCause</font>*() : <a href="java_lang.html#type-Throwable">java_lang.Throwable</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SOAPException) <font color="#cc0033">getMessage</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SOAPException) <font color="#cc0033">initCause</font>*(p0 : <a href="java_lang.html#type-Throwable">java_lang.Throwable</a>) : <a href="java_lang.html#type-Throwable">java_lang.Throwable</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-SOAPFactory"></a>
+<b>PROCEDURE </b>(self:SOAPFactory) <font color="#cc0033">createDetail</font>*() : <a href="#type-Detail">Detail</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SOAPFactory) <font color="#cc0033">createElement</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-SOAPElement">SOAPElement</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SOAPFactory) <font color="#cc0033">createElement</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                            p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                            p2 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-SOAPElement">SOAPElement</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SOAPFactory) <font color="#cc0033">createElement</font>*(p0 : <a href="org_w3c_dom.html#type-Element">org_w3c_dom.Element</a>) : <a href="#type-SOAPElement">SOAPElement</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SOAPFactory) <font color="#cc0033">createElement</font>*(p0 : <a href="#type-Name">Name</a>) : <a href="#type-SOAPElement">SOAPElement</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SOAPFactory) <font color="#cc0033">createElement</font>*(p0 : <a href="javax_xml_namespace.html#type-QName">javax_xml_namespace.QName</a>) : <a href="#type-SOAPElement">SOAPElement</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SOAPFactory) <font color="#cc0033">createFault</font>*() : <b>SOAPFault</b><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SOAPFactory) <font color="#cc0033">createFault</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                          p1 : <a href="javax_xml_namespace.html#type-QName">javax_xml_namespace.QName</a>) : <b>SOAPFault</b><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SOAPFactory) <font color="#cc0033">createName</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-Name">Name</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SOAPFactory) <font color="#cc0033">createName</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                         p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                         p2 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-Name">Name</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-SOAPFault"></a>
+<b>PROCEDURE </b>(self:SOAPFault) <font color="#cc0033">addDetail</font>*() : <a href="#type-Detail">Detail</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SOAPFault) <font color="#cc0033">addFaultReasonText</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                               p1 : <a href="java_util.html#type-Locale">java_util.Locale</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SOAPFault) <font color="#cc0033">appendFaultSubcode</font>*(p0 : <a href="javax_xml_namespace.html#type-QName">javax_xml_namespace.QName</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SOAPFault) <font color="#cc0033">getDetail</font>*() : <a href="#type-Detail">Detail</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SOAPFault) <font color="#cc0033">getFaultActor</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SOAPFault) <font color="#cc0033">getFaultCode</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SOAPFault) <font color="#cc0033">getFaultCodeAsName</font>*() : <a href="#type-Name">Name</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SOAPFault) <font color="#cc0033">getFaultCodeAsQName</font>*() : <a href="javax_xml_namespace.html#type-QName">javax_xml_namespace.QName</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SOAPFault) <font color="#cc0033">getFaultNode</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SOAPFault) <font color="#cc0033">getFaultReasonLocales</font>*() : <a href="java_util.html#type-Iterator">java_util.Iterator</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SOAPFault) <font color="#cc0033">getFaultReasonText</font>*(p0 : <a href="java_util.html#type-Locale">java_util.Locale</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SOAPFault) <font color="#cc0033">getFaultReasonTexts</font>*() : <a href="java_util.html#type-Iterator">java_util.Iterator</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SOAPFault) <font color="#cc0033">getFaultRole</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SOAPFault) <font color="#cc0033">getFaultString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SOAPFault) <font color="#cc0033">getFaultStringLocale</font>*() : <a href="java_util.html#type-Locale">java_util.Locale</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SOAPFault) <font color="#cc0033">getFaultSubcodes</font>*() : <a href="java_util.html#type-Iterator">java_util.Iterator</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SOAPFault) <font color="#cc0033">hasDetail</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SOAPFault) <font color="#cc0033">removeAllFaultSubcodes</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SOAPFault) <font color="#cc0033">setFaultActor</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SOAPFault) <font color="#cc0033">setFaultCode</font>*(p0 : <a href="#type-Name">Name</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SOAPFault) <font color="#cc0033">setFaultCode</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SOAPFault) <font color="#cc0033">setFaultCode</font>*(p0 : <a href="javax_xml_namespace.html#type-QName">javax_xml_namespace.QName</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SOAPFault) <font color="#cc0033">setFaultNode</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SOAPFault) <font color="#cc0033">setFaultRole</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SOAPFault) <font color="#cc0033">setFaultString</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SOAPFault) <font color="#cc0033">setFaultString</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                           p1 : <a href="java_util.html#type-Locale">java_util.Locale</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-SOAPHeader"></a>
+<b>PROCEDURE </b>(self:SOAPHeader) <font color="#cc0033">addHeaderElement</font>*(p0 : <a href="javax_xml_namespace.html#type-QName">javax_xml_namespace.QName</a>) : <b>SOAPHeaderElement</b><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SOAPHeader) <font color="#cc0033">addHeaderElement</font>*(p0 : <a href="#type-Name">Name</a>) : <b>SOAPHeaderElement</b><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SOAPHeader) <font color="#cc0033">addNotUnderstoodHeaderElement</font>*(p0 : <a href="javax_xml_namespace.html#type-QName">javax_xml_namespace.QName</a>) : <b>SOAPHeaderElement</b><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SOAPHeader) <font color="#cc0033">addUpgradeHeaderElement</font>*(p0 : <a href="java_util.html#type-Iterator">java_util.Iterator</a>) : <b>SOAPHeaderElement</b><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SOAPHeader) <font color="#cc0033">addUpgradeHeaderElement</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>) : <b>SOAPHeaderElement</b><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SOAPHeader) <font color="#cc0033">addUpgradeHeaderElement</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <b>SOAPHeaderElement</b><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SOAPHeader) <font color="#cc0033">examineAllHeaderElements</font>*() : <a href="java_util.html#type-Iterator">java_util.Iterator</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SOAPHeader) <font color="#cc0033">examineHeaderElements</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_util.html#type-Iterator">java_util.Iterator</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SOAPHeader) <font color="#cc0033">examineMustUnderstandHeaderElements</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_util.html#type-Iterator">java_util.Iterator</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SOAPHeader) <font color="#cc0033">extractAllHeaderElements</font>*() : <a href="java_util.html#type-Iterator">java_util.Iterator</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SOAPHeader) <font color="#cc0033">extractHeaderElements</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_util.html#type-Iterator">java_util.Iterator</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-SOAPHeaderElement"></a>
+<b>PROCEDURE </b>(self:SOAPHeaderElement) <font color="#cc0033">getActor</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SOAPHeaderElement) <font color="#cc0033">getMustUnderstand</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SOAPHeaderElement) <font color="#cc0033">getRelay</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SOAPHeaderElement) <font color="#cc0033">getRole</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SOAPHeaderElement) <font color="#cc0033">setActor</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SOAPHeaderElement) <font color="#cc0033">setMustUnderstand</font>*(p0 : BOOLEAN)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SOAPHeaderElement) <font color="#cc0033">setRelay</font>*(p0 : BOOLEAN)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SOAPHeaderElement) <font color="#cc0033">setRole</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-SOAPMessage"></a>
+<b>PROCEDURE </b>(self:SOAPMessage) <font color="#cc0033">addAttachmentPart</font>*(p0 : <a href="#type-AttachmentPart">AttachmentPart</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SOAPMessage) <font color="#cc0033">countAttachments</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SOAPMessage) <font color="#cc0033">createAttachmentPart</font>*() : <a href="#type-AttachmentPart">AttachmentPart</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SOAPMessage) <font color="#cc0033">createAttachmentPart</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                   p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-AttachmentPart">AttachmentPart</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SOAPMessage) <font color="#cc0033">createAttachmentPart</font>*(p0 : <a href="javax_activation.html#type-DataHandler">javax_activation.DataHandler</a>) : <a href="#type-AttachmentPart">AttachmentPart</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SOAPMessage) <font color="#cc0033">getAttachment</font>*(p0 : <a href="#type-SOAPElement">SOAPElement</a>) : <a href="#type-AttachmentPart">AttachmentPart</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SOAPMessage) <font color="#cc0033">getAttachments</font>*(p0 : <a href="#type-MimeHeaders">MimeHeaders</a>) : <a href="java_util.html#type-Iterator">java_util.Iterator</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SOAPMessage) <font color="#cc0033">getAttachments</font>*() : <a href="java_util.html#type-Iterator">java_util.Iterator</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SOAPMessage) <font color="#cc0033">getContentDescription</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SOAPMessage) <font color="#cc0033">getMimeHeaders</font>*() : <a href="#type-MimeHeaders">MimeHeaders</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SOAPMessage) <font color="#cc0033">getProperty</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SOAPMessage) <font color="#cc0033">getSOAPBody</font>*() : <a href="#type-SOAPBody">SOAPBody</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SOAPMessage) <font color="#cc0033">getSOAPHeader</font>*() : <a href="#type-SOAPHeader">SOAPHeader</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SOAPMessage) <font color="#cc0033">getSOAPPart</font>*() : <b>SOAPPart</b><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SOAPMessage) <font color="#cc0033">removeAllAttachments</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SOAPMessage) <font color="#cc0033">removeAttachments</font>*(p0 : <a href="#type-MimeHeaders">MimeHeaders</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SOAPMessage) <font color="#cc0033">saveChanges</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SOAPMessage) <font color="#cc0033">saveRequired</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SOAPMessage) <font color="#cc0033">setContentDescription</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SOAPMessage) <font color="#cc0033">setProperty</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                          p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SOAPMessage) <font color="#cc0033">writeTo</font>*(p0 : <a href="java_io.html#type-OutputStream">java_io.OutputStream</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-SOAPPart"></a>
+<b>PROCEDURE </b>(self:SOAPPart) <font color="#cc0033">addMimeHeader</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                         p1 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SOAPPart) <font color="#cc0033">getAllMimeHeaders</font>*() : <a href="java_util.html#type-Iterator">java_util.Iterator</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SOAPPart) <font color="#cc0033">getContent</font>*() : <a href="javax_xml_transform.html#type-Source">javax_xml_transform.Source</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SOAPPart) <font color="#cc0033">getContentId</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SOAPPart) <font color="#cc0033">getContentLocation</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SOAPPart) <font color="#cc0033">getEnvelope</font>*() : <a href="#type-SOAPEnvelope">SOAPEnvelope</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SOAPPart) <font color="#cc0033">getMatchingMimeHeaders</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_util.html#type-Iterator">java_util.Iterator</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SOAPPart) <font color="#cc0033">getMimeHeader</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SOAPPart) <font color="#cc0033">getNonMatchingMimeHeaders</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_util.html#type-Iterator">java_util.Iterator</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SOAPPart) <font color="#cc0033">removeAllMimeHeaders</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SOAPPart) <font color="#cc0033">removeMimeHeader</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SOAPPart) <font color="#cc0033">setContent</font>*(p0 : <a href="javax_xml_transform.html#type-Source">javax_xml_transform.Source</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SOAPPart) <font color="#cc0033">setContentId</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SOAPPart) <font color="#cc0033">setContentLocation</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SOAPPart) <font color="#cc0033">setMimeHeader</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                         p1 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-Text"></a>
+<b>PROCEDURE </b>(self:Text) <font color="#cc0033">isComment</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>END </b><font color="#cc0033">javax_xml_soap</font>.
+</font></pre></hr>
+<!-- BEGIN JavaScript -->
+<script>
+function toggle(node) {
+    node.classList.toggle("show"); 
+  }
+
+function cls(node) {
+    var prnt = node.parentNode;
+    var next = prnt.previousSibling;
+    var text = next.lastChild;
+    text.innerHTML = 
+        "The <b>class</b> property asserts that this type will be<br>" +
+        "implemented as a reference class in the underlying framework.";
+    text.classList.toggle("show");
+  }
+
+function newOk(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>has noArg-ctor</b> property asserts that this reference<br>" +
+        "class has a no-arg constructor, and thus objects of this<br>" +
+        "type can be allocated with NEW(). Component Pascal types<br>" +
+        "derived from this type can also be allocated using NEW().";
+    popuptext.classList.toggle("show"); 
+  }
+
+function noNew(node) { 
+    var prnt = node.parentNode; 
+    var next = prnt.previousSibling; 
+    var text = next.lastChild; 
+    text.innerHTML =  
+        "The <b>no noArg-ctor</b> property asserts that this reference<br>" +
+        "class does not have a noArg constructor. Objects of this<br>" +
+        "type cannot be allocated using NEW(), and Component<br>" +
+        "Pascal types  derived from this type also cannot be<br>" +
+        "allocated using NEW().";
+    text.classList.toggle("show");
+  }
+
+function noCpy(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>no value-assign</b> property asserts that this reference<br>" + 
+        "class does not have a value copy method. Therefore, it<br>" +
+        "is not possible to perform value assignments using<br>" +
+        "statements like <i>dst^</i> := <i>src^</i>";
+    popuptext.classList.toggle("show");
+  }
+
+function valueclass(node) { 
+        var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>valueclass</b> property asserts that this RECORD type is<br>" + 
+        "implemented as a value class in the CLR. It follows that<br>" +  
+        "value assignments can be made of these types. They can<br>" + 
+        "also be passed by value. Even pointers to records of<br>" + 
+        "such types may be dereferenced and copied using syntax<br>" + 
+        "such as  <i>dst^</i> := <i>src^</i>"; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+function argCtor(node) { 
+    var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>has arg-ctor</b> property asserts that this reference<br>" +  
+        "class has one or more constructors that take arguments.<br>" + 
+        "These constructors can be called from Component Pascal<br>" + 
+        "by calling an <i>init</i>(...) method from the static list<br>" + 
+        "here. Component Pascal types derived from this type<br>" + 
+        "can define constructors with arguments which call the<br>" + 
+        "super-type constructor.<br>" + 
+        "See <i>'Interfacing to constructors'</i> in the Release Notes."; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+</script>
+<!-- END JavaScript --> 
+
+</body></html>

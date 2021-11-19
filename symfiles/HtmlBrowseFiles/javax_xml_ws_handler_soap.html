@@ -1,0 +1,156 @@
+<html><head><title>javax_xml_ws_handler_soap</title>
+<style>
+<!-- BEGIN Inline CSS -->
+/* Popup container */
+.popup {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+/* The actual popup (appears on top) */
+.popup .popuptext {
+    visibility: hidden;
+    width: 430px;
+    background-color: white;
+    color: black;
+    text-align: left;
+    border-radius: 6px;
+    border-style: solid;
+    border-color: black;
+    padding: 8px 8px 8px 8px;
+    position: absolute;
+    z-index: 1;
+    margin-top: 30px;
+}
+
+/* Toggle this class when clicking on the popup container (hide and show the popup) */
+.popup .show {
+    visibility: visible;
+    opacity: 1;
+}
+
+</style>
+<!-- END Inline CSS -->
+</head><body bgcolor="white">
+<hr><pre>
+<font color="green">(*</font>
+<font color="green"> *  Creator j2cps version 1.4.07 (March 2018)</font>
+<font color="green"> *  Compiled from jar-file rt.jar</font>
+<font color="green"> *)</font>
+<b>FOREIGN MODULE </b><font color="#cc0033">javax_xml_ws_handler_soap</font>;
+
+<b>IMPORT</b>
+    <a href="javax_xml_bind.html">javax_xml_bind</a> := "javax.xml.bind",
+    <a href="javax_xml_namespace.html">javax_xml_namespace</a> := "javax.xml.namespace",
+    <a href="javax_xml_soap.html">javax_xml_soap</a> := "javax.xml.soap",
+    <a href="javax_xml_ws_handler.html">javax_xml_ws_handler</a> := "javax.xml.ws.handler",
+    <a href="java_lang.html">java_lang</a> := "java.lang",
+    <a href="java_util.html">java_util</a> := "java.util";
+
+<b>TYPE</b>
+
+  <a name="type-SOAPHandler"></a><font color="#cc0033">SOAPHandler</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="javax_xml_ws_handler.html#type-Handler">javax_xml_ws_handler.Handler</a>)
+                 <font color="green"><b> (* </b><a href="#meths-SOAPHandler">Typebound Procedures</a><b> *)</b></font>
+                 <b>END</b>;
+
+  <a name="type-SOAPMessageContext"></a><font color="#cc0033">SOAPMessageContext</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="javax_xml_ws_handler.html#type-MessageContext">javax_xml_ws_handler.MessageContext</a>)
+                        <font color="green"><b> (* </b><a href="#meths-SOAPMessageContext">Typebound Procedures</a><b> *)</b></font>
+                        <b>END</b>;
+
+
+
+<a name="meths-SOAPHandler"></a>
+<b>PROCEDURE </b>(self:SOAPHandler) <font color="#cc0033">getHeaders</font>*() : <a href="java_util.html#type-Set">java_util.Set</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-SOAPMessageContext"></a>
+<b>PROCEDURE </b>(self:SOAPMessageContext) <font color="#cc0033">getHeaders</font>*(p0 : <a href="javax_xml_namespace.html#type-QName">javax_xml_namespace.QName</a>;
+                                                p1 : <a href="javax_xml_bind.html#type-JAXBContext">javax_xml_bind.JAXBContext</a>;
+                                                p2 : BOOLEAN) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SOAPMessageContext) <font color="#cc0033">getMessage</font>*() : <a href="javax_xml_soap.html#type-SOAPMessage">javax_xml_soap.SOAPMessage</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SOAPMessageContext) <font color="#cc0033">getRoles</font>*() : <a href="java_util.html#type-Set">java_util.Set</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SOAPMessageContext) <font color="#cc0033">setMessage</font>*(p0 : <a href="javax_xml_soap.html#type-SOAPMessage">javax_xml_soap.SOAPMessage</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>END </b><font color="#cc0033">javax_xml_ws_handler_soap</font>.
+</font></pre></hr>
+<!-- BEGIN JavaScript -->
+<script>
+function toggle(node) {
+    node.classList.toggle("show"); 
+  }
+
+function cls(node) {
+    var prnt = node.parentNode;
+    var next = prnt.previousSibling;
+    var text = next.lastChild;
+    text.innerHTML = 
+        "The <b>class</b> property asserts that this type will be<br>" +
+        "implemented as a reference class in the underlying framework.";
+    text.classList.toggle("show");
+  }
+
+function newOk(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>has noArg-ctor</b> property asserts that this reference<br>" +
+        "class has a no-arg constructor, and thus objects of this<br>" +
+        "type can be allocated with NEW(). Component Pascal types<br>" +
+        "derived from this type can also be allocated using NEW().";
+    popuptext.classList.toggle("show"); 
+  }
+
+function noNew(node) { 
+    var prnt = node.parentNode; 
+    var next = prnt.previousSibling; 
+    var text = next.lastChild; 
+    text.innerHTML =  
+        "The <b>no noArg-ctor</b> property asserts that this reference<br>" +
+        "class does not have a noArg constructor. Objects of this<br>" +
+        "type cannot be allocated using NEW(), and Component<br>" +
+        "Pascal types  derived from this type also cannot be<br>" +
+        "allocated using NEW().";
+    text.classList.toggle("show");
+  }
+
+function noCpy(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>no value-assign</b> property asserts that this reference<br>" + 
+        "class does not have a value copy method. Therefore, it<br>" +
+        "is not possible to perform value assignments using<br>" +
+        "statements like <i>dst^</i> := <i>src^</i>";
+    popuptext.classList.toggle("show");
+  }
+
+function valueclass(node) { 
+        var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>valueclass</b> property asserts that this RECORD type is<br>" + 
+        "implemented as a value class in the CLR. It follows that<br>" +  
+        "value assignments can be made of these types. They can<br>" + 
+        "also be passed by value. Even pointers to records of<br>" + 
+        "such types may be dereferenced and copied using syntax<br>" + 
+        "such as  <i>dst^</i> := <i>src^</i>"; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+function argCtor(node) { 
+    var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>has arg-ctor</b> property asserts that this reference<br>" +  
+        "class has one or more constructors that take arguments.<br>" + 
+        "These constructors can be called from Component Pascal<br>" + 
+        "by calling an <i>init</i>(...) method from the static list<br>" + 
+        "here. Component Pascal types derived from this type<br>" + 
+        "can define constructors with arguments which call the<br>" + 
+        "super-type constructor.<br>" + 
+        "See <i>'Interfacing to constructors'</i> in the Release Notes."; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+</script>
+<!-- END JavaScript --> 
+
+</body></html>

@@ -1,0 +1,53 @@
+<html><head><title>GPTextFiles</title>
+</head><body bgcolor="white">
+<hr><pre>
+<b>MODULE </b><font color="#cc0033">GPTextFiles</font>;
+
+<b>IMPORT</b>
+    <a href="GPFiles.html">GPFiles</a>,
+    <a href="RTS.html">RTS</a>;
+
+<b>TYPE</b>
+
+  <a name="type-FILE"></a><font color="#cc0033">FILE</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="GPFiles.html#type-FILE">GPFiles.FILE</a>)
+          <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+          <b>END</b>;
+
+
+
+<b>PROCEDURE </b><font color="#cc0033">WriteEOL</font>*(file : <a href="#type-FILE">FILE</a>);
+
+<b>PROCEDURE </b><font color="#cc0033">WriteChar</font>*(file : <a href="#type-FILE">FILE</a>;
+                     ch   : CHAR);
+
+<b>PROCEDURE </b><font color="#cc0033">readNChars</font>*(    file           : <a href="#type-FILE">FILE</a>;
+                      OUT buffPtr        : <b>ARRAY </b><b>OF </b>CHAR;
+                          requestedChars : INTEGER) : INTEGER;
+
+<b>PROCEDURE </b><font color="#cc0033">getFullPathName</font>*(f : <a href="#type-FILE">FILE</a>) : <a href="GPFiles.html#type-FileNameArray">GPFiles.FileNameArray</a>;
+
+<b>PROCEDURE </b><font color="#cc0033">readChar</font>*(file : <a href="#type-FILE">FILE</a>) : CHAR;
+
+<b>PROCEDURE </b><font color="#cc0033">openFile</font>*(IN  fileName : <b>ARRAY </b><b>OF </b>CHAR) : <a href="#type-FILE">FILE</a>;
+
+<b>PROCEDURE </b><font color="#cc0033">findLocal</font>*(IN  fileName : <b>ARRAY </b><b>OF </b>CHAR) : <a href="#type-FILE">FILE</a>;
+
+<b>PROCEDURE </b><font color="#cc0033">CloseFile</font>*(file : <a href="#type-FILE">FILE</a>);
+
+<b>PROCEDURE </b><font color="#cc0033">WriteNChars</font>*(    file           : <a href="#type-FILE">FILE</a>;
+                       IN  buffPtr        : <b>ARRAY </b><b>OF </b>CHAR;
+                           requestedChars : INTEGER);
+
+<b>PROCEDURE </b><font color="#cc0033">openFileRO</font>*(IN  fileName : <b>ARRAY </b><b>OF </b>CHAR) : <a href="#type-FILE">FILE</a>;
+
+<b>PROCEDURE </b><font color="#cc0033">findOnPath</font>*(IN  pathName : <b>ARRAY </b><b>OF </b>CHAR;
+                      IN  fileName : <b>ARRAY </b><b>OF </b>CHAR) : <a href="#type-FILE">FILE</a>;
+
+<b>PROCEDURE </b><font color="#cc0033">createFile</font>*(IN  fileName : <b>ARRAY </b><b>OF </b>CHAR) : <a href="#type-FILE">FILE</a>;
+
+<b>PROCEDURE </b><font color="#cc0033">createPath</font>*(IN  pathName : <b>ARRAY </b><b>OF </b>CHAR) : <a href="#type-FILE">FILE</a>;
+
+
+<b>END </b><font color="#cc0033">GPTextFiles</font>.
+</font></pre></hr>
+</body></html>

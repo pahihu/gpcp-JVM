@@ -1,0 +1,807 @@
+<html><head><title>javax_swing_event</title>
+<style>
+<!-- BEGIN Inline CSS -->
+/* Popup container */
+.popup {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+/* The actual popup (appears on top) */
+.popup .popuptext {
+    visibility: hidden;
+    width: 430px;
+    background-color: white;
+    color: black;
+    text-align: left;
+    border-radius: 6px;
+    border-style: solid;
+    border-color: black;
+    padding: 8px 8px 8px 8px;
+    position: absolute;
+    z-index: 1;
+    margin-top: 30px;
+}
+
+/* Toggle this class when clicking on the popup container (hide and show the popup) */
+.popup .show {
+    visibility: visible;
+    opacity: 1;
+}
+
+</style>
+<!-- END Inline CSS -->
+</head><body bgcolor="white">
+<hr><pre>
+<font color="green">(*</font>
+<font color="green"> *  Creator j2cps version 1.4.07 (March 2018)</font>
+<font color="green"> *  Compiled from jar-file rt.jar</font>
+<font color="green"> *)</font>
+<b>FOREIGN MODULE </b><font color="#cc0033">javax_swing_event</font>;
+
+<b>IMPORT</b>
+    <a href="javax_swing.html">javax_swing</a> := "javax.swing",
+    <a href="javax_swing_table.html">javax_swing_table</a> := "javax.swing.table",
+    <a href="javax_swing_text.html">javax_swing_text</a> := "javax.swing.text",
+    <a href="javax_swing_tree.html">javax_swing_tree</a> := "javax.swing.tree",
+    <a href="javax_swing_undo.html">javax_swing_undo</a> := "javax.swing.undo",
+    <a href="java_awt.html">java_awt</a> := "java.awt",
+    <a href="java_awt_event.html">java_awt_event</a> := "java.awt.event",
+    <a href="java_beans.html">java_beans</a> := "java.beans",
+    <a href="java_io.html">java_io</a> := "java.io",
+    <a href="java_lang.html">java_lang</a> := "java.lang",
+    <a href="java_net.html">java_net</a> := "java.net",
+    <a href="java_util.html">java_util</a> := "java.util";
+
+<b>TYPE</b>
+
+  <a name="type-AncestorEvent"></a><font color="#cc0033">AncestorEvent</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_awt.html#type-AWTEvent">java_awt.AWTEvent</a>)
+                   <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                   <font color="green"><b> (* </b><a href="#meths-AncestorEvent">Typebound Procedures</a><b> *)</b></font>
+                   <b>STATIC</b>
+                     <font color="#cc0033">ANCESTOR_ADDED</font>*   = 1;
+                     <font color="#cc0033">ANCESTOR_MOVED</font>*   = 3;
+                     <font color="#cc0033">ANCESTOR_REMOVED</font>* = 2;
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="javax_swing.html#type-JComponent">javax_swing.JComponent</a>;
+                                     p1 : INTEGER;
+                                     p2 : <a href="java_awt.html#type-Container">java_awt.Container</a>;
+                                     p3 : <a href="java_awt.html#type-Container">java_awt.Container</a>) : <a href="#type-AncestorEvent">AncestorEvent</a><b>,CONSTRUCTOR</b>;
+                   <b>END</b>;
+
+  <a name="type-AncestorListener"></a><font color="#cc0033">AncestorListener</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_util.html#type-EventListener">java_util.EventListener</a>)
+                      <font color="green"><b> (* </b><a href="#meths-AncestorListener">Typebound Procedures</a><b> *)</b></font>
+                      <b>END</b>;
+
+  <a name="type-CaretEvent"></a><font color="#cc0033">CaretEvent</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_util.html#type-EventObject">java_util.EventObject</a>)
+                <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                <font color="green"><b> (* </b><a href="#meths-CaretEvent">Typebound Procedures</a><b> *)</b></font>
+                <b>STATIC</b>
+                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="#type-CaretEvent">CaretEvent</a><b>,CONSTRUCTOR</b>;
+                <b>END</b>;
+
+  <a name="type-CaretListener"></a><font color="#cc0033">CaretListener</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_util.html#type-EventListener">java_util.EventListener</a>)
+                   <font color="green"><b> (* </b><a href="#meths-CaretListener">Typebound Procedures</a><b> *)</b></font>
+                   <b>END</b>;
+
+  <a name="type-CellEditorListener"></a><font color="#cc0033">CellEditorListener</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_util.html#type-EventListener">java_util.EventListener</a>)
+                        <font color="green"><b> (* </b><a href="#meths-CellEditorListener">Typebound Procedures</a><b> *)</b></font>
+                        <b>END</b>;
+
+  <a name="type-ChangeEvent"></a><font color="#cc0033">ChangeEvent</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_util.html#type-EventObject">java_util.EventObject</a>)
+                 <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                 <b>STATIC</b>
+                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="#type-ChangeEvent">ChangeEvent</a><b>,CONSTRUCTOR</b>;
+                 <b>END</b>;
+
+  <a name="type-ChangeListener"></a><font color="#cc0033">ChangeListener</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_util.html#type-EventListener">java_util.EventListener</a>)
+                    <font color="green"><b> (* </b><a href="#meths-ChangeListener">Typebound Procedures</a><b> *)</b></font>
+                    <b>END</b>;
+
+  <a name="type-DocumentEvent"></a><font color="#cc0033">DocumentEvent</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                   <font color="green"><b> (* </b><a href="#meths-DocumentEvent">Typebound Procedures</a><b> *)</b></font>
+                   <b>END</b>;
+
+  <a name="type-DocumentEvent$ElementChange"></a><font color="#cc0033">DocumentEvent$ElementChange</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                                 <font color="green"><b> (* </b><a href="#meths-DocumentEvent$ElementChange">Typebound Procedures</a><b> *)</b></font>
+                                 <b>END</b>;
+
+  <a name="type-DocumentEvent$EventType"></a><font color="#cc0033">DocumentEvent$EventType</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                             <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                             <font color="green"><b> (* </b><a href="#meths-DocumentEvent$EventType">Typebound Procedures</a><b> *)</b></font>
+                             <b>STATIC</b>
+                               <a name="type-CHANGE"></a><font color="#cc0033">CHANGE</font>* : <a href="#type-DocumentEvent$EventType">DocumentEvent$EventType</a>;
+                               <a name="type-INSERT"></a><font color="#cc0033">INSERT</font>* : <a href="#type-DocumentEvent$EventType">DocumentEvent$EventType</a>;
+                               <a name="type-REMOVE"></a><font color="#cc0033">REMOVE</font>* : <a href="#type-DocumentEvent$EventType">DocumentEvent$EventType</a>;
+                             <b>END</b>;
+
+  <a name="type-DocumentListener"></a><font color="#cc0033">DocumentListener</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_util.html#type-EventListener">java_util.EventListener</a>)
+                      <font color="green"><b> (* </b><a href="#meths-DocumentListener">Typebound Procedures</a><b> *)</b></font>
+                      <b>END</b>;
+
+  <a name="type-EventListenerList"></a><font color="#cc0033">EventListenerList</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_io.html#type-Serializable">java_io.Serializable</a>)
+                       <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                       <font color="green"><b> (* </b><a href="#meths-EventListenerList">Typebound Procedures</a><b> *)</b></font>
+                         <font color="#cc0033">listenerList</font>! : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+                       <b>STATIC</b>
+                         <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-EventListenerList">EventListenerList</a><b>,CONSTRUCTOR</b>;
+                       <b>END</b>;
+
+  <a name="type-HyperlinkEvent"></a><font color="#cc0033">HyperlinkEvent</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_util.html#type-EventObject">java_util.EventObject</a>)
+                    <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                    <font color="green"><b> (* </b><a href="#meths-HyperlinkEvent">Typebound Procedures</a><b> *)</b></font>
+                    <b>STATIC</b>
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                      p1 : <a href="#type-HyperlinkEvent$EventType">HyperlinkEvent$EventType</a>;
+                                      p2 : <a href="java_net.html#type-URL">java_net.URL</a>;
+                                      p3 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                      p4 : <a href="javax_swing_text.html#type-Element">javax_swing_text.Element</a>) : <a href="#type-HyperlinkEvent">HyperlinkEvent</a><b>,CONSTRUCTOR</b>;
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                      p1 : <a href="#type-HyperlinkEvent$EventType">HyperlinkEvent$EventType</a>;
+                                      p2 : <a href="java_net.html#type-URL">java_net.URL</a>;
+                                      p3 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                      p4 : <a href="javax_swing_text.html#type-Element">javax_swing_text.Element</a>;
+                                      p5 : <a href="java_awt_event.html#type-InputEvent">java_awt_event.InputEvent</a>) : <a href="#type-HyperlinkEvent">HyperlinkEvent</a><b>,CONSTRUCTOR</b>;
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                      p1 : <a href="#type-HyperlinkEvent$EventType">HyperlinkEvent$EventType</a>;
+                                      p2 : <a href="java_net.html#type-URL">java_net.URL</a>) : <a href="#type-HyperlinkEvent">HyperlinkEvent</a><b>,CONSTRUCTOR</b>;
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                      p1 : <a href="#type-HyperlinkEvent$EventType">HyperlinkEvent$EventType</a>;
+                                      p2 : <a href="java_net.html#type-URL">java_net.URL</a>;
+                                      p3 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-HyperlinkEvent">HyperlinkEvent</a><b>,CONSTRUCTOR</b>;
+                    <b>END</b>;
+
+  <a name="type-HyperlinkEvent$EventType"></a><font color="#cc0033">HyperlinkEvent$EventType</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                              <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                              <font color="green"><b> (* </b><a href="#meths-HyperlinkEvent$EventType">Typebound Procedures</a><b> *)</b></font>
+                              <b>STATIC</b>
+                                <a name="type-ACTIVATED"></a><font color="#cc0033">ACTIVATED</font>* : <a href="#type-HyperlinkEvent$EventType">HyperlinkEvent$EventType</a>;
+                                <a name="type-ENTERED"></a><font color="#cc0033">ENTERED</font>*   : <a href="#type-HyperlinkEvent$EventType">HyperlinkEvent$EventType</a>;
+                                <a name="type-EXITED"></a><font color="#cc0033">EXITED</font>*    : <a href="#type-HyperlinkEvent$EventType">HyperlinkEvent$EventType</a>;
+                              <b>END</b>;
+
+  <a name="type-HyperlinkListener"></a><font color="#cc0033">HyperlinkListener</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_util.html#type-EventListener">java_util.EventListener</a>)
+                       <font color="green"><b> (* </b><a href="#meths-HyperlinkListener">Typebound Procedures</a><b> *)</b></font>
+                       <b>END</b>;
+
+  <a name="type-InternalFrameAdapter"></a><font color="#cc0033">InternalFrameAdapter</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <b>InternalFrameListener</b>)
+                          <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                          <font color="green"><b> (* </b><a href="#meths-InternalFrameAdapter">Typebound Procedures</a><b> *)</b></font>
+                          <b>STATIC</b>
+                            <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-InternalFrameAdapter">InternalFrameAdapter</a><b>,CONSTRUCTOR</b>;
+                          <b>END</b>;
+
+  <a name="type-InternalFrameEvent"></a><font color="#cc0033">InternalFrameEvent</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_awt.html#type-AWTEvent">java_awt.AWTEvent</a>)
+                        <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                        <font color="green"><b> (* </b><a href="#meths-InternalFrameEvent">Typebound Procedures</a><b> *)</b></font>
+                        <b>STATIC</b>
+                          <font color="#cc0033">INTERNAL_FRAME_ACTIVATED</font>*   = 25554;
+                          <font color="#cc0033">INTERNAL_FRAME_CLOSED</font>*      = 25551;
+                          <font color="#cc0033">INTERNAL_FRAME_CLOSING</font>*     = 25550;
+                          <font color="#cc0033">INTERNAL_FRAME_DEACTIVATED</font>* = 25555;
+                          <font color="#cc0033">INTERNAL_FRAME_DEICONIFIED</font>* = 25553;
+                          <font color="#cc0033">INTERNAL_FRAME_FIRST</font>*       = 25549;
+                          <font color="#cc0033">INTERNAL_FRAME_ICONIFIED</font>*   = 25552;
+                          <font color="#cc0033">INTERNAL_FRAME_LAST</font>*        = 25555;
+                          <font color="#cc0033">INTERNAL_FRAME_OPENED</font>*      = 25549;
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="javax_swing.html#type-JInternalFrame">javax_swing.JInternalFrame</a>;
+                                          p1 : INTEGER) : <a href="#type-InternalFrameEvent">InternalFrameEvent</a><b>,CONSTRUCTOR</b>;
+                        <b>END</b>;
+
+  <a name="type-InternalFrameListener"></a><font color="#cc0033">InternalFrameListener</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_util.html#type-EventListener">java_util.EventListener</a>)
+                           <font color="green"><b> (* </b><a href="#meths-InternalFrameListener">Typebound Procedures</a><b> *)</b></font>
+                           <b>END</b>;
+
+  <a name="type-ListDataEvent"></a><font color="#cc0033">ListDataEvent</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_util.html#type-EventObject">java_util.EventObject</a>)
+                   <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                   <font color="green"><b> (* </b><a href="#meths-ListDataEvent">Typebound Procedures</a><b> *)</b></font>
+                   <b>STATIC</b>
+                     <font color="#cc0033">CONTENTS_CHANGED</font>* = 0;
+                     <font color="#cc0033">INTERVAL_ADDED</font>*   = 1;
+                     <font color="#cc0033">INTERVAL_REMOVED</font>* = 2;
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                     p1 : INTEGER;
+                                     p2 : INTEGER;
+                                     p3 : INTEGER) : <a href="#type-ListDataEvent">ListDataEvent</a><b>,CONSTRUCTOR</b>;
+                   <b>END</b>;
+
+  <a name="type-ListDataListener"></a><font color="#cc0033">ListDataListener</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_util.html#type-EventListener">java_util.EventListener</a>)
+                      <font color="green"><b> (* </b><a href="#meths-ListDataListener">Typebound Procedures</a><b> *)</b></font>
+                      <b>END</b>;
+
+  <a name="type-ListSelectionEvent"></a><font color="#cc0033">ListSelectionEvent</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_util.html#type-EventObject">java_util.EventObject</a>)
+                        <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                        <font color="green"><b> (* </b><a href="#meths-ListSelectionEvent">Typebound Procedures</a><b> *)</b></font>
+                        <b>STATIC</b>
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                          p1 : INTEGER;
+                                          p2 : INTEGER;
+                                          p3 : BOOLEAN) : <a href="#type-ListSelectionEvent">ListSelectionEvent</a><b>,CONSTRUCTOR</b>;
+                        <b>END</b>;
+
+  <a name="type-ListSelectionListener"></a><font color="#cc0033">ListSelectionListener</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_util.html#type-EventListener">java_util.EventListener</a>)
+                           <font color="green"><b> (* </b><a href="#meths-ListSelectionListener">Typebound Procedures</a><b> *)</b></font>
+                           <b>END</b>;
+
+  <a name="type-MenuDragMouseEvent"></a><font color="#cc0033">MenuDragMouseEvent</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_awt_event.html#type-MouseEvent">java_awt_event.MouseEvent</a>)
+                        <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                        <font color="green"><b> (* </b><a href="#meths-MenuDragMouseEvent">Typebound Procedures</a><b> *)</b></font>
+                        <b>STATIC</b>
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>*(    p0  : <a href="java_awt.html#type-Component">java_awt.Component</a>;
+                                              p1  : INTEGER;
+                                              p2  : LONGINT;
+                                              p3  : INTEGER;
+                                              p4  : INTEGER;
+                                              p5  : INTEGER;
+                                              p6  : INTEGER;
+                                              p7  : INTEGER;
+                                              p8  : INTEGER;
+                                              p9  : BOOLEAN;
+                                          IN  p10 : <b>ARRAY </b><b>OF </b><a href="javax_swing.html#type-MenuElement">javax_swing.MenuElement</a>;
+                                              p11 : <a href="javax_swing.html#type-MenuSelectionManager">javax_swing.MenuSelectionManager</a>) : <a href="#type-MenuDragMouseEvent">MenuDragMouseEvent</a><b>,CONSTRUCTOR</b>;
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>*(    p0 : <a href="java_awt.html#type-Component">java_awt.Component</a>;
+                                              p1 : INTEGER;
+                                              p2 : LONGINT;
+                                              p3 : INTEGER;
+                                              p4 : INTEGER;
+                                              p5 : INTEGER;
+                                              p6 : INTEGER;
+                                              p7 : BOOLEAN;
+                                          IN  p8 : <b>ARRAY </b><b>OF </b><a href="javax_swing.html#type-MenuElement">javax_swing.MenuElement</a>;
+                                              p9 : <a href="javax_swing.html#type-MenuSelectionManager">javax_swing.MenuSelectionManager</a>) : <a href="#type-MenuDragMouseEvent">MenuDragMouseEvent</a><b>,CONSTRUCTOR</b>;
+                        <b>END</b>;
+
+  <a name="type-MenuDragMouseListener"></a><font color="#cc0033">MenuDragMouseListener</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_util.html#type-EventListener">java_util.EventListener</a>)
+                           <font color="green"><b> (* </b><a href="#meths-MenuDragMouseListener">Typebound Procedures</a><b> *)</b></font>
+                           <b>END</b>;
+
+  <a name="type-MenuEvent"></a><font color="#cc0033">MenuEvent</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_util.html#type-EventObject">java_util.EventObject</a>)
+               <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+               <b>STATIC</b>
+                 <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="#type-MenuEvent">MenuEvent</a><b>,CONSTRUCTOR</b>;
+               <b>END</b>;
+
+  <a name="type-MenuKeyEvent"></a><font color="#cc0033">MenuKeyEvent</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_awt_event.html#type-KeyEvent">java_awt_event.KeyEvent</a>)
+                  <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                  <font color="green"><b> (* </b><a href="#meths-MenuKeyEvent">Typebound Procedures</a><b> *)</b></font>
+                  <b>STATIC</b>
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*(    p0 : <a href="java_awt.html#type-Component">java_awt.Component</a>;
+                                        p1 : INTEGER;
+                                        p2 : LONGINT;
+                                        p3 : INTEGER;
+                                        p4 : INTEGER;
+                                        p5 : CHAR;
+                                    IN  p6 : <b>ARRAY </b><b>OF </b><a href="javax_swing.html#type-MenuElement">javax_swing.MenuElement</a>;
+                                        p7 : <a href="javax_swing.html#type-MenuSelectionManager">javax_swing.MenuSelectionManager</a>) : <a href="#type-MenuKeyEvent">MenuKeyEvent</a><b>,CONSTRUCTOR</b>;
+                  <b>END</b>;
+
+  <a name="type-MenuKeyListener"></a><font color="#cc0033">MenuKeyListener</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_util.html#type-EventListener">java_util.EventListener</a>)
+                     <font color="green"><b> (* </b><a href="#meths-MenuKeyListener">Typebound Procedures</a><b> *)</b></font>
+                     <b>END</b>;
+
+  <a name="type-MenuListener"></a><font color="#cc0033">MenuListener</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_util.html#type-EventListener">java_util.EventListener</a>)
+                  <font color="green"><b> (* </b><a href="#meths-MenuListener">Typebound Procedures</a><b> *)</b></font>
+                  <b>END</b>;
+
+  <a name="type-MouseInputAdapter"></a><font color="#cc0033">MouseInputAdapter</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_awt_event.html#type-MouseAdapter">java_awt_event.MouseAdapter</a> + <b>MouseInputListener</b>)
+                       <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                       <b>STATIC</b>
+                         <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-MouseInputAdapter">MouseInputAdapter</a><b>,CONSTRUCTOR</b>;
+                       <b>END</b>;
+
+  <a name="type-MouseInputListener"></a><font color="#cc0033">MouseInputListener</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_awt_event.html#type-MouseListener">java_awt_event.MouseListener</a> + <a href="java_awt_event.html#type-MouseMotionListener">java_awt_event.MouseMotionListener</a>)
+                        <b>END</b>;
+
+  <a name="type-PopupMenuEvent"></a><font color="#cc0033">PopupMenuEvent</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_util.html#type-EventObject">java_util.EventObject</a>)
+                    <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                    <b>STATIC</b>
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="#type-PopupMenuEvent">PopupMenuEvent</a><b>,CONSTRUCTOR</b>;
+                    <b>END</b>;
+
+  <a name="type-PopupMenuListener"></a><font color="#cc0033">PopupMenuListener</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_util.html#type-EventListener">java_util.EventListener</a>)
+                       <font color="green"><b> (* </b><a href="#meths-PopupMenuListener">Typebound Procedures</a><b> *)</b></font>
+                       <b>END</b>;
+
+  <a name="type-RowSorterEvent"></a><font color="#cc0033">RowSorterEvent</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_util.html#type-EventObject">java_util.EventObject</a>)
+                    <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                    <font color="green"><b> (* </b><a href="#meths-RowSorterEvent">Typebound Procedures</a><b> *)</b></font>
+                    <b>STATIC</b>
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*(    p0 : <a href="javax_swing.html#type-RowSorter">javax_swing.RowSorter</a>;
+                                          p1 : <a href="#type-RowSorterEvent$Type">RowSorterEvent$Type</a>;
+                                      IN  p2 : <b>ARRAY </b><b>OF </b>INTEGER) : <a href="#type-RowSorterEvent">RowSorterEvent</a><b>,CONSTRUCTOR</b>;
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="javax_swing.html#type-RowSorter">javax_swing.RowSorter</a>) : <a href="#type-RowSorterEvent">RowSorterEvent</a><b>,CONSTRUCTOR</b>;
+                    <b>END</b>;
+
+  <a name="type-RowSorterEvent$Type"></a><font color="#cc0033">RowSorterEvent$Type</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Enum">java_lang.Enum</a>)
+                         <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                         <b>STATIC</b>
+                           <a name="type-SORTED"></a><font color="#cc0033">SORTED</font>*             : <a href="#type-RowSorterEvent$Type">RowSorterEvent$Type</a>;
+                           <a name="type-SORT_ORDER_CHANGED"></a><font color="#cc0033">SORT_ORDER_CHANGED</font>* : <a href="#type-RowSorterEvent$Type">RowSorterEvent$Type</a>;
+                           <b>PROCEDURE </b><font color="#cc0033">valueOf</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-RowSorterEvent$Type">RowSorterEvent$Type</a>;
+                           <b>PROCEDURE </b><font color="#cc0033">values</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-RowSorterEvent$Type">RowSorterEvent$Type</a>;
+                         <b>END</b>;
+
+  <a name="type-RowSorterListener"></a><font color="#cc0033">RowSorterListener</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_util.html#type-EventListener">java_util.EventListener</a>)
+                       <font color="green"><b> (* </b><a href="#meths-RowSorterListener">Typebound Procedures</a><b> *)</b></font>
+                       <b>END</b>;
+
+  <a name="type-SwingPropertyChangeSupport"></a><font color="#cc0033">SwingPropertyChangeSupport</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_beans.html#type-PropertyChangeSupport">java_beans.PropertyChangeSupport</a>)
+                                <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                                <font color="green"><b> (* </b><a href="#meths-SwingPropertyChangeSupport">Typebound Procedures</a><b> *)</b></font>
+                                <b>STATIC</b>
+                                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                  p1 : BOOLEAN) : <a href="#type-SwingPropertyChangeSupport">SwingPropertyChangeSupport</a><b>,CONSTRUCTOR</b>;
+                                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="#type-SwingPropertyChangeSupport">SwingPropertyChangeSupport</a><b>,CONSTRUCTOR</b>;
+                                <b>END</b>;
+
+  <a name="type-TableColumnModelEvent"></a><font color="#cc0033">TableColumnModelEvent</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_util.html#type-EventObject">java_util.EventObject</a>)
+                           <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                           <font color="green"><b> (* </b><a href="#meths-TableColumnModelEvent">Typebound Procedures</a><b> *)</b></font>
+                             <font color="#cc0033">fromIndex</font>! : INTEGER;
+                             <font color="#cc0033">toIndex</font>!   : INTEGER;
+                           <b>STATIC</b>
+                             <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="javax_swing_table.html#type-TableColumnModel">javax_swing_table.TableColumnModel</a>;
+                                             p1 : INTEGER;
+                                             p2 : INTEGER) : <a href="#type-TableColumnModelEvent">TableColumnModelEvent</a><b>,CONSTRUCTOR</b>;
+                           <b>END</b>;
+
+  <a name="type-TableColumnModelListener"></a><font color="#cc0033">TableColumnModelListener</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_util.html#type-EventListener">java_util.EventListener</a>)
+                              <font color="green"><b> (* </b><a href="#meths-TableColumnModelListener">Typebound Procedures</a><b> *)</b></font>
+                              <b>END</b>;
+
+  <a name="type-TableModelEvent"></a><font color="#cc0033">TableModelEvent</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_util.html#type-EventObject">java_util.EventObject</a>)
+                     <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                     <font color="green"><b> (* </b><a href="#meths-TableModelEvent">Typebound Procedures</a><b> *)</b></font>
+                       <font color="#cc0033">type</font>!     : INTEGER;
+                       <font color="#cc0033">firstRow</font>! : INTEGER;
+                       <font color="#cc0033">lastRow</font>!  : INTEGER;
+                       <font color="#cc0033">column</font>!   : INTEGER;
+                     <b>STATIC</b>
+                       <font color="#cc0033">ALL_COLUMNS</font>* = -1;
+                       <font color="#cc0033">DELETE</font>*      = -1;
+                       <font color="#cc0033">HEADER_ROW</font>*  = -1;
+                       <font color="#cc0033">INSERT</font>*      = 1;
+                       <font color="#cc0033">UPDATE</font>*      = 0;
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="javax_swing_table.html#type-TableModel">javax_swing_table.TableModel</a>;
+                                       p1 : INTEGER;
+                                       p2 : INTEGER;
+                                       p3 : INTEGER) : <a href="#type-TableModelEvent">TableModelEvent</a><b>,CONSTRUCTOR</b>;
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="javax_swing_table.html#type-TableModel">javax_swing_table.TableModel</a>;
+                                       p1 : INTEGER;
+                                       p2 : INTEGER;
+                                       p3 : INTEGER;
+                                       p4 : INTEGER) : <a href="#type-TableModelEvent">TableModelEvent</a><b>,CONSTRUCTOR</b>;
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="javax_swing_table.html#type-TableModel">javax_swing_table.TableModel</a>;
+                                       p1 : INTEGER;
+                                       p2 : INTEGER) : <a href="#type-TableModelEvent">TableModelEvent</a><b>,CONSTRUCTOR</b>;
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="javax_swing_table.html#type-TableModel">javax_swing_table.TableModel</a>) : <a href="#type-TableModelEvent">TableModelEvent</a><b>,CONSTRUCTOR</b>;
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="javax_swing_table.html#type-TableModel">javax_swing_table.TableModel</a>;
+                                       p1 : INTEGER) : <a href="#type-TableModelEvent">TableModelEvent</a><b>,CONSTRUCTOR</b>;
+                     <b>END</b>;
+
+  <a name="type-TableModelListener"></a><font color="#cc0033">TableModelListener</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_util.html#type-EventListener">java_util.EventListener</a>)
+                        <font color="green"><b> (* </b><a href="#meths-TableModelListener">Typebound Procedures</a><b> *)</b></font>
+                        <b>END</b>;
+
+  <a name="type-TreeExpansionEvent"></a><font color="#cc0033">TreeExpansionEvent</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_util.html#type-EventObject">java_util.EventObject</a>)
+                        <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                        <font color="green"><b> (* </b><a href="#meths-TreeExpansionEvent">Typebound Procedures</a><b> *)</b></font>
+                          <font color="#cc0033">path</font>! : <a href="javax_swing_tree.html#type-TreePath">javax_swing_tree.TreePath</a>;
+                        <b>STATIC</b>
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                          p1 : <a href="javax_swing_tree.html#type-TreePath">javax_swing_tree.TreePath</a>) : <a href="#type-TreeExpansionEvent">TreeExpansionEvent</a><b>,CONSTRUCTOR</b>;
+                        <b>END</b>;
+
+  <a name="type-TreeExpansionListener"></a><font color="#cc0033">TreeExpansionListener</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_util.html#type-EventListener">java_util.EventListener</a>)
+                           <font color="green"><b> (* </b><a href="#meths-TreeExpansionListener">Typebound Procedures</a><b> *)</b></font>
+                           <b>END</b>;
+
+  <a name="type-TreeModelEvent"></a><font color="#cc0033">TreeModelEvent</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_util.html#type-EventObject">java_util.EventObject</a>)
+                    <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                    <font color="green"><b> (* </b><a href="#meths-TreeModelEvent">Typebound Procedures</a><b> *)</b></font>
+                      <font color="#cc0033">path</font>!         : <a href="javax_swing_tree.html#type-TreePath">javax_swing_tree.TreePath</a>;
+                      <font color="#cc0033">childIndices</font>! : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>INTEGER;
+                      <font color="#cc0033">children</font>!     : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+                    <b>STATIC</b>
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*(    p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                      IN  p1 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="#type-TreeModelEvent">TreeModelEvent</a><b>,CONSTRUCTOR</b>;
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                      p1 : <a href="javax_swing_tree.html#type-TreePath">javax_swing_tree.TreePath</a>) : <a href="#type-TreeModelEvent">TreeModelEvent</a><b>,CONSTRUCTOR</b>;
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*(    p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                      IN  p1 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                      IN  p2 : <b>ARRAY </b><b>OF </b>INTEGER;
+                                      IN  p3 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="#type-TreeModelEvent">TreeModelEvent</a><b>,CONSTRUCTOR</b>;
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*(    p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                          p1 : <a href="javax_swing_tree.html#type-TreePath">javax_swing_tree.TreePath</a>;
+                                      IN  p2 : <b>ARRAY </b><b>OF </b>INTEGER;
+                                      IN  p3 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="#type-TreeModelEvent">TreeModelEvent</a><b>,CONSTRUCTOR</b>;
+                    <b>END</b>;
+
+  <a name="type-TreeModelListener"></a><font color="#cc0033">TreeModelListener</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_util.html#type-EventListener">java_util.EventListener</a>)
+                       <font color="green"><b> (* </b><a href="#meths-TreeModelListener">Typebound Procedures</a><b> *)</b></font>
+                       <b>END</b>;
+
+  <a name="type-TreeSelectionEvent"></a><font color="#cc0033">TreeSelectionEvent</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_util.html#type-EventObject">java_util.EventObject</a>)
+                        <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                        <font color="green"><b> (* </b><a href="#meths-TreeSelectionEvent">Typebound Procedures</a><b> *)</b></font>
+                          <font color="#cc0033">paths</font>!                : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="javax_swing_tree.html#type-TreePath">javax_swing_tree.TreePath</a>;
+                          <font color="#cc0033">areNew</font>!               : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BOOLEAN;
+                          <font color="#cc0033">oldLeadSelectionPath</font>! : <a href="javax_swing_tree.html#type-TreePath">javax_swing_tree.TreePath</a>;
+                          <font color="#cc0033">newLeadSelectionPath</font>! : <a href="javax_swing_tree.html#type-TreePath">javax_swing_tree.TreePath</a>;
+                        <b>STATIC</b>
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                          p1 : <a href="javax_swing_tree.html#type-TreePath">javax_swing_tree.TreePath</a>;
+                                          p2 : BOOLEAN;
+                                          p3 : <a href="javax_swing_tree.html#type-TreePath">javax_swing_tree.TreePath</a>;
+                                          p4 : <a href="javax_swing_tree.html#type-TreePath">javax_swing_tree.TreePath</a>) : <a href="#type-TreeSelectionEvent">TreeSelectionEvent</a><b>,CONSTRUCTOR</b>;
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>*(    p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                          IN  p1 : <b>ARRAY </b><b>OF </b><a href="javax_swing_tree.html#type-TreePath">javax_swing_tree.TreePath</a>;
+                                          IN  p2 : <b>ARRAY </b><b>OF </b>BOOLEAN;
+                                              p3 : <a href="javax_swing_tree.html#type-TreePath">javax_swing_tree.TreePath</a>;
+                                              p4 : <a href="javax_swing_tree.html#type-TreePath">javax_swing_tree.TreePath</a>) : <a href="#type-TreeSelectionEvent">TreeSelectionEvent</a><b>,CONSTRUCTOR</b>;
+                        <b>END</b>;
+
+  <a name="type-TreeSelectionListener"></a><font color="#cc0033">TreeSelectionListener</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_util.html#type-EventListener">java_util.EventListener</a>)
+                           <font color="green"><b> (* </b><a href="#meths-TreeSelectionListener">Typebound Procedures</a><b> *)</b></font>
+                           <b>END</b>;
+
+  <a name="type-TreeWillExpandListener"></a><font color="#cc0033">TreeWillExpandListener</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_util.html#type-EventListener">java_util.EventListener</a>)
+                            <font color="green"><b> (* </b><a href="#meths-TreeWillExpandListener">Typebound Procedures</a><b> *)</b></font>
+                            <b>END</b>;
+
+  <a name="type-UndoableEditEvent"></a><font color="#cc0033">UndoableEditEvent</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_util.html#type-EventObject">java_util.EventObject</a>)
+                       <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                       <font color="green"><b> (* </b><a href="#meths-UndoableEditEvent">Typebound Procedures</a><b> *)</b></font>
+                       <b>STATIC</b>
+                         <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                         p1 : <a href="javax_swing_undo.html#type-UndoableEdit">javax_swing_undo.UndoableEdit</a>) : <a href="#type-UndoableEditEvent">UndoableEditEvent</a><b>,CONSTRUCTOR</b>;
+                       <b>END</b>;
+
+  <a name="type-UndoableEditListener"></a><font color="#cc0033">UndoableEditListener</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_util.html#type-EventListener">java_util.EventListener</a>)
+                          <font color="green"><b> (* </b><a href="#meths-UndoableEditListener">Typebound Procedures</a><b> *)</b></font>
+                          <b>END</b>;
+
+
+
+<a name="meths-AncestorEvent"></a>
+<b>PROCEDURE </b>(self:AncestorEvent) <font color="#cc0033">getAncestor</font>*() : <a href="java_awt.html#type-Container">java_awt.Container</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AncestorEvent) <font color="#cc0033">getAncestorParent</font>*() : <a href="java_awt.html#type-Container">java_awt.Container</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AncestorEvent) <font color="#cc0033">getComponent</font>*() : <a href="javax_swing.html#type-JComponent">javax_swing.JComponent</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-AncestorListener"></a>
+<b>PROCEDURE </b>(self:AncestorListener) <font color="#cc0033">ancestorAdded</font>*(p0 : <a href="#type-AncestorEvent">AncestorEvent</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AncestorListener) <font color="#cc0033">ancestorMoved</font>*(p0 : <a href="#type-AncestorEvent">AncestorEvent</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AncestorListener) <font color="#cc0033">ancestorRemoved</font>*(p0 : <a href="#type-AncestorEvent">AncestorEvent</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-CaretEvent"></a>
+<b>PROCEDURE </b>(self:CaretEvent) <font color="#cc0033">getDot</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CaretEvent) <font color="#cc0033">getMark</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+<a name="meths-CaretListener"></a>
+<b>PROCEDURE </b>(self:CaretListener) <font color="#cc0033">caretUpdate</font>*(p0 : <a href="#type-CaretEvent">CaretEvent</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-CellEditorListener"></a>
+<b>PROCEDURE </b>(self:CellEditorListener) <font color="#cc0033">editingCanceled</font>*(p0 : <b>ChangeEvent</b>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CellEditorListener) <font color="#cc0033">editingStopped</font>*(p0 : <b>ChangeEvent</b>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-ChangeListener"></a>
+<b>PROCEDURE </b>(self:ChangeListener) <font color="#cc0033">stateChanged</font>*(p0 : <a href="#type-ChangeEvent">ChangeEvent</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-DocumentEvent"></a>
+<b>PROCEDURE </b>(self:DocumentEvent) <font color="#cc0033">getChange</font>*(p0 : <a href="javax_swing_text.html#type-Element">javax_swing_text.Element</a>) : <a href="#type-DocumentEvent$ElementChange">DocumentEvent$ElementChange</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DocumentEvent) <font color="#cc0033">getDocument</font>*() : <a href="javax_swing_text.html#type-Document">javax_swing_text.Document</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DocumentEvent) <font color="#cc0033">getLength</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DocumentEvent) <font color="#cc0033">getOffset</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DocumentEvent) <font color="#cc0033">getType</font>*() : <a href="#type-DocumentEvent$EventType">DocumentEvent$EventType</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-DocumentEvent$ElementChange"></a>
+<b>PROCEDURE </b>(self:DocumentEvent$ElementChange) <font color="#cc0033">getChildrenAdded</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="javax_swing_text.html#type-Element">javax_swing_text.Element</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DocumentEvent$ElementChange) <font color="#cc0033">getChildrenRemoved</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="javax_swing_text.html#type-Element">javax_swing_text.Element</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DocumentEvent$ElementChange) <font color="#cc0033">getElement</font>*() : <a href="javax_swing_text.html#type-Element">javax_swing_text.Element</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DocumentEvent$ElementChange) <font color="#cc0033">getIndex</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+<a name="meths-DocumentEvent$EventType"></a>
+<b>PROCEDURE </b>(self:DocumentEvent$EventType) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-DocumentListener"></a>
+<b>PROCEDURE </b>(self:DocumentListener) <font color="#cc0033">changedUpdate</font>*(p0 : <b>DocumentEvent</b>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DocumentListener) <font color="#cc0033">insertUpdate</font>*(p0 : <b>DocumentEvent</b>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DocumentListener) <font color="#cc0033">removeUpdate</font>*(p0 : <b>DocumentEvent</b>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-EventListenerList"></a>
+<b>PROCEDURE </b>(self:EventListenerList) <font color="#cc0033">add</font>*(p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                                        p1 : <a href="java_util.html#type-EventListener">java_util.EventListener</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:EventListenerList) <font color="#cc0033">getListenerCount</font>*(p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:EventListenerList) <font color="#cc0033">getListenerCount</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:EventListenerList) <font color="#cc0033">getListenerList</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:EventListenerList) <font color="#cc0033">getListeners</font>*(p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_util.html#type-EventListener">java_util.EventListener</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:EventListenerList) <font color="#cc0033">remove</font>*(p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                                           p1 : <a href="java_util.html#type-EventListener">java_util.EventListener</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:EventListenerList) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-HyperlinkEvent"></a>
+<b>PROCEDURE </b>(self:HyperlinkEvent) <font color="#cc0033">getDescription</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HyperlinkEvent) <font color="#cc0033">getEventType</font>*() : <a href="#type-HyperlinkEvent$EventType">HyperlinkEvent$EventType</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HyperlinkEvent) <font color="#cc0033">getInputEvent</font>*() : <a href="java_awt_event.html#type-InputEvent">java_awt_event.InputEvent</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HyperlinkEvent) <font color="#cc0033">getSourceElement</font>*() : <a href="javax_swing_text.html#type-Element">javax_swing_text.Element</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HyperlinkEvent) <font color="#cc0033">getURL</font>*() : <a href="java_net.html#type-URL">java_net.URL</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-HyperlinkEvent$EventType"></a>
+<b>PROCEDURE </b>(self:HyperlinkEvent$EventType) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-HyperlinkListener"></a>
+<b>PROCEDURE </b>(self:HyperlinkListener) <font color="#cc0033">hyperlinkUpdate</font>*(p0 : <a href="#type-HyperlinkEvent">HyperlinkEvent</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-InternalFrameAdapter"></a>
+<b>PROCEDURE </b>(self:InternalFrameAdapter) <font color="#cc0033">internalFrameActivated</font>*(p0 : <b>InternalFrameEvent</b>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:InternalFrameAdapter) <font color="#cc0033">internalFrameClosed</font>*(p0 : <b>InternalFrameEvent</b>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:InternalFrameAdapter) <font color="#cc0033">internalFrameClosing</font>*(p0 : <b>InternalFrameEvent</b>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:InternalFrameAdapter) <font color="#cc0033">internalFrameDeactivated</font>*(p0 : <b>InternalFrameEvent</b>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:InternalFrameAdapter) <font color="#cc0033">internalFrameDeiconified</font>*(p0 : <b>InternalFrameEvent</b>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:InternalFrameAdapter) <font color="#cc0033">internalFrameIconified</font>*(p0 : <b>InternalFrameEvent</b>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:InternalFrameAdapter) <font color="#cc0033">internalFrameOpened</font>*(p0 : <b>InternalFrameEvent</b>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-InternalFrameEvent"></a>
+<b>PROCEDURE </b>(self:InternalFrameEvent) <font color="#cc0033">getInternalFrame</font>*() : <a href="javax_swing.html#type-JInternalFrame">javax_swing.JInternalFrame</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:InternalFrameEvent) <font color="#cc0033">paramString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-InternalFrameListener"></a>
+<b>PROCEDURE </b>(self:InternalFrameListener) <font color="#cc0033">internalFrameActivated</font>*(p0 : <a href="#type-InternalFrameEvent">InternalFrameEvent</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:InternalFrameListener) <font color="#cc0033">internalFrameClosed</font>*(p0 : <a href="#type-InternalFrameEvent">InternalFrameEvent</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:InternalFrameListener) <font color="#cc0033">internalFrameClosing</font>*(p0 : <a href="#type-InternalFrameEvent">InternalFrameEvent</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:InternalFrameListener) <font color="#cc0033">internalFrameDeactivated</font>*(p0 : <a href="#type-InternalFrameEvent">InternalFrameEvent</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:InternalFrameListener) <font color="#cc0033">internalFrameDeiconified</font>*(p0 : <a href="#type-InternalFrameEvent">InternalFrameEvent</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:InternalFrameListener) <font color="#cc0033">internalFrameIconified</font>*(p0 : <a href="#type-InternalFrameEvent">InternalFrameEvent</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:InternalFrameListener) <font color="#cc0033">internalFrameOpened</font>*(p0 : <a href="#type-InternalFrameEvent">InternalFrameEvent</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-ListDataEvent"></a>
+<b>PROCEDURE </b>(self:ListDataEvent) <font color="#cc0033">getIndex0</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ListDataEvent) <font color="#cc0033">getIndex1</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ListDataEvent) <font color="#cc0033">getType</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ListDataEvent) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-ListDataListener"></a>
+<b>PROCEDURE </b>(self:ListDataListener) <font color="#cc0033">contentsChanged</font>*(p0 : <a href="#type-ListDataEvent">ListDataEvent</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ListDataListener) <font color="#cc0033">intervalAdded</font>*(p0 : <a href="#type-ListDataEvent">ListDataEvent</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ListDataListener) <font color="#cc0033">intervalRemoved</font>*(p0 : <a href="#type-ListDataEvent">ListDataEvent</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-ListSelectionEvent"></a>
+<b>PROCEDURE </b>(self:ListSelectionEvent) <font color="#cc0033">getFirstIndex</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ListSelectionEvent) <font color="#cc0033">getLastIndex</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ListSelectionEvent) <font color="#cc0033">getValueIsAdjusting</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ListSelectionEvent) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-ListSelectionListener"></a>
+<b>PROCEDURE </b>(self:ListSelectionListener) <font color="#cc0033">valueChanged</font>*(p0 : <a href="#type-ListSelectionEvent">ListSelectionEvent</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-MenuDragMouseEvent"></a>
+<b>PROCEDURE </b>(self:MenuDragMouseEvent) <font color="#cc0033">getMenuSelectionManager</font>*() : <a href="javax_swing.html#type-MenuSelectionManager">javax_swing.MenuSelectionManager</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MenuDragMouseEvent) <font color="#cc0033">getPath</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="javax_swing.html#type-MenuElement">javax_swing.MenuElement</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-MenuDragMouseListener"></a>
+<b>PROCEDURE </b>(self:MenuDragMouseListener) <font color="#cc0033">menuDragMouseDragged</font>*(p0 : <a href="#type-MenuDragMouseEvent">MenuDragMouseEvent</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MenuDragMouseListener) <font color="#cc0033">menuDragMouseEntered</font>*(p0 : <a href="#type-MenuDragMouseEvent">MenuDragMouseEvent</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MenuDragMouseListener) <font color="#cc0033">menuDragMouseExited</font>*(p0 : <a href="#type-MenuDragMouseEvent">MenuDragMouseEvent</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MenuDragMouseListener) <font color="#cc0033">menuDragMouseReleased</font>*(p0 : <a href="#type-MenuDragMouseEvent">MenuDragMouseEvent</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-MenuKeyEvent"></a>
+<b>PROCEDURE </b>(self:MenuKeyEvent) <font color="#cc0033">getMenuSelectionManager</font>*() : <a href="javax_swing.html#type-MenuSelectionManager">javax_swing.MenuSelectionManager</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MenuKeyEvent) <font color="#cc0033">getPath</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="javax_swing.html#type-MenuElement">javax_swing.MenuElement</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-MenuKeyListener"></a>
+<b>PROCEDURE </b>(self:MenuKeyListener) <font color="#cc0033">menuKeyPressed</font>*(p0 : <a href="#type-MenuKeyEvent">MenuKeyEvent</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MenuKeyListener) <font color="#cc0033">menuKeyReleased</font>*(p0 : <a href="#type-MenuKeyEvent">MenuKeyEvent</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MenuKeyListener) <font color="#cc0033">menuKeyTyped</font>*(p0 : <a href="#type-MenuKeyEvent">MenuKeyEvent</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-MenuListener"></a>
+<b>PROCEDURE </b>(self:MenuListener) <font color="#cc0033">menuCanceled</font>*(p0 : <a href="#type-MenuEvent">MenuEvent</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MenuListener) <font color="#cc0033">menuDeselected</font>*(p0 : <a href="#type-MenuEvent">MenuEvent</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MenuListener) <font color="#cc0033">menuSelected</font>*(p0 : <a href="#type-MenuEvent">MenuEvent</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-PopupMenuListener"></a>
+<b>PROCEDURE </b>(self:PopupMenuListener) <font color="#cc0033">popupMenuCanceled</font>*(p0 : <a href="#type-PopupMenuEvent">PopupMenuEvent</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:PopupMenuListener) <font color="#cc0033">popupMenuWillBecomeInvisible</font>*(p0 : <a href="#type-PopupMenuEvent">PopupMenuEvent</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:PopupMenuListener) <font color="#cc0033">popupMenuWillBecomeVisible</font>*(p0 : <a href="#type-PopupMenuEvent">PopupMenuEvent</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-RowSorterEvent"></a>
+<b>PROCEDURE </b>(self:RowSorterEvent) <font color="#cc0033">convertPreviousRowIndexToModel</font>*(p0 : INTEGER) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RowSorterEvent) <font color="#cc0033">getPreviousRowCount</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RowSorterEvent) <font color="#cc0033">getSource</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RowSorterEvent) <font color="#cc0033">getSource</font>*() : <a href="javax_swing.html#type-RowSorter">javax_swing.RowSorter</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RowSorterEvent) <font color="#cc0033">getType</font>*() : <a href="#type-RowSorterEvent$Type">RowSorterEvent$Type</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-RowSorterListener"></a>
+<b>PROCEDURE </b>(self:RowSorterListener) <font color="#cc0033">sorterChanged</font>*(p0 : <a href="#type-RowSorterEvent">RowSorterEvent</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-SwingPropertyChangeSupport"></a>
+<b>PROCEDURE </b>(self:SwingPropertyChangeSupport) <font color="#cc0033">firePropertyChange</font>*(p0 : <a href="java_beans.html#type-PropertyChangeEvent">java_beans.PropertyChangeEvent</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SwingPropertyChangeSupport) <font color="#cc0033">isNotifyOnEDT</font>*() : BOOLEAN<b>,NEW</b>;
+<a name="meths-TableColumnModelEvent"></a>
+<b>PROCEDURE </b>(self:TableColumnModelEvent) <font color="#cc0033">getFromIndex</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TableColumnModelEvent) <font color="#cc0033">getToIndex</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-TableColumnModelListener"></a>
+<b>PROCEDURE </b>(self:TableColumnModelListener) <font color="#cc0033">columnAdded</font>*(p0 : <a href="#type-TableColumnModelEvent">TableColumnModelEvent</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TableColumnModelListener) <font color="#cc0033">columnMarginChanged</font>*(p0 : <b>ChangeEvent</b>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TableColumnModelListener) <font color="#cc0033">columnMoved</font>*(p0 : <a href="#type-TableColumnModelEvent">TableColumnModelEvent</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TableColumnModelListener) <font color="#cc0033">columnRemoved</font>*(p0 : <a href="#type-TableColumnModelEvent">TableColumnModelEvent</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TableColumnModelListener) <font color="#cc0033">columnSelectionChanged</font>*(p0 : <a href="#type-ListSelectionEvent">ListSelectionEvent</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-TableModelEvent"></a>
+<b>PROCEDURE </b>(self:TableModelEvent) <font color="#cc0033">getColumn</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TableModelEvent) <font color="#cc0033">getFirstRow</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TableModelEvent) <font color="#cc0033">getLastRow</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TableModelEvent) <font color="#cc0033">getType</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-TableModelListener"></a>
+<b>PROCEDURE </b>(self:TableModelListener) <font color="#cc0033">tableChanged</font>*(p0 : <a href="#type-TableModelEvent">TableModelEvent</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-TreeExpansionEvent"></a>
+<b>PROCEDURE </b>(self:TreeExpansionEvent) <font color="#cc0033">getPath</font>*() : <a href="javax_swing_tree.html#type-TreePath">javax_swing_tree.TreePath</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-TreeExpansionListener"></a>
+<b>PROCEDURE </b>(self:TreeExpansionListener) <font color="#cc0033">treeCollapsed</font>*(p0 : <a href="#type-TreeExpansionEvent">TreeExpansionEvent</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TreeExpansionListener) <font color="#cc0033">treeExpanded</font>*(p0 : <a href="#type-TreeExpansionEvent">TreeExpansionEvent</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-TreeModelEvent"></a>
+<b>PROCEDURE </b>(self:TreeModelEvent) <font color="#cc0033">getChildIndices</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TreeModelEvent) <font color="#cc0033">getChildren</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TreeModelEvent) <font color="#cc0033">getPath</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TreeModelEvent) <font color="#cc0033">getTreePath</font>*() : <a href="javax_swing_tree.html#type-TreePath">javax_swing_tree.TreePath</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TreeModelEvent) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-TreeModelListener"></a>
+<b>PROCEDURE </b>(self:TreeModelListener) <font color="#cc0033">treeNodesChanged</font>*(p0 : <a href="#type-TreeModelEvent">TreeModelEvent</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TreeModelListener) <font color="#cc0033">treeNodesInserted</font>*(p0 : <a href="#type-TreeModelEvent">TreeModelEvent</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TreeModelListener) <font color="#cc0033">treeNodesRemoved</font>*(p0 : <a href="#type-TreeModelEvent">TreeModelEvent</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TreeModelListener) <font color="#cc0033">treeStructureChanged</font>*(p0 : <a href="#type-TreeModelEvent">TreeModelEvent</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-TreeSelectionEvent"></a>
+<b>PROCEDURE </b>(self:TreeSelectionEvent) <font color="#cc0033">cloneWithSource</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TreeSelectionEvent) <font color="#cc0033">getNewLeadSelectionPath</font>*() : <a href="javax_swing_tree.html#type-TreePath">javax_swing_tree.TreePath</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TreeSelectionEvent) <font color="#cc0033">getOldLeadSelectionPath</font>*() : <a href="javax_swing_tree.html#type-TreePath">javax_swing_tree.TreePath</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TreeSelectionEvent) <font color="#cc0033">getPath</font>*() : <a href="javax_swing_tree.html#type-TreePath">javax_swing_tree.TreePath</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TreeSelectionEvent) <font color="#cc0033">getPaths</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="javax_swing_tree.html#type-TreePath">javax_swing_tree.TreePath</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TreeSelectionEvent) <font color="#cc0033">isAddedPath</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TreeSelectionEvent) <font color="#cc0033">isAddedPath</font>*(p0 : <a href="javax_swing_tree.html#type-TreePath">javax_swing_tree.TreePath</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TreeSelectionEvent) <font color="#cc0033">isAddedPath</font>*(p0 : INTEGER) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-TreeSelectionListener"></a>
+<b>PROCEDURE </b>(self:TreeSelectionListener) <font color="#cc0033">valueChanged</font>*(p0 : <a href="#type-TreeSelectionEvent">TreeSelectionEvent</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-TreeWillExpandListener"></a>
+<b>PROCEDURE </b>(self:TreeWillExpandListener) <font color="#cc0033">treeWillCollapse</font>*(p0 : <a href="#type-TreeExpansionEvent">TreeExpansionEvent</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TreeWillExpandListener) <font color="#cc0033">treeWillExpand</font>*(p0 : <a href="#type-TreeExpansionEvent">TreeExpansionEvent</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-UndoableEditEvent"></a>
+<b>PROCEDURE </b>(self:UndoableEditEvent) <font color="#cc0033">getEdit</font>*() : <a href="javax_swing_undo.html#type-UndoableEdit">javax_swing_undo.UndoableEdit</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-UndoableEditListener"></a>
+<b>PROCEDURE </b>(self:UndoableEditListener) <font color="#cc0033">undoableEditHappened</font>*(p0 : <b>UndoableEditEvent</b>)<b>,NEW,ABSTRACT</b>;
+
+<b>END </b><font color="#cc0033">javax_swing_event</font>.
+</font></pre></hr>
+<!-- BEGIN JavaScript -->
+<script>
+function toggle(node) {
+    node.classList.toggle("show"); 
+  }
+
+function cls(node) {
+    var prnt = node.parentNode;
+    var next = prnt.previousSibling;
+    var text = next.lastChild;
+    text.innerHTML = 
+        "The <b>class</b> property asserts that this type will be<br>" +
+        "implemented as a reference class in the underlying framework.";
+    text.classList.toggle("show");
+  }
+
+function newOk(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>has noArg-ctor</b> property asserts that this reference<br>" +
+        "class has a no-arg constructor, and thus objects of this<br>" +
+        "type can be allocated with NEW(). Component Pascal types<br>" +
+        "derived from this type can also be allocated using NEW().";
+    popuptext.classList.toggle("show"); 
+  }
+
+function noNew(node) { 
+    var prnt = node.parentNode; 
+    var next = prnt.previousSibling; 
+    var text = next.lastChild; 
+    text.innerHTML =  
+        "The <b>no noArg-ctor</b> property asserts that this reference<br>" +
+        "class does not have a noArg constructor. Objects of this<br>" +
+        "type cannot be allocated using NEW(), and Component<br>" +
+        "Pascal types  derived from this type also cannot be<br>" +
+        "allocated using NEW().";
+    text.classList.toggle("show");
+  }
+
+function noCpy(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>no value-assign</b> property asserts that this reference<br>" + 
+        "class does not have a value copy method. Therefore, it<br>" +
+        "is not possible to perform value assignments using<br>" +
+        "statements like <i>dst^</i> := <i>src^</i>";
+    popuptext.classList.toggle("show");
+  }
+
+function valueclass(node) { 
+        var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>valueclass</b> property asserts that this RECORD type is<br>" + 
+        "implemented as a value class in the CLR. It follows that<br>" +  
+        "value assignments can be made of these types. They can<br>" + 
+        "also be passed by value. Even pointers to records of<br>" + 
+        "such types may be dereferenced and copied using syntax<br>" + 
+        "such as  <i>dst^</i> := <i>src^</i>"; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+function argCtor(node) { 
+    var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>has arg-ctor</b> property asserts that this reference<br>" +  
+        "class has one or more constructors that take arguments.<br>" + 
+        "These constructors can be called from Component Pascal<br>" + 
+        "by calling an <i>init</i>(...) method from the static list<br>" + 
+        "here. Component Pascal types derived from this type<br>" + 
+        "can define constructors with arguments which call the<br>" + 
+        "super-type constructor.<br>" + 
+        "See <i>'Interfacing to constructors'</i> in the Release Notes."; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+</script>
+<!-- END JavaScript --> 
+
+</body></html>

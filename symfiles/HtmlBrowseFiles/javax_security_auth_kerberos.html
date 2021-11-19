@@ -1,0 +1,319 @@
+<html><head><title>javax_security_auth_kerberos</title>
+<style>
+<!-- BEGIN Inline CSS -->
+/* Popup container */
+.popup {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+/* The actual popup (appears on top) */
+.popup .popuptext {
+    visibility: hidden;
+    width: 430px;
+    background-color: white;
+    color: black;
+    text-align: left;
+    border-radius: 6px;
+    border-style: solid;
+    border-color: black;
+    padding: 8px 8px 8px 8px;
+    position: absolute;
+    z-index: 1;
+    margin-top: 30px;
+}
+
+/* Toggle this class when clicking on the popup container (hide and show the popup) */
+.popup .show {
+    visibility: visible;
+    opacity: 1;
+}
+
+</style>
+<!-- END Inline CSS -->
+</head><body bgcolor="white">
+<hr><pre>
+<font color="green">(*</font>
+<font color="green"> *  Creator j2cps version 1.4.07 (March 2018)</font>
+<font color="green"> *  Compiled from jar-file rt.jar</font>
+<font color="green"> *)</font>
+<b>FOREIGN MODULE </b><font color="#cc0033">javax_security_auth_kerberos</font>;
+
+<b>IMPORT</b>
+    <a href="javax_crypto.html">javax_crypto</a> := "javax.crypto",
+    <a href="javax_security_auth.html">javax_security_auth</a> := "javax.security.auth",
+    <a href="java_io.html">java_io</a> := "java.io",
+    <a href="java_lang.html">java_lang</a> := "java.lang",
+    <a href="java_net.html">java_net</a> := "java.net",
+    <a href="java_security.html">java_security</a> := "java.security",
+    <a href="java_util.html">java_util</a> := "java.util";
+
+<b>TYPE</b>
+
+  <a name="type-DelegationPermission"></a><font color="#cc0033">DelegationPermission</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_security.html#type-BasicPermission">java_security.BasicPermission</a> + <a href="java_io.html#type-Serializable">java_io.Serializable</a>)
+                          <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                          <font color="green"><b> (* </b><a href="#meths-DelegationPermission">Typebound Procedures</a><b> *)</b></font>
+                          <b>STATIC</b>
+                            <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                            p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-DelegationPermission">DelegationPermission</a><b>,CONSTRUCTOR</b>;
+                            <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-DelegationPermission">DelegationPermission</a><b>,CONSTRUCTOR</b>;
+                          <b>END</b>;
+
+  <a name="type-KerberosKey"></a><font color="#cc0033">KerberosKey</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="javax_crypto.html#type-SecretKey">javax_crypto.SecretKey</a> + <a href="javax_security_auth.html#type-Destroyable">javax_security_auth.Destroyable</a>)
+                 <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                 <font color="green"><b> (* </b><a href="#meths-KerberosKey">Typebound Procedures</a><b> *)</b></font>
+                 <b>STATIC</b>
+                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*(    p0 : <b>KerberosPrincipal</b>;
+                                   IN  p1 : <b>ARRAY </b><b>OF </b>CHAR;
+                                       p2 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-KerberosKey">KerberosKey</a><b>,CONSTRUCTOR</b>;
+                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*(    p0 : <b>KerberosPrincipal</b>;
+                                   IN  p1 : <b>ARRAY </b><b>OF </b>BYTE;
+                                       p2 : INTEGER;
+                                       p3 : INTEGER) : <a href="#type-KerberosKey">KerberosKey</a><b>,CONSTRUCTOR</b>;
+                 <b>END</b>;
+
+  <a name="type-KerberosPrincipal"></a><font color="#cc0033">KerberosPrincipal</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_security.html#type-Principal">java_security.Principal</a> + <a href="java_io.html#type-Serializable">java_io.Serializable</a>)
+                       <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                       <font color="green"><b> (* </b><a href="#meths-KerberosPrincipal">Typebound Procedures</a><b> *)</b></font>
+                       <b>STATIC</b>
+                         <font color="#cc0033">KRB_NT_PRINCIPAL</font>* = 1;
+                         <font color="#cc0033">KRB_NT_SRV_HST</font>*   = 3;
+                         <font color="#cc0033">KRB_NT_SRV_INST</font>*  = 2;
+                         <font color="#cc0033">KRB_NT_SRV_XHST</font>*  = 4;
+                         <font color="#cc0033">KRB_NT_UID</font>*       = 5;
+                         <font color="#cc0033">KRB_NT_UNKNOWN</font>*   = 0;
+                         <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                         p1 : INTEGER) : <a href="#type-KerberosPrincipal">KerberosPrincipal</a><b>,CONSTRUCTOR</b>;
+                         <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-KerberosPrincipal">KerberosPrincipal</a><b>,CONSTRUCTOR</b>;
+                       <b>END</b>;
+
+  <a name="type-KerberosTicket"></a><font color="#cc0033">KerberosTicket</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="javax_security_auth.html#type-Destroyable">javax_security_auth.Destroyable</a> + <a href="javax_security_auth.html#type-Refreshable">javax_security_auth.Refreshable</a> + <a href="java_io.html#type-Serializable">java_io.Serializable</a>)
+                    <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                    <font color="green"><b> (* </b><a href="#meths-KerberosTicket">Typebound Procedures</a><b> *)</b></font>
+                    <b>STATIC</b>
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*(IN  p0  : <b>ARRAY </b><b>OF </b>BYTE;
+                                          p1  : <a href="#type-KerberosPrincipal">KerberosPrincipal</a>;
+                                          p2  : <a href="#type-KerberosPrincipal">KerberosPrincipal</a>;
+                                      IN  p3  : <b>ARRAY </b><b>OF </b>BYTE;
+                                          p4  : INTEGER;
+                                      IN  p5  : <b>ARRAY </b><b>OF </b>BOOLEAN;
+                                          p6  : <a href="java_util.html#type-Date">java_util.Date</a>;
+                                          p7  : <a href="java_util.html#type-Date">java_util.Date</a>;
+                                          p8  : <a href="java_util.html#type-Date">java_util.Date</a>;
+                                          p9  : <a href="java_util.html#type-Date">java_util.Date</a>;
+                                      IN  p10 : <b>ARRAY </b><b>OF </b><a href="java_net.html#type-InetAddress">java_net.InetAddress</a>) : <a href="#type-KerberosTicket">KerberosTicket</a><b>,CONSTRUCTOR</b>;
+                    <b>END</b>;
+
+  <a name="type-KeyTab"></a><font color="#cc0033">KeyTab</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+            <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+            <font color="green"><b> (* </b><a href="#meths-KeyTab">Typebound Procedures</a><b> *)</b></font>
+            <b>STATIC</b>
+              <b>PROCEDURE </b><font color="#cc0033">getInstance</font>*() : <a href="#type-KeyTab">KeyTab</a>;
+              <b>PROCEDURE </b><font color="#cc0033">getInstance</font>*(p0 : <a href="java_io.html#type-File">java_io.File</a>) : <a href="#type-KeyTab">KeyTab</a>;
+            <b>END</b>;
+
+  <a name="type-ServicePermission"></a><font color="#cc0033">ServicePermission</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_security.html#type-Permission">java_security.Permission</a> + <a href="java_io.html#type-Serializable">java_io.Serializable</a>)
+                       <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                       <font color="green"><b> (* </b><a href="#meths-ServicePermission">Typebound Procedures</a><b> *)</b></font>
+                       <b>STATIC</b>
+                         <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                         p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-ServicePermission">ServicePermission</a><b>,CONSTRUCTOR</b>;
+                       <b>END</b>;
+
+
+
+<a name="meths-DelegationPermission"></a>
+<b>PROCEDURE </b>(self:DelegationPermission) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DelegationPermission) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DelegationPermission) <font color="#cc0033">implies</font>*(p0 : <a href="java_security.html#type-Permission">java_security.Permission</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DelegationPermission) <font color="#cc0033">newPermissionCollection</font>*() : <a href="java_security.html#type-PermissionCollection">java_security.PermissionCollection</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-KerberosKey"></a>
+<b>PROCEDURE </b>(self:KerberosKey) <font color="#cc0033">destroy</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:KerberosKey) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:KerberosKey) <font color="#cc0033">getAlgorithm</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:KerberosKey) <font color="#cc0033">getEncoded</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:KerberosKey) <font color="#cc0033">getFormat</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:KerberosKey) <font color="#cc0033">getKeyType</font>*() : INTEGER<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:KerberosKey) <font color="#cc0033">getPrincipal</font>*() : <b>KerberosPrincipal</b><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:KerberosKey) <font color="#cc0033">getVersionNumber</font>*() : INTEGER<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:KerberosKey) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:KerberosKey) <font color="#cc0033">isDestroyed</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:KerberosKey) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-KerberosPrincipal"></a>
+<b>PROCEDURE </b>(self:KerberosPrincipal) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:KerberosPrincipal) <font color="#cc0033">getName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:KerberosPrincipal) <font color="#cc0033">getNameType</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:KerberosPrincipal) <font color="#cc0033">getRealm</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:KerberosPrincipal) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:KerberosPrincipal) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-KerberosTicket"></a>
+<b>PROCEDURE </b>(self:KerberosTicket) <font color="#cc0033">destroy</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:KerberosTicket) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:KerberosTicket) <font color="#cc0033">getAuthTime</font>*() : <a href="java_util.html#type-Date">java_util.Date</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:KerberosTicket) <font color="#cc0033">getClient</font>*() : <a href="#type-KerberosPrincipal">KerberosPrincipal</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:KerberosTicket) <font color="#cc0033">getClientAddresses</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_net.html#type-InetAddress">java_net.InetAddress</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:KerberosTicket) <font color="#cc0033">getEncoded</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:KerberosTicket) <font color="#cc0033">getEndTime</font>*() : <a href="java_util.html#type-Date">java_util.Date</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:KerberosTicket) <font color="#cc0033">getFlags</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BOOLEAN<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:KerberosTicket) <font color="#cc0033">getRenewTill</font>*() : <a href="java_util.html#type-Date">java_util.Date</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:KerberosTicket) <font color="#cc0033">getServer</font>*() : <a href="#type-KerberosPrincipal">KerberosPrincipal</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:KerberosTicket) <font color="#cc0033">getSessionKey</font>*() : <a href="javax_crypto.html#type-SecretKey">javax_crypto.SecretKey</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:KerberosTicket) <font color="#cc0033">getSessionKeyType</font>*() : INTEGER<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:KerberosTicket) <font color="#cc0033">getStartTime</font>*() : <a href="java_util.html#type-Date">java_util.Date</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:KerberosTicket) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:KerberosTicket) <font color="#cc0033">isCurrent</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:KerberosTicket) <font color="#cc0033">isDestroyed</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:KerberosTicket) <font color="#cc0033">isForwardable</font>*() : BOOLEAN<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:KerberosTicket) <font color="#cc0033">isForwarded</font>*() : BOOLEAN<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:KerberosTicket) <font color="#cc0033">isInitial</font>*() : BOOLEAN<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:KerberosTicket) <font color="#cc0033">isPostdated</font>*() : BOOLEAN<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:KerberosTicket) <font color="#cc0033">isProxiable</font>*() : BOOLEAN<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:KerberosTicket) <font color="#cc0033">isProxy</font>*() : BOOLEAN<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:KerberosTicket) <font color="#cc0033">isRenewable</font>*() : BOOLEAN<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:KerberosTicket) <font color="#cc0033">refresh</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:KerberosTicket) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-KeyTab"></a>
+<b>PROCEDURE </b>(self:KeyTab) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:KeyTab) <font color="#cc0033">exists</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:KeyTab) <font color="#cc0033">getKeys</font>*(p0 : <a href="#type-KerberosPrincipal">KerberosPrincipal</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-KerberosKey">KerberosKey</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:KeyTab) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:KeyTab) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-ServicePermission"></a>
+<b>PROCEDURE </b>(self:ServicePermission) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ServicePermission) <font color="#cc0033">getActions</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ServicePermission) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ServicePermission) <font color="#cc0033">implies</font>*(p0 : <a href="java_security.html#type-Permission">java_security.Permission</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ServicePermission) <font color="#cc0033">newPermissionCollection</font>*() : <a href="java_security.html#type-PermissionCollection">java_security.PermissionCollection</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>END </b><font color="#cc0033">javax_security_auth_kerberos</font>.
+</font></pre></hr>
+<!-- BEGIN JavaScript -->
+<script>
+function toggle(node) {
+    node.classList.toggle("show"); 
+  }
+
+function cls(node) {
+    var prnt = node.parentNode;
+    var next = prnt.previousSibling;
+    var text = next.lastChild;
+    text.innerHTML = 
+        "The <b>class</b> property asserts that this type will be<br>" +
+        "implemented as a reference class in the underlying framework.";
+    text.classList.toggle("show");
+  }
+
+function newOk(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>has noArg-ctor</b> property asserts that this reference<br>" +
+        "class has a no-arg constructor, and thus objects of this<br>" +
+        "type can be allocated with NEW(). Component Pascal types<br>" +
+        "derived from this type can also be allocated using NEW().";
+    popuptext.classList.toggle("show"); 
+  }
+
+function noNew(node) { 
+    var prnt = node.parentNode; 
+    var next = prnt.previousSibling; 
+    var text = next.lastChild; 
+    text.innerHTML =  
+        "The <b>no noArg-ctor</b> property asserts that this reference<br>" +
+        "class does not have a noArg constructor. Objects of this<br>" +
+        "type cannot be allocated using NEW(), and Component<br>" +
+        "Pascal types  derived from this type also cannot be<br>" +
+        "allocated using NEW().";
+    text.classList.toggle("show");
+  }
+
+function noCpy(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>no value-assign</b> property asserts that this reference<br>" + 
+        "class does not have a value copy method. Therefore, it<br>" +
+        "is not possible to perform value assignments using<br>" +
+        "statements like <i>dst^</i> := <i>src^</i>";
+    popuptext.classList.toggle("show");
+  }
+
+function valueclass(node) { 
+        var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>valueclass</b> property asserts that this RECORD type is<br>" + 
+        "implemented as a value class in the CLR. It follows that<br>" +  
+        "value assignments can be made of these types. They can<br>" + 
+        "also be passed by value. Even pointers to records of<br>" + 
+        "such types may be dereferenced and copied using syntax<br>" + 
+        "such as  <i>dst^</i> := <i>src^</i>"; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+function argCtor(node) { 
+    var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>has arg-ctor</b> property asserts that this reference<br>" +  
+        "class has one or more constructors that take arguments.<br>" + 
+        "These constructors can be called from Component Pascal<br>" + 
+        "by calling an <i>init</i>(...) method from the static list<br>" + 
+        "here. Component Pascal types derived from this type<br>" + 
+        "can define constructors with arguments which call the<br>" + 
+        "super-type constructor.<br>" + 
+        "See <i>'Interfacing to constructors'</i> in the Release Notes."; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+</script>
+<!-- END JavaScript --> 
+
+</body></html>

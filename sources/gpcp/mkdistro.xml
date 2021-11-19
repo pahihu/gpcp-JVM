@@ -1,0 +1,370 @@
+
+<!-- ============================================================  -->
+<!-- This is an ANT build file to create a distribution file-tree. -->
+<!-- Typical invocations are -                                     -->
+<!--     $ ant -file mkdistro.xml // makes ./gpcp-JVM archive      -->
+<!--                              // without the source files      -->
+<!--     $ ant -file mkdistro.xml addsource                        -->
+<!--                              // makes ./gpcp-JVM archive      -->
+<!--                              // including source files        -->
+<!--     $ ant -DDSTRO=distroX -file mkdistro.xml addsource        -->
+<!--                              // makes archive named ./distroX -->
+<!--                              // including source files        -->
+<!-- ============================================================  -->
+
+<project name="MkDistro" basedir="." default="distro">
+    <target name="usage" description="Print usage information"> 
+    <echo> This is an ANT build file to create a distribution file-tree.
+ Typical invocations are -
+ $ ant -file mkdistro.xml -projecthelp
+                             // For target descriptions
+    $ ant -file mkdistro.xml // Makes ./gpcp-JVM archive
+                             // not including the sources
+    $ ant -file mkdistro.xml addsource
+                             // Makes ./gpcp-JVM archive
+                             // including source files
+    $ ant -file mkdistro.xml roundtrip
+                             // Makes ./gpcp-JVM archive
+                             // including source files AND mkdistro.xml
+    $ ant -DDSTRO=somefilename -file mkdistro.xml addsource
+                             // Makes archive named ./somefilename
+                             // including source files
+         </echo>
+    </target>
+
+    <target name="clean" description="Remove most generated files">
+	    <delete dir="staging/gpcp"/>
+	    <delete dir="staging/MakeIndex"/>
+	    <delete dir="staging/cpmake"/>
+	    <delete dir="staging/browse"/>
+	    <delete dir="staging/j2cps"/>
+	    <delete dir="staging/CP"/>
+    </target>
+    
+    <!-- Set some property values -->
+    <target name="init" depends="clean">
+        <property name="JRoot" location="./../../"/>
+	<echo>$${JRoot} set to ${JRoot}</echo>
+	<property name="DSTRO" location="./gpcp-JVM"/>
+	<echo>$${DSTRO} set to ${DSTRO}</echo>
+	<property name="CPSYM" value=".;${JRoot}/symfiles;${JRoot}/symfiles/JvmSystem"/>
+	<echo>$${CPSYM} set to ${CPSYM}</echo>
+	<delete dir="${DSTRO}"/>
+	<mkdir dir="${DSTRO}"/>
+	<mkdir dir="${DSTRO}/bin"/>
+	<mkdir dir="${DSTRO}/documentation/Examples"/>
+	<mkdir dir="${DSTRO}/jars"/>
+	<mkdir dir="${DSTRO}/libs"/>
+	<mkdir dir="${DSTRO}/sources"/>
+	<mkdir dir="${DSTRO}/symfiles"/>
+    </target>
+
+    <!-- Build gpcp into ./staging/gpcp directory         -->
+    <!-- ./staging/gpcp is a temporary, staging directory -->
+    <target name="-buildgpcp" depends="init" description="Compile gpcp compiler sources">  
+	    <!-- Ensure that we have the JVM-specific source variants -->
+	    <!-- PeUtil was removed from distro after 1.4.05  -->
+	    <copy file="JavaTargetForJVM.cp" tofile="JavaTarget.cp" overwrite="true"/>
+	    <copy file="PeTargetForJVM.cp" tofile="PeTarget.cp" overwrite="true"/>
+	    <!-- Compile all the source files of gpcp in dependency order -->
+	    <java jar="${JRoot}/jars/cpmake.jar" failonerror="true" fork="true" dir=".">
+                <jvmarg value="-DCPSYM=${CPSYM}"/>
+                <arg value="-all"/>
+                <arg value="-nowarn"/>
+                <arg value="-asm8"/>
+		<arg value="-clsdir:staging/gpcp"/>
+                <arg value="gpcp"/>
+	    </java>
+	    <javac srcdir="${JRoot}/sources/gpcp/libs/java" failonerror="true" destdir="staging/gpcp" includeantruntime="false" debug="true"/>
+    </target>
+
+    <!-- Build CPMake into ./staging/cpmake directory       -->
+    <!-- ./staging/cpmake is a temporary, staging directory -->
+    <target name="-buildcpmake" depends="init" description="Compile sourcefiles unique to CPMake"> 
+	    <java jar="${JRoot}/jars/gpcp.jar" failonerror="true" fork="true" dir=".">
+                <jvmarg value="-DCPSYM=${CPSYM}"/>
+                <arg value="-nowarn"/>
+                <arg value="-asm8"/>
+		<arg value="-clsdir:staging/cpmake"/>
+		<arg value="ModuleHandler.cp"/>
+		<arg value="SymbolFile.cp"/>
+                <arg value="CPMake.cp"/>
+	    </java>
+    </target>
+
+    <!-- Build Browse into ./staging/browse directory       -->
+    <!-- ./staging/browse is a temporary, staging directory -->
+    <target name="-buildbrowse" depends="init" description="Compile sourcefile unique to Browse"> 
+	    <java jar="${JRoot}/jars/gpcp.jar" failonerror="true" fork="true" dir=".">
+                <jvmarg value="-DCPSYM=${CPSYM}"/>
+                <arg value="-nowarn"/>
+                <arg value="-asm8"/>
+		<arg value="-clsdir:staging/browse"/>
+                <arg value="BrowsePopups.cp"/>
+                <arg value="BrowseLookup.cp"/>
+                <arg value="Browse.cp"/>
+	    </java>
+            <!-- Build MakeIndex into ./staging/MakeIndex directory    -->
+            <!-- ./staging/MakeIndex is a temporary, staging directory -->
+	    <java jar="${JRoot}/jars/cpmake.jar" failonerror="true" fork="true" dir="./MakeIndex">
+                <jvmarg value="-DCPSYM=${CPSYM}"/>
+		<arg value="-all"/>
+                <arg value="-asm8"/>
+		<arg value="-clsdir:../staging/MakeIndex"/>
+                <arg value="MakeIndex.cp"/>
+	    </java>
+    </target>
+
+    <!-- Build runtime system libraries into ../libs/java/dest -->
+    <!-- ../libs/java/dest is a temporary, staging directory   -->
+    <target name="-buildrts" depends="init" description="Compile runtime system sources">
+	    <delete dir="${JRoot}/sources/libs/java/dest"/>
+	    <mkdir dir="${JRoot}/sources/libs/java/dest"/>
+	    <!-- Compile all the runtime system java classes -->
+	    <javac srcdir="${JRoot}/sources/libs/java" failonerror="true" destdir="${JRoot}/sources/libs/java/dest" includeantruntime="false" debug="true"/>
+    </target>
+
+    <!-- Build j2cps into ./staging/j2cps directory -->
+    <target name="-buildj2cps" depends="init" description="Compile J2CPS into a class tree at ./staging/j2cps">            
+	    <mkdir dir="staging/j2cps"/>
+	    <javac srcdir="${JRoot}/sources/J2CPS" failonerror="true" destdir="staging/j2cps" debug="on" includeantruntime="false"/>
+    </target>
+
+
+    <!-- Build component pascal libraries into ../sources/libs/cpascal    -->
+    <!-- Symbol Files go to ../libs/cpascal/symfiles                      -->
+    <!-- Browse HTML Files go to ../libs/cpascal/symfiles/HtmlBrowseFiles -->
+    <!-- Class Files go to ../libs/cpascal/CP/*                           -->
+    <!-- ../libs/cpascal/* are temporary, staging directories             -->
+    <target name="-buildcplibs" depends="init" description="Compile gpcp library sources">
+	    <delete dir="${JRoot}/sources/libs/cpascal/CP"/>
+	    <delete dir="${JRoot}/sources/libs/cpascal/symfiles"/>
+	    <mkdir dir="${JRoot}/sources/libs/cpascal/symfiles"/>
+	    <!-- Compile all the CP system (foreign implementation) files -->
+	    <java jar="${JRoot}/jars/gpcp.jar" failonerror="true" fork="true" dir="${JRoot}/sources/libs/cpascal">
+                <jvmarg value="-DCPSYM=${CPSYM}"/>
+                <arg value="-special"/>
+		<arg value="-symdir:symfiles"/>
+		<arg value="ASCII.cp"/>
+		<arg value="Console.cp"/>
+		<arg value="CPmain.cp"/>
+		<arg value="Error.cp"/>
+		<arg value="GPFiles.cp"/>
+		<arg value="GPBinFiles.cp"/>
+		<arg value="GPTextFiles.cp"/>
+                <arg value="ProgArgs.cp"/>
+                <arg value="RTS.cp"/>
+                <arg value="StdIn.cp"/>
+	    </java>
+	    <!-- Compile all the CP (non-foreign implementation) files -->
+	    <java jar="${JRoot}/jars/gpcp.jar" failonerror="true" fork="true" dir="${JRoot}/sources/libs/cpascal">
+                <jvmarg value="-DCPSYM=${CPSYM}"/>
+		<arg value="-symdir:symfiles"/>
+		<arg value="RealStr.cp"/>
+		<arg value="StringLib.cp"/>
+	    </java>
+	    <!-- Create html browse files for all libraries -->
+	    <java jar="${JRoot}/jars/browse.jar" failonerror="true" fork="true" dir="${JRoot}/sources/libs/cpascal/symfiles">
+		<jvmarg value="-DCPSYM=${CPSYM}"/>
+		<arg value="-dst:HtmlBrowseFiles"/>
+		<arg value="-html"/>
+		<arg value="-sort"/>
+		<arg value="ASCII.cps"/>
+		<arg value="ASCII.cps"/>
+		<arg value="Console.cps"/>
+		<arg value="CPmain.cps"/>
+		<arg value="Error.cps"/>
+		<arg value="GPFiles.cps"/>
+		<arg value="GPBinFiles.cps"/>
+		<arg value="GPTextFiles.cps"/>
+		<arg value="ProgArgs.cps"/>
+		<arg value="RTS.cps"/>
+		<arg value="StdIn.cps"/>
+		<arg value="RealStr.cps"/>
+		<arg value="StringLib.cps"/>
+	    </java>
+    </target>
+
+    <!-- Create the cprts.jar cp runtime system archive -->
+    <target name="-jarRTS" depends="-buildrts" description="Create cprts.jar archive into ${DSTRO}/jars">
+	    <!-- Create the jar archive for these RTS classes -->
+	    <jar destfile="${DSTRO}/jars/cprts.jar" basedir="../libs/java/dest"/>
+    </target>
+
+    <!-- Create the gpcp.jar archive, referencing asm.jar and cprts.jar -->
+    <target name="-jargpcp" depends="-buildgpcp" description="Create gpcp.jar into ${DSTRO}/jars">
+	    <jar destfile="${DSTRO}/jars/gpcp.jar" basedir="staging/gpcp">
+		    <manifest>
+			    <attribute name="Main-Class" value="CP.gpcp.gpcp"/>
+			    <attribute name="Class-Path" value="cprts.jar asm-5.1.jar"/>
+		    </manifest>
+	    </jar>
+    </target>
+
+    <!-- Create the cpmake.jar archive, referencing gpcp.jar etc. -->
+    <target name="-jarcpmake" depends="-buildcpmake" description="Create cpmake.jar into ${DSTRO}/jars">
+	    <jar destfile="${DSTRO}/jars/cpmake.jar" basedir="staging/cpmake">
+		    <manifest>
+			    <attribute name="Main-Class" value="CP.CPMake.CPMake"/>
+			    <attribute name="Class-Path" value="gpcp.jar cprts.jar asm-5.1.jar"/>
+		    </manifest>
+	    </jar>
+    </target>
+
+    <!-- Create the browse.jar archive, referencing gpcp.jar etc. -->
+    <target name="-jarbrowse" depends="-buildbrowse" description="Create Browse.jar into ${DSTRO}/jars">
+	    <jar destfile="${DSTRO}/jars/browse.jar" basedir="staging/browse">
+		    <manifest>
+			    <attribute name="Main-Class" value="CP.Browse.Browse"/>
+			    <attribute name="Class-Path" value="gpcp.jar cprts.jar"/>
+		    </manifest>
+	    </jar>
+	    <jar destfile="${DSTRO}/jars/makeindex.jar" basedir="staging/MakeIndex">
+		    <manifest>
+			    <attribute name="Main-Class" value="CP.MakeIndex.MakeIndex"/>
+			    <attribute name="Class-Path" value="cprts.jar"/>
+		    </manifest>
+	    </jar>
+    </target>
+
+    <!-- Build j2cps into a jar file in deploy directory -->
+    <target name="-jarj2cps" depends="-buildj2cps" description="Package J2CPS into S{DSTRO}/j2cps.jar">            
+	    <jar destfile="${DSTRO}/jars/j2cps.jar" basedir="staging/j2cps">
+		    <manifest>
+			    <attribute name="Main-Class" value="j2cps/j2cps"/>
+		    </manifest>
+	    </jar>
+    </target>
+
+    <!-- Copy the ASM library and copyright notice to ${DSTRO}/jars -->
+    <target name="-copyAsmJar" depends="init" description="Copy asm.jar from JRoot/jars to ${DSTRO}/jars">
+	    <!-- Copy the ASM library class files -->
+	    <copy file="${JRoot}/jars/asm-5.1.jar" todir="${DSTRO}/jars"/>
+	    <copy file="${JRoot}/jars/asm-5.1.pom" todir="${DSTRO}/jars"/>
+    </target>
+
+    <target name="-rebuildall" depends="clean, -copyAsmJar, -jarRTS, -jargpcp, -jarcpmake, -jarbrowse" description="Rebuild all jar files into ${DSTRO}/jars"/>
+
+    <!-- Generate a new distro           -->
+    <!-- Default target for this project -->
+    <target name="distro" depends="-rebuildall, -buildcplibs, -jarj2cps" description="Create new distro [default target]">
+	    <!-- Copy the scripts from *this* distribution -->
+	    <copy file="${JRoot}/bin/cprun.bat" todir="${DSTRO}/bin"/>
+	    <copy file="${JRoot}/bin/gpcp.bat" todir="${DSTRO}/bin"/>
+	    <copy file="${JRoot}/bin/browse.bat" todir="${DSTRO}/bin"/>
+	    <copy file="${JRoot}/bin/cpmake.bat" todir="${DSTRO}/bin"/>
+	    <copy file="${JRoot}/bin/j2cps.bat" todir="${DSTRO}/bin"/>
+	    <copy file="${JRoot}/bin/makeindex.bat" todir="${DSTRO}/bin"/>
+	    <!-- Copy the ASM libraries from *this* distribution -->
+	    <copy todir="${DSTRO}/libs/org"> 
+		    <fileset dir="${JRoot}/libs/org"/> 
+            </copy>
+	    <!-- Copy the class files from ../libs/CPascal/CP -->
+	    <!-- These are the libs/cpascal libraries         -->
+	    <copy todir="${DSTRO}/libs/CP"> 
+		    <fileset dir="../libs/CPascal/CP"/> 
+            </copy>
+	    <!-- Copy the class files from ../libs/CP  -->
+	    <!-- These are the libs/java runtime files -->
+	    <copy todir="${DSTRO}/libs/CP"> 
+		    <fileset dir="../libs/java/dest/CP"/> 
+	    </copy>
+
+	    <!-- From v1.4.07 we also copy the tool classfiles to libs/CP    -->
+	    <!-- so that users may invoke tools using "cprun gpcp ..."       -->
+	    <copy todir="${DSTRO}/libs/CP"> 
+		    <fileset dir="./staging/browse/CP"/> 
+            </copy>
+	    <copy todir="${DSTRO}/libs/CP"> 
+		    <fileset dir="./staging/cpmake/CP"/> 
+            </copy>
+	    <copy todir="${DSTRO}/libs/CP"> 
+		    <fileset dir="./staging/gpcp/CP"/> 
+            </copy>
+	    <copy todir="${DSTRO}/libs/CP"> 
+		    <fileset dir="./staging/MakeIndex/CP"/> 
+            </copy>
+
+	    <!-- Copy the symbolfiles files from ../libs/CPascal/symfiles    -->
+	    <!-- These are the symbol files for the runtime and CP libraries -->
+	    <copy todir="${DSTRO}/symfiles"> 
+		    <fileset dir="../libs/CPascal/symfiles"> 
+			    <include name="*.cps"/>
+			    <include name="**/*.html"/>
+		    </fileset>
+            </copy>
+	    <copy todir="${DSTRO}/symfiles/JvmSystem"> 
+		    <fileset dir="${JRoot}/symfiles/JvmSystem"> 
+			    <include name="*.cps"/>
+		    </fileset>
+            </copy>
+	    <!-- Run browse over all the symbol files in symfiles/JvmSystem -->
+	    <java jar="${JRoot}/jars/browse.jar" failonerror="true" fork="true" dir="${DSTRO}/symfiles/JvmSystem">
+		<jvmarg value="-DCPSYM=${CPSYM}"/>
+		<arg value="-dst:../HtmlBrowseFiles"/>
+		<arg value="-html"/>
+		<arg value="-sort"/>
+		<arg value="*.cps"/>
+	    </java>
+	    <copy file="${JRoot}/symfiles/JvmSystem/MkJavaSyms.bat" todir="${DSTRO}/symfiles/JvmSystem"/>
+	    <!-- Run MakeIndex over all the html files in symfiles/HtmlBrowseFiles -->
+	    <java jar="${JRoot}/jars/makeindex.jar" failonerror="true" fork="true" dir="${DSTRO}/symfiles">
+		<arg value="-dst:HtmlBrowseFiles"/>
+	    </java>
+    </target>
+
+    <!-- Generate a new distro including source files -->
+    <target name="addsource" depends="distro" description="Create new distro - including source files">
+	    <!-- Copy in documentation files   -->
+	    <copy todir="${DSTRO}/documentation"> 
+		    <fileset dir="${JRoot}/documentation"> 
+			    <include name="*.pdf"/>
+		    </fileset>
+            </copy>
+	    <copy todir="${DSTRO}/documentation/Examples"> 
+		    <fileset dir="${JRoot}/documentation/Examples"> 
+			    <include name="*.cp"/>
+			    <include name="*.txt"/>
+		    </fileset>
+            </copy>
+	    <!-- Copy the gpcp tool sources *.cp -->
+	    <copy todir="${DSTRO}/sources/gpcp"> 
+		    <fileset dir="${JRoot}/sources/gpcp"> 
+			    <include name="*.cp"/>
+		    </fileset>
+            </copy>
+	    <copy todir="${DSTRO}/sources/gpcp/MakeIndex"> 
+		    <fileset dir="${JRoot}/sources/gpcp/MakeIndex"> 
+			    <include name="*.cp"/>
+		    </fileset>
+            </copy>
+	    <!-- Copy the gpcp tools asssorted non-CP files -->
+	    <copy file="${JRoot}/sources/gpcp/build.xml" todir="${DSTRO}/sources/gpcp"/>
+	    <copy file="${JRoot}/sources/gpcp/libs/java/MsilAsm.java" todir="${DSTRO}/sources/gpcp/libs/java"/>
+	    <copy file="${JRoot}/sources/gpcp/libs/csharp/MsilAsm.cs" todir="${DSTRO}/sources/gpcp/libs/csharp"/>
+	    <!-- Copy the j2cps sources *.java -->
+	    <copy todir="${DSTRO}/sources/j2cps"> 
+		    <fileset dir="${JRoot}/sources/j2cps"> 
+			    <include name="*.java"/>
+		    </fileset>
+            </copy>
+	    <!-- And the Ant build file -->
+	    <copy file="${JRoot}/sources/j2cps/build.xml" todir="${DSTRO}/sources/j2cps"/>
+	    <!-- Copy the library sources *.cp, *.cs, *.java and scripts -->
+	    <copy todir="${DSTRO}/sources/libs"> 
+		    <fileset dir="${JRoot}/sources/libs"> 
+			    <include name="**/*.cp"/>
+			    <include name="**/*.java"/>
+			    <include name="**/*.cs"/>
+			    <include name="**/*.bat"/>
+		    </fileset>
+            </copy>
+    </target>
+
+    <target name="roundtrip" depends="addsource" description="Create new distro - including this mkdistro.xml file">
+	    <copy file="${JRoot}/sources/gpcp/mkdistro.xml" todir="${DSTRO}/sources/gpcp"/>
+    </target>
+
+</project>
+
+

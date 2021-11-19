@@ -1,0 +1,1639 @@
+<html><head><title>org_omg_DynamicAny</title>
+<style>
+<!-- BEGIN Inline CSS -->
+/* Popup container */
+.popup {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+/* The actual popup (appears on top) */
+.popup .popuptext {
+    visibility: hidden;
+    width: 430px;
+    background-color: white;
+    color: black;
+    text-align: left;
+    border-radius: 6px;
+    border-style: solid;
+    border-color: black;
+    padding: 8px 8px 8px 8px;
+    position: absolute;
+    z-index: 1;
+    margin-top: 30px;
+}
+
+/* Toggle this class when clicking on the popup container (hide and show the popup) */
+.popup .show {
+    visibility: visible;
+    opacity: 1;
+}
+
+</style>
+<!-- END Inline CSS -->
+</head><body bgcolor="white">
+<hr><pre>
+<font color="green">(*</font>
+<font color="green"> *  Creator j2cps version 1.4.07 (March 2018)</font>
+<font color="green"> *  Compiled from jar-file rt.jar</font>
+<font color="green"> *)</font>
+<b>FOREIGN MODULE </b><font color="#cc0033">org_omg_DynamicAny</font>;
+
+<b>IMPORT</b>
+    <a href="java_io.html">java_io</a> := "java.io",
+    <a href="java_lang.html">java_lang</a> := "java.lang",
+    <a href="org_omg_CORBA.html">org_omg_CORBA</a> := "org.omg.CORBA",
+    <a href="org_omg_CORBA_portable.html">org_omg_CORBA_portable</a> := "org.omg.CORBA.portable";
+
+<b>TYPE</b>
+
+  <a name="type-AnySeqHelper"></a><font color="#cc0033">AnySeqHelper</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                  <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                  <b>STATIC</b>
+                    <b>PROCEDURE </b><font color="#cc0033">extract</font>*(p0 : <a href="org_omg_CORBA.html#type-Any">org_omg_CORBA.Any</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="org_omg_CORBA.html#type-Any">org_omg_CORBA.Any</a>;
+                    <b>PROCEDURE </b><font color="#cc0033">id</font>*() : <a href="java_lang.html#type-String">java_lang.String</a>;
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-AnySeqHelper">AnySeqHelper</a><b>,CONSTRUCTOR</b>;
+                    <b>PROCEDURE </b><font color="#cc0033">insert</font>*(    p0 : <a href="org_omg_CORBA.html#type-Any">org_omg_CORBA.Any</a>;
+                                      IN  p1 : <b>ARRAY </b><b>OF </b><a href="org_omg_CORBA.html#type-Any">org_omg_CORBA.Any</a>);
+                    <b>PROCEDURE </b><font color="#cc0033">read</font>*(p0 : <a href="org_omg_CORBA_portable.html#type-InputStream">org_omg_CORBA_portable.InputStream</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="org_omg_CORBA.html#type-Any">org_omg_CORBA.Any</a>;
+                    <b>PROCEDURE </b><font color="#cc0033">type</font>*() : <a href="org_omg_CORBA.html#type-TypeCode">org_omg_CORBA.TypeCode</a>;
+                    <b>PROCEDURE </b><font color="#cc0033">write</font>*(    p0 : <a href="org_omg_CORBA_portable.html#type-OutputStream">org_omg_CORBA_portable.OutputStream</a>;
+                                     IN  p1 : <b>ARRAY </b><b>OF </b><a href="org_omg_CORBA.html#type-Any">org_omg_CORBA.Any</a>);
+                  <b>END</b>;
+
+  <a name="type-DynAny"></a><font color="#cc0033">DynAny</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <b>DynAnyOperations</b> + <a href="org_omg_CORBA.html#type-Object">org_omg_CORBA.Object</a> + <a href="org_omg_CORBA_portable.html#type-IDLEntity">org_omg_CORBA_portable.IDLEntity</a>)
+            <b>END</b>;
+
+  <a name="type-DynAnyFactory"></a><font color="#cc0033">DynAnyFactory</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <b>DynAnyFactoryOperations</b> + <a href="org_omg_CORBA.html#type-Object">org_omg_CORBA.Object</a> + <a href="org_omg_CORBA_portable.html#type-IDLEntity">org_omg_CORBA_portable.IDLEntity</a>)
+                   <b>END</b>;
+
+  <a name="type-DynAnyFactoryHelper"></a><font color="#cc0033">DynAnyFactoryHelper</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                         <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">extract</font>*(p0 : <a href="org_omg_CORBA.html#type-Any">org_omg_CORBA.Any</a>) : <a href="#type-DynAnyFactory">DynAnyFactory</a>;
+                           <b>PROCEDURE </b><font color="#cc0033">id</font>*() : <a href="java_lang.html#type-String">java_lang.String</a>;
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-DynAnyFactoryHelper">DynAnyFactoryHelper</a><b>,CONSTRUCTOR</b>;
+                           <b>PROCEDURE </b><font color="#cc0033">insert</font>*(p0 : <a href="org_omg_CORBA.html#type-Any">org_omg_CORBA.Any</a>;
+                                             p1 : <a href="#type-DynAnyFactory">DynAnyFactory</a>);
+                           <b>PROCEDURE </b><font color="#cc0033">narrow</font>*(p0 : <a href="org_omg_CORBA.html#type-Object">org_omg_CORBA.Object</a>) : <a href="#type-DynAnyFactory">DynAnyFactory</a>;
+                           <b>PROCEDURE </b><font color="#cc0033">read</font>*(p0 : <a href="org_omg_CORBA_portable.html#type-InputStream">org_omg_CORBA_portable.InputStream</a>) : <a href="#type-DynAnyFactory">DynAnyFactory</a>;
+                           <b>PROCEDURE </b><font color="#cc0033">type</font>*() : <a href="org_omg_CORBA.html#type-TypeCode">org_omg_CORBA.TypeCode</a>;
+                           <b>PROCEDURE </b><font color="#cc0033">unchecked_narrow</font>*(p0 : <a href="org_omg_CORBA.html#type-Object">org_omg_CORBA.Object</a>) : <a href="#type-DynAnyFactory">DynAnyFactory</a>;
+                           <b>PROCEDURE </b><font color="#cc0033">write</font>*(p0 : <a href="org_omg_CORBA_portable.html#type-OutputStream">org_omg_CORBA_portable.OutputStream</a>;
+                                            p1 : <a href="#type-DynAnyFactory">DynAnyFactory</a>);
+                         <b>END</b>;
+
+  <a name="type-DynAnyFactoryOperations"></a><font color="#cc0033">DynAnyFactoryOperations</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                             <font color="green"><b> (* </b><a href="#meths-DynAnyFactoryOperations">Typebound Procedures</a><b> *)</b></font>
+                             <b>END</b>;
+
+  <a name="type-DynAnyHelper"></a><font color="#cc0033">DynAnyHelper</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                  <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                  <b>STATIC</b>
+                    <b>PROCEDURE </b><font color="#cc0033">extract</font>*(p0 : <a href="org_omg_CORBA.html#type-Any">org_omg_CORBA.Any</a>) : <a href="#type-DynAny">DynAny</a>;
+                    <b>PROCEDURE </b><font color="#cc0033">id</font>*() : <a href="java_lang.html#type-String">java_lang.String</a>;
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-DynAnyHelper">DynAnyHelper</a><b>,CONSTRUCTOR</b>;
+                    <b>PROCEDURE </b><font color="#cc0033">insert</font>*(p0 : <a href="org_omg_CORBA.html#type-Any">org_omg_CORBA.Any</a>;
+                                      p1 : <a href="#type-DynAny">DynAny</a>);
+                    <b>PROCEDURE </b><font color="#cc0033">narrow</font>*(p0 : <a href="org_omg_CORBA.html#type-Object">org_omg_CORBA.Object</a>) : <a href="#type-DynAny">DynAny</a>;
+                    <b>PROCEDURE </b><font color="#cc0033">read</font>*(p0 : <a href="org_omg_CORBA_portable.html#type-InputStream">org_omg_CORBA_portable.InputStream</a>) : <a href="#type-DynAny">DynAny</a>;
+                    <b>PROCEDURE </b><font color="#cc0033">type</font>*() : <a href="org_omg_CORBA.html#type-TypeCode">org_omg_CORBA.TypeCode</a>;
+                    <b>PROCEDURE </b><font color="#cc0033">unchecked_narrow</font>*(p0 : <a href="org_omg_CORBA.html#type-Object">org_omg_CORBA.Object</a>) : <a href="#type-DynAny">DynAny</a>;
+                    <b>PROCEDURE </b><font color="#cc0033">write</font>*(p0 : <a href="org_omg_CORBA_portable.html#type-OutputStream">org_omg_CORBA_portable.OutputStream</a>;
+                                     p1 : <a href="#type-DynAny">DynAny</a>);
+                  <b>END</b>;
+
+  <a name="type-DynAnyOperations"></a><font color="#cc0033">DynAnyOperations</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                      <font color="green"><b> (* </b><a href="#meths-DynAnyOperations">Typebound Procedures</a><b> *)</b></font>
+                      <b>END</b>;
+
+  <a name="type-DynAnySeqHelper"></a><font color="#cc0033">DynAnySeqHelper</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                     <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                     <b>STATIC</b>
+                       <b>PROCEDURE </b><font color="#cc0033">extract</font>*(p0 : <a href="org_omg_CORBA.html#type-Any">org_omg_CORBA.Any</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-DynAny">DynAny</a>;
+                       <b>PROCEDURE </b><font color="#cc0033">id</font>*() : <a href="java_lang.html#type-String">java_lang.String</a>;
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-DynAnySeqHelper">DynAnySeqHelper</a><b>,CONSTRUCTOR</b>;
+                       <b>PROCEDURE </b><font color="#cc0033">insert</font>*(    p0 : <a href="org_omg_CORBA.html#type-Any">org_omg_CORBA.Any</a>;
+                                         IN  p1 : <b>ARRAY </b><b>OF </b><a href="#type-DynAny">DynAny</a>);
+                       <b>PROCEDURE </b><font color="#cc0033">read</font>*(p0 : <a href="org_omg_CORBA_portable.html#type-InputStream">org_omg_CORBA_portable.InputStream</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-DynAny">DynAny</a>;
+                       <b>PROCEDURE </b><font color="#cc0033">type</font>*() : <a href="org_omg_CORBA.html#type-TypeCode">org_omg_CORBA.TypeCode</a>;
+                       <b>PROCEDURE </b><font color="#cc0033">write</font>*(    p0 : <a href="org_omg_CORBA_portable.html#type-OutputStream">org_omg_CORBA_portable.OutputStream</a>;
+                                        IN  p1 : <b>ARRAY </b><b>OF </b><a href="#type-DynAny">DynAny</a>);
+                     <b>END</b>;
+
+  <a name="type-DynArray"></a><font color="#cc0033">DynArray</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <b>DynArrayOperations</b> + <a href="#type-DynAny">DynAny</a> + <a href="org_omg_CORBA_portable.html#type-IDLEntity">org_omg_CORBA_portable.IDLEntity</a>)
+              <b>END</b>;
+
+  <a name="type-DynArrayHelper"></a><font color="#cc0033">DynArrayHelper</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                    <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                    <b>STATIC</b>
+                      <b>PROCEDURE </b><font color="#cc0033">extract</font>*(p0 : <a href="org_omg_CORBA.html#type-Any">org_omg_CORBA.Any</a>) : <a href="#type-DynArray">DynArray</a>;
+                      <b>PROCEDURE </b><font color="#cc0033">id</font>*() : <a href="java_lang.html#type-String">java_lang.String</a>;
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-DynArrayHelper">DynArrayHelper</a><b>,CONSTRUCTOR</b>;
+                      <b>PROCEDURE </b><font color="#cc0033">insert</font>*(p0 : <a href="org_omg_CORBA.html#type-Any">org_omg_CORBA.Any</a>;
+                                        p1 : <a href="#type-DynArray">DynArray</a>);
+                      <b>PROCEDURE </b><font color="#cc0033">narrow</font>*(p0 : <a href="org_omg_CORBA.html#type-Object">org_omg_CORBA.Object</a>) : <a href="#type-DynArray">DynArray</a>;
+                      <b>PROCEDURE </b><font color="#cc0033">read</font>*(p0 : <a href="org_omg_CORBA_portable.html#type-InputStream">org_omg_CORBA_portable.InputStream</a>) : <a href="#type-DynArray">DynArray</a>;
+                      <b>PROCEDURE </b><font color="#cc0033">type</font>*() : <a href="org_omg_CORBA.html#type-TypeCode">org_omg_CORBA.TypeCode</a>;
+                      <b>PROCEDURE </b><font color="#cc0033">unchecked_narrow</font>*(p0 : <a href="org_omg_CORBA.html#type-Object">org_omg_CORBA.Object</a>) : <a href="#type-DynArray">DynArray</a>;
+                      <b>PROCEDURE </b><font color="#cc0033">write</font>*(p0 : <a href="org_omg_CORBA_portable.html#type-OutputStream">org_omg_CORBA_portable.OutputStream</a>;
+                                       p1 : <a href="#type-DynArray">DynArray</a>);
+                    <b>END</b>;
+
+  <a name="type-DynArrayOperations"></a><font color="#cc0033">DynArrayOperations</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-DynAnyOperations">DynAnyOperations</a>)
+                        <font color="green"><b> (* </b><a href="#meths-DynArrayOperations">Typebound Procedures</a><b> *)</b></font>
+                        <b>END</b>;
+
+  <a name="type-DynEnum"></a><font color="#cc0033">DynEnum</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <b>DynEnumOperations</b> + <a href="#type-DynAny">DynAny</a> + <a href="org_omg_CORBA_portable.html#type-IDLEntity">org_omg_CORBA_portable.IDLEntity</a>)
+             <b>END</b>;
+
+  <a name="type-DynEnumHelper"></a><font color="#cc0033">DynEnumHelper</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                   <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                   <b>STATIC</b>
+                     <b>PROCEDURE </b><font color="#cc0033">extract</font>*(p0 : <a href="org_omg_CORBA.html#type-Any">org_omg_CORBA.Any</a>) : <a href="#type-DynEnum">DynEnum</a>;
+                     <b>PROCEDURE </b><font color="#cc0033">id</font>*() : <a href="java_lang.html#type-String">java_lang.String</a>;
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-DynEnumHelper">DynEnumHelper</a><b>,CONSTRUCTOR</b>;
+                     <b>PROCEDURE </b><font color="#cc0033">insert</font>*(p0 : <a href="org_omg_CORBA.html#type-Any">org_omg_CORBA.Any</a>;
+                                       p1 : <a href="#type-DynEnum">DynEnum</a>);
+                     <b>PROCEDURE </b><font color="#cc0033">narrow</font>*(p0 : <a href="org_omg_CORBA.html#type-Object">org_omg_CORBA.Object</a>) : <a href="#type-DynEnum">DynEnum</a>;
+                     <b>PROCEDURE </b><font color="#cc0033">read</font>*(p0 : <a href="org_omg_CORBA_portable.html#type-InputStream">org_omg_CORBA_portable.InputStream</a>) : <a href="#type-DynEnum">DynEnum</a>;
+                     <b>PROCEDURE </b><font color="#cc0033">type</font>*() : <a href="org_omg_CORBA.html#type-TypeCode">org_omg_CORBA.TypeCode</a>;
+                     <b>PROCEDURE </b><font color="#cc0033">unchecked_narrow</font>*(p0 : <a href="org_omg_CORBA.html#type-Object">org_omg_CORBA.Object</a>) : <a href="#type-DynEnum">DynEnum</a>;
+                     <b>PROCEDURE </b><font color="#cc0033">write</font>*(p0 : <a href="org_omg_CORBA_portable.html#type-OutputStream">org_omg_CORBA_portable.OutputStream</a>;
+                                      p1 : <a href="#type-DynEnum">DynEnum</a>);
+                   <b>END</b>;
+
+  <a name="type-DynEnumOperations"></a><font color="#cc0033">DynEnumOperations</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-DynAnyOperations">DynAnyOperations</a>)
+                       <font color="green"><b> (* </b><a href="#meths-DynEnumOperations">Typebound Procedures</a><b> *)</b></font>
+                       <b>END</b>;
+
+  <a name="type-DynFixed"></a><font color="#cc0033">DynFixed</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <b>DynFixedOperations</b> + <a href="#type-DynAny">DynAny</a> + <a href="org_omg_CORBA_portable.html#type-IDLEntity">org_omg_CORBA_portable.IDLEntity</a>)
+              <b>END</b>;
+
+  <a name="type-DynFixedHelper"></a><font color="#cc0033">DynFixedHelper</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                    <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                    <b>STATIC</b>
+                      <b>PROCEDURE </b><font color="#cc0033">extract</font>*(p0 : <a href="org_omg_CORBA.html#type-Any">org_omg_CORBA.Any</a>) : <a href="#type-DynFixed">DynFixed</a>;
+                      <b>PROCEDURE </b><font color="#cc0033">id</font>*() : <a href="java_lang.html#type-String">java_lang.String</a>;
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-DynFixedHelper">DynFixedHelper</a><b>,CONSTRUCTOR</b>;
+                      <b>PROCEDURE </b><font color="#cc0033">insert</font>*(p0 : <a href="org_omg_CORBA.html#type-Any">org_omg_CORBA.Any</a>;
+                                        p1 : <a href="#type-DynFixed">DynFixed</a>);
+                      <b>PROCEDURE </b><font color="#cc0033">narrow</font>*(p0 : <a href="org_omg_CORBA.html#type-Object">org_omg_CORBA.Object</a>) : <a href="#type-DynFixed">DynFixed</a>;
+                      <b>PROCEDURE </b><font color="#cc0033">read</font>*(p0 : <a href="org_omg_CORBA_portable.html#type-InputStream">org_omg_CORBA_portable.InputStream</a>) : <a href="#type-DynFixed">DynFixed</a>;
+                      <b>PROCEDURE </b><font color="#cc0033">type</font>*() : <a href="org_omg_CORBA.html#type-TypeCode">org_omg_CORBA.TypeCode</a>;
+                      <b>PROCEDURE </b><font color="#cc0033">unchecked_narrow</font>*(p0 : <a href="org_omg_CORBA.html#type-Object">org_omg_CORBA.Object</a>) : <a href="#type-DynFixed">DynFixed</a>;
+                      <b>PROCEDURE </b><font color="#cc0033">write</font>*(p0 : <a href="org_omg_CORBA_portable.html#type-OutputStream">org_omg_CORBA_portable.OutputStream</a>;
+                                       p1 : <a href="#type-DynFixed">DynFixed</a>);
+                    <b>END</b>;
+
+  <a name="type-DynFixedOperations"></a><font color="#cc0033">DynFixedOperations</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-DynAnyOperations">DynAnyOperations</a>)
+                        <font color="green"><b> (* </b><a href="#meths-DynFixedOperations">Typebound Procedures</a><b> *)</b></font>
+                        <b>END</b>;
+
+  <a name="type-DynSequence"></a><font color="#cc0033">DynSequence</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <b>DynSequenceOperations</b> + <a href="#type-DynAny">DynAny</a> + <a href="org_omg_CORBA_portable.html#type-IDLEntity">org_omg_CORBA_portable.IDLEntity</a>)
+                 <b>END</b>;
+
+  <a name="type-DynSequenceHelper"></a><font color="#cc0033">DynSequenceHelper</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                       <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                       <b>STATIC</b>
+                         <b>PROCEDURE </b><font color="#cc0033">extract</font>*(p0 : <a href="org_omg_CORBA.html#type-Any">org_omg_CORBA.Any</a>) : <a href="#type-DynSequence">DynSequence</a>;
+                         <b>PROCEDURE </b><font color="#cc0033">id</font>*() : <a href="java_lang.html#type-String">java_lang.String</a>;
+                         <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-DynSequenceHelper">DynSequenceHelper</a><b>,CONSTRUCTOR</b>;
+                         <b>PROCEDURE </b><font color="#cc0033">insert</font>*(p0 : <a href="org_omg_CORBA.html#type-Any">org_omg_CORBA.Any</a>;
+                                           p1 : <a href="#type-DynSequence">DynSequence</a>);
+                         <b>PROCEDURE </b><font color="#cc0033">narrow</font>*(p0 : <a href="org_omg_CORBA.html#type-Object">org_omg_CORBA.Object</a>) : <a href="#type-DynSequence">DynSequence</a>;
+                         <b>PROCEDURE </b><font color="#cc0033">read</font>*(p0 : <a href="org_omg_CORBA_portable.html#type-InputStream">org_omg_CORBA_portable.InputStream</a>) : <a href="#type-DynSequence">DynSequence</a>;
+                         <b>PROCEDURE </b><font color="#cc0033">type</font>*() : <a href="org_omg_CORBA.html#type-TypeCode">org_omg_CORBA.TypeCode</a>;
+                         <b>PROCEDURE </b><font color="#cc0033">unchecked_narrow</font>*(p0 : <a href="org_omg_CORBA.html#type-Object">org_omg_CORBA.Object</a>) : <a href="#type-DynSequence">DynSequence</a>;
+                         <b>PROCEDURE </b><font color="#cc0033">write</font>*(p0 : <a href="org_omg_CORBA_portable.html#type-OutputStream">org_omg_CORBA_portable.OutputStream</a>;
+                                          p1 : <a href="#type-DynSequence">DynSequence</a>);
+                       <b>END</b>;
+
+  <a name="type-DynSequenceOperations"></a><font color="#cc0033">DynSequenceOperations</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-DynAnyOperations">DynAnyOperations</a>)
+                           <font color="green"><b> (* </b><a href="#meths-DynSequenceOperations">Typebound Procedures</a><b> *)</b></font>
+                           <b>END</b>;
+
+  <a name="type-DynStruct"></a><font color="#cc0033">DynStruct</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <b>DynStructOperations</b> + <a href="#type-DynAny">DynAny</a> + <a href="org_omg_CORBA_portable.html#type-IDLEntity">org_omg_CORBA_portable.IDLEntity</a>)
+               <b>END</b>;
+
+  <a name="type-DynStructHelper"></a><font color="#cc0033">DynStructHelper</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                     <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                     <b>STATIC</b>
+                       <b>PROCEDURE </b><font color="#cc0033">extract</font>*(p0 : <a href="org_omg_CORBA.html#type-Any">org_omg_CORBA.Any</a>) : <a href="#type-DynStruct">DynStruct</a>;
+                       <b>PROCEDURE </b><font color="#cc0033">id</font>*() : <a href="java_lang.html#type-String">java_lang.String</a>;
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-DynStructHelper">DynStructHelper</a><b>,CONSTRUCTOR</b>;
+                       <b>PROCEDURE </b><font color="#cc0033">insert</font>*(p0 : <a href="org_omg_CORBA.html#type-Any">org_omg_CORBA.Any</a>;
+                                         p1 : <a href="#type-DynStruct">DynStruct</a>);
+                       <b>PROCEDURE </b><font color="#cc0033">narrow</font>*(p0 : <a href="org_omg_CORBA.html#type-Object">org_omg_CORBA.Object</a>) : <a href="#type-DynStruct">DynStruct</a>;
+                       <b>PROCEDURE </b><font color="#cc0033">read</font>*(p0 : <a href="org_omg_CORBA_portable.html#type-InputStream">org_omg_CORBA_portable.InputStream</a>) : <a href="#type-DynStruct">DynStruct</a>;
+                       <b>PROCEDURE </b><font color="#cc0033">type</font>*() : <a href="org_omg_CORBA.html#type-TypeCode">org_omg_CORBA.TypeCode</a>;
+                       <b>PROCEDURE </b><font color="#cc0033">unchecked_narrow</font>*(p0 : <a href="org_omg_CORBA.html#type-Object">org_omg_CORBA.Object</a>) : <a href="#type-DynStruct">DynStruct</a>;
+                       <b>PROCEDURE </b><font color="#cc0033">write</font>*(p0 : <a href="org_omg_CORBA_portable.html#type-OutputStream">org_omg_CORBA_portable.OutputStream</a>;
+                                        p1 : <a href="#type-DynStruct">DynStruct</a>);
+                     <b>END</b>;
+
+  <a name="type-DynStructOperations"></a><font color="#cc0033">DynStructOperations</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-DynAnyOperations">DynAnyOperations</a>)
+                         <font color="green"><b> (* </b><a href="#meths-DynStructOperations">Typebound Procedures</a><b> *)</b></font>
+                         <b>END</b>;
+
+  <a name="type-DynUnion"></a><font color="#cc0033">DynUnion</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <b>DynUnionOperations</b> + <a href="#type-DynAny">DynAny</a> + <a href="org_omg_CORBA_portable.html#type-IDLEntity">org_omg_CORBA_portable.IDLEntity</a>)
+              <b>END</b>;
+
+  <a name="type-DynUnionHelper"></a><font color="#cc0033">DynUnionHelper</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                    <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                    <b>STATIC</b>
+                      <b>PROCEDURE </b><font color="#cc0033">extract</font>*(p0 : <a href="org_omg_CORBA.html#type-Any">org_omg_CORBA.Any</a>) : <a href="#type-DynUnion">DynUnion</a>;
+                      <b>PROCEDURE </b><font color="#cc0033">id</font>*() : <a href="java_lang.html#type-String">java_lang.String</a>;
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-DynUnionHelper">DynUnionHelper</a><b>,CONSTRUCTOR</b>;
+                      <b>PROCEDURE </b><font color="#cc0033">insert</font>*(p0 : <a href="org_omg_CORBA.html#type-Any">org_omg_CORBA.Any</a>;
+                                        p1 : <a href="#type-DynUnion">DynUnion</a>);
+                      <b>PROCEDURE </b><font color="#cc0033">narrow</font>*(p0 : <a href="org_omg_CORBA.html#type-Object">org_omg_CORBA.Object</a>) : <a href="#type-DynUnion">DynUnion</a>;
+                      <b>PROCEDURE </b><font color="#cc0033">read</font>*(p0 : <a href="org_omg_CORBA_portable.html#type-InputStream">org_omg_CORBA_portable.InputStream</a>) : <a href="#type-DynUnion">DynUnion</a>;
+                      <b>PROCEDURE </b><font color="#cc0033">type</font>*() : <a href="org_omg_CORBA.html#type-TypeCode">org_omg_CORBA.TypeCode</a>;
+                      <b>PROCEDURE </b><font color="#cc0033">unchecked_narrow</font>*(p0 : <a href="org_omg_CORBA.html#type-Object">org_omg_CORBA.Object</a>) : <a href="#type-DynUnion">DynUnion</a>;
+                      <b>PROCEDURE </b><font color="#cc0033">write</font>*(p0 : <a href="org_omg_CORBA_portable.html#type-OutputStream">org_omg_CORBA_portable.OutputStream</a>;
+                                       p1 : <a href="#type-DynUnion">DynUnion</a>);
+                    <b>END</b>;
+
+  <a name="type-DynUnionOperations"></a><font color="#cc0033">DynUnionOperations</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-DynAnyOperations">DynAnyOperations</a>)
+                        <font color="green"><b> (* </b><a href="#meths-DynUnionOperations">Typebound Procedures</a><b> *)</b></font>
+                        <b>END</b>;
+
+  <a name="type-DynValue"></a><font color="#cc0033">DynValue</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <b>DynValueOperations</b> + <b>DynValueCommon</b> + <a href="org_omg_CORBA_portable.html#type-IDLEntity">org_omg_CORBA_portable.IDLEntity</a>)
+              <b>END</b>;
+
+  <a name="type-DynValueBox"></a><font color="#cc0033">DynValueBox</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <b>DynValueBoxOperations</b> + <b>DynValueCommon</b> + <a href="org_omg_CORBA_portable.html#type-IDLEntity">org_omg_CORBA_portable.IDLEntity</a>)
+                 <b>END</b>;
+
+  <a name="type-DynValueBoxOperations"></a><font color="#cc0033">DynValueBoxOperations</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <b>DynValueCommonOperations</b>)
+                           <font color="green"><b> (* </b><a href="#meths-DynValueBoxOperations">Typebound Procedures</a><b> *)</b></font>
+                           <b>END</b>;
+
+  <a name="type-DynValueCommon"></a><font color="#cc0033">DynValueCommon</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <b>DynValueCommonOperations</b> + <a href="#type-DynAny">DynAny</a> + <a href="org_omg_CORBA_portable.html#type-IDLEntity">org_omg_CORBA_portable.IDLEntity</a>)
+                    <b>END</b>;
+
+  <a name="type-DynValueCommonOperations"></a><font color="#cc0033">DynValueCommonOperations</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-DynAnyOperations">DynAnyOperations</a>)
+                              <font color="green"><b> (* </b><a href="#meths-DynValueCommonOperations">Typebound Procedures</a><b> *)</b></font>
+                              <b>END</b>;
+
+  <a name="type-DynValueHelper"></a><font color="#cc0033">DynValueHelper</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                    <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                    <b>STATIC</b>
+                      <b>PROCEDURE </b><font color="#cc0033">extract</font>*(p0 : <a href="org_omg_CORBA.html#type-Any">org_omg_CORBA.Any</a>) : <a href="#type-DynValue">DynValue</a>;
+                      <b>PROCEDURE </b><font color="#cc0033">id</font>*() : <a href="java_lang.html#type-String">java_lang.String</a>;
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-DynValueHelper">DynValueHelper</a><b>,CONSTRUCTOR</b>;
+                      <b>PROCEDURE </b><font color="#cc0033">insert</font>*(p0 : <a href="org_omg_CORBA.html#type-Any">org_omg_CORBA.Any</a>;
+                                        p1 : <a href="#type-DynValue">DynValue</a>);
+                      <b>PROCEDURE </b><font color="#cc0033">narrow</font>*(p0 : <a href="org_omg_CORBA.html#type-Object">org_omg_CORBA.Object</a>) : <a href="#type-DynValue">DynValue</a>;
+                      <b>PROCEDURE </b><font color="#cc0033">read</font>*(p0 : <a href="org_omg_CORBA_portable.html#type-InputStream">org_omg_CORBA_portable.InputStream</a>) : <a href="#type-DynValue">DynValue</a>;
+                      <b>PROCEDURE </b><font color="#cc0033">type</font>*() : <a href="org_omg_CORBA.html#type-TypeCode">org_omg_CORBA.TypeCode</a>;
+                      <b>PROCEDURE </b><font color="#cc0033">unchecked_narrow</font>*(p0 : <a href="org_omg_CORBA.html#type-Object">org_omg_CORBA.Object</a>) : <a href="#type-DynValue">DynValue</a>;
+                      <b>PROCEDURE </b><font color="#cc0033">write</font>*(p0 : <a href="org_omg_CORBA_portable.html#type-OutputStream">org_omg_CORBA_portable.OutputStream</a>;
+                                       p1 : <a href="#type-DynValue">DynValue</a>);
+                    <b>END</b>;
+
+  <a name="type-DynValueOperations"></a><font color="#cc0033">DynValueOperations</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-DynValueCommonOperations">DynValueCommonOperations</a>)
+                        <font color="green"><b> (* </b><a href="#meths-DynValueOperations">Typebound Procedures</a><b> *)</b></font>
+                        <b>END</b>;
+
+  <a name="type-FieldNameHelper"></a><font color="#cc0033">FieldNameHelper</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                     <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                     <b>STATIC</b>
+                       <b>PROCEDURE </b><font color="#cc0033">extract</font>*(p0 : <a href="org_omg_CORBA.html#type-Any">org_omg_CORBA.Any</a>) : <a href="java_lang.html#type-String">java_lang.String</a>;
+                       <b>PROCEDURE </b><font color="#cc0033">id</font>*() : <a href="java_lang.html#type-String">java_lang.String</a>;
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-FieldNameHelper">FieldNameHelper</a><b>,CONSTRUCTOR</b>;
+                       <b>PROCEDURE </b><font color="#cc0033">insert</font>*(p0 : <a href="org_omg_CORBA.html#type-Any">org_omg_CORBA.Any</a>;
+                                         p1 : <a href="java_lang.html#type-String">java_lang.String</a>);
+                       <b>PROCEDURE </b><font color="#cc0033">read</font>*(p0 : <a href="org_omg_CORBA_portable.html#type-InputStream">org_omg_CORBA_portable.InputStream</a>) : <a href="java_lang.html#type-String">java_lang.String</a>;
+                       <b>PROCEDURE </b><font color="#cc0033">type</font>*() : <a href="org_omg_CORBA.html#type-TypeCode">org_omg_CORBA.TypeCode</a>;
+                       <b>PROCEDURE </b><font color="#cc0033">write</font>*(p0 : <a href="org_omg_CORBA_portable.html#type-OutputStream">org_omg_CORBA_portable.OutputStream</a>;
+                                        p1 : <a href="java_lang.html#type-String">java_lang.String</a>);
+                     <b>END</b>;
+
+  <a name="type-NameDynAnyPair"></a><font color="#cc0033">NameDynAnyPair</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="org_omg_CORBA_portable.html#type-IDLEntity">org_omg_CORBA_portable.IDLEntity</a>)
+                    <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                      <font color="#cc0033">id</font>*    : <a href="java_lang.html#type-String">java_lang.String</a>;
+                      <font color="#cc0033">value</font>* : <a href="#type-DynAny">DynAny</a>;
+                    <b>STATIC</b>
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                      p1 : <a href="#type-DynAny">DynAny</a>) : <a href="#type-NameDynAnyPair">NameDynAnyPair</a><b>,CONSTRUCTOR</b>;
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-NameDynAnyPair">NameDynAnyPair</a><b>,CONSTRUCTOR</b>;
+                    <b>END</b>;
+
+  <a name="type-NameDynAnyPairHelper"></a><font color="#cc0033">NameDynAnyPairHelper</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                          <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                          <b>STATIC</b>
+                            <b>PROCEDURE </b><font color="#cc0033">extract</font>*(p0 : <a href="org_omg_CORBA.html#type-Any">org_omg_CORBA.Any</a>) : <a href="#type-NameDynAnyPair">NameDynAnyPair</a>;
+                            <b>PROCEDURE </b><font color="#cc0033">id</font>*() : <a href="java_lang.html#type-String">java_lang.String</a>;
+                            <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-NameDynAnyPairHelper">NameDynAnyPairHelper</a><b>,CONSTRUCTOR</b>;
+                            <b>PROCEDURE </b><font color="#cc0033">insert</font>*(p0 : <a href="org_omg_CORBA.html#type-Any">org_omg_CORBA.Any</a>;
+                                              p1 : <a href="#type-NameDynAnyPair">NameDynAnyPair</a>);
+                            <b>PROCEDURE </b><font color="#cc0033">read</font>*(p0 : <a href="org_omg_CORBA_portable.html#type-InputStream">org_omg_CORBA_portable.InputStream</a>) : <a href="#type-NameDynAnyPair">NameDynAnyPair</a>;
+                            <b>PROCEDURE </b><font color="#cc0033">type</font>*() : <a href="org_omg_CORBA.html#type-TypeCode">org_omg_CORBA.TypeCode</a>;
+                            <b>PROCEDURE </b><font color="#cc0033">write</font>*(p0 : <a href="org_omg_CORBA_portable.html#type-OutputStream">org_omg_CORBA_portable.OutputStream</a>;
+                                             p1 : <a href="#type-NameDynAnyPair">NameDynAnyPair</a>);
+                          <b>END</b>;
+
+  <a name="type-NameDynAnyPairSeqHelper"></a><font color="#cc0033">NameDynAnyPairSeqHelper</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                             <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                             <b>STATIC</b>
+                               <b>PROCEDURE </b><font color="#cc0033">extract</font>*(p0 : <a href="org_omg_CORBA.html#type-Any">org_omg_CORBA.Any</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-NameDynAnyPair">NameDynAnyPair</a>;
+                               <b>PROCEDURE </b><font color="#cc0033">id</font>*() : <a href="java_lang.html#type-String">java_lang.String</a>;
+                               <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-NameDynAnyPairSeqHelper">NameDynAnyPairSeqHelper</a><b>,CONSTRUCTOR</b>;
+                               <b>PROCEDURE </b><font color="#cc0033">insert</font>*(    p0 : <a href="org_omg_CORBA.html#type-Any">org_omg_CORBA.Any</a>;
+                                                 IN  p1 : <b>ARRAY </b><b>OF </b><a href="#type-NameDynAnyPair">NameDynAnyPair</a>);
+                               <b>PROCEDURE </b><font color="#cc0033">read</font>*(p0 : <a href="org_omg_CORBA_portable.html#type-InputStream">org_omg_CORBA_portable.InputStream</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-NameDynAnyPair">NameDynAnyPair</a>;
+                               <b>PROCEDURE </b><font color="#cc0033">type</font>*() : <a href="org_omg_CORBA.html#type-TypeCode">org_omg_CORBA.TypeCode</a>;
+                               <b>PROCEDURE </b><font color="#cc0033">write</font>*(    p0 : <a href="org_omg_CORBA_portable.html#type-OutputStream">org_omg_CORBA_portable.OutputStream</a>;
+                                                IN  p1 : <b>ARRAY </b><b>OF </b><a href="#type-NameDynAnyPair">NameDynAnyPair</a>);
+                             <b>END</b>;
+
+  <a name="type-NameValuePair"></a><font color="#cc0033">NameValuePair</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="org_omg_CORBA_portable.html#type-IDLEntity">org_omg_CORBA_portable.IDLEntity</a>)
+                   <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                     <font color="#cc0033">id</font>*    : <a href="java_lang.html#type-String">java_lang.String</a>;
+                     <font color="#cc0033">value</font>* : <a href="org_omg_CORBA.html#type-Any">org_omg_CORBA.Any</a>;
+                   <b>STATIC</b>
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                     p1 : <a href="org_omg_CORBA.html#type-Any">org_omg_CORBA.Any</a>) : <a href="#type-NameValuePair">NameValuePair</a><b>,CONSTRUCTOR</b>;
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-NameValuePair">NameValuePair</a><b>,CONSTRUCTOR</b>;
+                   <b>END</b>;
+
+  <a name="type-NameValuePairHelper"></a><font color="#cc0033">NameValuePairHelper</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                         <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">extract</font>*(p0 : <a href="org_omg_CORBA.html#type-Any">org_omg_CORBA.Any</a>) : <a href="#type-NameValuePair">NameValuePair</a>;
+                           <b>PROCEDURE </b><font color="#cc0033">id</font>*() : <a href="java_lang.html#type-String">java_lang.String</a>;
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-NameValuePairHelper">NameValuePairHelper</a><b>,CONSTRUCTOR</b>;
+                           <b>PROCEDURE </b><font color="#cc0033">insert</font>*(p0 : <a href="org_omg_CORBA.html#type-Any">org_omg_CORBA.Any</a>;
+                                             p1 : <a href="#type-NameValuePair">NameValuePair</a>);
+                           <b>PROCEDURE </b><font color="#cc0033">read</font>*(p0 : <a href="org_omg_CORBA_portable.html#type-InputStream">org_omg_CORBA_portable.InputStream</a>) : <a href="#type-NameValuePair">NameValuePair</a>;
+                           <b>PROCEDURE </b><font color="#cc0033">type</font>*() : <a href="org_omg_CORBA.html#type-TypeCode">org_omg_CORBA.TypeCode</a>;
+                           <b>PROCEDURE </b><font color="#cc0033">write</font>*(p0 : <a href="org_omg_CORBA_portable.html#type-OutputStream">org_omg_CORBA_portable.OutputStream</a>;
+                                            p1 : <a href="#type-NameValuePair">NameValuePair</a>);
+                         <b>END</b>;
+
+  <a name="type-NameValuePairSeqHelper"></a><font color="#cc0033">NameValuePairSeqHelper</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                            <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                            <b>STATIC</b>
+                              <b>PROCEDURE </b><font color="#cc0033">extract</font>*(p0 : <a href="org_omg_CORBA.html#type-Any">org_omg_CORBA.Any</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-NameValuePair">NameValuePair</a>;
+                              <b>PROCEDURE </b><font color="#cc0033">id</font>*() : <a href="java_lang.html#type-String">java_lang.String</a>;
+                              <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-NameValuePairSeqHelper">NameValuePairSeqHelper</a><b>,CONSTRUCTOR</b>;
+                              <b>PROCEDURE </b><font color="#cc0033">insert</font>*(    p0 : <a href="org_omg_CORBA.html#type-Any">org_omg_CORBA.Any</a>;
+                                                IN  p1 : <b>ARRAY </b><b>OF </b><a href="#type-NameValuePair">NameValuePair</a>);
+                              <b>PROCEDURE </b><font color="#cc0033">read</font>*(p0 : <a href="org_omg_CORBA_portable.html#type-InputStream">org_omg_CORBA_portable.InputStream</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-NameValuePair">NameValuePair</a>;
+                              <b>PROCEDURE </b><font color="#cc0033">type</font>*() : <a href="org_omg_CORBA.html#type-TypeCode">org_omg_CORBA.TypeCode</a>;
+                              <b>PROCEDURE </b><font color="#cc0033">write</font>*(    p0 : <a href="org_omg_CORBA_portable.html#type-OutputStream">org_omg_CORBA_portable.OutputStream</a>;
+                                               IN  p1 : <b>ARRAY </b><b>OF </b><a href="#type-NameValuePair">NameValuePair</a>);
+                            <b>END</b>;
+
+  <a name="type-_DynAnyFactoryStub"></a><font color="#cc0033">_DynAnyFactoryStub</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="org_omg_CORBA_portable.html#type-ObjectImpl">org_omg_CORBA_portable.ObjectImpl</a> + <a href="#type-DynAnyFactory">DynAnyFactory</a>)
+                        <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                        <font color="green"><b> (* </b><a href="#meths-_DynAnyFactoryStub">Typebound Procedures</a><b> *)</b></font>
+                        <b>STATIC</b>
+                          <a name="type-_opsClass"></a><font color="#cc0033">_opsClass</font>* : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-_DynAnyFactoryStub">_DynAnyFactoryStub</a><b>,CONSTRUCTOR</b>;
+                        <b>END</b>;
+
+  <a name="type-_DynAnyStub"></a><font color="#cc0033">_DynAnyStub</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="org_omg_CORBA_portable.html#type-ObjectImpl">org_omg_CORBA_portable.ObjectImpl</a> + <a href="#type-DynAny">DynAny</a>)
+                 <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                 <font color="green"><b> (* </b><a href="#meths-_DynAnyStub">Typebound Procedures</a><b> *)</b></font>
+                 <b>STATIC</b>
+                   <a name="type-_opsClass"></a><font color="#cc0033">_opsClass</font>* : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-_DynAnyStub">_DynAnyStub</a><b>,CONSTRUCTOR</b>;
+                 <b>END</b>;
+
+  <a name="type-_DynArrayStub"></a><font color="#cc0033">_DynArrayStub</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="org_omg_CORBA_portable.html#type-ObjectImpl">org_omg_CORBA_portable.ObjectImpl</a> + <a href="#type-DynArray">DynArray</a>)
+                   <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                   <font color="green"><b> (* </b><a href="#meths-_DynArrayStub">Typebound Procedures</a><b> *)</b></font>
+                   <b>STATIC</b>
+                     <a name="type-_opsClass"></a><font color="#cc0033">_opsClass</font>* : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-_DynArrayStub">_DynArrayStub</a><b>,CONSTRUCTOR</b>;
+                   <b>END</b>;
+
+  <a name="type-_DynEnumStub"></a><font color="#cc0033">_DynEnumStub</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="org_omg_CORBA_portable.html#type-ObjectImpl">org_omg_CORBA_portable.ObjectImpl</a> + <a href="#type-DynEnum">DynEnum</a>)
+                  <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                  <font color="green"><b> (* </b><a href="#meths-_DynEnumStub">Typebound Procedures</a><b> *)</b></font>
+                  <b>STATIC</b>
+                    <a name="type-_opsClass"></a><font color="#cc0033">_opsClass</font>* : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-_DynEnumStub">_DynEnumStub</a><b>,CONSTRUCTOR</b>;
+                  <b>END</b>;
+
+  <a name="type-_DynFixedStub"></a><font color="#cc0033">_DynFixedStub</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="org_omg_CORBA_portable.html#type-ObjectImpl">org_omg_CORBA_portable.ObjectImpl</a> + <a href="#type-DynFixed">DynFixed</a>)
+                   <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                   <font color="green"><b> (* </b><a href="#meths-_DynFixedStub">Typebound Procedures</a><b> *)</b></font>
+                   <b>STATIC</b>
+                     <a name="type-_opsClass"></a><font color="#cc0033">_opsClass</font>* : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-_DynFixedStub">_DynFixedStub</a><b>,CONSTRUCTOR</b>;
+                   <b>END</b>;
+
+  <a name="type-_DynSequenceStub"></a><font color="#cc0033">_DynSequenceStub</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="org_omg_CORBA_portable.html#type-ObjectImpl">org_omg_CORBA_portable.ObjectImpl</a> + <a href="#type-DynSequence">DynSequence</a>)
+                      <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                      <font color="green"><b> (* </b><a href="#meths-_DynSequenceStub">Typebound Procedures</a><b> *)</b></font>
+                      <b>STATIC</b>
+                        <a name="type-_opsClass"></a><font color="#cc0033">_opsClass</font>* : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-_DynSequenceStub">_DynSequenceStub</a><b>,CONSTRUCTOR</b>;
+                      <b>END</b>;
+
+  <a name="type-_DynStructStub"></a><font color="#cc0033">_DynStructStub</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="org_omg_CORBA_portable.html#type-ObjectImpl">org_omg_CORBA_portable.ObjectImpl</a> + <a href="#type-DynStruct">DynStruct</a>)
+                    <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                    <font color="green"><b> (* </b><a href="#meths-_DynStructStub">Typebound Procedures</a><b> *)</b></font>
+                    <b>STATIC</b>
+                      <a name="type-_opsClass"></a><font color="#cc0033">_opsClass</font>* : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-_DynStructStub">_DynStructStub</a><b>,CONSTRUCTOR</b>;
+                    <b>END</b>;
+
+  <a name="type-_DynUnionStub"></a><font color="#cc0033">_DynUnionStub</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="org_omg_CORBA_portable.html#type-ObjectImpl">org_omg_CORBA_portable.ObjectImpl</a> + <a href="#type-DynUnion">DynUnion</a>)
+                   <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                   <font color="green"><b> (* </b><a href="#meths-_DynUnionStub">Typebound Procedures</a><b> *)</b></font>
+                   <b>STATIC</b>
+                     <a name="type-_opsClass"></a><font color="#cc0033">_opsClass</font>* : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-_DynUnionStub">_DynUnionStub</a><b>,CONSTRUCTOR</b>;
+                   <b>END</b>;
+
+  <a name="type-_DynValueStub"></a><font color="#cc0033">_DynValueStub</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="org_omg_CORBA_portable.html#type-ObjectImpl">org_omg_CORBA_portable.ObjectImpl</a> + <a href="#type-DynValue">DynValue</a>)
+                   <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                   <font color="green"><b> (* </b><a href="#meths-_DynValueStub">Typebound Procedures</a><b> *)</b></font>
+                   <b>STATIC</b>
+                     <a name="type-_opsClass"></a><font color="#cc0033">_opsClass</font>* : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-_DynValueStub">_DynValueStub</a><b>,CONSTRUCTOR</b>;
+                   <b>END</b>;
+
+
+
+<a name="meths-DynAnyFactoryOperations"></a>
+<b>PROCEDURE </b>(self:DynAnyFactoryOperations) <font color="#cc0033">create_dyn_any</font>*(p0 : <a href="org_omg_CORBA.html#type-Any">org_omg_CORBA.Any</a>) : <a href="#type-DynAny">DynAny</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DynAnyFactoryOperations) <font color="#cc0033">create_dyn_any_from_type_code</font>*(p0 : <a href="org_omg_CORBA.html#type-TypeCode">org_omg_CORBA.TypeCode</a>) : <a href="#type-DynAny">DynAny</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-DynAnyOperations"></a>
+<b>PROCEDURE </b>(self:DynAnyOperations) <font color="#cc0033">assign</font>*(p0 : <a href="#type-DynAny">DynAny</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DynAnyOperations) <font color="#cc0033">component_count</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DynAnyOperations) <font color="#cc0033">copy</font>*() : <a href="#type-DynAny">DynAny</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DynAnyOperations) <font color="#cc0033">current_component</font>*() : <a href="#type-DynAny">DynAny</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DynAnyOperations) <font color="#cc0033">destroy</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DynAnyOperations) <font color="#cc0033">equal</font>*(p0 : <a href="#type-DynAny">DynAny</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DynAnyOperations) <font color="#cc0033">from_any</font>*(p0 : <a href="org_omg_CORBA.html#type-Any">org_omg_CORBA.Any</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DynAnyOperations) <font color="#cc0033">get_any</font>*() : <a href="org_omg_CORBA.html#type-Any">org_omg_CORBA.Any</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DynAnyOperations) <font color="#cc0033">get_boolean</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DynAnyOperations) <font color="#cc0033">get_char</font>*() : CHAR<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DynAnyOperations) <font color="#cc0033">get_double</font>*() : REAL<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DynAnyOperations) <font color="#cc0033">get_dyn_any</font>*() : <a href="#type-DynAny">DynAny</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DynAnyOperations) <font color="#cc0033">get_float</font>*() : SHORTREAL<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DynAnyOperations) <font color="#cc0033">get_long</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DynAnyOperations) <font color="#cc0033">get_longlong</font>*() : LONGINT<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DynAnyOperations) <font color="#cc0033">get_octet</font>*() : BYTE<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DynAnyOperations) <font color="#cc0033">get_reference</font>*() : <a href="org_omg_CORBA.html#type-Object">org_omg_CORBA.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DynAnyOperations) <font color="#cc0033">get_short</font>*() : SHORTINT<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DynAnyOperations) <font color="#cc0033">get_string</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DynAnyOperations) <font color="#cc0033">get_typecode</font>*() : <a href="org_omg_CORBA.html#type-TypeCode">org_omg_CORBA.TypeCode</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DynAnyOperations) <font color="#cc0033">get_ulong</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DynAnyOperations) <font color="#cc0033">get_ulonglong</font>*() : LONGINT<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DynAnyOperations) <font color="#cc0033">get_ushort</font>*() : SHORTINT<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DynAnyOperations) <font color="#cc0033">get_val</font>*() : <a href="java_io.html#type-Serializable">java_io.Serializable</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DynAnyOperations) <font color="#cc0033">get_wchar</font>*() : CHAR<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DynAnyOperations) <font color="#cc0033">get_wstring</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DynAnyOperations) <font color="#cc0033">insert_any</font>*(p0 : <a href="org_omg_CORBA.html#type-Any">org_omg_CORBA.Any</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DynAnyOperations) <font color="#cc0033">insert_boolean</font>*(p0 : BOOLEAN)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DynAnyOperations) <font color="#cc0033">insert_char</font>*(p0 : CHAR)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DynAnyOperations) <font color="#cc0033">insert_double</font>*(p0 : REAL)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DynAnyOperations) <font color="#cc0033">insert_dyn_any</font>*(p0 : <a href="#type-DynAny">DynAny</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DynAnyOperations) <font color="#cc0033">insert_float</font>*(p0 : SHORTREAL)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DynAnyOperations) <font color="#cc0033">insert_long</font>*(p0 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DynAnyOperations) <font color="#cc0033">insert_longlong</font>*(p0 : LONGINT)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DynAnyOperations) <font color="#cc0033">insert_octet</font>*(p0 : BYTE)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DynAnyOperations) <font color="#cc0033">insert_reference</font>*(p0 : <a href="org_omg_CORBA.html#type-Object">org_omg_CORBA.Object</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DynAnyOperations) <font color="#cc0033">insert_short</font>*(p0 : SHORTINT)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DynAnyOperations) <font color="#cc0033">insert_string</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DynAnyOperations) <font color="#cc0033">insert_typecode</font>*(p0 : <a href="org_omg_CORBA.html#type-TypeCode">org_omg_CORBA.TypeCode</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DynAnyOperations) <font color="#cc0033">insert_ulong</font>*(p0 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DynAnyOperations) <font color="#cc0033">insert_ulonglong</font>*(p0 : LONGINT)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DynAnyOperations) <font color="#cc0033">insert_ushort</font>*(p0 : SHORTINT)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DynAnyOperations) <font color="#cc0033">insert_val</font>*(p0 : <a href="java_io.html#type-Serializable">java_io.Serializable</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DynAnyOperations) <font color="#cc0033">insert_wchar</font>*(p0 : CHAR)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DynAnyOperations) <font color="#cc0033">insert_wstring</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DynAnyOperations) <font color="#cc0033">next</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DynAnyOperations) <font color="#cc0033">rewind</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DynAnyOperations) <font color="#cc0033">seek</font>*(p0 : INTEGER) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DynAnyOperations) <font color="#cc0033">to_any</font>*() : <a href="org_omg_CORBA.html#type-Any">org_omg_CORBA.Any</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DynAnyOperations) <font color="#cc0033">type</font>*() : <a href="org_omg_CORBA.html#type-TypeCode">org_omg_CORBA.TypeCode</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-DynArrayOperations"></a>
+<b>PROCEDURE </b>(self:DynArrayOperations) <font color="#cc0033">get_elements</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="org_omg_CORBA.html#type-Any">org_omg_CORBA.Any</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DynArrayOperations) <font color="#cc0033">get_elements_as_dyn_any</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-DynAny">DynAny</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DynArrayOperations) <font color="#cc0033">set_elements</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="org_omg_CORBA.html#type-Any">org_omg_CORBA.Any</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DynArrayOperations) <font color="#cc0033">set_elements_as_dyn_any</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="#type-DynAny">DynAny</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-DynEnumOperations"></a>
+<b>PROCEDURE </b>(self:DynEnumOperations) <font color="#cc0033">get_as_string</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DynEnumOperations) <font color="#cc0033">get_as_ulong</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DynEnumOperations) <font color="#cc0033">set_as_string</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DynEnumOperations) <font color="#cc0033">set_as_ulong</font>*(p0 : INTEGER)<b>,NEW,ABSTRACT</b>;
+<a name="meths-DynFixedOperations"></a>
+<b>PROCEDURE </b>(self:DynFixedOperations) <font color="#cc0033">get_value</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DynFixedOperations) <font color="#cc0033">set_value</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+<a name="meths-DynSequenceOperations"></a>
+<b>PROCEDURE </b>(self:DynSequenceOperations) <font color="#cc0033">get_elements</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="org_omg_CORBA.html#type-Any">org_omg_CORBA.Any</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DynSequenceOperations) <font color="#cc0033">get_elements_as_dyn_any</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-DynAny">DynAny</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DynSequenceOperations) <font color="#cc0033">get_length</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DynSequenceOperations) <font color="#cc0033">set_elements</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="org_omg_CORBA.html#type-Any">org_omg_CORBA.Any</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DynSequenceOperations) <font color="#cc0033">set_elements_as_dyn_any</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="#type-DynAny">DynAny</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DynSequenceOperations) <font color="#cc0033">set_length</font>*(p0 : INTEGER)<b>,NEW,ABSTRACT</b>;
+<a name="meths-DynStructOperations"></a>
+<b>PROCEDURE </b>(self:DynStructOperations) <font color="#cc0033">current_member_kind</font>*() : <a href="org_omg_CORBA.html#type-TCKind">org_omg_CORBA.TCKind</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DynStructOperations) <font color="#cc0033">current_member_name</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DynStructOperations) <font color="#cc0033">get_members</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><b>NameValuePair</b><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DynStructOperations) <font color="#cc0033">get_members_as_dyn_any</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><b>NameDynAnyPair</b><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DynStructOperations) <font color="#cc0033">set_members</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><b>NameValuePair</b>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DynStructOperations) <font color="#cc0033">set_members_as_dyn_any</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><b>NameDynAnyPair</b>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-DynUnionOperations"></a>
+<b>PROCEDURE </b>(self:DynUnionOperations) <font color="#cc0033">discriminator_kind</font>*() : <a href="org_omg_CORBA.html#type-TCKind">org_omg_CORBA.TCKind</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DynUnionOperations) <font color="#cc0033">get_discriminator</font>*() : <a href="#type-DynAny">DynAny</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DynUnionOperations) <font color="#cc0033">has_no_active_member</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DynUnionOperations) <font color="#cc0033">member</font>*() : <a href="#type-DynAny">DynAny</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DynUnionOperations) <font color="#cc0033">member_kind</font>*() : <a href="org_omg_CORBA.html#type-TCKind">org_omg_CORBA.TCKind</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DynUnionOperations) <font color="#cc0033">member_name</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DynUnionOperations) <font color="#cc0033">set_discriminator</font>*(p0 : <a href="#type-DynAny">DynAny</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DynUnionOperations) <font color="#cc0033">set_to_default_member</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DynUnionOperations) <font color="#cc0033">set_to_no_active_member</font>*()<b>,NEW,ABSTRACT</b>;
+<a name="meths-DynValueBoxOperations"></a>
+<b>PROCEDURE </b>(self:DynValueBoxOperations) <font color="#cc0033">get_boxed_value</font>*() : <a href="org_omg_CORBA.html#type-Any">org_omg_CORBA.Any</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DynValueBoxOperations) <font color="#cc0033">get_boxed_value_as_dyn_any</font>*() : <a href="#type-DynAny">DynAny</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DynValueBoxOperations) <font color="#cc0033">set_boxed_value</font>*(p0 : <a href="org_omg_CORBA.html#type-Any">org_omg_CORBA.Any</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DynValueBoxOperations) <font color="#cc0033">set_boxed_value_as_dyn_any</font>*(p0 : <a href="#type-DynAny">DynAny</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-DynValueCommonOperations"></a>
+<b>PROCEDURE </b>(self:DynValueCommonOperations) <font color="#cc0033">is_null</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DynValueCommonOperations) <font color="#cc0033">set_to_null</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DynValueCommonOperations) <font color="#cc0033">set_to_value</font>*()<b>,NEW,ABSTRACT</b>;
+<a name="meths-DynValueOperations"></a>
+<b>PROCEDURE </b>(self:DynValueOperations) <font color="#cc0033">current_member_kind</font>*() : <a href="org_omg_CORBA.html#type-TCKind">org_omg_CORBA.TCKind</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DynValueOperations) <font color="#cc0033">current_member_name</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DynValueOperations) <font color="#cc0033">get_members</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><b>NameValuePair</b><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DynValueOperations) <font color="#cc0033">get_members_as_dyn_any</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><b>NameDynAnyPair</b><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DynValueOperations) <font color="#cc0033">set_members</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><b>NameValuePair</b>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DynValueOperations) <font color="#cc0033">set_members_as_dyn_any</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><b>NameDynAnyPair</b>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-_DynAnyFactoryStub"></a>
+<b>PROCEDURE </b>(self:_DynAnyFactoryStub) <font color="#cc0033">create_dyn_any</font>*(p0 : <a href="org_omg_CORBA.html#type-Any">org_omg_CORBA.Any</a>) : <a href="#type-DynAny">DynAny</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynAnyFactoryStub) <font color="#cc0033">create_dyn_any_from_type_code</font>*(p0 : <a href="org_omg_CORBA.html#type-TypeCode">org_omg_CORBA.TypeCode</a>) : <a href="#type-DynAny">DynAny</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynAnyFactoryStub) <font color="#cc0033">_ids</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-_DynAnyStub"></a>
+<b>PROCEDURE </b>(self:_DynAnyStub) <font color="#cc0033">assign</font>*(p0 : <a href="#type-DynAny">DynAny</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynAnyStub) <font color="#cc0033">component_count</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynAnyStub) <font color="#cc0033">copy</font>*() : <a href="#type-DynAny">DynAny</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynAnyStub) <font color="#cc0033">current_component</font>*() : <a href="#type-DynAny">DynAny</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynAnyStub) <font color="#cc0033">destroy</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynAnyStub) <font color="#cc0033">equal</font>*(p0 : <a href="#type-DynAny">DynAny</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynAnyStub) <font color="#cc0033">from_any</font>*(p0 : <a href="org_omg_CORBA.html#type-Any">org_omg_CORBA.Any</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynAnyStub) <font color="#cc0033">get_any</font>*() : <a href="org_omg_CORBA.html#type-Any">org_omg_CORBA.Any</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynAnyStub) <font color="#cc0033">get_boolean</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynAnyStub) <font color="#cc0033">get_char</font>*() : CHAR<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynAnyStub) <font color="#cc0033">get_double</font>*() : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynAnyStub) <font color="#cc0033">get_dyn_any</font>*() : <a href="#type-DynAny">DynAny</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynAnyStub) <font color="#cc0033">get_float</font>*() : SHORTREAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynAnyStub) <font color="#cc0033">get_long</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynAnyStub) <font color="#cc0033">get_longlong</font>*() : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynAnyStub) <font color="#cc0033">get_octet</font>*() : BYTE<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynAnyStub) <font color="#cc0033">get_reference</font>*() : <a href="org_omg_CORBA.html#type-Object">org_omg_CORBA.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynAnyStub) <font color="#cc0033">get_short</font>*() : SHORTINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynAnyStub) <font color="#cc0033">get_string</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynAnyStub) <font color="#cc0033">get_typecode</font>*() : <a href="org_omg_CORBA.html#type-TypeCode">org_omg_CORBA.TypeCode</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynAnyStub) <font color="#cc0033">get_ulong</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynAnyStub) <font color="#cc0033">get_ulonglong</font>*() : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynAnyStub) <font color="#cc0033">get_ushort</font>*() : SHORTINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynAnyStub) <font color="#cc0033">get_val</font>*() : <a href="java_io.html#type-Serializable">java_io.Serializable</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynAnyStub) <font color="#cc0033">get_wchar</font>*() : CHAR<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynAnyStub) <font color="#cc0033">get_wstring</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynAnyStub) <font color="#cc0033">insert_any</font>*(p0 : <a href="org_omg_CORBA.html#type-Any">org_omg_CORBA.Any</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynAnyStub) <font color="#cc0033">insert_boolean</font>*(p0 : BOOLEAN)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynAnyStub) <font color="#cc0033">insert_char</font>*(p0 : CHAR)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynAnyStub) <font color="#cc0033">insert_double</font>*(p0 : REAL)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynAnyStub) <font color="#cc0033">insert_dyn_any</font>*(p0 : <a href="#type-DynAny">DynAny</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynAnyStub) <font color="#cc0033">insert_float</font>*(p0 : SHORTREAL)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynAnyStub) <font color="#cc0033">insert_long</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynAnyStub) <font color="#cc0033">insert_longlong</font>*(p0 : LONGINT)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynAnyStub) <font color="#cc0033">insert_octet</font>*(p0 : BYTE)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynAnyStub) <font color="#cc0033">insert_reference</font>*(p0 : <a href="org_omg_CORBA.html#type-Object">org_omg_CORBA.Object</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynAnyStub) <font color="#cc0033">insert_short</font>*(p0 : SHORTINT)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynAnyStub) <font color="#cc0033">insert_string</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynAnyStub) <font color="#cc0033">insert_typecode</font>*(p0 : <a href="org_omg_CORBA.html#type-TypeCode">org_omg_CORBA.TypeCode</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynAnyStub) <font color="#cc0033">insert_ulong</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynAnyStub) <font color="#cc0033">insert_ulonglong</font>*(p0 : LONGINT)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynAnyStub) <font color="#cc0033">insert_ushort</font>*(p0 : SHORTINT)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynAnyStub) <font color="#cc0033">insert_val</font>*(p0 : <a href="java_io.html#type-Serializable">java_io.Serializable</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynAnyStub) <font color="#cc0033">insert_wchar</font>*(p0 : CHAR)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynAnyStub) <font color="#cc0033">insert_wstring</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynAnyStub) <font color="#cc0033">next</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynAnyStub) <font color="#cc0033">rewind</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynAnyStub) <font color="#cc0033">seek</font>*(p0 : INTEGER) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynAnyStub) <font color="#cc0033">to_any</font>*() : <a href="org_omg_CORBA.html#type-Any">org_omg_CORBA.Any</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynAnyStub) <font color="#cc0033">type</font>*() : <a href="org_omg_CORBA.html#type-TypeCode">org_omg_CORBA.TypeCode</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynAnyStub) <font color="#cc0033">_ids</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-_DynArrayStub"></a>
+<b>PROCEDURE </b>(self:_DynArrayStub) <font color="#cc0033">assign</font>*(p0 : <a href="#type-DynAny">DynAny</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynArrayStub) <font color="#cc0033">component_count</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynArrayStub) <font color="#cc0033">copy</font>*() : <a href="#type-DynAny">DynAny</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynArrayStub) <font color="#cc0033">current_component</font>*() : <a href="#type-DynAny">DynAny</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynArrayStub) <font color="#cc0033">destroy</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynArrayStub) <font color="#cc0033">equal</font>*(p0 : <a href="#type-DynAny">DynAny</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynArrayStub) <font color="#cc0033">from_any</font>*(p0 : <a href="org_omg_CORBA.html#type-Any">org_omg_CORBA.Any</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynArrayStub) <font color="#cc0033">get_any</font>*() : <a href="org_omg_CORBA.html#type-Any">org_omg_CORBA.Any</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynArrayStub) <font color="#cc0033">get_boolean</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynArrayStub) <font color="#cc0033">get_char</font>*() : CHAR<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynArrayStub) <font color="#cc0033">get_double</font>*() : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynArrayStub) <font color="#cc0033">get_dyn_any</font>*() : <a href="#type-DynAny">DynAny</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynArrayStub) <font color="#cc0033">get_elements</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="org_omg_CORBA.html#type-Any">org_omg_CORBA.Any</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynArrayStub) <font color="#cc0033">get_elements_as_dyn_any</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-DynAny">DynAny</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynArrayStub) <font color="#cc0033">get_float</font>*() : SHORTREAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynArrayStub) <font color="#cc0033">get_long</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynArrayStub) <font color="#cc0033">get_longlong</font>*() : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynArrayStub) <font color="#cc0033">get_octet</font>*() : BYTE<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynArrayStub) <font color="#cc0033">get_reference</font>*() : <a href="org_omg_CORBA.html#type-Object">org_omg_CORBA.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynArrayStub) <font color="#cc0033">get_short</font>*() : SHORTINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynArrayStub) <font color="#cc0033">get_string</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynArrayStub) <font color="#cc0033">get_typecode</font>*() : <a href="org_omg_CORBA.html#type-TypeCode">org_omg_CORBA.TypeCode</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynArrayStub) <font color="#cc0033">get_ulong</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynArrayStub) <font color="#cc0033">get_ulonglong</font>*() : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynArrayStub) <font color="#cc0033">get_ushort</font>*() : SHORTINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynArrayStub) <font color="#cc0033">get_val</font>*() : <a href="java_io.html#type-Serializable">java_io.Serializable</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynArrayStub) <font color="#cc0033">get_wchar</font>*() : CHAR<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynArrayStub) <font color="#cc0033">get_wstring</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynArrayStub) <font color="#cc0033">insert_any</font>*(p0 : <a href="org_omg_CORBA.html#type-Any">org_omg_CORBA.Any</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynArrayStub) <font color="#cc0033">insert_boolean</font>*(p0 : BOOLEAN)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynArrayStub) <font color="#cc0033">insert_char</font>*(p0 : CHAR)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynArrayStub) <font color="#cc0033">insert_double</font>*(p0 : REAL)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynArrayStub) <font color="#cc0033">insert_dyn_any</font>*(p0 : <a href="#type-DynAny">DynAny</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynArrayStub) <font color="#cc0033">insert_float</font>*(p0 : SHORTREAL)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynArrayStub) <font color="#cc0033">insert_long</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynArrayStub) <font color="#cc0033">insert_longlong</font>*(p0 : LONGINT)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynArrayStub) <font color="#cc0033">insert_octet</font>*(p0 : BYTE)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynArrayStub) <font color="#cc0033">insert_reference</font>*(p0 : <a href="org_omg_CORBA.html#type-Object">org_omg_CORBA.Object</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynArrayStub) <font color="#cc0033">insert_short</font>*(p0 : SHORTINT)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynArrayStub) <font color="#cc0033">insert_string</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynArrayStub) <font color="#cc0033">insert_typecode</font>*(p0 : <a href="org_omg_CORBA.html#type-TypeCode">org_omg_CORBA.TypeCode</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynArrayStub) <font color="#cc0033">insert_ulong</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynArrayStub) <font color="#cc0033">insert_ulonglong</font>*(p0 : LONGINT)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynArrayStub) <font color="#cc0033">insert_ushort</font>*(p0 : SHORTINT)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynArrayStub) <font color="#cc0033">insert_val</font>*(p0 : <a href="java_io.html#type-Serializable">java_io.Serializable</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynArrayStub) <font color="#cc0033">insert_wchar</font>*(p0 : CHAR)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynArrayStub) <font color="#cc0033">insert_wstring</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynArrayStub) <font color="#cc0033">next</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynArrayStub) <font color="#cc0033">rewind</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynArrayStub) <font color="#cc0033">seek</font>*(p0 : INTEGER) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynArrayStub) <font color="#cc0033">set_elements</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="org_omg_CORBA.html#type-Any">org_omg_CORBA.Any</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynArrayStub) <font color="#cc0033">set_elements_as_dyn_any</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="#type-DynAny">DynAny</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynArrayStub) <font color="#cc0033">to_any</font>*() : <a href="org_omg_CORBA.html#type-Any">org_omg_CORBA.Any</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynArrayStub) <font color="#cc0033">type</font>*() : <a href="org_omg_CORBA.html#type-TypeCode">org_omg_CORBA.TypeCode</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynArrayStub) <font color="#cc0033">_ids</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-_DynEnumStub"></a>
+<b>PROCEDURE </b>(self:_DynEnumStub) <font color="#cc0033">assign</font>*(p0 : <a href="#type-DynAny">DynAny</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynEnumStub) <font color="#cc0033">component_count</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynEnumStub) <font color="#cc0033">copy</font>*() : <a href="#type-DynAny">DynAny</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynEnumStub) <font color="#cc0033">current_component</font>*() : <a href="#type-DynAny">DynAny</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynEnumStub) <font color="#cc0033">destroy</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynEnumStub) <font color="#cc0033">equal</font>*(p0 : <a href="#type-DynAny">DynAny</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynEnumStub) <font color="#cc0033">from_any</font>*(p0 : <a href="org_omg_CORBA.html#type-Any">org_omg_CORBA.Any</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynEnumStub) <font color="#cc0033">get_any</font>*() : <a href="org_omg_CORBA.html#type-Any">org_omg_CORBA.Any</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynEnumStub) <font color="#cc0033">get_as_string</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynEnumStub) <font color="#cc0033">get_as_ulong</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynEnumStub) <font color="#cc0033">get_boolean</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynEnumStub) <font color="#cc0033">get_char</font>*() : CHAR<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynEnumStub) <font color="#cc0033">get_double</font>*() : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynEnumStub) <font color="#cc0033">get_dyn_any</font>*() : <a href="#type-DynAny">DynAny</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynEnumStub) <font color="#cc0033">get_float</font>*() : SHORTREAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynEnumStub) <font color="#cc0033">get_long</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynEnumStub) <font color="#cc0033">get_longlong</font>*() : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynEnumStub) <font color="#cc0033">get_octet</font>*() : BYTE<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynEnumStub) <font color="#cc0033">get_reference</font>*() : <a href="org_omg_CORBA.html#type-Object">org_omg_CORBA.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynEnumStub) <font color="#cc0033">get_short</font>*() : SHORTINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynEnumStub) <font color="#cc0033">get_string</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynEnumStub) <font color="#cc0033">get_typecode</font>*() : <a href="org_omg_CORBA.html#type-TypeCode">org_omg_CORBA.TypeCode</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynEnumStub) <font color="#cc0033">get_ulong</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynEnumStub) <font color="#cc0033">get_ulonglong</font>*() : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynEnumStub) <font color="#cc0033">get_ushort</font>*() : SHORTINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynEnumStub) <font color="#cc0033">get_val</font>*() : <a href="java_io.html#type-Serializable">java_io.Serializable</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynEnumStub) <font color="#cc0033">get_wchar</font>*() : CHAR<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynEnumStub) <font color="#cc0033">get_wstring</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynEnumStub) <font color="#cc0033">insert_any</font>*(p0 : <a href="org_omg_CORBA.html#type-Any">org_omg_CORBA.Any</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynEnumStub) <font color="#cc0033">insert_boolean</font>*(p0 : BOOLEAN)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynEnumStub) <font color="#cc0033">insert_char</font>*(p0 : CHAR)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynEnumStub) <font color="#cc0033">insert_double</font>*(p0 : REAL)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynEnumStub) <font color="#cc0033">insert_dyn_any</font>*(p0 : <a href="#type-DynAny">DynAny</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynEnumStub) <font color="#cc0033">insert_float</font>*(p0 : SHORTREAL)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynEnumStub) <font color="#cc0033">insert_long</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynEnumStub) <font color="#cc0033">insert_longlong</font>*(p0 : LONGINT)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynEnumStub) <font color="#cc0033">insert_octet</font>*(p0 : BYTE)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynEnumStub) <font color="#cc0033">insert_reference</font>*(p0 : <a href="org_omg_CORBA.html#type-Object">org_omg_CORBA.Object</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynEnumStub) <font color="#cc0033">insert_short</font>*(p0 : SHORTINT)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynEnumStub) <font color="#cc0033">insert_string</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynEnumStub) <font color="#cc0033">insert_typecode</font>*(p0 : <a href="org_omg_CORBA.html#type-TypeCode">org_omg_CORBA.TypeCode</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynEnumStub) <font color="#cc0033">insert_ulong</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynEnumStub) <font color="#cc0033">insert_ulonglong</font>*(p0 : LONGINT)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynEnumStub) <font color="#cc0033">insert_ushort</font>*(p0 : SHORTINT)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynEnumStub) <font color="#cc0033">insert_val</font>*(p0 : <a href="java_io.html#type-Serializable">java_io.Serializable</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynEnumStub) <font color="#cc0033">insert_wchar</font>*(p0 : CHAR)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynEnumStub) <font color="#cc0033">insert_wstring</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynEnumStub) <font color="#cc0033">next</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynEnumStub) <font color="#cc0033">rewind</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynEnumStub) <font color="#cc0033">seek</font>*(p0 : INTEGER) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynEnumStub) <font color="#cc0033">set_as_string</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynEnumStub) <font color="#cc0033">set_as_ulong</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynEnumStub) <font color="#cc0033">to_any</font>*() : <a href="org_omg_CORBA.html#type-Any">org_omg_CORBA.Any</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynEnumStub) <font color="#cc0033">type</font>*() : <a href="org_omg_CORBA.html#type-TypeCode">org_omg_CORBA.TypeCode</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynEnumStub) <font color="#cc0033">_ids</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-_DynFixedStub"></a>
+<b>PROCEDURE </b>(self:_DynFixedStub) <font color="#cc0033">assign</font>*(p0 : <a href="#type-DynAny">DynAny</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynFixedStub) <font color="#cc0033">component_count</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynFixedStub) <font color="#cc0033">copy</font>*() : <a href="#type-DynAny">DynAny</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynFixedStub) <font color="#cc0033">current_component</font>*() : <a href="#type-DynAny">DynAny</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynFixedStub) <font color="#cc0033">destroy</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynFixedStub) <font color="#cc0033">equal</font>*(p0 : <a href="#type-DynAny">DynAny</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynFixedStub) <font color="#cc0033">from_any</font>*(p0 : <a href="org_omg_CORBA.html#type-Any">org_omg_CORBA.Any</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynFixedStub) <font color="#cc0033">get_any</font>*() : <a href="org_omg_CORBA.html#type-Any">org_omg_CORBA.Any</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynFixedStub) <font color="#cc0033">get_boolean</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynFixedStub) <font color="#cc0033">get_char</font>*() : CHAR<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynFixedStub) <font color="#cc0033">get_double</font>*() : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynFixedStub) <font color="#cc0033">get_dyn_any</font>*() : <a href="#type-DynAny">DynAny</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynFixedStub) <font color="#cc0033">get_float</font>*() : SHORTREAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynFixedStub) <font color="#cc0033">get_long</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynFixedStub) <font color="#cc0033">get_longlong</font>*() : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynFixedStub) <font color="#cc0033">get_octet</font>*() : BYTE<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynFixedStub) <font color="#cc0033">get_reference</font>*() : <a href="org_omg_CORBA.html#type-Object">org_omg_CORBA.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynFixedStub) <font color="#cc0033">get_short</font>*() : SHORTINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynFixedStub) <font color="#cc0033">get_string</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynFixedStub) <font color="#cc0033">get_typecode</font>*() : <a href="org_omg_CORBA.html#type-TypeCode">org_omg_CORBA.TypeCode</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynFixedStub) <font color="#cc0033">get_ulong</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynFixedStub) <font color="#cc0033">get_ulonglong</font>*() : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynFixedStub) <font color="#cc0033">get_ushort</font>*() : SHORTINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynFixedStub) <font color="#cc0033">get_val</font>*() : <a href="java_io.html#type-Serializable">java_io.Serializable</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynFixedStub) <font color="#cc0033">get_value</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynFixedStub) <font color="#cc0033">get_wchar</font>*() : CHAR<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynFixedStub) <font color="#cc0033">get_wstring</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynFixedStub) <font color="#cc0033">insert_any</font>*(p0 : <a href="org_omg_CORBA.html#type-Any">org_omg_CORBA.Any</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynFixedStub) <font color="#cc0033">insert_boolean</font>*(p0 : BOOLEAN)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynFixedStub) <font color="#cc0033">insert_char</font>*(p0 : CHAR)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynFixedStub) <font color="#cc0033">insert_double</font>*(p0 : REAL)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynFixedStub) <font color="#cc0033">insert_dyn_any</font>*(p0 : <a href="#type-DynAny">DynAny</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynFixedStub) <font color="#cc0033">insert_float</font>*(p0 : SHORTREAL)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynFixedStub) <font color="#cc0033">insert_long</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynFixedStub) <font color="#cc0033">insert_longlong</font>*(p0 : LONGINT)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynFixedStub) <font color="#cc0033">insert_octet</font>*(p0 : BYTE)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynFixedStub) <font color="#cc0033">insert_reference</font>*(p0 : <a href="org_omg_CORBA.html#type-Object">org_omg_CORBA.Object</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynFixedStub) <font color="#cc0033">insert_short</font>*(p0 : SHORTINT)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynFixedStub) <font color="#cc0033">insert_string</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynFixedStub) <font color="#cc0033">insert_typecode</font>*(p0 : <a href="org_omg_CORBA.html#type-TypeCode">org_omg_CORBA.TypeCode</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynFixedStub) <font color="#cc0033">insert_ulong</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynFixedStub) <font color="#cc0033">insert_ulonglong</font>*(p0 : LONGINT)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynFixedStub) <font color="#cc0033">insert_ushort</font>*(p0 : SHORTINT)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynFixedStub) <font color="#cc0033">insert_val</font>*(p0 : <a href="java_io.html#type-Serializable">java_io.Serializable</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynFixedStub) <font color="#cc0033">insert_wchar</font>*(p0 : CHAR)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynFixedStub) <font color="#cc0033">insert_wstring</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynFixedStub) <font color="#cc0033">next</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynFixedStub) <font color="#cc0033">rewind</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynFixedStub) <font color="#cc0033">seek</font>*(p0 : INTEGER) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynFixedStub) <font color="#cc0033">set_value</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynFixedStub) <font color="#cc0033">to_any</font>*() : <a href="org_omg_CORBA.html#type-Any">org_omg_CORBA.Any</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynFixedStub) <font color="#cc0033">type</font>*() : <a href="org_omg_CORBA.html#type-TypeCode">org_omg_CORBA.TypeCode</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynFixedStub) <font color="#cc0033">_ids</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-_DynSequenceStub"></a>
+<b>PROCEDURE </b>(self:_DynSequenceStub) <font color="#cc0033">assign</font>*(p0 : <a href="#type-DynAny">DynAny</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynSequenceStub) <font color="#cc0033">component_count</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynSequenceStub) <font color="#cc0033">copy</font>*() : <a href="#type-DynAny">DynAny</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynSequenceStub) <font color="#cc0033">current_component</font>*() : <a href="#type-DynAny">DynAny</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynSequenceStub) <font color="#cc0033">destroy</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynSequenceStub) <font color="#cc0033">equal</font>*(p0 : <a href="#type-DynAny">DynAny</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynSequenceStub) <font color="#cc0033">from_any</font>*(p0 : <a href="org_omg_CORBA.html#type-Any">org_omg_CORBA.Any</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynSequenceStub) <font color="#cc0033">get_any</font>*() : <a href="org_omg_CORBA.html#type-Any">org_omg_CORBA.Any</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynSequenceStub) <font color="#cc0033">get_boolean</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynSequenceStub) <font color="#cc0033">get_char</font>*() : CHAR<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynSequenceStub) <font color="#cc0033">get_double</font>*() : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynSequenceStub) <font color="#cc0033">get_dyn_any</font>*() : <a href="#type-DynAny">DynAny</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynSequenceStub) <font color="#cc0033">get_elements</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="org_omg_CORBA.html#type-Any">org_omg_CORBA.Any</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynSequenceStub) <font color="#cc0033">get_elements_as_dyn_any</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-DynAny">DynAny</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynSequenceStub) <font color="#cc0033">get_float</font>*() : SHORTREAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynSequenceStub) <font color="#cc0033">get_length</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynSequenceStub) <font color="#cc0033">get_long</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynSequenceStub) <font color="#cc0033">get_longlong</font>*() : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynSequenceStub) <font color="#cc0033">get_octet</font>*() : BYTE<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynSequenceStub) <font color="#cc0033">get_reference</font>*() : <a href="org_omg_CORBA.html#type-Object">org_omg_CORBA.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynSequenceStub) <font color="#cc0033">get_short</font>*() : SHORTINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynSequenceStub) <font color="#cc0033">get_string</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynSequenceStub) <font color="#cc0033">get_typecode</font>*() : <a href="org_omg_CORBA.html#type-TypeCode">org_omg_CORBA.TypeCode</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynSequenceStub) <font color="#cc0033">get_ulong</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynSequenceStub) <font color="#cc0033">get_ulonglong</font>*() : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynSequenceStub) <font color="#cc0033">get_ushort</font>*() : SHORTINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynSequenceStub) <font color="#cc0033">get_val</font>*() : <a href="java_io.html#type-Serializable">java_io.Serializable</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynSequenceStub) <font color="#cc0033">get_wchar</font>*() : CHAR<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynSequenceStub) <font color="#cc0033">get_wstring</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynSequenceStub) <font color="#cc0033">insert_any</font>*(p0 : <a href="org_omg_CORBA.html#type-Any">org_omg_CORBA.Any</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynSequenceStub) <font color="#cc0033">insert_boolean</font>*(p0 : BOOLEAN)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynSequenceStub) <font color="#cc0033">insert_char</font>*(p0 : CHAR)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynSequenceStub) <font color="#cc0033">insert_double</font>*(p0 : REAL)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynSequenceStub) <font color="#cc0033">insert_dyn_any</font>*(p0 : <a href="#type-DynAny">DynAny</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynSequenceStub) <font color="#cc0033">insert_float</font>*(p0 : SHORTREAL)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynSequenceStub) <font color="#cc0033">insert_long</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynSequenceStub) <font color="#cc0033">insert_longlong</font>*(p0 : LONGINT)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynSequenceStub) <font color="#cc0033">insert_octet</font>*(p0 : BYTE)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynSequenceStub) <font color="#cc0033">insert_reference</font>*(p0 : <a href="org_omg_CORBA.html#type-Object">org_omg_CORBA.Object</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynSequenceStub) <font color="#cc0033">insert_short</font>*(p0 : SHORTINT)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynSequenceStub) <font color="#cc0033">insert_string</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynSequenceStub) <font color="#cc0033">insert_typecode</font>*(p0 : <a href="org_omg_CORBA.html#type-TypeCode">org_omg_CORBA.TypeCode</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynSequenceStub) <font color="#cc0033">insert_ulong</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynSequenceStub) <font color="#cc0033">insert_ulonglong</font>*(p0 : LONGINT)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynSequenceStub) <font color="#cc0033">insert_ushort</font>*(p0 : SHORTINT)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynSequenceStub) <font color="#cc0033">insert_val</font>*(p0 : <a href="java_io.html#type-Serializable">java_io.Serializable</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynSequenceStub) <font color="#cc0033">insert_wchar</font>*(p0 : CHAR)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynSequenceStub) <font color="#cc0033">insert_wstring</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynSequenceStub) <font color="#cc0033">next</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynSequenceStub) <font color="#cc0033">rewind</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynSequenceStub) <font color="#cc0033">seek</font>*(p0 : INTEGER) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynSequenceStub) <font color="#cc0033">set_elements</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="org_omg_CORBA.html#type-Any">org_omg_CORBA.Any</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynSequenceStub) <font color="#cc0033">set_elements_as_dyn_any</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="#type-DynAny">DynAny</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynSequenceStub) <font color="#cc0033">set_length</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynSequenceStub) <font color="#cc0033">to_any</font>*() : <a href="org_omg_CORBA.html#type-Any">org_omg_CORBA.Any</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynSequenceStub) <font color="#cc0033">type</font>*() : <a href="org_omg_CORBA.html#type-TypeCode">org_omg_CORBA.TypeCode</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynSequenceStub) <font color="#cc0033">_ids</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-_DynStructStub"></a>
+<b>PROCEDURE </b>(self:_DynStructStub) <font color="#cc0033">assign</font>*(p0 : <a href="#type-DynAny">DynAny</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynStructStub) <font color="#cc0033">component_count</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynStructStub) <font color="#cc0033">copy</font>*() : <a href="#type-DynAny">DynAny</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynStructStub) <font color="#cc0033">current_component</font>*() : <a href="#type-DynAny">DynAny</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynStructStub) <font color="#cc0033">current_member_kind</font>*() : <a href="org_omg_CORBA.html#type-TCKind">org_omg_CORBA.TCKind</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynStructStub) <font color="#cc0033">current_member_name</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynStructStub) <font color="#cc0033">destroy</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynStructStub) <font color="#cc0033">equal</font>*(p0 : <a href="#type-DynAny">DynAny</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynStructStub) <font color="#cc0033">from_any</font>*(p0 : <a href="org_omg_CORBA.html#type-Any">org_omg_CORBA.Any</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynStructStub) <font color="#cc0033">get_any</font>*() : <a href="org_omg_CORBA.html#type-Any">org_omg_CORBA.Any</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynStructStub) <font color="#cc0033">get_boolean</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynStructStub) <font color="#cc0033">get_char</font>*() : CHAR<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynStructStub) <font color="#cc0033">get_double</font>*() : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynStructStub) <font color="#cc0033">get_dyn_any</font>*() : <a href="#type-DynAny">DynAny</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynStructStub) <font color="#cc0033">get_float</font>*() : SHORTREAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynStructStub) <font color="#cc0033">get_long</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynStructStub) <font color="#cc0033">get_longlong</font>*() : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynStructStub) <font color="#cc0033">get_members</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-NameValuePair">NameValuePair</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynStructStub) <font color="#cc0033">get_members_as_dyn_any</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-NameDynAnyPair">NameDynAnyPair</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynStructStub) <font color="#cc0033">get_octet</font>*() : BYTE<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynStructStub) <font color="#cc0033">get_reference</font>*() : <a href="org_omg_CORBA.html#type-Object">org_omg_CORBA.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynStructStub) <font color="#cc0033">get_short</font>*() : SHORTINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynStructStub) <font color="#cc0033">get_string</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynStructStub) <font color="#cc0033">get_typecode</font>*() : <a href="org_omg_CORBA.html#type-TypeCode">org_omg_CORBA.TypeCode</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynStructStub) <font color="#cc0033">get_ulong</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynStructStub) <font color="#cc0033">get_ulonglong</font>*() : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynStructStub) <font color="#cc0033">get_ushort</font>*() : SHORTINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynStructStub) <font color="#cc0033">get_val</font>*() : <a href="java_io.html#type-Serializable">java_io.Serializable</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynStructStub) <font color="#cc0033">get_wchar</font>*() : CHAR<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynStructStub) <font color="#cc0033">get_wstring</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynStructStub) <font color="#cc0033">insert_any</font>*(p0 : <a href="org_omg_CORBA.html#type-Any">org_omg_CORBA.Any</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynStructStub) <font color="#cc0033">insert_boolean</font>*(p0 : BOOLEAN)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynStructStub) <font color="#cc0033">insert_char</font>*(p0 : CHAR)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynStructStub) <font color="#cc0033">insert_double</font>*(p0 : REAL)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynStructStub) <font color="#cc0033">insert_dyn_any</font>*(p0 : <a href="#type-DynAny">DynAny</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynStructStub) <font color="#cc0033">insert_float</font>*(p0 : SHORTREAL)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynStructStub) <font color="#cc0033">insert_long</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynStructStub) <font color="#cc0033">insert_longlong</font>*(p0 : LONGINT)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynStructStub) <font color="#cc0033">insert_octet</font>*(p0 : BYTE)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynStructStub) <font color="#cc0033">insert_reference</font>*(p0 : <a href="org_omg_CORBA.html#type-Object">org_omg_CORBA.Object</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynStructStub) <font color="#cc0033">insert_short</font>*(p0 : SHORTINT)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynStructStub) <font color="#cc0033">insert_string</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynStructStub) <font color="#cc0033">insert_typecode</font>*(p0 : <a href="org_omg_CORBA.html#type-TypeCode">org_omg_CORBA.TypeCode</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynStructStub) <font color="#cc0033">insert_ulong</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynStructStub) <font color="#cc0033">insert_ulonglong</font>*(p0 : LONGINT)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynStructStub) <font color="#cc0033">insert_ushort</font>*(p0 : SHORTINT)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynStructStub) <font color="#cc0033">insert_val</font>*(p0 : <a href="java_io.html#type-Serializable">java_io.Serializable</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynStructStub) <font color="#cc0033">insert_wchar</font>*(p0 : CHAR)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynStructStub) <font color="#cc0033">insert_wstring</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynStructStub) <font color="#cc0033">next</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynStructStub) <font color="#cc0033">rewind</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynStructStub) <font color="#cc0033">seek</font>*(p0 : INTEGER) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynStructStub) <font color="#cc0033">set_members</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="#type-NameValuePair">NameValuePair</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynStructStub) <font color="#cc0033">set_members_as_dyn_any</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="#type-NameDynAnyPair">NameDynAnyPair</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynStructStub) <font color="#cc0033">to_any</font>*() : <a href="org_omg_CORBA.html#type-Any">org_omg_CORBA.Any</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynStructStub) <font color="#cc0033">type</font>*() : <a href="org_omg_CORBA.html#type-TypeCode">org_omg_CORBA.TypeCode</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynStructStub) <font color="#cc0033">_ids</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-_DynUnionStub"></a>
+<b>PROCEDURE </b>(self:_DynUnionStub) <font color="#cc0033">assign</font>*(p0 : <a href="#type-DynAny">DynAny</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynUnionStub) <font color="#cc0033">component_count</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynUnionStub) <font color="#cc0033">copy</font>*() : <a href="#type-DynAny">DynAny</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynUnionStub) <font color="#cc0033">current_component</font>*() : <a href="#type-DynAny">DynAny</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynUnionStub) <font color="#cc0033">destroy</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynUnionStub) <font color="#cc0033">discriminator_kind</font>*() : <a href="org_omg_CORBA.html#type-TCKind">org_omg_CORBA.TCKind</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynUnionStub) <font color="#cc0033">equal</font>*(p0 : <a href="#type-DynAny">DynAny</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynUnionStub) <font color="#cc0033">from_any</font>*(p0 : <a href="org_omg_CORBA.html#type-Any">org_omg_CORBA.Any</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynUnionStub) <font color="#cc0033">get_any</font>*() : <a href="org_omg_CORBA.html#type-Any">org_omg_CORBA.Any</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynUnionStub) <font color="#cc0033">get_boolean</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynUnionStub) <font color="#cc0033">get_char</font>*() : CHAR<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynUnionStub) <font color="#cc0033">get_discriminator</font>*() : <a href="#type-DynAny">DynAny</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynUnionStub) <font color="#cc0033">get_double</font>*() : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynUnionStub) <font color="#cc0033">get_dyn_any</font>*() : <a href="#type-DynAny">DynAny</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynUnionStub) <font color="#cc0033">get_float</font>*() : SHORTREAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynUnionStub) <font color="#cc0033">get_long</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynUnionStub) <font color="#cc0033">get_longlong</font>*() : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynUnionStub) <font color="#cc0033">get_octet</font>*() : BYTE<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynUnionStub) <font color="#cc0033">get_reference</font>*() : <a href="org_omg_CORBA.html#type-Object">org_omg_CORBA.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynUnionStub) <font color="#cc0033">get_short</font>*() : SHORTINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynUnionStub) <font color="#cc0033">get_string</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynUnionStub) <font color="#cc0033">get_typecode</font>*() : <a href="org_omg_CORBA.html#type-TypeCode">org_omg_CORBA.TypeCode</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynUnionStub) <font color="#cc0033">get_ulong</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynUnionStub) <font color="#cc0033">get_ulonglong</font>*() : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynUnionStub) <font color="#cc0033">get_ushort</font>*() : SHORTINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynUnionStub) <font color="#cc0033">get_val</font>*() : <a href="java_io.html#type-Serializable">java_io.Serializable</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynUnionStub) <font color="#cc0033">get_wchar</font>*() : CHAR<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynUnionStub) <font color="#cc0033">get_wstring</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynUnionStub) <font color="#cc0033">has_no_active_member</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynUnionStub) <font color="#cc0033">insert_any</font>*(p0 : <a href="org_omg_CORBA.html#type-Any">org_omg_CORBA.Any</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynUnionStub) <font color="#cc0033">insert_boolean</font>*(p0 : BOOLEAN)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynUnionStub) <font color="#cc0033">insert_char</font>*(p0 : CHAR)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynUnionStub) <font color="#cc0033">insert_double</font>*(p0 : REAL)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynUnionStub) <font color="#cc0033">insert_dyn_any</font>*(p0 : <a href="#type-DynAny">DynAny</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynUnionStub) <font color="#cc0033">insert_float</font>*(p0 : SHORTREAL)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynUnionStub) <font color="#cc0033">insert_long</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynUnionStub) <font color="#cc0033">insert_longlong</font>*(p0 : LONGINT)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynUnionStub) <font color="#cc0033">insert_octet</font>*(p0 : BYTE)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynUnionStub) <font color="#cc0033">insert_reference</font>*(p0 : <a href="org_omg_CORBA.html#type-Object">org_omg_CORBA.Object</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynUnionStub) <font color="#cc0033">insert_short</font>*(p0 : SHORTINT)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynUnionStub) <font color="#cc0033">insert_string</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynUnionStub) <font color="#cc0033">insert_typecode</font>*(p0 : <a href="org_omg_CORBA.html#type-TypeCode">org_omg_CORBA.TypeCode</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynUnionStub) <font color="#cc0033">insert_ulong</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynUnionStub) <font color="#cc0033">insert_ulonglong</font>*(p0 : LONGINT)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynUnionStub) <font color="#cc0033">insert_ushort</font>*(p0 : SHORTINT)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynUnionStub) <font color="#cc0033">insert_val</font>*(p0 : <a href="java_io.html#type-Serializable">java_io.Serializable</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynUnionStub) <font color="#cc0033">insert_wchar</font>*(p0 : CHAR)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynUnionStub) <font color="#cc0033">insert_wstring</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynUnionStub) <font color="#cc0033">member</font>*() : <a href="#type-DynAny">DynAny</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynUnionStub) <font color="#cc0033">member_kind</font>*() : <a href="org_omg_CORBA.html#type-TCKind">org_omg_CORBA.TCKind</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynUnionStub) <font color="#cc0033">member_name</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynUnionStub) <font color="#cc0033">next</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynUnionStub) <font color="#cc0033">rewind</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynUnionStub) <font color="#cc0033">seek</font>*(p0 : INTEGER) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynUnionStub) <font color="#cc0033">set_discriminator</font>*(p0 : <a href="#type-DynAny">DynAny</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynUnionStub) <font color="#cc0033">set_to_default_member</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynUnionStub) <font color="#cc0033">set_to_no_active_member</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynUnionStub) <font color="#cc0033">to_any</font>*() : <a href="org_omg_CORBA.html#type-Any">org_omg_CORBA.Any</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynUnionStub) <font color="#cc0033">type</font>*() : <a href="org_omg_CORBA.html#type-TypeCode">org_omg_CORBA.TypeCode</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynUnionStub) <font color="#cc0033">_ids</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-_DynValueStub"></a>
+<b>PROCEDURE </b>(self:_DynValueStub) <font color="#cc0033">assign</font>*(p0 : <a href="#type-DynAny">DynAny</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynValueStub) <font color="#cc0033">component_count</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynValueStub) <font color="#cc0033">copy</font>*() : <a href="#type-DynAny">DynAny</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynValueStub) <font color="#cc0033">current_component</font>*() : <a href="#type-DynAny">DynAny</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynValueStub) <font color="#cc0033">current_member_kind</font>*() : <a href="org_omg_CORBA.html#type-TCKind">org_omg_CORBA.TCKind</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynValueStub) <font color="#cc0033">current_member_name</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynValueStub) <font color="#cc0033">destroy</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynValueStub) <font color="#cc0033">equal</font>*(p0 : <a href="#type-DynAny">DynAny</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynValueStub) <font color="#cc0033">from_any</font>*(p0 : <a href="org_omg_CORBA.html#type-Any">org_omg_CORBA.Any</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynValueStub) <font color="#cc0033">get_any</font>*() : <a href="org_omg_CORBA.html#type-Any">org_omg_CORBA.Any</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynValueStub) <font color="#cc0033">get_boolean</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynValueStub) <font color="#cc0033">get_char</font>*() : CHAR<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynValueStub) <font color="#cc0033">get_double</font>*() : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynValueStub) <font color="#cc0033">get_dyn_any</font>*() : <a href="#type-DynAny">DynAny</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynValueStub) <font color="#cc0033">get_float</font>*() : SHORTREAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynValueStub) <font color="#cc0033">get_long</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynValueStub) <font color="#cc0033">get_longlong</font>*() : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynValueStub) <font color="#cc0033">get_members</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-NameValuePair">NameValuePair</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynValueStub) <font color="#cc0033">get_members_as_dyn_any</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-NameDynAnyPair">NameDynAnyPair</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynValueStub) <font color="#cc0033">get_octet</font>*() : BYTE<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynValueStub) <font color="#cc0033">get_reference</font>*() : <a href="org_omg_CORBA.html#type-Object">org_omg_CORBA.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynValueStub) <font color="#cc0033">get_short</font>*() : SHORTINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynValueStub) <font color="#cc0033">get_string</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynValueStub) <font color="#cc0033">get_typecode</font>*() : <a href="org_omg_CORBA.html#type-TypeCode">org_omg_CORBA.TypeCode</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynValueStub) <font color="#cc0033">get_ulong</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynValueStub) <font color="#cc0033">get_ulonglong</font>*() : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynValueStub) <font color="#cc0033">get_ushort</font>*() : SHORTINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynValueStub) <font color="#cc0033">get_val</font>*() : <a href="java_io.html#type-Serializable">java_io.Serializable</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynValueStub) <font color="#cc0033">get_wchar</font>*() : CHAR<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynValueStub) <font color="#cc0033">get_wstring</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynValueStub) <font color="#cc0033">insert_any</font>*(p0 : <a href="org_omg_CORBA.html#type-Any">org_omg_CORBA.Any</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynValueStub) <font color="#cc0033">insert_boolean</font>*(p0 : BOOLEAN)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynValueStub) <font color="#cc0033">insert_char</font>*(p0 : CHAR)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynValueStub) <font color="#cc0033">insert_double</font>*(p0 : REAL)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynValueStub) <font color="#cc0033">insert_dyn_any</font>*(p0 : <a href="#type-DynAny">DynAny</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynValueStub) <font color="#cc0033">insert_float</font>*(p0 : SHORTREAL)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynValueStub) <font color="#cc0033">insert_long</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynValueStub) <font color="#cc0033">insert_longlong</font>*(p0 : LONGINT)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynValueStub) <font color="#cc0033">insert_octet</font>*(p0 : BYTE)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynValueStub) <font color="#cc0033">insert_reference</font>*(p0 : <a href="org_omg_CORBA.html#type-Object">org_omg_CORBA.Object</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynValueStub) <font color="#cc0033">insert_short</font>*(p0 : SHORTINT)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynValueStub) <font color="#cc0033">insert_string</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynValueStub) <font color="#cc0033">insert_typecode</font>*(p0 : <a href="org_omg_CORBA.html#type-TypeCode">org_omg_CORBA.TypeCode</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynValueStub) <font color="#cc0033">insert_ulong</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynValueStub) <font color="#cc0033">insert_ulonglong</font>*(p0 : LONGINT)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynValueStub) <font color="#cc0033">insert_ushort</font>*(p0 : SHORTINT)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynValueStub) <font color="#cc0033">insert_val</font>*(p0 : <a href="java_io.html#type-Serializable">java_io.Serializable</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynValueStub) <font color="#cc0033">insert_wchar</font>*(p0 : CHAR)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynValueStub) <font color="#cc0033">insert_wstring</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynValueStub) <font color="#cc0033">is_null</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynValueStub) <font color="#cc0033">next</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynValueStub) <font color="#cc0033">rewind</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynValueStub) <font color="#cc0033">seek</font>*(p0 : INTEGER) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynValueStub) <font color="#cc0033">set_members</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="#type-NameValuePair">NameValuePair</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynValueStub) <font color="#cc0033">set_members_as_dyn_any</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="#type-NameDynAnyPair">NameDynAnyPair</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynValueStub) <font color="#cc0033">set_to_null</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynValueStub) <font color="#cc0033">set_to_value</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynValueStub) <font color="#cc0033">to_any</font>*() : <a href="org_omg_CORBA.html#type-Any">org_omg_CORBA.Any</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynValueStub) <font color="#cc0033">type</font>*() : <a href="org_omg_CORBA.html#type-TypeCode">org_omg_CORBA.TypeCode</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_DynValueStub) <font color="#cc0033">_ids</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>END </b><font color="#cc0033">org_omg_DynamicAny</font>.
+</font></pre></hr>
+<!-- BEGIN JavaScript -->
+<script>
+function toggle(node) {
+    node.classList.toggle("show"); 
+  }
+
+function cls(node) {
+    var prnt = node.parentNode;
+    var next = prnt.previousSibling;
+    var text = next.lastChild;
+    text.innerHTML = 
+        "The <b>class</b> property asserts that this type will be<br>" +
+        "implemented as a reference class in the underlying framework.";
+    text.classList.toggle("show");
+  }
+
+function newOk(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>has noArg-ctor</b> property asserts that this reference<br>" +
+        "class has a no-arg constructor, and thus objects of this<br>" +
+        "type can be allocated with NEW(). Component Pascal types<br>" +
+        "derived from this type can also be allocated using NEW().";
+    popuptext.classList.toggle("show"); 
+  }
+
+function noNew(node) { 
+    var prnt = node.parentNode; 
+    var next = prnt.previousSibling; 
+    var text = next.lastChild; 
+    text.innerHTML =  
+        "The <b>no noArg-ctor</b> property asserts that this reference<br>" +
+        "class does not have a noArg constructor. Objects of this<br>" +
+        "type cannot be allocated using NEW(), and Component<br>" +
+        "Pascal types  derived from this type also cannot be<br>" +
+        "allocated using NEW().";
+    text.classList.toggle("show");
+  }
+
+function noCpy(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>no value-assign</b> property asserts that this reference<br>" + 
+        "class does not have a value copy method. Therefore, it<br>" +
+        "is not possible to perform value assignments using<br>" +
+        "statements like <i>dst^</i> := <i>src^</i>";
+    popuptext.classList.toggle("show");
+  }
+
+function valueclass(node) { 
+        var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>valueclass</b> property asserts that this RECORD type is<br>" + 
+        "implemented as a value class in the CLR. It follows that<br>" +  
+        "value assignments can be made of these types. They can<br>" + 
+        "also be passed by value. Even pointers to records of<br>" + 
+        "such types may be dereferenced and copied using syntax<br>" + 
+        "such as  <i>dst^</i> := <i>src^</i>"; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+function argCtor(node) { 
+    var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>has arg-ctor</b> property asserts that this reference<br>" +  
+        "class has one or more constructors that take arguments.<br>" + 
+        "These constructors can be called from Component Pascal<br>" + 
+        "by calling an <i>init</i>(...) method from the static list<br>" + 
+        "here. Component Pascal types derived from this type<br>" + 
+        "can define constructors with arguments which call the<br>" + 
+        "super-type constructor.<br>" + 
+        "See <i>'Interfacing to constructors'</i> in the Release Notes."; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+</script>
+<!-- END JavaScript --> 
+
+</body></html>

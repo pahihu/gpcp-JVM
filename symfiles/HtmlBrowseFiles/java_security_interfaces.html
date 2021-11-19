@@ -1,0 +1,259 @@
+<html><head><title>java_security_interfaces</title>
+<style>
+<!-- BEGIN Inline CSS -->
+/* Popup container */
+.popup {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+/* The actual popup (appears on top) */
+.popup .popuptext {
+    visibility: hidden;
+    width: 430px;
+    background-color: white;
+    color: black;
+    text-align: left;
+    border-radius: 6px;
+    border-style: solid;
+    border-color: black;
+    padding: 8px 8px 8px 8px;
+    position: absolute;
+    z-index: 1;
+    margin-top: 30px;
+}
+
+/* Toggle this class when clicking on the popup container (hide and show the popup) */
+.popup .show {
+    visibility: visible;
+    opacity: 1;
+}
+
+</style>
+<!-- END Inline CSS -->
+</head><body bgcolor="white">
+<hr><pre>
+<font color="green">(*</font>
+<font color="green"> *  Creator j2cps version 1.4.07 (March 2018)</font>
+<font color="green"> *  Compiled from jar-file rt.jar</font>
+<font color="green"> *)</font>
+<b>FOREIGN MODULE </b><font color="#cc0033">java_security_interfaces</font>;
+
+<b>IMPORT</b>
+    <a href="java_lang.html">java_lang</a> := "java.lang",
+    <a href="java_math.html">java_math</a> := "java.math",
+    <a href="java_security.html">java_security</a> := "java.security",
+    <a href="java_security_spec.html">java_security_spec</a> := "java.security.spec";
+
+<b>TYPE</b>
+
+  <a name="type-DSAKey"></a><font color="#cc0033">DSAKey</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+            <font color="green"><b> (* </b><a href="#meths-DSAKey">Typebound Procedures</a><b> *)</b></font>
+            <b>END</b>;
+
+  <a name="type-DSAKeyPairGenerator"></a><font color="#cc0033">DSAKeyPairGenerator</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                         <font color="green"><b> (* </b><a href="#meths-DSAKeyPairGenerator">Typebound Procedures</a><b> *)</b></font>
+                         <b>END</b>;
+
+  <a name="type-DSAParams"></a><font color="#cc0033">DSAParams</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+               <font color="green"><b> (* </b><a href="#meths-DSAParams">Typebound Procedures</a><b> *)</b></font>
+               <b>END</b>;
+
+  <a name="type-DSAPrivateKey"></a><font color="#cc0033">DSAPrivateKey</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <b>DSAKey</b> + <a href="java_security.html#type-PrivateKey">java_security.PrivateKey</a>)
+                   <font color="green"><b> (* </b><a href="#meths-DSAPrivateKey">Typebound Procedures</a><b> *)</b></font>
+                   <b>STATIC</b>
+                     <font color="#cc0033">serialVersionUID</font>* = 7776497482533790279;
+                   <b>END</b>;
+
+  <a name="type-DSAPublicKey"></a><font color="#cc0033">DSAPublicKey</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-DSAKey">DSAKey</a> + <a href="java_security.html#type-PublicKey">java_security.PublicKey</a>)
+                  <font color="green"><b> (* </b><a href="#meths-DSAPublicKey">Typebound Procedures</a><b> *)</b></font>
+                  <b>STATIC</b>
+                    <font color="#cc0033">serialVersionUID</font>* = 1234526332779022332;
+                  <b>END</b>;
+
+  <a name="type-ECKey"></a><font color="#cc0033">ECKey</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+           <font color="green"><b> (* </b><a href="#meths-ECKey">Typebound Procedures</a><b> *)</b></font>
+           <b>END</b>;
+
+  <a name="type-ECPrivateKey"></a><font color="#cc0033">ECPrivateKey</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_security.html#type-PrivateKey">java_security.PrivateKey</a> + <a href="#type-ECKey">ECKey</a>)
+                  <font color="green"><b> (* </b><a href="#meths-ECPrivateKey">Typebound Procedures</a><b> *)</b></font>
+                  <b>STATIC</b>
+                    <font color="#cc0033">serialVersionUID</font>* = -7896394956925609184;
+                  <b>END</b>;
+
+  <a name="type-ECPublicKey"></a><font color="#cc0033">ECPublicKey</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_security.html#type-PublicKey">java_security.PublicKey</a> + <a href="#type-ECKey">ECKey</a>)
+                 <font color="green"><b> (* </b><a href="#meths-ECPublicKey">Typebound Procedures</a><b> *)</b></font>
+                 <b>STATIC</b>
+                   <font color="#cc0033">serialVersionUID</font>* = -3314988629879632826;
+                 <b>END</b>;
+
+  <a name="type-RSAKey"></a><font color="#cc0033">RSAKey</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+            <font color="green"><b> (* </b><a href="#meths-RSAKey">Typebound Procedures</a><b> *)</b></font>
+            <b>END</b>;
+
+  <a name="type-RSAMultiPrimePrivateCrtKey"></a><font color="#cc0033">RSAMultiPrimePrivateCrtKey</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <b>RSAPrivateKey</b>)
+                                <font color="green"><b> (* </b><a href="#meths-RSAMultiPrimePrivateCrtKey">Typebound Procedures</a><b> *)</b></font>
+                                <b>STATIC</b>
+                                  <font color="#cc0033">serialVersionUID</font>* = 618058533534628008;
+                                <b>END</b>;
+
+  <a name="type-RSAPrivateCrtKey"></a><font color="#cc0033">RSAPrivateCrtKey</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <b>RSAPrivateKey</b>)
+                      <font color="green"><b> (* </b><a href="#meths-RSAPrivateCrtKey">Typebound Procedures</a><b> *)</b></font>
+                      <b>STATIC</b>
+                        <font color="#cc0033">serialVersionUID</font>* = -5682214253527700368;
+                      <b>END</b>;
+
+  <a name="type-RSAPrivateKey"></a><font color="#cc0033">RSAPrivateKey</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_security.html#type-PrivateKey">java_security.PrivateKey</a> + <a href="#type-RSAKey">RSAKey</a>)
+                   <font color="green"><b> (* </b><a href="#meths-RSAPrivateKey">Typebound Procedures</a><b> *)</b></font>
+                   <b>STATIC</b>
+                     <font color="#cc0033">serialVersionUID</font>* = 5187144804936595022;
+                   <b>END</b>;
+
+  <a name="type-RSAPublicKey"></a><font color="#cc0033">RSAPublicKey</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_security.html#type-PublicKey">java_security.PublicKey</a> + <a href="#type-RSAKey">RSAKey</a>)
+                  <font color="green"><b> (* </b><a href="#meths-RSAPublicKey">Typebound Procedures</a><b> *)</b></font>
+                  <b>STATIC</b>
+                    <font color="#cc0033">serialVersionUID</font>* = -8727434096241101194;
+                  <b>END</b>;
+
+
+
+<a name="meths-DSAKey"></a>
+<b>PROCEDURE </b>(self:DSAKey) <font color="#cc0033">getParams</font>*() : <a href="#type-DSAParams">DSAParams</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-DSAKeyPairGenerator"></a>
+<b>PROCEDURE </b>(self:DSAKeyPairGenerator) <font color="#cc0033">initialize</font>*(p0 : INTEGER;
+                                                 p1 : BOOLEAN;
+                                                 p2 : <a href="java_security.html#type-SecureRandom">java_security.SecureRandom</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DSAKeyPairGenerator) <font color="#cc0033">initialize</font>*(p0 : <b>DSAParams</b>;
+                                                 p1 : <a href="java_security.html#type-SecureRandom">java_security.SecureRandom</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-DSAParams"></a>
+<b>PROCEDURE </b>(self:DSAParams) <font color="#cc0033">getG</font>*() : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DSAParams) <font color="#cc0033">getP</font>*() : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DSAParams) <font color="#cc0033">getQ</font>*() : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-DSAPrivateKey"></a>
+<b>PROCEDURE </b>(self:DSAPrivateKey) <font color="#cc0033">getX</font>*() : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-DSAPublicKey"></a>
+<b>PROCEDURE </b>(self:DSAPublicKey) <font color="#cc0033">getY</font>*() : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-ECKey"></a>
+<b>PROCEDURE </b>(self:ECKey) <font color="#cc0033">getParams</font>*() : <a href="java_security_spec.html#type-ECParameterSpec">java_security_spec.ECParameterSpec</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-ECPrivateKey"></a>
+<b>PROCEDURE </b>(self:ECPrivateKey) <font color="#cc0033">getS</font>*() : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-ECPublicKey"></a>
+<b>PROCEDURE </b>(self:ECPublicKey) <font color="#cc0033">getW</font>*() : <a href="java_security_spec.html#type-ECPoint">java_security_spec.ECPoint</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-RSAKey"></a>
+<b>PROCEDURE </b>(self:RSAKey) <font color="#cc0033">getModulus</font>*() : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-RSAMultiPrimePrivateCrtKey"></a>
+<b>PROCEDURE </b>(self:RSAMultiPrimePrivateCrtKey) <font color="#cc0033">getCrtCoefficient</font>*() : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RSAMultiPrimePrivateCrtKey) <font color="#cc0033">getOtherPrimeInfo</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_security_spec.html#type-RSAOtherPrimeInfo">java_security_spec.RSAOtherPrimeInfo</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RSAMultiPrimePrivateCrtKey) <font color="#cc0033">getPrimeExponentP</font>*() : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RSAMultiPrimePrivateCrtKey) <font color="#cc0033">getPrimeExponentQ</font>*() : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RSAMultiPrimePrivateCrtKey) <font color="#cc0033">getPrimeP</font>*() : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RSAMultiPrimePrivateCrtKey) <font color="#cc0033">getPrimeQ</font>*() : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RSAMultiPrimePrivateCrtKey) <font color="#cc0033">getPublicExponent</font>*() : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-RSAPrivateCrtKey"></a>
+<b>PROCEDURE </b>(self:RSAPrivateCrtKey) <font color="#cc0033">getCrtCoefficient</font>*() : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RSAPrivateCrtKey) <font color="#cc0033">getPrimeExponentP</font>*() : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RSAPrivateCrtKey) <font color="#cc0033">getPrimeExponentQ</font>*() : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RSAPrivateCrtKey) <font color="#cc0033">getPrimeP</font>*() : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RSAPrivateCrtKey) <font color="#cc0033">getPrimeQ</font>*() : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RSAPrivateCrtKey) <font color="#cc0033">getPublicExponent</font>*() : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-RSAPrivateKey"></a>
+<b>PROCEDURE </b>(self:RSAPrivateKey) <font color="#cc0033">getPrivateExponent</font>*() : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-RSAPublicKey"></a>
+<b>PROCEDURE </b>(self:RSAPublicKey) <font color="#cc0033">getPublicExponent</font>*() : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a><b>,NEW,ABSTRACT</b>;
+
+<b>END </b><font color="#cc0033">java_security_interfaces</font>.
+</font></pre></hr>
+<!-- BEGIN JavaScript -->
+<script>
+function toggle(node) {
+    node.classList.toggle("show"); 
+  }
+
+function cls(node) {
+    var prnt = node.parentNode;
+    var next = prnt.previousSibling;
+    var text = next.lastChild;
+    text.innerHTML = 
+        "The <b>class</b> property asserts that this type will be<br>" +
+        "implemented as a reference class in the underlying framework.";
+    text.classList.toggle("show");
+  }
+
+function newOk(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>has noArg-ctor</b> property asserts that this reference<br>" +
+        "class has a no-arg constructor, and thus objects of this<br>" +
+        "type can be allocated with NEW(). Component Pascal types<br>" +
+        "derived from this type can also be allocated using NEW().";
+    popuptext.classList.toggle("show"); 
+  }
+
+function noNew(node) { 
+    var prnt = node.parentNode; 
+    var next = prnt.previousSibling; 
+    var text = next.lastChild; 
+    text.innerHTML =  
+        "The <b>no noArg-ctor</b> property asserts that this reference<br>" +
+        "class does not have a noArg constructor. Objects of this<br>" +
+        "type cannot be allocated using NEW(), and Component<br>" +
+        "Pascal types  derived from this type also cannot be<br>" +
+        "allocated using NEW().";
+    text.classList.toggle("show");
+  }
+
+function noCpy(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>no value-assign</b> property asserts that this reference<br>" + 
+        "class does not have a value copy method. Therefore, it<br>" +
+        "is not possible to perform value assignments using<br>" +
+        "statements like <i>dst^</i> := <i>src^</i>";
+    popuptext.classList.toggle("show");
+  }
+
+function valueclass(node) { 
+        var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>valueclass</b> property asserts that this RECORD type is<br>" + 
+        "implemented as a value class in the CLR. It follows that<br>" +  
+        "value assignments can be made of these types. They can<br>" + 
+        "also be passed by value. Even pointers to records of<br>" + 
+        "such types may be dereferenced and copied using syntax<br>" + 
+        "such as  <i>dst^</i> := <i>src^</i>"; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+function argCtor(node) { 
+    var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>has arg-ctor</b> property asserts that this reference<br>" +  
+        "class has one or more constructors that take arguments.<br>" + 
+        "These constructors can be called from Component Pascal<br>" + 
+        "by calling an <i>init</i>(...) method from the static list<br>" + 
+        "here. Component Pascal types derived from this type<br>" + 
+        "can define constructors with arguments which call the<br>" + 
+        "super-type constructor.<br>" + 
+        "See <i>'Interfacing to constructors'</i> in the Release Notes."; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+</script>
+<!-- END JavaScript --> 
+
+</body></html>

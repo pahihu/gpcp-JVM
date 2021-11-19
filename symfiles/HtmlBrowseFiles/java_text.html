@@ -1,0 +1,1199 @@
+<html><head><title>java_text</title>
+<style>
+<!-- BEGIN Inline CSS -->
+/* Popup container */
+.popup {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+/* The actual popup (appears on top) */
+.popup .popuptext {
+    visibility: hidden;
+    width: 430px;
+    background-color: white;
+    color: black;
+    text-align: left;
+    border-radius: 6px;
+    border-style: solid;
+    border-color: black;
+    padding: 8px 8px 8px 8px;
+    position: absolute;
+    z-index: 1;
+    margin-top: 30px;
+}
+
+/* Toggle this class when clicking on the popup container (hide and show the popup) */
+.popup .show {
+    visibility: visible;
+    opacity: 1;
+}
+
+</style>
+<!-- END Inline CSS -->
+</head><body bgcolor="white">
+<hr><pre>
+<font color="green">(*</font>
+<font color="green"> *  Creator j2cps version 1.4.07 (March 2018)</font>
+<font color="green"> *  Compiled from jar-file rt.jar</font>
+<font color="green"> *)</font>
+<b>FOREIGN MODULE </b><font color="#cc0033">java_text</font>;
+
+<b>IMPORT</b>
+    <a href="java_io.html">java_io</a> := "java.io",
+    <a href="java_lang.html">java_lang</a> := "java.lang",
+    <a href="java_math.html">java_math</a> := "java.math",
+    <a href="java_util.html">java_util</a> := "java.util";
+
+<b>TYPE</b>
+
+  <a name="type-Annotation"></a><font color="#cc0033">Annotation</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                <font color="green"><b> (* </b><a href="#meths-Annotation">Typebound Procedures</a><b> *)</b></font>
+                <b>STATIC</b>
+                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="#type-Annotation">Annotation</a><b>,CONSTRUCTOR</b>;
+                <b>END</b>;
+
+  <a name="type-AttributedCharacterIterator"></a><font color="#cc0033">AttributedCharacterIterator</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <b>CharacterIterator</b>)
+                                 <font color="green"><b> (* </b><a href="#meths-AttributedCharacterIterator">Typebound Procedures</a><b> *)</b></font>
+                                 <b>END</b>;
+
+  <a name="type-AttributedCharacterIterator$Attribute"></a><font color="#cc0033">AttributedCharacterIterator$Attribute</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_io.html#type-Serializable">java_io.Serializable</a>)
+                                           <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                                           <font color="green"><b> (* </b><a href="#meths-AttributedCharacterIterator$Attribute">Typebound Procedures</a><b> *)</b></font>
+                                           <b>STATIC</b>
+                                             <a name="type-INPUT_METHOD_SEGMENT"></a><font color="#cc0033">INPUT_METHOD_SEGMENT</font>* : <a href="#type-AttributedCharacterIterator$Attribute">AttributedCharacterIterator$Attribute</a>;
+                                             <a name="type-LANGUAGE"></a><font color="#cc0033">LANGUAGE</font>*             : <a href="#type-AttributedCharacterIterator$Attribute">AttributedCharacterIterator$Attribute</a>;
+                                             <a name="type-READING"></a><font color="#cc0033">READING</font>*              : <a href="#type-AttributedCharacterIterator$Attribute">AttributedCharacterIterator$Attribute</a>;
+                                             <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-AttributedCharacterIterator$Attribute">AttributedCharacterIterator$Attribute</a><b>,CONSTRUCTOR</b>;
+                                           <b>END</b>;
+
+  <a name="type-AttributedString"></a><font color="#cc0033">AttributedString</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                      <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                      <font color="green"><b> (* </b><a href="#meths-AttributedString">Typebound Procedures</a><b> *)</b></font>
+                      <b>STATIC</b>
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="#type-AttributedCharacterIterator">AttributedCharacterIterator</a>;
+                                        p1 : INTEGER;
+                                        p2 : INTEGER) : <a href="#type-AttributedString">AttributedString</a><b>,CONSTRUCTOR</b>;
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>*(    p0 : <a href="#type-AttributedCharacterIterator">AttributedCharacterIterator</a>;
+                                            p1 : INTEGER;
+                                            p2 : INTEGER;
+                                        IN  p3 : <b>ARRAY </b><b>OF </b><b>AttributedCharacterIterator$Attribute</b>) : <a href="#type-AttributedString">AttributedString</a><b>,CONSTRUCTOR</b>;
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="#type-AttributedCharacterIterator">AttributedCharacterIterator</a>) : <a href="#type-AttributedString">AttributedString</a><b>,CONSTRUCTOR</b>;
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-AttributedString">AttributedString</a><b>,CONSTRUCTOR</b>;
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                        p1 : <a href="java_util.html#type-Map">java_util.Map</a>) : <a href="#type-AttributedString">AttributedString</a><b>,CONSTRUCTOR</b>;
+                      <b>END</b>;
+
+  <a name="type-Bidi"></a><font color="#cc0033">Bidi</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+          <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+          <font color="green"><b> (* </b><a href="#meths-Bidi">Typebound Procedures</a><b> *)</b></font>
+          <b>STATIC</b>
+            <font color="#cc0033">DIRECTION_DEFAULT_LEFT_TO_RIGHT</font>* = -2;
+            <font color="#cc0033">DIRECTION_DEFAULT_RIGHT_TO_LEFT</font>* = -1;
+            <font color="#cc0033">DIRECTION_LEFT_TO_RIGHT</font>*         = 0;
+            <font color="#cc0033">DIRECTION_RIGHT_TO_LEFT</font>*         = 1;
+            <b>PROCEDURE </b><font color="#cc0033">Init</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>CHAR;
+                                p1 : INTEGER;
+                            IN  p2 : <b>ARRAY </b><b>OF </b>BYTE;
+                                p3 : INTEGER;
+                                p4 : INTEGER;
+                                p5 : INTEGER) : <a href="#type-Bidi">Bidi</a><b>,CONSTRUCTOR</b>;
+            <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="#type-AttributedCharacterIterator">AttributedCharacterIterator</a>) : <a href="#type-Bidi">Bidi</a><b>,CONSTRUCTOR</b>;
+            <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                            p1 : INTEGER) : <a href="#type-Bidi">Bidi</a><b>,CONSTRUCTOR</b>;
+            <b>PROCEDURE </b><font color="#cc0033">reorderVisually</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE;
+                                           p1 : INTEGER;
+                                       IN  p2 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                           p3 : INTEGER;
+                                           p4 : INTEGER);
+            <b>PROCEDURE </b><font color="#cc0033">requiresBidi</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>CHAR;
+                                        p1 : INTEGER;
+                                        p2 : INTEGER) : BOOLEAN;
+          <b>END</b>;
+
+  <a name="type-BreakIterator"></a><font color="#cc0033">BreakIterator</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_lang.html#type-Cloneable">java_lang.Cloneable</a>)
+                   <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                   <font color="green"><b> (* </b><a href="#meths-BreakIterator">Typebound Procedures</a><b> *)</b></font>
+                   <b>STATIC</b>
+                     <font color="#cc0033">DONE</font>*                 = -1;
+                     <b>PROCEDURE </b><font color="#cc0033">getAvailableLocales</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_util.html#type-Locale">java_util.Locale</a>;
+                     <b>PROCEDURE </b><font color="#cc0033">getCharacterInstance</font>*() : <a href="#type-BreakIterator">BreakIterator</a>;
+                     <b>PROCEDURE </b><font color="#cc0033">getCharacterInstance</font>*(p0 : <a href="java_util.html#type-Locale">java_util.Locale</a>) : <a href="#type-BreakIterator">BreakIterator</a>;
+                     <b>PROCEDURE </b><font color="#cc0033">getLineInstance</font>*(p0 : <a href="java_util.html#type-Locale">java_util.Locale</a>) : <a href="#type-BreakIterator">BreakIterator</a>;
+                     <b>PROCEDURE </b><font color="#cc0033">getLineInstance</font>*() : <a href="#type-BreakIterator">BreakIterator</a>;
+                     <b>PROCEDURE </b><font color="#cc0033">getSentenceInstance</font>*() : <a href="#type-BreakIterator">BreakIterator</a>;
+                     <b>PROCEDURE </b><font color="#cc0033">getSentenceInstance</font>*(p0 : <a href="java_util.html#type-Locale">java_util.Locale</a>) : <a href="#type-BreakIterator">BreakIterator</a>;
+                     <b>PROCEDURE </b><font color="#cc0033">getWordInstance</font>*(p0 : <a href="java_util.html#type-Locale">java_util.Locale</a>) : <a href="#type-BreakIterator">BreakIterator</a>;
+                     <b>PROCEDURE </b><font color="#cc0033">getWordInstance</font>*() : <a href="#type-BreakIterator">BreakIterator</a>;
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>!() : <a href="#type-BreakIterator">BreakIterator</a><b>,CONSTRUCTOR</b>;
+                   <b>END</b>;
+
+  <a name="type-CharacterIterator"></a><font color="#cc0033">CharacterIterator</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_lang.html#type-Cloneable">java_lang.Cloneable</a>)
+                       <font color="green"><b> (* </b><a href="#meths-CharacterIterator">Typebound Procedures</a><b> *)</b></font>
+                       <b>STATIC</b>
+                         <font color="#cc0033">DONE</font>* = 65535;
+                       <b>END</b>;
+
+  <a name="type-ChoiceFormat"></a><font color="#cc0033">ChoiceFormat</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<b>NumberFormat</b>)
+                  <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                  <font color="green"><b> (* </b><a href="#meths-ChoiceFormat">Typebound Procedures</a><b> *)</b></font>
+                  <b>STATIC</b>
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>REAL;
+                                    IN  p1 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-ChoiceFormat">ChoiceFormat</a><b>,CONSTRUCTOR</b>;
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-ChoiceFormat">ChoiceFormat</a><b>,CONSTRUCTOR</b>;
+                    <b>PROCEDURE </b><font color="#cc0033">nextDouble</font>*(p0 : REAL;
+                                          p1 : BOOLEAN) : REAL;
+                    <b>PROCEDURE </b><font color="#cc0033">nextDouble</font>*(p0 : REAL) : REAL;
+                    <b>PROCEDURE </b><font color="#cc0033">previousDouble</font>*(p0 : REAL) : REAL;
+                  <b>END</b>;
+
+  <a name="type-CollationElementIterator"></a><font color="#cc0033">CollationElementIterator</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                              <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                              <font color="green"><b> (* </b><a href="#meths-CollationElementIterator">Typebound Procedures</a><b> *)</b></font>
+                              <b>STATIC</b>
+                                <font color="#cc0033">NULLORDER</font>*      = -1;
+                                <b>PROCEDURE </b><font color="#cc0033">primaryOrder</font>*(p0 : INTEGER) : INTEGER;
+                                <b>PROCEDURE </b><font color="#cc0033">secondaryOrder</font>*(p0 : INTEGER) : SHORTINT;
+                                <b>PROCEDURE </b><font color="#cc0033">tertiaryOrder</font>*(p0 : INTEGER) : SHORTINT;
+                              <b>END</b>;
+
+  <a name="type-CollationKey"></a><font color="#cc0033">CollationKey</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_lang.html#type-Comparable">java_lang.Comparable</a>)
+                  <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                  <font color="green"><b> (* </b><a href="#meths-CollationKey">Typebound Procedures</a><b> *)</b></font>
+                  <b>STATIC</b>
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-CollationKey">CollationKey</a><b>,CONSTRUCTOR</b>;
+                  <b>END</b>;
+
+  <a name="type-Collator"></a><font color="#cc0033">Collator</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_util.html#type-Comparator">java_util.Comparator</a> + <a href="java_lang.html#type-Cloneable">java_lang.Cloneable</a>)
+              <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+              <font color="green"><b> (* </b><a href="#meths-Collator">Typebound Procedures</a><b> *)</b></font>
+              <b>STATIC</b>
+                <font color="#cc0033">CANONICAL_DECOMPOSITION</font>* = 1;
+                <font color="#cc0033">FULL_DECOMPOSITION</font>*      = 2;
+                <font color="#cc0033">IDENTICAL</font>*               = 3;
+                <font color="#cc0033">NO_DECOMPOSITION</font>*        = 0;
+                <font color="#cc0033">PRIMARY</font>*                 = 0;
+                <font color="#cc0033">SECONDARY</font>*               = 1;
+                <font color="#cc0033">TERTIARY</font>*                = 2;
+                <b>PROCEDURE </b><font color="#cc0033">getAvailableLocales</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_util.html#type-Locale">java_util.Locale</a>;
+                <b>PROCEDURE </b><font color="#cc0033">getInstance</font>*(p0 : <a href="java_util.html#type-Locale">java_util.Locale</a>) : <a href="#type-Collator">Collator</a>;
+                <b>PROCEDURE </b><font color="#cc0033">getInstance</font>*() : <a href="#type-Collator">Collator</a>;
+                <b>PROCEDURE </b><font color="#cc0033">Init</font>!() : <a href="#type-Collator">Collator</a><b>,CONSTRUCTOR</b>;
+              <b>END</b>;
+
+  <a name="type-DateFormat"></a><font color="#cc0033">DateFormat</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<b>Format</b>)
+                <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                <font color="green"><b> (* </b><a href="#meths-DateFormat">Typebound Procedures</a><b> *)</b></font>
+                  <font color="#cc0033">calendar</font>!     : <a href="java_util.html#type-Calendar">java_util.Calendar</a>;
+                  <font color="#cc0033">numberFormat</font>! : <a href="#type-NumberFormat">NumberFormat</a>;
+                <b>STATIC</b>
+                  <font color="#cc0033">AM_PM_FIELD</font>*                = 14;
+                  <font color="#cc0033">DATE_FIELD</font>*                 = 3;
+                  <font color="#cc0033">DAY_OF_WEEK_FIELD</font>*          = 9;
+                  <font color="#cc0033">DAY_OF_WEEK_IN_MONTH_FIELD</font>* = 11;
+                  <font color="#cc0033">DAY_OF_YEAR_FIELD</font>*          = 10;
+                  <font color="#cc0033">DEFAULT</font>*                    = 2;
+                  <font color="#cc0033">ERA_FIELD</font>*                  = 0;
+                  <font color="#cc0033">FULL</font>*                       = 0;
+                  <font color="#cc0033">HOUR0_FIELD</font>*                = 16;
+                  <font color="#cc0033">HOUR1_FIELD</font>*                = 15;
+                  <font color="#cc0033">HOUR_OF_DAY0_FIELD</font>*         = 5;
+                  <font color="#cc0033">HOUR_OF_DAY1_FIELD</font>*         = 4;
+                  <font color="#cc0033">LONG</font>*                       = 1;
+                  <font color="#cc0033">MEDIUM</font>*                     = 2;
+                  <font color="#cc0033">MILLISECOND_FIELD</font>*          = 8;
+                  <font color="#cc0033">MINUTE_FIELD</font>*               = 6;
+                  <font color="#cc0033">MONTH_FIELD</font>*                = 2;
+                  <font color="#cc0033">SECOND_FIELD</font>*               = 7;
+                  <font color="#cc0033">SHORT</font>*                      = 3;
+                  <font color="#cc0033">TIMEZONE_FIELD</font>*             = 17;
+                  <font color="#cc0033">WEEK_OF_MONTH_FIELD</font>*        = 13;
+                  <font color="#cc0033">WEEK_OF_YEAR_FIELD</font>*         = 12;
+                  <font color="#cc0033">YEAR_FIELD</font>*                 = 1;
+                  <b>PROCEDURE </b><font color="#cc0033">getAvailableLocales</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_util.html#type-Locale">java_util.Locale</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">getDateInstance</font>*(p0 : INTEGER) : <a href="#type-DateFormat">DateFormat</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">getDateInstance</font>*(p0 : INTEGER;
+                                             p1 : <a href="java_util.html#type-Locale">java_util.Locale</a>) : <a href="#type-DateFormat">DateFormat</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">getDateInstance</font>*() : <a href="#type-DateFormat">DateFormat</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">getDateTimeInstance</font>*(p0 : INTEGER;
+                                                 p1 : INTEGER) : <a href="#type-DateFormat">DateFormat</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">getDateTimeInstance</font>*(p0 : INTEGER;
+                                                 p1 : INTEGER;
+                                                 p2 : <a href="java_util.html#type-Locale">java_util.Locale</a>) : <a href="#type-DateFormat">DateFormat</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">getDateTimeInstance</font>*() : <a href="#type-DateFormat">DateFormat</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">getInstance</font>*() : <a href="#type-DateFormat">DateFormat</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">getTimeInstance</font>*() : <a href="#type-DateFormat">DateFormat</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">getTimeInstance</font>*(p0 : INTEGER) : <a href="#type-DateFormat">DateFormat</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">getTimeInstance</font>*(p0 : INTEGER;
+                                             p1 : <a href="java_util.html#type-Locale">java_util.Locale</a>) : <a href="#type-DateFormat">DateFormat</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">Init</font>!() : <a href="#type-DateFormat">DateFormat</a><b>,CONSTRUCTOR</b>;
+                <b>END</b>;
+
+  <a name="type-DateFormat$Field"></a><font color="#cc0033">DateFormat$Field</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<b>Format$Field</b>)
+                      <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                      <font color="green"><b> (* </b><a href="#meths-DateFormat$Field">Typebound Procedures</a><b> *)</b></font>
+                      <b>STATIC</b>
+                        <a name="type-AM_PM"></a><font color="#cc0033">AM_PM</font>*                : <a href="#type-DateFormat$Field">DateFormat$Field</a>;
+                        <a name="type-DAY_OF_MONTH"></a><font color="#cc0033">DAY_OF_MONTH</font>*         : <a href="#type-DateFormat$Field">DateFormat$Field</a>;
+                        <a name="type-DAY_OF_WEEK"></a><font color="#cc0033">DAY_OF_WEEK</font>*          : <a href="#type-DateFormat$Field">DateFormat$Field</a>;
+                        <a name="type-DAY_OF_WEEK_IN_MONTH"></a><font color="#cc0033">DAY_OF_WEEK_IN_MONTH</font>* : <a href="#type-DateFormat$Field">DateFormat$Field</a>;
+                        <a name="type-DAY_OF_YEAR"></a><font color="#cc0033">DAY_OF_YEAR</font>*          : <a href="#type-DateFormat$Field">DateFormat$Field</a>;
+                        <a name="type-ERA"></a><font color="#cc0033">ERA</font>*                  : <a href="#type-DateFormat$Field">DateFormat$Field</a>;
+                        <a name="type-HOUR0"></a><font color="#cc0033">HOUR0</font>*                : <a href="#type-DateFormat$Field">DateFormat$Field</a>;
+                        <a name="type-HOUR1"></a><font color="#cc0033">HOUR1</font>*                : <a href="#type-DateFormat$Field">DateFormat$Field</a>;
+                        <a name="type-HOUR_OF_DAY0"></a><font color="#cc0033">HOUR_OF_DAY0</font>*         : <a href="#type-DateFormat$Field">DateFormat$Field</a>;
+                        <a name="type-HOUR_OF_DAY1"></a><font color="#cc0033">HOUR_OF_DAY1</font>*         : <a href="#type-DateFormat$Field">DateFormat$Field</a>;
+                        <a name="type-MILLISECOND"></a><font color="#cc0033">MILLISECOND</font>*          : <a href="#type-DateFormat$Field">DateFormat$Field</a>;
+                        <a name="type-MINUTE"></a><font color="#cc0033">MINUTE</font>*               : <a href="#type-DateFormat$Field">DateFormat$Field</a>;
+                        <a name="type-MONTH"></a><font color="#cc0033">MONTH</font>*                : <a href="#type-DateFormat$Field">DateFormat$Field</a>;
+                        <a name="type-SECOND"></a><font color="#cc0033">SECOND</font>*               : <a href="#type-DateFormat$Field">DateFormat$Field</a>;
+                        <a name="type-TIME_ZONE"></a><font color="#cc0033">TIME_ZONE</font>*            : <a href="#type-DateFormat$Field">DateFormat$Field</a>;
+                        <a name="type-WEEK_OF_MONTH"></a><font color="#cc0033">WEEK_OF_MONTH</font>*        : <a href="#type-DateFormat$Field">DateFormat$Field</a>;
+                        <a name="type-WEEK_OF_YEAR"></a><font color="#cc0033">WEEK_OF_YEAR</font>*         : <a href="#type-DateFormat$Field">DateFormat$Field</a>;
+                        <a name="type-YEAR"></a><font color="#cc0033">YEAR</font>*                 : <a href="#type-DateFormat$Field">DateFormat$Field</a>;
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                        p1 : INTEGER) : <a href="#type-DateFormat$Field">DateFormat$Field</a><b>,CONSTRUCTOR</b>;
+                        <b>PROCEDURE </b><font color="#cc0033">ofCalendarField</font>*(p0 : INTEGER) : <a href="#type-DateFormat$Field">DateFormat$Field</a>;
+                      <b>END</b>;
+
+  <a name="type-DateFormatSymbols"></a><font color="#cc0033">DateFormatSymbols</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_io.html#type-Serializable">java_io.Serializable</a> + <a href="java_lang.html#type-Cloneable">java_lang.Cloneable</a>)
+                       <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                       <font color="green"><b> (* </b><a href="#meths-DateFormatSymbols">Typebound Procedures</a><b> *)</b></font>
+                       <b>STATIC</b>
+                         <b>PROCEDURE </b><font color="#cc0033">getAvailableLocales</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_util.html#type-Locale">java_util.Locale</a>;
+                         <b>PROCEDURE </b><font color="#cc0033">getInstance</font>*() : <a href="#type-DateFormatSymbols">DateFormatSymbols</a>;
+                         <b>PROCEDURE </b><font color="#cc0033">getInstance</font>*(p0 : <a href="java_util.html#type-Locale">java_util.Locale</a>) : <a href="#type-DateFormatSymbols">DateFormatSymbols</a>;
+                         <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_util.html#type-Locale">java_util.Locale</a>) : <a href="#type-DateFormatSymbols">DateFormatSymbols</a><b>,CONSTRUCTOR</b>;
+                         <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-DateFormatSymbols">DateFormatSymbols</a><b>,CONSTRUCTOR</b>;
+                       <b>END</b>;
+
+  <a name="type-DecimalFormat"></a><font color="#cc0033">DecimalFormat</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<b>NumberFormat</b>)
+                   <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                   <font color="green"><b> (* </b><a href="#meths-DecimalFormat">Typebound Procedures</a><b> *)</b></font>
+                   <b>STATIC</b>
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                     p1 : <b>DecimalFormatSymbols</b>) : <a href="#type-DecimalFormat">DecimalFormat</a><b>,CONSTRUCTOR</b>;
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-DecimalFormat">DecimalFormat</a><b>,CONSTRUCTOR</b>;
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-DecimalFormat">DecimalFormat</a><b>,CONSTRUCTOR</b>;
+                   <b>END</b>;
+
+  <a name="type-DecimalFormatSymbols"></a><font color="#cc0033">DecimalFormatSymbols</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_lang.html#type-Cloneable">java_lang.Cloneable</a> + <a href="java_io.html#type-Serializable">java_io.Serializable</a>)
+                          <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                          <font color="green"><b> (* </b><a href="#meths-DecimalFormatSymbols">Typebound Procedures</a><b> *)</b></font>
+                          <b>STATIC</b>
+                            <b>PROCEDURE </b><font color="#cc0033">getAvailableLocales</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_util.html#type-Locale">java_util.Locale</a>;
+                            <b>PROCEDURE </b><font color="#cc0033">getInstance</font>*() : <a href="#type-DecimalFormatSymbols">DecimalFormatSymbols</a>;
+                            <b>PROCEDURE </b><font color="#cc0033">getInstance</font>*(p0 : <a href="java_util.html#type-Locale">java_util.Locale</a>) : <a href="#type-DecimalFormatSymbols">DecimalFormatSymbols</a>;
+                            <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_util.html#type-Locale">java_util.Locale</a>) : <a href="#type-DecimalFormatSymbols">DecimalFormatSymbols</a><b>,CONSTRUCTOR</b>;
+                            <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-DecimalFormatSymbols">DecimalFormatSymbols</a><b>,CONSTRUCTOR</b>;
+                          <b>END</b>;
+
+  <a name="type-FieldPosition"></a><font color="#cc0033">FieldPosition</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                   <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                   <font color="green"><b> (* </b><a href="#meths-FieldPosition">Typebound Procedures</a><b> *)</b></font>
+                   <b>STATIC</b>
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="#type-Format$Field">Format$Field</a>;
+                                     p1 : INTEGER) : <a href="#type-FieldPosition">FieldPosition</a><b>,CONSTRUCTOR</b>;
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="#type-Format$Field">Format$Field</a>) : <a href="#type-FieldPosition">FieldPosition</a><b>,CONSTRUCTOR</b>;
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER) : <a href="#type-FieldPosition">FieldPosition</a><b>,CONSTRUCTOR</b>;
+                   <b>END</b>;
+
+  <a name="type-Format"></a><font color="#cc0033">Format</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_io.html#type-Serializable">java_io.Serializable</a> + <a href="java_lang.html#type-Cloneable">java_lang.Cloneable</a>)
+            <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+            <font color="green"><b> (* </b><a href="#meths-Format">Typebound Procedures</a><b> *)</b></font>
+            <b>STATIC</b>
+              <b>PROCEDURE </b><font color="#cc0033">Init</font>!() : <a href="#type-Format">Format</a><b>,CONSTRUCTOR</b>;
+            <b>END</b>;
+
+  <a name="type-Format$Field"></a><font color="#cc0033">Format$Field</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<b>AttributedCharacterIterator$Attribute</b>)
+                  <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                  <b>STATIC</b>
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-Format$Field">Format$Field</a><b>,CONSTRUCTOR</b>;
+                  <b>END</b>;
+
+  <a name="type-MessageFormat"></a><font color="#cc0033">MessageFormat</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-Format">Format</a>)
+                   <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                   <font color="green"><b> (* </b><a href="#meths-MessageFormat">Typebound Procedures</a><b> *)</b></font>
+                   <b>STATIC</b>
+                     <b>PROCEDURE </b><font color="#cc0033">format</font>*(    p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                       IN  p1 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_lang.html#type-String">java_lang.String</a>;
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                     p1 : <a href="java_util.html#type-Locale">java_util.Locale</a>) : <a href="#type-MessageFormat">MessageFormat</a><b>,CONSTRUCTOR</b>;
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-MessageFormat">MessageFormat</a><b>,CONSTRUCTOR</b>;
+                   <b>END</b>;
+
+  <a name="type-MessageFormat$Field"></a><font color="#cc0033">MessageFormat$Field</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-Format$Field">Format$Field</a>)
+                         <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                         <font color="green"><b> (* </b><a href="#meths-MessageFormat$Field">Typebound Procedures</a><b> *)</b></font>
+                         <b>STATIC</b>
+                           <a name="type-ARGUMENT"></a><font color="#cc0033">ARGUMENT</font>* : <a href="#type-MessageFormat$Field">MessageFormat$Field</a>;
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-MessageFormat$Field">MessageFormat$Field</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-Normalizer"></a><font color="#cc0033">Normalizer</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                <b>STATIC</b>
+                  <b>PROCEDURE </b><font color="#cc0033">isNormalized</font>*(p0 : <a href="java_lang.html#type-CharSequence">java_lang.CharSequence</a>;
+                                          p1 : <a href="#type-Normalizer$Form">Normalizer$Form</a>) : BOOLEAN;
+                  <b>PROCEDURE </b><font color="#cc0033">normalize</font>*(p0 : <a href="java_lang.html#type-CharSequence">java_lang.CharSequence</a>;
+                                       p1 : <a href="#type-Normalizer$Form">Normalizer$Form</a>) : <a href="java_lang.html#type-String">java_lang.String</a>;
+                <b>END</b>;
+
+  <a name="type-Normalizer$Form"></a><font color="#cc0033">Normalizer$Form</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Enum">java_lang.Enum</a>)
+                     <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                     <b>STATIC</b>
+                       <a name="type-NFC"></a><font color="#cc0033">NFC</font>*     : <a href="#type-Normalizer$Form">Normalizer$Form</a>;
+                       <a name="type-NFD"></a><font color="#cc0033">NFD</font>*     : <a href="#type-Normalizer$Form">Normalizer$Form</a>;
+                       <a name="type-NFKC"></a><font color="#cc0033">NFKC</font>*    : <a href="#type-Normalizer$Form">Normalizer$Form</a>;
+                       <a name="type-NFKD"></a><font color="#cc0033">NFKD</font>*    : <a href="#type-Normalizer$Form">Normalizer$Form</a>;
+                       <b>PROCEDURE </b><font color="#cc0033">valueOf</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-Normalizer$Form">Normalizer$Form</a>;
+                       <b>PROCEDURE </b><font color="#cc0033">values</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-Normalizer$Form">Normalizer$Form</a>;
+                     <b>END</b>;
+
+  <a name="type-NumberFormat"></a><font color="#cc0033">NumberFormat</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<b>Format</b>)
+                  <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                  <font color="green"><b> (* </b><a href="#meths-NumberFormat">Typebound Procedures</a><b> *)</b></font>
+                  <b>STATIC</b>
+                    <font color="#cc0033">FRACTION_FIELD</font>*      = 1;
+                    <font color="#cc0033">INTEGER_FIELD</font>*       = 0;
+                    <b>PROCEDURE </b><font color="#cc0033">getAvailableLocales</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_util.html#type-Locale">java_util.Locale</a>;
+                    <b>PROCEDURE </b><font color="#cc0033">getCurrencyInstance</font>*(p0 : <a href="java_util.html#type-Locale">java_util.Locale</a>) : <a href="#type-NumberFormat">NumberFormat</a>;
+                    <b>PROCEDURE </b><font color="#cc0033">getCurrencyInstance</font>*() : <a href="#type-NumberFormat">NumberFormat</a>;
+                    <b>PROCEDURE </b><font color="#cc0033">getInstance</font>*() : <a href="#type-NumberFormat">NumberFormat</a>;
+                    <b>PROCEDURE </b><font color="#cc0033">getInstance</font>*(p0 : <a href="java_util.html#type-Locale">java_util.Locale</a>) : <a href="#type-NumberFormat">NumberFormat</a>;
+                    <b>PROCEDURE </b><font color="#cc0033">getIntegerInstance</font>*(p0 : <a href="java_util.html#type-Locale">java_util.Locale</a>) : <a href="#type-NumberFormat">NumberFormat</a>;
+                    <b>PROCEDURE </b><font color="#cc0033">getIntegerInstance</font>*() : <a href="#type-NumberFormat">NumberFormat</a>;
+                    <b>PROCEDURE </b><font color="#cc0033">getNumberInstance</font>*() : <a href="#type-NumberFormat">NumberFormat</a>;
+                    <b>PROCEDURE </b><font color="#cc0033">getNumberInstance</font>*(p0 : <a href="java_util.html#type-Locale">java_util.Locale</a>) : <a href="#type-NumberFormat">NumberFormat</a>;
+                    <b>PROCEDURE </b><font color="#cc0033">getPercentInstance</font>*(p0 : <a href="java_util.html#type-Locale">java_util.Locale</a>) : <a href="#type-NumberFormat">NumberFormat</a>;
+                    <b>PROCEDURE </b><font color="#cc0033">getPercentInstance</font>*() : <a href="#type-NumberFormat">NumberFormat</a>;
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>!() : <a href="#type-NumberFormat">NumberFormat</a><b>,CONSTRUCTOR</b>;
+                  <b>END</b>;
+
+  <a name="type-NumberFormat$Field"></a><font color="#cc0033">NumberFormat$Field</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<b>Format$Field</b>)
+                        <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                        <font color="green"><b> (* </b><a href="#meths-NumberFormat$Field">Typebound Procedures</a><b> *)</b></font>
+                        <b>STATIC</b>
+                          <a name="type-CURRENCY"></a><font color="#cc0033">CURRENCY</font>*           : <a href="#type-NumberFormat$Field">NumberFormat$Field</a>;
+                          <a name="type-DECIMAL_SEPARATOR"></a><font color="#cc0033">DECIMAL_SEPARATOR</font>*  : <a href="#type-NumberFormat$Field">NumberFormat$Field</a>;
+                          <a name="type-EXPONENT"></a><font color="#cc0033">EXPONENT</font>*           : <a href="#type-NumberFormat$Field">NumberFormat$Field</a>;
+                          <a name="type-EXPONENT_SIGN"></a><font color="#cc0033">EXPONENT_SIGN</font>*      : <a href="#type-NumberFormat$Field">NumberFormat$Field</a>;
+                          <a name="type-EXPONENT_SYMBOL"></a><font color="#cc0033">EXPONENT_SYMBOL</font>*    : <a href="#type-NumberFormat$Field">NumberFormat$Field</a>;
+                          <a name="type-FRACTION"></a><font color="#cc0033">FRACTION</font>*           : <a href="#type-NumberFormat$Field">NumberFormat$Field</a>;
+                          <a name="type-GROUPING_SEPARATOR"></a><font color="#cc0033">GROUPING_SEPARATOR</font>* : <a href="#type-NumberFormat$Field">NumberFormat$Field</a>;
+                          <a name="type-INTEGER"></a><font color="#cc0033">INTEGER</font>*            : <a href="#type-NumberFormat$Field">NumberFormat$Field</a>;
+                          <a name="type-PERCENT"></a><font color="#cc0033">PERCENT</font>*            : <a href="#type-NumberFormat$Field">NumberFormat$Field</a>;
+                          <a name="type-PERMILLE"></a><font color="#cc0033">PERMILLE</font>*           : <a href="#type-NumberFormat$Field">NumberFormat$Field</a>;
+                          <a name="type-SIGN"></a><font color="#cc0033">SIGN</font>*               : <a href="#type-NumberFormat$Field">NumberFormat$Field</a>;
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-NumberFormat$Field">NumberFormat$Field</a><b>,CONSTRUCTOR</b>;
+                        <b>END</b>;
+
+  <a name="type-ParseException"></a><font color="#cc0033">ParseException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Exception">java_lang.Exception</a>)
+                    <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                    <font color="green"><b> (* </b><a href="#meths-ParseException">Typebound Procedures</a><b> *)</b></font>
+                    <b>STATIC</b>
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                      p1 : INTEGER) : <a href="#type-ParseException">ParseException</a><b>,CONSTRUCTOR</b>;
+                    <b>END</b>;
+
+  <a name="type-ParsePosition"></a><font color="#cc0033">ParsePosition</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                   <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                   <font color="green"><b> (* </b><a href="#meths-ParsePosition">Typebound Procedures</a><b> *)</b></font>
+                   <b>STATIC</b>
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER) : <a href="#type-ParsePosition">ParsePosition</a><b>,CONSTRUCTOR</b>;
+                   <b>END</b>;
+
+  <a name="type-RuleBasedCollator"></a><font color="#cc0033">RuleBasedCollator</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<b>Collator</b>)
+                       <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                       <font color="green"><b> (* </b><a href="#meths-RuleBasedCollator">Typebound Procedures</a><b> *)</b></font>
+                       <b>STATIC</b>
+                         <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-RuleBasedCollator">RuleBasedCollator</a><b>,CONSTRUCTOR</b>;
+                       <b>END</b>;
+
+  <a name="type-SimpleDateFormat"></a><font color="#cc0033">SimpleDateFormat</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-DateFormat">DateFormat</a>)
+                      <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                      <font color="green"><b> (* </b><a href="#meths-SimpleDateFormat">Typebound Procedures</a><b> *)</b></font>
+                      <b>STATIC</b>
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                        p1 : <a href="java_util.html#type-Locale">java_util.Locale</a>) : <a href="#type-SimpleDateFormat">SimpleDateFormat</a><b>,CONSTRUCTOR</b>;
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                        p1 : <a href="#type-DateFormatSymbols">DateFormatSymbols</a>) : <a href="#type-SimpleDateFormat">SimpleDateFormat</a><b>,CONSTRUCTOR</b>;
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-SimpleDateFormat">SimpleDateFormat</a><b>,CONSTRUCTOR</b>;
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-SimpleDateFormat">SimpleDateFormat</a><b>,CONSTRUCTOR</b>;
+                      <b>END</b>;
+
+  <a name="type-StringCharacterIterator"></a><font color="#cc0033">StringCharacterIterator</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <b>CharacterIterator</b>)
+                             <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                             <font color="green"><b> (* </b><a href="#meths-StringCharacterIterator">Typebound Procedures</a><b> *)</b></font>
+                             <b>STATIC</b>
+                               <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                               p1 : INTEGER;
+                                               p2 : INTEGER;
+                                               p3 : INTEGER) : <a href="#type-StringCharacterIterator">StringCharacterIterator</a><b>,CONSTRUCTOR</b>;
+                               <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                               p1 : INTEGER) : <a href="#type-StringCharacterIterator">StringCharacterIterator</a><b>,CONSTRUCTOR</b>;
+                               <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-StringCharacterIterator">StringCharacterIterator</a><b>,CONSTRUCTOR</b>;
+                             <b>END</b>;
+
+
+
+<a name="meths-Annotation"></a>
+<b>PROCEDURE </b>(self:Annotation) <font color="#cc0033">getValue</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Annotation) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-AttributedCharacterIterator"></a>
+<b>PROCEDURE </b>(self:AttributedCharacterIterator) <font color="#cc0033">getAllAttributeKeys</font>*() : <a href="java_util.html#type-Set">java_util.Set</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AttributedCharacterIterator) <font color="#cc0033">getAttribute</font>*(p0 : <b>AttributedCharacterIterator$Attribute</b>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AttributedCharacterIterator) <font color="#cc0033">getAttributes</font>*() : <a href="java_util.html#type-Map">java_util.Map</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AttributedCharacterIterator) <font color="#cc0033">getRunLimit</font>*(p0 : <a href="java_util.html#type-Set">java_util.Set</a>) : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AttributedCharacterIterator) <font color="#cc0033">getRunLimit</font>*(p0 : <b>AttributedCharacterIterator$Attribute</b>) : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AttributedCharacterIterator) <font color="#cc0033">getRunLimit</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AttributedCharacterIterator) <font color="#cc0033">getRunStart</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AttributedCharacterIterator) <font color="#cc0033">getRunStart</font>*(p0 : <b>AttributedCharacterIterator$Attribute</b>) : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AttributedCharacterIterator) <font color="#cc0033">getRunStart</font>*(p0 : <a href="java_util.html#type-Set">java_util.Set</a>) : INTEGER<b>,NEW,ABSTRACT</b>;
+<a name="meths-AttributedCharacterIterator$Attribute"></a>
+<b>PROCEDURE </b>(self:AttributedCharacterIterator$Attribute) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AttributedCharacterIterator$Attribute) <font color="#cc0033">getName</font>!() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AttributedCharacterIterator$Attribute) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AttributedCharacterIterator$Attribute) <font color="#cc0033">readResolve</font>!() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AttributedCharacterIterator$Attribute) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-AttributedString"></a>
+<b>PROCEDURE </b>(self:AttributedString) <font color="#cc0033">addAttribute</font>*(p0 : <b>AttributedCharacterIterator$Attribute</b>;
+                                                p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                p2 : INTEGER;
+                                                p3 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AttributedString) <font color="#cc0033">addAttribute</font>*(p0 : <b>AttributedCharacterIterator$Attribute</b>;
+                                                p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AttributedString) <font color="#cc0033">addAttributes</font>*(p0 : <a href="java_util.html#type-Map">java_util.Map</a>;
+                                                 p1 : INTEGER;
+                                                 p2 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AttributedString) <font color="#cc0033">getIterator</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><b>AttributedCharacterIterator$Attribute</b>;
+                                                   p1 : INTEGER;
+                                                   p2 : INTEGER) : <a href="#type-AttributedCharacterIterator">AttributedCharacterIterator</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AttributedString) <font color="#cc0033">getIterator</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><b>AttributedCharacterIterator$Attribute</b>) : <a href="#type-AttributedCharacterIterator">AttributedCharacterIterator</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AttributedString) <font color="#cc0033">getIterator</font>*() : <a href="#type-AttributedCharacterIterator">AttributedCharacterIterator</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-Bidi"></a>
+<b>PROCEDURE </b>(self:Bidi) <font color="#cc0033">baseIsLeftToRight</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Bidi) <font color="#cc0033">createLineBidi</font>*(p0 : INTEGER;
+                                      p1 : INTEGER) : <a href="#type-Bidi">Bidi</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Bidi) <font color="#cc0033">getBaseLevel</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Bidi) <font color="#cc0033">getLength</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Bidi) <font color="#cc0033">getLevelAt</font>*(p0 : INTEGER) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Bidi) <font color="#cc0033">getRunCount</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Bidi) <font color="#cc0033">getRunLevel</font>*(p0 : INTEGER) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Bidi) <font color="#cc0033">getRunLimit</font>*(p0 : INTEGER) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Bidi) <font color="#cc0033">getRunStart</font>*(p0 : INTEGER) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Bidi) <font color="#cc0033">isLeftToRight</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Bidi) <font color="#cc0033">isMixed</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Bidi) <font color="#cc0033">isRightToLeft</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Bidi) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-BreakIterator"></a>
+<b>PROCEDURE </b>(self:BreakIterator) <font color="#cc0033">clone</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BreakIterator) <font color="#cc0033">current</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:BreakIterator) <font color="#cc0033">first</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:BreakIterator) <font color="#cc0033">following</font>*(p0 : INTEGER) : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:BreakIterator) <font color="#cc0033">getText</font>*() : <b>CharacterIterator</b><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:BreakIterator) <font color="#cc0033">isBoundary</font>*(p0 : INTEGER) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BreakIterator) <font color="#cc0033">last</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:BreakIterator) <font color="#cc0033">next</font>*(p0 : INTEGER) : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:BreakIterator) <font color="#cc0033">next</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:BreakIterator) <font color="#cc0033">preceding</font>*(p0 : INTEGER) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BreakIterator) <font color="#cc0033">previous</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:BreakIterator) <font color="#cc0033">setText</font>*(p0 : <b>CharacterIterator</b>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:BreakIterator) <font color="#cc0033">setText</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-CharacterIterator"></a>
+<b>PROCEDURE </b>(self:CharacterIterator) <font color="#cc0033">clone</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CharacterIterator) <font color="#cc0033">current</font>*() : CHAR<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CharacterIterator) <font color="#cc0033">first</font>*() : CHAR<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CharacterIterator) <font color="#cc0033">getBeginIndex</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CharacterIterator) <font color="#cc0033">getEndIndex</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CharacterIterator) <font color="#cc0033">getIndex</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CharacterIterator) <font color="#cc0033">last</font>*() : CHAR<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CharacterIterator) <font color="#cc0033">next</font>*() : CHAR<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CharacterIterator) <font color="#cc0033">previous</font>*() : CHAR<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CharacterIterator) <font color="#cc0033">setIndex</font>*(p0 : INTEGER) : CHAR<b>,NEW,ABSTRACT</b>;
+<a name="meths-ChoiceFormat"></a>
+<b>PROCEDURE </b>(self:ChoiceFormat) <font color="#cc0033">applyPattern</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ChoiceFormat) <font color="#cc0033">clone</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ChoiceFormat) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ChoiceFormat) <font color="#cc0033">format</font>*(p0 : LONGINT;
+                                      p1 : <a href="java_lang.html#type-StringBuffer">java_lang.StringBuffer</a>;
+                                      p2 : <b>FieldPosition</b>) : <a href="java_lang.html#type-StringBuffer">java_lang.StringBuffer</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ChoiceFormat) <font color="#cc0033">format</font>*(p0 : REAL;
+                                      p1 : <a href="java_lang.html#type-StringBuffer">java_lang.StringBuffer</a>;
+                                      p2 : <b>FieldPosition</b>) : <a href="java_lang.html#type-StringBuffer">java_lang.StringBuffer</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ChoiceFormat) <font color="#cc0033">getFormats</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ChoiceFormat) <font color="#cc0033">getLimits</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ChoiceFormat) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ChoiceFormat) <font color="#cc0033">parse</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                     p1 : <b>ParsePosition</b>) : <a href="java_lang.html#type-Number">java_lang.Number</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ChoiceFormat) <font color="#cc0033">setChoices</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>REAL;
+                                          IN  p1 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ChoiceFormat) <font color="#cc0033">toPattern</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-CollationElementIterator"></a>
+<b>PROCEDURE </b>(self:CollationElementIterator) <font color="#cc0033">getMaxExpansion</font>*(p0 : INTEGER) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CollationElementIterator) <font color="#cc0033">getOffset</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CollationElementIterator) <font color="#cc0033">next</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CollationElementIterator) <font color="#cc0033">previous</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CollationElementIterator) <font color="#cc0033">reset</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CollationElementIterator) <font color="#cc0033">setOffset</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CollationElementIterator) <font color="#cc0033">setText</font>*(p0 : <b>CharacterIterator</b>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CollationElementIterator) <font color="#cc0033">setText</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-CollationKey"></a>
+<b>PROCEDURE </b>(self:CollationKey) <font color="#cc0033">compareTo</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CollationKey) <font color="#cc0033">compareTo</font>*(p0 : <a href="#type-CollationKey">CollationKey</a>) : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CollationKey) <font color="#cc0033">getSourceString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CollationKey) <font color="#cc0033">toByteArray</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE<b>,NEW,ABSTRACT</b>;
+<a name="meths-Collator"></a>
+<b>PROCEDURE </b>(self:Collator) <font color="#cc0033">clone</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Collator) <font color="#cc0033">compare</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                   p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Collator) <font color="#cc0033">compare</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                   p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Collator) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Collator) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                  p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Collator) <font color="#cc0033">getCollationKey</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-CollationKey">CollationKey</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Collator) <font color="#cc0033">getDecomposition</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Collator) <font color="#cc0033">getStrength</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Collator) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Collator) <font color="#cc0033">setDecomposition</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Collator) <font color="#cc0033">setStrength</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-DateFormat"></a>
+<b>PROCEDURE </b>(self:DateFormat) <font color="#cc0033">clone</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DateFormat) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DateFormat) <font color="#cc0033">format</font>*(p0 : <a href="java_util.html#type-Date">java_util.Date</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:DateFormat) <font color="#cc0033">format</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                    p1 : <a href="java_lang.html#type-StringBuffer">java_lang.StringBuffer</a>;
+                                    p2 : <b>FieldPosition</b>) : <a href="java_lang.html#type-StringBuffer">java_lang.StringBuffer</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:DateFormat) <font color="#cc0033">format</font>*(p0 : <a href="java_util.html#type-Date">java_util.Date</a>;
+                                    p1 : <a href="java_lang.html#type-StringBuffer">java_lang.StringBuffer</a>;
+                                    p2 : <b>FieldPosition</b>) : <a href="java_lang.html#type-StringBuffer">java_lang.StringBuffer</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DateFormat) <font color="#cc0033">getCalendar</font>*() : <a href="java_util.html#type-Calendar">java_util.Calendar</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DateFormat) <font color="#cc0033">getNumberFormat</font>*() : <a href="#type-NumberFormat">NumberFormat</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DateFormat) <font color="#cc0033">getTimeZone</font>*() : <a href="java_util.html#type-TimeZone">java_util.TimeZone</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DateFormat) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DateFormat) <font color="#cc0033">isLenient</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DateFormat) <font color="#cc0033">parse</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_util.html#type-Date">java_util.Date</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DateFormat) <font color="#cc0033">parse</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                   p1 : <a href="#type-ParsePosition">ParsePosition</a>) : <a href="java_util.html#type-Date">java_util.Date</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DateFormat) <font color="#cc0033">parseObject</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                         p1 : <a href="#type-ParsePosition">ParsePosition</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DateFormat) <font color="#cc0033">setCalendar</font>*(p0 : <a href="java_util.html#type-Calendar">java_util.Calendar</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DateFormat) <font color="#cc0033">setLenient</font>*(p0 : BOOLEAN)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DateFormat) <font color="#cc0033">setNumberFormat</font>*(p0 : <a href="#type-NumberFormat">NumberFormat</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DateFormat) <font color="#cc0033">setTimeZone</font>*(p0 : <a href="java_util.html#type-TimeZone">java_util.TimeZone</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-DateFormat$Field"></a>
+<b>PROCEDURE </b>(self:DateFormat$Field) <font color="#cc0033">getCalendarField</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DateFormat$Field) <font color="#cc0033">readResolve</font>!() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-DateFormatSymbols"></a>
+<b>PROCEDURE </b>(self:DateFormatSymbols) <font color="#cc0033">clone</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DateFormatSymbols) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DateFormatSymbols) <font color="#cc0033">getAmPmStrings</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DateFormatSymbols) <font color="#cc0033">getEras</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DateFormatSymbols) <font color="#cc0033">getLocalPatternChars</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DateFormatSymbols) <font color="#cc0033">getMonths</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DateFormatSymbols) <font color="#cc0033">getShortMonths</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DateFormatSymbols) <font color="#cc0033">getShortWeekdays</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DateFormatSymbols) <font color="#cc0033">getWeekdays</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DateFormatSymbols) <font color="#cc0033">getZoneStrings</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DateFormatSymbols) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DateFormatSymbols) <font color="#cc0033">setAmPmStrings</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DateFormatSymbols) <font color="#cc0033">setEras</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DateFormatSymbols) <font color="#cc0033">setLocalPatternChars</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DateFormatSymbols) <font color="#cc0033">setMonths</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DateFormatSymbols) <font color="#cc0033">setShortMonths</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DateFormatSymbols) <font color="#cc0033">setShortWeekdays</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DateFormatSymbols) <font color="#cc0033">setWeekdays</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DateFormatSymbols) <font color="#cc0033">setZoneStrings</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-DecimalFormat"></a>
+<b>PROCEDURE </b>(self:DecimalFormat) <font color="#cc0033">applyLocalizedPattern</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DecimalFormat) <font color="#cc0033">applyPattern</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DecimalFormat) <font color="#cc0033">clone</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DecimalFormat) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DecimalFormat) <font color="#cc0033">format</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                       p1 : <a href="java_lang.html#type-StringBuffer">java_lang.StringBuffer</a>;
+                                       p2 : <b>FieldPosition</b>) : <a href="java_lang.html#type-StringBuffer">java_lang.StringBuffer</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:DecimalFormat) <font color="#cc0033">format</font>*(p0 : LONGINT;
+                                       p1 : <a href="java_lang.html#type-StringBuffer">java_lang.StringBuffer</a>;
+                                       p2 : <b>FieldPosition</b>) : <a href="java_lang.html#type-StringBuffer">java_lang.StringBuffer</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DecimalFormat) <font color="#cc0033">format</font>*(p0 : REAL;
+                                       p1 : <a href="java_lang.html#type-StringBuffer">java_lang.StringBuffer</a>;
+                                       p2 : <b>FieldPosition</b>) : <a href="java_lang.html#type-StringBuffer">java_lang.StringBuffer</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DecimalFormat) <font color="#cc0033">formatToCharacterIterator</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="#type-AttributedCharacterIterator">AttributedCharacterIterator</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DecimalFormat) <font color="#cc0033">getCurrency</font>*() : <a href="java_util.html#type-Currency">java_util.Currency</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DecimalFormat) <font color="#cc0033">getDecimalFormatSymbols</font>*() : <b>DecimalFormatSymbols</b><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DecimalFormat) <font color="#cc0033">getGroupingSize</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DecimalFormat) <font color="#cc0033">getMaximumFractionDigits</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DecimalFormat) <font color="#cc0033">getMaximumIntegerDigits</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DecimalFormat) <font color="#cc0033">getMinimumFractionDigits</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DecimalFormat) <font color="#cc0033">getMinimumIntegerDigits</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DecimalFormat) <font color="#cc0033">getMultiplier</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DecimalFormat) <font color="#cc0033">getNegativePrefix</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DecimalFormat) <font color="#cc0033">getNegativeSuffix</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DecimalFormat) <font color="#cc0033">getPositivePrefix</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DecimalFormat) <font color="#cc0033">getPositiveSuffix</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DecimalFormat) <font color="#cc0033">getRoundingMode</font>*() : <a href="java_math.html#type-RoundingMode">java_math.RoundingMode</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DecimalFormat) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DecimalFormat) <font color="#cc0033">isDecimalSeparatorAlwaysShown</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DecimalFormat) <font color="#cc0033">isParseBigDecimal</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DecimalFormat) <font color="#cc0033">parse</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                      p1 : <a href="#type-ParsePosition">ParsePosition</a>) : <a href="java_lang.html#type-Number">java_lang.Number</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DecimalFormat) <font color="#cc0033">setCurrency</font>*(p0 : <a href="java_util.html#type-Currency">java_util.Currency</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DecimalFormat) <font color="#cc0033">setDecimalFormatSymbols</font>*(p0 : <b>DecimalFormatSymbols</b>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DecimalFormat) <font color="#cc0033">setDecimalSeparatorAlwaysShown</font>*(p0 : BOOLEAN)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DecimalFormat) <font color="#cc0033">setGroupingSize</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DecimalFormat) <font color="#cc0033">setMaximumFractionDigits</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DecimalFormat) <font color="#cc0033">setMaximumIntegerDigits</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DecimalFormat) <font color="#cc0033">setMinimumFractionDigits</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DecimalFormat) <font color="#cc0033">setMinimumIntegerDigits</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DecimalFormat) <font color="#cc0033">setMultiplier</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DecimalFormat) <font color="#cc0033">setNegativePrefix</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DecimalFormat) <font color="#cc0033">setNegativeSuffix</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DecimalFormat) <font color="#cc0033">setParseBigDecimal</font>*(p0 : BOOLEAN)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DecimalFormat) <font color="#cc0033">setPositivePrefix</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DecimalFormat) <font color="#cc0033">setPositiveSuffix</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DecimalFormat) <font color="#cc0033">setRoundingMode</font>*(p0 : <a href="java_math.html#type-RoundingMode">java_math.RoundingMode</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DecimalFormat) <font color="#cc0033">toLocalizedPattern</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DecimalFormat) <font color="#cc0033">toPattern</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-DecimalFormatSymbols"></a>
+<b>PROCEDURE </b>(self:DecimalFormatSymbols) <font color="#cc0033">clone</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DecimalFormatSymbols) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DecimalFormatSymbols) <font color="#cc0033">getCurrency</font>*() : <a href="java_util.html#type-Currency">java_util.Currency</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DecimalFormatSymbols) <font color="#cc0033">getCurrencySymbol</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DecimalFormatSymbols) <font color="#cc0033">getDecimalSeparator</font>*() : CHAR<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DecimalFormatSymbols) <font color="#cc0033">getDigit</font>*() : CHAR<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DecimalFormatSymbols) <font color="#cc0033">getExponentSeparator</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DecimalFormatSymbols) <font color="#cc0033">getGroupingSeparator</font>*() : CHAR<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DecimalFormatSymbols) <font color="#cc0033">getInfinity</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DecimalFormatSymbols) <font color="#cc0033">getInternationalCurrencySymbol</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DecimalFormatSymbols) <font color="#cc0033">getMinusSign</font>*() : CHAR<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DecimalFormatSymbols) <font color="#cc0033">getMonetaryDecimalSeparator</font>*() : CHAR<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DecimalFormatSymbols) <font color="#cc0033">getNaN</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DecimalFormatSymbols) <font color="#cc0033">getPatternSeparator</font>*() : CHAR<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DecimalFormatSymbols) <font color="#cc0033">getPercent</font>*() : CHAR<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DecimalFormatSymbols) <font color="#cc0033">getPerMill</font>*() : CHAR<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DecimalFormatSymbols) <font color="#cc0033">getZeroDigit</font>*() : CHAR<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DecimalFormatSymbols) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DecimalFormatSymbols) <font color="#cc0033">setCurrency</font>*(p0 : <a href="java_util.html#type-Currency">java_util.Currency</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DecimalFormatSymbols) <font color="#cc0033">setCurrencySymbol</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DecimalFormatSymbols) <font color="#cc0033">setDecimalSeparator</font>*(p0 : CHAR)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DecimalFormatSymbols) <font color="#cc0033">setDigit</font>*(p0 : CHAR)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DecimalFormatSymbols) <font color="#cc0033">setExponentSeparator</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DecimalFormatSymbols) <font color="#cc0033">setGroupingSeparator</font>*(p0 : CHAR)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DecimalFormatSymbols) <font color="#cc0033">setInfinity</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DecimalFormatSymbols) <font color="#cc0033">setInternationalCurrencySymbol</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DecimalFormatSymbols) <font color="#cc0033">setMinusSign</font>*(p0 : CHAR)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DecimalFormatSymbols) <font color="#cc0033">setMonetaryDecimalSeparator</font>*(p0 : CHAR)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DecimalFormatSymbols) <font color="#cc0033">setNaN</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DecimalFormatSymbols) <font color="#cc0033">setPatternSeparator</font>*(p0 : CHAR)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DecimalFormatSymbols) <font color="#cc0033">setPercent</font>*(p0 : CHAR)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DecimalFormatSymbols) <font color="#cc0033">setPerMill</font>*(p0 : CHAR)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DecimalFormatSymbols) <font color="#cc0033">setZeroDigit</font>*(p0 : CHAR)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-FieldPosition"></a>
+<b>PROCEDURE </b>(self:FieldPosition) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FieldPosition) <font color="#cc0033">getBeginIndex</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FieldPosition) <font color="#cc0033">getEndIndex</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FieldPosition) <font color="#cc0033">getField</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FieldPosition) <font color="#cc0033">getFieldAttribute</font>*() : <a href="#type-Format$Field">Format$Field</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FieldPosition) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FieldPosition) <font color="#cc0033">setBeginIndex</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FieldPosition) <font color="#cc0033">setEndIndex</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FieldPosition) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-Format"></a>
+<b>PROCEDURE </b>(self:Format) <font color="#cc0033">clone</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Format) <font color="#cc0033">format</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                p1 : <a href="java_lang.html#type-StringBuffer">java_lang.StringBuffer</a>;
+                                p2 : <a href="#type-FieldPosition">FieldPosition</a>) : <a href="java_lang.html#type-StringBuffer">java_lang.StringBuffer</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Format) <font color="#cc0033">format</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:Format) <font color="#cc0033">formatToCharacterIterator</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="#type-AttributedCharacterIterator">AttributedCharacterIterator</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Format) <font color="#cc0033">parseObject</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Format) <font color="#cc0033">parseObject</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                     p1 : <a href="#type-ParsePosition">ParsePosition</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-MessageFormat"></a>
+<b>PROCEDURE </b>(self:MessageFormat) <font color="#cc0033">applyPattern</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MessageFormat) <font color="#cc0033">clone</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MessageFormat) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MessageFormat) <font color="#cc0033">format</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                       p1 : <a href="java_lang.html#type-StringBuffer">java_lang.StringBuffer</a>;
+                                       p2 : <a href="#type-FieldPosition">FieldPosition</a>) : <a href="java_lang.html#type-StringBuffer">java_lang.StringBuffer</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:MessageFormat) <font color="#cc0033">format</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                           p1 : <a href="java_lang.html#type-StringBuffer">java_lang.StringBuffer</a>;
+                                           p2 : <a href="#type-FieldPosition">FieldPosition</a>) : <a href="java_lang.html#type-StringBuffer">java_lang.StringBuffer</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:MessageFormat) <font color="#cc0033">formatToCharacterIterator</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="#type-AttributedCharacterIterator">AttributedCharacterIterator</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MessageFormat) <font color="#cc0033">getFormats</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-Format">Format</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MessageFormat) <font color="#cc0033">getFormatsByArgumentIndex</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-Format">Format</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MessageFormat) <font color="#cc0033">getLocale</font>*() : <a href="java_util.html#type-Locale">java_util.Locale</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MessageFormat) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MessageFormat) <font color="#cc0033">parse</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                      p1 : <a href="#type-ParsePosition">ParsePosition</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MessageFormat) <font color="#cc0033">parse</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MessageFormat) <font color="#cc0033">parseObject</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                            p1 : <a href="#type-ParsePosition">ParsePosition</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MessageFormat) <font color="#cc0033">setFormat</font>*(p0 : INTEGER;
+                                          p1 : <a href="#type-Format">Format</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MessageFormat) <font color="#cc0033">setFormatByArgumentIndex</font>*(p0 : INTEGER;
+                                                         p1 : <a href="#type-Format">Format</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MessageFormat) <font color="#cc0033">setFormats</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="#type-Format">Format</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MessageFormat) <font color="#cc0033">setFormatsByArgumentIndex</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="#type-Format">Format</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MessageFormat) <font color="#cc0033">setLocale</font>*(p0 : <a href="java_util.html#type-Locale">java_util.Locale</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MessageFormat) <font color="#cc0033">toPattern</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-MessageFormat$Field"></a>
+<b>PROCEDURE </b>(self:MessageFormat$Field) <font color="#cc0033">readResolve</font>!() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-NumberFormat"></a>
+<b>PROCEDURE </b>(self:NumberFormat) <font color="#cc0033">clone</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:NumberFormat) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:NumberFormat) <font color="#cc0033">format</font>*(p0 : REAL;
+                                      p1 : <a href="java_lang.html#type-StringBuffer">java_lang.StringBuffer</a>;
+                                      p2 : <b>FieldPosition</b>) : <a href="java_lang.html#type-StringBuffer">java_lang.StringBuffer</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:NumberFormat) <font color="#cc0033">format</font>*(p0 : LONGINT;
+                                      p1 : <a href="java_lang.html#type-StringBuffer">java_lang.StringBuffer</a>;
+                                      p2 : <b>FieldPosition</b>) : <a href="java_lang.html#type-StringBuffer">java_lang.StringBuffer</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:NumberFormat) <font color="#cc0033">format</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                      p1 : <a href="java_lang.html#type-StringBuffer">java_lang.StringBuffer</a>;
+                                      p2 : <b>FieldPosition</b>) : <a href="java_lang.html#type-StringBuffer">java_lang.StringBuffer</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:NumberFormat) <font color="#cc0033">format</font>*(p0 : REAL) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:NumberFormat) <font color="#cc0033">format</font>*(p0 : LONGINT) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:NumberFormat) <font color="#cc0033">getCurrency</font>*() : <a href="java_util.html#type-Currency">java_util.Currency</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:NumberFormat) <font color="#cc0033">getMaximumFractionDigits</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:NumberFormat) <font color="#cc0033">getMaximumIntegerDigits</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:NumberFormat) <font color="#cc0033">getMinimumFractionDigits</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:NumberFormat) <font color="#cc0033">getMinimumIntegerDigits</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:NumberFormat) <font color="#cc0033">getRoundingMode</font>*() : <a href="java_math.html#type-RoundingMode">java_math.RoundingMode</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:NumberFormat) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:NumberFormat) <font color="#cc0033">isGroupingUsed</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:NumberFormat) <font color="#cc0033">isParseIntegerOnly</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:NumberFormat) <font color="#cc0033">parse</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                     p1 : <a href="#type-ParsePosition">ParsePosition</a>) : <a href="java_lang.html#type-Number">java_lang.Number</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:NumberFormat) <font color="#cc0033">parse</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-Number">java_lang.Number</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:NumberFormat) <font color="#cc0033">parseObject</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                           p1 : <a href="#type-ParsePosition">ParsePosition</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:NumberFormat) <font color="#cc0033">setCurrency</font>*(p0 : <a href="java_util.html#type-Currency">java_util.Currency</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:NumberFormat) <font color="#cc0033">setGroupingUsed</font>*(p0 : BOOLEAN)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:NumberFormat) <font color="#cc0033">setMaximumFractionDigits</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:NumberFormat) <font color="#cc0033">setMaximumIntegerDigits</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:NumberFormat) <font color="#cc0033">setMinimumFractionDigits</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:NumberFormat) <font color="#cc0033">setMinimumIntegerDigits</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:NumberFormat) <font color="#cc0033">setParseIntegerOnly</font>*(p0 : BOOLEAN)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:NumberFormat) <font color="#cc0033">setRoundingMode</font>*(p0 : <a href="java_math.html#type-RoundingMode">java_math.RoundingMode</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-NumberFormat$Field"></a>
+<b>PROCEDURE </b>(self:NumberFormat$Field) <font color="#cc0033">readResolve</font>!() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-ParseException"></a>
+<b>PROCEDURE </b>(self:ParseException) <font color="#cc0033">getErrorOffset</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-ParsePosition"></a>
+<b>PROCEDURE </b>(self:ParsePosition) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ParsePosition) <font color="#cc0033">getErrorIndex</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ParsePosition) <font color="#cc0033">getIndex</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ParsePosition) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ParsePosition) <font color="#cc0033">setErrorIndex</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ParsePosition) <font color="#cc0033">setIndex</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ParsePosition) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-RuleBasedCollator"></a>
+<b>PROCEDURE </b>(self:RuleBasedCollator) <font color="#cc0033">clone</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RuleBasedCollator) <font color="#cc0033">compare</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                            p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RuleBasedCollator) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RuleBasedCollator) <font color="#cc0033">getCollationElementIterator</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-CollationElementIterator">CollationElementIterator</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RuleBasedCollator) <font color="#cc0033">getCollationElementIterator</font>*(p0 : <b>CharacterIterator</b>) : <a href="#type-CollationElementIterator">CollationElementIterator</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RuleBasedCollator) <font color="#cc0033">getCollationKey</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-CollationKey">CollationKey</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RuleBasedCollator) <font color="#cc0033">getRules</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RuleBasedCollator) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-SimpleDateFormat"></a>
+<b>PROCEDURE </b>(self:SimpleDateFormat) <font color="#cc0033">applyLocalizedPattern</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SimpleDateFormat) <font color="#cc0033">applyPattern</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SimpleDateFormat) <font color="#cc0033">clone</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SimpleDateFormat) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SimpleDateFormat) <font color="#cc0033">format</font>*(p0 : <a href="java_util.html#type-Date">java_util.Date</a>;
+                                          p1 : <a href="java_lang.html#type-StringBuffer">java_lang.StringBuffer</a>;
+                                          p2 : <b>FieldPosition</b>) : <a href="java_lang.html#type-StringBuffer">java_lang.StringBuffer</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SimpleDateFormat) <font color="#cc0033">formatToCharacterIterator</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="#type-AttributedCharacterIterator">AttributedCharacterIterator</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SimpleDateFormat) <font color="#cc0033">get2DigitYearStart</font>*() : <a href="java_util.html#type-Date">java_util.Date</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SimpleDateFormat) <font color="#cc0033">getDateFormatSymbols</font>*() : <a href="#type-DateFormatSymbols">DateFormatSymbols</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SimpleDateFormat) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SimpleDateFormat) <font color="#cc0033">parse</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                         p1 : <a href="#type-ParsePosition">ParsePosition</a>) : <a href="java_util.html#type-Date">java_util.Date</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SimpleDateFormat) <font color="#cc0033">set2DigitYearStart</font>*(p0 : <a href="java_util.html#type-Date">java_util.Date</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SimpleDateFormat) <font color="#cc0033">setDateFormatSymbols</font>*(p0 : <a href="#type-DateFormatSymbols">DateFormatSymbols</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SimpleDateFormat) <font color="#cc0033">toLocalizedPattern</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SimpleDateFormat) <font color="#cc0033">toPattern</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-StringCharacterIterator"></a>
+<b>PROCEDURE </b>(self:StringCharacterIterator) <font color="#cc0033">clone</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:StringCharacterIterator) <font color="#cc0033">current</font>*() : CHAR<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:StringCharacterIterator) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:StringCharacterIterator) <font color="#cc0033">first</font>*() : CHAR<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:StringCharacterIterator) <font color="#cc0033">getBeginIndex</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:StringCharacterIterator) <font color="#cc0033">getEndIndex</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:StringCharacterIterator) <font color="#cc0033">getIndex</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:StringCharacterIterator) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:StringCharacterIterator) <font color="#cc0033">last</font>*() : CHAR<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:StringCharacterIterator) <font color="#cc0033">next</font>*() : CHAR<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:StringCharacterIterator) <font color="#cc0033">previous</font>*() : CHAR<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:StringCharacterIterator) <font color="#cc0033">setIndex</font>*(p0 : INTEGER) : CHAR<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:StringCharacterIterator) <font color="#cc0033">setText</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>END </b><font color="#cc0033">java_text</font>.
+</font></pre></hr>
+<!-- BEGIN JavaScript -->
+<script>
+function toggle(node) {
+    node.classList.toggle("show"); 
+  }
+
+function cls(node) {
+    var prnt = node.parentNode;
+    var next = prnt.previousSibling;
+    var text = next.lastChild;
+    text.innerHTML = 
+        "The <b>class</b> property asserts that this type will be<br>" +
+        "implemented as a reference class in the underlying framework.";
+    text.classList.toggle("show");
+  }
+
+function newOk(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>has noArg-ctor</b> property asserts that this reference<br>" +
+        "class has a no-arg constructor, and thus objects of this<br>" +
+        "type can be allocated with NEW(). Component Pascal types<br>" +
+        "derived from this type can also be allocated using NEW().";
+    popuptext.classList.toggle("show"); 
+  }
+
+function noNew(node) { 
+    var prnt = node.parentNode; 
+    var next = prnt.previousSibling; 
+    var text = next.lastChild; 
+    text.innerHTML =  
+        "The <b>no noArg-ctor</b> property asserts that this reference<br>" +
+        "class does not have a noArg constructor. Objects of this<br>" +
+        "type cannot be allocated using NEW(), and Component<br>" +
+        "Pascal types  derived from this type also cannot be<br>" +
+        "allocated using NEW().";
+    text.classList.toggle("show");
+  }
+
+function noCpy(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>no value-assign</b> property asserts that this reference<br>" + 
+        "class does not have a value copy method. Therefore, it<br>" +
+        "is not possible to perform value assignments using<br>" +
+        "statements like <i>dst^</i> := <i>src^</i>";
+    popuptext.classList.toggle("show");
+  }
+
+function valueclass(node) { 
+        var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>valueclass</b> property asserts that this RECORD type is<br>" + 
+        "implemented as a value class in the CLR. It follows that<br>" +  
+        "value assignments can be made of these types. They can<br>" + 
+        "also be passed by value. Even pointers to records of<br>" + 
+        "such types may be dereferenced and copied using syntax<br>" + 
+        "such as  <i>dst^</i> := <i>src^</i>"; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+function argCtor(node) { 
+    var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>has arg-ctor</b> property asserts that this reference<br>" +  
+        "class has one or more constructors that take arguments.<br>" + 
+        "These constructors can be called from Component Pascal<br>" + 
+        "by calling an <i>init</i>(...) method from the static list<br>" + 
+        "here. Component Pascal types derived from this type<br>" + 
+        "can define constructors with arguments which call the<br>" + 
+        "super-type constructor.<br>" + 
+        "See <i>'Interfacing to constructors'</i> in the Release Notes."; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+</script>
+<!-- END JavaScript --> 
+
+</body></html>

@@ -1,0 +1,693 @@
+<html><head><title>org_omg_PortableServer</title>
+<style>
+<!-- BEGIN Inline CSS -->
+/* Popup container */
+.popup {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+/* The actual popup (appears on top) */
+.popup .popuptext {
+    visibility: hidden;
+    width: 430px;
+    background-color: white;
+    color: black;
+    text-align: left;
+    border-radius: 6px;
+    border-style: solid;
+    border-color: black;
+    padding: 8px 8px 8px 8px;
+    position: absolute;
+    z-index: 1;
+    margin-top: 30px;
+}
+
+/* Toggle this class when clicking on the popup container (hide and show the popup) */
+.popup .show {
+    visibility: visible;
+    opacity: 1;
+}
+
+</style>
+<!-- END Inline CSS -->
+</head><body bgcolor="white">
+<hr><pre>
+<font color="green">(*</font>
+<font color="green"> *  Creator j2cps version 1.4.07 (March 2018)</font>
+<font color="green"> *  Compiled from jar-file rt.jar</font>
+<font color="green"> *)</font>
+<b>FOREIGN MODULE </b><font color="#cc0033">org_omg_PortableServer</font>;
+
+<b>IMPORT</b>
+    <a href="java_lang.html">java_lang</a> := "java.lang",
+    <a href="org_omg_CORBA.html">org_omg_CORBA</a> := "org.omg.CORBA",
+    <a href="org_omg_CORBA_portable.html">org_omg_CORBA_portable</a> := "org.omg.CORBA.portable",
+    <a href="org_omg_PortableServer_POAManagerPackage.html">org_omg_PortableServer_POAManagerPackage</a> := "org.omg.PortableServer.POAManagerPackage",
+    <a href="org_omg_PortableServer_portable.html">org_omg_PortableServer_portable</a> := "org.omg.PortableServer.portable",
+    <a href="org_omg_PortableServer_ServantLocatorPackage.html">org_omg_PortableServer_ServantLocatorPackage</a> := "org.omg.PortableServer.ServantLocatorPackage";
+
+<b>TYPE</b>
+
+  <a name="type-AdapterActivator"></a><font color="#cc0033">AdapterActivator</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <b>AdapterActivatorOperations</b> + <a href="org_omg_CORBA.html#type-Object">org_omg_CORBA.Object</a> + <a href="org_omg_CORBA_portable.html#type-IDLEntity">org_omg_CORBA_portable.IDLEntity</a>)
+                      <b>END</b>;
+
+  <a name="type-AdapterActivatorOperations"></a><font color="#cc0033">AdapterActivatorOperations</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                                <font color="green"><b> (* </b><a href="#meths-AdapterActivatorOperations">Typebound Procedures</a><b> *)</b></font>
+                                <b>END</b>;
+
+  <a name="type-Current"></a><font color="#cc0033">Current</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <b>CurrentOperations</b> + <a href="org_omg_CORBA.html#type-Current">org_omg_CORBA.Current</a> + <a href="org_omg_CORBA_portable.html#type-IDLEntity">org_omg_CORBA_portable.IDLEntity</a>)
+             <b>END</b>;
+
+  <a name="type-CurrentHelper"></a><font color="#cc0033">CurrentHelper</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                   <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                   <b>STATIC</b>
+                     <b>PROCEDURE </b><font color="#cc0033">extract</font>*(p0 : <a href="org_omg_CORBA.html#type-Any">org_omg_CORBA.Any</a>) : <a href="#type-Current">Current</a>;
+                     <b>PROCEDURE </b><font color="#cc0033">id</font>*() : <a href="java_lang.html#type-String">java_lang.String</a>;
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CurrentHelper">CurrentHelper</a><b>,CONSTRUCTOR</b>;
+                     <b>PROCEDURE </b><font color="#cc0033">insert</font>*(p0 : <a href="org_omg_CORBA.html#type-Any">org_omg_CORBA.Any</a>;
+                                       p1 : <a href="#type-Current">Current</a>);
+                     <b>PROCEDURE </b><font color="#cc0033">narrow</font>*(p0 : <a href="org_omg_CORBA.html#type-Object">org_omg_CORBA.Object</a>) : <a href="#type-Current">Current</a>;
+                     <b>PROCEDURE </b><font color="#cc0033">read</font>*(p0 : <a href="org_omg_CORBA_portable.html#type-InputStream">org_omg_CORBA_portable.InputStream</a>) : <a href="#type-Current">Current</a>;
+                     <b>PROCEDURE </b><font color="#cc0033">type</font>*() : <a href="org_omg_CORBA.html#type-TypeCode">org_omg_CORBA.TypeCode</a>;
+                     <b>PROCEDURE </b><font color="#cc0033">write</font>*(p0 : <a href="org_omg_CORBA_portable.html#type-OutputStream">org_omg_CORBA_portable.OutputStream</a>;
+                                      p1 : <a href="#type-Current">Current</a>);
+                   <b>END</b>;
+
+  <a name="type-CurrentOperations"></a><font color="#cc0033">CurrentOperations</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="org_omg_CORBA.html#type-CurrentOperations">org_omg_CORBA.CurrentOperations</a>)
+                       <font color="green"><b> (* </b><a href="#meths-CurrentOperations">Typebound Procedures</a><b> *)</b></font>
+                       <b>END</b>;
+
+  <a name="type-DynamicImplementation"></a><font color="#cc0033">DynamicImplementation</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<b>Servant</b>)
+                           <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                           <font color="green"><b> (* </b><a href="#meths-DynamicImplementation">Typebound Procedures</a><b> *)</b></font>
+                           <b>STATIC</b>
+                             <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-DynamicImplementation">DynamicImplementation</a><b>,CONSTRUCTOR</b>;
+                           <b>END</b>;
+
+  <a name="type-ForwardRequest"></a><font color="#cc0033">ForwardRequest</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="org_omg_CORBA.html#type-UserException">org_omg_CORBA.UserException</a>)
+                    <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                      <font color="#cc0033">forward_reference</font>* : <a href="org_omg_CORBA.html#type-Object">org_omg_CORBA.Object</a>;
+                    <b>STATIC</b>
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                      p1 : <a href="org_omg_CORBA.html#type-Object">org_omg_CORBA.Object</a>) : <a href="#type-ForwardRequest">ForwardRequest</a><b>,CONSTRUCTOR</b>;
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="org_omg_CORBA.html#type-Object">org_omg_CORBA.Object</a>) : <a href="#type-ForwardRequest">ForwardRequest</a><b>,CONSTRUCTOR</b>;
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-ForwardRequest">ForwardRequest</a><b>,CONSTRUCTOR</b>;
+                    <b>END</b>;
+
+  <a name="type-ForwardRequestHelper"></a><font color="#cc0033">ForwardRequestHelper</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                          <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                          <b>STATIC</b>
+                            <b>PROCEDURE </b><font color="#cc0033">extract</font>*(p0 : <a href="org_omg_CORBA.html#type-Any">org_omg_CORBA.Any</a>) : <a href="#type-ForwardRequest">ForwardRequest</a>;
+                            <b>PROCEDURE </b><font color="#cc0033">id</font>*() : <a href="java_lang.html#type-String">java_lang.String</a>;
+                            <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-ForwardRequestHelper">ForwardRequestHelper</a><b>,CONSTRUCTOR</b>;
+                            <b>PROCEDURE </b><font color="#cc0033">insert</font>*(p0 : <a href="org_omg_CORBA.html#type-Any">org_omg_CORBA.Any</a>;
+                                              p1 : <a href="#type-ForwardRequest">ForwardRequest</a>);
+                            <b>PROCEDURE </b><font color="#cc0033">read</font>*(p0 : <a href="org_omg_CORBA_portable.html#type-InputStream">org_omg_CORBA_portable.InputStream</a>) : <a href="#type-ForwardRequest">ForwardRequest</a>;
+                            <b>PROCEDURE </b><font color="#cc0033">type</font>*() : <a href="org_omg_CORBA.html#type-TypeCode">org_omg_CORBA.TypeCode</a>;
+                            <b>PROCEDURE </b><font color="#cc0033">write</font>*(p0 : <a href="org_omg_CORBA_portable.html#type-OutputStream">org_omg_CORBA_portable.OutputStream</a>;
+                                             p1 : <a href="#type-ForwardRequest">ForwardRequest</a>);
+                          <b>END</b>;
+
+  <a name="type-IdAssignmentPolicy"></a><font color="#cc0033">IdAssignmentPolicy</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <b>IdAssignmentPolicyOperations</b> + <a href="org_omg_CORBA.html#type-Policy">org_omg_CORBA.Policy</a> + <a href="org_omg_CORBA_portable.html#type-IDLEntity">org_omg_CORBA_portable.IDLEntity</a>)
+                        <b>END</b>;
+
+  <a name="type-IdAssignmentPolicyOperations"></a><font color="#cc0033">IdAssignmentPolicyOperations</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="org_omg_CORBA.html#type-PolicyOperations">org_omg_CORBA.PolicyOperations</a>)
+                                  <font color="green"><b> (* </b><a href="#meths-IdAssignmentPolicyOperations">Typebound Procedures</a><b> *)</b></font>
+                                  <b>END</b>;
+
+  <a name="type-IdAssignmentPolicyValue"></a><font color="#cc0033">IdAssignmentPolicyValue</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="org_omg_CORBA_portable.html#type-IDLEntity">org_omg_CORBA_portable.IDLEntity</a>)
+                             <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                             <font color="green"><b> (* </b><a href="#meths-IdAssignmentPolicyValue">Typebound Procedures</a><b> *)</b></font>
+                             <b>STATIC</b>
+                               <a name="type-SYSTEM_ID"></a><font color="#cc0033">SYSTEM_ID</font>*  : <a href="#type-IdAssignmentPolicyValue">IdAssignmentPolicyValue</a>;
+                               <a name="type-USER_ID"></a><font color="#cc0033">USER_ID</font>*    : <a href="#type-IdAssignmentPolicyValue">IdAssignmentPolicyValue</a>;
+                               <font color="#cc0033">_SYSTEM_ID</font>* = 1;
+                               <font color="#cc0033">_USER_ID</font>*   = 0;
+                               <b>PROCEDURE </b><font color="#cc0033">from_int</font>*(p0 : INTEGER) : <a href="#type-IdAssignmentPolicyValue">IdAssignmentPolicyValue</a>;
+                               <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : INTEGER) : <a href="#type-IdAssignmentPolicyValue">IdAssignmentPolicyValue</a><b>,CONSTRUCTOR</b>;
+                             <b>END</b>;
+
+  <a name="type-IdUniquenessPolicy"></a><font color="#cc0033">IdUniquenessPolicy</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <b>IdUniquenessPolicyOperations</b> + <a href="org_omg_CORBA.html#type-Policy">org_omg_CORBA.Policy</a> + <a href="org_omg_CORBA_portable.html#type-IDLEntity">org_omg_CORBA_portable.IDLEntity</a>)
+                        <b>END</b>;
+
+  <a name="type-IdUniquenessPolicyOperations"></a><font color="#cc0033">IdUniquenessPolicyOperations</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="org_omg_CORBA.html#type-PolicyOperations">org_omg_CORBA.PolicyOperations</a>)
+                                  <font color="green"><b> (* </b><a href="#meths-IdUniquenessPolicyOperations">Typebound Procedures</a><b> *)</b></font>
+                                  <b>END</b>;
+
+  <a name="type-IdUniquenessPolicyValue"></a><font color="#cc0033">IdUniquenessPolicyValue</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="org_omg_CORBA_portable.html#type-IDLEntity">org_omg_CORBA_portable.IDLEntity</a>)
+                             <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                             <font color="green"><b> (* </b><a href="#meths-IdUniquenessPolicyValue">Typebound Procedures</a><b> *)</b></font>
+                             <b>STATIC</b>
+                               <a name="type-MULTIPLE_ID"></a><font color="#cc0033">MULTIPLE_ID</font>*  : <a href="#type-IdUniquenessPolicyValue">IdUniquenessPolicyValue</a>;
+                               <a name="type-UNIQUE_ID"></a><font color="#cc0033">UNIQUE_ID</font>*    : <a href="#type-IdUniquenessPolicyValue">IdUniquenessPolicyValue</a>;
+                               <font color="#cc0033">_MULTIPLE_ID</font>* = 1;
+                               <font color="#cc0033">_UNIQUE_ID</font>*   = 0;
+                               <b>PROCEDURE </b><font color="#cc0033">from_int</font>*(p0 : INTEGER) : <a href="#type-IdUniquenessPolicyValue">IdUniquenessPolicyValue</a>;
+                               <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : INTEGER) : <a href="#type-IdUniquenessPolicyValue">IdUniquenessPolicyValue</a><b>,CONSTRUCTOR</b>;
+                             <b>END</b>;
+
+  <a name="type-ID_ASSIGNMENT_POLICY_ID"></a><font color="#cc0033">ID_ASSIGNMENT_POLICY_ID</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                             <b>STATIC</b>
+                               <font color="#cc0033">value</font>* = 19;
+                             <b>END</b>;
+
+  <a name="type-ID_UNIQUENESS_POLICY_ID"></a><font color="#cc0033">ID_UNIQUENESS_POLICY_ID</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                             <b>STATIC</b>
+                               <font color="#cc0033">value</font>* = 18;
+                             <b>END</b>;
+
+  <a name="type-ImplicitActivationPolicy"></a><font color="#cc0033">ImplicitActivationPolicy</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <b>ImplicitActivationPolicyOperations</b> + <a href="org_omg_CORBA.html#type-Policy">org_omg_CORBA.Policy</a> + <a href="org_omg_CORBA_portable.html#type-IDLEntity">org_omg_CORBA_portable.IDLEntity</a>)
+                              <b>END</b>;
+
+  <a name="type-ImplicitActivationPolicyOperations"></a><font color="#cc0033">ImplicitActivationPolicyOperations</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="org_omg_CORBA.html#type-PolicyOperations">org_omg_CORBA.PolicyOperations</a>)
+                                        <font color="green"><b> (* </b><a href="#meths-ImplicitActivationPolicyOperations">Typebound Procedures</a><b> *)</b></font>
+                                        <b>END</b>;
+
+  <a name="type-ImplicitActivationPolicyValue"></a><font color="#cc0033">ImplicitActivationPolicyValue</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="org_omg_CORBA_portable.html#type-IDLEntity">org_omg_CORBA_portable.IDLEntity</a>)
+                                   <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                                   <font color="green"><b> (* </b><a href="#meths-ImplicitActivationPolicyValue">Typebound Procedures</a><b> *)</b></font>
+                                   <b>STATIC</b>
+                                     <a name="type-IMPLICIT_ACTIVATION"></a><font color="#cc0033">IMPLICIT_ACTIVATION</font>*     : <a href="#type-ImplicitActivationPolicyValue">ImplicitActivationPolicyValue</a>;
+                                     <a name="type-NO_IMPLICIT_ACTIVATION"></a><font color="#cc0033">NO_IMPLICIT_ACTIVATION</font>*  : <a href="#type-ImplicitActivationPolicyValue">ImplicitActivationPolicyValue</a>;
+                                     <font color="#cc0033">_IMPLICIT_ACTIVATION</font>*    = 0;
+                                     <font color="#cc0033">_NO_IMPLICIT_ACTIVATION</font>* = 1;
+                                     <b>PROCEDURE </b><font color="#cc0033">from_int</font>*(p0 : INTEGER) : <a href="#type-ImplicitActivationPolicyValue">ImplicitActivationPolicyValue</a>;
+                                     <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : INTEGER) : <a href="#type-ImplicitActivationPolicyValue">ImplicitActivationPolicyValue</a><b>,CONSTRUCTOR</b>;
+                                   <b>END</b>;
+
+  <a name="type-IMPLICIT_ACTIVATION_POLICY_ID"></a><font color="#cc0033">IMPLICIT_ACTIVATION_POLICY_ID</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                                   <b>STATIC</b>
+                                     <font color="#cc0033">value</font>* = 20;
+                                   <b>END</b>;
+
+  <a name="type-LifespanPolicy"></a><font color="#cc0033">LifespanPolicy</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <b>LifespanPolicyOperations</b> + <a href="org_omg_CORBA.html#type-Policy">org_omg_CORBA.Policy</a> + <a href="org_omg_CORBA_portable.html#type-IDLEntity">org_omg_CORBA_portable.IDLEntity</a>)
+                    <b>END</b>;
+
+  <a name="type-LifespanPolicyOperations"></a><font color="#cc0033">LifespanPolicyOperations</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="org_omg_CORBA.html#type-PolicyOperations">org_omg_CORBA.PolicyOperations</a>)
+                              <font color="green"><b> (* </b><a href="#meths-LifespanPolicyOperations">Typebound Procedures</a><b> *)</b></font>
+                              <b>END</b>;
+
+  <a name="type-LifespanPolicyValue"></a><font color="#cc0033">LifespanPolicyValue</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="org_omg_CORBA_portable.html#type-IDLEntity">org_omg_CORBA_portable.IDLEntity</a>)
+                         <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                         <font color="green"><b> (* </b><a href="#meths-LifespanPolicyValue">Typebound Procedures</a><b> *)</b></font>
+                         <b>STATIC</b>
+                           <a name="type-PERSISTENT"></a><font color="#cc0033">PERSISTENT</font>*  : <a href="#type-LifespanPolicyValue">LifespanPolicyValue</a>;
+                           <a name="type-TRANSIENT"></a><font color="#cc0033">TRANSIENT</font>*   : <a href="#type-LifespanPolicyValue">LifespanPolicyValue</a>;
+                           <font color="#cc0033">_PERSISTENT</font>* = 1;
+                           <font color="#cc0033">_TRANSIENT</font>*  = 0;
+                           <b>PROCEDURE </b><font color="#cc0033">from_int</font>*(p0 : INTEGER) : <a href="#type-LifespanPolicyValue">LifespanPolicyValue</a>;
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : INTEGER) : <a href="#type-LifespanPolicyValue">LifespanPolicyValue</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-LIFESPAN_POLICY_ID"></a><font color="#cc0033">LIFESPAN_POLICY_ID</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                        <b>STATIC</b>
+                          <font color="#cc0033">value</font>* = 17;
+                        <b>END</b>;
+
+  <a name="type-POA"></a><font color="#cc0033">POA</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <b>POAOperations</b> + <a href="org_omg_CORBA.html#type-Object">org_omg_CORBA.Object</a> + <a href="org_omg_CORBA_portable.html#type-IDLEntity">org_omg_CORBA_portable.IDLEntity</a>)
+         <b>END</b>;
+
+  <a name="type-POAHelper"></a><font color="#cc0033">POAHelper</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+               <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+               <b>STATIC</b>
+                 <b>PROCEDURE </b><font color="#cc0033">extract</font>*(p0 : <a href="org_omg_CORBA.html#type-Any">org_omg_CORBA.Any</a>) : <a href="#type-POA">POA</a>;
+                 <b>PROCEDURE </b><font color="#cc0033">id</font>*() : <a href="java_lang.html#type-String">java_lang.String</a>;
+                 <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-POAHelper">POAHelper</a><b>,CONSTRUCTOR</b>;
+                 <b>PROCEDURE </b><font color="#cc0033">insert</font>*(p0 : <a href="org_omg_CORBA.html#type-Any">org_omg_CORBA.Any</a>;
+                                   p1 : <a href="#type-POA">POA</a>);
+                 <b>PROCEDURE </b><font color="#cc0033">narrow</font>*(p0 : <a href="org_omg_CORBA.html#type-Object">org_omg_CORBA.Object</a>) : <a href="#type-POA">POA</a>;
+                 <b>PROCEDURE </b><font color="#cc0033">read</font>*(p0 : <a href="org_omg_CORBA_portable.html#type-InputStream">org_omg_CORBA_portable.InputStream</a>) : <a href="#type-POA">POA</a>;
+                 <b>PROCEDURE </b><font color="#cc0033">type</font>*() : <a href="org_omg_CORBA.html#type-TypeCode">org_omg_CORBA.TypeCode</a>;
+                 <b>PROCEDURE </b><font color="#cc0033">write</font>*(p0 : <a href="org_omg_CORBA_portable.html#type-OutputStream">org_omg_CORBA_portable.OutputStream</a>;
+                                  p1 : <a href="#type-POA">POA</a>);
+               <b>END</b>;
+
+  <a name="type-POAManager"></a><font color="#cc0033">POAManager</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <b>POAManagerOperations</b> + <a href="org_omg_CORBA.html#type-Object">org_omg_CORBA.Object</a> + <a href="org_omg_CORBA_portable.html#type-IDLEntity">org_omg_CORBA_portable.IDLEntity</a>)
+                <b>END</b>;
+
+  <a name="type-POAManagerOperations"></a><font color="#cc0033">POAManagerOperations</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                          <font color="green"><b> (* </b><a href="#meths-POAManagerOperations">Typebound Procedures</a><b> *)</b></font>
+                          <b>END</b>;
+
+  <a name="type-POAOperations"></a><font color="#cc0033">POAOperations</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                   <font color="green"><b> (* </b><a href="#meths-POAOperations">Typebound Procedures</a><b> *)</b></font>
+                   <b>END</b>;
+
+  <a name="type-RequestProcessingPolicy"></a><font color="#cc0033">RequestProcessingPolicy</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <b>RequestProcessingPolicyOperations</b> + <a href="org_omg_CORBA.html#type-Policy">org_omg_CORBA.Policy</a> + <a href="org_omg_CORBA_portable.html#type-IDLEntity">org_omg_CORBA_portable.IDLEntity</a>)
+                             <b>END</b>;
+
+  <a name="type-RequestProcessingPolicyOperations"></a><font color="#cc0033">RequestProcessingPolicyOperations</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="org_omg_CORBA.html#type-PolicyOperations">org_omg_CORBA.PolicyOperations</a>)
+                                       <font color="green"><b> (* </b><a href="#meths-RequestProcessingPolicyOperations">Typebound Procedures</a><b> *)</b></font>
+                                       <b>END</b>;
+
+  <a name="type-RequestProcessingPolicyValue"></a><font color="#cc0033">RequestProcessingPolicyValue</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="org_omg_CORBA_portable.html#type-IDLEntity">org_omg_CORBA_portable.IDLEntity</a>)
+                                  <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                                  <font color="green"><b> (* </b><a href="#meths-RequestProcessingPolicyValue">Typebound Procedures</a><b> *)</b></font>
+                                  <b>STATIC</b>
+                                    <a name="type-USE_ACTIVE_OBJECT_MAP_ONLY"></a><font color="#cc0033">USE_ACTIVE_OBJECT_MAP_ONLY</font>*  : <a href="#type-RequestProcessingPolicyValue">RequestProcessingPolicyValue</a>;
+                                    <a name="type-USE_DEFAULT_SERVANT"></a><font color="#cc0033">USE_DEFAULT_SERVANT</font>*         : <a href="#type-RequestProcessingPolicyValue">RequestProcessingPolicyValue</a>;
+                                    <a name="type-USE_SERVANT_MANAGER"></a><font color="#cc0033">USE_SERVANT_MANAGER</font>*         : <a href="#type-RequestProcessingPolicyValue">RequestProcessingPolicyValue</a>;
+                                    <font color="#cc0033">_USE_ACTIVE_OBJECT_MAP_ONLY</font>* = 0;
+                                    <font color="#cc0033">_USE_DEFAULT_SERVANT</font>*        = 1;
+                                    <font color="#cc0033">_USE_SERVANT_MANAGER</font>*        = 2;
+                                    <b>PROCEDURE </b><font color="#cc0033">from_int</font>*(p0 : INTEGER) : <a href="#type-RequestProcessingPolicyValue">RequestProcessingPolicyValue</a>;
+                                    <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : INTEGER) : <a href="#type-RequestProcessingPolicyValue">RequestProcessingPolicyValue</a><b>,CONSTRUCTOR</b>;
+                                  <b>END</b>;
+
+  <a name="type-REQUEST_PROCESSING_POLICY_ID"></a><font color="#cc0033">REQUEST_PROCESSING_POLICY_ID</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                                  <b>STATIC</b>
+                                    <font color="#cc0033">value</font>* = 22;
+                                  <b>END</b>;
+
+  <a name="type-Servant"></a><font color="#cc0033">Servant</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+             <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+             <font color="green"><b> (* </b><a href="#meths-Servant">Typebound Procedures</a><b> *)</b></font>
+             <b>STATIC</b>
+               <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-Servant">Servant</a><b>,CONSTRUCTOR</b>;
+             <b>END</b>;
+
+  <a name="type-ServantActivator"></a><font color="#cc0033">ServantActivator</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <b>ServantActivatorOperations</b> + <b>ServantManager</b> + <a href="org_omg_CORBA_portable.html#type-IDLEntity">org_omg_CORBA_portable.IDLEntity</a>)
+                      <b>END</b>;
+
+  <a name="type-ServantActivatorHelper"></a><font color="#cc0033">ServantActivatorHelper</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                            <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                            <b>STATIC</b>
+                              <b>PROCEDURE </b><font color="#cc0033">extract</font>*(p0 : <a href="org_omg_CORBA.html#type-Any">org_omg_CORBA.Any</a>) : <a href="#type-ServantActivator">ServantActivator</a>;
+                              <b>PROCEDURE </b><font color="#cc0033">id</font>*() : <a href="java_lang.html#type-String">java_lang.String</a>;
+                              <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-ServantActivatorHelper">ServantActivatorHelper</a><b>,CONSTRUCTOR</b>;
+                              <b>PROCEDURE </b><font color="#cc0033">insert</font>*(p0 : <a href="org_omg_CORBA.html#type-Any">org_omg_CORBA.Any</a>;
+                                                p1 : <a href="#type-ServantActivator">ServantActivator</a>);
+                              <b>PROCEDURE </b><font color="#cc0033">narrow</font>*(p0 : <a href="org_omg_CORBA.html#type-Object">org_omg_CORBA.Object</a>) : <a href="#type-ServantActivator">ServantActivator</a>;
+                              <b>PROCEDURE </b><font color="#cc0033">read</font>*(p0 : <a href="org_omg_CORBA_portable.html#type-InputStream">org_omg_CORBA_portable.InputStream</a>) : <a href="#type-ServantActivator">ServantActivator</a>;
+                              <b>PROCEDURE </b><font color="#cc0033">type</font>*() : <a href="org_omg_CORBA.html#type-TypeCode">org_omg_CORBA.TypeCode</a>;
+                              <b>PROCEDURE </b><font color="#cc0033">unchecked_narrow</font>*(p0 : <a href="org_omg_CORBA.html#type-Object">org_omg_CORBA.Object</a>) : <a href="#type-ServantActivator">ServantActivator</a>;
+                              <b>PROCEDURE </b><font color="#cc0033">write</font>*(p0 : <a href="org_omg_CORBA_portable.html#type-OutputStream">org_omg_CORBA_portable.OutputStream</a>;
+                                               p1 : <a href="#type-ServantActivator">ServantActivator</a>);
+                            <b>END</b>;
+
+  <a name="type-ServantActivatorOperations"></a><font color="#cc0033">ServantActivatorOperations</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <b>ServantManagerOperations</b>)
+                                <font color="green"><b> (* </b><a href="#meths-ServantActivatorOperations">Typebound Procedures</a><b> *)</b></font>
+                                <b>END</b>;
+
+  <a name="type-ServantActivatorPOA"></a><font color="#cc0033">ServantActivatorPOA</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="#type-Servant">Servant</a> + <a href="#type-ServantActivatorOperations">ServantActivatorOperations</a> + <a href="org_omg_CORBA_portable.html#type-InvokeHandler">org_omg_CORBA_portable.InvokeHandler</a>)
+                         <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                         <font color="green"><b> (* </b><a href="#meths-ServantActivatorPOA">Typebound Procedures</a><b> *)</b></font>
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-ServantActivatorPOA">ServantActivatorPOA</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-ServantLocator"></a><font color="#cc0033">ServantLocator</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <b>ServantLocatorOperations</b> + <b>ServantManager</b> + <a href="org_omg_CORBA_portable.html#type-IDLEntity">org_omg_CORBA_portable.IDLEntity</a>)
+                    <b>END</b>;
+
+  <a name="type-ServantLocatorHelper"></a><font color="#cc0033">ServantLocatorHelper</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                          <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                          <b>STATIC</b>
+                            <b>PROCEDURE </b><font color="#cc0033">extract</font>*(p0 : <a href="org_omg_CORBA.html#type-Any">org_omg_CORBA.Any</a>) : <a href="#type-ServantLocator">ServantLocator</a>;
+                            <b>PROCEDURE </b><font color="#cc0033">id</font>*() : <a href="java_lang.html#type-String">java_lang.String</a>;
+                            <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-ServantLocatorHelper">ServantLocatorHelper</a><b>,CONSTRUCTOR</b>;
+                            <b>PROCEDURE </b><font color="#cc0033">insert</font>*(p0 : <a href="org_omg_CORBA.html#type-Any">org_omg_CORBA.Any</a>;
+                                              p1 : <a href="#type-ServantLocator">ServantLocator</a>);
+                            <b>PROCEDURE </b><font color="#cc0033">narrow</font>*(p0 : <a href="org_omg_CORBA.html#type-Object">org_omg_CORBA.Object</a>) : <a href="#type-ServantLocator">ServantLocator</a>;
+                            <b>PROCEDURE </b><font color="#cc0033">read</font>*(p0 : <a href="org_omg_CORBA_portable.html#type-InputStream">org_omg_CORBA_portable.InputStream</a>) : <a href="#type-ServantLocator">ServantLocator</a>;
+                            <b>PROCEDURE </b><font color="#cc0033">type</font>*() : <a href="org_omg_CORBA.html#type-TypeCode">org_omg_CORBA.TypeCode</a>;
+                            <b>PROCEDURE </b><font color="#cc0033">unchecked_narrow</font>*(p0 : <a href="org_omg_CORBA.html#type-Object">org_omg_CORBA.Object</a>) : <a href="#type-ServantLocator">ServantLocator</a>;
+                            <b>PROCEDURE </b><font color="#cc0033">write</font>*(p0 : <a href="org_omg_CORBA_portable.html#type-OutputStream">org_omg_CORBA_portable.OutputStream</a>;
+                                             p1 : <a href="#type-ServantLocator">ServantLocator</a>);
+                          <b>END</b>;
+
+  <a name="type-ServantLocatorOperations"></a><font color="#cc0033">ServantLocatorOperations</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <b>ServantManagerOperations</b>)
+                              <font color="green"><b> (* </b><a href="#meths-ServantLocatorOperations">Typebound Procedures</a><b> *)</b></font>
+                              <b>END</b>;
+
+  <a name="type-ServantLocatorPOA"></a><font color="#cc0033">ServantLocatorPOA</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="#type-Servant">Servant</a> + <a href="#type-ServantLocatorOperations">ServantLocatorOperations</a> + <a href="org_omg_CORBA_portable.html#type-InvokeHandler">org_omg_CORBA_portable.InvokeHandler</a>)
+                       <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                       <font color="green"><b> (* </b><a href="#meths-ServantLocatorPOA">Typebound Procedures</a><b> *)</b></font>
+                       <b>STATIC</b>
+                         <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-ServantLocatorPOA">ServantLocatorPOA</a><b>,CONSTRUCTOR</b>;
+                       <b>END</b>;
+
+  <a name="type-ServantManager"></a><font color="#cc0033">ServantManager</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <b>ServantManagerOperations</b> + <a href="org_omg_CORBA.html#type-Object">org_omg_CORBA.Object</a> + <a href="org_omg_CORBA_portable.html#type-IDLEntity">org_omg_CORBA_portable.IDLEntity</a>)
+                    <b>END</b>;
+
+  <a name="type-ServantManagerOperations"></a><font color="#cc0033">ServantManagerOperations</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                              <b>END</b>;
+
+  <a name="type-ServantRetentionPolicy"></a><font color="#cc0033">ServantRetentionPolicy</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <b>ServantRetentionPolicyOperations</b> + <a href="org_omg_CORBA.html#type-Policy">org_omg_CORBA.Policy</a> + <a href="org_omg_CORBA_portable.html#type-IDLEntity">org_omg_CORBA_portable.IDLEntity</a>)
+                            <b>END</b>;
+
+  <a name="type-ServantRetentionPolicyOperations"></a><font color="#cc0033">ServantRetentionPolicyOperations</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="org_omg_CORBA.html#type-PolicyOperations">org_omg_CORBA.PolicyOperations</a>)
+                                      <font color="green"><b> (* </b><a href="#meths-ServantRetentionPolicyOperations">Typebound Procedures</a><b> *)</b></font>
+                                      <b>END</b>;
+
+  <a name="type-ServantRetentionPolicyValue"></a><font color="#cc0033">ServantRetentionPolicyValue</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="org_omg_CORBA_portable.html#type-IDLEntity">org_omg_CORBA_portable.IDLEntity</a>)
+                                 <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                                 <font color="green"><b> (* </b><a href="#meths-ServantRetentionPolicyValue">Typebound Procedures</a><b> *)</b></font>
+                                 <b>STATIC</b>
+                                   <a name="type-NON_RETAIN"></a><font color="#cc0033">NON_RETAIN</font>*  : <a href="#type-ServantRetentionPolicyValue">ServantRetentionPolicyValue</a>;
+                                   <a name="type-RETAIN"></a><font color="#cc0033">RETAIN</font>*      : <a href="#type-ServantRetentionPolicyValue">ServantRetentionPolicyValue</a>;
+                                   <font color="#cc0033">_NON_RETAIN</font>* = 1;
+                                   <font color="#cc0033">_RETAIN</font>*     = 0;
+                                   <b>PROCEDURE </b><font color="#cc0033">from_int</font>*(p0 : INTEGER) : <a href="#type-ServantRetentionPolicyValue">ServantRetentionPolicyValue</a>;
+                                   <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : INTEGER) : <a href="#type-ServantRetentionPolicyValue">ServantRetentionPolicyValue</a><b>,CONSTRUCTOR</b>;
+                                 <b>END</b>;
+
+  <a name="type-SERVANT_RETENTION_POLICY_ID"></a><font color="#cc0033">SERVANT_RETENTION_POLICY_ID</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                                 <b>STATIC</b>
+                                   <font color="#cc0033">value</font>* = 21;
+                                 <b>END</b>;
+
+  <a name="type-ThreadPolicy"></a><font color="#cc0033">ThreadPolicy</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <b>ThreadPolicyOperations</b> + <a href="org_omg_CORBA.html#type-Policy">org_omg_CORBA.Policy</a> + <a href="org_omg_CORBA_portable.html#type-IDLEntity">org_omg_CORBA_portable.IDLEntity</a>)
+                  <b>END</b>;
+
+  <a name="type-ThreadPolicyOperations"></a><font color="#cc0033">ThreadPolicyOperations</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="org_omg_CORBA.html#type-PolicyOperations">org_omg_CORBA.PolicyOperations</a>)
+                            <font color="green"><b> (* </b><a href="#meths-ThreadPolicyOperations">Typebound Procedures</a><b> *)</b></font>
+                            <b>END</b>;
+
+  <a name="type-ThreadPolicyValue"></a><font color="#cc0033">ThreadPolicyValue</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="org_omg_CORBA_portable.html#type-IDLEntity">org_omg_CORBA_portable.IDLEntity</a>)
+                       <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                       <font color="green"><b> (* </b><a href="#meths-ThreadPolicyValue">Typebound Procedures</a><b> *)</b></font>
+                       <b>STATIC</b>
+                         <a name="type-ORB_CTRL_MODEL"></a><font color="#cc0033">ORB_CTRL_MODEL</font>*       : <a href="#type-ThreadPolicyValue">ThreadPolicyValue</a>;
+                         <a name="type-SINGLE_THREAD_MODEL"></a><font color="#cc0033">SINGLE_THREAD_MODEL</font>*  : <a href="#type-ThreadPolicyValue">ThreadPolicyValue</a>;
+                         <font color="#cc0033">_ORB_CTRL_MODEL</font>*      = 0;
+                         <font color="#cc0033">_SINGLE_THREAD_MODEL</font>* = 1;
+                         <b>PROCEDURE </b><font color="#cc0033">from_int</font>*(p0 : INTEGER) : <a href="#type-ThreadPolicyValue">ThreadPolicyValue</a>;
+                         <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : INTEGER) : <a href="#type-ThreadPolicyValue">ThreadPolicyValue</a><b>,CONSTRUCTOR</b>;
+                       <b>END</b>;
+
+  <a name="type-THREAD_POLICY_ID"></a><font color="#cc0033">THREAD_POLICY_ID</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                      <b>STATIC</b>
+                        <font color="#cc0033">value</font>* = 16;
+                      <b>END</b>;
+
+  <a name="type-_ServantActivatorStub"></a><font color="#cc0033">_ServantActivatorStub</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="org_omg_CORBA_portable.html#type-ObjectImpl">org_omg_CORBA_portable.ObjectImpl</a> + <a href="#type-ServantActivator">ServantActivator</a>)
+                           <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                           <font color="green"><b> (* </b><a href="#meths-_ServantActivatorStub">Typebound Procedures</a><b> *)</b></font>
+                           <b>STATIC</b>
+                             <a name="type-_opsClass"></a><font color="#cc0033">_opsClass</font>* : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                             <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-_ServantActivatorStub">_ServantActivatorStub</a><b>,CONSTRUCTOR</b>;
+                           <b>END</b>;
+
+  <a name="type-_ServantLocatorStub"></a><font color="#cc0033">_ServantLocatorStub</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="org_omg_CORBA_portable.html#type-ObjectImpl">org_omg_CORBA_portable.ObjectImpl</a> + <a href="#type-ServantLocator">ServantLocator</a>)
+                         <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                         <font color="green"><b> (* </b><a href="#meths-_ServantLocatorStub">Typebound Procedures</a><b> *)</b></font>
+                         <b>STATIC</b>
+                           <a name="type-_opsClass"></a><font color="#cc0033">_opsClass</font>* : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-_ServantLocatorStub">_ServantLocatorStub</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+
+
+<a name="meths-AdapterActivatorOperations"></a>
+<b>PROCEDURE </b>(self:AdapterActivatorOperations) <font color="#cc0033">unknown_adapter</font>*(p0 : <b>POA</b>;
+                                                             p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+<a name="meths-CurrentOperations"></a>
+<b>PROCEDURE </b>(self:CurrentOperations) <font color="#cc0033">get_object_id</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CurrentOperations) <font color="#cc0033">get_POA</font>*() : <b>POA</b><b>,NEW,ABSTRACT</b>;
+<a name="meths-DynamicImplementation"></a>
+<b>PROCEDURE </b>(self:DynamicImplementation) <font color="#cc0033">invoke</font>*(p0 : <a href="org_omg_CORBA.html#type-ServerRequest">org_omg_CORBA.ServerRequest</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-IdAssignmentPolicyOperations"></a>
+<b>PROCEDURE </b>(self:IdAssignmentPolicyOperations) <font color="#cc0033">value</font>*() : <b>IdAssignmentPolicyValue</b><b>,NEW,ABSTRACT</b>;
+<a name="meths-IdAssignmentPolicyValue"></a>
+<b>PROCEDURE </b>(self:IdAssignmentPolicyValue) <font color="#cc0033">value</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-IdUniquenessPolicyOperations"></a>
+<b>PROCEDURE </b>(self:IdUniquenessPolicyOperations) <font color="#cc0033">value</font>*() : <b>IdUniquenessPolicyValue</b><b>,NEW,ABSTRACT</b>;
+<a name="meths-IdUniquenessPolicyValue"></a>
+<b>PROCEDURE </b>(self:IdUniquenessPolicyValue) <font color="#cc0033">value</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-ImplicitActivationPolicyOperations"></a>
+<b>PROCEDURE </b>(self:ImplicitActivationPolicyOperations) <font color="#cc0033">value</font>*() : <b>ImplicitActivationPolicyValue</b><b>,NEW,ABSTRACT</b>;
+<a name="meths-ImplicitActivationPolicyValue"></a>
+<b>PROCEDURE </b>(self:ImplicitActivationPolicyValue) <font color="#cc0033">value</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-LifespanPolicyOperations"></a>
+<b>PROCEDURE </b>(self:LifespanPolicyOperations) <font color="#cc0033">value</font>*() : <b>LifespanPolicyValue</b><b>,NEW,ABSTRACT</b>;
+<a name="meths-LifespanPolicyValue"></a>
+<b>PROCEDURE </b>(self:LifespanPolicyValue) <font color="#cc0033">value</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-POAManagerOperations"></a>
+<b>PROCEDURE </b>(self:POAManagerOperations) <font color="#cc0033">activate</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:POAManagerOperations) <font color="#cc0033">deactivate</font>*(p0 : BOOLEAN;
+                                                  p1 : BOOLEAN)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:POAManagerOperations) <font color="#cc0033">discard_requests</font>*(p0 : BOOLEAN)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:POAManagerOperations) <font color="#cc0033">get_state</font>*() : <a href="org_omg_PortableServer_POAManagerPackage.html#type-State">org_omg_PortableServer_POAManagerPackage.State</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:POAManagerOperations) <font color="#cc0033">hold_requests</font>*(p0 : BOOLEAN)<b>,NEW,ABSTRACT</b>;
+<a name="meths-POAOperations"></a>
+<b>PROCEDURE </b>(self:POAOperations) <font color="#cc0033">activate_object</font>*(p0 : <b>Servant</b>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:POAOperations) <font color="#cc0033">activate_object_with_id</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE;
+                                                            p1 : <b>Servant</b>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:POAOperations) <font color="#cc0033">create_id_assignment_policy</font>*(p0 : <a href="#type-IdAssignmentPolicyValue">IdAssignmentPolicyValue</a>) : <a href="#type-IdAssignmentPolicy">IdAssignmentPolicy</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:POAOperations) <font color="#cc0033">create_id_uniqueness_policy</font>*(p0 : <a href="#type-IdUniquenessPolicyValue">IdUniquenessPolicyValue</a>) : <a href="#type-IdUniquenessPolicy">IdUniquenessPolicy</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:POAOperations) <font color="#cc0033">create_implicit_activation_policy</font>*(p0 : <a href="#type-ImplicitActivationPolicyValue">ImplicitActivationPolicyValue</a>) : <a href="#type-ImplicitActivationPolicy">ImplicitActivationPolicy</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:POAOperations) <font color="#cc0033">create_lifespan_policy</font>*(p0 : <a href="#type-LifespanPolicyValue">LifespanPolicyValue</a>) : <a href="#type-LifespanPolicy">LifespanPolicy</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:POAOperations) <font color="#cc0033">create_POA</font>*(    p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                               p1 : <a href="#type-POAManager">POAManager</a>;
+                                           IN  p2 : <b>ARRAY </b><b>OF </b><a href="org_omg_CORBA.html#type-Policy">org_omg_CORBA.Policy</a>) : <a href="#type-POA">POA</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:POAOperations) <font color="#cc0033">create_reference</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="org_omg_CORBA.html#type-Object">org_omg_CORBA.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:POAOperations) <font color="#cc0033">create_reference_with_id</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE;
+                                                             p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="org_omg_CORBA.html#type-Object">org_omg_CORBA.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:POAOperations) <font color="#cc0033">create_request_processing_policy</font>*(p0 : <b>RequestProcessingPolicyValue</b>) : <b>RequestProcessingPolicy</b><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:POAOperations) <font color="#cc0033">create_servant_retention_policy</font>*(p0 : <b>ServantRetentionPolicyValue</b>) : <b>ServantRetentionPolicy</b><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:POAOperations) <font color="#cc0033">create_thread_policy</font>*(p0 : <b>ThreadPolicyValue</b>) : <b>ThreadPolicy</b><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:POAOperations) <font color="#cc0033">deactivate_object</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:POAOperations) <font color="#cc0033">destroy</font>*(p0 : BOOLEAN;
+                                        p1 : BOOLEAN)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:POAOperations) <font color="#cc0033">find_POA</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                         p1 : BOOLEAN) : <a href="#type-POA">POA</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:POAOperations) <font color="#cc0033">get_servant</font>*() : <b>Servant</b><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:POAOperations) <font color="#cc0033">get_servant_manager</font>*() : <b>ServantManager</b><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:POAOperations) <font color="#cc0033">id</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:POAOperations) <font color="#cc0033">id_to_reference</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE) : <a href="org_omg_CORBA.html#type-Object">org_omg_CORBA.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:POAOperations) <font color="#cc0033">id_to_servant</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE) : <b>Servant</b><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:POAOperations) <font color="#cc0033">reference_to_id</font>*(p0 : <a href="org_omg_CORBA.html#type-Object">org_omg_CORBA.Object</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:POAOperations) <font color="#cc0033">reference_to_servant</font>*(p0 : <a href="org_omg_CORBA.html#type-Object">org_omg_CORBA.Object</a>) : <b>Servant</b><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:POAOperations) <font color="#cc0033">servant_to_id</font>*(p0 : <b>Servant</b>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:POAOperations) <font color="#cc0033">servant_to_reference</font>*(p0 : <b>Servant</b>) : <a href="org_omg_CORBA.html#type-Object">org_omg_CORBA.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:POAOperations) <font color="#cc0033">set_servant</font>*(p0 : <b>Servant</b>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:POAOperations) <font color="#cc0033">set_servant_manager</font>*(p0 : <b>ServantManager</b>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:POAOperations) <font color="#cc0033">the_activator</font>*() : <a href="#type-AdapterActivator">AdapterActivator</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:POAOperations) <font color="#cc0033">the_activator</font>*(p0 : <a href="#type-AdapterActivator">AdapterActivator</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:POAOperations) <font color="#cc0033">the_children</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-POA">POA</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:POAOperations) <font color="#cc0033">the_name</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:POAOperations) <font color="#cc0033">the_parent</font>*() : <a href="#type-POA">POA</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:POAOperations) <font color="#cc0033">the_POAManager</font>*() : <a href="#type-POAManager">POAManager</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-RequestProcessingPolicyOperations"></a>
+<b>PROCEDURE </b>(self:RequestProcessingPolicyOperations) <font color="#cc0033">value</font>*() : <b>RequestProcessingPolicyValue</b><b>,NEW,ABSTRACT</b>;
+<a name="meths-RequestProcessingPolicyValue"></a>
+<b>PROCEDURE </b>(self:RequestProcessingPolicyValue) <font color="#cc0033">value</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-Servant"></a>
+<b>PROCEDURE </b>(self:Servant) <font color="#cc0033">_all_interfaces</font>*(    p0 : <a href="#type-POA">POA</a>;
+                                          IN  p1 : <b>ARRAY </b><b>OF </b>BYTE) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Servant) <font color="#cc0033">_default_POA</font>*() : <a href="#type-POA">POA</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Servant) <font color="#cc0033">_get_delegate</font>*() : <a href="org_omg_PortableServer_portable.html#type-Delegate">org_omg_PortableServer_portable.Delegate</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:Servant) <font color="#cc0033">_get_interface_def</font>*() : <a href="org_omg_CORBA.html#type-Object">org_omg_CORBA.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Servant) <font color="#cc0033">_is_a</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Servant) <font color="#cc0033">_non_existent</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Servant) <font color="#cc0033">_object_id</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:Servant) <font color="#cc0033">_orb</font>*() : <a href="org_omg_CORBA.html#type-ORB">org_omg_CORBA.ORB</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:Servant) <font color="#cc0033">_poa</font>*() : <a href="#type-POA">POA</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:Servant) <font color="#cc0033">_set_delegate</font>*(p0 : <a href="org_omg_PortableServer_portable.html#type-Delegate">org_omg_PortableServer_portable.Delegate</a>)<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:Servant) <font color="#cc0033">_this_object</font>*() : <a href="org_omg_CORBA.html#type-Object">org_omg_CORBA.Object</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:Servant) <font color="#cc0033">_this_object</font>*(p0 : <a href="org_omg_CORBA.html#type-ORB">org_omg_CORBA.ORB</a>) : <a href="org_omg_CORBA.html#type-Object">org_omg_CORBA.Object</a><b>,NEW</b>;
+<a name="meths-ServantActivatorOperations"></a>
+<b>PROCEDURE </b>(self:ServantActivatorOperations) <font color="#cc0033">etherealize</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE;
+                                                             p1 : <a href="#type-POA">POA</a>;
+                                                             p2 : <a href="#type-Servant">Servant</a>;
+                                                             p3 : BOOLEAN;
+                                                             p4 : BOOLEAN)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ServantActivatorOperations) <font color="#cc0033">incarnate</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE;
+                                                           p1 : <a href="#type-POA">POA</a>) : <a href="#type-Servant">Servant</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-ServantActivatorPOA"></a>
+<b>PROCEDURE </b>(self:ServantActivatorPOA) <font color="#cc0033">_all_interfaces</font>*(    p0 : <a href="#type-POA">POA</a>;
+                                                      IN  p1 : <b>ARRAY </b><b>OF </b>BYTE) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ServantActivatorPOA) <font color="#cc0033">_invoke</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                              p1 : <a href="org_omg_CORBA_portable.html#type-InputStream">org_omg_CORBA_portable.InputStream</a>;
+                                              p2 : <a href="org_omg_CORBA_portable.html#type-ResponseHandler">org_omg_CORBA_portable.ResponseHandler</a>) : <a href="org_omg_CORBA_portable.html#type-OutputStream">org_omg_CORBA_portable.OutputStream</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ServantActivatorPOA) <font color="#cc0033">_this</font>*(p0 : <a href="org_omg_CORBA.html#type-ORB">org_omg_CORBA.ORB</a>) : <a href="#type-ServantActivator">ServantActivator</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ServantActivatorPOA) <font color="#cc0033">_this</font>*() : <a href="#type-ServantActivator">ServantActivator</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-ServantLocatorOperations"></a>
+<b>PROCEDURE </b>(self:ServantLocatorOperations) <font color="#cc0033">postinvoke</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE;
+                                                          p1 : <a href="#type-POA">POA</a>;
+                                                          p2 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                          p3 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                          p4 : <a href="#type-Servant">Servant</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ServantLocatorOperations) <font color="#cc0033">preinvoke</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE;
+                                                         p1 : <a href="#type-POA">POA</a>;
+                                                         p2 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                         p3 : <a href="org_omg_PortableServer_ServantLocatorPackage.html#type-CookieHolder">org_omg_PortableServer_ServantLocatorPackage.CookieHolder</a>) : <a href="#type-Servant">Servant</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-ServantLocatorPOA"></a>
+<b>PROCEDURE </b>(self:ServantLocatorPOA) <font color="#cc0033">_all_interfaces</font>*(    p0 : <a href="#type-POA">POA</a>;
+                                                    IN  p1 : <b>ARRAY </b><b>OF </b>BYTE) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ServantLocatorPOA) <font color="#cc0033">_invoke</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                            p1 : <a href="org_omg_CORBA_portable.html#type-InputStream">org_omg_CORBA_portable.InputStream</a>;
+                                            p2 : <a href="org_omg_CORBA_portable.html#type-ResponseHandler">org_omg_CORBA_portable.ResponseHandler</a>) : <a href="org_omg_CORBA_portable.html#type-OutputStream">org_omg_CORBA_portable.OutputStream</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ServantLocatorPOA) <font color="#cc0033">_this</font>*(p0 : <a href="org_omg_CORBA.html#type-ORB">org_omg_CORBA.ORB</a>) : <a href="#type-ServantLocator">ServantLocator</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ServantLocatorPOA) <font color="#cc0033">_this</font>*() : <a href="#type-ServantLocator">ServantLocator</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-ServantRetentionPolicyOperations"></a>
+<b>PROCEDURE </b>(self:ServantRetentionPolicyOperations) <font color="#cc0033">value</font>*() : <b>ServantRetentionPolicyValue</b><b>,NEW,ABSTRACT</b>;
+<a name="meths-ServantRetentionPolicyValue"></a>
+<b>PROCEDURE </b>(self:ServantRetentionPolicyValue) <font color="#cc0033">value</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-ThreadPolicyOperations"></a>
+<b>PROCEDURE </b>(self:ThreadPolicyOperations) <font color="#cc0033">value</font>*() : <b>ThreadPolicyValue</b><b>,NEW,ABSTRACT</b>;
+<a name="meths-ThreadPolicyValue"></a>
+<b>PROCEDURE </b>(self:ThreadPolicyValue) <font color="#cc0033">value</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-_ServantActivatorStub"></a>
+<b>PROCEDURE </b>(self:_ServantActivatorStub) <font color="#cc0033">etherealize</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE;
+                                                        p1 : <a href="#type-POA">POA</a>;
+                                                        p2 : <a href="#type-Servant">Servant</a>;
+                                                        p3 : BOOLEAN;
+                                                        p4 : BOOLEAN)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_ServantActivatorStub) <font color="#cc0033">incarnate</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE;
+                                                      p1 : <a href="#type-POA">POA</a>) : <a href="#type-Servant">Servant</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_ServantActivatorStub) <font color="#cc0033">_ids</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-_ServantLocatorStub"></a>
+<b>PROCEDURE </b>(self:_ServantLocatorStub) <font color="#cc0033">postinvoke</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE;
+                                                     p1 : <a href="#type-POA">POA</a>;
+                                                     p2 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                     p3 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                     p4 : <a href="#type-Servant">Servant</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_ServantLocatorStub) <font color="#cc0033">preinvoke</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE;
+                                                    p1 : <a href="#type-POA">POA</a>;
+                                                    p2 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                    p3 : <a href="org_omg_PortableServer_ServantLocatorPackage.html#type-CookieHolder">org_omg_PortableServer_ServantLocatorPackage.CookieHolder</a>) : <a href="#type-Servant">Servant</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:_ServantLocatorStub) <font color="#cc0033">_ids</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>END </b><font color="#cc0033">org_omg_PortableServer</font>.
+</font></pre></hr>
+<!-- BEGIN JavaScript -->
+<script>
+function toggle(node) {
+    node.classList.toggle("show"); 
+  }
+
+function cls(node) {
+    var prnt = node.parentNode;
+    var next = prnt.previousSibling;
+    var text = next.lastChild;
+    text.innerHTML = 
+        "The <b>class</b> property asserts that this type will be<br>" +
+        "implemented as a reference class in the underlying framework.";
+    text.classList.toggle("show");
+  }
+
+function newOk(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>has noArg-ctor</b> property asserts that this reference<br>" +
+        "class has a no-arg constructor, and thus objects of this<br>" +
+        "type can be allocated with NEW(). Component Pascal types<br>" +
+        "derived from this type can also be allocated using NEW().";
+    popuptext.classList.toggle("show"); 
+  }
+
+function noNew(node) { 
+    var prnt = node.parentNode; 
+    var next = prnt.previousSibling; 
+    var text = next.lastChild; 
+    text.innerHTML =  
+        "The <b>no noArg-ctor</b> property asserts that this reference<br>" +
+        "class does not have a noArg constructor. Objects of this<br>" +
+        "type cannot be allocated using NEW(), and Component<br>" +
+        "Pascal types  derived from this type also cannot be<br>" +
+        "allocated using NEW().";
+    text.classList.toggle("show");
+  }
+
+function noCpy(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>no value-assign</b> property asserts that this reference<br>" + 
+        "class does not have a value copy method. Therefore, it<br>" +
+        "is not possible to perform value assignments using<br>" +
+        "statements like <i>dst^</i> := <i>src^</i>";
+    popuptext.classList.toggle("show");
+  }
+
+function valueclass(node) { 
+        var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>valueclass</b> property asserts that this RECORD type is<br>" + 
+        "implemented as a value class in the CLR. It follows that<br>" +  
+        "value assignments can be made of these types. They can<br>" + 
+        "also be passed by value. Even pointers to records of<br>" + 
+        "such types may be dereferenced and copied using syntax<br>" + 
+        "such as  <i>dst^</i> := <i>src^</i>"; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+function argCtor(node) { 
+    var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>has arg-ctor</b> property asserts that this reference<br>" +  
+        "class has one or more constructors that take arguments.<br>" + 
+        "These constructors can be called from Component Pascal<br>" + 
+        "by calling an <i>init</i>(...) method from the static list<br>" + 
+        "here. Component Pascal types derived from this type<br>" + 
+        "can define constructors with arguments which call the<br>" + 
+        "super-type constructor.<br>" + 
+        "See <i>'Interfacing to constructors'</i> in the Release Notes."; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+</script>
+<!-- END JavaScript --> 
+
+</body></html>

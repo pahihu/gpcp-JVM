@@ -1,0 +1,712 @@
+<html><head><title>org_omg_PortableInterceptor</title>
+<style>
+<!-- BEGIN Inline CSS -->
+/* Popup container */
+.popup {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+/* The actual popup (appears on top) */
+.popup .popuptext {
+    visibility: hidden;
+    width: 430px;
+    background-color: white;
+    color: black;
+    text-align: left;
+    border-radius: 6px;
+    border-style: solid;
+    border-color: black;
+    padding: 8px 8px 8px 8px;
+    position: absolute;
+    z-index: 1;
+    margin-top: 30px;
+}
+
+/* Toggle this class when clicking on the popup container (hide and show the popup) */
+.popup .show {
+    visibility: visible;
+    opacity: 1;
+}
+
+</style>
+<!-- END Inline CSS -->
+</head><body bgcolor="white">
+<hr><pre>
+<font color="green">(*</font>
+<font color="green"> *  Creator j2cps version 1.4.07 (March 2018)</font>
+<font color="green"> *  Compiled from jar-file rt.jar</font>
+<font color="green"> *)</font>
+<b>FOREIGN MODULE </b><font color="#cc0033">org_omg_PortableInterceptor</font>;
+
+<b>IMPORT</b>
+    <a href="java_lang.html">java_lang</a> := "java.lang",
+    <a href="org_omg_CORBA.html">org_omg_CORBA</a> := "org.omg.CORBA",
+    <a href="org_omg_CORBA_portable.html">org_omg_CORBA_portable</a> := "org.omg.CORBA.portable",
+    <a href="org_omg_Dynamic.html">org_omg_Dynamic</a> := "org.omg.Dynamic",
+    <a href="org_omg_IOP.html">org_omg_IOP</a> := "org.omg.IOP";
+
+<b>TYPE</b>
+
+  <a name="type-ACTIVE"></a><font color="#cc0033">ACTIVE</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+            <b>STATIC</b>
+              <font color="#cc0033">value</font>* = 1;
+            <b>END</b>;
+
+  <a name="type-AdapterManagerIdHelper"></a><font color="#cc0033">AdapterManagerIdHelper</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                            <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                            <b>STATIC</b>
+                              <b>PROCEDURE </b><font color="#cc0033">extract</font>*(p0 : <a href="org_omg_CORBA.html#type-Any">org_omg_CORBA.Any</a>) : INTEGER;
+                              <b>PROCEDURE </b><font color="#cc0033">id</font>*() : <a href="java_lang.html#type-String">java_lang.String</a>;
+                              <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-AdapterManagerIdHelper">AdapterManagerIdHelper</a><b>,CONSTRUCTOR</b>;
+                              <b>PROCEDURE </b><font color="#cc0033">insert</font>*(p0 : <a href="org_omg_CORBA.html#type-Any">org_omg_CORBA.Any</a>;
+                                                p1 : INTEGER);
+                              <b>PROCEDURE </b><font color="#cc0033">read</font>*(p0 : <a href="org_omg_CORBA_portable.html#type-InputStream">org_omg_CORBA_portable.InputStream</a>) : INTEGER;
+                              <b>PROCEDURE </b><font color="#cc0033">type</font>*() : <a href="org_omg_CORBA.html#type-TypeCode">org_omg_CORBA.TypeCode</a>;
+                              <b>PROCEDURE </b><font color="#cc0033">write</font>*(p0 : <a href="org_omg_CORBA_portable.html#type-OutputStream">org_omg_CORBA_portable.OutputStream</a>;
+                                               p1 : INTEGER);
+                            <b>END</b>;
+
+  <a name="type-AdapterNameHelper"></a><font color="#cc0033">AdapterNameHelper</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                       <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                       <b>STATIC</b>
+                         <b>PROCEDURE </b><font color="#cc0033">extract</font>*(p0 : <a href="org_omg_CORBA.html#type-Any">org_omg_CORBA.Any</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>;
+                         <b>PROCEDURE </b><font color="#cc0033">id</font>*() : <a href="java_lang.html#type-String">java_lang.String</a>;
+                         <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-AdapterNameHelper">AdapterNameHelper</a><b>,CONSTRUCTOR</b>;
+                         <b>PROCEDURE </b><font color="#cc0033">insert</font>*(    p0 : <a href="org_omg_CORBA.html#type-Any">org_omg_CORBA.Any</a>;
+                                           IN  p1 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>);
+                         <b>PROCEDURE </b><font color="#cc0033">read</font>*(p0 : <a href="org_omg_CORBA_portable.html#type-InputStream">org_omg_CORBA_portable.InputStream</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>;
+                         <b>PROCEDURE </b><font color="#cc0033">type</font>*() : <a href="org_omg_CORBA.html#type-TypeCode">org_omg_CORBA.TypeCode</a>;
+                         <b>PROCEDURE </b><font color="#cc0033">write</font>*(    p0 : <a href="org_omg_CORBA_portable.html#type-OutputStream">org_omg_CORBA_portable.OutputStream</a>;
+                                          IN  p1 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>);
+                       <b>END</b>;
+
+  <a name="type-AdapterStateHelper"></a><font color="#cc0033">AdapterStateHelper</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                        <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                        <b>STATIC</b>
+                          <b>PROCEDURE </b><font color="#cc0033">extract</font>*(p0 : <a href="org_omg_CORBA.html#type-Any">org_omg_CORBA.Any</a>) : SHORTINT;
+                          <b>PROCEDURE </b><font color="#cc0033">id</font>*() : <a href="java_lang.html#type-String">java_lang.String</a>;
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-AdapterStateHelper">AdapterStateHelper</a><b>,CONSTRUCTOR</b>;
+                          <b>PROCEDURE </b><font color="#cc0033">insert</font>*(p0 : <a href="org_omg_CORBA.html#type-Any">org_omg_CORBA.Any</a>;
+                                            p1 : SHORTINT);
+                          <b>PROCEDURE </b><font color="#cc0033">read</font>*(p0 : <a href="org_omg_CORBA_portable.html#type-InputStream">org_omg_CORBA_portable.InputStream</a>) : SHORTINT;
+                          <b>PROCEDURE </b><font color="#cc0033">type</font>*() : <a href="org_omg_CORBA.html#type-TypeCode">org_omg_CORBA.TypeCode</a>;
+                          <b>PROCEDURE </b><font color="#cc0033">write</font>*(p0 : <a href="org_omg_CORBA_portable.html#type-OutputStream">org_omg_CORBA_portable.OutputStream</a>;
+                                           p1 : SHORTINT);
+                        <b>END</b>;
+
+  <a name="type-ClientRequestInfo"></a><font color="#cc0033">ClientRequestInfo</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <b>ClientRequestInfoOperations</b> + <b>RequestInfo</b> + <a href="org_omg_CORBA_portable.html#type-IDLEntity">org_omg_CORBA_portable.IDLEntity</a>)
+                       <b>END</b>;
+
+  <a name="type-ClientRequestInfoOperations"></a><font color="#cc0033">ClientRequestInfoOperations</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <b>RequestInfoOperations</b>)
+                                 <font color="green"><b> (* </b><a href="#meths-ClientRequestInfoOperations">Typebound Procedures</a><b> *)</b></font>
+                                 <b>END</b>;
+
+  <a name="type-ClientRequestInterceptor"></a><font color="#cc0033">ClientRequestInterceptor</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <b>ClientRequestInterceptorOperations</b> + <b>Interceptor</b> + <a href="org_omg_CORBA_portable.html#type-IDLEntity">org_omg_CORBA_portable.IDLEntity</a>)
+                              <b>END</b>;
+
+  <a name="type-ClientRequestInterceptorOperations"></a><font color="#cc0033">ClientRequestInterceptorOperations</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <b>InterceptorOperations</b>)
+                                        <font color="green"><b> (* </b><a href="#meths-ClientRequestInterceptorOperations">Typebound Procedures</a><b> *)</b></font>
+                                        <b>END</b>;
+
+  <a name="type-Current"></a><font color="#cc0033">Current</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <b>CurrentOperations</b> + <a href="org_omg_CORBA.html#type-Current">org_omg_CORBA.Current</a> + <a href="org_omg_CORBA_portable.html#type-IDLEntity">org_omg_CORBA_portable.IDLEntity</a>)
+             <b>END</b>;
+
+  <a name="type-CurrentHelper"></a><font color="#cc0033">CurrentHelper</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                   <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                   <b>STATIC</b>
+                     <b>PROCEDURE </b><font color="#cc0033">extract</font>*(p0 : <a href="org_omg_CORBA.html#type-Any">org_omg_CORBA.Any</a>) : <a href="#type-Current">Current</a>;
+                     <b>PROCEDURE </b><font color="#cc0033">id</font>*() : <a href="java_lang.html#type-String">java_lang.String</a>;
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CurrentHelper">CurrentHelper</a><b>,CONSTRUCTOR</b>;
+                     <b>PROCEDURE </b><font color="#cc0033">insert</font>*(p0 : <a href="org_omg_CORBA.html#type-Any">org_omg_CORBA.Any</a>;
+                                       p1 : <a href="#type-Current">Current</a>);
+                     <b>PROCEDURE </b><font color="#cc0033">narrow</font>*(p0 : <a href="org_omg_CORBA.html#type-Object">org_omg_CORBA.Object</a>) : <a href="#type-Current">Current</a>;
+                     <b>PROCEDURE </b><font color="#cc0033">read</font>*(p0 : <a href="org_omg_CORBA_portable.html#type-InputStream">org_omg_CORBA_portable.InputStream</a>) : <a href="#type-Current">Current</a>;
+                     <b>PROCEDURE </b><font color="#cc0033">type</font>*() : <a href="org_omg_CORBA.html#type-TypeCode">org_omg_CORBA.TypeCode</a>;
+                     <b>PROCEDURE </b><font color="#cc0033">unchecked_narrow</font>*(p0 : <a href="org_omg_CORBA.html#type-Object">org_omg_CORBA.Object</a>) : <a href="#type-Current">Current</a>;
+                     <b>PROCEDURE </b><font color="#cc0033">write</font>*(p0 : <a href="org_omg_CORBA_portable.html#type-OutputStream">org_omg_CORBA_portable.OutputStream</a>;
+                                      p1 : <a href="#type-Current">Current</a>);
+                   <b>END</b>;
+
+  <a name="type-CurrentOperations"></a><font color="#cc0033">CurrentOperations</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="org_omg_CORBA.html#type-CurrentOperations">org_omg_CORBA.CurrentOperations</a>)
+                       <font color="green"><b> (* </b><a href="#meths-CurrentOperations">Typebound Procedures</a><b> *)</b></font>
+                       <b>END</b>;
+
+  <a name="type-DISCARDING"></a><font color="#cc0033">DISCARDING</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                <b>STATIC</b>
+                  <font color="#cc0033">value</font>* = 2;
+                <b>END</b>;
+
+  <a name="type-ForwardRequest"></a><font color="#cc0033">ForwardRequest</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="org_omg_CORBA.html#type-UserException">org_omg_CORBA.UserException</a>)
+                    <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                      <font color="#cc0033">forward</font>* : <a href="org_omg_CORBA.html#type-Object">org_omg_CORBA.Object</a>;
+                    <b>STATIC</b>
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                      p1 : <a href="org_omg_CORBA.html#type-Object">org_omg_CORBA.Object</a>) : <a href="#type-ForwardRequest">ForwardRequest</a><b>,CONSTRUCTOR</b>;
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="org_omg_CORBA.html#type-Object">org_omg_CORBA.Object</a>) : <a href="#type-ForwardRequest">ForwardRequest</a><b>,CONSTRUCTOR</b>;
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-ForwardRequest">ForwardRequest</a><b>,CONSTRUCTOR</b>;
+                    <b>END</b>;
+
+  <a name="type-ForwardRequestHelper"></a><font color="#cc0033">ForwardRequestHelper</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                          <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                          <b>STATIC</b>
+                            <b>PROCEDURE </b><font color="#cc0033">extract</font>*(p0 : <a href="org_omg_CORBA.html#type-Any">org_omg_CORBA.Any</a>) : <a href="#type-ForwardRequest">ForwardRequest</a>;
+                            <b>PROCEDURE </b><font color="#cc0033">id</font>*() : <a href="java_lang.html#type-String">java_lang.String</a>;
+                            <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-ForwardRequestHelper">ForwardRequestHelper</a><b>,CONSTRUCTOR</b>;
+                            <b>PROCEDURE </b><font color="#cc0033">insert</font>*(p0 : <a href="org_omg_CORBA.html#type-Any">org_omg_CORBA.Any</a>;
+                                              p1 : <a href="#type-ForwardRequest">ForwardRequest</a>);
+                            <b>PROCEDURE </b><font color="#cc0033">read</font>*(p0 : <a href="org_omg_CORBA_portable.html#type-InputStream">org_omg_CORBA_portable.InputStream</a>) : <a href="#type-ForwardRequest">ForwardRequest</a>;
+                            <b>PROCEDURE </b><font color="#cc0033">type</font>*() : <a href="org_omg_CORBA.html#type-TypeCode">org_omg_CORBA.TypeCode</a>;
+                            <b>PROCEDURE </b><font color="#cc0033">write</font>*(p0 : <a href="org_omg_CORBA_portable.html#type-OutputStream">org_omg_CORBA_portable.OutputStream</a>;
+                                             p1 : <a href="#type-ForwardRequest">ForwardRequest</a>);
+                          <b>END</b>;
+
+  <a name="type-HOLDING"></a><font color="#cc0033">HOLDING</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+             <b>STATIC</b>
+               <font color="#cc0033">value</font>* = 0;
+             <b>END</b>;
+
+  <a name="type-INACTIVE"></a><font color="#cc0033">INACTIVE</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+              <b>STATIC</b>
+                <font color="#cc0033">value</font>* = 3;
+              <b>END</b>;
+
+  <a name="type-Interceptor"></a><font color="#cc0033">Interceptor</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <b>InterceptorOperations</b> + <a href="org_omg_CORBA.html#type-Object">org_omg_CORBA.Object</a> + <a href="org_omg_CORBA_portable.html#type-IDLEntity">org_omg_CORBA_portable.IDLEntity</a>)
+                 <b>END</b>;
+
+  <a name="type-InterceptorOperations"></a><font color="#cc0033">InterceptorOperations</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                           <font color="green"><b> (* </b><a href="#meths-InterceptorOperations">Typebound Procedures</a><b> *)</b></font>
+                           <b>END</b>;
+
+  <a name="type-InvalidSlot"></a><font color="#cc0033">InvalidSlot</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="org_omg_CORBA.html#type-UserException">org_omg_CORBA.UserException</a>)
+                 <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                 <b>STATIC</b>
+                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-InvalidSlot">InvalidSlot</a><b>,CONSTRUCTOR</b>;
+                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-InvalidSlot">InvalidSlot</a><b>,CONSTRUCTOR</b>;
+                 <b>END</b>;
+
+  <a name="type-InvalidSlotHelper"></a><font color="#cc0033">InvalidSlotHelper</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                       <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                       <b>STATIC</b>
+                         <b>PROCEDURE </b><font color="#cc0033">extract</font>*(p0 : <a href="org_omg_CORBA.html#type-Any">org_omg_CORBA.Any</a>) : <a href="#type-InvalidSlot">InvalidSlot</a>;
+                         <b>PROCEDURE </b><font color="#cc0033">id</font>*() : <a href="java_lang.html#type-String">java_lang.String</a>;
+                         <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-InvalidSlotHelper">InvalidSlotHelper</a><b>,CONSTRUCTOR</b>;
+                         <b>PROCEDURE </b><font color="#cc0033">insert</font>*(p0 : <a href="org_omg_CORBA.html#type-Any">org_omg_CORBA.Any</a>;
+                                           p1 : <a href="#type-InvalidSlot">InvalidSlot</a>);
+                         <b>PROCEDURE </b><font color="#cc0033">read</font>*(p0 : <a href="org_omg_CORBA_portable.html#type-InputStream">org_omg_CORBA_portable.InputStream</a>) : <a href="#type-InvalidSlot">InvalidSlot</a>;
+                         <b>PROCEDURE </b><font color="#cc0033">type</font>*() : <a href="org_omg_CORBA.html#type-TypeCode">org_omg_CORBA.TypeCode</a>;
+                         <b>PROCEDURE </b><font color="#cc0033">write</font>*(p0 : <a href="org_omg_CORBA_portable.html#type-OutputStream">org_omg_CORBA_portable.OutputStream</a>;
+                                          p1 : <a href="#type-InvalidSlot">InvalidSlot</a>);
+                       <b>END</b>;
+
+  <a name="type-IORInfo"></a><font color="#cc0033">IORInfo</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <b>IORInfoOperations</b> + <a href="org_omg_CORBA.html#type-Object">org_omg_CORBA.Object</a> + <a href="org_omg_CORBA_portable.html#type-IDLEntity">org_omg_CORBA_portable.IDLEntity</a>)
+             <b>END</b>;
+
+  <a name="type-IORInfoOperations"></a><font color="#cc0033">IORInfoOperations</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                       <font color="green"><b> (* </b><a href="#meths-IORInfoOperations">Typebound Procedures</a><b> *)</b></font>
+                       <b>END</b>;
+
+  <a name="type-IORInterceptor"></a><font color="#cc0033">IORInterceptor</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <b>IORInterceptorOperations</b> + <b>Interceptor</b> + <a href="org_omg_CORBA_portable.html#type-IDLEntity">org_omg_CORBA_portable.IDLEntity</a>)
+                    <b>END</b>;
+
+  <a name="type-IORInterceptorOperations"></a><font color="#cc0033">IORInterceptorOperations</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <b>InterceptorOperations</b>)
+                              <font color="green"><b> (* </b><a href="#meths-IORInterceptorOperations">Typebound Procedures</a><b> *)</b></font>
+                              <b>END</b>;
+
+  <a name="type-IORInterceptor_3_0"></a><font color="#cc0033">IORInterceptor_3_0</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <b>IORInterceptor_3_0Operations</b> + <a href="#type-IORInterceptor">IORInterceptor</a> + <a href="org_omg_CORBA_portable.html#type-IDLEntity">org_omg_CORBA_portable.IDLEntity</a>)
+                        <b>END</b>;
+
+  <a name="type-IORInterceptor_3_0Helper"></a><font color="#cc0033">IORInterceptor_3_0Helper</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                              <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                              <b>STATIC</b>
+                                <b>PROCEDURE </b><font color="#cc0033">extract</font>*(p0 : <a href="org_omg_CORBA.html#type-Any">org_omg_CORBA.Any</a>) : <a href="#type-IORInterceptor_3_0">IORInterceptor_3_0</a>;
+                                <b>PROCEDURE </b><font color="#cc0033">id</font>*() : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-IORInterceptor_3_0Helper">IORInterceptor_3_0Helper</a><b>,CONSTRUCTOR</b>;
+                                <b>PROCEDURE </b><font color="#cc0033">insert</font>*(p0 : <a href="org_omg_CORBA.html#type-Any">org_omg_CORBA.Any</a>;
+                                                  p1 : <a href="#type-IORInterceptor_3_0">IORInterceptor_3_0</a>);
+                                <b>PROCEDURE </b><font color="#cc0033">narrow</font>*(p0 : <a href="org_omg_CORBA.html#type-Object">org_omg_CORBA.Object</a>) : <a href="#type-IORInterceptor_3_0">IORInterceptor_3_0</a>;
+                                <b>PROCEDURE </b><font color="#cc0033">read</font>*(p0 : <a href="org_omg_CORBA_portable.html#type-InputStream">org_omg_CORBA_portable.InputStream</a>) : <a href="#type-IORInterceptor_3_0">IORInterceptor_3_0</a>;
+                                <b>PROCEDURE </b><font color="#cc0033">type</font>*() : <a href="org_omg_CORBA.html#type-TypeCode">org_omg_CORBA.TypeCode</a>;
+                                <b>PROCEDURE </b><font color="#cc0033">unchecked_narrow</font>*(p0 : <a href="org_omg_CORBA.html#type-Object">org_omg_CORBA.Object</a>) : <a href="#type-IORInterceptor_3_0">IORInterceptor_3_0</a>;
+                                <b>PROCEDURE </b><font color="#cc0033">write</font>*(p0 : <a href="org_omg_CORBA_portable.html#type-OutputStream">org_omg_CORBA_portable.OutputStream</a>;
+                                                 p1 : <a href="#type-IORInterceptor_3_0">IORInterceptor_3_0</a>);
+                              <b>END</b>;
+
+  <a name="type-IORInterceptor_3_0Holder"></a><font color="#cc0033">IORInterceptor_3_0Holder</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="org_omg_CORBA_portable.html#type-Streamable">org_omg_CORBA_portable.Streamable</a>)
+                              <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                              <font color="green"><b> (* </b><a href="#meths-IORInterceptor_3_0Holder">Typebound Procedures</a><b> *)</b></font>
+                                <font color="#cc0033">value</font>* : <a href="#type-IORInterceptor_3_0">IORInterceptor_3_0</a>;
+                              <b>STATIC</b>
+                                <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="#type-IORInterceptor_3_0">IORInterceptor_3_0</a>) : <a href="#type-IORInterceptor_3_0Holder">IORInterceptor_3_0Holder</a><b>,CONSTRUCTOR</b>;
+                                <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-IORInterceptor_3_0Holder">IORInterceptor_3_0Holder</a><b>,CONSTRUCTOR</b>;
+                              <b>END</b>;
+
+  <a name="type-IORInterceptor_3_0Operations"></a><font color="#cc0033">IORInterceptor_3_0Operations</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-IORInterceptorOperations">IORInterceptorOperations</a>)
+                                  <font color="green"><b> (* </b><a href="#meths-IORInterceptor_3_0Operations">Typebound Procedures</a><b> *)</b></font>
+                                  <b>END</b>;
+
+  <a name="type-LOCATION_FORWARD"></a><font color="#cc0033">LOCATION_FORWARD</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                      <b>STATIC</b>
+                        <font color="#cc0033">value</font>* = 3;
+                      <b>END</b>;
+
+  <a name="type-NON_EXISTENT"></a><font color="#cc0033">NON_EXISTENT</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                  <b>STATIC</b>
+                    <font color="#cc0033">value</font>* = 4;
+                  <b>END</b>;
+
+  <a name="type-ObjectIdHelper"></a><font color="#cc0033">ObjectIdHelper</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                    <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                    <b>STATIC</b>
+                      <b>PROCEDURE </b><font color="#cc0033">extract</font>*(p0 : <a href="org_omg_CORBA.html#type-Any">org_omg_CORBA.Any</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE;
+                      <b>PROCEDURE </b><font color="#cc0033">id</font>*() : <a href="java_lang.html#type-String">java_lang.String</a>;
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-ObjectIdHelper">ObjectIdHelper</a><b>,CONSTRUCTOR</b>;
+                      <b>PROCEDURE </b><font color="#cc0033">insert</font>*(    p0 : <a href="org_omg_CORBA.html#type-Any">org_omg_CORBA.Any</a>;
+                                        IN  p1 : <b>ARRAY </b><b>OF </b>BYTE);
+                      <b>PROCEDURE </b><font color="#cc0033">read</font>*(p0 : <a href="org_omg_CORBA_portable.html#type-InputStream">org_omg_CORBA_portable.InputStream</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE;
+                      <b>PROCEDURE </b><font color="#cc0033">type</font>*() : <a href="org_omg_CORBA.html#type-TypeCode">org_omg_CORBA.TypeCode</a>;
+                      <b>PROCEDURE </b><font color="#cc0033">write</font>*(    p0 : <a href="org_omg_CORBA_portable.html#type-OutputStream">org_omg_CORBA_portable.OutputStream</a>;
+                                       IN  p1 : <b>ARRAY </b><b>OF </b>BYTE);
+                    <b>END</b>;
+
+  <a name="type-ObjectReferenceFactory"></a><font color="#cc0033">ObjectReferenceFactory</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="org_omg_CORBA_portable.html#type-ValueBase">org_omg_CORBA_portable.ValueBase</a>)
+                            <font color="green"><b> (* </b><a href="#meths-ObjectReferenceFactory">Typebound Procedures</a><b> *)</b></font>
+                            <b>END</b>;
+
+  <a name="type-ObjectReferenceFactoryHelper"></a><font color="#cc0033">ObjectReferenceFactoryHelper</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                                  <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                                  <b>STATIC</b>
+                                    <b>PROCEDURE </b><font color="#cc0033">extract</font>*(p0 : <a href="org_omg_CORBA.html#type-Any">org_omg_CORBA.Any</a>) : <a href="#type-ObjectReferenceFactory">ObjectReferenceFactory</a>;
+                                    <b>PROCEDURE </b><font color="#cc0033">id</font>*() : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-ObjectReferenceFactoryHelper">ObjectReferenceFactoryHelper</a><b>,CONSTRUCTOR</b>;
+                                    <b>PROCEDURE </b><font color="#cc0033">insert</font>*(p0 : <a href="org_omg_CORBA.html#type-Any">org_omg_CORBA.Any</a>;
+                                                      p1 : <a href="#type-ObjectReferenceFactory">ObjectReferenceFactory</a>);
+                                    <b>PROCEDURE </b><font color="#cc0033">read</font>*(p0 : <a href="org_omg_CORBA_portable.html#type-InputStream">org_omg_CORBA_portable.InputStream</a>) : <a href="#type-ObjectReferenceFactory">ObjectReferenceFactory</a>;
+                                    <b>PROCEDURE </b><font color="#cc0033">type</font>*() : <a href="org_omg_CORBA.html#type-TypeCode">org_omg_CORBA.TypeCode</a>;
+                                    <b>PROCEDURE </b><font color="#cc0033">write</font>*(p0 : <a href="org_omg_CORBA_portable.html#type-OutputStream">org_omg_CORBA_portable.OutputStream</a>;
+                                                     p1 : <a href="#type-ObjectReferenceFactory">ObjectReferenceFactory</a>);
+                                  <b>END</b>;
+
+  <a name="type-ObjectReferenceFactoryHolder"></a><font color="#cc0033">ObjectReferenceFactoryHolder</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="org_omg_CORBA_portable.html#type-Streamable">org_omg_CORBA_portable.Streamable</a>)
+                                  <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                                  <font color="green"><b> (* </b><a href="#meths-ObjectReferenceFactoryHolder">Typebound Procedures</a><b> *)</b></font>
+                                    <font color="#cc0033">value</font>* : <a href="#type-ObjectReferenceFactory">ObjectReferenceFactory</a>;
+                                  <b>STATIC</b>
+                                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="#type-ObjectReferenceFactory">ObjectReferenceFactory</a>) : <a href="#type-ObjectReferenceFactoryHolder">ObjectReferenceFactoryHolder</a><b>,CONSTRUCTOR</b>;
+                                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-ObjectReferenceFactoryHolder">ObjectReferenceFactoryHolder</a><b>,CONSTRUCTOR</b>;
+                                  <b>END</b>;
+
+  <a name="type-ObjectReferenceTemplate"></a><font color="#cc0033">ObjectReferenceTemplate</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-ObjectReferenceFactory">ObjectReferenceFactory</a>)
+                             <font color="green"><b> (* </b><a href="#meths-ObjectReferenceTemplate">Typebound Procedures</a><b> *)</b></font>
+                             <b>END</b>;
+
+  <a name="type-ObjectReferenceTemplateHelper"></a><font color="#cc0033">ObjectReferenceTemplateHelper</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                                   <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                                   <b>STATIC</b>
+                                     <b>PROCEDURE </b><font color="#cc0033">extract</font>*(p0 : <a href="org_omg_CORBA.html#type-Any">org_omg_CORBA.Any</a>) : <a href="#type-ObjectReferenceTemplate">ObjectReferenceTemplate</a>;
+                                     <b>PROCEDURE </b><font color="#cc0033">id</font>*() : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-ObjectReferenceTemplateHelper">ObjectReferenceTemplateHelper</a><b>,CONSTRUCTOR</b>;
+                                     <b>PROCEDURE </b><font color="#cc0033">insert</font>*(p0 : <a href="org_omg_CORBA.html#type-Any">org_omg_CORBA.Any</a>;
+                                                       p1 : <a href="#type-ObjectReferenceTemplate">ObjectReferenceTemplate</a>);
+                                     <b>PROCEDURE </b><font color="#cc0033">read</font>*(p0 : <a href="org_omg_CORBA_portable.html#type-InputStream">org_omg_CORBA_portable.InputStream</a>) : <a href="#type-ObjectReferenceTemplate">ObjectReferenceTemplate</a>;
+                                     <b>PROCEDURE </b><font color="#cc0033">type</font>*() : <a href="org_omg_CORBA.html#type-TypeCode">org_omg_CORBA.TypeCode</a>;
+                                     <b>PROCEDURE </b><font color="#cc0033">write</font>*(p0 : <a href="org_omg_CORBA_portable.html#type-OutputStream">org_omg_CORBA_portable.OutputStream</a>;
+                                                      p1 : <a href="#type-ObjectReferenceTemplate">ObjectReferenceTemplate</a>);
+                                   <b>END</b>;
+
+  <a name="type-ObjectReferenceTemplateHolder"></a><font color="#cc0033">ObjectReferenceTemplateHolder</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="org_omg_CORBA_portable.html#type-Streamable">org_omg_CORBA_portable.Streamable</a>)
+                                   <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                                   <font color="green"><b> (* </b><a href="#meths-ObjectReferenceTemplateHolder">Typebound Procedures</a><b> *)</b></font>
+                                     <font color="#cc0033">value</font>* : <a href="#type-ObjectReferenceTemplate">ObjectReferenceTemplate</a>;
+                                   <b>STATIC</b>
+                                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="#type-ObjectReferenceTemplate">ObjectReferenceTemplate</a>) : <a href="#type-ObjectReferenceTemplateHolder">ObjectReferenceTemplateHolder</a><b>,CONSTRUCTOR</b>;
+                                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-ObjectReferenceTemplateHolder">ObjectReferenceTemplateHolder</a><b>,CONSTRUCTOR</b>;
+                                   <b>END</b>;
+
+  <a name="type-ObjectReferenceTemplateSeqHelper"></a><font color="#cc0033">ObjectReferenceTemplateSeqHelper</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                                      <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                                      <b>STATIC</b>
+                                        <b>PROCEDURE </b><font color="#cc0033">extract</font>*(p0 : <a href="org_omg_CORBA.html#type-Any">org_omg_CORBA.Any</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-ObjectReferenceTemplate">ObjectReferenceTemplate</a>;
+                                        <b>PROCEDURE </b><font color="#cc0033">id</font>*() : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                        <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-ObjectReferenceTemplateSeqHelper">ObjectReferenceTemplateSeqHelper</a><b>,CONSTRUCTOR</b>;
+                                        <b>PROCEDURE </b><font color="#cc0033">insert</font>*(    p0 : <a href="org_omg_CORBA.html#type-Any">org_omg_CORBA.Any</a>;
+                                                          IN  p1 : <b>ARRAY </b><b>OF </b><a href="#type-ObjectReferenceTemplate">ObjectReferenceTemplate</a>);
+                                        <b>PROCEDURE </b><font color="#cc0033">read</font>*(p0 : <a href="org_omg_CORBA_portable.html#type-InputStream">org_omg_CORBA_portable.InputStream</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-ObjectReferenceTemplate">ObjectReferenceTemplate</a>;
+                                        <b>PROCEDURE </b><font color="#cc0033">type</font>*() : <a href="org_omg_CORBA.html#type-TypeCode">org_omg_CORBA.TypeCode</a>;
+                                        <b>PROCEDURE </b><font color="#cc0033">write</font>*(    p0 : <a href="org_omg_CORBA_portable.html#type-OutputStream">org_omg_CORBA_portable.OutputStream</a>;
+                                                         IN  p1 : <b>ARRAY </b><b>OF </b><a href="#type-ObjectReferenceTemplate">ObjectReferenceTemplate</a>);
+                                      <b>END</b>;
+
+  <a name="type-ObjectReferenceTemplateSeqHolder"></a><font color="#cc0033">ObjectReferenceTemplateSeqHolder</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="org_omg_CORBA_portable.html#type-Streamable">org_omg_CORBA_portable.Streamable</a>)
+                                      <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                                      <font color="green"><b> (* </b><a href="#meths-ObjectReferenceTemplateSeqHolder">Typebound Procedures</a><b> *)</b></font>
+                                        <font color="#cc0033">value</font>* : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-ObjectReferenceTemplate">ObjectReferenceTemplate</a>;
+                                      <b>STATIC</b>
+                                        <b>PROCEDURE </b><font color="#cc0033">Init</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="#type-ObjectReferenceTemplate">ObjectReferenceTemplate</a>) : <a href="#type-ObjectReferenceTemplateSeqHolder">ObjectReferenceTemplateSeqHolder</a><b>,CONSTRUCTOR</b>;
+                                        <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-ObjectReferenceTemplateSeqHolder">ObjectReferenceTemplateSeqHolder</a><b>,CONSTRUCTOR</b>;
+                                      <b>END</b>;
+
+  <a name="type-ORBIdHelper"></a><font color="#cc0033">ORBIdHelper</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                 <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                 <b>STATIC</b>
+                   <b>PROCEDURE </b><font color="#cc0033">extract</font>*(p0 : <a href="org_omg_CORBA.html#type-Any">org_omg_CORBA.Any</a>) : <a href="java_lang.html#type-String">java_lang.String</a>;
+                   <b>PROCEDURE </b><font color="#cc0033">id</font>*() : <a href="java_lang.html#type-String">java_lang.String</a>;
+                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-ORBIdHelper">ORBIdHelper</a><b>,CONSTRUCTOR</b>;
+                   <b>PROCEDURE </b><font color="#cc0033">insert</font>*(p0 : <a href="org_omg_CORBA.html#type-Any">org_omg_CORBA.Any</a>;
+                                     p1 : <a href="java_lang.html#type-String">java_lang.String</a>);
+                   <b>PROCEDURE </b><font color="#cc0033">read</font>*(p0 : <a href="org_omg_CORBA_portable.html#type-InputStream">org_omg_CORBA_portable.InputStream</a>) : <a href="java_lang.html#type-String">java_lang.String</a>;
+                   <b>PROCEDURE </b><font color="#cc0033">type</font>*() : <a href="org_omg_CORBA.html#type-TypeCode">org_omg_CORBA.TypeCode</a>;
+                   <b>PROCEDURE </b><font color="#cc0033">write</font>*(p0 : <a href="org_omg_CORBA_portable.html#type-OutputStream">org_omg_CORBA_portable.OutputStream</a>;
+                                    p1 : <a href="java_lang.html#type-String">java_lang.String</a>);
+                 <b>END</b>;
+
+  <a name="type-ORBInitializer"></a><font color="#cc0033">ORBInitializer</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <b>ORBInitializerOperations</b> + <a href="org_omg_CORBA.html#type-Object">org_omg_CORBA.Object</a> + <a href="org_omg_CORBA_portable.html#type-IDLEntity">org_omg_CORBA_portable.IDLEntity</a>)
+                    <b>END</b>;
+
+  <a name="type-ORBInitializerOperations"></a><font color="#cc0033">ORBInitializerOperations</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                              <font color="green"><b> (* </b><a href="#meths-ORBInitializerOperations">Typebound Procedures</a><b> *)</b></font>
+                              <b>END</b>;
+
+  <a name="type-ORBInitInfo"></a><font color="#cc0033">ORBInitInfo</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <b>ORBInitInfoOperations</b> + <a href="org_omg_CORBA.html#type-Object">org_omg_CORBA.Object</a> + <a href="org_omg_CORBA_portable.html#type-IDLEntity">org_omg_CORBA_portable.IDLEntity</a>)
+                 <b>END</b>;
+
+  <a name="type-ORBInitInfoOperations"></a><font color="#cc0033">ORBInitInfoOperations</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                           <font color="green"><b> (* </b><a href="#meths-ORBInitInfoOperations">Typebound Procedures</a><b> *)</b></font>
+                           <b>END</b>;
+
+  <a name="type-PolicyFactory"></a><font color="#cc0033">PolicyFactory</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <b>PolicyFactoryOperations</b> + <a href="org_omg_CORBA.html#type-Object">org_omg_CORBA.Object</a> + <a href="org_omg_CORBA_portable.html#type-IDLEntity">org_omg_CORBA_portable.IDLEntity</a>)
+                   <b>END</b>;
+
+  <a name="type-PolicyFactoryOperations"></a><font color="#cc0033">PolicyFactoryOperations</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                             <font color="green"><b> (* </b><a href="#meths-PolicyFactoryOperations">Typebound Procedures</a><b> *)</b></font>
+                             <b>END</b>;
+
+  <a name="type-RequestInfo"></a><font color="#cc0033">RequestInfo</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <b>RequestInfoOperations</b> + <a href="org_omg_CORBA.html#type-Object">org_omg_CORBA.Object</a> + <a href="org_omg_CORBA_portable.html#type-IDLEntity">org_omg_CORBA_portable.IDLEntity</a>)
+                 <b>END</b>;
+
+  <a name="type-RequestInfoOperations"></a><font color="#cc0033">RequestInfoOperations</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                           <font color="green"><b> (* </b><a href="#meths-RequestInfoOperations">Typebound Procedures</a><b> *)</b></font>
+                           <b>END</b>;
+
+  <a name="type-ServerIdHelper"></a><font color="#cc0033">ServerIdHelper</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                    <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                    <b>STATIC</b>
+                      <b>PROCEDURE </b><font color="#cc0033">extract</font>*(p0 : <a href="org_omg_CORBA.html#type-Any">org_omg_CORBA.Any</a>) : <a href="java_lang.html#type-String">java_lang.String</a>;
+                      <b>PROCEDURE </b><font color="#cc0033">id</font>*() : <a href="java_lang.html#type-String">java_lang.String</a>;
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-ServerIdHelper">ServerIdHelper</a><b>,CONSTRUCTOR</b>;
+                      <b>PROCEDURE </b><font color="#cc0033">insert</font>*(p0 : <a href="org_omg_CORBA.html#type-Any">org_omg_CORBA.Any</a>;
+                                        p1 : <a href="java_lang.html#type-String">java_lang.String</a>);
+                      <b>PROCEDURE </b><font color="#cc0033">read</font>*(p0 : <a href="org_omg_CORBA_portable.html#type-InputStream">org_omg_CORBA_portable.InputStream</a>) : <a href="java_lang.html#type-String">java_lang.String</a>;
+                      <b>PROCEDURE </b><font color="#cc0033">type</font>*() : <a href="org_omg_CORBA.html#type-TypeCode">org_omg_CORBA.TypeCode</a>;
+                      <b>PROCEDURE </b><font color="#cc0033">write</font>*(p0 : <a href="org_omg_CORBA_portable.html#type-OutputStream">org_omg_CORBA_portable.OutputStream</a>;
+                                       p1 : <a href="java_lang.html#type-String">java_lang.String</a>);
+                    <b>END</b>;
+
+  <a name="type-ServerRequestInfo"></a><font color="#cc0033">ServerRequestInfo</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <b>ServerRequestInfoOperations</b> + <a href="#type-RequestInfo">RequestInfo</a> + <a href="org_omg_CORBA_portable.html#type-IDLEntity">org_omg_CORBA_portable.IDLEntity</a>)
+                       <b>END</b>;
+
+  <a name="type-ServerRequestInfoOperations"></a><font color="#cc0033">ServerRequestInfoOperations</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-RequestInfoOperations">RequestInfoOperations</a>)
+                                 <font color="green"><b> (* </b><a href="#meths-ServerRequestInfoOperations">Typebound Procedures</a><b> *)</b></font>
+                                 <b>END</b>;
+
+  <a name="type-ServerRequestInterceptor"></a><font color="#cc0033">ServerRequestInterceptor</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <b>ServerRequestInterceptorOperations</b> + <a href="#type-Interceptor">Interceptor</a> + <a href="org_omg_CORBA_portable.html#type-IDLEntity">org_omg_CORBA_portable.IDLEntity</a>)
+                              <b>END</b>;
+
+  <a name="type-ServerRequestInterceptorOperations"></a><font color="#cc0033">ServerRequestInterceptorOperations</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-InterceptorOperations">InterceptorOperations</a>)
+                                        <font color="green"><b> (* </b><a href="#meths-ServerRequestInterceptorOperations">Typebound Procedures</a><b> *)</b></font>
+                                        <b>END</b>;
+
+  <a name="type-SUCCESSFUL"></a><font color="#cc0033">SUCCESSFUL</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                <b>STATIC</b>
+                  <font color="#cc0033">value</font>* = 0;
+                <b>END</b>;
+
+  <a name="type-SYSTEM_EXCEPTION"></a><font color="#cc0033">SYSTEM_EXCEPTION</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                      <b>STATIC</b>
+                        <font color="#cc0033">value</font>* = 1;
+                      <b>END</b>;
+
+  <a name="type-TRANSPORT_RETRY"></a><font color="#cc0033">TRANSPORT_RETRY</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                     <b>STATIC</b>
+                       <font color="#cc0033">value</font>* = 4;
+                     <b>END</b>;
+
+  <a name="type-USER_EXCEPTION"></a><font color="#cc0033">USER_EXCEPTION</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                    <b>STATIC</b>
+                      <font color="#cc0033">value</font>* = 2;
+                    <b>END</b>;
+
+
+
+<a name="meths-ClientRequestInfoOperations"></a>
+<b>PROCEDURE </b>(self:ClientRequestInfoOperations) <font color="#cc0033">add_request_service_context</font>*(p0 : <a href="org_omg_IOP.html#type-ServiceContext">org_omg_IOP.ServiceContext</a>;
+                                                                          p1 : BOOLEAN)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ClientRequestInfoOperations) <font color="#cc0033">effective_profile</font>*() : <a href="org_omg_IOP.html#type-TaggedProfile">org_omg_IOP.TaggedProfile</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ClientRequestInfoOperations) <font color="#cc0033">effective_target</font>*() : <a href="org_omg_CORBA.html#type-Object">org_omg_CORBA.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ClientRequestInfoOperations) <font color="#cc0033">get_effective_component</font>*(p0 : INTEGER) : <a href="org_omg_IOP.html#type-TaggedComponent">org_omg_IOP.TaggedComponent</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ClientRequestInfoOperations) <font color="#cc0033">get_effective_components</font>*(p0 : INTEGER) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="org_omg_IOP.html#type-TaggedComponent">org_omg_IOP.TaggedComponent</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ClientRequestInfoOperations) <font color="#cc0033">get_request_policy</font>*(p0 : INTEGER) : <a href="org_omg_CORBA.html#type-Policy">org_omg_CORBA.Policy</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ClientRequestInfoOperations) <font color="#cc0033">received_exception</font>*() : <a href="org_omg_CORBA.html#type-Any">org_omg_CORBA.Any</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ClientRequestInfoOperations) <font color="#cc0033">received_exception_id</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ClientRequestInfoOperations) <font color="#cc0033">target</font>*() : <a href="org_omg_CORBA.html#type-Object">org_omg_CORBA.Object</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-ClientRequestInterceptorOperations"></a>
+<b>PROCEDURE </b>(self:ClientRequestInterceptorOperations) <font color="#cc0033">receive_exception</font>*(p0 : <a href="#type-ClientRequestInfo">ClientRequestInfo</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ClientRequestInterceptorOperations) <font color="#cc0033">receive_other</font>*(p0 : <a href="#type-ClientRequestInfo">ClientRequestInfo</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ClientRequestInterceptorOperations) <font color="#cc0033">receive_reply</font>*(p0 : <a href="#type-ClientRequestInfo">ClientRequestInfo</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ClientRequestInterceptorOperations) <font color="#cc0033">send_poll</font>*(p0 : <a href="#type-ClientRequestInfo">ClientRequestInfo</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ClientRequestInterceptorOperations) <font color="#cc0033">send_request</font>*(p0 : <a href="#type-ClientRequestInfo">ClientRequestInfo</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-CurrentOperations"></a>
+<b>PROCEDURE </b>(self:CurrentOperations) <font color="#cc0033">get_slot</font>*(p0 : INTEGER) : <a href="org_omg_CORBA.html#type-Any">org_omg_CORBA.Any</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CurrentOperations) <font color="#cc0033">set_slot</font>*(p0 : INTEGER;
+                                             p1 : <a href="org_omg_CORBA.html#type-Any">org_omg_CORBA.Any</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-InterceptorOperations"></a>
+<b>PROCEDURE </b>(self:InterceptorOperations) <font color="#cc0033">destroy</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:InterceptorOperations) <font color="#cc0033">name</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-IORInfoOperations"></a>
+<b>PROCEDURE </b>(self:IORInfoOperations) <font color="#cc0033">adapter_template</font>*() : <b>ObjectReferenceTemplate</b><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:IORInfoOperations) <font color="#cc0033">add_ior_component</font>*(p0 : <a href="org_omg_IOP.html#type-TaggedComponent">org_omg_IOP.TaggedComponent</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:IORInfoOperations) <font color="#cc0033">add_ior_component_to_profile</font>*(p0 : <a href="org_omg_IOP.html#type-TaggedComponent">org_omg_IOP.TaggedComponent</a>;
+                                                                 p1 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:IORInfoOperations) <font color="#cc0033">current_factory</font>*() : <b>ObjectReferenceFactory</b><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:IORInfoOperations) <font color="#cc0033">current_factory</font>*(p0 : <b>ObjectReferenceFactory</b>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:IORInfoOperations) <font color="#cc0033">get_effective_policy</font>*(p0 : INTEGER) : <a href="org_omg_CORBA.html#type-Policy">org_omg_CORBA.Policy</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:IORInfoOperations) <font color="#cc0033">manager_id</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:IORInfoOperations) <font color="#cc0033">state</font>*() : SHORTINT<b>,NEW,ABSTRACT</b>;
+<a name="meths-IORInterceptorOperations"></a>
+<b>PROCEDURE </b>(self:IORInterceptorOperations) <font color="#cc0033">establish_components</font>*(p0 : <a href="#type-IORInfo">IORInfo</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-IORInterceptor_3_0Holder"></a>
+<b>PROCEDURE </b>(self:IORInterceptor_3_0Holder) <font color="#cc0033">_read</font>*(p0 : <a href="org_omg_CORBA_portable.html#type-InputStream">org_omg_CORBA_portable.InputStream</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IORInterceptor_3_0Holder) <font color="#cc0033">_type</font>*() : <a href="org_omg_CORBA.html#type-TypeCode">org_omg_CORBA.TypeCode</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IORInterceptor_3_0Holder) <font color="#cc0033">_write</font>*(p0 : <a href="org_omg_CORBA_portable.html#type-OutputStream">org_omg_CORBA_portable.OutputStream</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-IORInterceptor_3_0Operations"></a>
+<b>PROCEDURE </b>(self:IORInterceptor_3_0Operations) <font color="#cc0033">adapter_manager_state_changed</font>*(p0 : INTEGER;
+                                                                             p1 : SHORTINT)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:IORInterceptor_3_0Operations) <font color="#cc0033">adapter_state_changed</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><b>ObjectReferenceTemplate</b>;
+                                                                         p1 : SHORTINT)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:IORInterceptor_3_0Operations) <font color="#cc0033">components_established</font>*(p0 : <a href="#type-IORInfo">IORInfo</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-ObjectReferenceFactory"></a>
+<b>PROCEDURE </b>(self:ObjectReferenceFactory) <font color="#cc0033">make_object</font>*(    p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                     IN  p1 : <b>ARRAY </b><b>OF </b>BYTE) : <a href="org_omg_CORBA.html#type-Object">org_omg_CORBA.Object</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-ObjectReferenceFactoryHolder"></a>
+<b>PROCEDURE </b>(self:ObjectReferenceFactoryHolder) <font color="#cc0033">_read</font>*(p0 : <a href="org_omg_CORBA_portable.html#type-InputStream">org_omg_CORBA_portable.InputStream</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ObjectReferenceFactoryHolder) <font color="#cc0033">_type</font>*() : <a href="org_omg_CORBA.html#type-TypeCode">org_omg_CORBA.TypeCode</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ObjectReferenceFactoryHolder) <font color="#cc0033">_write</font>*(p0 : <a href="org_omg_CORBA_portable.html#type-OutputStream">org_omg_CORBA_portable.OutputStream</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-ObjectReferenceTemplate"></a>
+<b>PROCEDURE </b>(self:ObjectReferenceTemplate) <font color="#cc0033">adapter_name</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ObjectReferenceTemplate) <font color="#cc0033">orb_id</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ObjectReferenceTemplate) <font color="#cc0033">server_id</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-ObjectReferenceTemplateHolder"></a>
+<b>PROCEDURE </b>(self:ObjectReferenceTemplateHolder) <font color="#cc0033">_read</font>*(p0 : <a href="org_omg_CORBA_portable.html#type-InputStream">org_omg_CORBA_portable.InputStream</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ObjectReferenceTemplateHolder) <font color="#cc0033">_type</font>*() : <a href="org_omg_CORBA.html#type-TypeCode">org_omg_CORBA.TypeCode</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ObjectReferenceTemplateHolder) <font color="#cc0033">_write</font>*(p0 : <a href="org_omg_CORBA_portable.html#type-OutputStream">org_omg_CORBA_portable.OutputStream</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-ObjectReferenceTemplateSeqHolder"></a>
+<b>PROCEDURE </b>(self:ObjectReferenceTemplateSeqHolder) <font color="#cc0033">_read</font>*(p0 : <a href="org_omg_CORBA_portable.html#type-InputStream">org_omg_CORBA_portable.InputStream</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ObjectReferenceTemplateSeqHolder) <font color="#cc0033">_type</font>*() : <a href="org_omg_CORBA.html#type-TypeCode">org_omg_CORBA.TypeCode</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ObjectReferenceTemplateSeqHolder) <font color="#cc0033">_write</font>*(p0 : <a href="org_omg_CORBA_portable.html#type-OutputStream">org_omg_CORBA_portable.OutputStream</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-ORBInitializerOperations"></a>
+<b>PROCEDURE </b>(self:ORBInitializerOperations) <font color="#cc0033">post_init</font>*(p0 : <a href="#type-ORBInitInfo">ORBInitInfo</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ORBInitializerOperations) <font color="#cc0033">pre_init</font>*(p0 : <a href="#type-ORBInitInfo">ORBInitInfo</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-ORBInitInfoOperations"></a>
+<b>PROCEDURE </b>(self:ORBInitInfoOperations) <font color="#cc0033">add_client_request_interceptor</font>*(p0 : <a href="#type-ClientRequestInterceptor">ClientRequestInterceptor</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ORBInitInfoOperations) <font color="#cc0033">add_ior_interceptor</font>*(p0 : <a href="#type-IORInterceptor">IORInterceptor</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ORBInitInfoOperations) <font color="#cc0033">add_server_request_interceptor</font>*(p0 : <b>ServerRequestInterceptor</b>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ORBInitInfoOperations) <font color="#cc0033">allocate_slot_id</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ORBInitInfoOperations) <font color="#cc0033">arguments</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ORBInitInfoOperations) <font color="#cc0033">codec_factory</font>*() : <a href="org_omg_IOP.html#type-CodecFactory">org_omg_IOP.CodecFactory</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ORBInitInfoOperations) <font color="#cc0033">orb_id</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ORBInitInfoOperations) <font color="#cc0033">register_initial_reference</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                                   p1 : <a href="org_omg_CORBA.html#type-Object">org_omg_CORBA.Object</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ORBInitInfoOperations) <font color="#cc0033">register_policy_factory</font>*(p0 : INTEGER;
+                                                                p1 : <b>PolicyFactory</b>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ORBInitInfoOperations) <font color="#cc0033">resolve_initial_references</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="org_omg_CORBA.html#type-Object">org_omg_CORBA.Object</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-PolicyFactoryOperations"></a>
+<b>PROCEDURE </b>(self:PolicyFactoryOperations) <font color="#cc0033">create_policy</font>*(p0 : INTEGER;
+                                                        p1 : <a href="org_omg_CORBA.html#type-Any">org_omg_CORBA.Any</a>) : <a href="org_omg_CORBA.html#type-Policy">org_omg_CORBA.Policy</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-RequestInfoOperations"></a>
+<b>PROCEDURE </b>(self:RequestInfoOperations) <font color="#cc0033">arguments</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="org_omg_Dynamic.html#type-Parameter">org_omg_Dynamic.Parameter</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RequestInfoOperations) <font color="#cc0033">contexts</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RequestInfoOperations) <font color="#cc0033">exceptions</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="org_omg_CORBA.html#type-TypeCode">org_omg_CORBA.TypeCode</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RequestInfoOperations) <font color="#cc0033">forward_reference</font>*() : <a href="org_omg_CORBA.html#type-Object">org_omg_CORBA.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RequestInfoOperations) <font color="#cc0033">get_reply_service_context</font>*(p0 : INTEGER) : <a href="org_omg_IOP.html#type-ServiceContext">org_omg_IOP.ServiceContext</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RequestInfoOperations) <font color="#cc0033">get_request_service_context</font>*(p0 : INTEGER) : <a href="org_omg_IOP.html#type-ServiceContext">org_omg_IOP.ServiceContext</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RequestInfoOperations) <font color="#cc0033">get_slot</font>*(p0 : INTEGER) : <a href="org_omg_CORBA.html#type-Any">org_omg_CORBA.Any</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RequestInfoOperations) <font color="#cc0033">operation</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RequestInfoOperations) <font color="#cc0033">operation_context</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RequestInfoOperations) <font color="#cc0033">reply_status</font>*() : SHORTINT<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RequestInfoOperations) <font color="#cc0033">request_id</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RequestInfoOperations) <font color="#cc0033">response_expected</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RequestInfoOperations) <font color="#cc0033">result</font>*() : <a href="org_omg_CORBA.html#type-Any">org_omg_CORBA.Any</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RequestInfoOperations) <font color="#cc0033">sync_scope</font>*() : SHORTINT<b>,NEW,ABSTRACT</b>;
+<a name="meths-ServerRequestInfoOperations"></a>
+<b>PROCEDURE </b>(self:ServerRequestInfoOperations) <font color="#cc0033">adapter_id</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ServerRequestInfoOperations) <font color="#cc0033">adapter_name</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ServerRequestInfoOperations) <font color="#cc0033">add_reply_service_context</font>*(p0 : <a href="org_omg_IOP.html#type-ServiceContext">org_omg_IOP.ServiceContext</a>;
+                                                                        p1 : BOOLEAN)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ServerRequestInfoOperations) <font color="#cc0033">get_server_policy</font>*(p0 : INTEGER) : <a href="org_omg_CORBA.html#type-Policy">org_omg_CORBA.Policy</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ServerRequestInfoOperations) <font color="#cc0033">object_id</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ServerRequestInfoOperations) <font color="#cc0033">orb_id</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ServerRequestInfoOperations) <font color="#cc0033">sending_exception</font>*() : <a href="org_omg_CORBA.html#type-Any">org_omg_CORBA.Any</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ServerRequestInfoOperations) <font color="#cc0033">server_id</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ServerRequestInfoOperations) <font color="#cc0033">set_slot</font>*(p0 : INTEGER;
+                                                       p1 : <a href="org_omg_CORBA.html#type-Any">org_omg_CORBA.Any</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ServerRequestInfoOperations) <font color="#cc0033">target_is_a</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ServerRequestInfoOperations) <font color="#cc0033">target_most_derived_interface</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-ServerRequestInterceptorOperations"></a>
+<b>PROCEDURE </b>(self:ServerRequestInterceptorOperations) <font color="#cc0033">receive_request</font>*(p0 : <a href="#type-ServerRequestInfo">ServerRequestInfo</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ServerRequestInterceptorOperations) <font color="#cc0033">receive_request_service_contexts</font>*(p0 : <a href="#type-ServerRequestInfo">ServerRequestInfo</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ServerRequestInterceptorOperations) <font color="#cc0033">send_exception</font>*(p0 : <a href="#type-ServerRequestInfo">ServerRequestInfo</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ServerRequestInterceptorOperations) <font color="#cc0033">send_other</font>*(p0 : <a href="#type-ServerRequestInfo">ServerRequestInfo</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ServerRequestInterceptorOperations) <font color="#cc0033">send_reply</font>*(p0 : <a href="#type-ServerRequestInfo">ServerRequestInfo</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>END </b><font color="#cc0033">org_omg_PortableInterceptor</font>.
+</font></pre></hr>
+<!-- BEGIN JavaScript -->
+<script>
+function toggle(node) {
+    node.classList.toggle("show"); 
+  }
+
+function cls(node) {
+    var prnt = node.parentNode;
+    var next = prnt.previousSibling;
+    var text = next.lastChild;
+    text.innerHTML = 
+        "The <b>class</b> property asserts that this type will be<br>" +
+        "implemented as a reference class in the underlying framework.";
+    text.classList.toggle("show");
+  }
+
+function newOk(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>has noArg-ctor</b> property asserts that this reference<br>" +
+        "class has a no-arg constructor, and thus objects of this<br>" +
+        "type can be allocated with NEW(). Component Pascal types<br>" +
+        "derived from this type can also be allocated using NEW().";
+    popuptext.classList.toggle("show"); 
+  }
+
+function noNew(node) { 
+    var prnt = node.parentNode; 
+    var next = prnt.previousSibling; 
+    var text = next.lastChild; 
+    text.innerHTML =  
+        "The <b>no noArg-ctor</b> property asserts that this reference<br>" +
+        "class does not have a noArg constructor. Objects of this<br>" +
+        "type cannot be allocated using NEW(), and Component<br>" +
+        "Pascal types  derived from this type also cannot be<br>" +
+        "allocated using NEW().";
+    text.classList.toggle("show");
+  }
+
+function noCpy(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>no value-assign</b> property asserts that this reference<br>" + 
+        "class does not have a value copy method. Therefore, it<br>" +
+        "is not possible to perform value assignments using<br>" +
+        "statements like <i>dst^</i> := <i>src^</i>";
+    popuptext.classList.toggle("show");
+  }
+
+function valueclass(node) { 
+        var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>valueclass</b> property asserts that this RECORD type is<br>" + 
+        "implemented as a value class in the CLR. It follows that<br>" +  
+        "value assignments can be made of these types. They can<br>" + 
+        "also be passed by value. Even pointers to records of<br>" + 
+        "such types may be dereferenced and copied using syntax<br>" + 
+        "such as  <i>dst^</i> := <i>src^</i>"; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+function argCtor(node) { 
+    var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>has arg-ctor</b> property asserts that this reference<br>" +  
+        "class has one or more constructors that take arguments.<br>" + 
+        "These constructors can be called from Component Pascal<br>" + 
+        "by calling an <i>init</i>(...) method from the static list<br>" + 
+        "here. Component Pascal types derived from this type<br>" + 
+        "can define constructors with arguments which call the<br>" + 
+        "super-type constructor.<br>" + 
+        "See <i>'Interfacing to constructors'</i> in the Release Notes."; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+</script>
+<!-- END JavaScript --> 
+
+</body></html>

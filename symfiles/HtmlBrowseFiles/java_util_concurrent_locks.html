@@ -1,0 +1,545 @@
+<html><head><title>java_util_concurrent_locks</title>
+<style>
+<!-- BEGIN Inline CSS -->
+/* Popup container */
+.popup {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+/* The actual popup (appears on top) */
+.popup .popuptext {
+    visibility: hidden;
+    width: 430px;
+    background-color: white;
+    color: black;
+    text-align: left;
+    border-radius: 6px;
+    border-style: solid;
+    border-color: black;
+    padding: 8px 8px 8px 8px;
+    position: absolute;
+    z-index: 1;
+    margin-top: 30px;
+}
+
+/* Toggle this class when clicking on the popup container (hide and show the popup) */
+.popup .show {
+    visibility: visible;
+    opacity: 1;
+}
+
+</style>
+<!-- END Inline CSS -->
+</head><body bgcolor="white">
+<hr><pre>
+<font color="green">(*</font>
+<font color="green"> *  Creator j2cps version 1.4.07 (March 2018)</font>
+<font color="green"> *  Compiled from jar-file rt.jar</font>
+<font color="green"> *)</font>
+<b>FOREIGN MODULE </b><font color="#cc0033">java_util_concurrent_locks</font>;
+
+<b>IMPORT</b>
+    <a href="java_io.html">java_io</a> := "java.io",
+    <a href="java_lang.html">java_lang</a> := "java.lang",
+    <a href="java_util.html">java_util</a> := "java.util",
+    <a href="java_util_concurrent.html">java_util_concurrent</a> := "java.util.concurrent";
+
+<b>TYPE</b>
+
+  <a name="type-AbstractOwnableSynchronizer"></a><font color="#cc0033">AbstractOwnableSynchronizer</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_io.html#type-Serializable">java_io.Serializable</a>)
+                                 <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                                 <font color="green"><b> (* </b><a href="#meths-AbstractOwnableSynchronizer">Typebound Procedures</a><b> *)</b></font>
+                                 <b>STATIC</b>
+                                   <b>PROCEDURE </b><font color="#cc0033">Init</font>!() : <a href="#type-AbstractOwnableSynchronizer">AbstractOwnableSynchronizer</a><b>,CONSTRUCTOR</b>;
+                                 <b>END</b>;
+
+  <a name="type-AbstractQueuedLongSynchronizer"></a><font color="#cc0033">AbstractQueuedLongSynchronizer</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<b>AbstractOwnableSynchronizer</b> + <a href="java_io.html#type-Serializable">java_io.Serializable</a>)
+                                    <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                                    <font color="green"><b> (* </b><a href="#meths-AbstractQueuedLongSynchronizer">Typebound Procedures</a><b> *)</b></font>
+                                    <b>STATIC</b>
+                                      <b>PROCEDURE </b><font color="#cc0033">Init</font>!() : <a href="#type-AbstractQueuedLongSynchronizer">AbstractQueuedLongSynchronizer</a><b>,CONSTRUCTOR</b>;
+                                    <b>END</b>;
+
+  <a name="type-AbstractQueuedLongSynchronizer$ConditionObject"></a><font color="#cc0033">AbstractQueuedLongSynchronizer$ConditionObject</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <b>Condition</b> + <a href="java_io.html#type-Serializable">java_io.Serializable</a>)
+                                                    <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                                                    <font color="green"><b> (* </b><a href="#meths-AbstractQueuedLongSynchronizer$ConditionObject">Typebound Procedures</a><b> *)</b></font>
+                                                    <b>STATIC</b>
+                                                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <b>AbstractQueuedLongSynchronizer</b>) : <a href="#type-AbstractQueuedLongSynchronizer$ConditionObject">AbstractQueuedLongSynchronizer$ConditionObject</a><b>,CONSTRUCTOR</b>;
+                                                    <b>END</b>;
+
+  <a name="type-AbstractQueuedSynchronizer"></a><font color="#cc0033">AbstractQueuedSynchronizer</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="#type-AbstractOwnableSynchronizer">AbstractOwnableSynchronizer</a> + <a href="java_io.html#type-Serializable">java_io.Serializable</a>)
+                                <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                                <font color="green"><b> (* </b><a href="#meths-AbstractQueuedSynchronizer">Typebound Procedures</a><b> *)</b></font>
+                                <b>STATIC</b>
+                                  <b>PROCEDURE </b><font color="#cc0033">Init</font>!() : <a href="#type-AbstractQueuedSynchronizer">AbstractQueuedSynchronizer</a><b>,CONSTRUCTOR</b>;
+                                <b>END</b>;
+
+  <a name="type-AbstractQueuedSynchronizer$ConditionObject"></a><font color="#cc0033">AbstractQueuedSynchronizer$ConditionObject</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-Condition">Condition</a> + <a href="java_io.html#type-Serializable">java_io.Serializable</a>)
+                                                <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                                                <font color="green"><b> (* </b><a href="#meths-AbstractQueuedSynchronizer$ConditionObject">Typebound Procedures</a><b> *)</b></font>
+                                                <b>STATIC</b>
+                                                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <b>AbstractQueuedSynchronizer</b>) : <a href="#type-AbstractQueuedSynchronizer$ConditionObject">AbstractQueuedSynchronizer$ConditionObject</a><b>,CONSTRUCTOR</b>;
+                                                <b>END</b>;
+
+  <a name="type-Condition"></a><font color="#cc0033">Condition</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+               <font color="green"><b> (* </b><a href="#meths-Condition">Typebound Procedures</a><b> *)</b></font>
+               <b>END</b>;
+
+  <a name="type-Lock"></a><font color="#cc0033">Lock</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+          <font color="green"><b> (* </b><a href="#meths-Lock">Typebound Procedures</a><b> *)</b></font>
+          <b>END</b>;
+
+  <a name="type-LockSupport"></a><font color="#cc0033">LockSupport</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                 <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                 <b>STATIC</b>
+                   <b>PROCEDURE </b><font color="#cc0033">getBlocker</font>*(p0 : <a href="java_lang.html#type-Thread">java_lang.Thread</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                   <b>PROCEDURE </b><font color="#cc0033">park</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>);
+                   <b>PROCEDURE </b><font color="#cc0033">park</font>*();
+                   <b>PROCEDURE </b><font color="#cc0033">parkNanos</font>*(p0 : LONGINT);
+                   <b>PROCEDURE </b><font color="#cc0033">parkNanos</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                        p1 : LONGINT);
+                   <b>PROCEDURE </b><font color="#cc0033">parkUntil</font>*(p0 : LONGINT);
+                   <b>PROCEDURE </b><font color="#cc0033">parkUntil</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                        p1 : LONGINT);
+                   <b>PROCEDURE </b><font color="#cc0033">unpark</font>*(p0 : <a href="java_lang.html#type-Thread">java_lang.Thread</a>);
+                 <b>END</b>;
+
+  <a name="type-ReadWriteLock"></a><font color="#cc0033">ReadWriteLock</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                   <font color="green"><b> (* </b><a href="#meths-ReadWriteLock">Typebound Procedures</a><b> *)</b></font>
+                   <b>END</b>;
+
+  <a name="type-ReentrantLock"></a><font color="#cc0033">ReentrantLock</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-Lock">Lock</a> + <a href="java_io.html#type-Serializable">java_io.Serializable</a>)
+                   <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                   <font color="green"><b> (* </b><a href="#meths-ReentrantLock">Typebound Procedures</a><b> *)</b></font>
+                   <b>STATIC</b>
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : BOOLEAN) : <a href="#type-ReentrantLock">ReentrantLock</a><b>,CONSTRUCTOR</b>;
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-ReentrantLock">ReentrantLock</a><b>,CONSTRUCTOR</b>;
+                   <b>END</b>;
+
+  <a name="type-ReentrantReadWriteLock"></a><font color="#cc0033">ReentrantReadWriteLock</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-ReadWriteLock">ReadWriteLock</a> + <a href="java_io.html#type-Serializable">java_io.Serializable</a>)
+                            <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                            <font color="green"><b> (* </b><a href="#meths-ReentrantReadWriteLock">Typebound Procedures</a><b> *)</b></font>
+                            <b>STATIC</b>
+                              <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : BOOLEAN) : <a href="#type-ReentrantReadWriteLock">ReentrantReadWriteLock</a><b>,CONSTRUCTOR</b>;
+                              <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-ReentrantReadWriteLock">ReentrantReadWriteLock</a><b>,CONSTRUCTOR</b>;
+                            <b>END</b>;
+
+  <a name="type-ReentrantReadWriteLock$ReadLock"></a><font color="#cc0033">ReentrantReadWriteLock$ReadLock</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <b>Lock</b> + <a href="java_io.html#type-Serializable">java_io.Serializable</a>)
+                                     <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                                     <font color="green"><b> (* </b><a href="#meths-ReentrantReadWriteLock$ReadLock">Typebound Procedures</a><b> *)</b></font>
+                                     <b>STATIC</b>
+                                       <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : <b>ReentrantReadWriteLock</b>) : <a href="#type-ReentrantReadWriteLock$ReadLock">ReentrantReadWriteLock$ReadLock</a><b>,CONSTRUCTOR</b>;
+                                     <b>END</b>;
+
+  <a name="type-ReentrantReadWriteLock$WriteLock"></a><font color="#cc0033">ReentrantReadWriteLock$WriteLock</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <b>Lock</b> + <a href="java_io.html#type-Serializable">java_io.Serializable</a>)
+                                      <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                                      <font color="green"><b> (* </b><a href="#meths-ReentrantReadWriteLock$WriteLock">Typebound Procedures</a><b> *)</b></font>
+                                      <b>STATIC</b>
+                                        <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : <b>ReentrantReadWriteLock</b>) : <a href="#type-ReentrantReadWriteLock$WriteLock">ReentrantReadWriteLock$WriteLock</a><b>,CONSTRUCTOR</b>;
+                                      <b>END</b>;
+
+
+
+<a name="meths-AbstractOwnableSynchronizer"></a>
+<b>PROCEDURE </b>(self:AbstractOwnableSynchronizer) <font color="#cc0033">getExclusiveOwnerThread</font>!() : <a href="java_lang.html#type-Thread">java_lang.Thread</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AbstractOwnableSynchronizer) <font color="#cc0033">setExclusiveOwnerThread</font>!(p0 : <a href="java_lang.html#type-Thread">java_lang.Thread</a>)<b>,NEW</b>;
+<a name="meths-AbstractQueuedLongSynchronizer"></a>
+<b>PROCEDURE </b>(self:AbstractQueuedLongSynchronizer) <font color="#cc0033">acquire</font>*(p0 : LONGINT)<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AbstractQueuedLongSynchronizer) <font color="#cc0033">acquireInterruptibly</font>*(p0 : LONGINT)<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AbstractQueuedLongSynchronizer) <font color="#cc0033">acquireShared</font>*(p0 : LONGINT)<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AbstractQueuedLongSynchronizer) <font color="#cc0033">acquireSharedInterruptibly</font>*(p0 : LONGINT)<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AbstractQueuedLongSynchronizer) <font color="#cc0033">compareAndSetState</font>!(p0 : LONGINT;
+                                                                    p1 : LONGINT) : BOOLEAN<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AbstractQueuedLongSynchronizer) <font color="#cc0033">getExclusiveQueuedThreads</font>*() : <a href="java_util.html#type-Collection">java_util.Collection</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AbstractQueuedLongSynchronizer) <font color="#cc0033">getFirstQueuedThread</font>*() : <a href="java_lang.html#type-Thread">java_lang.Thread</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AbstractQueuedLongSynchronizer) <font color="#cc0033">getQueuedThreads</font>*() : <a href="java_util.html#type-Collection">java_util.Collection</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AbstractQueuedLongSynchronizer) <font color="#cc0033">getQueueLength</font>*() : INTEGER<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AbstractQueuedLongSynchronizer) <font color="#cc0033">getSharedQueuedThreads</font>*() : <a href="java_util.html#type-Collection">java_util.Collection</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AbstractQueuedLongSynchronizer) <font color="#cc0033">getState</font>!() : LONGINT<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AbstractQueuedLongSynchronizer) <font color="#cc0033">getWaitingThreads</font>*(p0 : <a href="#type-AbstractQueuedLongSynchronizer$ConditionObject">AbstractQueuedLongSynchronizer$ConditionObject</a>) : <a href="java_util.html#type-Collection">java_util.Collection</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AbstractQueuedLongSynchronizer) <font color="#cc0033">getWaitQueueLength</font>*(p0 : <a href="#type-AbstractQueuedLongSynchronizer$ConditionObject">AbstractQueuedLongSynchronizer$ConditionObject</a>) : INTEGER<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AbstractQueuedLongSynchronizer) <font color="#cc0033">hasContended</font>*() : BOOLEAN<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AbstractQueuedLongSynchronizer) <font color="#cc0033">hasQueuedPredecessors</font>*() : BOOLEAN<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AbstractQueuedLongSynchronizer) <font color="#cc0033">hasQueuedThreads</font>*() : BOOLEAN<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AbstractQueuedLongSynchronizer) <font color="#cc0033">hasWaiters</font>*(p0 : <a href="#type-AbstractQueuedLongSynchronizer$ConditionObject">AbstractQueuedLongSynchronizer$ConditionObject</a>) : BOOLEAN<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AbstractQueuedLongSynchronizer) <font color="#cc0033">isHeldExclusively</font>!() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AbstractQueuedLongSynchronizer) <font color="#cc0033">isQueued</font>*(p0 : <a href="java_lang.html#type-Thread">java_lang.Thread</a>) : BOOLEAN<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AbstractQueuedLongSynchronizer) <font color="#cc0033">owns</font>*(p0 : <a href="#type-AbstractQueuedLongSynchronizer$ConditionObject">AbstractQueuedLongSynchronizer$ConditionObject</a>) : BOOLEAN<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AbstractQueuedLongSynchronizer) <font color="#cc0033">release</font>*(p0 : LONGINT) : BOOLEAN<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AbstractQueuedLongSynchronizer) <font color="#cc0033">releaseShared</font>*(p0 : LONGINT) : BOOLEAN<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AbstractQueuedLongSynchronizer) <font color="#cc0033">setState</font>!(p0 : LONGINT)<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AbstractQueuedLongSynchronizer) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AbstractQueuedLongSynchronizer) <font color="#cc0033">tryAcquire</font>!(p0 : LONGINT) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AbstractQueuedLongSynchronizer) <font color="#cc0033">tryAcquireNanos</font>*(p0 : LONGINT;
+                                                                 p1 : LONGINT) : BOOLEAN<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AbstractQueuedLongSynchronizer) <font color="#cc0033">tryAcquireShared</font>!(p0 : LONGINT) : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AbstractQueuedLongSynchronizer) <font color="#cc0033">tryAcquireSharedNanos</font>*(p0 : LONGINT;
+                                                                       p1 : LONGINT) : BOOLEAN<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AbstractQueuedLongSynchronizer) <font color="#cc0033">tryRelease</font>!(p0 : LONGINT) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AbstractQueuedLongSynchronizer) <font color="#cc0033">tryReleaseShared</font>!(p0 : LONGINT) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-AbstractQueuedLongSynchronizer$ConditionObject"></a>
+<b>PROCEDURE </b>(self:AbstractQueuedLongSynchronizer$ConditionObject) <font color="#cc0033">await</font>*()<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AbstractQueuedLongSynchronizer$ConditionObject) <font color="#cc0033">await</font>*(p0 : LONGINT;
+                                                                       p1 : <a href="java_util_concurrent.html#type-TimeUnit">java_util_concurrent.TimeUnit</a>) : BOOLEAN<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AbstractQueuedLongSynchronizer$ConditionObject) <font color="#cc0033">awaitNanos</font>*(p0 : LONGINT) : LONGINT<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AbstractQueuedLongSynchronizer$ConditionObject) <font color="#cc0033">awaitUninterruptibly</font>*()<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AbstractQueuedLongSynchronizer$ConditionObject) <font color="#cc0033">awaitUntil</font>*(p0 : <a href="java_util.html#type-Date">java_util.Date</a>) : BOOLEAN<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AbstractQueuedLongSynchronizer$ConditionObject) <font color="#cc0033">getWaitingThreads</font>!() : <a href="java_util.html#type-Collection">java_util.Collection</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AbstractQueuedLongSynchronizer$ConditionObject) <font color="#cc0033">getWaitQueueLength</font>!() : INTEGER<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AbstractQueuedLongSynchronizer$ConditionObject) <font color="#cc0033">hasWaiters</font>!() : BOOLEAN<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AbstractQueuedLongSynchronizer$ConditionObject) <font color="#cc0033">signal</font>*()<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AbstractQueuedLongSynchronizer$ConditionObject) <font color="#cc0033">signalAll</font>*()<b>,NEW</b>;
+<a name="meths-AbstractQueuedSynchronizer"></a>
+<b>PROCEDURE </b>(self:AbstractQueuedSynchronizer) <font color="#cc0033">acquire</font>*(p0 : INTEGER)<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AbstractQueuedSynchronizer) <font color="#cc0033">acquireInterruptibly</font>*(p0 : INTEGER)<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AbstractQueuedSynchronizer) <font color="#cc0033">acquireShared</font>*(p0 : INTEGER)<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AbstractQueuedSynchronizer) <font color="#cc0033">acquireSharedInterruptibly</font>*(p0 : INTEGER)<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AbstractQueuedSynchronizer) <font color="#cc0033">compareAndSetState</font>!(p0 : INTEGER;
+                                                                p1 : INTEGER) : BOOLEAN<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AbstractQueuedSynchronizer) <font color="#cc0033">getExclusiveQueuedThreads</font>*() : <a href="java_util.html#type-Collection">java_util.Collection</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AbstractQueuedSynchronizer) <font color="#cc0033">getFirstQueuedThread</font>*() : <a href="java_lang.html#type-Thread">java_lang.Thread</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AbstractQueuedSynchronizer) <font color="#cc0033">getQueuedThreads</font>*() : <a href="java_util.html#type-Collection">java_util.Collection</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AbstractQueuedSynchronizer) <font color="#cc0033">getQueueLength</font>*() : INTEGER<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AbstractQueuedSynchronizer) <font color="#cc0033">getSharedQueuedThreads</font>*() : <a href="java_util.html#type-Collection">java_util.Collection</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AbstractQueuedSynchronizer) <font color="#cc0033">getState</font>!() : INTEGER<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AbstractQueuedSynchronizer) <font color="#cc0033">getWaitingThreads</font>*(p0 : <a href="#type-AbstractQueuedSynchronizer$ConditionObject">AbstractQueuedSynchronizer$ConditionObject</a>) : <a href="java_util.html#type-Collection">java_util.Collection</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AbstractQueuedSynchronizer) <font color="#cc0033">getWaitQueueLength</font>*(p0 : <a href="#type-AbstractQueuedSynchronizer$ConditionObject">AbstractQueuedSynchronizer$ConditionObject</a>) : INTEGER<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AbstractQueuedSynchronizer) <font color="#cc0033">hasContended</font>*() : BOOLEAN<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AbstractQueuedSynchronizer) <font color="#cc0033">hasQueuedPredecessors</font>*() : BOOLEAN<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AbstractQueuedSynchronizer) <font color="#cc0033">hasQueuedThreads</font>*() : BOOLEAN<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AbstractQueuedSynchronizer) <font color="#cc0033">hasWaiters</font>*(p0 : <a href="#type-AbstractQueuedSynchronizer$ConditionObject">AbstractQueuedSynchronizer$ConditionObject</a>) : BOOLEAN<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AbstractQueuedSynchronizer) <font color="#cc0033">isHeldExclusively</font>!() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AbstractQueuedSynchronizer) <font color="#cc0033">isQueued</font>*(p0 : <a href="java_lang.html#type-Thread">java_lang.Thread</a>) : BOOLEAN<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AbstractQueuedSynchronizer) <font color="#cc0033">owns</font>*(p0 : <a href="#type-AbstractQueuedSynchronizer$ConditionObject">AbstractQueuedSynchronizer$ConditionObject</a>) : BOOLEAN<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AbstractQueuedSynchronizer) <font color="#cc0033">release</font>*(p0 : INTEGER) : BOOLEAN<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AbstractQueuedSynchronizer) <font color="#cc0033">releaseShared</font>*(p0 : INTEGER) : BOOLEAN<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AbstractQueuedSynchronizer) <font color="#cc0033">setState</font>!(p0 : INTEGER)<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AbstractQueuedSynchronizer) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AbstractQueuedSynchronizer) <font color="#cc0033">tryAcquire</font>!(p0 : INTEGER) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AbstractQueuedSynchronizer) <font color="#cc0033">tryAcquireNanos</font>*(p0 : INTEGER;
+                                                             p1 : LONGINT) : BOOLEAN<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AbstractQueuedSynchronizer) <font color="#cc0033">tryAcquireShared</font>!(p0 : INTEGER) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AbstractQueuedSynchronizer) <font color="#cc0033">tryAcquireSharedNanos</font>*(p0 : INTEGER;
+                                                                   p1 : LONGINT) : BOOLEAN<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AbstractQueuedSynchronizer) <font color="#cc0033">tryRelease</font>!(p0 : INTEGER) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AbstractQueuedSynchronizer) <font color="#cc0033">tryReleaseShared</font>!(p0 : INTEGER) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-AbstractQueuedSynchronizer$ConditionObject"></a>
+<b>PROCEDURE </b>(self:AbstractQueuedSynchronizer$ConditionObject) <font color="#cc0033">await</font>*()<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AbstractQueuedSynchronizer$ConditionObject) <font color="#cc0033">await</font>*(p0 : LONGINT;
+                                                                   p1 : <a href="java_util_concurrent.html#type-TimeUnit">java_util_concurrent.TimeUnit</a>) : BOOLEAN<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AbstractQueuedSynchronizer$ConditionObject) <font color="#cc0033">awaitNanos</font>*(p0 : LONGINT) : LONGINT<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AbstractQueuedSynchronizer$ConditionObject) <font color="#cc0033">awaitUninterruptibly</font>*()<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AbstractQueuedSynchronizer$ConditionObject) <font color="#cc0033">awaitUntil</font>*(p0 : <a href="java_util.html#type-Date">java_util.Date</a>) : BOOLEAN<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AbstractQueuedSynchronizer$ConditionObject) <font color="#cc0033">getWaitingThreads</font>!() : <a href="java_util.html#type-Collection">java_util.Collection</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AbstractQueuedSynchronizer$ConditionObject) <font color="#cc0033">getWaitQueueLength</font>!() : INTEGER<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AbstractQueuedSynchronizer$ConditionObject) <font color="#cc0033">hasWaiters</font>!() : BOOLEAN<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AbstractQueuedSynchronizer$ConditionObject) <font color="#cc0033">signal</font>*()<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AbstractQueuedSynchronizer$ConditionObject) <font color="#cc0033">signalAll</font>*()<b>,NEW</b>;
+<a name="meths-Condition"></a>
+<b>PROCEDURE </b>(self:Condition) <font color="#cc0033">await</font>*(p0 : LONGINT;
+                                  p1 : <a href="java_util_concurrent.html#type-TimeUnit">java_util_concurrent.TimeUnit</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Condition) <font color="#cc0033">await</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Condition) <font color="#cc0033">awaitNanos</font>*(p0 : LONGINT) : LONGINT<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Condition) <font color="#cc0033">awaitUninterruptibly</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Condition) <font color="#cc0033">awaitUntil</font>*(p0 : <a href="java_util.html#type-Date">java_util.Date</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Condition) <font color="#cc0033">signal</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Condition) <font color="#cc0033">signalAll</font>*()<b>,NEW,ABSTRACT</b>;
+<a name="meths-Lock"></a>
+<b>PROCEDURE </b>(self:Lock) <font color="#cc0033">lock</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Lock) <font color="#cc0033">lockInterruptibly</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Lock) <font color="#cc0033">newCondition</font>*() : <a href="#type-Condition">Condition</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Lock) <font color="#cc0033">tryLock</font>*(p0 : LONGINT;
+                               p1 : <a href="java_util_concurrent.html#type-TimeUnit">java_util_concurrent.TimeUnit</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Lock) <font color="#cc0033">tryLock</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Lock) <font color="#cc0033">unlock</font>*()<b>,NEW,ABSTRACT</b>;
+<a name="meths-ReadWriteLock"></a>
+<b>PROCEDURE </b>(self:ReadWriteLock) <font color="#cc0033">readLock</font>*() : <b>Lock</b><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ReadWriteLock) <font color="#cc0033">writeLock</font>*() : <b>Lock</b><b>,NEW,ABSTRACT</b>;
+<a name="meths-ReentrantLock"></a>
+<b>PROCEDURE </b>(self:ReentrantLock) <font color="#cc0033">getHoldCount</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ReentrantLock) <font color="#cc0033">getOwner</font>!() : <a href="java_lang.html#type-Thread">java_lang.Thread</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ReentrantLock) <font color="#cc0033">getQueuedThreads</font>!() : <a href="java_util.html#type-Collection">java_util.Collection</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ReentrantLock) <font color="#cc0033">getQueueLength</font>*() : INTEGER<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:ReentrantLock) <font color="#cc0033">getWaitingThreads</font>!(p0 : <a href="#type-Condition">Condition</a>) : <a href="java_util.html#type-Collection">java_util.Collection</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ReentrantLock) <font color="#cc0033">getWaitQueueLength</font>*(p0 : <a href="#type-Condition">Condition</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ReentrantLock) <font color="#cc0033">hasQueuedThread</font>*(p0 : <a href="java_lang.html#type-Thread">java_lang.Thread</a>) : BOOLEAN<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:ReentrantLock) <font color="#cc0033">hasQueuedThreads</font>*() : BOOLEAN<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:ReentrantLock) <font color="#cc0033">hasWaiters</font>*(p0 : <a href="#type-Condition">Condition</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ReentrantLock) <font color="#cc0033">isFair</font>*() : BOOLEAN<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:ReentrantLock) <font color="#cc0033">isHeldByCurrentThread</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ReentrantLock) <font color="#cc0033">isLocked</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ReentrantLock) <font color="#cc0033">lock</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ReentrantLock) <font color="#cc0033">lockInterruptibly</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ReentrantLock) <font color="#cc0033">newCondition</font>*() : <a href="#type-Condition">Condition</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ReentrantLock) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ReentrantLock) <font color="#cc0033">tryLock</font>*(p0 : LONGINT;
+                                        p1 : <a href="java_util_concurrent.html#type-TimeUnit">java_util_concurrent.TimeUnit</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ReentrantLock) <font color="#cc0033">tryLock</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ReentrantLock) <font color="#cc0033">unlock</font>*()<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-ReentrantReadWriteLock"></a>
+<b>PROCEDURE </b>(self:ReentrantReadWriteLock) <font color="#cc0033">getOwner</font>!() : <a href="java_lang.html#type-Thread">java_lang.Thread</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ReentrantReadWriteLock) <font color="#cc0033">getQueuedReaderThreads</font>!() : <a href="java_util.html#type-Collection">java_util.Collection</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ReentrantReadWriteLock) <font color="#cc0033">getQueuedThreads</font>!() : <a href="java_util.html#type-Collection">java_util.Collection</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ReentrantReadWriteLock) <font color="#cc0033">getQueuedWriterThreads</font>!() : <a href="java_util.html#type-Collection">java_util.Collection</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ReentrantReadWriteLock) <font color="#cc0033">getQueueLength</font>*() : INTEGER<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:ReentrantReadWriteLock) <font color="#cc0033">getReadHoldCount</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ReentrantReadWriteLock) <font color="#cc0033">getReadLockCount</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ReentrantReadWriteLock) <font color="#cc0033">getWaitingThreads</font>!(p0 : <b>Condition</b>) : <a href="java_util.html#type-Collection">java_util.Collection</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ReentrantReadWriteLock) <font color="#cc0033">getWaitQueueLength</font>*(p0 : <b>Condition</b>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ReentrantReadWriteLock) <font color="#cc0033">getWriteHoldCount</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ReentrantReadWriteLock) <font color="#cc0033">hasQueuedThread</font>*(p0 : <a href="java_lang.html#type-Thread">java_lang.Thread</a>) : BOOLEAN<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:ReentrantReadWriteLock) <font color="#cc0033">hasQueuedThreads</font>*() : BOOLEAN<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:ReentrantReadWriteLock) <font color="#cc0033">hasWaiters</font>*(p0 : <b>Condition</b>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ReentrantReadWriteLock) <font color="#cc0033">isFair</font>*() : BOOLEAN<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:ReentrantReadWriteLock) <font color="#cc0033">isWriteLocked</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ReentrantReadWriteLock) <font color="#cc0033">isWriteLockedByCurrentThread</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ReentrantReadWriteLock) <font color="#cc0033">readLock</font>*() : <b>Lock</b><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ReentrantReadWriteLock) <font color="#cc0033">readLock</font>*() : <a href="#type-ReentrantReadWriteLock$ReadLock">ReentrantReadWriteLock$ReadLock</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ReentrantReadWriteLock) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ReentrantReadWriteLock) <font color="#cc0033">writeLock</font>*() : <a href="#type-ReentrantReadWriteLock$WriteLock">ReentrantReadWriteLock$WriteLock</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ReentrantReadWriteLock) <font color="#cc0033">writeLock</font>*() : <b>Lock</b><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-ReentrantReadWriteLock$ReadLock"></a>
+<b>PROCEDURE </b>(self:ReentrantReadWriteLock$ReadLock) <font color="#cc0033">lock</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ReentrantReadWriteLock$ReadLock) <font color="#cc0033">lockInterruptibly</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ReentrantReadWriteLock$ReadLock) <font color="#cc0033">newCondition</font>*() : <b>Condition</b><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ReentrantReadWriteLock$ReadLock) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ReentrantReadWriteLock$ReadLock) <font color="#cc0033">tryLock</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ReentrantReadWriteLock$ReadLock) <font color="#cc0033">tryLock</font>*(p0 : LONGINT;
+                                                          p1 : <a href="java_util_concurrent.html#type-TimeUnit">java_util_concurrent.TimeUnit</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ReentrantReadWriteLock$ReadLock) <font color="#cc0033">unlock</font>*()<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-ReentrantReadWriteLock$WriteLock"></a>
+<b>PROCEDURE </b>(self:ReentrantReadWriteLock$WriteLock) <font color="#cc0033">getHoldCount</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ReentrantReadWriteLock$WriteLock) <font color="#cc0033">isHeldByCurrentThread</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ReentrantReadWriteLock$WriteLock) <font color="#cc0033">lock</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ReentrantReadWriteLock$WriteLock) <font color="#cc0033">lockInterruptibly</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ReentrantReadWriteLock$WriteLock) <font color="#cc0033">newCondition</font>*() : <b>Condition</b><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ReentrantReadWriteLock$WriteLock) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ReentrantReadWriteLock$WriteLock) <font color="#cc0033">tryLock</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ReentrantReadWriteLock$WriteLock) <font color="#cc0033">tryLock</font>*(p0 : LONGINT;
+                                                           p1 : <a href="java_util_concurrent.html#type-TimeUnit">java_util_concurrent.TimeUnit</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ReentrantReadWriteLock$WriteLock) <font color="#cc0033">unlock</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>END </b><font color="#cc0033">java_util_concurrent_locks</font>.
+</font></pre></hr>
+<!-- BEGIN JavaScript -->
+<script>
+function toggle(node) {
+    node.classList.toggle("show"); 
+  }
+
+function cls(node) {
+    var prnt = node.parentNode;
+    var next = prnt.previousSibling;
+    var text = next.lastChild;
+    text.innerHTML = 
+        "The <b>class</b> property asserts that this type will be<br>" +
+        "implemented as a reference class in the underlying framework.";
+    text.classList.toggle("show");
+  }
+
+function newOk(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>has noArg-ctor</b> property asserts that this reference<br>" +
+        "class has a no-arg constructor, and thus objects of this<br>" +
+        "type can be allocated with NEW(). Component Pascal types<br>" +
+        "derived from this type can also be allocated using NEW().";
+    popuptext.classList.toggle("show"); 
+  }
+
+function noNew(node) { 
+    var prnt = node.parentNode; 
+    var next = prnt.previousSibling; 
+    var text = next.lastChild; 
+    text.innerHTML =  
+        "The <b>no noArg-ctor</b> property asserts that this reference<br>" +
+        "class does not have a noArg constructor. Objects of this<br>" +
+        "type cannot be allocated using NEW(), and Component<br>" +
+        "Pascal types  derived from this type also cannot be<br>" +
+        "allocated using NEW().";
+    text.classList.toggle("show");
+  }
+
+function noCpy(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>no value-assign</b> property asserts that this reference<br>" + 
+        "class does not have a value copy method. Therefore, it<br>" +
+        "is not possible to perform value assignments using<br>" +
+        "statements like <i>dst^</i> := <i>src^</i>";
+    popuptext.classList.toggle("show");
+  }
+
+function valueclass(node) { 
+        var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>valueclass</b> property asserts that this RECORD type is<br>" + 
+        "implemented as a value class in the CLR. It follows that<br>" +  
+        "value assignments can be made of these types. They can<br>" + 
+        "also be passed by value. Even pointers to records of<br>" + 
+        "such types may be dereferenced and copied using syntax<br>" + 
+        "such as  <i>dst^</i> := <i>src^</i>"; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+function argCtor(node) { 
+    var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>has arg-ctor</b> property asserts that this reference<br>" +  
+        "class has one or more constructors that take arguments.<br>" + 
+        "These constructors can be called from Component Pascal<br>" + 
+        "by calling an <i>init</i>(...) method from the static list<br>" + 
+        "here. Component Pascal types derived from this type<br>" + 
+        "can define constructors with arguments which call the<br>" + 
+        "super-type constructor.<br>" + 
+        "See <i>'Interfacing to constructors'</i> in the Release Notes."; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+</script>
+<!-- END JavaScript --> 
+
+</body></html>

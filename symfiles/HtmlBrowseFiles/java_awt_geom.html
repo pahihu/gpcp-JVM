@@ -1,0 +1,2112 @@
+<html><head><title>java_awt_geom</title>
+<style>
+<!-- BEGIN Inline CSS -->
+/* Popup container */
+.popup {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+/* The actual popup (appears on top) */
+.popup .popuptext {
+    visibility: hidden;
+    width: 430px;
+    background-color: white;
+    color: black;
+    text-align: left;
+    border-radius: 6px;
+    border-style: solid;
+    border-color: black;
+    padding: 8px 8px 8px 8px;
+    position: absolute;
+    z-index: 1;
+    margin-top: 30px;
+}
+
+/* Toggle this class when clicking on the popup container (hide and show the popup) */
+.popup .show {
+    visibility: visible;
+    opacity: 1;
+}
+
+</style>
+<!-- END Inline CSS -->
+</head><body bgcolor="white">
+<hr><pre>
+<font color="green">(*</font>
+<font color="green"> *  Creator j2cps version 1.4.07 (March 2018)</font>
+<font color="green"> *  Compiled from jar-file rt.jar</font>
+<font color="green"> *)</font>
+<b>FOREIGN MODULE </b><font color="#cc0033">java_awt_geom</font>;
+
+<b>IMPORT</b>
+    <a href="java_awt.html">java_awt</a> := "java.awt",
+    <a href="java_io.html">java_io</a> := "java.io",
+    <a href="java_lang.html">java_lang</a> := "java.lang";
+
+<b>TYPE</b>
+
+  <a name="type-AffineTransform"></a><font color="#cc0033">AffineTransform</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_lang.html#type-Cloneable">java_lang.Cloneable</a> + <a href="java_io.html#type-Serializable">java_io.Serializable</a>)
+                     <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                     <font color="green"><b> (* </b><a href="#meths-AffineTransform">Typebound Procedures</a><b> *)</b></font>
+                     <b>STATIC</b>
+                       <font color="#cc0033">TYPE_FLIP</font>*                 = 64;
+                       <font color="#cc0033">TYPE_GENERAL_ROTATION</font>*     = 16;
+                       <font color="#cc0033">TYPE_GENERAL_SCALE</font>*        = 4;
+                       <font color="#cc0033">TYPE_GENERAL_TRANSFORM</font>*    = 32;
+                       <font color="#cc0033">TYPE_IDENTITY</font>*             = 0;
+                       <font color="#cc0033">TYPE_MASK_ROTATION</font>*        = 24;
+                       <font color="#cc0033">TYPE_MASK_SCALE</font>*           = 6;
+                       <font color="#cc0033">TYPE_QUADRANT_ROTATION</font>*    = 8;
+                       <font color="#cc0033">TYPE_TRANSLATION</font>*          = 1;
+                       <font color="#cc0033">TYPE_UNIFORM_SCALE</font>*        = 2;
+                       <b>PROCEDURE </b><font color="#cc0033">getQuadrantRotateInstance</font>*(p0 : INTEGER) : <a href="#type-AffineTransform">AffineTransform</a>;
+                       <b>PROCEDURE </b><font color="#cc0033">getQuadrantRotateInstance</font>*(p0 : INTEGER;
+                                                            p1 : REAL;
+                                                            p2 : REAL) : <a href="#type-AffineTransform">AffineTransform</a>;
+                       <b>PROCEDURE </b><font color="#cc0033">getRotateInstance</font>*(p0 : REAL;
+                                                    p1 : REAL;
+                                                    p2 : REAL) : <a href="#type-AffineTransform">AffineTransform</a>;
+                       <b>PROCEDURE </b><font color="#cc0033">getRotateInstance</font>*(p0 : REAL) : <a href="#type-AffineTransform">AffineTransform</a>;
+                       <b>PROCEDURE </b><font color="#cc0033">getRotateInstance</font>*(p0 : REAL;
+                                                    p1 : REAL;
+                                                    p2 : REAL;
+                                                    p3 : REAL) : <a href="#type-AffineTransform">AffineTransform</a>;
+                       <b>PROCEDURE </b><font color="#cc0033">getRotateInstance</font>*(p0 : REAL;
+                                                    p1 : REAL) : <a href="#type-AffineTransform">AffineTransform</a>;
+                       <b>PROCEDURE </b><font color="#cc0033">getScaleInstance</font>*(p0 : REAL;
+                                                   p1 : REAL) : <a href="#type-AffineTransform">AffineTransform</a>;
+                       <b>PROCEDURE </b><font color="#cc0033">getShearInstance</font>*(p0 : REAL;
+                                                   p1 : REAL) : <a href="#type-AffineTransform">AffineTransform</a>;
+                       <b>PROCEDURE </b><font color="#cc0033">getTranslateInstance</font>*(p0 : REAL;
+                                                       p1 : REAL) : <a href="#type-AffineTransform">AffineTransform</a>;
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="#type-AffineTransform">AffineTransform</a>) : <a href="#type-AffineTransform">AffineTransform</a><b>,CONSTRUCTOR</b>;
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-AffineTransform">AffineTransform</a><b>,CONSTRUCTOR</b>;
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : REAL;
+                                       p1 : REAL;
+                                       p2 : REAL;
+                                       p3 : REAL;
+                                       p4 : REAL;
+                                       p5 : REAL) : <a href="#type-AffineTransform">AffineTransform</a><b>,CONSTRUCTOR</b>;
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>REAL) : <a href="#type-AffineTransform">AffineTransform</a><b>,CONSTRUCTOR</b>;
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : SHORTREAL;
+                                       p1 : SHORTREAL;
+                                       p2 : SHORTREAL;
+                                       p3 : SHORTREAL;
+                                       p4 : SHORTREAL;
+                                       p5 : SHORTREAL) : <a href="#type-AffineTransform">AffineTransform</a><b>,CONSTRUCTOR</b>;
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>SHORTREAL) : <a href="#type-AffineTransform">AffineTransform</a><b>,CONSTRUCTOR</b>;
+                     <b>END</b>;
+
+  <a name="type-Arc2D"></a><font color="#cc0033">Arc2D</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<b>RectangularShape</b>)
+           <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+           <font color="green"><b> (* </b><a href="#meths-Arc2D">Typebound Procedures</a><b> *)</b></font>
+           <b>STATIC</b>
+             <font color="#cc0033">CHORD</font>* = 1;
+             <font color="#cc0033">OPEN</font>*  = 0;
+             <font color="#cc0033">PIE</font>*   = 2;
+             <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : INTEGER) : <a href="#type-Arc2D">Arc2D</a><b>,CONSTRUCTOR</b>;
+             <b>PROCEDURE </b><font color="#cc0033">Init</font>!() : <a href="#type-Arc2D">Arc2D</a><b>,CONSTRUCTOR</b>;
+           <b>END</b>;
+
+  <a name="type-Arc2D$Double"></a><font color="#cc0033">Arc2D$Double</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<b>Arc2D</b> + <a href="java_io.html#type-Serializable">java_io.Serializable</a>)
+                  <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                  <font color="green"><b> (* </b><a href="#meths-Arc2D$Double">Typebound Procedures</a><b> *)</b></font>
+                    <font color="#cc0033">x</font>*      : REAL;
+                    <font color="#cc0033">y</font>*      : REAL;
+                    <font color="#cc0033">width</font>*  : REAL;
+                    <font color="#cc0033">height</font>* : REAL;
+                    <font color="#cc0033">start</font>*  : REAL;
+                    <font color="#cc0033">extent</font>* : REAL;
+                  <b>STATIC</b>
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : REAL;
+                                    p1 : REAL;
+                                    p2 : REAL;
+                                    p3 : REAL;
+                                    p4 : REAL;
+                                    p5 : REAL;
+                                    p6 : INTEGER) : <a href="#type-Arc2D$Double">Arc2D$Double</a><b>,CONSTRUCTOR</b>;
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <b>Rectangle2D</b>;
+                                    p1 : REAL;
+                                    p2 : REAL;
+                                    p3 : INTEGER) : <a href="#type-Arc2D$Double">Arc2D$Double</a><b>,CONSTRUCTOR</b>;
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-Arc2D$Double">Arc2D$Double</a><b>,CONSTRUCTOR</b>;
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER) : <a href="#type-Arc2D$Double">Arc2D$Double</a><b>,CONSTRUCTOR</b>;
+                  <b>END</b>;
+
+  <a name="type-Arc2D$Float"></a><font color="#cc0033">Arc2D$Float</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<b>Arc2D</b> + <a href="java_io.html#type-Serializable">java_io.Serializable</a>)
+                 <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                 <font color="green"><b> (* </b><a href="#meths-Arc2D$Float">Typebound Procedures</a><b> *)</b></font>
+                   <font color="#cc0033">x</font>*      : SHORTREAL;
+                   <font color="#cc0033">y</font>*      : SHORTREAL;
+                   <font color="#cc0033">width</font>*  : SHORTREAL;
+                   <font color="#cc0033">height</font>* : SHORTREAL;
+                   <font color="#cc0033">start</font>*  : SHORTREAL;
+                   <font color="#cc0033">extent</font>* : SHORTREAL;
+                 <b>STATIC</b>
+                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : SHORTREAL;
+                                   p1 : SHORTREAL;
+                                   p2 : SHORTREAL;
+                                   p3 : SHORTREAL;
+                                   p4 : SHORTREAL;
+                                   p5 : SHORTREAL;
+                                   p6 : INTEGER) : <a href="#type-Arc2D$Float">Arc2D$Float</a><b>,CONSTRUCTOR</b>;
+                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <b>Rectangle2D</b>;
+                                   p1 : SHORTREAL;
+                                   p2 : SHORTREAL;
+                                   p3 : INTEGER) : <a href="#type-Arc2D$Float">Arc2D$Float</a><b>,CONSTRUCTOR</b>;
+                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-Arc2D$Float">Arc2D$Float</a><b>,CONSTRUCTOR</b>;
+                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER) : <a href="#type-Arc2D$Float">Arc2D$Float</a><b>,CONSTRUCTOR</b>;
+                 <b>END</b>;
+
+  <a name="type-Area"></a><font color="#cc0033">Area</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_awt.html#type-Shape">java_awt.Shape</a> + <a href="java_lang.html#type-Cloneable">java_lang.Cloneable</a>)
+          <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+          <font color="green"><b> (* </b><a href="#meths-Area">Typebound Procedures</a><b> *)</b></font>
+          <b>STATIC</b>
+            <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_awt.html#type-Shape">java_awt.Shape</a>) : <a href="#type-Area">Area</a><b>,CONSTRUCTOR</b>;
+            <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-Area">Area</a><b>,CONSTRUCTOR</b>;
+          <b>END</b>;
+
+  <a name="type-CubicCurve2D"></a><font color="#cc0033">CubicCurve2D</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_awt.html#type-Shape">java_awt.Shape</a> + <a href="java_lang.html#type-Cloneable">java_lang.Cloneable</a>)
+                  <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                  <font color="green"><b> (* </b><a href="#meths-CubicCurve2D">Typebound Procedures</a><b> *)</b></font>
+                  <b>STATIC</b>
+                    <b>PROCEDURE </b><font color="#cc0033">getFlatness</font>*(p0 : REAL;
+                                           p1 : REAL;
+                                           p2 : REAL;
+                                           p3 : REAL;
+                                           p4 : REAL;
+                                           p5 : REAL;
+                                           p6 : REAL;
+                                           p7 : REAL) : REAL;
+                    <b>PROCEDURE </b><font color="#cc0033">getFlatness</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>REAL;
+                                               p1 : INTEGER) : REAL;
+                    <b>PROCEDURE </b><font color="#cc0033">getFlatnessSq</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>REAL;
+                                                 p1 : INTEGER) : REAL;
+                    <b>PROCEDURE </b><font color="#cc0033">getFlatnessSq</font>*(p0 : REAL;
+                                             p1 : REAL;
+                                             p2 : REAL;
+                                             p3 : REAL;
+                                             p4 : REAL;
+                                             p5 : REAL;
+                                             p6 : REAL;
+                                             p7 : REAL) : REAL;
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>!() : <a href="#type-CubicCurve2D">CubicCurve2D</a><b>,CONSTRUCTOR</b>;
+                    <b>PROCEDURE </b><font color="#cc0033">solveCubic</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>REAL) : INTEGER;
+                    <b>PROCEDURE </b><font color="#cc0033">solveCubic</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>REAL;
+                                          IN  p1 : <b>ARRAY </b><b>OF </b>REAL) : INTEGER;
+                    <b>PROCEDURE </b><font color="#cc0033">subdivide</font>*(p0 : <a href="#type-CubicCurve2D">CubicCurve2D</a>;
+                                         p1 : <a href="#type-CubicCurve2D">CubicCurve2D</a>;
+                                         p2 : <a href="#type-CubicCurve2D">CubicCurve2D</a>);
+                    <b>PROCEDURE </b><font color="#cc0033">subdivide</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>REAL;
+                                             p1 : INTEGER;
+                                         IN  p2 : <b>ARRAY </b><b>OF </b>REAL;
+                                             p3 : INTEGER;
+                                         IN  p4 : <b>ARRAY </b><b>OF </b>REAL;
+                                             p5 : INTEGER);
+                  <b>END</b>;
+
+  <a name="type-CubicCurve2D$Double"></a><font color="#cc0033">CubicCurve2D$Double</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<b>CubicCurve2D</b> + <a href="java_io.html#type-Serializable">java_io.Serializable</a>)
+                         <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                         <font color="green"><b> (* </b><a href="#meths-CubicCurve2D$Double">Typebound Procedures</a><b> *)</b></font>
+                           <font color="#cc0033">x1</font>*     : REAL;
+                           <font color="#cc0033">y1</font>*     : REAL;
+                           <font color="#cc0033">ctrlx1</font>* : REAL;
+                           <font color="#cc0033">ctrly1</font>* : REAL;
+                           <font color="#cc0033">ctrlx2</font>* : REAL;
+                           <font color="#cc0033">ctrly2</font>* : REAL;
+                           <font color="#cc0033">x2</font>*     : REAL;
+                           <font color="#cc0033">y2</font>*     : REAL;
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : REAL;
+                                           p1 : REAL;
+                                           p2 : REAL;
+                                           p3 : REAL;
+                                           p4 : REAL;
+                                           p5 : REAL;
+                                           p6 : REAL;
+                                           p7 : REAL) : <a href="#type-CubicCurve2D$Double">CubicCurve2D$Double</a><b>,CONSTRUCTOR</b>;
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CubicCurve2D$Double">CubicCurve2D$Double</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-CubicCurve2D$Float"></a><font color="#cc0033">CubicCurve2D$Float</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<b>CubicCurve2D</b> + <a href="java_io.html#type-Serializable">java_io.Serializable</a>)
+                        <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                        <font color="green"><b> (* </b><a href="#meths-CubicCurve2D$Float">Typebound Procedures</a><b> *)</b></font>
+                          <font color="#cc0033">x1</font>*     : SHORTREAL;
+                          <font color="#cc0033">y1</font>*     : SHORTREAL;
+                          <font color="#cc0033">ctrlx1</font>* : SHORTREAL;
+                          <font color="#cc0033">ctrly1</font>* : SHORTREAL;
+                          <font color="#cc0033">ctrlx2</font>* : SHORTREAL;
+                          <font color="#cc0033">ctrly2</font>* : SHORTREAL;
+                          <font color="#cc0033">x2</font>*     : SHORTREAL;
+                          <font color="#cc0033">y2</font>*     : SHORTREAL;
+                        <b>STATIC</b>
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : SHORTREAL;
+                                          p1 : SHORTREAL;
+                                          p2 : SHORTREAL;
+                                          p3 : SHORTREAL;
+                                          p4 : SHORTREAL;
+                                          p5 : SHORTREAL;
+                                          p6 : SHORTREAL;
+                                          p7 : SHORTREAL) : <a href="#type-CubicCurve2D$Float">CubicCurve2D$Float</a><b>,CONSTRUCTOR</b>;
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CubicCurve2D$Float">CubicCurve2D$Float</a><b>,CONSTRUCTOR</b>;
+                        <b>END</b>;
+
+  <a name="type-Dimension2D"></a><font color="#cc0033">Dimension2D</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_lang.html#type-Cloneable">java_lang.Cloneable</a>)
+                 <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                 <font color="green"><b> (* </b><a href="#meths-Dimension2D">Typebound Procedures</a><b> *)</b></font>
+                 <b>STATIC</b>
+                   <b>PROCEDURE </b><font color="#cc0033">Init</font>!() : <a href="#type-Dimension2D">Dimension2D</a><b>,CONSTRUCTOR</b>;
+                 <b>END</b>;
+
+  <a name="type-Ellipse2D"></a><font color="#cc0033">Ellipse2D</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<b>RectangularShape</b>)
+               <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+               <font color="green"><b> (* </b><a href="#meths-Ellipse2D">Typebound Procedures</a><b> *)</b></font>
+               <b>STATIC</b>
+                 <b>PROCEDURE </b><font color="#cc0033">Init</font>!() : <a href="#type-Ellipse2D">Ellipse2D</a><b>,CONSTRUCTOR</b>;
+               <b>END</b>;
+
+  <a name="type-Ellipse2D$Double"></a><font color="#cc0033">Ellipse2D$Double</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<b>Ellipse2D</b> + <a href="java_io.html#type-Serializable">java_io.Serializable</a>)
+                      <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                      <font color="green"><b> (* </b><a href="#meths-Ellipse2D$Double">Typebound Procedures</a><b> *)</b></font>
+                        <font color="#cc0033">x</font>*      : REAL;
+                        <font color="#cc0033">y</font>*      : REAL;
+                        <font color="#cc0033">width</font>*  : REAL;
+                        <font color="#cc0033">height</font>* : REAL;
+                      <b>STATIC</b>
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : REAL;
+                                        p1 : REAL;
+                                        p2 : REAL;
+                                        p3 : REAL) : <a href="#type-Ellipse2D$Double">Ellipse2D$Double</a><b>,CONSTRUCTOR</b>;
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-Ellipse2D$Double">Ellipse2D$Double</a><b>,CONSTRUCTOR</b>;
+                      <b>END</b>;
+
+  <a name="type-Ellipse2D$Float"></a><font color="#cc0033">Ellipse2D$Float</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<b>Ellipse2D</b> + <a href="java_io.html#type-Serializable">java_io.Serializable</a>)
+                     <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                     <font color="green"><b> (* </b><a href="#meths-Ellipse2D$Float">Typebound Procedures</a><b> *)</b></font>
+                       <font color="#cc0033">x</font>*      : SHORTREAL;
+                       <font color="#cc0033">y</font>*      : SHORTREAL;
+                       <font color="#cc0033">width</font>*  : SHORTREAL;
+                       <font color="#cc0033">height</font>* : SHORTREAL;
+                     <b>STATIC</b>
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : SHORTREAL;
+                                       p1 : SHORTREAL;
+                                       p2 : SHORTREAL;
+                                       p3 : SHORTREAL) : <a href="#type-Ellipse2D$Float">Ellipse2D$Float</a><b>,CONSTRUCTOR</b>;
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-Ellipse2D$Float">Ellipse2D$Float</a><b>,CONSTRUCTOR</b>;
+                     <b>END</b>;
+
+  <a name="type-FlatteningPathIterator"></a><font color="#cc0033">FlatteningPathIterator</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <b>PathIterator</b>)
+                            <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                            <font color="green"><b> (* </b><a href="#meths-FlatteningPathIterator">Typebound Procedures</a><b> *)</b></font>
+                            <b>STATIC</b>
+                              <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <b>PathIterator</b>;
+                                              p1 : REAL;
+                                              p2 : INTEGER) : <a href="#type-FlatteningPathIterator">FlatteningPathIterator</a><b>,CONSTRUCTOR</b>;
+                              <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <b>PathIterator</b>;
+                                              p1 : REAL) : <a href="#type-FlatteningPathIterator">FlatteningPathIterator</a><b>,CONSTRUCTOR</b>;
+                            <b>END</b>;
+
+  <a name="type-GeneralPath"></a><font color="#cc0033">GeneralPath</font>* = <b>POINTER TO </b><b>RECORD</b> (<b>Path2D$Float</b>)
+                 <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                 <b>STATIC</b>
+                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER;
+                                   p1 : INTEGER) : <a href="#type-GeneralPath">GeneralPath</a><b>,CONSTRUCTOR</b>;
+                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_awt.html#type-Shape">java_awt.Shape</a>) : <a href="#type-GeneralPath">GeneralPath</a><b>,CONSTRUCTOR</b>;
+                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-GeneralPath">GeneralPath</a><b>,CONSTRUCTOR</b>;
+                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER) : <a href="#type-GeneralPath">GeneralPath</a><b>,CONSTRUCTOR</b>;
+                 <b>END</b>;
+
+  <a name="type-IllegalPathStateException"></a><font color="#cc0033">IllegalPathStateException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-RuntimeException">java_lang.RuntimeException</a>)
+                               <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                               <b>STATIC</b>
+                                 <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-IllegalPathStateException">IllegalPathStateException</a><b>,CONSTRUCTOR</b>;
+                                 <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-IllegalPathStateException">IllegalPathStateException</a><b>,CONSTRUCTOR</b>;
+                               <b>END</b>;
+
+  <a name="type-Line2D"></a><font color="#cc0033">Line2D</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_awt.html#type-Shape">java_awt.Shape</a> + <a href="java_lang.html#type-Cloneable">java_lang.Cloneable</a>)
+            <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+            <font color="green"><b> (* </b><a href="#meths-Line2D">Typebound Procedures</a><b> *)</b></font>
+            <b>STATIC</b>
+              <b>PROCEDURE </b><font color="#cc0033">Init</font>!() : <a href="#type-Line2D">Line2D</a><b>,CONSTRUCTOR</b>;
+              <b>PROCEDURE </b><font color="#cc0033">linesIntersect</font>*(p0 : REAL;
+                                        p1 : REAL;
+                                        p2 : REAL;
+                                        p3 : REAL;
+                                        p4 : REAL;
+                                        p5 : REAL;
+                                        p6 : REAL;
+                                        p7 : REAL) : BOOLEAN;
+              <b>PROCEDURE </b><font color="#cc0033">ptLineDist</font>*(p0 : REAL;
+                                    p1 : REAL;
+                                    p2 : REAL;
+                                    p3 : REAL;
+                                    p4 : REAL;
+                                    p5 : REAL) : REAL;
+              <b>PROCEDURE </b><font color="#cc0033">ptLineDistSq</font>*(p0 : REAL;
+                                      p1 : REAL;
+                                      p2 : REAL;
+                                      p3 : REAL;
+                                      p4 : REAL;
+                                      p5 : REAL) : REAL;
+              <b>PROCEDURE </b><font color="#cc0033">ptSegDist</font>*(p0 : REAL;
+                                   p1 : REAL;
+                                   p2 : REAL;
+                                   p3 : REAL;
+                                   p4 : REAL;
+                                   p5 : REAL) : REAL;
+              <b>PROCEDURE </b><font color="#cc0033">ptSegDistSq</font>*(p0 : REAL;
+                                     p1 : REAL;
+                                     p2 : REAL;
+                                     p3 : REAL;
+                                     p4 : REAL;
+                                     p5 : REAL) : REAL;
+              <b>PROCEDURE </b><font color="#cc0033">relativeCCW</font>*(p0 : REAL;
+                                     p1 : REAL;
+                                     p2 : REAL;
+                                     p3 : REAL;
+                                     p4 : REAL;
+                                     p5 : REAL) : INTEGER;
+            <b>END</b>;
+
+  <a name="type-Line2D$Double"></a><font color="#cc0033">Line2D$Double</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<b>Line2D</b> + <a href="java_io.html#type-Serializable">java_io.Serializable</a>)
+                   <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                   <font color="green"><b> (* </b><a href="#meths-Line2D$Double">Typebound Procedures</a><b> *)</b></font>
+                     <font color="#cc0033">x1</font>* : REAL;
+                     <font color="#cc0033">y1</font>* : REAL;
+                     <font color="#cc0033">x2</font>* : REAL;
+                     <font color="#cc0033">y2</font>* : REAL;
+                   <b>STATIC</b>
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <b>Point2D</b>;
+                                     p1 : <b>Point2D</b>) : <a href="#type-Line2D$Double">Line2D$Double</a><b>,CONSTRUCTOR</b>;
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : REAL;
+                                     p1 : REAL;
+                                     p2 : REAL;
+                                     p3 : REAL) : <a href="#type-Line2D$Double">Line2D$Double</a><b>,CONSTRUCTOR</b>;
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-Line2D$Double">Line2D$Double</a><b>,CONSTRUCTOR</b>;
+                   <b>END</b>;
+
+  <a name="type-Line2D$Float"></a><font color="#cc0033">Line2D$Float</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<b>Line2D</b> + <a href="java_io.html#type-Serializable">java_io.Serializable</a>)
+                  <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                  <font color="green"><b> (* </b><a href="#meths-Line2D$Float">Typebound Procedures</a><b> *)</b></font>
+                    <font color="#cc0033">x1</font>* : SHORTREAL;
+                    <font color="#cc0033">y1</font>* : SHORTREAL;
+                    <font color="#cc0033">x2</font>* : SHORTREAL;
+                    <font color="#cc0033">y2</font>* : SHORTREAL;
+                  <b>STATIC</b>
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <b>Point2D</b>;
+                                    p1 : <b>Point2D</b>) : <a href="#type-Line2D$Float">Line2D$Float</a><b>,CONSTRUCTOR</b>;
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : SHORTREAL;
+                                    p1 : SHORTREAL;
+                                    p2 : SHORTREAL;
+                                    p3 : SHORTREAL) : <a href="#type-Line2D$Float">Line2D$Float</a><b>,CONSTRUCTOR</b>;
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-Line2D$Float">Line2D$Float</a><b>,CONSTRUCTOR</b>;
+                  <b>END</b>;
+
+  <a name="type-NoninvertibleTransformException"></a><font color="#cc0033">NoninvertibleTransformException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Exception">java_lang.Exception</a>)
+                                     <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                                     <b>STATIC</b>
+                                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-NoninvertibleTransformException">NoninvertibleTransformException</a><b>,CONSTRUCTOR</b>;
+                                     <b>END</b>;
+
+  <a name="type-Path2D"></a><font color="#cc0033">Path2D</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_awt.html#type-Shape">java_awt.Shape</a> + <a href="java_lang.html#type-Cloneable">java_lang.Cloneable</a>)
+            <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+            <font color="green"><b> (* </b><a href="#meths-Path2D">Typebound Procedures</a><b> *)</b></font>
+            <b>STATIC</b>
+              <font color="#cc0033">WIND_EVEN_ODD</font>* = 0;
+              <font color="#cc0033">WIND_NON_ZERO</font>* = 1;
+              <b>PROCEDURE </b><font color="#cc0033">contains</font>*(p0 : <a href="#type-PathIterator">PathIterator</a>;
+                                  p1 : REAL;
+                                  p2 : REAL;
+                                  p3 : REAL;
+                                  p4 : REAL) : BOOLEAN;
+              <b>PROCEDURE </b><font color="#cc0033">contains</font>*(p0 : <a href="#type-PathIterator">PathIterator</a>;
+                                  p1 : <b>Rectangle2D</b>) : BOOLEAN;
+              <b>PROCEDURE </b><font color="#cc0033">contains</font>*(p0 : <a href="#type-PathIterator">PathIterator</a>;
+                                  p1 : REAL;
+                                  p2 : REAL) : BOOLEAN;
+              <b>PROCEDURE </b><font color="#cc0033">contains</font>*(p0 : <a href="#type-PathIterator">PathIterator</a>;
+                                  p1 : <b>Point2D</b>) : BOOLEAN;
+              <b>PROCEDURE </b><font color="#cc0033">intersects</font>*(p0 : <a href="#type-PathIterator">PathIterator</a>;
+                                    p1 : <b>Rectangle2D</b>) : BOOLEAN;
+              <b>PROCEDURE </b><font color="#cc0033">intersects</font>*(p0 : <a href="#type-PathIterator">PathIterator</a>;
+                                    p1 : REAL;
+                                    p2 : REAL;
+                                    p3 : REAL;
+                                    p4 : REAL) : BOOLEAN;
+            <b>END</b>;
+
+  <a name="type-Path2D$Double"></a><font color="#cc0033">Path2D$Double</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<b>Path2D</b> + <a href="java_io.html#type-Serializable">java_io.Serializable</a>)
+                   <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                   <font color="green"><b> (* </b><a href="#meths-Path2D$Double">Typebound Procedures</a><b> *)</b></font>
+                   <b>STATIC</b>
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_awt.html#type-Shape">java_awt.Shape</a>) : <a href="#type-Path2D$Double">Path2D$Double</a><b>,CONSTRUCTOR</b>;
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_awt.html#type-Shape">java_awt.Shape</a>;
+                                     p1 : <b>AffineTransform</b>) : <a href="#type-Path2D$Double">Path2D$Double</a><b>,CONSTRUCTOR</b>;
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER;
+                                     p1 : INTEGER) : <a href="#type-Path2D$Double">Path2D$Double</a><b>,CONSTRUCTOR</b>;
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-Path2D$Double">Path2D$Double</a><b>,CONSTRUCTOR</b>;
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER) : <a href="#type-Path2D$Double">Path2D$Double</a><b>,CONSTRUCTOR</b>;
+                   <b>END</b>;
+
+  <a name="type-Path2D$Float"></a><font color="#cc0033">Path2D$Float</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<b>Path2D</b> + <a href="java_io.html#type-Serializable">java_io.Serializable</a>)
+                  <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                  <font color="green"><b> (* </b><a href="#meths-Path2D$Float">Typebound Procedures</a><b> *)</b></font>
+                  <b>STATIC</b>
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_awt.html#type-Shape">java_awt.Shape</a>) : <a href="#type-Path2D$Float">Path2D$Float</a><b>,CONSTRUCTOR</b>;
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_awt.html#type-Shape">java_awt.Shape</a>;
+                                    p1 : <b>AffineTransform</b>) : <a href="#type-Path2D$Float">Path2D$Float</a><b>,CONSTRUCTOR</b>;
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER;
+                                    p1 : INTEGER) : <a href="#type-Path2D$Float">Path2D$Float</a><b>,CONSTRUCTOR</b>;
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-Path2D$Float">Path2D$Float</a><b>,CONSTRUCTOR</b>;
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER) : <a href="#type-Path2D$Float">Path2D$Float</a><b>,CONSTRUCTOR</b>;
+                  <b>END</b>;
+
+  <a name="type-PathIterator"></a><font color="#cc0033">PathIterator</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                  <font color="green"><b> (* </b><a href="#meths-PathIterator">Typebound Procedures</a><b> *)</b></font>
+                  <b>STATIC</b>
+                    <font color="#cc0033">SEG_CLOSE</font>*     = 4;
+                    <font color="#cc0033">SEG_CUBICTO</font>*   = 3;
+                    <font color="#cc0033">SEG_LINETO</font>*    = 1;
+                    <font color="#cc0033">SEG_MOVETO</font>*    = 0;
+                    <font color="#cc0033">SEG_QUADTO</font>*    = 2;
+                    <font color="#cc0033">WIND_EVEN_ODD</font>* = 0;
+                    <font color="#cc0033">WIND_NON_ZERO</font>* = 1;
+                  <b>END</b>;
+
+  <a name="type-Point2D"></a><font color="#cc0033">Point2D</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_lang.html#type-Cloneable">java_lang.Cloneable</a>)
+             <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+             <font color="green"><b> (* </b><a href="#meths-Point2D">Typebound Procedures</a><b> *)</b></font>
+             <b>STATIC</b>
+               <b>PROCEDURE </b><font color="#cc0033">distance</font>*(p0 : REAL;
+                                   p1 : REAL;
+                                   p2 : REAL;
+                                   p3 : REAL) : REAL;
+               <b>PROCEDURE </b><font color="#cc0033">distanceSq</font>*(p0 : REAL;
+                                     p1 : REAL;
+                                     p2 : REAL;
+                                     p3 : REAL) : REAL;
+               <b>PROCEDURE </b><font color="#cc0033">Init</font>!() : <a href="#type-Point2D">Point2D</a><b>,CONSTRUCTOR</b>;
+             <b>END</b>;
+
+  <a name="type-Point2D$Double"></a><font color="#cc0033">Point2D$Double</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<b>Point2D</b> + <a href="java_io.html#type-Serializable">java_io.Serializable</a>)
+                    <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                    <font color="green"><b> (* </b><a href="#meths-Point2D$Double">Typebound Procedures</a><b> *)</b></font>
+                      <font color="#cc0033">x</font>* : REAL;
+                      <font color="#cc0033">y</font>* : REAL;
+                    <b>STATIC</b>
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : REAL;
+                                      p1 : REAL) : <a href="#type-Point2D$Double">Point2D$Double</a><b>,CONSTRUCTOR</b>;
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-Point2D$Double">Point2D$Double</a><b>,CONSTRUCTOR</b>;
+                    <b>END</b>;
+
+  <a name="type-Point2D$Float"></a><font color="#cc0033">Point2D$Float</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<b>Point2D</b> + <a href="java_io.html#type-Serializable">java_io.Serializable</a>)
+                   <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                   <font color="green"><b> (* </b><a href="#meths-Point2D$Float">Typebound Procedures</a><b> *)</b></font>
+                     <font color="#cc0033">x</font>* : SHORTREAL;
+                     <font color="#cc0033">y</font>* : SHORTREAL;
+                   <b>STATIC</b>
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : SHORTREAL;
+                                     p1 : SHORTREAL) : <a href="#type-Point2D$Float">Point2D$Float</a><b>,CONSTRUCTOR</b>;
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-Point2D$Float">Point2D$Float</a><b>,CONSTRUCTOR</b>;
+                   <b>END</b>;
+
+  <a name="type-QuadCurve2D"></a><font color="#cc0033">QuadCurve2D</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_awt.html#type-Shape">java_awt.Shape</a> + <a href="java_lang.html#type-Cloneable">java_lang.Cloneable</a>)
+                 <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                 <font color="green"><b> (* </b><a href="#meths-QuadCurve2D">Typebound Procedures</a><b> *)</b></font>
+                 <b>STATIC</b>
+                   <b>PROCEDURE </b><font color="#cc0033">getFlatness</font>*(p0 : REAL;
+                                          p1 : REAL;
+                                          p2 : REAL;
+                                          p3 : REAL;
+                                          p4 : REAL;
+                                          p5 : REAL) : REAL;
+                   <b>PROCEDURE </b><font color="#cc0033">getFlatness</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>REAL;
+                                              p1 : INTEGER) : REAL;
+                   <b>PROCEDURE </b><font color="#cc0033">getFlatnessSq</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>REAL;
+                                                p1 : INTEGER) : REAL;
+                   <b>PROCEDURE </b><font color="#cc0033">getFlatnessSq</font>*(p0 : REAL;
+                                            p1 : REAL;
+                                            p2 : REAL;
+                                            p3 : REAL;
+                                            p4 : REAL;
+                                            p5 : REAL) : REAL;
+                   <b>PROCEDURE </b><font color="#cc0033">Init</font>!() : <a href="#type-QuadCurve2D">QuadCurve2D</a><b>,CONSTRUCTOR</b>;
+                   <b>PROCEDURE </b><font color="#cc0033">solveQuadratic</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>REAL) : INTEGER;
+                   <b>PROCEDURE </b><font color="#cc0033">solveQuadratic</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>REAL;
+                                             IN  p1 : <b>ARRAY </b><b>OF </b>REAL) : INTEGER;
+                   <b>PROCEDURE </b><font color="#cc0033">subdivide</font>*(p0 : <a href="#type-QuadCurve2D">QuadCurve2D</a>;
+                                        p1 : <a href="#type-QuadCurve2D">QuadCurve2D</a>;
+                                        p2 : <a href="#type-QuadCurve2D">QuadCurve2D</a>);
+                   <b>PROCEDURE </b><font color="#cc0033">subdivide</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>REAL;
+                                            p1 : INTEGER;
+                                        IN  p2 : <b>ARRAY </b><b>OF </b>REAL;
+                                            p3 : INTEGER;
+                                        IN  p4 : <b>ARRAY </b><b>OF </b>REAL;
+                                            p5 : INTEGER);
+                 <b>END</b>;
+
+  <a name="type-QuadCurve2D$Double"></a><font color="#cc0033">QuadCurve2D$Double</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<b>QuadCurve2D</b> + <a href="java_io.html#type-Serializable">java_io.Serializable</a>)
+                        <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                        <font color="green"><b> (* </b><a href="#meths-QuadCurve2D$Double">Typebound Procedures</a><b> *)</b></font>
+                          <font color="#cc0033">x1</font>*    : REAL;
+                          <font color="#cc0033">y1</font>*    : REAL;
+                          <font color="#cc0033">ctrlx</font>* : REAL;
+                          <font color="#cc0033">ctrly</font>* : REAL;
+                          <font color="#cc0033">x2</font>*    : REAL;
+                          <font color="#cc0033">y2</font>*    : REAL;
+                        <b>STATIC</b>
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : REAL;
+                                          p1 : REAL;
+                                          p2 : REAL;
+                                          p3 : REAL;
+                                          p4 : REAL;
+                                          p5 : REAL) : <a href="#type-QuadCurve2D$Double">QuadCurve2D$Double</a><b>,CONSTRUCTOR</b>;
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-QuadCurve2D$Double">QuadCurve2D$Double</a><b>,CONSTRUCTOR</b>;
+                        <b>END</b>;
+
+  <a name="type-QuadCurve2D$Float"></a><font color="#cc0033">QuadCurve2D$Float</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<b>QuadCurve2D</b> + <a href="java_io.html#type-Serializable">java_io.Serializable</a>)
+                       <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                       <font color="green"><b> (* </b><a href="#meths-QuadCurve2D$Float">Typebound Procedures</a><b> *)</b></font>
+                         <font color="#cc0033">x1</font>*    : SHORTREAL;
+                         <font color="#cc0033">y1</font>*    : SHORTREAL;
+                         <font color="#cc0033">ctrlx</font>* : SHORTREAL;
+                         <font color="#cc0033">ctrly</font>* : SHORTREAL;
+                         <font color="#cc0033">x2</font>*    : SHORTREAL;
+                         <font color="#cc0033">y2</font>*    : SHORTREAL;
+                       <b>STATIC</b>
+                         <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : SHORTREAL;
+                                         p1 : SHORTREAL;
+                                         p2 : SHORTREAL;
+                                         p3 : SHORTREAL;
+                                         p4 : SHORTREAL;
+                                         p5 : SHORTREAL) : <a href="#type-QuadCurve2D$Float">QuadCurve2D$Float</a><b>,CONSTRUCTOR</b>;
+                         <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-QuadCurve2D$Float">QuadCurve2D$Float</a><b>,CONSTRUCTOR</b>;
+                       <b>END</b>;
+
+  <a name="type-Rectangle2D"></a><font color="#cc0033">Rectangle2D</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="#type-RectangularShape">RectangularShape</a>)
+                 <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                 <font color="green"><b> (* </b><a href="#meths-Rectangle2D">Typebound Procedures</a><b> *)</b></font>
+                 <b>STATIC</b>
+                   <font color="#cc0033">OUT_BOTTOM</font>* = 8;
+                   <font color="#cc0033">OUT_LEFT</font>*   = 1;
+                   <font color="#cc0033">OUT_RIGHT</font>*  = 4;
+                   <font color="#cc0033">OUT_TOP</font>*    = 2;
+                   <b>PROCEDURE </b><font color="#cc0033">Init</font>!() : <a href="#type-Rectangle2D">Rectangle2D</a><b>,CONSTRUCTOR</b>;
+                   <b>PROCEDURE </b><font color="#cc0033">intersect</font>*(p0 : <a href="#type-Rectangle2D">Rectangle2D</a>;
+                                        p1 : <a href="#type-Rectangle2D">Rectangle2D</a>;
+                                        p2 : <a href="#type-Rectangle2D">Rectangle2D</a>);
+                   <b>PROCEDURE </b><font color="#cc0033">union</font>*(p0 : <a href="#type-Rectangle2D">Rectangle2D</a>;
+                                    p1 : <a href="#type-Rectangle2D">Rectangle2D</a>;
+                                    p2 : <a href="#type-Rectangle2D">Rectangle2D</a>);
+                 <b>END</b>;
+
+  <a name="type-Rectangle2D$Double"></a><font color="#cc0033">Rectangle2D$Double</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<b>Rectangle2D</b> + <a href="java_io.html#type-Serializable">java_io.Serializable</a>)
+                        <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                        <font color="green"><b> (* </b><a href="#meths-Rectangle2D$Double">Typebound Procedures</a><b> *)</b></font>
+                          <font color="#cc0033">x</font>*      : REAL;
+                          <font color="#cc0033">y</font>*      : REAL;
+                          <font color="#cc0033">width</font>*  : REAL;
+                          <font color="#cc0033">height</font>* : REAL;
+                        <b>STATIC</b>
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : REAL;
+                                          p1 : REAL;
+                                          p2 : REAL;
+                                          p3 : REAL) : <a href="#type-Rectangle2D$Double">Rectangle2D$Double</a><b>,CONSTRUCTOR</b>;
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-Rectangle2D$Double">Rectangle2D$Double</a><b>,CONSTRUCTOR</b>;
+                        <b>END</b>;
+
+  <a name="type-Rectangle2D$Float"></a><font color="#cc0033">Rectangle2D$Float</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<b>Rectangle2D</b> + <a href="java_io.html#type-Serializable">java_io.Serializable</a>)
+                       <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                       <font color="green"><b> (* </b><a href="#meths-Rectangle2D$Float">Typebound Procedures</a><b> *)</b></font>
+                         <font color="#cc0033">x</font>*      : SHORTREAL;
+                         <font color="#cc0033">y</font>*      : SHORTREAL;
+                         <font color="#cc0033">width</font>*  : SHORTREAL;
+                         <font color="#cc0033">height</font>* : SHORTREAL;
+                       <b>STATIC</b>
+                         <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : SHORTREAL;
+                                         p1 : SHORTREAL;
+                                         p2 : SHORTREAL;
+                                         p3 : SHORTREAL) : <a href="#type-Rectangle2D$Float">Rectangle2D$Float</a><b>,CONSTRUCTOR</b>;
+                         <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-Rectangle2D$Float">Rectangle2D$Float</a><b>,CONSTRUCTOR</b>;
+                       <b>END</b>;
+
+  <a name="type-RectangularShape"></a><font color="#cc0033">RectangularShape</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_awt.html#type-Shape">java_awt.Shape</a> + <a href="java_lang.html#type-Cloneable">java_lang.Cloneable</a>)
+                      <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                      <font color="green"><b> (* </b><a href="#meths-RectangularShape">Typebound Procedures</a><b> *)</b></font>
+                      <b>STATIC</b>
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>!() : <a href="#type-RectangularShape">RectangularShape</a><b>,CONSTRUCTOR</b>;
+                      <b>END</b>;
+
+  <a name="type-RoundRectangle2D"></a><font color="#cc0033">RoundRectangle2D</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<b>RectangularShape</b>)
+                      <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                      <font color="green"><b> (* </b><a href="#meths-RoundRectangle2D">Typebound Procedures</a><b> *)</b></font>
+                      <b>STATIC</b>
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>!() : <a href="#type-RoundRectangle2D">RoundRectangle2D</a><b>,CONSTRUCTOR</b>;
+                      <b>END</b>;
+
+  <a name="type-RoundRectangle2D$Double"></a><font color="#cc0033">RoundRectangle2D$Double</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<b>RoundRectangle2D</b> + <a href="java_io.html#type-Serializable">java_io.Serializable</a>)
+                             <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                             <font color="green"><b> (* </b><a href="#meths-RoundRectangle2D$Double">Typebound Procedures</a><b> *)</b></font>
+                               <font color="#cc0033">x</font>*         : REAL;
+                               <font color="#cc0033">y</font>*         : REAL;
+                               <font color="#cc0033">width</font>*     : REAL;
+                               <font color="#cc0033">height</font>*    : REAL;
+                               <font color="#cc0033">arcwidth</font>*  : REAL;
+                               <font color="#cc0033">archeight</font>* : REAL;
+                             <b>STATIC</b>
+                               <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : REAL;
+                                               p1 : REAL;
+                                               p2 : REAL;
+                                               p3 : REAL;
+                                               p4 : REAL;
+                                               p5 : REAL) : <a href="#type-RoundRectangle2D$Double">RoundRectangle2D$Double</a><b>,CONSTRUCTOR</b>;
+                               <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-RoundRectangle2D$Double">RoundRectangle2D$Double</a><b>,CONSTRUCTOR</b>;
+                             <b>END</b>;
+
+  <a name="type-RoundRectangle2D$Float"></a><font color="#cc0033">RoundRectangle2D$Float</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<b>RoundRectangle2D</b> + <a href="java_io.html#type-Serializable">java_io.Serializable</a>)
+                            <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                            <font color="green"><b> (* </b><a href="#meths-RoundRectangle2D$Float">Typebound Procedures</a><b> *)</b></font>
+                              <font color="#cc0033">x</font>*         : SHORTREAL;
+                              <font color="#cc0033">y</font>*         : SHORTREAL;
+                              <font color="#cc0033">width</font>*     : SHORTREAL;
+                              <font color="#cc0033">height</font>*    : SHORTREAL;
+                              <font color="#cc0033">arcwidth</font>*  : SHORTREAL;
+                              <font color="#cc0033">archeight</font>* : SHORTREAL;
+                            <b>STATIC</b>
+                              <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : SHORTREAL;
+                                              p1 : SHORTREAL;
+                                              p2 : SHORTREAL;
+                                              p3 : SHORTREAL;
+                                              p4 : SHORTREAL;
+                                              p5 : SHORTREAL) : <a href="#type-RoundRectangle2D$Float">RoundRectangle2D$Float</a><b>,CONSTRUCTOR</b>;
+                              <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-RoundRectangle2D$Float">RoundRectangle2D$Float</a><b>,CONSTRUCTOR</b>;
+                            <b>END</b>;
+
+
+
+<a name="meths-AffineTransform"></a>
+<b>PROCEDURE </b>(self:AffineTransform) <font color="#cc0033">clone</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AffineTransform) <font color="#cc0033">concatenate</font>*(p0 : <a href="#type-AffineTransform">AffineTransform</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AffineTransform) <font color="#cc0033">createInverse</font>*() : <a href="#type-AffineTransform">AffineTransform</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AffineTransform) <font color="#cc0033">createTransformedShape</font>*(p0 : <a href="java_awt.html#type-Shape">java_awt.Shape</a>) : <a href="java_awt.html#type-Shape">java_awt.Shape</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AffineTransform) <font color="#cc0033">deltaTransform</font>*(p0 : <a href="#type-Point2D">Point2D</a>;
+                                                 p1 : <a href="#type-Point2D">Point2D</a>) : <a href="#type-Point2D">Point2D</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AffineTransform) <font color="#cc0033">deltaTransform</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>REAL;
+                                                     p1 : INTEGER;
+                                                 IN  p2 : <b>ARRAY </b><b>OF </b>REAL;
+                                                     p3 : INTEGER;
+                                                     p4 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AffineTransform) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AffineTransform) <font color="#cc0033">getDeterminant</font>*() : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AffineTransform) <font color="#cc0033">getMatrix</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>REAL)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AffineTransform) <font color="#cc0033">getScaleX</font>*() : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AffineTransform) <font color="#cc0033">getScaleY</font>*() : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AffineTransform) <font color="#cc0033">getShearX</font>*() : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AffineTransform) <font color="#cc0033">getShearY</font>*() : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AffineTransform) <font color="#cc0033">getTranslateX</font>*() : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AffineTransform) <font color="#cc0033">getTranslateY</font>*() : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AffineTransform) <font color="#cc0033">getType</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AffineTransform) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AffineTransform) <font color="#cc0033">inverseTransform</font>*(p0 : <a href="#type-Point2D">Point2D</a>;
+                                                   p1 : <a href="#type-Point2D">Point2D</a>) : <a href="#type-Point2D">Point2D</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AffineTransform) <font color="#cc0033">inverseTransform</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>REAL;
+                                                       p1 : INTEGER;
+                                                   IN  p2 : <b>ARRAY </b><b>OF </b>REAL;
+                                                       p3 : INTEGER;
+                                                       p4 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AffineTransform) <font color="#cc0033">invert</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AffineTransform) <font color="#cc0033">isIdentity</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AffineTransform) <font color="#cc0033">preConcatenate</font>*(p0 : <a href="#type-AffineTransform">AffineTransform</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AffineTransform) <font color="#cc0033">quadrantRotate</font>*(p0 : INTEGER;
+                                                 p1 : REAL;
+                                                 p2 : REAL)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AffineTransform) <font color="#cc0033">quadrantRotate</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AffineTransform) <font color="#cc0033">rotate</font>*(p0 : REAL;
+                                         p1 : REAL)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AffineTransform) <font color="#cc0033">rotate</font>*(p0 : REAL;
+                                         p1 : REAL;
+                                         p2 : REAL)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AffineTransform) <font color="#cc0033">rotate</font>*(p0 : REAL)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AffineTransform) <font color="#cc0033">rotate</font>*(p0 : REAL;
+                                         p1 : REAL;
+                                         p2 : REAL;
+                                         p3 : REAL)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AffineTransform) <font color="#cc0033">scale</font>*(p0 : REAL;
+                                        p1 : REAL)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AffineTransform) <font color="#cc0033">setToIdentity</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AffineTransform) <font color="#cc0033">setToQuadrantRotation</font>*(p0 : INTEGER;
+                                                        p1 : REAL;
+                                                        p2 : REAL)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AffineTransform) <font color="#cc0033">setToQuadrantRotation</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AffineTransform) <font color="#cc0033">setToRotation</font>*(p0 : REAL;
+                                                p1 : REAL;
+                                                p2 : REAL)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AffineTransform) <font color="#cc0033">setToRotation</font>*(p0 : REAL)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AffineTransform) <font color="#cc0033">setToRotation</font>*(p0 : REAL;
+                                                p1 : REAL;
+                                                p2 : REAL;
+                                                p3 : REAL)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AffineTransform) <font color="#cc0033">setToRotation</font>*(p0 : REAL;
+                                                p1 : REAL)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AffineTransform) <font color="#cc0033">setToScale</font>*(p0 : REAL;
+                                             p1 : REAL)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AffineTransform) <font color="#cc0033">setToShear</font>*(p0 : REAL;
+                                             p1 : REAL)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AffineTransform) <font color="#cc0033">setToTranslation</font>*(p0 : REAL;
+                                                   p1 : REAL)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AffineTransform) <font color="#cc0033">setTransform</font>*(p0 : <a href="#type-AffineTransform">AffineTransform</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AffineTransform) <font color="#cc0033">setTransform</font>*(p0 : REAL;
+                                               p1 : REAL;
+                                               p2 : REAL;
+                                               p3 : REAL;
+                                               p4 : REAL;
+                                               p5 : REAL)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AffineTransform) <font color="#cc0033">shear</font>*(p0 : REAL;
+                                        p1 : REAL)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AffineTransform) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AffineTransform) <font color="#cc0033">transform</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>SHORTREAL;
+                                                p1 : INTEGER;
+                                            IN  p2 : <b>ARRAY </b><b>OF </b>SHORTREAL;
+                                                p3 : INTEGER;
+                                                p4 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AffineTransform) <font color="#cc0033">transform</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="#type-Point2D">Point2D</a>;
+                                                p1 : INTEGER;
+                                            IN  p2 : <b>ARRAY </b><b>OF </b><a href="#type-Point2D">Point2D</a>;
+                                                p3 : INTEGER;
+                                                p4 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AffineTransform) <font color="#cc0033">transform</font>*(p0 : <a href="#type-Point2D">Point2D</a>;
+                                            p1 : <a href="#type-Point2D">Point2D</a>) : <a href="#type-Point2D">Point2D</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AffineTransform) <font color="#cc0033">transform</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>REAL;
+                                                p1 : INTEGER;
+                                            IN  p2 : <b>ARRAY </b><b>OF </b>SHORTREAL;
+                                                p3 : INTEGER;
+                                                p4 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AffineTransform) <font color="#cc0033">transform</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>SHORTREAL;
+                                                p1 : INTEGER;
+                                            IN  p2 : <b>ARRAY </b><b>OF </b>REAL;
+                                                p3 : INTEGER;
+                                                p4 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AffineTransform) <font color="#cc0033">transform</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>REAL;
+                                                p1 : INTEGER;
+                                            IN  p2 : <b>ARRAY </b><b>OF </b>REAL;
+                                                p3 : INTEGER;
+                                                p4 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AffineTransform) <font color="#cc0033">translate</font>*(p0 : REAL;
+                                            p1 : REAL)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-Arc2D"></a>
+<b>PROCEDURE </b>(self:Arc2D) <font color="#cc0033">contains</font>*(p0 : <b>Rectangle2D</b>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Arc2D) <font color="#cc0033">contains</font>*(p0 : REAL;
+                                 p1 : REAL;
+                                 p2 : REAL;
+                                 p3 : REAL) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Arc2D) <font color="#cc0033">contains</font>*(p0 : REAL;
+                                 p1 : REAL) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Arc2D) <font color="#cc0033">containsAngle</font>*(p0 : REAL) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Arc2D) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Arc2D) <font color="#cc0033">getAngleExtent</font>*() : REAL<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Arc2D) <font color="#cc0033">getAngleStart</font>*() : REAL<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Arc2D) <font color="#cc0033">getArcType</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Arc2D) <font color="#cc0033">getBounds2D</font>*() : <b>Rectangle2D</b><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Arc2D) <font color="#cc0033">getEndPoint</font>*() : <b>Point2D</b><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Arc2D) <font color="#cc0033">getPathIterator</font>*(p0 : <b>AffineTransform</b>) : <b>PathIterator</b><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Arc2D) <font color="#cc0033">getStartPoint</font>*() : <b>Point2D</b><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Arc2D) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Arc2D) <font color="#cc0033">intersects</font>*(p0 : REAL;
+                                   p1 : REAL;
+                                   p2 : REAL;
+                                   p3 : REAL) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Arc2D) <font color="#cc0033">makeBounds</font>!(p0 : REAL;
+                                   p1 : REAL;
+                                   p2 : REAL;
+                                   p3 : REAL) : <b>Rectangle2D</b><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Arc2D) <font color="#cc0033">setAngleExtent</font>*(p0 : REAL)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Arc2D) <font color="#cc0033">setAngles</font>*(p0 : REAL;
+                                  p1 : REAL;
+                                  p2 : REAL;
+                                  p3 : REAL)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Arc2D) <font color="#cc0033">setAngles</font>*(p0 : <b>Point2D</b>;
+                                  p1 : <b>Point2D</b>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Arc2D) <font color="#cc0033">setAngleStart</font>*(p0 : <b>Point2D</b>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Arc2D) <font color="#cc0033">setAngleStart</font>*(p0 : REAL)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Arc2D) <font color="#cc0033">setArc</font>*(p0 : <b>Rectangle2D</b>;
+                               p1 : REAL;
+                               p2 : REAL;
+                               p3 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Arc2D) <font color="#cc0033">setArc</font>*(p0 : <a href="#type-Arc2D">Arc2D</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Arc2D) <font color="#cc0033">setArc</font>*(p0 : <b>Point2D</b>;
+                               p1 : <b>Dimension2D</b>;
+                               p2 : REAL;
+                               p3 : REAL;
+                               p4 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Arc2D) <font color="#cc0033">setArc</font>*(p0 : REAL;
+                               p1 : REAL;
+                               p2 : REAL;
+                               p3 : REAL;
+                               p4 : REAL;
+                               p5 : REAL;
+                               p6 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Arc2D) <font color="#cc0033">setArcByCenter</font>*(p0 : REAL;
+                                       p1 : REAL;
+                                       p2 : REAL;
+                                       p3 : REAL;
+                                       p4 : REAL;
+                                       p5 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Arc2D) <font color="#cc0033">setArcByTangent</font>*(p0 : <b>Point2D</b>;
+                                        p1 : <b>Point2D</b>;
+                                        p2 : <b>Point2D</b>;
+                                        p3 : REAL)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Arc2D) <font color="#cc0033">setArcType</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Arc2D) <font color="#cc0033">setFrame</font>*(p0 : REAL;
+                                 p1 : REAL;
+                                 p2 : REAL;
+                                 p3 : REAL)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-Arc2D$Double"></a>
+<b>PROCEDURE </b>(self:Arc2D$Double) <font color="#cc0033">getAngleExtent</font>*() : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Arc2D$Double) <font color="#cc0033">getAngleStart</font>*() : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Arc2D$Double) <font color="#cc0033">getHeight</font>*() : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Arc2D$Double) <font color="#cc0033">getWidth</font>*() : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Arc2D$Double) <font color="#cc0033">getX</font>*() : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Arc2D$Double) <font color="#cc0033">getY</font>*() : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Arc2D$Double) <font color="#cc0033">isEmpty</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Arc2D$Double) <font color="#cc0033">makeBounds</font>!(p0 : REAL;
+                                          p1 : REAL;
+                                          p2 : REAL;
+                                          p3 : REAL) : <b>Rectangle2D</b><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Arc2D$Double) <font color="#cc0033">setAngleExtent</font>*(p0 : REAL)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Arc2D$Double) <font color="#cc0033">setAngleStart</font>*(p0 : REAL)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Arc2D$Double) <font color="#cc0033">setArc</font>*(p0 : REAL;
+                                      p1 : REAL;
+                                      p2 : REAL;
+                                      p3 : REAL;
+                                      p4 : REAL;
+                                      p5 : REAL;
+                                      p6 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-Arc2D$Float"></a>
+<b>PROCEDURE </b>(self:Arc2D$Float) <font color="#cc0033">getAngleExtent</font>*() : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Arc2D$Float) <font color="#cc0033">getAngleStart</font>*() : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Arc2D$Float) <font color="#cc0033">getHeight</font>*() : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Arc2D$Float) <font color="#cc0033">getWidth</font>*() : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Arc2D$Float) <font color="#cc0033">getX</font>*() : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Arc2D$Float) <font color="#cc0033">getY</font>*() : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Arc2D$Float) <font color="#cc0033">isEmpty</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Arc2D$Float) <font color="#cc0033">makeBounds</font>!(p0 : REAL;
+                                         p1 : REAL;
+                                         p2 : REAL;
+                                         p3 : REAL) : <b>Rectangle2D</b><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Arc2D$Float) <font color="#cc0033">setAngleExtent</font>*(p0 : REAL)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Arc2D$Float) <font color="#cc0033">setAngleStart</font>*(p0 : REAL)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Arc2D$Float) <font color="#cc0033">setArc</font>*(p0 : REAL;
+                                     p1 : REAL;
+                                     p2 : REAL;
+                                     p3 : REAL;
+                                     p4 : REAL;
+                                     p5 : REAL;
+                                     p6 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-Area"></a>
+<b>PROCEDURE </b>(self:Area) <font color="#cc0033">add</font>*(p0 : <a href="#type-Area">Area</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Area) <font color="#cc0033">clone</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Area) <font color="#cc0033">contains</font>*(p0 : <b>Point2D</b>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Area) <font color="#cc0033">contains</font>*(p0 : REAL;
+                                p1 : REAL) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Area) <font color="#cc0033">contains</font>*(p0 : <b>Rectangle2D</b>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Area) <font color="#cc0033">contains</font>*(p0 : REAL;
+                                p1 : REAL;
+                                p2 : REAL;
+                                p3 : REAL) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Area) <font color="#cc0033">createTransformedArea</font>*(p0 : <b>AffineTransform</b>) : <a href="#type-Area">Area</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Area) <font color="#cc0033">equals</font>*(p0 : <a href="#type-Area">Area</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Area) <font color="#cc0033">exclusiveOr</font>*(p0 : <a href="#type-Area">Area</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Area) <font color="#cc0033">getBounds</font>*() : <a href="java_awt.html#type-Rectangle">java_awt.Rectangle</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Area) <font color="#cc0033">getBounds2D</font>*() : <b>Rectangle2D</b><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Area) <font color="#cc0033">getPathIterator</font>*(p0 : <b>AffineTransform</b>) : <b>PathIterator</b><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Area) <font color="#cc0033">getPathIterator</font>*(p0 : <b>AffineTransform</b>;
+                                       p1 : REAL) : <b>PathIterator</b><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Area) <font color="#cc0033">intersect</font>*(p0 : <a href="#type-Area">Area</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Area) <font color="#cc0033">intersects</font>*(p0 : <b>Rectangle2D</b>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Area) <font color="#cc0033">intersects</font>*(p0 : REAL;
+                                  p1 : REAL;
+                                  p2 : REAL;
+                                  p3 : REAL) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Area) <font color="#cc0033">isEmpty</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Area) <font color="#cc0033">isPolygonal</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Area) <font color="#cc0033">isRectangular</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Area) <font color="#cc0033">isSingular</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Area) <font color="#cc0033">reset</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Area) <font color="#cc0033">subtract</font>*(p0 : <a href="#type-Area">Area</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Area) <font color="#cc0033">transform</font>*(p0 : <b>AffineTransform</b>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-CubicCurve2D"></a>
+<b>PROCEDURE </b>(self:CubicCurve2D) <font color="#cc0033">clone</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CubicCurve2D) <font color="#cc0033">contains</font>*(p0 : REAL;
+                                        p1 : REAL;
+                                        p2 : REAL;
+                                        p3 : REAL) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CubicCurve2D) <font color="#cc0033">contains</font>*(p0 : <b>Rectangle2D</b>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CubicCurve2D) <font color="#cc0033">contains</font>*(p0 : <b>Point2D</b>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CubicCurve2D) <font color="#cc0033">contains</font>*(p0 : REAL;
+                                        p1 : REAL) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CubicCurve2D) <font color="#cc0033">getBounds</font>*() : <a href="java_awt.html#type-Rectangle">java_awt.Rectangle</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CubicCurve2D) <font color="#cc0033">getCtrlP1</font>*() : <b>Point2D</b><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CubicCurve2D) <font color="#cc0033">getCtrlP2</font>*() : <b>Point2D</b><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CubicCurve2D) <font color="#cc0033">getCtrlX1</font>*() : REAL<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CubicCurve2D) <font color="#cc0033">getCtrlX2</font>*() : REAL<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CubicCurve2D) <font color="#cc0033">getCtrlY1</font>*() : REAL<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CubicCurve2D) <font color="#cc0033">getCtrlY2</font>*() : REAL<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CubicCurve2D) <font color="#cc0033">getFlatness</font>*() : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CubicCurve2D) <font color="#cc0033">getFlatnessSq</font>*() : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CubicCurve2D) <font color="#cc0033">getP1</font>*() : <b>Point2D</b><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CubicCurve2D) <font color="#cc0033">getP2</font>*() : <b>Point2D</b><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CubicCurve2D) <font color="#cc0033">getPathIterator</font>*(p0 : <b>AffineTransform</b>;
+                                               p1 : REAL) : <b>PathIterator</b><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CubicCurve2D) <font color="#cc0033">getPathIterator</font>*(p0 : <b>AffineTransform</b>) : <b>PathIterator</b><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CubicCurve2D) <font color="#cc0033">getX1</font>*() : REAL<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CubicCurve2D) <font color="#cc0033">getX2</font>*() : REAL<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CubicCurve2D) <font color="#cc0033">getY1</font>*() : REAL<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CubicCurve2D) <font color="#cc0033">getY2</font>*() : REAL<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CubicCurve2D) <font color="#cc0033">intersects</font>*(p0 : <b>Rectangle2D</b>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CubicCurve2D) <font color="#cc0033">intersects</font>*(p0 : REAL;
+                                          p1 : REAL;
+                                          p2 : REAL;
+                                          p3 : REAL) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CubicCurve2D) <font color="#cc0033">setCurve</font>*(p0 : <b>Point2D</b>;
+                                        p1 : <b>Point2D</b>;
+                                        p2 : <b>Point2D</b>;
+                                        p3 : <b>Point2D</b>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CubicCurve2D) <font color="#cc0033">setCurve</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>REAL;
+                                            p1 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CubicCurve2D) <font color="#cc0033">setCurve</font>*(p0 : REAL;
+                                        p1 : REAL;
+                                        p2 : REAL;
+                                        p3 : REAL;
+                                        p4 : REAL;
+                                        p5 : REAL;
+                                        p6 : REAL;
+                                        p7 : REAL)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CubicCurve2D) <font color="#cc0033">setCurve</font>*(p0 : <a href="#type-CubicCurve2D">CubicCurve2D</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CubicCurve2D) <font color="#cc0033">setCurve</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><b>Point2D</b>;
+                                            p1 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CubicCurve2D) <font color="#cc0033">subdivide</font>*(p0 : <a href="#type-CubicCurve2D">CubicCurve2D</a>;
+                                         p1 : <a href="#type-CubicCurve2D">CubicCurve2D</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-CubicCurve2D$Double"></a>
+<b>PROCEDURE </b>(self:CubicCurve2D$Double) <font color="#cc0033">getBounds2D</font>*() : <b>Rectangle2D</b><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CubicCurve2D$Double) <font color="#cc0033">getCtrlP1</font>*() : <b>Point2D</b><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CubicCurve2D$Double) <font color="#cc0033">getCtrlP2</font>*() : <b>Point2D</b><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CubicCurve2D$Double) <font color="#cc0033">getCtrlX1</font>*() : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CubicCurve2D$Double) <font color="#cc0033">getCtrlX2</font>*() : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CubicCurve2D$Double) <font color="#cc0033">getCtrlY1</font>*() : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CubicCurve2D$Double) <font color="#cc0033">getCtrlY2</font>*() : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CubicCurve2D$Double) <font color="#cc0033">getP1</font>*() : <b>Point2D</b><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CubicCurve2D$Double) <font color="#cc0033">getP2</font>*() : <b>Point2D</b><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CubicCurve2D$Double) <font color="#cc0033">getX1</font>*() : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CubicCurve2D$Double) <font color="#cc0033">getX2</font>*() : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CubicCurve2D$Double) <font color="#cc0033">getY1</font>*() : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CubicCurve2D$Double) <font color="#cc0033">getY2</font>*() : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CubicCurve2D$Double) <font color="#cc0033">setCurve</font>*(p0 : REAL;
+                                               p1 : REAL;
+                                               p2 : REAL;
+                                               p3 : REAL;
+                                               p4 : REAL;
+                                               p5 : REAL;
+                                               p6 : REAL;
+                                               p7 : REAL)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-CubicCurve2D$Float"></a>
+<b>PROCEDURE </b>(self:CubicCurve2D$Float) <font color="#cc0033">getBounds2D</font>*() : <b>Rectangle2D</b><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CubicCurve2D$Float) <font color="#cc0033">getCtrlP1</font>*() : <b>Point2D</b><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CubicCurve2D$Float) <font color="#cc0033">getCtrlP2</font>*() : <b>Point2D</b><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CubicCurve2D$Float) <font color="#cc0033">getCtrlX1</font>*() : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CubicCurve2D$Float) <font color="#cc0033">getCtrlX2</font>*() : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CubicCurve2D$Float) <font color="#cc0033">getCtrlY1</font>*() : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CubicCurve2D$Float) <font color="#cc0033">getCtrlY2</font>*() : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CubicCurve2D$Float) <font color="#cc0033">getP1</font>*() : <b>Point2D</b><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CubicCurve2D$Float) <font color="#cc0033">getP2</font>*() : <b>Point2D</b><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CubicCurve2D$Float) <font color="#cc0033">getX1</font>*() : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CubicCurve2D$Float) <font color="#cc0033">getX2</font>*() : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CubicCurve2D$Float) <font color="#cc0033">getY1</font>*() : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CubicCurve2D$Float) <font color="#cc0033">getY2</font>*() : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CubicCurve2D$Float) <font color="#cc0033">setCurve</font>*(p0 : SHORTREAL;
+                                              p1 : SHORTREAL;
+                                              p2 : SHORTREAL;
+                                              p3 : SHORTREAL;
+                                              p4 : SHORTREAL;
+                                              p5 : SHORTREAL;
+                                              p6 : SHORTREAL;
+                                              p7 : SHORTREAL)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CubicCurve2D$Float) <font color="#cc0033">setCurve</font>*(p0 : REAL;
+                                              p1 : REAL;
+                                              p2 : REAL;
+                                              p3 : REAL;
+                                              p4 : REAL;
+                                              p5 : REAL;
+                                              p6 : REAL;
+                                              p7 : REAL)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-Dimension2D"></a>
+<b>PROCEDURE </b>(self:Dimension2D) <font color="#cc0033">clone</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Dimension2D) <font color="#cc0033">getHeight</font>*() : REAL<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Dimension2D) <font color="#cc0033">getWidth</font>*() : REAL<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Dimension2D) <font color="#cc0033">setSize</font>*(p0 : <a href="#type-Dimension2D">Dimension2D</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Dimension2D) <font color="#cc0033">setSize</font>*(p0 : REAL;
+                                      p1 : REAL)<b>,NEW,ABSTRACT</b>;
+<a name="meths-Ellipse2D"></a>
+<b>PROCEDURE </b>(self:Ellipse2D) <font color="#cc0033">contains</font>*(p0 : REAL;
+                                     p1 : REAL;
+                                     p2 : REAL;
+                                     p3 : REAL) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Ellipse2D) <font color="#cc0033">contains</font>*(p0 : REAL;
+                                     p1 : REAL) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Ellipse2D) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Ellipse2D) <font color="#cc0033">getPathIterator</font>*(p0 : <b>AffineTransform</b>) : <b>PathIterator</b><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Ellipse2D) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Ellipse2D) <font color="#cc0033">intersects</font>*(p0 : REAL;
+                                       p1 : REAL;
+                                       p2 : REAL;
+                                       p3 : REAL) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-Ellipse2D$Double"></a>
+<b>PROCEDURE </b>(self:Ellipse2D$Double) <font color="#cc0033">getBounds2D</font>*() : <b>Rectangle2D</b><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Ellipse2D$Double) <font color="#cc0033">getHeight</font>*() : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Ellipse2D$Double) <font color="#cc0033">getWidth</font>*() : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Ellipse2D$Double) <font color="#cc0033">getX</font>*() : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Ellipse2D$Double) <font color="#cc0033">getY</font>*() : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Ellipse2D$Double) <font color="#cc0033">isEmpty</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Ellipse2D$Double) <font color="#cc0033">setFrame</font>*(p0 : REAL;
+                                            p1 : REAL;
+                                            p2 : REAL;
+                                            p3 : REAL)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-Ellipse2D$Float"></a>
+<b>PROCEDURE </b>(self:Ellipse2D$Float) <font color="#cc0033">getBounds2D</font>*() : <b>Rectangle2D</b><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Ellipse2D$Float) <font color="#cc0033">getHeight</font>*() : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Ellipse2D$Float) <font color="#cc0033">getWidth</font>*() : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Ellipse2D$Float) <font color="#cc0033">getX</font>*() : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Ellipse2D$Float) <font color="#cc0033">getY</font>*() : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Ellipse2D$Float) <font color="#cc0033">isEmpty</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Ellipse2D$Float) <font color="#cc0033">setFrame</font>*(p0 : REAL;
+                                           p1 : REAL;
+                                           p2 : REAL;
+                                           p3 : REAL)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Ellipse2D$Float) <font color="#cc0033">setFrame</font>*(p0 : SHORTREAL;
+                                           p1 : SHORTREAL;
+                                           p2 : SHORTREAL;
+                                           p3 : SHORTREAL)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-FlatteningPathIterator"></a>
+<b>PROCEDURE </b>(self:FlatteningPathIterator) <font color="#cc0033">currentSegment</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>SHORTREAL) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FlatteningPathIterator) <font color="#cc0033">currentSegment</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>REAL) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FlatteningPathIterator) <font color="#cc0033">getFlatness</font>*() : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FlatteningPathIterator) <font color="#cc0033">getRecursionLimit</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FlatteningPathIterator) <font color="#cc0033">getWindingRule</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FlatteningPathIterator) <font color="#cc0033">isDone</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FlatteningPathIterator) <font color="#cc0033">next</font>*()<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-Line2D"></a>
+<b>PROCEDURE </b>(self:Line2D) <font color="#cc0033">clone</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Line2D) <font color="#cc0033">contains</font>*(p0 : <b>Rectangle2D</b>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Line2D) <font color="#cc0033">contains</font>*(p0 : REAL;
+                                  p1 : REAL;
+                                  p2 : REAL;
+                                  p3 : REAL) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Line2D) <font color="#cc0033">contains</font>*(p0 : REAL;
+                                  p1 : REAL) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Line2D) <font color="#cc0033">contains</font>*(p0 : <b>Point2D</b>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Line2D) <font color="#cc0033">getBounds</font>*() : <a href="java_awt.html#type-Rectangle">java_awt.Rectangle</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Line2D) <font color="#cc0033">getP1</font>*() : <b>Point2D</b><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Line2D) <font color="#cc0033">getP2</font>*() : <b>Point2D</b><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Line2D) <font color="#cc0033">getPathIterator</font>*(p0 : <b>AffineTransform</b>) : <b>PathIterator</b><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Line2D) <font color="#cc0033">getPathIterator</font>*(p0 : <b>AffineTransform</b>;
+                                         p1 : REAL) : <b>PathIterator</b><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Line2D) <font color="#cc0033">getX1</font>*() : REAL<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Line2D) <font color="#cc0033">getX2</font>*() : REAL<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Line2D) <font color="#cc0033">getY1</font>*() : REAL<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Line2D) <font color="#cc0033">getY2</font>*() : REAL<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Line2D) <font color="#cc0033">intersects</font>*(p0 : REAL;
+                                    p1 : REAL;
+                                    p2 : REAL;
+                                    p3 : REAL) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Line2D) <font color="#cc0033">intersects</font>*(p0 : <b>Rectangle2D</b>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Line2D) <font color="#cc0033">intersectsLine</font>*(p0 : REAL;
+                                        p1 : REAL;
+                                        p2 : REAL;
+                                        p3 : REAL) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Line2D) <font color="#cc0033">intersectsLine</font>*(p0 : <a href="#type-Line2D">Line2D</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Line2D) <font color="#cc0033">ptLineDist</font>*(p0 : REAL;
+                                    p1 : REAL) : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Line2D) <font color="#cc0033">ptLineDist</font>*(p0 : <b>Point2D</b>) : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Line2D) <font color="#cc0033">ptLineDistSq</font>*(p0 : REAL;
+                                      p1 : REAL) : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Line2D) <font color="#cc0033">ptLineDistSq</font>*(p0 : <b>Point2D</b>) : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Line2D) <font color="#cc0033">ptSegDist</font>*(p0 : REAL;
+                                   p1 : REAL) : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Line2D) <font color="#cc0033">ptSegDist</font>*(p0 : <b>Point2D</b>) : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Line2D) <font color="#cc0033">ptSegDistSq</font>*(p0 : REAL;
+                                     p1 : REAL) : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Line2D) <font color="#cc0033">ptSegDistSq</font>*(p0 : <b>Point2D</b>) : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Line2D) <font color="#cc0033">relativeCCW</font>*(p0 : REAL;
+                                     p1 : REAL) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Line2D) <font color="#cc0033">relativeCCW</font>*(p0 : <b>Point2D</b>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Line2D) <font color="#cc0033">setLine</font>*(p0 : REAL;
+                                 p1 : REAL;
+                                 p2 : REAL;
+                                 p3 : REAL)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Line2D) <font color="#cc0033">setLine</font>*(p0 : <b>Point2D</b>;
+                                 p1 : <b>Point2D</b>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Line2D) <font color="#cc0033">setLine</font>*(p0 : <a href="#type-Line2D">Line2D</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-Line2D$Double"></a>
+<b>PROCEDURE </b>(self:Line2D$Double) <font color="#cc0033">getBounds2D</font>*() : <b>Rectangle2D</b><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Line2D$Double) <font color="#cc0033">getP1</font>*() : <b>Point2D</b><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Line2D$Double) <font color="#cc0033">getP2</font>*() : <b>Point2D</b><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Line2D$Double) <font color="#cc0033">getX1</font>*() : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Line2D$Double) <font color="#cc0033">getX2</font>*() : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Line2D$Double) <font color="#cc0033">getY1</font>*() : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Line2D$Double) <font color="#cc0033">getY2</font>*() : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Line2D$Double) <font color="#cc0033">setLine</font>*(p0 : REAL;
+                                        p1 : REAL;
+                                        p2 : REAL;
+                                        p3 : REAL)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-Line2D$Float"></a>
+<b>PROCEDURE </b>(self:Line2D$Float) <font color="#cc0033">getBounds2D</font>*() : <b>Rectangle2D</b><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Line2D$Float) <font color="#cc0033">getP1</font>*() : <b>Point2D</b><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Line2D$Float) <font color="#cc0033">getP2</font>*() : <b>Point2D</b><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Line2D$Float) <font color="#cc0033">getX1</font>*() : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Line2D$Float) <font color="#cc0033">getX2</font>*() : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Line2D$Float) <font color="#cc0033">getY1</font>*() : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Line2D$Float) <font color="#cc0033">getY2</font>*() : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Line2D$Float) <font color="#cc0033">setLine</font>*(p0 : SHORTREAL;
+                                       p1 : SHORTREAL;
+                                       p2 : SHORTREAL;
+                                       p3 : SHORTREAL)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Line2D$Float) <font color="#cc0033">setLine</font>*(p0 : REAL;
+                                       p1 : REAL;
+                                       p2 : REAL;
+                                       p3 : REAL)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-Path2D"></a>
+<b>PROCEDURE </b>(self:Path2D) <font color="#cc0033">append</font>*(p0 : <a href="java_awt.html#type-Shape">java_awt.Shape</a>;
+                                p1 : BOOLEAN)<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:Path2D) <font color="#cc0033">append</font>*(p0 : <a href="#type-PathIterator">PathIterator</a>;
+                                p1 : BOOLEAN)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Path2D) <font color="#cc0033">clone</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Path2D) <font color="#cc0033">closePath</font>*()<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:Path2D) <font color="#cc0033">contains</font>*(p0 : <b>Rectangle2D</b>) : BOOLEAN<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:Path2D) <font color="#cc0033">contains</font>*(p0 : REAL;
+                                  p1 : REAL) : BOOLEAN<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:Path2D) <font color="#cc0033">contains</font>*(p0 : <b>Point2D</b>) : BOOLEAN<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:Path2D) <font color="#cc0033">contains</font>*(p0 : REAL;
+                                  p1 : REAL;
+                                  p2 : REAL;
+                                  p3 : REAL) : BOOLEAN<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:Path2D) <font color="#cc0033">createTransformedShape</font>*(p0 : <b>AffineTransform</b>) : <a href="java_awt.html#type-Shape">java_awt.Shape</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:Path2D) <font color="#cc0033">curveTo</font>*(p0 : REAL;
+                                 p1 : REAL;
+                                 p2 : REAL;
+                                 p3 : REAL;
+                                 p4 : REAL;
+                                 p5 : REAL)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Path2D) <font color="#cc0033">getBounds</font>*() : <a href="java_awt.html#type-Rectangle">java_awt.Rectangle</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:Path2D) <font color="#cc0033">getCurrentPoint</font>*() : <b>Point2D</b><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:Path2D) <font color="#cc0033">getPathIterator</font>*(p0 : <b>AffineTransform</b>;
+                                         p1 : REAL) : <a href="#type-PathIterator">PathIterator</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:Path2D) <font color="#cc0033">getWindingRule</font>*() : INTEGER<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:Path2D) <font color="#cc0033">intersects</font>*(p0 : REAL;
+                                    p1 : REAL;
+                                    p2 : REAL;
+                                    p3 : REAL) : BOOLEAN<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:Path2D) <font color="#cc0033">intersects</font>*(p0 : <b>Rectangle2D</b>) : BOOLEAN<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:Path2D) <font color="#cc0033">lineTo</font>*(p0 : REAL;
+                                p1 : REAL)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Path2D) <font color="#cc0033">moveTo</font>*(p0 : REAL;
+                                p1 : REAL)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Path2D) <font color="#cc0033">quadTo</font>*(p0 : REAL;
+                                p1 : REAL;
+                                p2 : REAL;
+                                p3 : REAL)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Path2D) <font color="#cc0033">reset</font>*()<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:Path2D) <font color="#cc0033">setWindingRule</font>*(p0 : INTEGER)<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:Path2D) <font color="#cc0033">transform</font>*(p0 : <b>AffineTransform</b>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-Path2D$Double"></a>
+<b>PROCEDURE </b>(self:Path2D$Double) <font color="#cc0033">append</font>*(p0 : <b>PathIterator</b>;
+                                       p1 : BOOLEAN)<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:Path2D$Double) <font color="#cc0033">clone</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:Path2D$Double) <font color="#cc0033">curveTo</font>*(p0 : REAL;
+                                        p1 : REAL;
+                                        p2 : REAL;
+                                        p3 : REAL;
+                                        p4 : REAL;
+                                        p5 : REAL)<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:Path2D$Double) <font color="#cc0033">getBounds2D</font>*() : <b>Rectangle2D</b><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:Path2D$Double) <font color="#cc0033">getPathIterator</font>*(p0 : <b>AffineTransform</b>) : <b>PathIterator</b><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:Path2D$Double) <font color="#cc0033">lineTo</font>*(p0 : REAL;
+                                       p1 : REAL)<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:Path2D$Double) <font color="#cc0033">moveTo</font>*(p0 : REAL;
+                                       p1 : REAL)<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:Path2D$Double) <font color="#cc0033">quadTo</font>*(p0 : REAL;
+                                       p1 : REAL;
+                                       p2 : REAL;
+                                       p3 : REAL)<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:Path2D$Double) <font color="#cc0033">transform</font>*(p0 : <b>AffineTransform</b>)<b>,NEW</b>;
+<a name="meths-Path2D$Float"></a>
+<b>PROCEDURE </b>(self:Path2D$Float) <font color="#cc0033">append</font>*(p0 : <a href="#type-PathIterator">PathIterator</a>;
+                                      p1 : BOOLEAN)<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:Path2D$Float) <font color="#cc0033">clone</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:Path2D$Float) <font color="#cc0033">curveTo</font>*(p0 : REAL;
+                                       p1 : REAL;
+                                       p2 : REAL;
+                                       p3 : REAL;
+                                       p4 : REAL;
+                                       p5 : REAL)<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:Path2D$Float) <font color="#cc0033">curveTo</font>*(p0 : SHORTREAL;
+                                       p1 : SHORTREAL;
+                                       p2 : SHORTREAL;
+                                       p3 : SHORTREAL;
+                                       p4 : SHORTREAL;
+                                       p5 : SHORTREAL)<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:Path2D$Float) <font color="#cc0033">getBounds2D</font>*() : <b>Rectangle2D</b><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:Path2D$Float) <font color="#cc0033">getPathIterator</font>*(p0 : <b>AffineTransform</b>) : <a href="#type-PathIterator">PathIterator</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:Path2D$Float) <font color="#cc0033">lineTo</font>*(p0 : REAL;
+                                      p1 : REAL)<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:Path2D$Float) <font color="#cc0033">lineTo</font>*(p0 : SHORTREAL;
+                                      p1 : SHORTREAL)<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:Path2D$Float) <font color="#cc0033">moveTo</font>*(p0 : REAL;
+                                      p1 : REAL)<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:Path2D$Float) <font color="#cc0033">moveTo</font>*(p0 : SHORTREAL;
+                                      p1 : SHORTREAL)<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:Path2D$Float) <font color="#cc0033">quadTo</font>*(p0 : REAL;
+                                      p1 : REAL;
+                                      p2 : REAL;
+                                      p3 : REAL)<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:Path2D$Float) <font color="#cc0033">quadTo</font>*(p0 : SHORTREAL;
+                                      p1 : SHORTREAL;
+                                      p2 : SHORTREAL;
+                                      p3 : SHORTREAL)<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:Path2D$Float) <font color="#cc0033">transform</font>*(p0 : <b>AffineTransform</b>)<b>,NEW</b>;
+<a name="meths-PathIterator"></a>
+<b>PROCEDURE </b>(self:PathIterator) <font color="#cc0033">currentSegment</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>REAL) : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:PathIterator) <font color="#cc0033">currentSegment</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>SHORTREAL) : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:PathIterator) <font color="#cc0033">getWindingRule</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:PathIterator) <font color="#cc0033">isDone</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:PathIterator) <font color="#cc0033">next</font>*()<b>,NEW,ABSTRACT</b>;
+<a name="meths-Point2D"></a>
+<b>PROCEDURE </b>(self:Point2D) <font color="#cc0033">clone</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Point2D) <font color="#cc0033">distance</font>*(p0 : REAL;
+                                   p1 : REAL) : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Point2D) <font color="#cc0033">distance</font>*(p0 : <a href="#type-Point2D">Point2D</a>) : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Point2D) <font color="#cc0033">distanceSq</font>*(p0 : <a href="#type-Point2D">Point2D</a>) : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Point2D) <font color="#cc0033">distanceSq</font>*(p0 : REAL;
+                                     p1 : REAL) : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Point2D) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Point2D) <font color="#cc0033">getX</font>*() : REAL<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Point2D) <font color="#cc0033">getY</font>*() : REAL<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Point2D) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Point2D) <font color="#cc0033">setLocation</font>*(p0 : <a href="#type-Point2D">Point2D</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Point2D) <font color="#cc0033">setLocation</font>*(p0 : REAL;
+                                      p1 : REAL)<b>,NEW,ABSTRACT</b>;
+<a name="meths-Point2D$Double"></a>
+<b>PROCEDURE </b>(self:Point2D$Double) <font color="#cc0033">getX</font>*() : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Point2D$Double) <font color="#cc0033">getY</font>*() : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Point2D$Double) <font color="#cc0033">setLocation</font>*(p0 : REAL;
+                                             p1 : REAL)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Point2D$Double) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-Point2D$Float"></a>
+<b>PROCEDURE </b>(self:Point2D$Float) <font color="#cc0033">getX</font>*() : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Point2D$Float) <font color="#cc0033">getY</font>*() : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Point2D$Float) <font color="#cc0033">setLocation</font>*(p0 : SHORTREAL;
+                                            p1 : SHORTREAL)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Point2D$Float) <font color="#cc0033">setLocation</font>*(p0 : REAL;
+                                            p1 : REAL)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Point2D$Float) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-QuadCurve2D"></a>
+<b>PROCEDURE </b>(self:QuadCurve2D) <font color="#cc0033">clone</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:QuadCurve2D) <font color="#cc0033">contains</font>*(p0 : REAL;
+                                       p1 : REAL;
+                                       p2 : REAL;
+                                       p3 : REAL) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:QuadCurve2D) <font color="#cc0033">contains</font>*(p0 : <b>Rectangle2D</b>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:QuadCurve2D) <font color="#cc0033">contains</font>*(p0 : <b>Point2D</b>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:QuadCurve2D) <font color="#cc0033">contains</font>*(p0 : REAL;
+                                       p1 : REAL) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:QuadCurve2D) <font color="#cc0033">getBounds</font>*() : <a href="java_awt.html#type-Rectangle">java_awt.Rectangle</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:QuadCurve2D) <font color="#cc0033">getCtrlPt</font>*() : <b>Point2D</b><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:QuadCurve2D) <font color="#cc0033">getCtrlX</font>*() : REAL<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:QuadCurve2D) <font color="#cc0033">getCtrlY</font>*() : REAL<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:QuadCurve2D) <font color="#cc0033">getFlatness</font>*() : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:QuadCurve2D) <font color="#cc0033">getFlatnessSq</font>*() : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:QuadCurve2D) <font color="#cc0033">getP1</font>*() : <b>Point2D</b><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:QuadCurve2D) <font color="#cc0033">getP2</font>*() : <b>Point2D</b><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:QuadCurve2D) <font color="#cc0033">getPathIterator</font>*(p0 : <b>AffineTransform</b>;
+                                              p1 : REAL) : <a href="#type-PathIterator">PathIterator</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:QuadCurve2D) <font color="#cc0033">getPathIterator</font>*(p0 : <b>AffineTransform</b>) : <a href="#type-PathIterator">PathIterator</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:QuadCurve2D) <font color="#cc0033">getX1</font>*() : REAL<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:QuadCurve2D) <font color="#cc0033">getX2</font>*() : REAL<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:QuadCurve2D) <font color="#cc0033">getY1</font>*() : REAL<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:QuadCurve2D) <font color="#cc0033">getY2</font>*() : REAL<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:QuadCurve2D) <font color="#cc0033">intersects</font>*(p0 : <b>Rectangle2D</b>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:QuadCurve2D) <font color="#cc0033">intersects</font>*(p0 : REAL;
+                                         p1 : REAL;
+                                         p2 : REAL;
+                                         p3 : REAL) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:QuadCurve2D) <font color="#cc0033">setCurve</font>*(p0 : <b>Point2D</b>;
+                                       p1 : <b>Point2D</b>;
+                                       p2 : <b>Point2D</b>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:QuadCurve2D) <font color="#cc0033">setCurve</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>REAL;
+                                           p1 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:QuadCurve2D) <font color="#cc0033">setCurve</font>*(p0 : REAL;
+                                       p1 : REAL;
+                                       p2 : REAL;
+                                       p3 : REAL;
+                                       p4 : REAL;
+                                       p5 : REAL)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:QuadCurve2D) <font color="#cc0033">setCurve</font>*(p0 : <a href="#type-QuadCurve2D">QuadCurve2D</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:QuadCurve2D) <font color="#cc0033">setCurve</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><b>Point2D</b>;
+                                           p1 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:QuadCurve2D) <font color="#cc0033">subdivide</font>*(p0 : <a href="#type-QuadCurve2D">QuadCurve2D</a>;
+                                        p1 : <a href="#type-QuadCurve2D">QuadCurve2D</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-QuadCurve2D$Double"></a>
+<b>PROCEDURE </b>(self:QuadCurve2D$Double) <font color="#cc0033">getBounds2D</font>*() : <b>Rectangle2D</b><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:QuadCurve2D$Double) <font color="#cc0033">getCtrlPt</font>*() : <b>Point2D</b><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:QuadCurve2D$Double) <font color="#cc0033">getCtrlX</font>*() : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:QuadCurve2D$Double) <font color="#cc0033">getCtrlY</font>*() : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:QuadCurve2D$Double) <font color="#cc0033">getP1</font>*() : <b>Point2D</b><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:QuadCurve2D$Double) <font color="#cc0033">getP2</font>*() : <b>Point2D</b><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:QuadCurve2D$Double) <font color="#cc0033">getX1</font>*() : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:QuadCurve2D$Double) <font color="#cc0033">getX2</font>*() : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:QuadCurve2D$Double) <font color="#cc0033">getY1</font>*() : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:QuadCurve2D$Double) <font color="#cc0033">getY2</font>*() : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:QuadCurve2D$Double) <font color="#cc0033">setCurve</font>*(p0 : REAL;
+                                              p1 : REAL;
+                                              p2 : REAL;
+                                              p3 : REAL;
+                                              p4 : REAL;
+                                              p5 : REAL)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-QuadCurve2D$Float"></a>
+<b>PROCEDURE </b>(self:QuadCurve2D$Float) <font color="#cc0033">getBounds2D</font>*() : <b>Rectangle2D</b><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:QuadCurve2D$Float) <font color="#cc0033">getCtrlPt</font>*() : <b>Point2D</b><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:QuadCurve2D$Float) <font color="#cc0033">getCtrlX</font>*() : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:QuadCurve2D$Float) <font color="#cc0033">getCtrlY</font>*() : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:QuadCurve2D$Float) <font color="#cc0033">getP1</font>*() : <b>Point2D</b><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:QuadCurve2D$Float) <font color="#cc0033">getP2</font>*() : <b>Point2D</b><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:QuadCurve2D$Float) <font color="#cc0033">getX1</font>*() : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:QuadCurve2D$Float) <font color="#cc0033">getX2</font>*() : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:QuadCurve2D$Float) <font color="#cc0033">getY1</font>*() : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:QuadCurve2D$Float) <font color="#cc0033">getY2</font>*() : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:QuadCurve2D$Float) <font color="#cc0033">setCurve</font>*(p0 : SHORTREAL;
+                                             p1 : SHORTREAL;
+                                             p2 : SHORTREAL;
+                                             p3 : SHORTREAL;
+                                             p4 : SHORTREAL;
+                                             p5 : SHORTREAL)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:QuadCurve2D$Float) <font color="#cc0033">setCurve</font>*(p0 : REAL;
+                                             p1 : REAL;
+                                             p2 : REAL;
+                                             p3 : REAL;
+                                             p4 : REAL;
+                                             p5 : REAL)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-Rectangle2D"></a>
+<b>PROCEDURE </b>(self:Rectangle2D) <font color="#cc0033">add</font>*(p0 : <a href="#type-Rectangle2D">Rectangle2D</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Rectangle2D) <font color="#cc0033">add</font>*(p0 : <b>Point2D</b>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Rectangle2D) <font color="#cc0033">add</font>*(p0 : REAL;
+                                  p1 : REAL)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Rectangle2D) <font color="#cc0033">contains</font>*(p0 : REAL;
+                                       p1 : REAL) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Rectangle2D) <font color="#cc0033">contains</font>*(p0 : REAL;
+                                       p1 : REAL;
+                                       p2 : REAL;
+                                       p3 : REAL) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Rectangle2D) <font color="#cc0033">createIntersection</font>*(p0 : <a href="#type-Rectangle2D">Rectangle2D</a>) : <a href="#type-Rectangle2D">Rectangle2D</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Rectangle2D) <font color="#cc0033">createUnion</font>*(p0 : <a href="#type-Rectangle2D">Rectangle2D</a>) : <a href="#type-Rectangle2D">Rectangle2D</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Rectangle2D) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Rectangle2D) <font color="#cc0033">getBounds2D</font>*() : <a href="#type-Rectangle2D">Rectangle2D</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Rectangle2D) <font color="#cc0033">getPathIterator</font>*(p0 : <b>AffineTransform</b>;
+                                              p1 : REAL) : <a href="#type-PathIterator">PathIterator</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Rectangle2D) <font color="#cc0033">getPathIterator</font>*(p0 : <b>AffineTransform</b>) : <a href="#type-PathIterator">PathIterator</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Rectangle2D) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Rectangle2D) <font color="#cc0033">intersects</font>*(p0 : REAL;
+                                         p1 : REAL;
+                                         p2 : REAL;
+                                         p3 : REAL) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Rectangle2D) <font color="#cc0033">intersectsLine</font>*(p0 : <a href="#type-Line2D">Line2D</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Rectangle2D) <font color="#cc0033">intersectsLine</font>*(p0 : REAL;
+                                             p1 : REAL;
+                                             p2 : REAL;
+                                             p3 : REAL) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Rectangle2D) <font color="#cc0033">outcode</font>*(p0 : REAL;
+                                      p1 : REAL) : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Rectangle2D) <font color="#cc0033">outcode</font>*(p0 : <b>Point2D</b>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Rectangle2D) <font color="#cc0033">setFrame</font>*(p0 : REAL;
+                                       p1 : REAL;
+                                       p2 : REAL;
+                                       p3 : REAL)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Rectangle2D) <font color="#cc0033">setRect</font>*(p0 : REAL;
+                                      p1 : REAL;
+                                      p2 : REAL;
+                                      p3 : REAL)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Rectangle2D) <font color="#cc0033">setRect</font>*(p0 : <a href="#type-Rectangle2D">Rectangle2D</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-Rectangle2D$Double"></a>
+<b>PROCEDURE </b>(self:Rectangle2D$Double) <font color="#cc0033">createIntersection</font>*(p0 : <b>Rectangle2D</b>) : <b>Rectangle2D</b><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Rectangle2D$Double) <font color="#cc0033">createUnion</font>*(p0 : <b>Rectangle2D</b>) : <b>Rectangle2D</b><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Rectangle2D$Double) <font color="#cc0033">getBounds2D</font>*() : <b>Rectangle2D</b><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Rectangle2D$Double) <font color="#cc0033">getHeight</font>*() : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Rectangle2D$Double) <font color="#cc0033">getWidth</font>*() : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Rectangle2D$Double) <font color="#cc0033">getX</font>*() : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Rectangle2D$Double) <font color="#cc0033">getY</font>*() : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Rectangle2D$Double) <font color="#cc0033">isEmpty</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Rectangle2D$Double) <font color="#cc0033">outcode</font>*(p0 : REAL;
+                                             p1 : REAL) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Rectangle2D$Double) <font color="#cc0033">setRect</font>*(p0 : REAL;
+                                             p1 : REAL;
+                                             p2 : REAL;
+                                             p3 : REAL)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Rectangle2D$Double) <font color="#cc0033">setRect</font>*(p0 : <b>Rectangle2D</b>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Rectangle2D$Double) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-Rectangle2D$Float"></a>
+<b>PROCEDURE </b>(self:Rectangle2D$Float) <font color="#cc0033">createIntersection</font>*(p0 : <b>Rectangle2D</b>) : <b>Rectangle2D</b><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Rectangle2D$Float) <font color="#cc0033">createUnion</font>*(p0 : <b>Rectangle2D</b>) : <b>Rectangle2D</b><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Rectangle2D$Float) <font color="#cc0033">getBounds2D</font>*() : <b>Rectangle2D</b><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Rectangle2D$Float) <font color="#cc0033">getHeight</font>*() : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Rectangle2D$Float) <font color="#cc0033">getWidth</font>*() : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Rectangle2D$Float) <font color="#cc0033">getX</font>*() : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Rectangle2D$Float) <font color="#cc0033">getY</font>*() : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Rectangle2D$Float) <font color="#cc0033">isEmpty</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Rectangle2D$Float) <font color="#cc0033">outcode</font>*(p0 : REAL;
+                                            p1 : REAL) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Rectangle2D$Float) <font color="#cc0033">setRect</font>*(p0 : SHORTREAL;
+                                            p1 : SHORTREAL;
+                                            p2 : SHORTREAL;
+                                            p3 : SHORTREAL)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Rectangle2D$Float) <font color="#cc0033">setRect</font>*(p0 : REAL;
+                                            p1 : REAL;
+                                            p2 : REAL;
+                                            p3 : REAL)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Rectangle2D$Float) <font color="#cc0033">setRect</font>*(p0 : <b>Rectangle2D</b>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Rectangle2D$Float) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-RectangularShape"></a>
+<b>PROCEDURE </b>(self:RectangularShape) <font color="#cc0033">clone</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RectangularShape) <font color="#cc0033">contains</font>*(p0 : <b>Rectangle2D</b>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RectangularShape) <font color="#cc0033">contains</font>*(p0 : <b>Point2D</b>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RectangularShape) <font color="#cc0033">getBounds</font>*() : <a href="java_awt.html#type-Rectangle">java_awt.Rectangle</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RectangularShape) <font color="#cc0033">getCenterX</font>*() : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RectangularShape) <font color="#cc0033">getCenterY</font>*() : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RectangularShape) <font color="#cc0033">getFrame</font>*() : <b>Rectangle2D</b><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RectangularShape) <font color="#cc0033">getHeight</font>*() : REAL<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RectangularShape) <font color="#cc0033">getMaxX</font>*() : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RectangularShape) <font color="#cc0033">getMaxY</font>*() : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RectangularShape) <font color="#cc0033">getMinX</font>*() : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RectangularShape) <font color="#cc0033">getMinY</font>*() : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RectangularShape) <font color="#cc0033">getPathIterator</font>*(p0 : <b>AffineTransform</b>;
+                                                   p1 : REAL) : <a href="#type-PathIterator">PathIterator</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RectangularShape) <font color="#cc0033">getWidth</font>*() : REAL<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RectangularShape) <font color="#cc0033">getX</font>*() : REAL<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RectangularShape) <font color="#cc0033">getY</font>*() : REAL<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RectangularShape) <font color="#cc0033">intersects</font>*(p0 : <b>Rectangle2D</b>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RectangularShape) <font color="#cc0033">isEmpty</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RectangularShape) <font color="#cc0033">setFrame</font>*(p0 : <b>Point2D</b>;
+                                            p1 : <b>Dimension2D</b>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RectangularShape) <font color="#cc0033">setFrame</font>*(p0 : <b>Rectangle2D</b>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RectangularShape) <font color="#cc0033">setFrame</font>*(p0 : REAL;
+                                            p1 : REAL;
+                                            p2 : REAL;
+                                            p3 : REAL)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RectangularShape) <font color="#cc0033">setFrameFromCenter</font>*(p0 : <b>Point2D</b>;
+                                                      p1 : <b>Point2D</b>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RectangularShape) <font color="#cc0033">setFrameFromCenter</font>*(p0 : REAL;
+                                                      p1 : REAL;
+                                                      p2 : REAL;
+                                                      p3 : REAL)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RectangularShape) <font color="#cc0033">setFrameFromDiagonal</font>*(p0 : <b>Point2D</b>;
+                                                        p1 : <b>Point2D</b>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RectangularShape) <font color="#cc0033">setFrameFromDiagonal</font>*(p0 : REAL;
+                                                        p1 : REAL;
+                                                        p2 : REAL;
+                                                        p3 : REAL)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-RoundRectangle2D"></a>
+<b>PROCEDURE </b>(self:RoundRectangle2D) <font color="#cc0033">contains</font>*(p0 : REAL;
+                                            p1 : REAL) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RoundRectangle2D) <font color="#cc0033">contains</font>*(p0 : REAL;
+                                            p1 : REAL;
+                                            p2 : REAL;
+                                            p3 : REAL) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RoundRectangle2D) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RoundRectangle2D) <font color="#cc0033">getArcHeight</font>*() : REAL<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RoundRectangle2D) <font color="#cc0033">getArcWidth</font>*() : REAL<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RoundRectangle2D) <font color="#cc0033">getPathIterator</font>*(p0 : <b>AffineTransform</b>) : <a href="#type-PathIterator">PathIterator</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RoundRectangle2D) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RoundRectangle2D) <font color="#cc0033">intersects</font>*(p0 : REAL;
+                                              p1 : REAL;
+                                              p2 : REAL;
+                                              p3 : REAL) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RoundRectangle2D) <font color="#cc0033">setFrame</font>*(p0 : REAL;
+                                            p1 : REAL;
+                                            p2 : REAL;
+                                            p3 : REAL)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RoundRectangle2D) <font color="#cc0033">setRoundRect</font>*(p0 : REAL;
+                                                p1 : REAL;
+                                                p2 : REAL;
+                                                p3 : REAL;
+                                                p4 : REAL;
+                                                p5 : REAL)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RoundRectangle2D) <font color="#cc0033">setRoundRect</font>*(p0 : <a href="#type-RoundRectangle2D">RoundRectangle2D</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-RoundRectangle2D$Double"></a>
+<b>PROCEDURE </b>(self:RoundRectangle2D$Double) <font color="#cc0033">getArcHeight</font>*() : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RoundRectangle2D$Double) <font color="#cc0033">getArcWidth</font>*() : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RoundRectangle2D$Double) <font color="#cc0033">getBounds2D</font>*() : <b>Rectangle2D</b><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RoundRectangle2D$Double) <font color="#cc0033">getHeight</font>*() : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RoundRectangle2D$Double) <font color="#cc0033">getWidth</font>*() : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RoundRectangle2D$Double) <font color="#cc0033">getX</font>*() : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RoundRectangle2D$Double) <font color="#cc0033">getY</font>*() : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RoundRectangle2D$Double) <font color="#cc0033">isEmpty</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RoundRectangle2D$Double) <font color="#cc0033">setRoundRect</font>*(p0 : <b>RoundRectangle2D</b>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RoundRectangle2D$Double) <font color="#cc0033">setRoundRect</font>*(p0 : REAL;
+                                                       p1 : REAL;
+                                                       p2 : REAL;
+                                                       p3 : REAL;
+                                                       p4 : REAL;
+                                                       p5 : REAL)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-RoundRectangle2D$Float"></a>
+<b>PROCEDURE </b>(self:RoundRectangle2D$Float) <font color="#cc0033">getArcHeight</font>*() : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RoundRectangle2D$Float) <font color="#cc0033">getArcWidth</font>*() : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RoundRectangle2D$Float) <font color="#cc0033">getBounds2D</font>*() : <b>Rectangle2D</b><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RoundRectangle2D$Float) <font color="#cc0033">getHeight</font>*() : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RoundRectangle2D$Float) <font color="#cc0033">getWidth</font>*() : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RoundRectangle2D$Float) <font color="#cc0033">getX</font>*() : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RoundRectangle2D$Float) <font color="#cc0033">getY</font>*() : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RoundRectangle2D$Float) <font color="#cc0033">isEmpty</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RoundRectangle2D$Float) <font color="#cc0033">setRoundRect</font>*(p0 : <b>RoundRectangle2D</b>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RoundRectangle2D$Float) <font color="#cc0033">setRoundRect</font>*(p0 : SHORTREAL;
+                                                      p1 : SHORTREAL;
+                                                      p2 : SHORTREAL;
+                                                      p3 : SHORTREAL;
+                                                      p4 : SHORTREAL;
+                                                      p5 : SHORTREAL)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RoundRectangle2D$Float) <font color="#cc0033">setRoundRect</font>*(p0 : REAL;
+                                                      p1 : REAL;
+                                                      p2 : REAL;
+                                                      p3 : REAL;
+                                                      p4 : REAL;
+                                                      p5 : REAL)<b>,NEW,EXTENSIBLE</b>;
+
+<b>END </b><font color="#cc0033">java_awt_geom</font>.
+</font></pre></hr>
+<!-- BEGIN JavaScript -->
+<script>
+function toggle(node) {
+    node.classList.toggle("show"); 
+  }
+
+function cls(node) {
+    var prnt = node.parentNode;
+    var next = prnt.previousSibling;
+    var text = next.lastChild;
+    text.innerHTML = 
+        "The <b>class</b> property asserts that this type will be<br>" +
+        "implemented as a reference class in the underlying framework.";
+    text.classList.toggle("show");
+  }
+
+function newOk(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>has noArg-ctor</b> property asserts that this reference<br>" +
+        "class has a no-arg constructor, and thus objects of this<br>" +
+        "type can be allocated with NEW(). Component Pascal types<br>" +
+        "derived from this type can also be allocated using NEW().";
+    popuptext.classList.toggle("show"); 
+  }
+
+function noNew(node) { 
+    var prnt = node.parentNode; 
+    var next = prnt.previousSibling; 
+    var text = next.lastChild; 
+    text.innerHTML =  
+        "The <b>no noArg-ctor</b> property asserts that this reference<br>" +
+        "class does not have a noArg constructor. Objects of this<br>" +
+        "type cannot be allocated using NEW(), and Component<br>" +
+        "Pascal types  derived from this type also cannot be<br>" +
+        "allocated using NEW().";
+    text.classList.toggle("show");
+  }
+
+function noCpy(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>no value-assign</b> property asserts that this reference<br>" + 
+        "class does not have a value copy method. Therefore, it<br>" +
+        "is not possible to perform value assignments using<br>" +
+        "statements like <i>dst^</i> := <i>src^</i>";
+    popuptext.classList.toggle("show");
+  }
+
+function valueclass(node) { 
+        var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>valueclass</b> property asserts that this RECORD type is<br>" + 
+        "implemented as a value class in the CLR. It follows that<br>" +  
+        "value assignments can be made of these types. They can<br>" + 
+        "also be passed by value. Even pointers to records of<br>" + 
+        "such types may be dereferenced and copied using syntax<br>" + 
+        "such as  <i>dst^</i> := <i>src^</i>"; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+function argCtor(node) { 
+    var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>has arg-ctor</b> property asserts that this reference<br>" +  
+        "class has one or more constructors that take arguments.<br>" + 
+        "These constructors can be called from Component Pascal<br>" + 
+        "by calling an <i>init</i>(...) method from the static list<br>" + 
+        "here. Component Pascal types derived from this type<br>" + 
+        "can define constructors with arguments which call the<br>" + 
+        "super-type constructor.<br>" + 
+        "See <i>'Interfacing to constructors'</i> in the Release Notes."; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+</script>
+<!-- END JavaScript --> 
+
+</body></html>

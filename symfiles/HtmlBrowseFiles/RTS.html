@@ -1,0 +1,172 @@
+<html><head><title>RTS</title>
+</head><body bgcolor="white">
+<hr><pre>
+<b>SYSTEM MODULE </b><font color="#cc0033">RTS</font>;
+
+<b>IMPORT</b>
+    <a href="RTS.html">RTS</a>;
+
+<b>TYPE</b>
+
+  <a name="type-CharOpen"></a><font color="#cc0033">CharOpen</font>* = <b>POINTER TO </b><b>ARRAY </b><b>OF </b>CHAR;
+
+  <a name="type-CharVector"></a><font color="#cc0033">CharVector</font>* = <b>VECTOR </b><b>OF </b>CHAR;
+
+  <a name="type-NativeException"></a><font color="#cc0033">NativeException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b>
+                     <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                     <b>END</b>;
+
+  <a name="type-NativeObject"></a><font color="#cc0033">NativeObject</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b>
+                  <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                  <b>END</b>;
+
+  <a name="type-NativeString"></a><font color="#cc0033">NativeString</font>* = <b>POINTER TO </b><b>RECORD</b>
+                  <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                  <b>END</b>;
+
+  <a name="type-NativeType"></a><font color="#cc0033">NativeType</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b>
+                <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                <b>END</b>;
+
+
+<b>VAR</b>
+  <a name="type-eol"></a><font color="#cc0033">eol</font>-            : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>CHAR;
+  <a name="type-fltNegInfinity"></a><font color="#cc0033">fltNegInfinity</font>- : SHORTREAL;
+  <a name="type-dblNegInfinity"></a><font color="#cc0033">dblNegInfinity</font>- : REAL;
+  <a name="type-defaultTarget"></a><font color="#cc0033">defaultTarget</font>-  : <b>ARRAY </b>4 <b>OF </b>CHAR;
+  <a name="type-fltPosInfinity"></a><font color="#cc0033">fltPosInfinity</font>- : SHORTREAL;
+  <a name="type-dblPosInfinity"></a><font color="#cc0033">dblPosInfinity</font>- : REAL;
+
+
+<b>PROCEDURE </b><font color="#cc0033">StrToShort</font>*(IN  s  : <b>ARRAY </b><b>OF </b>CHAR;
+                      OUT si : SHORTINT;
+                      OUT ok : BOOLEAN);
+
+<b>PROCEDURE </b><font color="#cc0033">StrToUShort</font>*(IN  s  : <b>ARRAY </b><b>OF </b>CHAR;
+                       OUT si : SHORTINT;
+                       OUT ok : BOOLEAN);
+
+<b>PROCEDURE </b><font color="#cc0033">TypeName</font>*(typ : <a href="#type-NativeType">NativeType</a>) : <a href="#type-CharOpen">CharOpen</a>;
+
+<b>PROCEDURE </b><font color="#cc0033">HexStrToUByte</font>*(IN  s  : <b>ARRAY </b><b>OF </b>CHAR;
+                         OUT b  : BYTE;
+                         OUT ok : BOOLEAN);
+
+<b>PROCEDURE </b><font color="#cc0033">intBitsToShortReal</font>*(i : INTEGER) : SHORTREAL;
+
+<b>PROCEDURE </b><font color="#cc0033">StrToRealInvar</font>*(IN  s  : <b>ARRAY </b><b>OF </b>CHAR;
+                          OUT r  : REAL;
+                          OUT ok : BOOLEAN);
+
+<b>PROCEDURE </b><font color="#cc0033">StrToRealLocal</font>*(IN  s  : <b>ARRAY </b><b>OF </b>CHAR;
+                          OUT r  : REAL;
+                          OUT ok : BOOLEAN);
+
+<b>PROCEDURE </b><font color="#cc0033">SRealToStrInvar</font>*(    r : SHORTREAL;
+                           OUT s : <b>ARRAY </b><b>OF </b>CHAR);
+
+<b>PROCEDURE </b><font color="#cc0033">SRealToStrLocal</font>*(    r : SHORTREAL;
+                           OUT s : <b>ARRAY </b><b>OF </b>CHAR);
+
+<b>PROCEDURE </b><font color="#cc0033">longBitsToReal</font>*(l : LONGINT) : REAL;
+
+<b>PROCEDURE </b><font color="#cc0033">Throw</font>*(IN  s : <b>ARRAY </b><b>OF </b>CHAR);
+
+<b>PROCEDURE </b><font color="#cc0033">realToLongBits</font>*(r : REAL) : LONGINT;
+
+<b>PROCEDURE </b><font color="#cc0033">hiInt</font>*(l : LONGINT) : INTEGER;
+
+<b>PROCEDURE </b><font color="#cc0033">loInt</font>*(l : LONGINT) : INTEGER;
+
+<b>PROCEDURE </b><font color="#cc0033">GetMillis</font>*() : LONGINT;
+
+<b>PROCEDURE </b><font color="#cc0033">shortRealToIntBits</font>*(r : SHORTREAL) : INTEGER;
+
+<b>PROCEDURE </b><font color="#cc0033">ClassMarker</font>*(o : ANYPTR);
+
+<b>PROCEDURE </b><font color="#cc0033">RealToStrInvar</font>*(    r : REAL;
+                          OUT s : <b>ARRAY </b><b>OF </b>CHAR);
+
+<b>PROCEDURE </b><font color="#cc0033">RealToStrLocal</font>*(    r : REAL;
+                          OUT s : <b>ARRAY </b><b>OF </b>CHAR);
+
+<b>PROCEDURE </b><font color="#cc0033">hiShort</font>*(i : INTEGER) : SHORTINT;
+
+<b>PROCEDURE </b><font color="#cc0033">loShort</font>*(i : INTEGER) : SHORTINT;
+
+<b>PROCEDURE </b><font color="#cc0033">RealToStr</font>*(    r : REAL;
+                     OUT s : <b>ARRAY </b><b>OF </b>CHAR);
+
+<b>PROCEDURE </b><font color="#cc0033">Length</font>*(str : <a href="#type-NativeString">NativeString</a>) : INTEGER;
+
+<b>PROCEDURE </b><font color="#cc0033">LongToStr</font>*(    i : LONGINT;
+                     OUT s : <b>ARRAY </b><b>OF </b>CHAR);
+
+<b>PROCEDURE </b><font color="#cc0033">GetDateString</font>*(OUT str : <b>ARRAY </b><b>OF </b>CHAR);
+
+<b>PROCEDURE </b><font color="#cc0033">ObjToStr</font>*(    obj : ANYPTR;
+                    OUT s   : <b>ARRAY </b><b>OF </b>CHAR);
+
+<b>PROCEDURE </b><font color="#cc0033">hiByte</font>*(i : SHORTINT) : BYTE;
+
+<b>PROCEDURE </b><font color="#cc0033">getStr</font>*(x : <a href="#type-NativeException">NativeException</a>) : <a href="#type-CharOpen">CharOpen</a>;
+
+<b>PROCEDURE </b><font color="#cc0033">IntToStr</font>*(    i : INTEGER;
+                    OUT s : <b>ARRAY </b><b>OF </b>CHAR);
+
+<b>PROCEDURE </b><font color="#cc0033">loByte</font>*(i : SHORTINT) : BYTE;
+
+<b>PROCEDURE </b><font color="#cc0033">SRealToStr</font>*(    r : SHORTREAL;
+                      OUT s : <b>ARRAY </b><b>OF </b>CHAR);
+
+<b>PROCEDURE </b><font color="#cc0033">StrToSRealInvar</font>*(IN  s  : <b>ARRAY </b><b>OF </b>CHAR;
+                           OUT r  : SHORTREAL;
+                           OUT ok : BOOLEAN);
+
+<b>PROCEDURE </b><font color="#cc0033">StrToSRealLocal</font>*(IN  s  : <b>ARRAY </b><b>OF </b>CHAR;
+                           OUT r  : SHORTREAL;
+                           OUT ok : BOOLEAN);
+
+<b>PROCEDURE </b><font color="#cc0033">CharAtIndex</font>*(str : <a href="#type-NativeString">NativeString</a>;
+                       idx : INTEGER) : CHAR;
+
+<b>PROCEDURE </b><font color="#cc0033">StrToBool</font>*(IN  s  : <b>ARRAY </b><b>OF </b>CHAR;
+                     OUT b  : BOOLEAN;
+                     OUT ok : BOOLEAN);
+
+<b>PROCEDURE </b><font color="#cc0033">StrToSReal</font>*(IN  s  : <b>ARRAY </b><b>OF </b>CHAR;
+                      OUT r  : SHORTREAL;
+                      OUT ok : BOOLEAN);
+
+<b>PROCEDURE </b><font color="#cc0033">StrToByte</font>*(IN  s  : <b>ARRAY </b><b>OF </b>CHAR;
+                     OUT b  : BYTE;
+                     OUT ok : BOOLEAN);
+
+<b>PROCEDURE </b><font color="#cc0033">StrToUByte</font>*(IN  s  : <b>ARRAY </b><b>OF </b>CHAR;
+                      OUT b  : BYTE;
+                      OUT ok : BOOLEAN);
+
+<b>PROCEDURE </b><font color="#cc0033">StrToInt</font>*(IN  s  : <b>ARRAY </b><b>OF </b>CHAR;
+                    OUT i  : INTEGER;
+                    OUT ok : BOOLEAN);
+
+<b>PROCEDURE </b><font color="#cc0033">StrToUInt</font>*(IN  s  : <b>ARRAY </b><b>OF </b>CHAR;
+                     OUT i  : INTEGER;
+                     OUT ok : BOOLEAN);
+
+<b>PROCEDURE </b><font color="#cc0033">StrToULong</font>*(IN  s  : <b>ARRAY </b><b>OF </b>CHAR;
+                      OUT i  : LONGINT;
+                      OUT ok : BOOLEAN);
+
+<b>PROCEDURE </b><font color="#cc0033">StrToLong</font>*(IN  s  : <b>ARRAY </b><b>OF </b>CHAR;
+                     OUT i  : LONGINT;
+                     OUT ok : BOOLEAN);
+
+<b>PROCEDURE </b><font color="#cc0033">StrToReal</font>*(IN  s  : <b>ARRAY </b><b>OF </b>CHAR;
+                     OUT r  : REAL;
+                     OUT ok : BOOLEAN);
+
+
+<b>END </b><font color="#cc0033">RTS</font>.
+</font></pre></hr>
+</body></html>

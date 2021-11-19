@@ -1,0 +1,782 @@
+<html><head><title>javax_sound_midi</title>
+<style>
+<!-- BEGIN Inline CSS -->
+/* Popup container */
+.popup {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+/* The actual popup (appears on top) */
+.popup .popuptext {
+    visibility: hidden;
+    width: 430px;
+    background-color: white;
+    color: black;
+    text-align: left;
+    border-radius: 6px;
+    border-style: solid;
+    border-color: black;
+    padding: 8px 8px 8px 8px;
+    position: absolute;
+    z-index: 1;
+    margin-top: 30px;
+}
+
+/* Toggle this class when clicking on the popup container (hide and show the popup) */
+.popup .show {
+    visibility: visible;
+    opacity: 1;
+}
+
+</style>
+<!-- END Inline CSS -->
+</head><body bgcolor="white">
+<hr><pre>
+<font color="green">(*</font>
+<font color="green"> *  Creator j2cps version 1.4.07 (March 2018)</font>
+<font color="green"> *  Compiled from jar-file rt.jar</font>
+<font color="green"> *)</font>
+<b>FOREIGN MODULE </b><font color="#cc0033">javax_sound_midi</font>;
+
+<b>IMPORT</b>
+    <a href="java_io.html">java_io</a> := "java.io",
+    <a href="java_lang.html">java_lang</a> := "java.lang",
+    <a href="java_net.html">java_net</a> := "java.net",
+    <a href="java_util.html">java_util</a> := "java.util";
+
+<b>TYPE</b>
+
+  <a name="type-ControllerEventListener"></a><font color="#cc0033">ControllerEventListener</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_util.html#type-EventListener">java_util.EventListener</a>)
+                             <font color="green"><b> (* </b><a href="#meths-ControllerEventListener">Typebound Procedures</a><b> *)</b></font>
+                             <b>END</b>;
+
+  <a name="type-Instrument"></a><font color="#cc0033">Instrument</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<b>SoundbankResource</b>)
+                <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                <font color="green"><b> (* </b><a href="#meths-Instrument">Typebound Procedures</a><b> *)</b></font>
+                <b>STATIC</b>
+                  <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : <b>Soundbank</b>;
+                                  p1 : <b>Patch</b>;
+                                  p2 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                  p3 : <a href="java_lang.html#type-Class">java_lang.Class</a>) : <a href="#type-Instrument">Instrument</a><b>,CONSTRUCTOR</b>;
+                <b>END</b>;
+
+  <a name="type-InvalidMidiDataException"></a><font color="#cc0033">InvalidMidiDataException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Exception">java_lang.Exception</a>)
+                              <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                              <b>STATIC</b>
+                                <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-InvalidMidiDataException">InvalidMidiDataException</a><b>,CONSTRUCTOR</b>;
+                                <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-InvalidMidiDataException">InvalidMidiDataException</a><b>,CONSTRUCTOR</b>;
+                              <b>END</b>;
+
+  <a name="type-MetaEventListener"></a><font color="#cc0033">MetaEventListener</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_util.html#type-EventListener">java_util.EventListener</a>)
+                       <font color="green"><b> (* </b><a href="#meths-MetaEventListener">Typebound Procedures</a><b> *)</b></font>
+                       <b>END</b>;
+
+  <a name="type-MetaMessage"></a><font color="#cc0033">MetaMessage</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<b>MidiMessage</b>)
+                 <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                 <font color="green"><b> (* </b><a href="#meths-MetaMessage">Typebound Procedures</a><b> *)</b></font>
+                 <b>STATIC</b>
+                   <font color="#cc0033">META</font>* = 255;
+                   <b>PROCEDURE </b><font color="#cc0033">Init</font>!(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE) : <a href="#type-MetaMessage">MetaMessage</a><b>,CONSTRUCTOR</b>;
+                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*(    p0 : INTEGER;
+                                   IN  p1 : <b>ARRAY </b><b>OF </b>BYTE;
+                                       p2 : INTEGER) : <a href="#type-MetaMessage">MetaMessage</a><b>,CONSTRUCTOR</b>;
+                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-MetaMessage">MetaMessage</a><b>,CONSTRUCTOR</b>;
+                 <b>END</b>;
+
+  <a name="type-MidiChannel"></a><font color="#cc0033">MidiChannel</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                 <font color="green"><b> (* </b><a href="#meths-MidiChannel">Typebound Procedures</a><b> *)</b></font>
+                 <b>END</b>;
+
+  <a name="type-MidiDevice"></a><font color="#cc0033">MidiDevice</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_lang.html#type-AutoCloseable">java_lang.AutoCloseable</a>)
+                <font color="green"><b> (* </b><a href="#meths-MidiDevice">Typebound Procedures</a><b> *)</b></font>
+                <b>END</b>;
+
+  <a name="type-MidiDevice$Info"></a><font color="#cc0033">MidiDevice$Info</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                     <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                     <font color="green"><b> (* </b><a href="#meths-MidiDevice$Info">Typebound Procedures</a><b> *)</b></font>
+                     <b>STATIC</b>
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                       p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                       p2 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                       p3 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-MidiDevice$Info">MidiDevice$Info</a><b>,CONSTRUCTOR</b>;
+                     <b>END</b>;
+
+  <a name="type-MidiDeviceReceiver"></a><font color="#cc0033">MidiDeviceReceiver</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <b>Receiver</b>)
+                        <font color="green"><b> (* </b><a href="#meths-MidiDeviceReceiver">Typebound Procedures</a><b> *)</b></font>
+                        <b>END</b>;
+
+  <a name="type-MidiDeviceTransmitter"></a><font color="#cc0033">MidiDeviceTransmitter</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <b>Transmitter</b>)
+                           <font color="green"><b> (* </b><a href="#meths-MidiDeviceTransmitter">Typebound Procedures</a><b> *)</b></font>
+                           <b>END</b>;
+
+  <a name="type-MidiEvent"></a><font color="#cc0033">MidiEvent</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+               <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+               <font color="green"><b> (* </b><a href="#meths-MidiEvent">Typebound Procedures</a><b> *)</b></font>
+               <b>STATIC</b>
+                 <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <b>MidiMessage</b>;
+                                 p1 : LONGINT) : <a href="#type-MidiEvent">MidiEvent</a><b>,CONSTRUCTOR</b>;
+               <b>END</b>;
+
+  <a name="type-MidiFileFormat"></a><font color="#cc0033">MidiFileFormat</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                    <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                    <font color="green"><b> (* </b><a href="#meths-MidiFileFormat">Typebound Procedures</a><b> *)</b></font>
+                      <font color="#cc0033">type</font>!              : INTEGER;
+                      <font color="#cc0033">divisionType</font>!      : SHORTREAL;
+                      <font color="#cc0033">resolution</font>!        : INTEGER;
+                      <font color="#cc0033">byteLength</font>!        : INTEGER;
+                      <font color="#cc0033">microsecondLength</font>! : LONGINT;
+                    <b>STATIC</b>
+                      <font color="#cc0033">UNKNOWN_LENGTH</font>* = -1;
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER;
+                                      p1 : SHORTREAL;
+                                      p2 : INTEGER;
+                                      p3 : INTEGER;
+                                      p4 : LONGINT;
+                                      p5 : <a href="java_util.html#type-Map">java_util.Map</a>) : <a href="#type-MidiFileFormat">MidiFileFormat</a><b>,CONSTRUCTOR</b>;
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER;
+                                      p1 : SHORTREAL;
+                                      p2 : INTEGER;
+                                      p3 : INTEGER;
+                                      p4 : LONGINT) : <a href="#type-MidiFileFormat">MidiFileFormat</a><b>,CONSTRUCTOR</b>;
+                    <b>END</b>;
+
+  <a name="type-MidiMessage"></a><font color="#cc0033">MidiMessage</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_lang.html#type-Cloneable">java_lang.Cloneable</a>)
+                 <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                 <font color="green"><b> (* </b><a href="#meths-MidiMessage">Typebound Procedures</a><b> *)</b></font>
+                   <font color="#cc0033">data</font>!   : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE;
+                   <font color="#cc0033">length</font>! : INTEGER;
+                 <b>STATIC</b>
+                   <b>PROCEDURE </b><font color="#cc0033">Init</font>!(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE) : <a href="#type-MidiMessage">MidiMessage</a><b>,CONSTRUCTOR</b>;
+                 <b>END</b>;
+
+  <a name="type-MidiSystem"></a><font color="#cc0033">MidiSystem</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                <b>STATIC</b>
+                  <b>PROCEDURE </b><font color="#cc0033">getMidiDevice</font>*(p0 : <a href="#type-MidiDevice$Info">MidiDevice$Info</a>) : <a href="#type-MidiDevice">MidiDevice</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">getMidiDeviceInfo</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-MidiDevice$Info">MidiDevice$Info</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">getMidiFileFormat</font>*(p0 : <a href="java_io.html#type-InputStream">java_io.InputStream</a>) : <a href="#type-MidiFileFormat">MidiFileFormat</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">getMidiFileFormat</font>*(p0 : <a href="java_net.html#type-URL">java_net.URL</a>) : <a href="#type-MidiFileFormat">MidiFileFormat</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">getMidiFileFormat</font>*(p0 : <a href="java_io.html#type-File">java_io.File</a>) : <a href="#type-MidiFileFormat">MidiFileFormat</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">getMidiFileTypes</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>INTEGER;
+                  <b>PROCEDURE </b><font color="#cc0033">getMidiFileTypes</font>*(p0 : <b>Sequence</b>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>INTEGER;
+                  <b>PROCEDURE </b><font color="#cc0033">getReceiver</font>*() : <b>Receiver</b>;
+                  <b>PROCEDURE </b><font color="#cc0033">getSequence</font>*(p0 : <a href="java_io.html#type-InputStream">java_io.InputStream</a>) : <b>Sequence</b>;
+                  <b>PROCEDURE </b><font color="#cc0033">getSequence</font>*(p0 : <a href="java_io.html#type-File">java_io.File</a>) : <b>Sequence</b>;
+                  <b>PROCEDURE </b><font color="#cc0033">getSequence</font>*(p0 : <a href="java_net.html#type-URL">java_net.URL</a>) : <b>Sequence</b>;
+                  <b>PROCEDURE </b><font color="#cc0033">getSequencer</font>*(p0 : BOOLEAN) : <b>Sequencer</b>;
+                  <b>PROCEDURE </b><font color="#cc0033">getSequencer</font>*() : <b>Sequencer</b>;
+                  <b>PROCEDURE </b><font color="#cc0033">getSoundbank</font>*(p0 : <a href="java_io.html#type-InputStream">java_io.InputStream</a>) : <b>Soundbank</b>;
+                  <b>PROCEDURE </b><font color="#cc0033">getSoundbank</font>*(p0 : <a href="java_net.html#type-URL">java_net.URL</a>) : <b>Soundbank</b>;
+                  <b>PROCEDURE </b><font color="#cc0033">getSoundbank</font>*(p0 : <a href="java_io.html#type-File">java_io.File</a>) : <b>Soundbank</b>;
+                  <b>PROCEDURE </b><font color="#cc0033">getSynthesizer</font>*() : <b>Synthesizer</b>;
+                  <b>PROCEDURE </b><font color="#cc0033">getTransmitter</font>*() : <b>Transmitter</b>;
+                  <b>PROCEDURE </b><font color="#cc0033">isFileTypeSupported</font>*(p0 : INTEGER;
+                                                 p1 : <b>Sequence</b>) : BOOLEAN;
+                  <b>PROCEDURE </b><font color="#cc0033">isFileTypeSupported</font>*(p0 : INTEGER) : BOOLEAN;
+                  <b>PROCEDURE </b><font color="#cc0033">write</font>*(p0 : <b>Sequence</b>;
+                                   p1 : INTEGER;
+                                   p2 : <a href="java_io.html#type-File">java_io.File</a>) : INTEGER;
+                  <b>PROCEDURE </b><font color="#cc0033">write</font>*(p0 : <b>Sequence</b>;
+                                   p1 : INTEGER;
+                                   p2 : <a href="java_io.html#type-OutputStream">java_io.OutputStream</a>) : INTEGER;
+                <b>END</b>;
+
+  <a name="type-MidiUnavailableException"></a><font color="#cc0033">MidiUnavailableException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Exception">java_lang.Exception</a>)
+                              <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                              <b>STATIC</b>
+                                <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-MidiUnavailableException">MidiUnavailableException</a><b>,CONSTRUCTOR</b>;
+                                <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-MidiUnavailableException">MidiUnavailableException</a><b>,CONSTRUCTOR</b>;
+                              <b>END</b>;
+
+  <a name="type-Patch"></a><font color="#cc0033">Patch</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+           <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+           <font color="green"><b> (* </b><a href="#meths-Patch">Typebound Procedures</a><b> *)</b></font>
+           <b>STATIC</b>
+             <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER;
+                             p1 : INTEGER) : <a href="#type-Patch">Patch</a><b>,CONSTRUCTOR</b>;
+           <b>END</b>;
+
+  <a name="type-Receiver"></a><font color="#cc0033">Receiver</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_lang.html#type-AutoCloseable">java_lang.AutoCloseable</a>)
+              <font color="green"><b> (* </b><a href="#meths-Receiver">Typebound Procedures</a><b> *)</b></font>
+              <b>END</b>;
+
+  <a name="type-Sequence"></a><font color="#cc0033">Sequence</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+              <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+              <font color="green"><b> (* </b><a href="#meths-Sequence">Typebound Procedures</a><b> *)</b></font>
+                <font color="#cc0033">divisionType</font>! : SHORTREAL;
+                <font color="#cc0033">resolution</font>!   : INTEGER;
+                <font color="#cc0033">tracks</font>!       : <a href="java_util.html#type-Vector">java_util.Vector</a>;
+              <b>STATIC</b>
+                <font color="#cc0033">PPQ</font>*          = 0.0;
+                <font color="#cc0033">SMPTE_24</font>*     = 24.0;
+                <font color="#cc0033">SMPTE_25</font>*     = 25.0;
+                <font color="#cc0033">SMPTE_30</font>*     = 30.0;
+                <font color="#cc0033">SMPTE_30DROP</font>* = 29.969999313354492;
+                <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : SHORTREAL;
+                                p1 : INTEGER;
+                                p2 : INTEGER) : <a href="#type-Sequence">Sequence</a><b>,CONSTRUCTOR</b>;
+                <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : SHORTREAL;
+                                p1 : INTEGER) : <a href="#type-Sequence">Sequence</a><b>,CONSTRUCTOR</b>;
+              <b>END</b>;
+
+  <a name="type-Sequencer"></a><font color="#cc0033">Sequencer</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-MidiDevice">MidiDevice</a>)
+               <font color="green"><b> (* </b><a href="#meths-Sequencer">Typebound Procedures</a><b> *)</b></font>
+               <b>STATIC</b>
+                 <font color="#cc0033">LOOP_CONTINUOUSLY</font>* = -1;
+               <b>END</b>;
+
+  <a name="type-Sequencer$SyncMode"></a><font color="#cc0033">Sequencer$SyncMode</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                        <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                        <font color="green"><b> (* </b><a href="#meths-Sequencer$SyncMode">Typebound Procedures</a><b> *)</b></font>
+                        <b>STATIC</b>
+                          <a name="type-INTERNAL_CLOCK"></a><font color="#cc0033">INTERNAL_CLOCK</font>* : <a href="#type-Sequencer$SyncMode">Sequencer$SyncMode</a>;
+                          <a name="type-MIDI_SYNC"></a><font color="#cc0033">MIDI_SYNC</font>*      : <a href="#type-Sequencer$SyncMode">Sequencer$SyncMode</a>;
+                          <a name="type-MIDI_TIME_CODE"></a><font color="#cc0033">MIDI_TIME_CODE</font>* : <a href="#type-Sequencer$SyncMode">Sequencer$SyncMode</a>;
+                          <a name="type-NO_SYNC"></a><font color="#cc0033">NO_SYNC</font>*        : <a href="#type-Sequencer$SyncMode">Sequencer$SyncMode</a>;
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-Sequencer$SyncMode">Sequencer$SyncMode</a><b>,CONSTRUCTOR</b>;
+                        <b>END</b>;
+
+  <a name="type-ShortMessage"></a><font color="#cc0033">ShortMessage</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-MidiMessage">MidiMessage</a>)
+                  <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                  <font color="green"><b> (* </b><a href="#meths-ShortMessage">Typebound Procedures</a><b> *)</b></font>
+                  <b>STATIC</b>
+                    <font color="#cc0033">ACTIVE_SENSING</font>*        = 254;
+                    <font color="#cc0033">CHANNEL_PRESSURE</font>*      = 208;
+                    <font color="#cc0033">CONTINUE</font>*              = 251;
+                    <font color="#cc0033">CONTROL_CHANGE</font>*        = 176;
+                    <font color="#cc0033">END_OF_EXCLUSIVE</font>*      = 247;
+                    <font color="#cc0033">MIDI_TIME_CODE</font>*        = 241;
+                    <font color="#cc0033">NOTE_OFF</font>*              = 128;
+                    <font color="#cc0033">NOTE_ON</font>*               = 144;
+                    <font color="#cc0033">PITCH_BEND</font>*            = 224;
+                    <font color="#cc0033">POLY_PRESSURE</font>*         = 160;
+                    <font color="#cc0033">PROGRAM_CHANGE</font>*        = 192;
+                    <font color="#cc0033">SONG_POSITION_POINTER</font>* = 242;
+                    <font color="#cc0033">SONG_SELECT</font>*           = 243;
+                    <font color="#cc0033">START</font>*                 = 250;
+                    <font color="#cc0033">STOP</font>*                  = 252;
+                    <font color="#cc0033">SYSTEM_RESET</font>*          = 255;
+                    <font color="#cc0033">TIMING_CLOCK</font>*          = 248;
+                    <font color="#cc0033">TUNE_REQUEST</font>*          = 246;
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER;
+                                    p1 : INTEGER;
+                                    p2 : INTEGER;
+                                    p3 : INTEGER) : <a href="#type-ShortMessage">ShortMessage</a><b>,CONSTRUCTOR</b>;
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>!(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE) : <a href="#type-ShortMessage">ShortMessage</a><b>,CONSTRUCTOR</b>;
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER;
+                                    p1 : INTEGER;
+                                    p2 : INTEGER) : <a href="#type-ShortMessage">ShortMessage</a><b>,CONSTRUCTOR</b>;
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-ShortMessage">ShortMessage</a><b>,CONSTRUCTOR</b>;
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER) : <a href="#type-ShortMessage">ShortMessage</a><b>,CONSTRUCTOR</b>;
+                  <b>END</b>;
+
+  <a name="type-Soundbank"></a><font color="#cc0033">Soundbank</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+               <font color="green"><b> (* </b><a href="#meths-Soundbank">Typebound Procedures</a><b> *)</b></font>
+               <b>END</b>;
+
+  <a name="type-SoundbankResource"></a><font color="#cc0033">SoundbankResource</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                       <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                       <font color="green"><b> (* </b><a href="#meths-SoundbankResource">Typebound Procedures</a><b> *)</b></font>
+                       <b>STATIC</b>
+                         <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : <a href="#type-Soundbank">Soundbank</a>;
+                                         p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                         p2 : <a href="java_lang.html#type-Class">java_lang.Class</a>) : <a href="#type-SoundbankResource">SoundbankResource</a><b>,CONSTRUCTOR</b>;
+                       <b>END</b>;
+
+  <a name="type-Synthesizer"></a><font color="#cc0033">Synthesizer</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-MidiDevice">MidiDevice</a>)
+                 <font color="green"><b> (* </b><a href="#meths-Synthesizer">Typebound Procedures</a><b> *)</b></font>
+                 <b>END</b>;
+
+  <a name="type-SysexMessage"></a><font color="#cc0033">SysexMessage</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-MidiMessage">MidiMessage</a>)
+                  <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                  <font color="green"><b> (* </b><a href="#meths-SysexMessage">Typebound Procedures</a><b> *)</b></font>
+                  <b>STATIC</b>
+                    <font color="#cc0033">SPECIAL_SYSTEM_EXCLUSIVE</font>* = 247;
+                    <font color="#cc0033">SYSTEM_EXCLUSIVE</font>*         = 240;
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*(    p0 : INTEGER;
+                                    IN  p1 : <b>ARRAY </b><b>OF </b>BYTE;
+                                        p2 : INTEGER) : <a href="#type-SysexMessage">SysexMessage</a><b>,CONSTRUCTOR</b>;
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>!(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE) : <a href="#type-SysexMessage">SysexMessage</a><b>,CONSTRUCTOR</b>;
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-SysexMessage">SysexMessage</a><b>,CONSTRUCTOR</b>;
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE;
+                                        p1 : INTEGER) : <a href="#type-SysexMessage">SysexMessage</a><b>,CONSTRUCTOR</b>;
+                  <b>END</b>;
+
+  <a name="type-Track"></a><font color="#cc0033">Track</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+           <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+           <font color="green"><b> (* </b><a href="#meths-Track">Typebound Procedures</a><b> *)</b></font>
+           <b>END</b>;
+
+  <a name="type-Transmitter"></a><font color="#cc0033">Transmitter</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_lang.html#type-AutoCloseable">java_lang.AutoCloseable</a>)
+                 <font color="green"><b> (* </b><a href="#meths-Transmitter">Typebound Procedures</a><b> *)</b></font>
+                 <b>END</b>;
+
+  <a name="type-VoiceStatus"></a><font color="#cc0033">VoiceStatus</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                 <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                   <font color="#cc0033">active</font>*  : BOOLEAN;
+                   <font color="#cc0033">channel</font>* : INTEGER;
+                   <font color="#cc0033">bank</font>*    : INTEGER;
+                   <font color="#cc0033">program</font>* : INTEGER;
+                   <font color="#cc0033">note</font>*    : INTEGER;
+                   <font color="#cc0033">volume</font>*  : INTEGER;
+                 <b>STATIC</b>
+                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-VoiceStatus">VoiceStatus</a><b>,CONSTRUCTOR</b>;
+                 <b>END</b>;
+
+
+
+<a name="meths-ControllerEventListener"></a>
+<b>PROCEDURE </b>(self:ControllerEventListener) <font color="#cc0033">controlChange</font>*(p0 : <b>ShortMessage</b>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-Instrument"></a>
+<b>PROCEDURE </b>(self:Instrument) <font color="#cc0033">getPatch</font>*() : <b>Patch</b><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-MetaEventListener"></a>
+<b>PROCEDURE </b>(self:MetaEventListener) <font color="#cc0033">meta</font>*(p0 : <b>MetaMessage</b>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-MetaMessage"></a>
+<b>PROCEDURE </b>(self:MetaMessage) <font color="#cc0033">clone</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MetaMessage) <font color="#cc0033">getData</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MetaMessage) <font color="#cc0033">getType</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MetaMessage) <font color="#cc0033">setMessage</font>*(    p0 : INTEGER;
+                                         IN  p1 : <b>ARRAY </b><b>OF </b>BYTE;
+                                             p2 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-MidiChannel"></a>
+<b>PROCEDURE </b>(self:MidiChannel) <font color="#cc0033">allNotesOff</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MidiChannel) <font color="#cc0033">allSoundOff</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MidiChannel) <font color="#cc0033">controlChange</font>*(p0 : INTEGER;
+                                            p1 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MidiChannel) <font color="#cc0033">getChannelPressure</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MidiChannel) <font color="#cc0033">getController</font>*(p0 : INTEGER) : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MidiChannel) <font color="#cc0033">getMono</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MidiChannel) <font color="#cc0033">getMute</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MidiChannel) <font color="#cc0033">getOmni</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MidiChannel) <font color="#cc0033">getPitchBend</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MidiChannel) <font color="#cc0033">getPolyPressure</font>*(p0 : INTEGER) : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MidiChannel) <font color="#cc0033">getProgram</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MidiChannel) <font color="#cc0033">getSolo</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MidiChannel) <font color="#cc0033">localControl</font>*(p0 : BOOLEAN) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MidiChannel) <font color="#cc0033">noteOff</font>*(p0 : INTEGER;
+                                      p1 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MidiChannel) <font color="#cc0033">noteOff</font>*(p0 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MidiChannel) <font color="#cc0033">noteOn</font>*(p0 : INTEGER;
+                                     p1 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MidiChannel) <font color="#cc0033">programChange</font>*(p0 : INTEGER;
+                                            p1 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MidiChannel) <font color="#cc0033">programChange</font>*(p0 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MidiChannel) <font color="#cc0033">resetAllControllers</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MidiChannel) <font color="#cc0033">setChannelPressure</font>*(p0 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MidiChannel) <font color="#cc0033">setMono</font>*(p0 : BOOLEAN)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MidiChannel) <font color="#cc0033">setMute</font>*(p0 : BOOLEAN)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MidiChannel) <font color="#cc0033">setOmni</font>*(p0 : BOOLEAN)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MidiChannel) <font color="#cc0033">setPitchBend</font>*(p0 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MidiChannel) <font color="#cc0033">setPolyPressure</font>*(p0 : INTEGER;
+                                              p1 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MidiChannel) <font color="#cc0033">setSolo</font>*(p0 : BOOLEAN)<b>,NEW,ABSTRACT</b>;
+<a name="meths-MidiDevice"></a>
+<b>PROCEDURE </b>(self:MidiDevice) <font color="#cc0033">close</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MidiDevice) <font color="#cc0033">getDeviceInfo</font>*() : <a href="#type-MidiDevice$Info">MidiDevice$Info</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MidiDevice) <font color="#cc0033">getMaxReceivers</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MidiDevice) <font color="#cc0033">getMaxTransmitters</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MidiDevice) <font color="#cc0033">getMicrosecondPosition</font>*() : LONGINT<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MidiDevice) <font color="#cc0033">getReceiver</font>*() : <b>Receiver</b><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MidiDevice) <font color="#cc0033">getReceivers</font>*() : <a href="java_util.html#type-List">java_util.List</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MidiDevice) <font color="#cc0033">getTransmitter</font>*() : <b>Transmitter</b><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MidiDevice) <font color="#cc0033">getTransmitters</font>*() : <a href="java_util.html#type-List">java_util.List</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MidiDevice) <font color="#cc0033">isOpen</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MidiDevice) <font color="#cc0033">open</font>*()<b>,NEW,ABSTRACT</b>;
+<a name="meths-MidiDevice$Info"></a>
+<b>PROCEDURE </b>(self:MidiDevice$Info) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:MidiDevice$Info) <font color="#cc0033">getDescription</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:MidiDevice$Info) <font color="#cc0033">getName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:MidiDevice$Info) <font color="#cc0033">getVendor</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:MidiDevice$Info) <font color="#cc0033">getVersion</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:MidiDevice$Info) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:MidiDevice$Info) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW</b>;
+<a name="meths-MidiDeviceReceiver"></a>
+<b>PROCEDURE </b>(self:MidiDeviceReceiver) <font color="#cc0033">getMidiDevice</font>*() : <a href="#type-MidiDevice">MidiDevice</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-MidiDeviceTransmitter"></a>
+<b>PROCEDURE </b>(self:MidiDeviceTransmitter) <font color="#cc0033">getMidiDevice</font>*() : <a href="#type-MidiDevice">MidiDevice</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-MidiEvent"></a>
+<b>PROCEDURE </b>(self:MidiEvent) <font color="#cc0033">getMessage</font>*() : <b>MidiMessage</b><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MidiEvent) <font color="#cc0033">getTick</font>*() : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MidiEvent) <font color="#cc0033">setTick</font>*(p0 : LONGINT)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-MidiFileFormat"></a>
+<b>PROCEDURE </b>(self:MidiFileFormat) <font color="#cc0033">getByteLength</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MidiFileFormat) <font color="#cc0033">getDivisionType</font>*() : SHORTREAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MidiFileFormat) <font color="#cc0033">getMicrosecondLength</font>*() : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MidiFileFormat) <font color="#cc0033">getProperty</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MidiFileFormat) <font color="#cc0033">getResolution</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MidiFileFormat) <font color="#cc0033">getType</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MidiFileFormat) <font color="#cc0033">properties</font>*() : <a href="java_util.html#type-Map">java_util.Map</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-MidiMessage"></a>
+<b>PROCEDURE </b>(self:MidiMessage) <font color="#cc0033">clone</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MidiMessage) <font color="#cc0033">getLength</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MidiMessage) <font color="#cc0033">getMessage</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MidiMessage) <font color="#cc0033">getStatus</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MidiMessage) <font color="#cc0033">setMessage</font>!(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE;
+                                             p1 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-Patch"></a>
+<b>PROCEDURE </b>(self:Patch) <font color="#cc0033">getBank</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Patch) <font color="#cc0033">getProgram</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-Receiver"></a>
+<b>PROCEDURE </b>(self:Receiver) <font color="#cc0033">close</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Receiver) <font color="#cc0033">send</font>*(p0 : <a href="#type-MidiMessage">MidiMessage</a>;
+                                p1 : LONGINT)<b>,NEW,ABSTRACT</b>;
+<a name="meths-Sequence"></a>
+<b>PROCEDURE </b>(self:Sequence) <font color="#cc0033">createTrack</font>*() : <b>Track</b><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Sequence) <font color="#cc0033">deleteTrack</font>*(p0 : <b>Track</b>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Sequence) <font color="#cc0033">getDivisionType</font>*() : SHORTREAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Sequence) <font color="#cc0033">getMicrosecondLength</font>*() : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Sequence) <font color="#cc0033">getPatchList</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-Patch">Patch</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Sequence) <font color="#cc0033">getResolution</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Sequence) <font color="#cc0033">getTickLength</font>*() : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Sequence) <font color="#cc0033">getTracks</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><b>Track</b><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-Sequencer"></a>
+<b>PROCEDURE </b>(self:Sequencer) <font color="#cc0033">addControllerEventListener</font>*(    p0 : <a href="#type-ControllerEventListener">ControllerEventListener</a>;
+                                                       IN  p1 : <b>ARRAY </b><b>OF </b>INTEGER) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Sequencer) <font color="#cc0033">addMetaEventListener</font>*(p0 : <a href="#type-MetaEventListener">MetaEventListener</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Sequencer) <font color="#cc0033">getLoopCount</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Sequencer) <font color="#cc0033">getLoopEndPoint</font>*() : LONGINT<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Sequencer) <font color="#cc0033">getLoopStartPoint</font>*() : LONGINT<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Sequencer) <font color="#cc0033">getMasterSyncMode</font>*() : <a href="#type-Sequencer$SyncMode">Sequencer$SyncMode</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Sequencer) <font color="#cc0033">getMasterSyncModes</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-Sequencer$SyncMode">Sequencer$SyncMode</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Sequencer) <font color="#cc0033">getMicrosecondLength</font>*() : LONGINT<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Sequencer) <font color="#cc0033">getMicrosecondPosition</font>*() : LONGINT<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Sequencer) <font color="#cc0033">getSequence</font>*() : <a href="#type-Sequence">Sequence</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Sequencer) <font color="#cc0033">getSlaveSyncMode</font>*() : <a href="#type-Sequencer$SyncMode">Sequencer$SyncMode</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Sequencer) <font color="#cc0033">getSlaveSyncModes</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-Sequencer$SyncMode">Sequencer$SyncMode</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Sequencer) <font color="#cc0033">getTempoFactor</font>*() : SHORTREAL<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Sequencer) <font color="#cc0033">getTempoInBPM</font>*() : SHORTREAL<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Sequencer) <font color="#cc0033">getTempoInMPQ</font>*() : SHORTREAL<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Sequencer) <font color="#cc0033">getTickLength</font>*() : LONGINT<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Sequencer) <font color="#cc0033">getTickPosition</font>*() : LONGINT<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Sequencer) <font color="#cc0033">getTrackMute</font>*(p0 : INTEGER) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Sequencer) <font color="#cc0033">getTrackSolo</font>*(p0 : INTEGER) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Sequencer) <font color="#cc0033">isRecording</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Sequencer) <font color="#cc0033">isRunning</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Sequencer) <font color="#cc0033">recordDisable</font>*(p0 : <b>Track</b>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Sequencer) <font color="#cc0033">recordEnable</font>*(p0 : <b>Track</b>;
+                                         p1 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Sequencer) <font color="#cc0033">removeControllerEventListener</font>*(    p0 : <a href="#type-ControllerEventListener">ControllerEventListener</a>;
+                                                          IN  p1 : <b>ARRAY </b><b>OF </b>INTEGER) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Sequencer) <font color="#cc0033">removeMetaEventListener</font>*(p0 : <a href="#type-MetaEventListener">MetaEventListener</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Sequencer) <font color="#cc0033">setLoopCount</font>*(p0 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Sequencer) <font color="#cc0033">setLoopEndPoint</font>*(p0 : LONGINT)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Sequencer) <font color="#cc0033">setLoopStartPoint</font>*(p0 : LONGINT)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Sequencer) <font color="#cc0033">setMasterSyncMode</font>*(p0 : <a href="#type-Sequencer$SyncMode">Sequencer$SyncMode</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Sequencer) <font color="#cc0033">setMicrosecondPosition</font>*(p0 : LONGINT)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Sequencer) <font color="#cc0033">setSequence</font>*(p0 : <a href="java_io.html#type-InputStream">java_io.InputStream</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Sequencer) <font color="#cc0033">setSequence</font>*(p0 : <a href="#type-Sequence">Sequence</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Sequencer) <font color="#cc0033">setSlaveSyncMode</font>*(p0 : <a href="#type-Sequencer$SyncMode">Sequencer$SyncMode</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Sequencer) <font color="#cc0033">setTempoFactor</font>*(p0 : SHORTREAL)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Sequencer) <font color="#cc0033">setTempoInBPM</font>*(p0 : SHORTREAL)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Sequencer) <font color="#cc0033">setTempoInMPQ</font>*(p0 : SHORTREAL)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Sequencer) <font color="#cc0033">setTickPosition</font>*(p0 : LONGINT)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Sequencer) <font color="#cc0033">setTrackMute</font>*(p0 : INTEGER;
+                                         p1 : BOOLEAN)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Sequencer) <font color="#cc0033">setTrackSolo</font>*(p0 : INTEGER;
+                                         p1 : BOOLEAN)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Sequencer) <font color="#cc0033">start</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Sequencer) <font color="#cc0033">startRecording</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Sequencer) <font color="#cc0033">stop</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Sequencer) <font color="#cc0033">stopRecording</font>*()<b>,NEW,ABSTRACT</b>;
+<a name="meths-Sequencer$SyncMode"></a>
+<b>PROCEDURE </b>(self:Sequencer$SyncMode) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:Sequencer$SyncMode) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:Sequencer$SyncMode) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW</b>;
+<a name="meths-ShortMessage"></a>
+<b>PROCEDURE </b>(self:ShortMessage) <font color="#cc0033">clone</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShortMessage) <font color="#cc0033">getChannel</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShortMessage) <font color="#cc0033">getCommand</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShortMessage) <font color="#cc0033">getData1</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShortMessage) <font color="#cc0033">getData2</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShortMessage) <font color="#cc0033">getDataLength</font>!(p0 : INTEGER) : INTEGER<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:ShortMessage) <font color="#cc0033">setMessage</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShortMessage) <font color="#cc0033">setMessage</font>*(p0 : INTEGER;
+                                          p1 : INTEGER;
+                                          p2 : INTEGER;
+                                          p3 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShortMessage) <font color="#cc0033">setMessage</font>*(p0 : INTEGER;
+                                          p1 : INTEGER;
+                                          p2 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-Soundbank"></a>
+<b>PROCEDURE </b>(self:Soundbank) <font color="#cc0033">getDescription</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Soundbank) <font color="#cc0033">getInstrument</font>*(p0 : <a href="#type-Patch">Patch</a>) : <a href="#type-Instrument">Instrument</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Soundbank) <font color="#cc0033">getInstruments</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-Instrument">Instrument</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Soundbank) <font color="#cc0033">getName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Soundbank) <font color="#cc0033">getResources</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><b>SoundbankResource</b><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Soundbank) <font color="#cc0033">getVendor</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Soundbank) <font color="#cc0033">getVersion</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-SoundbankResource"></a>
+<b>PROCEDURE </b>(self:SoundbankResource) <font color="#cc0033">getData</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SoundbankResource) <font color="#cc0033">getDataClass</font>*() : <a href="java_lang.html#type-Class">java_lang.Class</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SoundbankResource) <font color="#cc0033">getName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SoundbankResource) <font color="#cc0033">getSoundbank</font>*() : <a href="#type-Soundbank">Soundbank</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-Synthesizer"></a>
+<b>PROCEDURE </b>(self:Synthesizer) <font color="#cc0033">getAvailableInstruments</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-Instrument">Instrument</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Synthesizer) <font color="#cc0033">getChannels</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-MidiChannel">MidiChannel</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Synthesizer) <font color="#cc0033">getDefaultSoundbank</font>*() : <a href="#type-Soundbank">Soundbank</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Synthesizer) <font color="#cc0033">getLatency</font>*() : LONGINT<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Synthesizer) <font color="#cc0033">getLoadedInstruments</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-Instrument">Instrument</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Synthesizer) <font color="#cc0033">getMaxPolyphony</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Synthesizer) <font color="#cc0033">getVoiceStatus</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><b>VoiceStatus</b><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Synthesizer) <font color="#cc0033">isSoundbankSupported</font>*(p0 : <a href="#type-Soundbank">Soundbank</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Synthesizer) <font color="#cc0033">loadAllInstruments</font>*(p0 : <a href="#type-Soundbank">Soundbank</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Synthesizer) <font color="#cc0033">loadInstrument</font>*(p0 : <a href="#type-Instrument">Instrument</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Synthesizer) <font color="#cc0033">loadInstruments</font>*(    p0 : <a href="#type-Soundbank">Soundbank</a>;
+                                              IN  p1 : <b>ARRAY </b><b>OF </b><a href="#type-Patch">Patch</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Synthesizer) <font color="#cc0033">remapInstrument</font>*(p0 : <a href="#type-Instrument">Instrument</a>;
+                                              p1 : <a href="#type-Instrument">Instrument</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Synthesizer) <font color="#cc0033">unloadAllInstruments</font>*(p0 : <a href="#type-Soundbank">Soundbank</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Synthesizer) <font color="#cc0033">unloadInstrument</font>*(p0 : <a href="#type-Instrument">Instrument</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Synthesizer) <font color="#cc0033">unloadInstruments</font>*(    p0 : <a href="#type-Soundbank">Soundbank</a>;
+                                                IN  p1 : <b>ARRAY </b><b>OF </b><a href="#type-Patch">Patch</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-SysexMessage"></a>
+<b>PROCEDURE </b>(self:SysexMessage) <font color="#cc0033">clone</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SysexMessage) <font color="#cc0033">getData</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SysexMessage) <font color="#cc0033">setMessage</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE;
+                                              p1 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SysexMessage) <font color="#cc0033">setMessage</font>*(    p0 : INTEGER;
+                                          IN  p1 : <b>ARRAY </b><b>OF </b>BYTE;
+                                              p2 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-Track"></a>
+<b>PROCEDURE </b>(self:Track) <font color="#cc0033">add</font>*(p0 : <a href="#type-MidiEvent">MidiEvent</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Track) <font color="#cc0033">get</font>*(p0 : INTEGER) : <a href="#type-MidiEvent">MidiEvent</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Track) <font color="#cc0033">remove</font>*(p0 : <a href="#type-MidiEvent">MidiEvent</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Track) <font color="#cc0033">size</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Track) <font color="#cc0033">ticks</font>*() : LONGINT<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-Transmitter"></a>
+<b>PROCEDURE </b>(self:Transmitter) <font color="#cc0033">close</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Transmitter) <font color="#cc0033">getReceiver</font>*() : <a href="#type-Receiver">Receiver</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Transmitter) <font color="#cc0033">setReceiver</font>*(p0 : <a href="#type-Receiver">Receiver</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>END </b><font color="#cc0033">javax_sound_midi</font>.
+</font></pre></hr>
+<!-- BEGIN JavaScript -->
+<script>
+function toggle(node) {
+    node.classList.toggle("show"); 
+  }
+
+function cls(node) {
+    var prnt = node.parentNode;
+    var next = prnt.previousSibling;
+    var text = next.lastChild;
+    text.innerHTML = 
+        "The <b>class</b> property asserts that this type will be<br>" +
+        "implemented as a reference class in the underlying framework.";
+    text.classList.toggle("show");
+  }
+
+function newOk(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>has noArg-ctor</b> property asserts that this reference<br>" +
+        "class has a no-arg constructor, and thus objects of this<br>" +
+        "type can be allocated with NEW(). Component Pascal types<br>" +
+        "derived from this type can also be allocated using NEW().";
+    popuptext.classList.toggle("show"); 
+  }
+
+function noNew(node) { 
+    var prnt = node.parentNode; 
+    var next = prnt.previousSibling; 
+    var text = next.lastChild; 
+    text.innerHTML =  
+        "The <b>no noArg-ctor</b> property asserts that this reference<br>" +
+        "class does not have a noArg constructor. Objects of this<br>" +
+        "type cannot be allocated using NEW(), and Component<br>" +
+        "Pascal types  derived from this type also cannot be<br>" +
+        "allocated using NEW().";
+    text.classList.toggle("show");
+  }
+
+function noCpy(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>no value-assign</b> property asserts that this reference<br>" + 
+        "class does not have a value copy method. Therefore, it<br>" +
+        "is not possible to perform value assignments using<br>" +
+        "statements like <i>dst^</i> := <i>src^</i>";
+    popuptext.classList.toggle("show");
+  }
+
+function valueclass(node) { 
+        var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>valueclass</b> property asserts that this RECORD type is<br>" + 
+        "implemented as a value class in the CLR. It follows that<br>" +  
+        "value assignments can be made of these types. They can<br>" + 
+        "also be passed by value. Even pointers to records of<br>" + 
+        "such types may be dereferenced and copied using syntax<br>" + 
+        "such as  <i>dst^</i> := <i>src^</i>"; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+function argCtor(node) { 
+    var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>has arg-ctor</b> property asserts that this reference<br>" +  
+        "class has one or more constructors that take arguments.<br>" + 
+        "These constructors can be called from Component Pascal<br>" + 
+        "by calling an <i>init</i>(...) method from the static list<br>" + 
+        "here. Component Pascal types derived from this type<br>" + 
+        "can define constructors with arguments which call the<br>" + 
+        "super-type constructor.<br>" + 
+        "See <i>'Interfacing to constructors'</i> in the Release Notes."; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+</script>
+<!-- END JavaScript --> 
+
+</body></html>

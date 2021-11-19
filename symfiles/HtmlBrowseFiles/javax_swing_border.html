@@ -1,0 +1,569 @@
+<html><head><title>javax_swing_border</title>
+<style>
+<!-- BEGIN Inline CSS -->
+/* Popup container */
+.popup {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+/* The actual popup (appears on top) */
+.popup .popuptext {
+    visibility: hidden;
+    width: 430px;
+    background-color: white;
+    color: black;
+    text-align: left;
+    border-radius: 6px;
+    border-style: solid;
+    border-color: black;
+    padding: 8px 8px 8px 8px;
+    position: absolute;
+    z-index: 1;
+    margin-top: 30px;
+}
+
+/* Toggle this class when clicking on the popup container (hide and show the popup) */
+.popup .show {
+    visibility: visible;
+    opacity: 1;
+}
+
+</style>
+<!-- END Inline CSS -->
+</head><body bgcolor="white">
+<hr><pre>
+<font color="green">(*</font>
+<font color="green"> *  Creator j2cps version 1.4.07 (March 2018)</font>
+<font color="green"> *  Compiled from jar-file rt.jar</font>
+<font color="green"> *)</font>
+<b>FOREIGN MODULE </b><font color="#cc0033">javax_swing_border</font>;
+
+<b>IMPORT</b>
+    <a href="javax_swing.html">javax_swing</a> := "javax.swing",
+    <a href="java_awt.html">java_awt</a> := "java.awt",
+    <a href="java_io.html">java_io</a> := "java.io",
+    <a href="java_lang.html">java_lang</a> := "java.lang";
+
+<b>TYPE</b>
+
+  <a name="type-AbstractBorder"></a><font color="#cc0033">AbstractBorder</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <b>Border</b> + <a href="java_io.html#type-Serializable">java_io.Serializable</a>)
+                    <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                    <font color="green"><b> (* </b><a href="#meths-AbstractBorder">Typebound Procedures</a><b> *)</b></font>
+                    <b>STATIC</b>
+                      <b>PROCEDURE </b><font color="#cc0033">getInteriorRectangle</font>*(p0 : <a href="java_awt.html#type-Component">java_awt.Component</a>;
+                                                      p1 : <b>Border</b>;
+                                                      p2 : INTEGER;
+                                                      p3 : INTEGER;
+                                                      p4 : INTEGER;
+                                                      p5 : INTEGER) : <a href="java_awt.html#type-Rectangle">java_awt.Rectangle</a>;
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-AbstractBorder">AbstractBorder</a><b>,CONSTRUCTOR</b>;
+                    <b>END</b>;
+
+  <a name="type-BevelBorder"></a><font color="#cc0033">BevelBorder</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<b>AbstractBorder</b>)
+                 <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                 <font color="green"><b> (* </b><a href="#meths-BevelBorder">Typebound Procedures</a><b> *)</b></font>
+                   <font color="#cc0033">bevelType</font>!      : INTEGER;
+                   <font color="#cc0033">highlightOuter</font>! : <a href="java_awt.html#type-Color">java_awt.Color</a>;
+                   <font color="#cc0033">highlightInner</font>! : <a href="java_awt.html#type-Color">java_awt.Color</a>;
+                   <font color="#cc0033">shadowInner</font>!    : <a href="java_awt.html#type-Color">java_awt.Color</a>;
+                   <font color="#cc0033">shadowOuter</font>!    : <a href="java_awt.html#type-Color">java_awt.Color</a>;
+                 <b>STATIC</b>
+                   <font color="#cc0033">LOWERED</font>* = 1;
+                   <font color="#cc0033">RAISED</font>*  = 0;
+                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER;
+                                   p1 : <a href="java_awt.html#type-Color">java_awt.Color</a>;
+                                   p2 : <a href="java_awt.html#type-Color">java_awt.Color</a>;
+                                   p3 : <a href="java_awt.html#type-Color">java_awt.Color</a>;
+                                   p4 : <a href="java_awt.html#type-Color">java_awt.Color</a>) : <a href="#type-BevelBorder">BevelBorder</a><b>,CONSTRUCTOR</b>;
+                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER;
+                                   p1 : <a href="java_awt.html#type-Color">java_awt.Color</a>;
+                                   p2 : <a href="java_awt.html#type-Color">java_awt.Color</a>) : <a href="#type-BevelBorder">BevelBorder</a><b>,CONSTRUCTOR</b>;
+                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER) : <a href="#type-BevelBorder">BevelBorder</a><b>,CONSTRUCTOR</b>;
+                 <b>END</b>;
+
+  <a name="type-Border"></a><font color="#cc0033">Border</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+            <font color="green"><b> (* </b><a href="#meths-Border">Typebound Procedures</a><b> *)</b></font>
+            <b>END</b>;
+
+  <a name="type-CompoundBorder"></a><font color="#cc0033">CompoundBorder</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<b>AbstractBorder</b>)
+                    <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                    <font color="green"><b> (* </b><a href="#meths-CompoundBorder">Typebound Procedures</a><b> *)</b></font>
+                      <font color="#cc0033">outsideBorder</font>! : <b>Border</b>;
+                      <font color="#cc0033">insideBorder</font>!  : <b>Border</b>;
+                    <b>STATIC</b>
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <b>Border</b>;
+                                      p1 : <b>Border</b>) : <a href="#type-CompoundBorder">CompoundBorder</a><b>,CONSTRUCTOR</b>;
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CompoundBorder">CompoundBorder</a><b>,CONSTRUCTOR</b>;
+                    <b>END</b>;
+
+  <a name="type-EmptyBorder"></a><font color="#cc0033">EmptyBorder</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-AbstractBorder">AbstractBorder</a> + <a href="java_io.html#type-Serializable">java_io.Serializable</a>)
+                 <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                 <font color="green"><b> (* </b><a href="#meths-EmptyBorder">Typebound Procedures</a><b> *)</b></font>
+                   <font color="#cc0033">left</font>!   : INTEGER;
+                   <font color="#cc0033">right</font>!  : INTEGER;
+                   <font color="#cc0033">top</font>!    : INTEGER;
+                   <font color="#cc0033">bottom</font>! : INTEGER;
+                 <b>STATIC</b>
+                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_awt.html#type-Insets">java_awt.Insets</a>) : <a href="#type-EmptyBorder">EmptyBorder</a><b>,CONSTRUCTOR</b>;
+                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER;
+                                   p1 : INTEGER;
+                                   p2 : INTEGER;
+                                   p3 : INTEGER) : <a href="#type-EmptyBorder">EmptyBorder</a><b>,CONSTRUCTOR</b>;
+                 <b>END</b>;
+
+  <a name="type-EtchedBorder"></a><font color="#cc0033">EtchedBorder</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<b>AbstractBorder</b>)
+                  <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                  <font color="green"><b> (* </b><a href="#meths-EtchedBorder">Typebound Procedures</a><b> *)</b></font>
+                    <font color="#cc0033">etchType</font>!  : INTEGER;
+                    <font color="#cc0033">highlight</font>! : <a href="java_awt.html#type-Color">java_awt.Color</a>;
+                    <font color="#cc0033">shadow</font>!    : <a href="java_awt.html#type-Color">java_awt.Color</a>;
+                  <b>STATIC</b>
+                    <font color="#cc0033">LOWERED</font>* = 1;
+                    <font color="#cc0033">RAISED</font>*  = 0;
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_awt.html#type-Color">java_awt.Color</a>;
+                                    p1 : <a href="java_awt.html#type-Color">java_awt.Color</a>) : <a href="#type-EtchedBorder">EtchedBorder</a><b>,CONSTRUCTOR</b>;
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER;
+                                    p1 : <a href="java_awt.html#type-Color">java_awt.Color</a>;
+                                    p2 : <a href="java_awt.html#type-Color">java_awt.Color</a>) : <a href="#type-EtchedBorder">EtchedBorder</a><b>,CONSTRUCTOR</b>;
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-EtchedBorder">EtchedBorder</a><b>,CONSTRUCTOR</b>;
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER) : <a href="#type-EtchedBorder">EtchedBorder</a><b>,CONSTRUCTOR</b>;
+                  <b>END</b>;
+
+  <a name="type-LineBorder"></a><font color="#cc0033">LineBorder</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<b>AbstractBorder</b>)
+                <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                <font color="green"><b> (* </b><a href="#meths-LineBorder">Typebound Procedures</a><b> *)</b></font>
+                  <font color="#cc0033">thickness</font>!      : INTEGER;
+                  <font color="#cc0033">lineColor</font>!      : <a href="java_awt.html#type-Color">java_awt.Color</a>;
+                  <font color="#cc0033">roundedCorners</font>! : BOOLEAN;
+                <b>STATIC</b>
+                  <b>PROCEDURE </b><font color="#cc0033">createBlackLineBorder</font>*() : <b>Border</b>;
+                  <b>PROCEDURE </b><font color="#cc0033">createGrayLineBorder</font>*() : <b>Border</b>;
+                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_awt.html#type-Color">java_awt.Color</a>;
+                                  p1 : INTEGER;
+                                  p2 : BOOLEAN) : <a href="#type-LineBorder">LineBorder</a><b>,CONSTRUCTOR</b>;
+                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_awt.html#type-Color">java_awt.Color</a>;
+                                  p1 : INTEGER) : <a href="#type-LineBorder">LineBorder</a><b>,CONSTRUCTOR</b>;
+                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_awt.html#type-Color">java_awt.Color</a>) : <a href="#type-LineBorder">LineBorder</a><b>,CONSTRUCTOR</b>;
+                <b>END</b>;
+
+  <a name="type-MatteBorder"></a><font color="#cc0033">MatteBorder</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<b>EmptyBorder</b>)
+                 <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                 <font color="green"><b> (* </b><a href="#meths-MatteBorder">Typebound Procedures</a><b> *)</b></font>
+                   <font color="#cc0033">color</font>!    : <a href="java_awt.html#type-Color">java_awt.Color</a>;
+                   <font color="#cc0033">tileIcon</font>! : <a href="javax_swing.html#type-Icon">javax_swing.Icon</a>;
+                 <b>STATIC</b>
+                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_awt.html#type-Insets">java_awt.Insets</a>;
+                                   p1 : <a href="javax_swing.html#type-Icon">javax_swing.Icon</a>) : <a href="#type-MatteBorder">MatteBorder</a><b>,CONSTRUCTOR</b>;
+                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="javax_swing.html#type-Icon">javax_swing.Icon</a>) : <a href="#type-MatteBorder">MatteBorder</a><b>,CONSTRUCTOR</b>;
+                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER;
+                                   p1 : INTEGER;
+                                   p2 : INTEGER;
+                                   p3 : INTEGER;
+                                   p4 : <a href="javax_swing.html#type-Icon">javax_swing.Icon</a>) : <a href="#type-MatteBorder">MatteBorder</a><b>,CONSTRUCTOR</b>;
+                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER;
+                                   p1 : INTEGER;
+                                   p2 : INTEGER;
+                                   p3 : INTEGER;
+                                   p4 : <a href="java_awt.html#type-Color">java_awt.Color</a>) : <a href="#type-MatteBorder">MatteBorder</a><b>,CONSTRUCTOR</b>;
+                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_awt.html#type-Insets">java_awt.Insets</a>;
+                                   p1 : <a href="java_awt.html#type-Color">java_awt.Color</a>) : <a href="#type-MatteBorder">MatteBorder</a><b>,CONSTRUCTOR</b>;
+                 <b>END</b>;
+
+  <a name="type-SoftBevelBorder"></a><font color="#cc0033">SoftBevelBorder</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<b>BevelBorder</b>)
+                     <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                     <font color="green"><b> (* </b><a href="#meths-SoftBevelBorder">Typebound Procedures</a><b> *)</b></font>
+                     <b>STATIC</b>
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER;
+                                       p1 : <a href="java_awt.html#type-Color">java_awt.Color</a>;
+                                       p2 : <a href="java_awt.html#type-Color">java_awt.Color</a>;
+                                       p3 : <a href="java_awt.html#type-Color">java_awt.Color</a>;
+                                       p4 : <a href="java_awt.html#type-Color">java_awt.Color</a>) : <a href="#type-SoftBevelBorder">SoftBevelBorder</a><b>,CONSTRUCTOR</b>;
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER;
+                                       p1 : <a href="java_awt.html#type-Color">java_awt.Color</a>;
+                                       p2 : <a href="java_awt.html#type-Color">java_awt.Color</a>) : <a href="#type-SoftBevelBorder">SoftBevelBorder</a><b>,CONSTRUCTOR</b>;
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER) : <a href="#type-SoftBevelBorder">SoftBevelBorder</a><b>,CONSTRUCTOR</b>;
+                     <b>END</b>;
+
+  <a name="type-StrokeBorder"></a><font color="#cc0033">StrokeBorder</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<b>AbstractBorder</b>)
+                  <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                  <font color="green"><b> (* </b><a href="#meths-StrokeBorder">Typebound Procedures</a><b> *)</b></font>
+                  <b>STATIC</b>
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_awt.html#type-BasicStroke">java_awt.BasicStroke</a>;
+                                    p1 : <a href="java_awt.html#type-Paint">java_awt.Paint</a>) : <a href="#type-StrokeBorder">StrokeBorder</a><b>,CONSTRUCTOR</b>;
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_awt.html#type-BasicStroke">java_awt.BasicStroke</a>) : <a href="#type-StrokeBorder">StrokeBorder</a><b>,CONSTRUCTOR</b>;
+                  <b>END</b>;
+
+  <a name="type-TitledBorder"></a><font color="#cc0033">TitledBorder</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<b>AbstractBorder</b>)
+                  <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                  <font color="green"><b> (* </b><a href="#meths-TitledBorder">Typebound Procedures</a><b> *)</b></font>
+                    <font color="#cc0033">title</font>!              : <a href="java_lang.html#type-String">java_lang.String</a>;
+                    <font color="#cc0033">border</font>!             : <b>Border</b>;
+                    <font color="#cc0033">titlePosition</font>!      : INTEGER;
+                    <font color="#cc0033">titleJustification</font>! : INTEGER;
+                    <font color="#cc0033">titleFont</font>!          : <a href="java_awt.html#type-Font">java_awt.Font</a>;
+                    <font color="#cc0033">titleColor</font>!         : <a href="java_awt.html#type-Color">java_awt.Color</a>;
+                  <b>STATIC</b>
+                    <font color="#cc0033">ABOVE_BOTTOM</font>*          = 4;
+                    <font color="#cc0033">ABOVE_TOP</font>*             = 1;
+                    <font color="#cc0033">BELOW_BOTTOM</font>*          = 6;
+                    <font color="#cc0033">BELOW_TOP</font>*             = 3;
+                    <font color="#cc0033">BOTTOM</font>*                = 5;
+                    <font color="#cc0033">CENTER</font>*                = 2;
+                    <font color="#cc0033">DEFAULT_JUSTIFICATION</font>* = 0;
+                    <font color="#cc0033">DEFAULT_POSITION</font>*      = 0;
+                    <font color="#cc0033">EDGE_SPACING</font>!          = 2;
+                    <font color="#cc0033">LEADING</font>*               = 4;
+                    <font color="#cc0033">LEFT</font>*                  = 1;
+                    <font color="#cc0033">RIGHT</font>*                 = 3;
+                    <font color="#cc0033">TEXT_INSET_H</font>!          = 5;
+                    <font color="#cc0033">TEXT_SPACING</font>!          = 2;
+                    <font color="#cc0033">TOP</font>*                   = 2;
+                    <font color="#cc0033">TRAILING</font>*              = 5;
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <b>Border</b>;
+                                    p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                    p2 : INTEGER;
+                                    p3 : INTEGER) : <a href="#type-TitledBorder">TitledBorder</a><b>,CONSTRUCTOR</b>;
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <b>Border</b>;
+                                    p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                    p2 : INTEGER;
+                                    p3 : INTEGER;
+                                    p4 : <a href="java_awt.html#type-Font">java_awt.Font</a>) : <a href="#type-TitledBorder">TitledBorder</a><b>,CONSTRUCTOR</b>;
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <b>Border</b>;
+                                    p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                    p2 : INTEGER;
+                                    p3 : INTEGER;
+                                    p4 : <a href="java_awt.html#type-Font">java_awt.Font</a>;
+                                    p5 : <a href="java_awt.html#type-Color">java_awt.Color</a>) : <a href="#type-TitledBorder">TitledBorder</a><b>,CONSTRUCTOR</b>;
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-TitledBorder">TitledBorder</a><b>,CONSTRUCTOR</b>;
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <b>Border</b>) : <a href="#type-TitledBorder">TitledBorder</a><b>,CONSTRUCTOR</b>;
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <b>Border</b>;
+                                    p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-TitledBorder">TitledBorder</a><b>,CONSTRUCTOR</b>;
+                  <b>END</b>;
+
+
+
+<a name="meths-AbstractBorder"></a>
+<b>PROCEDURE </b>(self:AbstractBorder) <font color="#cc0033">getBaseline</font>*(p0 : <a href="java_awt.html#type-Component">java_awt.Component</a>;
+                                             p1 : INTEGER;
+                                             p2 : INTEGER) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AbstractBorder) <font color="#cc0033">getBaselineResizeBehavior</font>*(p0 : <a href="java_awt.html#type-Component">java_awt.Component</a>) : <a href="java_awt.html#type-Component$BaselineResizeBehavior">java_awt.Component$BaselineResizeBehavior</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AbstractBorder) <font color="#cc0033">getBorderInsets</font>*(p0 : <a href="java_awt.html#type-Component">java_awt.Component</a>;
+                                                 p1 : <a href="java_awt.html#type-Insets">java_awt.Insets</a>) : <a href="java_awt.html#type-Insets">java_awt.Insets</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AbstractBorder) <font color="#cc0033">getBorderInsets</font>*(p0 : <a href="java_awt.html#type-Component">java_awt.Component</a>) : <a href="java_awt.html#type-Insets">java_awt.Insets</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AbstractBorder) <font color="#cc0033">getInteriorRectangle</font>*(p0 : <a href="java_awt.html#type-Component">java_awt.Component</a>;
+                                                      p1 : INTEGER;
+                                                      p2 : INTEGER;
+                                                      p3 : INTEGER;
+                                                      p4 : INTEGER) : <a href="java_awt.html#type-Rectangle">java_awt.Rectangle</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AbstractBorder) <font color="#cc0033">isBorderOpaque</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AbstractBorder) <font color="#cc0033">paintBorder</font>*(p0 : <a href="java_awt.html#type-Component">java_awt.Component</a>;
+                                             p1 : <a href="java_awt.html#type-Graphics">java_awt.Graphics</a>;
+                                             p2 : INTEGER;
+                                             p3 : INTEGER;
+                                             p4 : INTEGER;
+                                             p5 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-BevelBorder"></a>
+<b>PROCEDURE </b>(self:BevelBorder) <font color="#cc0033">getBevelType</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BevelBorder) <font color="#cc0033">getBorderInsets</font>*(p0 : <a href="java_awt.html#type-Component">java_awt.Component</a>;
+                                              p1 : <a href="java_awt.html#type-Insets">java_awt.Insets</a>) : <a href="java_awt.html#type-Insets">java_awt.Insets</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BevelBorder) <font color="#cc0033">getHighlightInnerColor</font>*(p0 : <a href="java_awt.html#type-Component">java_awt.Component</a>) : <a href="java_awt.html#type-Color">java_awt.Color</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BevelBorder) <font color="#cc0033">getHighlightInnerColor</font>*() : <a href="java_awt.html#type-Color">java_awt.Color</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BevelBorder) <font color="#cc0033">getHighlightOuterColor</font>*() : <a href="java_awt.html#type-Color">java_awt.Color</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BevelBorder) <font color="#cc0033">getHighlightOuterColor</font>*(p0 : <a href="java_awt.html#type-Component">java_awt.Component</a>) : <a href="java_awt.html#type-Color">java_awt.Color</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BevelBorder) <font color="#cc0033">getShadowInnerColor</font>*() : <a href="java_awt.html#type-Color">java_awt.Color</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BevelBorder) <font color="#cc0033">getShadowInnerColor</font>*(p0 : <a href="java_awt.html#type-Component">java_awt.Component</a>) : <a href="java_awt.html#type-Color">java_awt.Color</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BevelBorder) <font color="#cc0033">getShadowOuterColor</font>*() : <a href="java_awt.html#type-Color">java_awt.Color</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BevelBorder) <font color="#cc0033">getShadowOuterColor</font>*(p0 : <a href="java_awt.html#type-Component">java_awt.Component</a>) : <a href="java_awt.html#type-Color">java_awt.Color</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BevelBorder) <font color="#cc0033">isBorderOpaque</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BevelBorder) <font color="#cc0033">paintBorder</font>*(p0 : <a href="java_awt.html#type-Component">java_awt.Component</a>;
+                                          p1 : <a href="java_awt.html#type-Graphics">java_awt.Graphics</a>;
+                                          p2 : INTEGER;
+                                          p3 : INTEGER;
+                                          p4 : INTEGER;
+                                          p5 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BevelBorder) <font color="#cc0033">paintLoweredBevel</font>!(p0 : <a href="java_awt.html#type-Component">java_awt.Component</a>;
+                                                p1 : <a href="java_awt.html#type-Graphics">java_awt.Graphics</a>;
+                                                p2 : INTEGER;
+                                                p3 : INTEGER;
+                                                p4 : INTEGER;
+                                                p5 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BevelBorder) <font color="#cc0033">paintRaisedBevel</font>!(p0 : <a href="java_awt.html#type-Component">java_awt.Component</a>;
+                                               p1 : <a href="java_awt.html#type-Graphics">java_awt.Graphics</a>;
+                                               p2 : INTEGER;
+                                               p3 : INTEGER;
+                                               p4 : INTEGER;
+                                               p5 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-Border"></a>
+<b>PROCEDURE </b>(self:Border) <font color="#cc0033">getBorderInsets</font>*(p0 : <a href="java_awt.html#type-Component">java_awt.Component</a>) : <a href="java_awt.html#type-Insets">java_awt.Insets</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Border) <font color="#cc0033">isBorderOpaque</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Border) <font color="#cc0033">paintBorder</font>*(p0 : <a href="java_awt.html#type-Component">java_awt.Component</a>;
+                                     p1 : <a href="java_awt.html#type-Graphics">java_awt.Graphics</a>;
+                                     p2 : INTEGER;
+                                     p3 : INTEGER;
+                                     p4 : INTEGER;
+                                     p5 : INTEGER)<b>,NEW,ABSTRACT</b>;
+<a name="meths-CompoundBorder"></a>
+<b>PROCEDURE </b>(self:CompoundBorder) <font color="#cc0033">getBorderInsets</font>*(p0 : <a href="java_awt.html#type-Component">java_awt.Component</a>;
+                                                 p1 : <a href="java_awt.html#type-Insets">java_awt.Insets</a>) : <a href="java_awt.html#type-Insets">java_awt.Insets</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CompoundBorder) <font color="#cc0033">getInsideBorder</font>*() : <b>Border</b><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CompoundBorder) <font color="#cc0033">getOutsideBorder</font>*() : <b>Border</b><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CompoundBorder) <font color="#cc0033">isBorderOpaque</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CompoundBorder) <font color="#cc0033">paintBorder</font>*(p0 : <a href="java_awt.html#type-Component">java_awt.Component</a>;
+                                             p1 : <a href="java_awt.html#type-Graphics">java_awt.Graphics</a>;
+                                             p2 : INTEGER;
+                                             p3 : INTEGER;
+                                             p4 : INTEGER;
+                                             p5 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-EmptyBorder"></a>
+<b>PROCEDURE </b>(self:EmptyBorder) <font color="#cc0033">getBorderInsets</font>*() : <a href="java_awt.html#type-Insets">java_awt.Insets</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:EmptyBorder) <font color="#cc0033">getBorderInsets</font>*(p0 : <a href="java_awt.html#type-Component">java_awt.Component</a>;
+                                              p1 : <a href="java_awt.html#type-Insets">java_awt.Insets</a>) : <a href="java_awt.html#type-Insets">java_awt.Insets</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:EmptyBorder) <font color="#cc0033">isBorderOpaque</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:EmptyBorder) <font color="#cc0033">paintBorder</font>*(p0 : <a href="java_awt.html#type-Component">java_awt.Component</a>;
+                                          p1 : <a href="java_awt.html#type-Graphics">java_awt.Graphics</a>;
+                                          p2 : INTEGER;
+                                          p3 : INTEGER;
+                                          p4 : INTEGER;
+                                          p5 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-EtchedBorder"></a>
+<b>PROCEDURE </b>(self:EtchedBorder) <font color="#cc0033">getBorderInsets</font>*(p0 : <a href="java_awt.html#type-Component">java_awt.Component</a>;
+                                               p1 : <a href="java_awt.html#type-Insets">java_awt.Insets</a>) : <a href="java_awt.html#type-Insets">java_awt.Insets</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:EtchedBorder) <font color="#cc0033">getEtchType</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:EtchedBorder) <font color="#cc0033">getHighlightColor</font>*(p0 : <a href="java_awt.html#type-Component">java_awt.Component</a>) : <a href="java_awt.html#type-Color">java_awt.Color</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:EtchedBorder) <font color="#cc0033">getHighlightColor</font>*() : <a href="java_awt.html#type-Color">java_awt.Color</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:EtchedBorder) <font color="#cc0033">getShadowColor</font>*(p0 : <a href="java_awt.html#type-Component">java_awt.Component</a>) : <a href="java_awt.html#type-Color">java_awt.Color</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:EtchedBorder) <font color="#cc0033">getShadowColor</font>*() : <a href="java_awt.html#type-Color">java_awt.Color</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:EtchedBorder) <font color="#cc0033">isBorderOpaque</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:EtchedBorder) <font color="#cc0033">paintBorder</font>*(p0 : <a href="java_awt.html#type-Component">java_awt.Component</a>;
+                                           p1 : <a href="java_awt.html#type-Graphics">java_awt.Graphics</a>;
+                                           p2 : INTEGER;
+                                           p3 : INTEGER;
+                                           p4 : INTEGER;
+                                           p5 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-LineBorder"></a>
+<b>PROCEDURE </b>(self:LineBorder) <font color="#cc0033">getBorderInsets</font>*(p0 : <a href="java_awt.html#type-Component">java_awt.Component</a>;
+                                             p1 : <a href="java_awt.html#type-Insets">java_awt.Insets</a>) : <a href="java_awt.html#type-Insets">java_awt.Insets</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LineBorder) <font color="#cc0033">getLineColor</font>*() : <a href="java_awt.html#type-Color">java_awt.Color</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LineBorder) <font color="#cc0033">getRoundedCorners</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LineBorder) <font color="#cc0033">getThickness</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LineBorder) <font color="#cc0033">isBorderOpaque</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LineBorder) <font color="#cc0033">paintBorder</font>*(p0 : <a href="java_awt.html#type-Component">java_awt.Component</a>;
+                                         p1 : <a href="java_awt.html#type-Graphics">java_awt.Graphics</a>;
+                                         p2 : INTEGER;
+                                         p3 : INTEGER;
+                                         p4 : INTEGER;
+                                         p5 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-MatteBorder"></a>
+<b>PROCEDURE </b>(self:MatteBorder) <font color="#cc0033">getBorderInsets</font>*() : <a href="java_awt.html#type-Insets">java_awt.Insets</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MatteBorder) <font color="#cc0033">getBorderInsets</font>*(p0 : <a href="java_awt.html#type-Component">java_awt.Component</a>;
+                                              p1 : <a href="java_awt.html#type-Insets">java_awt.Insets</a>) : <a href="java_awt.html#type-Insets">java_awt.Insets</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MatteBorder) <font color="#cc0033">getMatteColor</font>*() : <a href="java_awt.html#type-Color">java_awt.Color</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MatteBorder) <font color="#cc0033">getTileIcon</font>*() : <a href="javax_swing.html#type-Icon">javax_swing.Icon</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MatteBorder) <font color="#cc0033">isBorderOpaque</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MatteBorder) <font color="#cc0033">paintBorder</font>*(p0 : <a href="java_awt.html#type-Component">java_awt.Component</a>;
+                                          p1 : <a href="java_awt.html#type-Graphics">java_awt.Graphics</a>;
+                                          p2 : INTEGER;
+                                          p3 : INTEGER;
+                                          p4 : INTEGER;
+                                          p5 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-SoftBevelBorder"></a>
+<b>PROCEDURE </b>(self:SoftBevelBorder) <font color="#cc0033">getBorderInsets</font>*(p0 : <a href="java_awt.html#type-Component">java_awt.Component</a>;
+                                                  p1 : <a href="java_awt.html#type-Insets">java_awt.Insets</a>) : <a href="java_awt.html#type-Insets">java_awt.Insets</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SoftBevelBorder) <font color="#cc0033">isBorderOpaque</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SoftBevelBorder) <font color="#cc0033">paintBorder</font>*(p0 : <a href="java_awt.html#type-Component">java_awt.Component</a>;
+                                              p1 : <a href="java_awt.html#type-Graphics">java_awt.Graphics</a>;
+                                              p2 : INTEGER;
+                                              p3 : INTEGER;
+                                              p4 : INTEGER;
+                                              p5 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-StrokeBorder"></a>
+<b>PROCEDURE </b>(self:StrokeBorder) <font color="#cc0033">getBorderInsets</font>*(p0 : <a href="java_awt.html#type-Component">java_awt.Component</a>;
+                                               p1 : <a href="java_awt.html#type-Insets">java_awt.Insets</a>) : <a href="java_awt.html#type-Insets">java_awt.Insets</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:StrokeBorder) <font color="#cc0033">getPaint</font>*() : <a href="java_awt.html#type-Paint">java_awt.Paint</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:StrokeBorder) <font color="#cc0033">getStroke</font>*() : <a href="java_awt.html#type-BasicStroke">java_awt.BasicStroke</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:StrokeBorder) <font color="#cc0033">paintBorder</font>*(p0 : <a href="java_awt.html#type-Component">java_awt.Component</a>;
+                                           p1 : <a href="java_awt.html#type-Graphics">java_awt.Graphics</a>;
+                                           p2 : INTEGER;
+                                           p3 : INTEGER;
+                                           p4 : INTEGER;
+                                           p5 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-TitledBorder"></a>
+<b>PROCEDURE </b>(self:TitledBorder) <font color="#cc0033">getBaseline</font>*(p0 : <a href="java_awt.html#type-Component">java_awt.Component</a>;
+                                           p1 : INTEGER;
+                                           p2 : INTEGER) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TitledBorder) <font color="#cc0033">getBaselineResizeBehavior</font>*(p0 : <a href="java_awt.html#type-Component">java_awt.Component</a>) : <a href="java_awt.html#type-Component$BaselineResizeBehavior">java_awt.Component$BaselineResizeBehavior</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TitledBorder) <font color="#cc0033">getBorder</font>*() : <b>Border</b><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TitledBorder) <font color="#cc0033">getBorderInsets</font>*(p0 : <a href="java_awt.html#type-Component">java_awt.Component</a>;
+                                               p1 : <a href="java_awt.html#type-Insets">java_awt.Insets</a>) : <a href="java_awt.html#type-Insets">java_awt.Insets</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TitledBorder) <font color="#cc0033">getFont</font>!(p0 : <a href="java_awt.html#type-Component">java_awt.Component</a>) : <a href="java_awt.html#type-Font">java_awt.Font</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TitledBorder) <font color="#cc0033">getMinimumSize</font>*(p0 : <a href="java_awt.html#type-Component">java_awt.Component</a>) : <a href="java_awt.html#type-Dimension">java_awt.Dimension</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TitledBorder) <font color="#cc0033">getTitle</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TitledBorder) <font color="#cc0033">getTitleColor</font>*() : <a href="java_awt.html#type-Color">java_awt.Color</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TitledBorder) <font color="#cc0033">getTitleFont</font>*() : <a href="java_awt.html#type-Font">java_awt.Font</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TitledBorder) <font color="#cc0033">getTitleJustification</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TitledBorder) <font color="#cc0033">getTitlePosition</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TitledBorder) <font color="#cc0033">isBorderOpaque</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TitledBorder) <font color="#cc0033">paintBorder</font>*(p0 : <a href="java_awt.html#type-Component">java_awt.Component</a>;
+                                           p1 : <a href="java_awt.html#type-Graphics">java_awt.Graphics</a>;
+                                           p2 : INTEGER;
+                                           p3 : INTEGER;
+                                           p4 : INTEGER;
+                                           p5 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TitledBorder) <font color="#cc0033">setBorder</font>*(p0 : <b>Border</b>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TitledBorder) <font color="#cc0033">setTitle</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TitledBorder) <font color="#cc0033">setTitleColor</font>*(p0 : <a href="java_awt.html#type-Color">java_awt.Color</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TitledBorder) <font color="#cc0033">setTitleFont</font>*(p0 : <a href="java_awt.html#type-Font">java_awt.Font</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TitledBorder) <font color="#cc0033">setTitleJustification</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TitledBorder) <font color="#cc0033">setTitlePosition</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>END </b><font color="#cc0033">javax_swing_border</font>.
+</font></pre></hr>
+<!-- BEGIN JavaScript -->
+<script>
+function toggle(node) {
+    node.classList.toggle("show"); 
+  }
+
+function cls(node) {
+    var prnt = node.parentNode;
+    var next = prnt.previousSibling;
+    var text = next.lastChild;
+    text.innerHTML = 
+        "The <b>class</b> property asserts that this type will be<br>" +
+        "implemented as a reference class in the underlying framework.";
+    text.classList.toggle("show");
+  }
+
+function newOk(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>has noArg-ctor</b> property asserts that this reference<br>" +
+        "class has a no-arg constructor, and thus objects of this<br>" +
+        "type can be allocated with NEW(). Component Pascal types<br>" +
+        "derived from this type can also be allocated using NEW().";
+    popuptext.classList.toggle("show"); 
+  }
+
+function noNew(node) { 
+    var prnt = node.parentNode; 
+    var next = prnt.previousSibling; 
+    var text = next.lastChild; 
+    text.innerHTML =  
+        "The <b>no noArg-ctor</b> property asserts that this reference<br>" +
+        "class does not have a noArg constructor. Objects of this<br>" +
+        "type cannot be allocated using NEW(), and Component<br>" +
+        "Pascal types  derived from this type also cannot be<br>" +
+        "allocated using NEW().";
+    text.classList.toggle("show");
+  }
+
+function noCpy(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>no value-assign</b> property asserts that this reference<br>" + 
+        "class does not have a value copy method. Therefore, it<br>" +
+        "is not possible to perform value assignments using<br>" +
+        "statements like <i>dst^</i> := <i>src^</i>";
+    popuptext.classList.toggle("show");
+  }
+
+function valueclass(node) { 
+        var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>valueclass</b> property asserts that this RECORD type is<br>" + 
+        "implemented as a value class in the CLR. It follows that<br>" +  
+        "value assignments can be made of these types. They can<br>" + 
+        "also be passed by value. Even pointers to records of<br>" + 
+        "such types may be dereferenced and copied using syntax<br>" + 
+        "such as  <i>dst^</i> := <i>src^</i>"; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+function argCtor(node) { 
+    var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>has arg-ctor</b> property asserts that this reference<br>" +  
+        "class has one or more constructors that take arguments.<br>" + 
+        "These constructors can be called from Component Pascal<br>" + 
+        "by calling an <i>init</i>(...) method from the static list<br>" + 
+        "here. Component Pascal types derived from this type<br>" + 
+        "can define constructors with arguments which call the<br>" + 
+        "super-type constructor.<br>" + 
+        "See <i>'Interfacing to constructors'</i> in the Release Notes."; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+</script>
+<!-- END JavaScript --> 
+
+</body></html>

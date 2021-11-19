@@ -1,0 +1,318 @@
+<html><head><title>org_w3c_dom_ls</title>
+<style>
+<!-- BEGIN Inline CSS -->
+/* Popup container */
+.popup {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+/* The actual popup (appears on top) */
+.popup .popuptext {
+    visibility: hidden;
+    width: 430px;
+    background-color: white;
+    color: black;
+    text-align: left;
+    border-radius: 6px;
+    border-style: solid;
+    border-color: black;
+    padding: 8px 8px 8px 8px;
+    position: absolute;
+    z-index: 1;
+    margin-top: 30px;
+}
+
+/* Toggle this class when clicking on the popup container (hide and show the popup) */
+.popup .show {
+    visibility: visible;
+    opacity: 1;
+}
+
+</style>
+<!-- END Inline CSS -->
+</head><body bgcolor="white">
+<hr><pre>
+<font color="green">(*</font>
+<font color="green"> *  Creator j2cps version 1.4.07 (March 2018)</font>
+<font color="green"> *  Compiled from jar-file rt.jar</font>
+<font color="green"> *)</font>
+<b>FOREIGN MODULE </b><font color="#cc0033">org_w3c_dom_ls</font>;
+
+<b>IMPORT</b>
+    <a href="java_io.html">java_io</a> := "java.io",
+    <a href="java_lang.html">java_lang</a> := "java.lang",
+    <a href="org_w3c_dom.html">org_w3c_dom</a> := "org.w3c.dom",
+    <a href="org_w3c_dom_events.html">org_w3c_dom_events</a> := "org.w3c.dom.events",
+    <a href="org_w3c_dom_traversal.html">org_w3c_dom_traversal</a> := "org.w3c.dom.traversal";
+
+<b>TYPE</b>
+
+  <a name="type-DOMImplementationLS"></a><font color="#cc0033">DOMImplementationLS</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                         <font color="green"><b> (* </b><a href="#meths-DOMImplementationLS">Typebound Procedures</a><b> *)</b></font>
+                         <b>STATIC</b>
+                           <font color="#cc0033">MODE_ASYNCHRONOUS</font>* = 2;
+                           <font color="#cc0033">MODE_SYNCHRONOUS</font>*  = 1;
+                         <b>END</b>;
+
+  <a name="type-LSException"></a><font color="#cc0033">LSException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-RuntimeException">java_lang.RuntimeException</a>)
+                 <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="cls(this)">class</span> | <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> | <span onclick="noCpy(this)">no value-assign</span> *)</font>
+                   <font color="#cc0033">code</font>* : SHORTINT;
+                 <b>STATIC</b>
+                   <font color="#cc0033">PARSE_ERR</font>*     = 81;
+                   <font color="#cc0033">SERIALIZE_ERR</font>* = 82;
+                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : SHORTINT;
+                                   p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-LSException">LSException</a><b>,CONSTRUCTOR</b>;
+                 <b>END</b>;
+
+  <a name="type-LSInput"></a><font color="#cc0033">LSInput</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+             <font color="green"><b> (* </b><a href="#meths-LSInput">Typebound Procedures</a><b> *)</b></font>
+             <b>END</b>;
+
+  <a name="type-LSLoadEvent"></a><font color="#cc0033">LSLoadEvent</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="org_w3c_dom_events.html#type-Event">org_w3c_dom_events.Event</a>)
+                 <font color="green"><b> (* </b><a href="#meths-LSLoadEvent">Typebound Procedures</a><b> *)</b></font>
+                 <b>END</b>;
+
+  <a name="type-LSOutput"></a><font color="#cc0033">LSOutput</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+              <font color="green"><b> (* </b><a href="#meths-LSOutput">Typebound Procedures</a><b> *)</b></font>
+              <b>END</b>;
+
+  <a name="type-LSParser"></a><font color="#cc0033">LSParser</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+              <font color="green"><b> (* </b><a href="#meths-LSParser">Typebound Procedures</a><b> *)</b></font>
+              <b>STATIC</b>
+                <font color="#cc0033">ACTION_APPEND_AS_CHILDREN</font>* = 1;
+                <font color="#cc0033">ACTION_INSERT_AFTER</font>*       = 4;
+                <font color="#cc0033">ACTION_INSERT_BEFORE</font>*      = 3;
+                <font color="#cc0033">ACTION_REPLACE</font>*            = 5;
+                <font color="#cc0033">ACTION_REPLACE_CHILDREN</font>*   = 2;
+              <b>END</b>;
+
+  <a name="type-LSParserFilter"></a><font color="#cc0033">LSParserFilter</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                    <font color="green"><b> (* </b><a href="#meths-LSParserFilter">Typebound Procedures</a><b> *)</b></font>
+                    <b>STATIC</b>
+                      <font color="#cc0033">FILTER_ACCEPT</font>*    = 1;
+                      <font color="#cc0033">FILTER_INTERRUPT</font>* = 4;
+                      <font color="#cc0033">FILTER_REJECT</font>*    = 2;
+                      <font color="#cc0033">FILTER_SKIP</font>*      = 3;
+                    <b>END</b>;
+
+  <a name="type-LSProgressEvent"></a><font color="#cc0033">LSProgressEvent</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="org_w3c_dom_events.html#type-Event">org_w3c_dom_events.Event</a>)
+                     <font color="green"><b> (* </b><a href="#meths-LSProgressEvent">Typebound Procedures</a><b> *)</b></font>
+                     <b>END</b>;
+
+  <a name="type-LSResourceResolver"></a><font color="#cc0033">LSResourceResolver</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                        <font color="green"><b> (* </b><a href="#meths-LSResourceResolver">Typebound Procedures</a><b> *)</b></font>
+                        <b>END</b>;
+
+  <a name="type-LSSerializer"></a><font color="#cc0033">LSSerializer</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                  <font color="green"><b> (* </b><a href="#meths-LSSerializer">Typebound Procedures</a><b> *)</b></font>
+                  <b>END</b>;
+
+  <a name="type-LSSerializerFilter"></a><font color="#cc0033">LSSerializerFilter</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="org_w3c_dom_traversal.html#type-NodeFilter">org_w3c_dom_traversal.NodeFilter</a>)
+                        <font color="green"><b> (* </b><a href="#meths-LSSerializerFilter">Typebound Procedures</a><b> *)</b></font>
+                        <b>END</b>;
+
+
+
+<a name="meths-DOMImplementationLS"></a>
+<b>PROCEDURE </b>(self:DOMImplementationLS) <font color="#cc0033">createLSInput</font>*() : <b>LSInput</b><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DOMImplementationLS) <font color="#cc0033">createLSOutput</font>*() : <b>LSOutput</b><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DOMImplementationLS) <font color="#cc0033">createLSParser</font>*(p0 : SHORTINT;
+                                                     p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <b>LSParser</b><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DOMImplementationLS) <font color="#cc0033">createLSSerializer</font>*() : <b>LSSerializer</b><b>,NEW,ABSTRACT</b>;
+<a name="meths-LSInput"></a>
+<b>PROCEDURE </b>(self:LSInput) <font color="#cc0033">getBaseURI</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:LSInput) <font color="#cc0033">getByteStream</font>*() : <a href="java_io.html#type-InputStream">java_io.InputStream</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:LSInput) <font color="#cc0033">getCertifiedText</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:LSInput) <font color="#cc0033">getCharacterStream</font>*() : <a href="java_io.html#type-Reader">java_io.Reader</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:LSInput) <font color="#cc0033">getEncoding</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:LSInput) <font color="#cc0033">getPublicId</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:LSInput) <font color="#cc0033">getStringData</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:LSInput) <font color="#cc0033">getSystemId</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:LSInput) <font color="#cc0033">setBaseURI</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:LSInput) <font color="#cc0033">setByteStream</font>*(p0 : <a href="java_io.html#type-InputStream">java_io.InputStream</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:LSInput) <font color="#cc0033">setCertifiedText</font>*(p0 : BOOLEAN)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:LSInput) <font color="#cc0033">setCharacterStream</font>*(p0 : <a href="java_io.html#type-Reader">java_io.Reader</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:LSInput) <font color="#cc0033">setEncoding</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:LSInput) <font color="#cc0033">setPublicId</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:LSInput) <font color="#cc0033">setStringData</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:LSInput) <font color="#cc0033">setSystemId</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-LSLoadEvent"></a>
+<b>PROCEDURE </b>(self:LSLoadEvent) <font color="#cc0033">getInput</font>*() : <a href="#type-LSInput">LSInput</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:LSLoadEvent) <font color="#cc0033">getNewDocument</font>*() : <a href="org_w3c_dom.html#type-Document">org_w3c_dom.Document</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-LSOutput"></a>
+<b>PROCEDURE </b>(self:LSOutput) <font color="#cc0033">getByteStream</font>*() : <a href="java_io.html#type-OutputStream">java_io.OutputStream</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:LSOutput) <font color="#cc0033">getCharacterStream</font>*() : <a href="java_io.html#type-Writer">java_io.Writer</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:LSOutput) <font color="#cc0033">getEncoding</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:LSOutput) <font color="#cc0033">getSystemId</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:LSOutput) <font color="#cc0033">setByteStream</font>*(p0 : <a href="java_io.html#type-OutputStream">java_io.OutputStream</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:LSOutput) <font color="#cc0033">setCharacterStream</font>*(p0 : <a href="java_io.html#type-Writer">java_io.Writer</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:LSOutput) <font color="#cc0033">setEncoding</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:LSOutput) <font color="#cc0033">setSystemId</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-LSParser"></a>
+<b>PROCEDURE </b>(self:LSParser) <font color="#cc0033">abort</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:LSParser) <font color="#cc0033">getAsync</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:LSParser) <font color="#cc0033">getBusy</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:LSParser) <font color="#cc0033">getDomConfig</font>*() : <a href="org_w3c_dom.html#type-DOMConfiguration">org_w3c_dom.DOMConfiguration</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:LSParser) <font color="#cc0033">getFilter</font>*() : <b>LSParserFilter</b><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:LSParser) <font color="#cc0033">parse</font>*(p0 : <a href="#type-LSInput">LSInput</a>) : <a href="org_w3c_dom.html#type-Document">org_w3c_dom.Document</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:LSParser) <font color="#cc0033">parseURI</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="org_w3c_dom.html#type-Document">org_w3c_dom.Document</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:LSParser) <font color="#cc0033">parseWithContext</font>*(p0 : <a href="#type-LSInput">LSInput</a>;
+                                            p1 : <a href="org_w3c_dom.html#type-Node">org_w3c_dom.Node</a>;
+                                            p2 : SHORTINT) : <a href="org_w3c_dom.html#type-Node">org_w3c_dom.Node</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:LSParser) <font color="#cc0033">setFilter</font>*(p0 : <b>LSParserFilter</b>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-LSParserFilter"></a>
+<b>PROCEDURE </b>(self:LSParserFilter) <font color="#cc0033">acceptNode</font>*(p0 : <a href="org_w3c_dom.html#type-Node">org_w3c_dom.Node</a>) : SHORTINT<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:LSParserFilter) <font color="#cc0033">getWhatToShow</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:LSParserFilter) <font color="#cc0033">startElement</font>*(p0 : <a href="org_w3c_dom.html#type-Element">org_w3c_dom.Element</a>) : SHORTINT<b>,NEW,ABSTRACT</b>;
+<a name="meths-LSProgressEvent"></a>
+<b>PROCEDURE </b>(self:LSProgressEvent) <font color="#cc0033">getInput</font>*() : <a href="#type-LSInput">LSInput</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:LSProgressEvent) <font color="#cc0033">getPosition</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:LSProgressEvent) <font color="#cc0033">getTotalSize</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+<a name="meths-LSResourceResolver"></a>
+<b>PROCEDURE </b>(self:LSResourceResolver) <font color="#cc0033">resolveResource</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                     p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                     p2 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                     p3 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                     p4 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-LSInput">LSInput</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-LSSerializer"></a>
+<b>PROCEDURE </b>(self:LSSerializer) <font color="#cc0033">getDomConfig</font>*() : <a href="org_w3c_dom.html#type-DOMConfiguration">org_w3c_dom.DOMConfiguration</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:LSSerializer) <font color="#cc0033">getFilter</font>*() : <b>LSSerializerFilter</b><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:LSSerializer) <font color="#cc0033">getNewLine</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:LSSerializer) <font color="#cc0033">setFilter</font>*(p0 : <b>LSSerializerFilter</b>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:LSSerializer) <font color="#cc0033">setNewLine</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:LSSerializer) <font color="#cc0033">write</font>*(p0 : <a href="org_w3c_dom.html#type-Node">org_w3c_dom.Node</a>;
+                                     p1 : <a href="#type-LSOutput">LSOutput</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:LSSerializer) <font color="#cc0033">writeToString</font>*(p0 : <a href="org_w3c_dom.html#type-Node">org_w3c_dom.Node</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:LSSerializer) <font color="#cc0033">writeToURI</font>*(p0 : <a href="org_w3c_dom.html#type-Node">org_w3c_dom.Node</a>;
+                                          p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+<a name="meths-LSSerializerFilter"></a>
+<b>PROCEDURE </b>(self:LSSerializerFilter) <font color="#cc0033">getWhatToShow</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>END </b><font color="#cc0033">org_w3c_dom_ls</font>.
+</font></pre></hr>
+<!-- BEGIN JavaScript -->
+<script>
+function toggle(node) {
+    node.classList.toggle("show"); 
+  }
+
+function cls(node) {
+    var prnt = node.parentNode;
+    var next = prnt.previousSibling;
+    var text = next.lastChild;
+    text.innerHTML = 
+        "The <b>class</b> property asserts that this type will be<br>" +
+        "implemented as a reference class in the underlying framework.";
+    text.classList.toggle("show");
+  }
+
+function newOk(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>has noArg-ctor</b> property asserts that this reference<br>" +
+        "class has a no-arg constructor, and thus objects of this<br>" +
+        "type can be allocated with NEW(). Component Pascal types<br>" +
+        "derived from this type can also be allocated using NEW().";
+    popuptext.classList.toggle("show"); 
+  }
+
+function noNew(node) { 
+    var prnt = node.parentNode; 
+    var next = prnt.previousSibling; 
+    var text = next.lastChild; 
+    text.innerHTML =  
+        "The <b>no noArg-ctor</b> property asserts that this reference<br>" +
+        "class does not have a noArg constructor. Objects of this<br>" +
+        "type cannot be allocated using NEW(), and Component<br>" +
+        "Pascal types  derived from this type also cannot be<br>" +
+        "allocated using NEW().";
+    text.classList.toggle("show");
+  }
+
+function noCpy(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>no value-assign</b> property asserts that this reference<br>" + 
+        "class does not have a value copy method. Therefore, it<br>" +
+        "is not possible to perform value assignments using<br>" +
+        "statements like <i>dst^</i> := <i>src^</i>";
+    popuptext.classList.toggle("show");
+  }
+
+function valueclass(node) { 
+        var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>valueclass</b> property asserts that this RECORD type is<br>" + 
+        "implemented as a value class in the CLR. It follows that<br>" +  
+        "value assignments can be made of these types. They can<br>" + 
+        "also be passed by value. Even pointers to records of<br>" + 
+        "such types may be dereferenced and copied using syntax<br>" + 
+        "such as  <i>dst^</i> := <i>src^</i>"; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+function argCtor(node) { 
+    var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>has arg-ctor</b> property asserts that this reference<br>" +  
+        "class has one or more constructors that take arguments.<br>" + 
+        "These constructors can be called from Component Pascal<br>" + 
+        "by calling an <i>init</i>(...) method from the static list<br>" + 
+        "here. Component Pascal types derived from this type<br>" + 
+        "can define constructors with arguments which call the<br>" + 
+        "super-type constructor.<br>" + 
+        "See <i>'Interfacing to constructors'</i> in the Release Notes."; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+</script>
+<!-- END JavaScript --> 
+
+</body></html>
