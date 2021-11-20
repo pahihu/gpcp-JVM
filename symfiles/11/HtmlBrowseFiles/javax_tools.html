@@ -1,0 +1,627 @@
+<html><head><title>javax_tools</title>
+<style>
+<!-- BEGIN Inline CSS -->
+/* Popup container */
+.popup {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+/* The actual popup (appears on top) */
+.popup .popuptext {
+    visibility: hidden;
+    width: 430px;
+    background-color: white;
+    color: black;
+    text-align: left;
+    border-radius: 6px;
+    border-style: solid;
+    border-color: black;
+    padding: 8px 8px 8px 8px;
+    position: absolute;
+    z-index: 1;
+    margin-top: 30px;
+}
+
+/* Toggle this class when clicking on the popup container (hide and show the popup) */
+.popup .show {
+    visibility: visible;
+    opacity: 1;
+}
+
+</style>
+<!-- END Inline CSS -->
+</head><body bgcolor="white">
+<hr><pre>
+<font color="green">(*</font>
+<font color="green"> *  Creator PeToCps j2cps version 1.4.07 (March 2018)</font>
+<font color="green"> *  Compiled from jar-file /Library/Java/JavaVirtualMachines/zulu-11.jdk/Contents/Home/jmods/java.compiler.jmod</font>
+<font color="green"> *)</font>
+<b>FOREIGN MODULE </b><font color="#cc0033">javax_tools</font>;
+
+<b>IMPORT</b>
+    <a href="javax_lang_model_element.html">javax_lang_model_element</a> := "javax.lang.model.element",
+    <a href="javax_tools.html">javax_tools</a> := "javax.tools",
+    <a href="java_io.html">java_io</a> := "java.io",
+    <a href="java_lang.html">java_lang</a> := "java.lang",
+    <a href="java_net.html">java_net</a> := "java.net",
+    <a href="java_nio_charset.html">java_nio_charset</a> := "java.nio.charset",
+    <a href="java_nio_file.html">java_nio_file</a> := "java.nio.file",
+    <a href="java_util.html">java_util</a> := "java.util",
+    <a href="java_util_concurrent.html">java_util_concurrent</a> := "java.util.concurrent";
+
+<b>TYPE</b>
+
+  <a name="type-Diagnostic"></a><font color="#cc0033">Diagnostic</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                <font color="green"><b> (* </b><a href="#meths-Diagnostic">Typebound Procedures</a><b> *)</b></font>
+                <b>STATIC</b>
+                  <font color="#cc0033">NOPOS</font>* = -1;
+                <b>END</b>;
+
+  <a name="type-Diagnostic$Kind"></a><font color="#cc0033">Diagnostic$Kind</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Enum">java_lang.Enum</a>)
+                     <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> *)</font>
+                     <b>STATIC</b>
+                       <a name="type-ERROR"></a><font color="#cc0033">ERROR</font>*             : <a href="#type-Diagnostic$Kind">Diagnostic$Kind</a>;
+                       <a name="type-MANDATORY_WARNING"></a><font color="#cc0033">MANDATORY_WARNING</font>* : <a href="#type-Diagnostic$Kind">Diagnostic$Kind</a>;
+                       <a name="type-NOTE"></a><font color="#cc0033">NOTE</font>*              : <a href="#type-Diagnostic$Kind">Diagnostic$Kind</a>;
+                       <a name="type-OTHER"></a><font color="#cc0033">OTHER</font>*             : <a href="#type-Diagnostic$Kind">Diagnostic$Kind</a>;
+                       <a name="type-WARNING"></a><font color="#cc0033">WARNING</font>*           : <a href="#type-Diagnostic$Kind">Diagnostic$Kind</a>;
+                       <b>PROCEDURE </b><font color="#cc0033">valueOf</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-Diagnostic$Kind">Diagnostic$Kind</a>;
+                       <b>PROCEDURE </b><font color="#cc0033">values</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-Diagnostic$Kind">Diagnostic$Kind</a>;
+                     <b>END</b>;
+
+  <a name="type-DiagnosticCollector"></a><font color="#cc0033">DiagnosticCollector</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-DiagnosticListener">DiagnosticListener</a>)
+                         <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                         <font color="green"><b> (* </b><a href="#meths-DiagnosticCollector">Typebound Procedures</a><b> *)</b></font>
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-DiagnosticCollector">DiagnosticCollector</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-DiagnosticListener"></a><font color="#cc0033">DiagnosticListener</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                        <font color="green"><b> (* </b><a href="#meths-DiagnosticListener">Typebound Procedures</a><b> *)</b></font>
+                        <b>END</b>;
+
+  <a name="type-DocumentationTool"></a><font color="#cc0033">DocumentationTool</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="javax_tools.html#type-Tool">javax_tools.Tool</a> + <a href="javax_tools.html#type-OptionChecker">javax_tools.OptionChecker</a>)
+                       <font color="green"><b> (* </b><a href="#meths-DocumentationTool">Typebound Procedures</a><b> *)</b></font>
+                       <b>END</b>;
+
+  <a name="type-DocumentationTool$DocumentationTask"></a><font color="#cc0033">DocumentationTool$DocumentationTask</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_util_concurrent.html#type-Callable">java_util_concurrent.Callable</a>)
+                                         <font color="green"><b> (* </b><a href="#meths-DocumentationTool$DocumentationTask">Typebound Procedures</a><b> *)</b></font>
+                                         <b>END</b>;
+
+  <a name="type-DocumentationTool$Location"></a><font color="#cc0033">DocumentationTool$Location</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Enum">java_lang.Enum</a> + <a href="javax_tools.html#type-JavaFileManager$Location">javax_tools.JavaFileManager$Location</a>)
+                                <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> *)</font>
+                                <font color="green"><b> (* </b><a href="#meths-DocumentationTool$Location">Typebound Procedures</a><b> *)</b></font>
+                                <b>STATIC</b>
+                                  <a name="type-DOCLET_PATH"></a><font color="#cc0033">DOCLET_PATH</font>*          : <a href="#type-DocumentationTool$Location">DocumentationTool$Location</a>;
+                                  <a name="type-DOCUMENTATION_OUTPUT"></a><font color="#cc0033">DOCUMENTATION_OUTPUT</font>* : <a href="#type-DocumentationTool$Location">DocumentationTool$Location</a>;
+                                  <a name="type-TAGLET_PATH"></a><font color="#cc0033">TAGLET_PATH</font>*          : <a href="#type-DocumentationTool$Location">DocumentationTool$Location</a>;
+                                  <b>PROCEDURE </b><font color="#cc0033">valueOf</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-DocumentationTool$Location">DocumentationTool$Location</a>;
+                                  <b>PROCEDURE </b><font color="#cc0033">values</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-DocumentationTool$Location">DocumentationTool$Location</a>;
+                                <b>END</b>;
+
+  <a name="type-FileObject"></a><font color="#cc0033">FileObject</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                <font color="green"><b> (* </b><a href="#meths-FileObject">Typebound Procedures</a><b> *)</b></font>
+                <b>END</b>;
+
+  <a name="type-ForwardingFileObject"></a><font color="#cc0033">ForwardingFileObject</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-FileObject">FileObject</a>)
+                          <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                          <font color="green"><b> (* </b><a href="#meths-ForwardingFileObject">Typebound Procedures</a><b> *)</b></font>
+                            <font color="#cc0033">fileObject</font>! : <a href="#type-FileObject">FileObject</a>;
+                          <b>STATIC</b>
+                            <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : <a href="#type-FileObject">FileObject</a>) : <a href="#type-ForwardingFileObject">ForwardingFileObject</a><b>,CONSTRUCTOR</b>;
+                          <b>END</b>;
+
+  <a name="type-ForwardingJavaFileManager"></a><font color="#cc0033">ForwardingJavaFileManager</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-JavaFileManager">JavaFileManager</a>)
+                               <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                               <font color="green"><b> (* </b><a href="#meths-ForwardingJavaFileManager">Typebound Procedures</a><b> *)</b></font>
+                                 <font color="#cc0033">fileManager</font>! : <a href="#type-JavaFileManager">JavaFileManager</a>;
+                               <b>STATIC</b>
+                                 <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : <a href="#type-JavaFileManager">JavaFileManager</a>) : <a href="#type-ForwardingJavaFileManager">ForwardingJavaFileManager</a><b>,CONSTRUCTOR</b>;
+                               <b>END</b>;
+
+  <a name="type-ForwardingJavaFileObject"></a><font color="#cc0033">ForwardingJavaFileObject</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="javax_tools.html#type-ForwardingFileObject">javax_tools.ForwardingFileObject</a> + <a href="javax_tools.html#type-JavaFileObject">javax_tools.JavaFileObject</a>)
+                              <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                              <font color="green"><b> (* </b><a href="#meths-ForwardingJavaFileObject">Typebound Procedures</a><b> *)</b></font>
+                              <b>STATIC</b>
+                                <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : <a href="javax_tools.html#type-JavaFileObject">javax_tools.JavaFileObject</a>) : <a href="#type-ForwardingJavaFileObject">ForwardingJavaFileObject</a><b>,CONSTRUCTOR</b>;
+                              <b>END</b>;
+
+  <a name="type-JavaCompiler"></a><font color="#cc0033">JavaCompiler</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-Tool">Tool</a> + <a href="#type-OptionChecker">OptionChecker</a>)
+                  <font color="green"><b> (* </b><a href="#meths-JavaCompiler">Typebound Procedures</a><b> *)</b></font>
+                  <b>END</b>;
+
+  <a name="type-JavaCompiler$CompilationTask"></a><font color="#cc0033">JavaCompiler$CompilationTask</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_util_concurrent.html#type-Callable">java_util_concurrent.Callable</a>)
+                                  <font color="green"><b> (* </b><a href="#meths-JavaCompiler$CompilationTask">Typebound Procedures</a><b> *)</b></font>
+                                  <b>END</b>;
+
+  <a name="type-JavaFileManager"></a><font color="#cc0033">JavaFileManager</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_io.html#type-Closeable">java_io.Closeable</a> + <a href="java_io.html#type-Flushable">java_io.Flushable</a> + <a href="javax_tools.html#type-OptionChecker">javax_tools.OptionChecker</a>)
+                     <font color="green"><b> (* </b><a href="#meths-JavaFileManager">Typebound Procedures</a><b> *)</b></font>
+                     <b>END</b>;
+
+  <a name="type-JavaFileManager$Location"></a><font color="#cc0033">JavaFileManager$Location</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                              <font color="green"><b> (* </b><a href="#meths-JavaFileManager$Location">Typebound Procedures</a><b> *)</b></font>
+                              <b>END</b>;
+
+  <a name="type-JavaFileObject"></a><font color="#cc0033">JavaFileObject</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-FileObject">FileObject</a>)
+                    <font color="green"><b> (* </b><a href="#meths-JavaFileObject">Typebound Procedures</a><b> *)</b></font>
+                    <b>END</b>;
+
+  <a name="type-JavaFileObject$Kind"></a><font color="#cc0033">JavaFileObject$Kind</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Enum">java_lang.Enum</a>)
+                         <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> *)</font>
+                           <font color="#cc0033">extension</font>* : <a href="java_lang.html#type-String">java_lang.String</a>;
+                         <b>STATIC</b>
+                           <a name="type-CLASS"></a><font color="#cc0033">CLASS</font>*   : <a href="#type-JavaFileObject$Kind">JavaFileObject$Kind</a>;
+                           <a name="type-HTML"></a><font color="#cc0033">HTML</font>*    : <a href="#type-JavaFileObject$Kind">JavaFileObject$Kind</a>;
+                           <a name="type-OTHER"></a><font color="#cc0033">OTHER</font>*   : <a href="#type-JavaFileObject$Kind">JavaFileObject$Kind</a>;
+                           <a name="type-SOURCE"></a><font color="#cc0033">SOURCE</font>*  : <a href="#type-JavaFileObject$Kind">JavaFileObject$Kind</a>;
+                           <b>PROCEDURE </b><font color="#cc0033">valueOf</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-JavaFileObject$Kind">JavaFileObject$Kind</a>;
+                           <b>PROCEDURE </b><font color="#cc0033">values</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-JavaFileObject$Kind">JavaFileObject$Kind</a>;
+                         <b>END</b>;
+
+  <a name="type-OptionChecker"></a><font color="#cc0033">OptionChecker</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                   <font color="green"><b> (* </b><a href="#meths-OptionChecker">Typebound Procedures</a><b> *)</b></font>
+                   <b>END</b>;
+
+  <a name="type-SimpleJavaFileObject"></a><font color="#cc0033">SimpleJavaFileObject</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-JavaFileObject">JavaFileObject</a>)
+                          <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                          <font color="green"><b> (* </b><a href="#meths-SimpleJavaFileObject">Typebound Procedures</a><b> *)</b></font>
+                            <font color="#cc0033">uri</font>!  : <a href="java_net.html#type-URI">java_net.URI</a>;
+                            <font color="#cc0033">kind</font>! : <a href="#type-JavaFileObject$Kind">JavaFileObject$Kind</a>;
+                          <b>STATIC</b>
+                            <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : <a href="java_net.html#type-URI">java_net.URI</a>;
+                                            p1 : <a href="#type-JavaFileObject$Kind">JavaFileObject$Kind</a>) : <a href="#type-SimpleJavaFileObject">SimpleJavaFileObject</a><b>,CONSTRUCTOR</b>;
+                          <b>END</b>;
+
+  <a name="type-StandardJavaFileManager"></a><font color="#cc0033">StandardJavaFileManager</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-JavaFileManager">JavaFileManager</a>)
+                             <font color="green"><b> (* </b><a href="#meths-StandardJavaFileManager">Typebound Procedures</a><b> *)</b></font>
+                             <b>END</b>;
+
+  <a name="type-StandardJavaFileManager$PathFactory"></a><font color="#cc0033">StandardJavaFileManager$PathFactory</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                                         <font color="green"><b> (* </b><a href="#meths-StandardJavaFileManager$PathFactory">Typebound Procedures</a><b> *)</b></font>
+                                         <b>END</b>;
+
+  <a name="type-StandardLocation"></a><font color="#cc0033">StandardLocation</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Enum">java_lang.Enum</a> + <a href="#type-JavaFileManager$Location">JavaFileManager$Location</a>)
+                      <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> *)</font>
+                      <font color="green"><b> (* </b><a href="#meths-StandardLocation">Typebound Procedures</a><b> *)</b></font>
+                      <b>STATIC</b>
+                        <a name="type-ANNOTATION_PROCESSOR_MODULE_PATH"></a><font color="#cc0033">ANNOTATION_PROCESSOR_MODULE_PATH</font>* : <a href="#type-StandardLocation">StandardLocation</a>;
+                        <a name="type-ANNOTATION_PROCESSOR_PATH"></a><font color="#cc0033">ANNOTATION_PROCESSOR_PATH</font>*        : <a href="#type-StandardLocation">StandardLocation</a>;
+                        <a name="type-CLASS_OUTPUT"></a><font color="#cc0033">CLASS_OUTPUT</font>*                     : <a href="#type-StandardLocation">StandardLocation</a>;
+                        <a name="type-CLASS_PATH"></a><font color="#cc0033">CLASS_PATH</font>*                       : <a href="#type-StandardLocation">StandardLocation</a>;
+                        <a name="type-MODULE_PATH"></a><font color="#cc0033">MODULE_PATH</font>*                      : <a href="#type-StandardLocation">StandardLocation</a>;
+                        <a name="type-MODULE_SOURCE_PATH"></a><font color="#cc0033">MODULE_SOURCE_PATH</font>*               : <a href="#type-StandardLocation">StandardLocation</a>;
+                        <a name="type-NATIVE_HEADER_OUTPUT"></a><font color="#cc0033">NATIVE_HEADER_OUTPUT</font>*             : <a href="#type-StandardLocation">StandardLocation</a>;
+                        <a name="type-PATCH_MODULE_PATH"></a><font color="#cc0033">PATCH_MODULE_PATH</font>*                : <a href="#type-StandardLocation">StandardLocation</a>;
+                        <a name="type-PLATFORM_CLASS_PATH"></a><font color="#cc0033">PLATFORM_CLASS_PATH</font>*              : <a href="#type-StandardLocation">StandardLocation</a>;
+                        <a name="type-SOURCE_OUTPUT"></a><font color="#cc0033">SOURCE_OUTPUT</font>*                    : <a href="#type-StandardLocation">StandardLocation</a>;
+                        <a name="type-SOURCE_PATH"></a><font color="#cc0033">SOURCE_PATH</font>*                      : <a href="#type-StandardLocation">StandardLocation</a>;
+                        <a name="type-SYSTEM_MODULES"></a><font color="#cc0033">SYSTEM_MODULES</font>*                   : <a href="#type-StandardLocation">StandardLocation</a>;
+                        <a name="type-UPGRADE_MODULE_PATH"></a><font color="#cc0033">UPGRADE_MODULE_PATH</font>*              : <a href="#type-StandardLocation">StandardLocation</a>;
+                        <b>PROCEDURE </b><font color="#cc0033">locationFor</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-JavaFileManager$Location">JavaFileManager$Location</a>;
+                        <b>PROCEDURE </b><font color="#cc0033">valueOf</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-StandardLocation">StandardLocation</a>;
+                        <b>PROCEDURE </b><font color="#cc0033">values</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-StandardLocation">StandardLocation</a>;
+                      <b>END</b>;
+
+  <a name="type-Tool"></a><font color="#cc0033">Tool</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+          <font color="green"><b> (* </b><a href="#meths-Tool">Typebound Procedures</a><b> *)</b></font>
+          <b>END</b>;
+
+  <a name="type-ToolProvider"></a><font color="#cc0033">ToolProvider</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                  <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                  <b>STATIC</b>
+                    <b>PROCEDURE </b><font color="#cc0033">getSystemDocumentationTool</font>*() : <a href="#type-DocumentationTool">DocumentationTool</a>;
+                    <b>PROCEDURE </b><font color="#cc0033">getSystemJavaCompiler</font>*() : <a href="#type-JavaCompiler">JavaCompiler</a>;
+                    <b>PROCEDURE </b><font color="#cc0033">getSystemToolClassLoader</font>*() : <a href="java_lang.html#type-ClassLoader">java_lang.ClassLoader</a>;
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-ToolProvider">ToolProvider</a><b>,CONSTRUCTOR</b>;
+                  <b>END</b>;
+
+
+
+<a name="meths-Diagnostic"></a>
+<b>PROCEDURE </b>(self:Diagnostic) <font color="#cc0033">getCode</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Diagnostic) <font color="#cc0033">getColumnNumber</font>*() : LONGINT<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Diagnostic) <font color="#cc0033">getEndPosition</font>*() : LONGINT<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Diagnostic) <font color="#cc0033">getKind</font>*() : <a href="#type-Diagnostic$Kind">Diagnostic$Kind</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Diagnostic) <font color="#cc0033">getLineNumber</font>*() : LONGINT<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Diagnostic) <font color="#cc0033">getMessage</font>*(p0 : <a href="java_util.html#type-Locale">java_util.Locale</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Diagnostic) <font color="#cc0033">getPosition</font>*() : LONGINT<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Diagnostic) <font color="#cc0033">getSource</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Diagnostic) <font color="#cc0033">getStartPosition</font>*() : LONGINT<b>,NEW,ABSTRACT</b>;
+<a name="meths-DiagnosticCollector"></a>
+<b>PROCEDURE </b>(self:DiagnosticCollector) <font color="#cc0033">getDiagnostics</font>*() : <a href="java_util.html#type-List">java_util.List</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DiagnosticCollector) <font color="#cc0033">report</font>*(p0 : <a href="javax_tools.html#type-Diagnostic">javax_tools.Diagnostic</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-DiagnosticListener"></a>
+<b>PROCEDURE </b>(self:DiagnosticListener) <font color="#cc0033">report</font>*(p0 : <a href="javax_tools.html#type-Diagnostic">javax_tools.Diagnostic</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-DocumentationTool"></a>
+<b>PROCEDURE </b>(self:DocumentationTool) <font color="#cc0033">getStandardFileManager</font>*(p0 : <a href="javax_tools.html#type-DiagnosticListener">javax_tools.DiagnosticListener</a>;
+                                                           p1 : <a href="java_util.html#type-Locale">java_util.Locale</a>;
+                                                           p2 : <a href="java_nio_charset.html#type-Charset">java_nio_charset.Charset</a>) : <a href="javax_tools.html#type-StandardJavaFileManager">javax_tools.StandardJavaFileManager</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DocumentationTool) <font color="#cc0033">getTask</font>*(p0 : <a href="java_io.html#type-Writer">java_io.Writer</a>;
+                                            p1 : <a href="#type-JavaFileManager">JavaFileManager</a>;
+                                            p2 : <a href="javax_tools.html#type-DiagnosticListener">javax_tools.DiagnosticListener</a>;
+                                            p3 : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                                            p4 : <a href="java_lang.html#type-Iterable">java_lang.Iterable</a>;
+                                            p5 : <a href="java_lang.html#type-Iterable">java_lang.Iterable</a>) : <a href="javax_tools.html#type-DocumentationTool$DocumentationTask">javax_tools.DocumentationTool$DocumentationTask</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-DocumentationTool$DocumentationTask"></a>
+<b>PROCEDURE </b>(self:DocumentationTool$DocumentationTask) <font color="#cc0033">addModules</font>*(p0 : <a href="java_lang.html#type-Iterable">java_lang.Iterable</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DocumentationTool$DocumentationTask) <font color="#cc0033">call</font>*() : <a href="java_lang.html#type-Boolean">java_lang.Boolean</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DocumentationTool$DocumentationTask) <font color="#cc0033">call</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DocumentationTool$DocumentationTask) <font color="#cc0033">setLocale</font>*(p0 : <a href="java_util.html#type-Locale">java_util.Locale</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-DocumentationTool$Location"></a>
+<b>PROCEDURE </b>(self:DocumentationTool$Location) <font color="#cc0033">getName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DocumentationTool$Location) <font color="#cc0033">isOutputLocation</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-FileObject"></a>
+<b>PROCEDURE </b>(self:FileObject) <font color="#cc0033">delete</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:FileObject) <font color="#cc0033">getCharContent</font>*(p0 : BOOLEAN) : <a href="java_lang.html#type-CharSequence">java_lang.CharSequence</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:FileObject) <font color="#cc0033">getLastModified</font>*() : LONGINT<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:FileObject) <font color="#cc0033">getName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:FileObject) <font color="#cc0033">openInputStream</font>*() : <a href="java_io.html#type-InputStream">java_io.InputStream</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:FileObject) <font color="#cc0033">openOutputStream</font>*() : <a href="java_io.html#type-OutputStream">java_io.OutputStream</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:FileObject) <font color="#cc0033">openReader</font>*(p0 : BOOLEAN) : <a href="java_io.html#type-Reader">java_io.Reader</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:FileObject) <font color="#cc0033">openWriter</font>*() : <a href="java_io.html#type-Writer">java_io.Writer</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:FileObject) <font color="#cc0033">toUri</font>*() : <a href="java_net.html#type-URI">java_net.URI</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-ForwardingFileObject"></a>
+<b>PROCEDURE </b>(self:ForwardingFileObject) <font color="#cc0033">delete</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ForwardingFileObject) <font color="#cc0033">getCharContent</font>*(p0 : BOOLEAN) : <a href="java_lang.html#type-CharSequence">java_lang.CharSequence</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ForwardingFileObject) <font color="#cc0033">getLastModified</font>*() : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ForwardingFileObject) <font color="#cc0033">getName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ForwardingFileObject) <font color="#cc0033">openInputStream</font>*() : <a href="java_io.html#type-InputStream">java_io.InputStream</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ForwardingFileObject) <font color="#cc0033">openOutputStream</font>*() : <a href="java_io.html#type-OutputStream">java_io.OutputStream</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ForwardingFileObject) <font color="#cc0033">openReader</font>*(p0 : BOOLEAN) : <a href="java_io.html#type-Reader">java_io.Reader</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ForwardingFileObject) <font color="#cc0033">openWriter</font>*() : <a href="java_io.html#type-Writer">java_io.Writer</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ForwardingFileObject) <font color="#cc0033">toUri</font>*() : <a href="java_net.html#type-URI">java_net.URI</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-ForwardingJavaFileManager"></a>
+<b>PROCEDURE </b>(self:ForwardingJavaFileManager) <font color="#cc0033">close</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ForwardingJavaFileManager) <font color="#cc0033">contains</font>*(p0 : <a href="#type-JavaFileManager$Location">JavaFileManager$Location</a>;
+                                                     p1 : <a href="#type-FileObject">FileObject</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ForwardingJavaFileManager) <font color="#cc0033">flush</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ForwardingJavaFileManager) <font color="#cc0033">getClassLoader</font>*(p0 : <a href="#type-JavaFileManager$Location">JavaFileManager$Location</a>) : <a href="java_lang.html#type-ClassLoader">java_lang.ClassLoader</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ForwardingJavaFileManager) <font color="#cc0033">getFileForInput</font>*(p0 : <a href="#type-JavaFileManager$Location">JavaFileManager$Location</a>;
+                                                            p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                            p2 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-FileObject">FileObject</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ForwardingJavaFileManager) <font color="#cc0033">getFileForOutput</font>*(p0 : <a href="#type-JavaFileManager$Location">JavaFileManager$Location</a>;
+                                                             p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                             p2 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                             p3 : <a href="#type-FileObject">FileObject</a>) : <a href="#type-FileObject">FileObject</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ForwardingJavaFileManager) <font color="#cc0033">getJavaFileForInput</font>*(p0 : <a href="#type-JavaFileManager$Location">JavaFileManager$Location</a>;
+                                                                p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                                p2 : <a href="#type-JavaFileObject$Kind">JavaFileObject$Kind</a>) : <a href="#type-JavaFileObject">JavaFileObject</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ForwardingJavaFileManager) <font color="#cc0033">getJavaFileForOutput</font>*(p0 : <a href="#type-JavaFileManager$Location">JavaFileManager$Location</a>;
+                                                                 p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                                 p2 : <a href="#type-JavaFileObject$Kind">JavaFileObject$Kind</a>;
+                                                                 p3 : <a href="#type-FileObject">FileObject</a>) : <a href="#type-JavaFileObject">JavaFileObject</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ForwardingJavaFileManager) <font color="#cc0033">getLocationForModule</font>*(p0 : <a href="#type-JavaFileManager$Location">JavaFileManager$Location</a>;
+                                                                 p1 : <a href="#type-JavaFileObject">JavaFileObject</a>) : <a href="#type-JavaFileManager$Location">JavaFileManager$Location</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ForwardingJavaFileManager) <font color="#cc0033">getLocationForModule</font>*(p0 : <a href="#type-JavaFileManager$Location">JavaFileManager$Location</a>;
+                                                                 p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-JavaFileManager$Location">JavaFileManager$Location</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ForwardingJavaFileManager) <font color="#cc0033">getServiceLoader</font>*(p0 : <a href="#type-JavaFileManager$Location">JavaFileManager$Location</a>;
+                                                             p1 : <a href="java_lang.html#type-Class">java_lang.Class</a>) : <a href="java_util.html#type-ServiceLoader">java_util.ServiceLoader</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ForwardingJavaFileManager) <font color="#cc0033">handleOption</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                         p1 : <a href="java_util.html#type-Iterator">java_util.Iterator</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ForwardingJavaFileManager) <font color="#cc0033">hasLocation</font>*(p0 : <a href="#type-JavaFileManager$Location">JavaFileManager$Location</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ForwardingJavaFileManager) <font color="#cc0033">inferBinaryName</font>*(p0 : <a href="#type-JavaFileManager$Location">JavaFileManager$Location</a>;
+                                                            p1 : <a href="#type-JavaFileObject">JavaFileObject</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ForwardingJavaFileManager) <font color="#cc0033">inferModuleName</font>*(p0 : <a href="#type-JavaFileManager$Location">JavaFileManager$Location</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ForwardingJavaFileManager) <font color="#cc0033">isSameFile</font>*(p0 : <a href="#type-FileObject">FileObject</a>;
+                                                       p1 : <a href="#type-FileObject">FileObject</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ForwardingJavaFileManager) <font color="#cc0033">isSupportedOption</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ForwardingJavaFileManager) <font color="#cc0033">list</font>*(p0 : <a href="#type-JavaFileManager$Location">JavaFileManager$Location</a>;
+                                                 p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                 p2 : <a href="java_util.html#type-Set">java_util.Set</a>;
+                                                 p3 : BOOLEAN) : <a href="java_lang.html#type-Iterable">java_lang.Iterable</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ForwardingJavaFileManager) <font color="#cc0033">listLocationsForModules</font>*(p0 : <a href="#type-JavaFileManager$Location">JavaFileManager$Location</a>) : <a href="java_lang.html#type-Iterable">java_lang.Iterable</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-ForwardingJavaFileObject"></a>
+<b>PROCEDURE </b>(self:ForwardingJavaFileObject) <font color="#cc0033">getAccessLevel</font>*() : <a href="javax_lang_model_element.html#type-Modifier">javax_lang_model_element.Modifier</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ForwardingJavaFileObject) <font color="#cc0033">getKind</font>*() : <a href="javax_tools.html#type-JavaFileObject$Kind">javax_tools.JavaFileObject$Kind</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ForwardingJavaFileObject) <font color="#cc0033">getNestingKind</font>*() : <a href="javax_lang_model_element.html#type-NestingKind">javax_lang_model_element.NestingKind</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ForwardingJavaFileObject) <font color="#cc0033">isNameCompatible</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                            p1 : <a href="javax_tools.html#type-JavaFileObject$Kind">javax_tools.JavaFileObject$Kind</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-JavaCompiler"></a>
+<b>PROCEDURE </b>(self:JavaCompiler) <font color="#cc0033">getStandardFileManager</font>*(p0 : <a href="#type-DiagnosticListener">DiagnosticListener</a>;
+                                                      p1 : <a href="java_util.html#type-Locale">java_util.Locale</a>;
+                                                      p2 : <a href="java_nio_charset.html#type-Charset">java_nio_charset.Charset</a>) : <a href="#type-StandardJavaFileManager">StandardJavaFileManager</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:JavaCompiler) <font color="#cc0033">getTask</font>*(p0 : <a href="java_io.html#type-Writer">java_io.Writer</a>;
+                                       p1 : <a href="#type-JavaFileManager">JavaFileManager</a>;
+                                       p2 : <a href="#type-DiagnosticListener">DiagnosticListener</a>;
+                                       p3 : <a href="java_lang.html#type-Iterable">java_lang.Iterable</a>;
+                                       p4 : <a href="java_lang.html#type-Iterable">java_lang.Iterable</a>;
+                                       p5 : <a href="java_lang.html#type-Iterable">java_lang.Iterable</a>) : <a href="#type-JavaCompiler$CompilationTask">JavaCompiler$CompilationTask</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-JavaCompiler$CompilationTask"></a>
+<b>PROCEDURE </b>(self:JavaCompiler$CompilationTask) <font color="#cc0033">addModules</font>*(p0 : <a href="java_lang.html#type-Iterable">java_lang.Iterable</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:JavaCompiler$CompilationTask) <font color="#cc0033">call</font>*() : <a href="java_lang.html#type-Boolean">java_lang.Boolean</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:JavaCompiler$CompilationTask) <font color="#cc0033">call</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:JavaCompiler$CompilationTask) <font color="#cc0033">setLocale</font>*(p0 : <a href="java_util.html#type-Locale">java_util.Locale</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:JavaCompiler$CompilationTask) <font color="#cc0033">setProcessors</font>*(p0 : <a href="java_lang.html#type-Iterable">java_lang.Iterable</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-JavaFileManager"></a>
+<b>PROCEDURE </b>(self:JavaFileManager) <font color="#cc0033">close</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:JavaFileManager) <font color="#cc0033">contains</font>*(p0 : <a href="javax_tools.html#type-JavaFileManager$Location">javax_tools.JavaFileManager$Location</a>;
+                                           p1 : <a href="javax_tools.html#type-FileObject">javax_tools.FileObject</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:JavaFileManager) <font color="#cc0033">flush</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:JavaFileManager) <font color="#cc0033">getClassLoader</font>*(p0 : <a href="javax_tools.html#type-JavaFileManager$Location">javax_tools.JavaFileManager$Location</a>) : <a href="java_lang.html#type-ClassLoader">java_lang.ClassLoader</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:JavaFileManager) <font color="#cc0033">getFileForInput</font>*(p0 : <a href="javax_tools.html#type-JavaFileManager$Location">javax_tools.JavaFileManager$Location</a>;
+                                                  p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                  p2 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="javax_tools.html#type-FileObject">javax_tools.FileObject</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:JavaFileManager) <font color="#cc0033">getFileForOutput</font>*(p0 : <a href="javax_tools.html#type-JavaFileManager$Location">javax_tools.JavaFileManager$Location</a>;
+                                                   p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                   p2 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                   p3 : <a href="javax_tools.html#type-FileObject">javax_tools.FileObject</a>) : <a href="javax_tools.html#type-FileObject">javax_tools.FileObject</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:JavaFileManager) <font color="#cc0033">getJavaFileForInput</font>*(p0 : <a href="javax_tools.html#type-JavaFileManager$Location">javax_tools.JavaFileManager$Location</a>;
+                                                      p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                      p2 : <a href="javax_tools.html#type-JavaFileObject$Kind">javax_tools.JavaFileObject$Kind</a>) : <a href="javax_tools.html#type-JavaFileObject">javax_tools.JavaFileObject</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:JavaFileManager) <font color="#cc0033">getJavaFileForOutput</font>*(p0 : <a href="javax_tools.html#type-JavaFileManager$Location">javax_tools.JavaFileManager$Location</a>;
+                                                       p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                       p2 : <a href="javax_tools.html#type-JavaFileObject$Kind">javax_tools.JavaFileObject$Kind</a>;
+                                                       p3 : <a href="javax_tools.html#type-FileObject">javax_tools.FileObject</a>) : <a href="javax_tools.html#type-JavaFileObject">javax_tools.JavaFileObject</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:JavaFileManager) <font color="#cc0033">getLocationForModule</font>*(p0 : <a href="javax_tools.html#type-JavaFileManager$Location">javax_tools.JavaFileManager$Location</a>;
+                                                       p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="javax_tools.html#type-JavaFileManager$Location">javax_tools.JavaFileManager$Location</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:JavaFileManager) <font color="#cc0033">getLocationForModule</font>*(p0 : <a href="javax_tools.html#type-JavaFileManager$Location">javax_tools.JavaFileManager$Location</a>;
+                                                       p1 : <a href="javax_tools.html#type-JavaFileObject">javax_tools.JavaFileObject</a>) : <a href="javax_tools.html#type-JavaFileManager$Location">javax_tools.JavaFileManager$Location</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:JavaFileManager) <font color="#cc0033">getServiceLoader</font>*(p0 : <a href="javax_tools.html#type-JavaFileManager$Location">javax_tools.JavaFileManager$Location</a>;
+                                                   p1 : <a href="java_lang.html#type-Class">java_lang.Class</a>) : <a href="java_util.html#type-ServiceLoader">java_util.ServiceLoader</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:JavaFileManager) <font color="#cc0033">handleOption</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                               p1 : <a href="java_util.html#type-Iterator">java_util.Iterator</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:JavaFileManager) <font color="#cc0033">hasLocation</font>*(p0 : <a href="javax_tools.html#type-JavaFileManager$Location">javax_tools.JavaFileManager$Location</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:JavaFileManager) <font color="#cc0033">inferBinaryName</font>*(p0 : <a href="javax_tools.html#type-JavaFileManager$Location">javax_tools.JavaFileManager$Location</a>;
+                                                  p1 : <a href="javax_tools.html#type-JavaFileObject">javax_tools.JavaFileObject</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:JavaFileManager) <font color="#cc0033">inferModuleName</font>*(p0 : <a href="javax_tools.html#type-JavaFileManager$Location">javax_tools.JavaFileManager$Location</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:JavaFileManager) <font color="#cc0033">isSameFile</font>*(p0 : <a href="javax_tools.html#type-FileObject">javax_tools.FileObject</a>;
+                                             p1 : <a href="javax_tools.html#type-FileObject">javax_tools.FileObject</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:JavaFileManager) <font color="#cc0033">list</font>*(p0 : <a href="javax_tools.html#type-JavaFileManager$Location">javax_tools.JavaFileManager$Location</a>;
+                                       p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                       p2 : <a href="java_util.html#type-Set">java_util.Set</a>;
+                                       p3 : BOOLEAN) : <a href="java_lang.html#type-Iterable">java_lang.Iterable</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:JavaFileManager) <font color="#cc0033">listLocationsForModules</font>*(p0 : <a href="javax_tools.html#type-JavaFileManager$Location">javax_tools.JavaFileManager$Location</a>) : <a href="java_lang.html#type-Iterable">java_lang.Iterable</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-JavaFileManager$Location"></a>
+<b>PROCEDURE </b>(self:JavaFileManager$Location) <font color="#cc0033">getName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:JavaFileManager$Location) <font color="#cc0033">isModuleOrientedLocation</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:JavaFileManager$Location) <font color="#cc0033">isOutputLocation</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+<a name="meths-JavaFileObject"></a>
+<b>PROCEDURE </b>(self:JavaFileObject) <font color="#cc0033">getAccessLevel</font>*() : <a href="javax_lang_model_element.html#type-Modifier">javax_lang_model_element.Modifier</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:JavaFileObject) <font color="#cc0033">getKind</font>*() : <a href="javax_tools.html#type-JavaFileObject$Kind">javax_tools.JavaFileObject$Kind</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:JavaFileObject) <font color="#cc0033">getNestingKind</font>*() : <a href="javax_lang_model_element.html#type-NestingKind">javax_lang_model_element.NestingKind</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:JavaFileObject) <font color="#cc0033">isNameCompatible</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                  p1 : <a href="javax_tools.html#type-JavaFileObject$Kind">javax_tools.JavaFileObject$Kind</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+<a name="meths-OptionChecker"></a>
+<b>PROCEDURE </b>(self:OptionChecker) <font color="#cc0033">isSupportedOption</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : INTEGER<b>,NEW,ABSTRACT</b>;
+<a name="meths-SimpleJavaFileObject"></a>
+<b>PROCEDURE </b>(self:SimpleJavaFileObject) <font color="#cc0033">delete</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SimpleJavaFileObject) <font color="#cc0033">getAccessLevel</font>*() : <a href="javax_lang_model_element.html#type-Modifier">javax_lang_model_element.Modifier</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SimpleJavaFileObject) <font color="#cc0033">getCharContent</font>*(p0 : BOOLEAN) : <a href="java_lang.html#type-CharSequence">java_lang.CharSequence</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SimpleJavaFileObject) <font color="#cc0033">getKind</font>*() : <a href="#type-JavaFileObject$Kind">JavaFileObject$Kind</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SimpleJavaFileObject) <font color="#cc0033">getLastModified</font>*() : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SimpleJavaFileObject) <font color="#cc0033">getName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SimpleJavaFileObject) <font color="#cc0033">getNestingKind</font>*() : <a href="javax_lang_model_element.html#type-NestingKind">javax_lang_model_element.NestingKind</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SimpleJavaFileObject) <font color="#cc0033">isNameCompatible</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                        p1 : <a href="#type-JavaFileObject$Kind">JavaFileObject$Kind</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SimpleJavaFileObject) <font color="#cc0033">openInputStream</font>*() : <a href="java_io.html#type-InputStream">java_io.InputStream</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SimpleJavaFileObject) <font color="#cc0033">openOutputStream</font>*() : <a href="java_io.html#type-OutputStream">java_io.OutputStream</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SimpleJavaFileObject) <font color="#cc0033">openReader</font>*(p0 : BOOLEAN) : <a href="java_io.html#type-Reader">java_io.Reader</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SimpleJavaFileObject) <font color="#cc0033">openWriter</font>*() : <a href="java_io.html#type-Writer">java_io.Writer</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SimpleJavaFileObject) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SimpleJavaFileObject) <font color="#cc0033">toUri</font>*() : <a href="java_net.html#type-URI">java_net.URI</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-StandardJavaFileManager"></a>
+<b>PROCEDURE </b>(self:StandardJavaFileManager) <font color="#cc0033">asPath</font>*(p0 : <a href="#type-FileObject">FileObject</a>) : <a href="java_nio_file.html#type-Path">java_nio_file.Path</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:StandardJavaFileManager) <font color="#cc0033">getJavaFileObjects</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="java_nio_file.html#type-Path">java_nio_file.Path</a>) : <a href="java_lang.html#type-Iterable">java_lang.Iterable</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:StandardJavaFileManager) <font color="#cc0033">getJavaFileObjects</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-Iterable">java_lang.Iterable</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:StandardJavaFileManager) <font color="#cc0033">getJavaFileObjects</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="java_io.html#type-File">java_io.File</a>) : <a href="java_lang.html#type-Iterable">java_lang.Iterable</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:StandardJavaFileManager) <font color="#cc0033">getJavaFileObjectsFromFiles</font>*(p0 : <a href="java_lang.html#type-Iterable">java_lang.Iterable</a>) : <a href="java_lang.html#type-Iterable">java_lang.Iterable</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:StandardJavaFileManager) <font color="#cc0033">getJavaFileObjectsFromPaths</font>*(p0 : <a href="java_lang.html#type-Iterable">java_lang.Iterable</a>) : <a href="java_lang.html#type-Iterable">java_lang.Iterable</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:StandardJavaFileManager) <font color="#cc0033">getJavaFileObjectsFromStrings</font>*(p0 : <a href="java_lang.html#type-Iterable">java_lang.Iterable</a>) : <a href="java_lang.html#type-Iterable">java_lang.Iterable</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:StandardJavaFileManager) <font color="#cc0033">getLocation</font>*(p0 : <a href="javax_tools.html#type-JavaFileManager$Location">javax_tools.JavaFileManager$Location</a>) : <a href="java_lang.html#type-Iterable">java_lang.Iterable</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:StandardJavaFileManager) <font color="#cc0033">getLocationAsPaths</font>*(p0 : <a href="javax_tools.html#type-JavaFileManager$Location">javax_tools.JavaFileManager$Location</a>) : <a href="java_lang.html#type-Iterable">java_lang.Iterable</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:StandardJavaFileManager) <font color="#cc0033">isSameFile</font>*(p0 : <a href="#type-FileObject">FileObject</a>;
+                                                     p1 : <a href="#type-FileObject">FileObject</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:StandardJavaFileManager) <font color="#cc0033">setLocation</font>*(p0 : <a href="javax_tools.html#type-JavaFileManager$Location">javax_tools.JavaFileManager$Location</a>;
+                                                      p1 : <a href="java_lang.html#type-Iterable">java_lang.Iterable</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:StandardJavaFileManager) <font color="#cc0033">setLocationForModule</font>*(p0 : <a href="javax_tools.html#type-JavaFileManager$Location">javax_tools.JavaFileManager$Location</a>;
+                                                               p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                               p2 : <a href="java_util.html#type-Collection">java_util.Collection</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:StandardJavaFileManager) <font color="#cc0033">setLocationFromPaths</font>*(p0 : <a href="javax_tools.html#type-JavaFileManager$Location">javax_tools.JavaFileManager$Location</a>;
+                                                               p1 : <a href="java_util.html#type-Collection">java_util.Collection</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:StandardJavaFileManager) <font color="#cc0033">setPathFactory</font>*(p0 : <a href="#type-StandardJavaFileManager$PathFactory">StandardJavaFileManager$PathFactory</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-StandardJavaFileManager$PathFactory"></a>
+<b>PROCEDURE </b>(self:StandardJavaFileManager$PathFactory) <font color="#cc0033">getPath</font>*(    p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                              IN  p1 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_nio_file.html#type-Path">java_nio_file.Path</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-StandardLocation"></a>
+<b>PROCEDURE </b>(self:StandardLocation) <font color="#cc0033">getName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:StandardLocation) <font color="#cc0033">isModuleOrientedLocation</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:StandardLocation) <font color="#cc0033">isOutputLocation</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-Tool"></a>
+<b>PROCEDURE </b>(self:Tool) <font color="#cc0033">getSourceVersions</font>*() : <a href="java_util.html#type-Set">java_util.Set</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Tool) <font color="#cc0033">name</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Tool) <font color="#cc0033">run</font>*(    p0 : <a href="java_io.html#type-InputStream">java_io.InputStream</a>;
+                               p1 : <a href="java_io.html#type-OutputStream">java_io.OutputStream</a>;
+                               p2 : <a href="java_io.html#type-OutputStream">java_io.OutputStream</a>;
+                           IN  p3 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>) : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>END </b><font color="#cc0033">javax_tools</font>.
+</font></pre></hr>
+<!-- BEGIN JavaScript -->
+<script>
+function toggle(node) {
+    node.classList.toggle("show"); 
+  }
+
+function cls(node) {
+    var prnt = node.parentNode;
+    var next = prnt.previousSibling;
+    var text = next.lastChild;
+    text.innerHTML = 
+        "The <b>class</b> property asserts that this type will be<br>" +
+        "implemented as a reference class in the underlying framework.";
+    text.classList.toggle("show");
+  }
+
+function newOk(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>has noArg-ctor</b> property asserts that this reference<br>" +
+        "class has a no-arg constructor, and thus objects of this<br>" +
+        "type can be allocated with NEW(). Component Pascal types<br>" +
+        "derived from this type can also be allocated using NEW().";
+    popuptext.classList.toggle("show"); 
+  }
+
+function noNew(node) { 
+    var prnt = node.parentNode; 
+    var next = prnt.previousSibling; 
+    var text = next.lastChild; 
+    text.innerHTML =  
+        "The <b>no noArg-ctor</b> property asserts that this reference<br>" +
+        "class does not have a noArg constructor. Objects of this<br>" +
+        "type cannot be allocated using NEW(), and Component<br>" +
+        "Pascal types  derived from this type also cannot be<br>" +
+        "allocated using NEW().";
+    text.classList.toggle("show");
+  }
+
+function noCpy(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>no value-assign</b> property asserts that this reference<br>" + 
+        "class does not have a value copy method. Therefore, it<br>" +
+        "is not possible to perform value assignments using<br>" +
+        "statements like <i>dst^</i> := <i>src^</i>";
+    popuptext.classList.toggle("show");
+  }
+
+function valueclass(node) { 
+        var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>valueclass</b> property asserts that this RECORD type is<br>" + 
+        "implemented as a value class in the CLR. It follows that<br>" +  
+        "value assignments can be made of these types. They can<br>" + 
+        "also be passed by value. Even pointers to records of<br>" + 
+        "such types may be dereferenced and copied using syntax<br>" + 
+        "such as  <i>dst^</i> := <i>src^</i>"; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+function argCtor(node) { 
+    var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>has arg-ctor</b> property asserts that this reference<br>" +  
+        "class has one or more constructors that take arguments.<br>" + 
+        "These constructors can be called from Component Pascal<br>" + 
+        "by calling an <i>init</i>(...) method from the static list<br>" + 
+        "here. Component Pascal types derived from this type<br>" + 
+        "can define constructors with arguments which call the<br>" + 
+        "super-type constructor.<br>" + 
+        "See <i>'Interfacing to constructors'</i> in the Release Notes."; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+</script>
+<!-- END JavaScript --> 
+
+</body></html>

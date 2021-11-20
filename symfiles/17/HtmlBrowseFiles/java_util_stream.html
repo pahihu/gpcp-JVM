@@ -1,0 +1,1009 @@
+<html><head><title>java_util_stream</title>
+<style>
+<!-- BEGIN Inline CSS -->
+/* Popup container */
+.popup {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+/* The actual popup (appears on top) */
+.popup .popuptext {
+    visibility: hidden;
+    width: 430px;
+    background-color: white;
+    color: black;
+    text-align: left;
+    border-radius: 6px;
+    border-style: solid;
+    border-color: black;
+    padding: 8px 8px 8px 8px;
+    position: absolute;
+    z-index: 1;
+    margin-top: 30px;
+}
+
+/* Toggle this class when clicking on the popup container (hide and show the popup) */
+.popup .show {
+    visibility: visible;
+    opacity: 1;
+}
+
+</style>
+<!-- END Inline CSS -->
+</head><body bgcolor="white">
+<hr><pre>
+<font color="green">(*</font>
+<font color="green"> *  Creator PeToCps j2cps version 1.4.07 (March 2018)</font>
+<font color="green"> *  Compiled from jar-file /Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home/jmods/java.base.jmod</font>
+<font color="green"> *)</font>
+<b>FOREIGN MODULE </b><font color="#cc0033">java_util_stream</font>;
+
+<b>IMPORT</b>
+    <a href="java_lang.html">java_lang</a> := "java.lang",
+    <a href="java_util.html">java_util</a> := "java.util",
+    <a href="java_util.html">java_util</a> := "java.util",
+    <a href="java_util_function.html">java_util_function</a> := "java.util.function",
+    <a href="java_util_stream.html">java_util_stream</a> := "java.util.stream";
+
+<b>TYPE</b>
+
+  <a name="type-BaseStream"></a><font color="#cc0033">BaseStream</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_lang.html#type-AutoCloseable">java_lang.AutoCloseable</a>)
+                <font color="green"><b> (* </b><a href="#meths-BaseStream">Typebound Procedures</a><b> *)</b></font>
+                <b>END</b>;
+
+  <a name="type-Collector"></a><font color="#cc0033">Collector</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+               <font color="green"><b> (* </b><a href="#meths-Collector">Typebound Procedures</a><b> *)</b></font>
+               <b>STATIC</b>
+                 <b>PROCEDURE </b><font color="#cc0033">of</font>*(    p0 : <a href="java_util_function.html#type-Supplier">java_util_function.Supplier</a>;
+                                   p1 : <a href="java_util_function.html#type-BiConsumer">java_util_function.BiConsumer</a>;
+                                   p2 : <a href="java_util_function.html#type-BinaryOperator">java_util_function.BinaryOperator</a>;
+                                   p3 : <a href="java_util_function.html#type-Function">java_util_function.Function</a>;
+                               IN  p4 : <b>ARRAY </b><b>OF </b><a href="java_util_stream.html#type-Collector$Characteristics">java_util_stream.Collector$Characteristics</a>) : <a href="#type-Collector">Collector</a>;
+                 <b>PROCEDURE </b><font color="#cc0033">of</font>*(    p0 : <a href="java_util_function.html#type-Supplier">java_util_function.Supplier</a>;
+                                   p1 : <a href="java_util_function.html#type-BiConsumer">java_util_function.BiConsumer</a>;
+                                   p2 : <a href="java_util_function.html#type-BinaryOperator">java_util_function.BinaryOperator</a>;
+                               IN  p3 : <b>ARRAY </b><b>OF </b><a href="java_util_stream.html#type-Collector$Characteristics">java_util_stream.Collector$Characteristics</a>) : <a href="#type-Collector">Collector</a>;
+               <b>END</b>;
+
+  <a name="type-Collector$Characteristics"></a><font color="#cc0033">Collector$Characteristics</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Enum">java_lang.Enum</a>)
+                               <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> *)</font>
+                               <b>STATIC</b>
+                                 <a name="type-CONCURRENT"></a><font color="#cc0033">CONCURRENT</font>*      : <a href="#type-Collector$Characteristics">Collector$Characteristics</a>;
+                                 <a name="type-IDENTITY_FINISH"></a><font color="#cc0033">IDENTITY_FINISH</font>* : <a href="#type-Collector$Characteristics">Collector$Characteristics</a>;
+                                 <a name="type-UNORDERED"></a><font color="#cc0033">UNORDERED</font>*       : <a href="#type-Collector$Characteristics">Collector$Characteristics</a>;
+                                 <b>PROCEDURE </b><font color="#cc0033">valueOf</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-Collector$Characteristics">Collector$Characteristics</a>;
+                                 <b>PROCEDURE </b><font color="#cc0033">values</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-Collector$Characteristics">Collector$Characteristics</a>;
+                               <b>END</b>;
+
+  <a name="type-Collectors"></a><font color="#cc0033">Collectors</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> *)</font>
+                <b>STATIC</b>
+                  <b>PROCEDURE </b><font color="#cc0033">averagingDouble</font>*(p0 : <a href="java_util_function.html#type-ToDoubleFunction">java_util_function.ToDoubleFunction</a>) : <a href="#type-Collector">Collector</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">averagingInt</font>*(p0 : <a href="java_util_function.html#type-ToIntFunction">java_util_function.ToIntFunction</a>) : <a href="#type-Collector">Collector</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">averagingLong</font>*(p0 : <a href="java_util_function.html#type-ToLongFunction">java_util_function.ToLongFunction</a>) : <a href="#type-Collector">Collector</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">collectingAndThen</font>*(p0 : <a href="#type-Collector">Collector</a>;
+                                               p1 : <a href="java_util_function.html#type-Function">java_util_function.Function</a>) : <a href="#type-Collector">Collector</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">counting</font>*() : <a href="#type-Collector">Collector</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">filtering</font>*(p0 : <a href="java_util_function.html#type-Predicate">java_util_function.Predicate</a>;
+                                       p1 : <a href="#type-Collector">Collector</a>) : <a href="#type-Collector">Collector</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">flatMapping</font>*(p0 : <a href="java_util_function.html#type-Function">java_util_function.Function</a>;
+                                         p1 : <a href="#type-Collector">Collector</a>) : <a href="#type-Collector">Collector</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">groupingBy</font>*(p0 : <a href="java_util_function.html#type-Function">java_util_function.Function</a>;
+                                        p1 : <a href="java_util_function.html#type-Supplier">java_util_function.Supplier</a>;
+                                        p2 : <a href="#type-Collector">Collector</a>) : <a href="#type-Collector">Collector</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">groupingBy</font>*(p0 : <a href="java_util_function.html#type-Function">java_util_function.Function</a>) : <a href="#type-Collector">Collector</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">groupingBy</font>*(p0 : <a href="java_util_function.html#type-Function">java_util_function.Function</a>;
+                                        p1 : <a href="#type-Collector">Collector</a>) : <a href="#type-Collector">Collector</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">groupingByConcurrent</font>*(p0 : <a href="java_util_function.html#type-Function">java_util_function.Function</a>;
+                                                  p1 : <a href="#type-Collector">Collector</a>) : <a href="#type-Collector">Collector</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">groupingByConcurrent</font>*(p0 : <a href="java_util_function.html#type-Function">java_util_function.Function</a>;
+                                                  p1 : <a href="java_util_function.html#type-Supplier">java_util_function.Supplier</a>;
+                                                  p2 : <a href="#type-Collector">Collector</a>) : <a href="#type-Collector">Collector</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">groupingByConcurrent</font>*(p0 : <a href="java_util_function.html#type-Function">java_util_function.Function</a>) : <a href="#type-Collector">Collector</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">joining</font>*(p0 : <a href="java_lang.html#type-CharSequence">java_lang.CharSequence</a>;
+                                     p1 : <a href="java_lang.html#type-CharSequence">java_lang.CharSequence</a>;
+                                     p2 : <a href="java_lang.html#type-CharSequence">java_lang.CharSequence</a>) : <a href="#type-Collector">Collector</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">joining</font>*(p0 : <a href="java_lang.html#type-CharSequence">java_lang.CharSequence</a>) : <a href="#type-Collector">Collector</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">joining</font>*() : <a href="#type-Collector">Collector</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">mapping</font>*(p0 : <a href="java_util_function.html#type-Function">java_util_function.Function</a>;
+                                     p1 : <a href="#type-Collector">Collector</a>) : <a href="#type-Collector">Collector</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">maxBy</font>*(p0 : <a href="java_util.html#type-Comparator">java_util.Comparator</a>) : <a href="#type-Collector">Collector</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">minBy</font>*(p0 : <a href="java_util.html#type-Comparator">java_util.Comparator</a>) : <a href="#type-Collector">Collector</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">partitioningBy</font>*(p0 : <a href="java_util_function.html#type-Predicate">java_util_function.Predicate</a>;
+                                            p1 : <a href="#type-Collector">Collector</a>) : <a href="#type-Collector">Collector</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">partitioningBy</font>*(p0 : <a href="java_util_function.html#type-Predicate">java_util_function.Predicate</a>) : <a href="#type-Collector">Collector</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">reducing</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                      p1 : <a href="java_util_function.html#type-Function">java_util_function.Function</a>;
+                                      p2 : <a href="java_util_function.html#type-BinaryOperator">java_util_function.BinaryOperator</a>) : <a href="#type-Collector">Collector</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">reducing</font>*(p0 : <a href="java_util_function.html#type-BinaryOperator">java_util_function.BinaryOperator</a>) : <a href="#type-Collector">Collector</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">reducing</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                      p1 : <a href="java_util_function.html#type-BinaryOperator">java_util_function.BinaryOperator</a>) : <a href="#type-Collector">Collector</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">summarizingDouble</font>*(p0 : <a href="java_util_function.html#type-ToDoubleFunction">java_util_function.ToDoubleFunction</a>) : <a href="#type-Collector">Collector</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">summarizingInt</font>*(p0 : <a href="java_util_function.html#type-ToIntFunction">java_util_function.ToIntFunction</a>) : <a href="#type-Collector">Collector</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">summarizingLong</font>*(p0 : <a href="java_util_function.html#type-ToLongFunction">java_util_function.ToLongFunction</a>) : <a href="#type-Collector">Collector</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">summingDouble</font>*(p0 : <a href="java_util_function.html#type-ToDoubleFunction">java_util_function.ToDoubleFunction</a>) : <a href="#type-Collector">Collector</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">summingInt</font>*(p0 : <a href="java_util_function.html#type-ToIntFunction">java_util_function.ToIntFunction</a>) : <a href="#type-Collector">Collector</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">summingLong</font>*(p0 : <a href="java_util_function.html#type-ToLongFunction">java_util_function.ToLongFunction</a>) : <a href="#type-Collector">Collector</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">teeing</font>*(p0 : <a href="#type-Collector">Collector</a>;
+                                    p1 : <a href="#type-Collector">Collector</a>;
+                                    p2 : <a href="java_util_function.html#type-BiFunction">java_util_function.BiFunction</a>) : <a href="#type-Collector">Collector</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">toCollection</font>*(p0 : <a href="java_util_function.html#type-Supplier">java_util_function.Supplier</a>) : <a href="#type-Collector">Collector</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">toConcurrentMap</font>*(p0 : <a href="java_util_function.html#type-Function">java_util_function.Function</a>;
+                                             p1 : <a href="java_util_function.html#type-Function">java_util_function.Function</a>;
+                                             p2 : <a href="java_util_function.html#type-BinaryOperator">java_util_function.BinaryOperator</a>) : <a href="#type-Collector">Collector</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">toConcurrentMap</font>*(p0 : <a href="java_util_function.html#type-Function">java_util_function.Function</a>;
+                                             p1 : <a href="java_util_function.html#type-Function">java_util_function.Function</a>) : <a href="#type-Collector">Collector</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">toConcurrentMap</font>*(p0 : <a href="java_util_function.html#type-Function">java_util_function.Function</a>;
+                                             p1 : <a href="java_util_function.html#type-Function">java_util_function.Function</a>;
+                                             p2 : <a href="java_util_function.html#type-BinaryOperator">java_util_function.BinaryOperator</a>;
+                                             p3 : <a href="java_util_function.html#type-Supplier">java_util_function.Supplier</a>) : <a href="#type-Collector">Collector</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">toList</font>*() : <a href="#type-Collector">Collector</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">toMap</font>*(p0 : <a href="java_util_function.html#type-Function">java_util_function.Function</a>;
+                                   p1 : <a href="java_util_function.html#type-Function">java_util_function.Function</a>;
+                                   p2 : <a href="java_util_function.html#type-BinaryOperator">java_util_function.BinaryOperator</a>;
+                                   p3 : <a href="java_util_function.html#type-Supplier">java_util_function.Supplier</a>) : <a href="#type-Collector">Collector</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">toMap</font>*(p0 : <a href="java_util_function.html#type-Function">java_util_function.Function</a>;
+                                   p1 : <a href="java_util_function.html#type-Function">java_util_function.Function</a>) : <a href="#type-Collector">Collector</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">toMap</font>*(p0 : <a href="java_util_function.html#type-Function">java_util_function.Function</a>;
+                                   p1 : <a href="java_util_function.html#type-Function">java_util_function.Function</a>;
+                                   p2 : <a href="java_util_function.html#type-BinaryOperator">java_util_function.BinaryOperator</a>) : <a href="#type-Collector">Collector</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">toSet</font>*() : <a href="#type-Collector">Collector</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">toUnmodifiableList</font>*() : <a href="#type-Collector">Collector</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">toUnmodifiableMap</font>*(p0 : <a href="java_util_function.html#type-Function">java_util_function.Function</a>;
+                                               p1 : <a href="java_util_function.html#type-Function">java_util_function.Function</a>) : <a href="#type-Collector">Collector</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">toUnmodifiableMap</font>*(p0 : <a href="java_util_function.html#type-Function">java_util_function.Function</a>;
+                                               p1 : <a href="java_util_function.html#type-Function">java_util_function.Function</a>;
+                                               p2 : <a href="java_util_function.html#type-BinaryOperator">java_util_function.BinaryOperator</a>) : <a href="#type-Collector">Collector</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">toUnmodifiableSet</font>*() : <a href="#type-Collector">Collector</a>;
+                <b>END</b>;
+
+  <a name="type-DoubleStream"></a><font color="#cc0033">DoubleStream</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_util_stream.html#type-BaseStream">java_util_stream.BaseStream</a>)
+                  <font color="green"><b> (* </b><a href="#meths-DoubleStream">Typebound Procedures</a><b> *)</b></font>
+                  <b>STATIC</b>
+                    <b>PROCEDURE </b><font color="#cc0033">builder</font>*() : <a href="java_util_stream.html#type-DoubleStream$Builder">java_util_stream.DoubleStream$Builder</a>;
+                    <b>PROCEDURE </b><font color="#cc0033">concat</font>*(p0 : <a href="#type-DoubleStream">DoubleStream</a>;
+                                      p1 : <a href="#type-DoubleStream">DoubleStream</a>) : <a href="#type-DoubleStream">DoubleStream</a>;
+                    <b>PROCEDURE </b><font color="#cc0033">empty</font>*() : <a href="#type-DoubleStream">DoubleStream</a>;
+                    <b>PROCEDURE </b><font color="#cc0033">generate</font>*(p0 : <a href="java_util_function.html#type-DoubleSupplier">java_util_function.DoubleSupplier</a>) : <a href="#type-DoubleStream">DoubleStream</a>;
+                    <b>PROCEDURE </b><font color="#cc0033">iterate</font>*(p0 : REAL;
+                                       p1 : <a href="java_util_function.html#type-DoublePredicate">java_util_function.DoublePredicate</a>;
+                                       p2 : <a href="java_util_function.html#type-DoubleUnaryOperator">java_util_function.DoubleUnaryOperator</a>) : <a href="#type-DoubleStream">DoubleStream</a>;
+                    <b>PROCEDURE </b><font color="#cc0033">iterate</font>*(p0 : REAL;
+                                       p1 : <a href="java_util_function.html#type-DoubleUnaryOperator">java_util_function.DoubleUnaryOperator</a>) : <a href="#type-DoubleStream">DoubleStream</a>;
+                    <b>PROCEDURE </b><font color="#cc0033">of</font>*(p0 : REAL) : <a href="#type-DoubleStream">DoubleStream</a>;
+                    <b>PROCEDURE </b><font color="#cc0033">of</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>REAL) : <a href="#type-DoubleStream">DoubleStream</a>;
+                  <b>END</b>;
+
+  <a name="type-DoubleStream$Builder"></a><font color="#cc0033">DoubleStream$Builder</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_util_function.html#type-DoubleConsumer">java_util_function.DoubleConsumer</a>)
+                          <font color="green"><b> (* </b><a href="#meths-DoubleStream$Builder">Typebound Procedures</a><b> *)</b></font>
+                          <b>END</b>;
+
+  <a name="type-DoubleStream$DoubleMapMultiConsumer"></a><font color="#cc0033">DoubleStream$DoubleMapMultiConsumer</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                                         <font color="green"><b> (* </b><a href="#meths-DoubleStream$DoubleMapMultiConsumer">Typebound Procedures</a><b> *)</b></font>
+                                         <b>END</b>;
+
+  <a name="type-IntStream"></a><font color="#cc0033">IntStream</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-BaseStream">BaseStream</a>)
+               <font color="green"><b> (* </b><a href="#meths-IntStream">Typebound Procedures</a><b> *)</b></font>
+               <b>STATIC</b>
+                 <b>PROCEDURE </b><font color="#cc0033">builder</font>*() : <a href="#type-IntStream$Builder">IntStream$Builder</a>;
+                 <b>PROCEDURE </b><font color="#cc0033">concat</font>*(p0 : <a href="#type-IntStream">IntStream</a>;
+                                   p1 : <a href="#type-IntStream">IntStream</a>) : <a href="#type-IntStream">IntStream</a>;
+                 <b>PROCEDURE </b><font color="#cc0033">empty</font>*() : <a href="#type-IntStream">IntStream</a>;
+                 <b>PROCEDURE </b><font color="#cc0033">generate</font>*(p0 : <a href="java_util_function.html#type-IntSupplier">java_util_function.IntSupplier</a>) : <a href="#type-IntStream">IntStream</a>;
+                 <b>PROCEDURE </b><font color="#cc0033">iterate</font>*(p0 : INTEGER;
+                                    p1 : <a href="java_util_function.html#type-IntPredicate">java_util_function.IntPredicate</a>;
+                                    p2 : <a href="java_util_function.html#type-IntUnaryOperator">java_util_function.IntUnaryOperator</a>) : <a href="#type-IntStream">IntStream</a>;
+                 <b>PROCEDURE </b><font color="#cc0033">iterate</font>*(p0 : INTEGER;
+                                    p1 : <a href="java_util_function.html#type-IntUnaryOperator">java_util_function.IntUnaryOperator</a>) : <a href="#type-IntStream">IntStream</a>;
+                 <b>PROCEDURE </b><font color="#cc0033">of</font>*(p0 : INTEGER) : <a href="#type-IntStream">IntStream</a>;
+                 <b>PROCEDURE </b><font color="#cc0033">of</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>INTEGER) : <a href="#type-IntStream">IntStream</a>;
+                 <b>PROCEDURE </b><font color="#cc0033">range</font>*(p0 : INTEGER;
+                                  p1 : INTEGER) : <a href="#type-IntStream">IntStream</a>;
+                 <b>PROCEDURE </b><font color="#cc0033">rangeClosed</font>*(p0 : INTEGER;
+                                        p1 : INTEGER) : <a href="#type-IntStream">IntStream</a>;
+               <b>END</b>;
+
+  <a name="type-IntStream$Builder"></a><font color="#cc0033">IntStream$Builder</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_util_function.html#type-IntConsumer">java_util_function.IntConsumer</a>)
+                       <font color="green"><b> (* </b><a href="#meths-IntStream$Builder">Typebound Procedures</a><b> *)</b></font>
+                       <b>END</b>;
+
+  <a name="type-IntStream$IntMapMultiConsumer"></a><font color="#cc0033">IntStream$IntMapMultiConsumer</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                                   <font color="green"><b> (* </b><a href="#meths-IntStream$IntMapMultiConsumer">Typebound Procedures</a><b> *)</b></font>
+                                   <b>END</b>;
+
+  <a name="type-LongStream"></a><font color="#cc0033">LongStream</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-BaseStream">BaseStream</a>)
+                <font color="green"><b> (* </b><a href="#meths-LongStream">Typebound Procedures</a><b> *)</b></font>
+                <b>STATIC</b>
+                  <b>PROCEDURE </b><font color="#cc0033">builder</font>*() : <a href="#type-LongStream$Builder">LongStream$Builder</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">concat</font>*(p0 : <a href="#type-LongStream">LongStream</a>;
+                                    p1 : <a href="#type-LongStream">LongStream</a>) : <a href="#type-LongStream">LongStream</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">empty</font>*() : <a href="#type-LongStream">LongStream</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">generate</font>*(p0 : <a href="java_util_function.html#type-LongSupplier">java_util_function.LongSupplier</a>) : <a href="#type-LongStream">LongStream</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">iterate</font>*(p0 : LONGINT;
+                                     p1 : <a href="java_util_function.html#type-LongPredicate">java_util_function.LongPredicate</a>;
+                                     p2 : <a href="java_util_function.html#type-LongUnaryOperator">java_util_function.LongUnaryOperator</a>) : <a href="#type-LongStream">LongStream</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">iterate</font>*(p0 : LONGINT;
+                                     p1 : <a href="java_util_function.html#type-LongUnaryOperator">java_util_function.LongUnaryOperator</a>) : <a href="#type-LongStream">LongStream</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">of</font>*(p0 : LONGINT) : <a href="#type-LongStream">LongStream</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">of</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>LONGINT) : <a href="#type-LongStream">LongStream</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">range</font>*(p0 : LONGINT;
+                                   p1 : LONGINT) : <a href="#type-LongStream">LongStream</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">rangeClosed</font>*(p0 : LONGINT;
+                                         p1 : LONGINT) : <a href="#type-LongStream">LongStream</a>;
+                <b>END</b>;
+
+  <a name="type-LongStream$Builder"></a><font color="#cc0033">LongStream$Builder</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_util_function.html#type-LongConsumer">java_util_function.LongConsumer</a>)
+                        <font color="green"><b> (* </b><a href="#meths-LongStream$Builder">Typebound Procedures</a><b> *)</b></font>
+                        <b>END</b>;
+
+  <a name="type-LongStream$LongMapMultiConsumer"></a><font color="#cc0033">LongStream$LongMapMultiConsumer</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                                     <font color="green"><b> (* </b><a href="#meths-LongStream$LongMapMultiConsumer">Typebound Procedures</a><b> *)</b></font>
+                                     <b>END</b>;
+
+  <a name="type-Node$Builder"></a><font color="#cc0033">Node$Builder</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_util_stream.html#type-Sink">java_util_stream.Sink</a>)
+                  <font color="green"><b> (* </b><a href="#meths-Node$Builder">Typebound Procedures</a><b> *)</b></font>
+                  <b>END</b>;
+
+  <a name="type-Node$Builder$OfDouble"></a><font color="#cc0033">Node$Builder$OfDouble</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-Node$Builder">Node$Builder</a> + <a href="java_util_stream.html#type-Sink$OfDouble">java_util_stream.Sink$OfDouble</a>)
+                           <font color="green"><b> (* </b><a href="#meths-Node$Builder$OfDouble">Typebound Procedures</a><b> *)</b></font>
+                           <b>END</b>;
+
+  <a name="type-Node$Builder$OfInt"></a><font color="#cc0033">Node$Builder$OfInt</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-Node$Builder">Node$Builder</a> + <a href="java_util_stream.html#type-Sink$OfInt">java_util_stream.Sink$OfInt</a>)
+                        <font color="green"><b> (* </b><a href="#meths-Node$Builder$OfInt">Typebound Procedures</a><b> *)</b></font>
+                        <b>END</b>;
+
+  <a name="type-Node$Builder$OfLong"></a><font color="#cc0033">Node$Builder$OfLong</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_util_stream.html#type-Node$Builder">java_util_stream.Node$Builder</a> + <a href="java_util_stream.html#type-Sink$OfLong">java_util_stream.Sink$OfLong</a>)
+                         <font color="green"><b> (* </b><a href="#meths-Node$Builder$OfLong">Typebound Procedures</a><b> *)</b></font>
+                         <b>END</b>;
+
+  <a name="type-Node$OfDouble"></a><font color="#cc0033">Node$OfDouble</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-Node$OfPrimitive">Node$OfPrimitive</a>)
+                   <font color="green"><b> (* </b><a href="#meths-Node$OfDouble">Typebound Procedures</a><b> *)</b></font>
+                   <b>END</b>;
+
+  <a name="type-Node$OfInt"></a><font color="#cc0033">Node$OfInt</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-Node$OfPrimitive">Node$OfPrimitive</a>)
+                <font color="green"><b> (* </b><a href="#meths-Node$OfInt">Typebound Procedures</a><b> *)</b></font>
+                <b>END</b>;
+
+  <a name="type-Node$OfLong"></a><font color="#cc0033">Node$OfLong</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-Node$OfPrimitive">Node$OfPrimitive</a>)
+                 <font color="green"><b> (* </b><a href="#meths-Node$OfLong">Typebound Procedures</a><b> *)</b></font>
+                 <b>END</b>;
+
+  <a name="type-Node$OfPrimitive"></a><font color="#cc0033">Node$OfPrimitive</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_util_stream.html#type-Node">java_util_stream.Node</a>)
+                      <font color="green"><b> (* </b><a href="#meths-Node$OfPrimitive">Typebound Procedures</a><b> *)</b></font>
+                      <b>END</b>;
+
+  <a name="type-Sink$ChainedDouble"></a><font color="#cc0033">Sink$ChainedDouble</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-Sink$OfDouble">Sink$OfDouble</a>)
+                        <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                        <font color="green"><b> (* </b><a href="#meths-Sink$ChainedDouble">Typebound Procedures</a><b> *)</b></font>
+                          <font color="#cc0033">downstream</font>! : <a href="java_util_stream.html#type-Sink">java_util_stream.Sink</a>;
+                        <b>STATIC</b>
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_util_stream.html#type-Sink">java_util_stream.Sink</a>) : <a href="#type-Sink$ChainedDouble">Sink$ChainedDouble</a><b>,CONSTRUCTOR</b>;
+                        <b>END</b>;
+
+  <a name="type-Sink$ChainedInt"></a><font color="#cc0033">Sink$ChainedInt</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_util_stream.html#type-Sink$OfInt">java_util_stream.Sink$OfInt</a>)
+                     <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                     <font color="green"><b> (* </b><a href="#meths-Sink$ChainedInt">Typebound Procedures</a><b> *)</b></font>
+                       <font color="#cc0033">downstream</font>! : <a href="java_util_stream.html#type-Sink">java_util_stream.Sink</a>;
+                     <b>STATIC</b>
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_util_stream.html#type-Sink">java_util_stream.Sink</a>) : <a href="#type-Sink$ChainedInt">Sink$ChainedInt</a><b>,CONSTRUCTOR</b>;
+                     <b>END</b>;
+
+  <a name="type-Sink$ChainedLong"></a><font color="#cc0033">Sink$ChainedLong</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-Sink$OfLong">Sink$OfLong</a>)
+                      <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                      <font color="green"><b> (* </b><a href="#meths-Sink$ChainedLong">Typebound Procedures</a><b> *)</b></font>
+                        <font color="#cc0033">downstream</font>! : <a href="java_util_stream.html#type-Sink">java_util_stream.Sink</a>;
+                      <b>STATIC</b>
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_util_stream.html#type-Sink">java_util_stream.Sink</a>) : <a href="#type-Sink$ChainedLong">Sink$ChainedLong</a><b>,CONSTRUCTOR</b>;
+                      <b>END</b>;
+
+  <a name="type-Sink$ChainedReference"></a><font color="#cc0033">Sink$ChainedReference</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_util_stream.html#type-Sink">java_util_stream.Sink</a>)
+                           <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                           <font color="green"><b> (* </b><a href="#meths-Sink$ChainedReference">Typebound Procedures</a><b> *)</b></font>
+                             <font color="#cc0033">downstream</font>! : <a href="java_util_stream.html#type-Sink">java_util_stream.Sink</a>;
+                           <b>STATIC</b>
+                             <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_util_stream.html#type-Sink">java_util_stream.Sink</a>) : <a href="#type-Sink$ChainedReference">Sink$ChainedReference</a><b>,CONSTRUCTOR</b>;
+                           <b>END</b>;
+
+  <a name="type-Sink$OfDouble"></a><font color="#cc0033">Sink$OfDouble</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_util_stream.html#type-Sink">java_util_stream.Sink</a> + <a href="java_util_function.html#type-DoubleConsumer">java_util_function.DoubleConsumer</a>)
+                   <font color="green"><b> (* </b><a href="#meths-Sink$OfDouble">Typebound Procedures</a><b> *)</b></font>
+                   <b>END</b>;
+
+  <a name="type-Sink$OfInt"></a><font color="#cc0033">Sink$OfInt</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_util_stream.html#type-Sink">java_util_stream.Sink</a> + <a href="java_util_function.html#type-IntConsumer">java_util_function.IntConsumer</a>)
+                <font color="green"><b> (* </b><a href="#meths-Sink$OfInt">Typebound Procedures</a><b> *)</b></font>
+                <b>END</b>;
+
+  <a name="type-Sink$OfLong"></a><font color="#cc0033">Sink$OfLong</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_util_stream.html#type-Sink">java_util_stream.Sink</a> + <a href="java_util_function.html#type-LongConsumer">java_util_function.LongConsumer</a>)
+                 <font color="green"><b> (* </b><a href="#meths-Sink$OfLong">Typebound Procedures</a><b> *)</b></font>
+                 <b>END</b>;
+
+  <a name="type-Stream"></a><font color="#cc0033">Stream</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-BaseStream">BaseStream</a>)
+            <font color="green"><b> (* </b><a href="#meths-Stream">Typebound Procedures</a><b> *)</b></font>
+            <b>STATIC</b>
+              <b>PROCEDURE </b><font color="#cc0033">builder</font>*() : <a href="java_util_stream.html#type-Stream$Builder">java_util_stream.Stream$Builder</a>;
+              <b>PROCEDURE </b><font color="#cc0033">concat</font>*(p0 : <a href="#type-Stream">Stream</a>;
+                                p1 : <a href="#type-Stream">Stream</a>) : <a href="#type-Stream">Stream</a>;
+              <b>PROCEDURE </b><font color="#cc0033">empty</font>*() : <a href="#type-Stream">Stream</a>;
+              <b>PROCEDURE </b><font color="#cc0033">generate</font>*(p0 : <a href="java_util_function.html#type-Supplier">java_util_function.Supplier</a>) : <a href="#type-Stream">Stream</a>;
+              <b>PROCEDURE </b><font color="#cc0033">iterate</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                 p1 : <a href="java_util_function.html#type-UnaryOperator">java_util_function.UnaryOperator</a>) : <a href="#type-Stream">Stream</a>;
+              <b>PROCEDURE </b><font color="#cc0033">iterate</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                 p1 : <a href="java_util_function.html#type-Predicate">java_util_function.Predicate</a>;
+                                 p2 : <a href="java_util_function.html#type-UnaryOperator">java_util_function.UnaryOperator</a>) : <a href="#type-Stream">Stream</a>;
+              <b>PROCEDURE </b><font color="#cc0033">of</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="#type-Stream">Stream</a>;
+              <b>PROCEDURE </b><font color="#cc0033">of</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="#type-Stream">Stream</a>;
+              <b>PROCEDURE </b><font color="#cc0033">ofNullable</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="#type-Stream">Stream</a>;
+            <b>END</b>;
+
+  <a name="type-Stream$Builder"></a><font color="#cc0033">Stream$Builder</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_util_function.html#type-Consumer">java_util_function.Consumer</a>)
+                    <font color="green"><b> (* </b><a href="#meths-Stream$Builder">Typebound Procedures</a><b> *)</b></font>
+                    <b>END</b>;
+
+  <a name="type-StreamSupport"></a><font color="#cc0033">StreamSupport</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                   <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> *)</font>
+                   <b>STATIC</b>
+                     <b>PROCEDURE </b><font color="#cc0033">doubleStream</font>*(p0 : <a href="java_util.html#type-Spliterator$OfDouble">java_util.Spliterator$OfDouble</a>;
+                                             p1 : BOOLEAN) : <a href="#type-DoubleStream">DoubleStream</a>;
+                     <b>PROCEDURE </b><font color="#cc0033">doubleStream</font>*(p0 : <a href="java_util_function.html#type-Supplier">java_util_function.Supplier</a>;
+                                             p1 : INTEGER;
+                                             p2 : BOOLEAN) : <a href="#type-DoubleStream">DoubleStream</a>;
+                     <b>PROCEDURE </b><font color="#cc0033">intStream</font>*(p0 : <a href="java_util_function.html#type-Supplier">java_util_function.Supplier</a>;
+                                          p1 : INTEGER;
+                                          p2 : BOOLEAN) : <a href="#type-IntStream">IntStream</a>;
+                     <b>PROCEDURE </b><font color="#cc0033">intStream</font>*(p0 : <a href="java_util.html#type-Spliterator$OfInt">java_util.Spliterator$OfInt</a>;
+                                          p1 : BOOLEAN) : <a href="#type-IntStream">IntStream</a>;
+                     <b>PROCEDURE </b><font color="#cc0033">longStream</font>*(p0 : <a href="java_util_function.html#type-Supplier">java_util_function.Supplier</a>;
+                                           p1 : INTEGER;
+                                           p2 : BOOLEAN) : <a href="#type-LongStream">LongStream</a>;
+                     <b>PROCEDURE </b><font color="#cc0033">longStream</font>*(p0 : <a href="java_util.html#type-Spliterator$OfLong">java_util.Spliterator$OfLong</a>;
+                                           p1 : BOOLEAN) : <a href="#type-LongStream">LongStream</a>;
+                     <b>PROCEDURE </b><font color="#cc0033">stream</font>*(p0 : <a href="java_util.html#type-Spliterator">java_util.Spliterator</a>;
+                                       p1 : BOOLEAN) : <a href="#type-Stream">Stream</a>;
+                     <b>PROCEDURE </b><font color="#cc0033">stream</font>*(p0 : <a href="java_util_function.html#type-Supplier">java_util_function.Supplier</a>;
+                                       p1 : INTEGER;
+                                       p2 : BOOLEAN) : <a href="#type-Stream">Stream</a>;
+                   <b>END</b>;
+
+
+
+<a name="meths-BaseStream"></a>
+<b>PROCEDURE </b>(self:BaseStream) <font color="#cc0033">close</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:BaseStream) <font color="#cc0033">isParallel</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:BaseStream) <font color="#cc0033">iterator</font>*() : <a href="java_util.html#type-Iterator">java_util.Iterator</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:BaseStream) <font color="#cc0033">onClose</font>*(p0 : <a href="java_lang.html#type-Runnable">java_lang.Runnable</a>) : <a href="#type-BaseStream">BaseStream</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:BaseStream) <font color="#cc0033">parallel</font>*() : <a href="#type-BaseStream">BaseStream</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:BaseStream) <font color="#cc0033">sequential</font>*() : <a href="#type-BaseStream">BaseStream</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:BaseStream) <font color="#cc0033">spliterator</font>*() : <a href="java_util.html#type-Spliterator">java_util.Spliterator</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:BaseStream) <font color="#cc0033">unordered</font>*() : <a href="#type-BaseStream">BaseStream</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-Collector"></a>
+<b>PROCEDURE </b>(self:Collector) <font color="#cc0033">accumulator</font>*() : <a href="java_util_function.html#type-BiConsumer">java_util_function.BiConsumer</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Collector) <font color="#cc0033">characteristics</font>*() : <a href="java_util.html#type-Set">java_util.Set</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Collector) <font color="#cc0033">combiner</font>*() : <a href="java_util_function.html#type-BinaryOperator">java_util_function.BinaryOperator</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Collector) <font color="#cc0033">finisher</font>*() : <a href="java_util_function.html#type-Function">java_util_function.Function</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Collector) <font color="#cc0033">supplier</font>*() : <a href="java_util_function.html#type-Supplier">java_util_function.Supplier</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-DoubleStream"></a>
+<b>PROCEDURE </b>(self:DoubleStream) <font color="#cc0033">allMatch</font>*(p0 : <a href="java_util_function.html#type-DoublePredicate">java_util_function.DoublePredicate</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DoubleStream) <font color="#cc0033">anyMatch</font>*(p0 : <a href="java_util_function.html#type-DoublePredicate">java_util_function.DoublePredicate</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DoubleStream) <font color="#cc0033">average</font>*() : <a href="java_util.html#type-OptionalDouble">java_util.OptionalDouble</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DoubleStream) <font color="#cc0033">boxed</font>*() : <a href="java_util_stream.html#type-Stream">java_util_stream.Stream</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DoubleStream) <font color="#cc0033">collect</font>*(p0 : <a href="java_util_function.html#type-Supplier">java_util_function.Supplier</a>;
+                                       p1 : <a href="java_util_function.html#type-ObjDoubleConsumer">java_util_function.ObjDoubleConsumer</a>;
+                                       p2 : <a href="java_util_function.html#type-BiConsumer">java_util_function.BiConsumer</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DoubleStream) <font color="#cc0033">count</font>*() : LONGINT<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DoubleStream) <font color="#cc0033">distinct</font>*() : <a href="#type-DoubleStream">DoubleStream</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DoubleStream) <font color="#cc0033">dropWhile</font>*(p0 : <a href="java_util_function.html#type-DoublePredicate">java_util_function.DoublePredicate</a>) : <a href="#type-DoubleStream">DoubleStream</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DoubleStream) <font color="#cc0033">filter</font>*(p0 : <a href="java_util_function.html#type-DoublePredicate">java_util_function.DoublePredicate</a>) : <a href="#type-DoubleStream">DoubleStream</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DoubleStream) <font color="#cc0033">findAny</font>*() : <a href="java_util.html#type-OptionalDouble">java_util.OptionalDouble</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DoubleStream) <font color="#cc0033">findFirst</font>*() : <a href="java_util.html#type-OptionalDouble">java_util.OptionalDouble</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DoubleStream) <font color="#cc0033">flatMap</font>*(p0 : <a href="java_util_function.html#type-DoubleFunction">java_util_function.DoubleFunction</a>) : <a href="#type-DoubleStream">DoubleStream</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DoubleStream) <font color="#cc0033">forEach</font>*(p0 : <a href="java_util_function.html#type-DoubleConsumer">java_util_function.DoubleConsumer</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DoubleStream) <font color="#cc0033">forEachOrdered</font>*(p0 : <a href="java_util_function.html#type-DoubleConsumer">java_util_function.DoubleConsumer</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DoubleStream) <font color="#cc0033">iterator</font>*() : <a href="java_util.html#type-PrimitiveIterator$OfDouble">java_util.PrimitiveIterator$OfDouble</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DoubleStream) <font color="#cc0033">iterator</font>*() : <a href="java_util.html#type-Iterator">java_util.Iterator</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DoubleStream) <font color="#cc0033">limit</font>*(p0 : LONGINT) : <a href="#type-DoubleStream">DoubleStream</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DoubleStream) <font color="#cc0033">map</font>*(p0 : <a href="java_util_function.html#type-DoubleUnaryOperator">java_util_function.DoubleUnaryOperator</a>) : <a href="#type-DoubleStream">DoubleStream</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DoubleStream) <font color="#cc0033">mapMulti</font>*(p0 : <a href="java_util_stream.html#type-DoubleStream$DoubleMapMultiConsumer">java_util_stream.DoubleStream$DoubleMapMultiConsumer</a>) : <a href="#type-DoubleStream">DoubleStream</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DoubleStream) <font color="#cc0033">mapToInt</font>*(p0 : <a href="java_util_function.html#type-DoubleToIntFunction">java_util_function.DoubleToIntFunction</a>) : <a href="java_util_stream.html#type-IntStream">java_util_stream.IntStream</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DoubleStream) <font color="#cc0033">mapToLong</font>*(p0 : <a href="java_util_function.html#type-DoubleToLongFunction">java_util_function.DoubleToLongFunction</a>) : <a href="java_util_stream.html#type-LongStream">java_util_stream.LongStream</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DoubleStream) <font color="#cc0033">mapToObj</font>*(p0 : <a href="java_util_function.html#type-DoubleFunction">java_util_function.DoubleFunction</a>) : <a href="java_util_stream.html#type-Stream">java_util_stream.Stream</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DoubleStream) <font color="#cc0033">max</font>*() : <a href="java_util.html#type-OptionalDouble">java_util.OptionalDouble</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DoubleStream) <font color="#cc0033">min</font>*() : <a href="java_util.html#type-OptionalDouble">java_util.OptionalDouble</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DoubleStream) <font color="#cc0033">noneMatch</font>*(p0 : <a href="java_util_function.html#type-DoublePredicate">java_util_function.DoublePredicate</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DoubleStream) <font color="#cc0033">parallel</font>*() : <a href="java_util_stream.html#type-BaseStream">java_util_stream.BaseStream</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DoubleStream) <font color="#cc0033">parallel</font>*() : <a href="#type-DoubleStream">DoubleStream</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DoubleStream) <font color="#cc0033">peek</font>*(p0 : <a href="java_util_function.html#type-DoubleConsumer">java_util_function.DoubleConsumer</a>) : <a href="#type-DoubleStream">DoubleStream</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DoubleStream) <font color="#cc0033">reduce</font>*(p0 : <a href="java_util_function.html#type-DoubleBinaryOperator">java_util_function.DoubleBinaryOperator</a>) : <a href="java_util.html#type-OptionalDouble">java_util.OptionalDouble</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DoubleStream) <font color="#cc0033">reduce</font>*(p0 : REAL;
+                                      p1 : <a href="java_util_function.html#type-DoubleBinaryOperator">java_util_function.DoubleBinaryOperator</a>) : REAL<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DoubleStream) <font color="#cc0033">sequential</font>*() : <a href="#type-DoubleStream">DoubleStream</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DoubleStream) <font color="#cc0033">sequential</font>*() : <a href="java_util_stream.html#type-BaseStream">java_util_stream.BaseStream</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DoubleStream) <font color="#cc0033">skip</font>*(p0 : LONGINT) : <a href="#type-DoubleStream">DoubleStream</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DoubleStream) <font color="#cc0033">sorted</font>*() : <a href="#type-DoubleStream">DoubleStream</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DoubleStream) <font color="#cc0033">spliterator</font>*() : <a href="java_util.html#type-Spliterator">java_util.Spliterator</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DoubleStream) <font color="#cc0033">spliterator</font>*() : <a href="java_util.html#type-Spliterator$OfDouble">java_util.Spliterator$OfDouble</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DoubleStream) <font color="#cc0033">sum</font>*() : REAL<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DoubleStream) <font color="#cc0033">summaryStatistics</font>*() : <a href="java_util.html#type-DoubleSummaryStatistics">java_util.DoubleSummaryStatistics</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DoubleStream) <font color="#cc0033">takeWhile</font>*(p0 : <a href="java_util_function.html#type-DoublePredicate">java_util_function.DoublePredicate</a>) : <a href="#type-DoubleStream">DoubleStream</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DoubleStream) <font color="#cc0033">toArray</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>REAL<b>,NEW,ABSTRACT</b>;
+<a name="meths-DoubleStream$Builder"></a>
+<b>PROCEDURE </b>(self:DoubleStream$Builder) <font color="#cc0033">accept</font>*(p0 : REAL)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DoubleStream$Builder) <font color="#cc0033">add</font>*(p0 : REAL) : <a href="#type-DoubleStream$Builder">DoubleStream$Builder</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DoubleStream$Builder) <font color="#cc0033">build</font>*() : <a href="#type-DoubleStream">DoubleStream</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-DoubleStream$DoubleMapMultiConsumer"></a>
+<b>PROCEDURE </b>(self:DoubleStream$DoubleMapMultiConsumer) <font color="#cc0033">accept</font>*(p0 : REAL;
+                                                             p1 : <a href="java_util_function.html#type-DoubleConsumer">java_util_function.DoubleConsumer</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-IntStream"></a>
+<b>PROCEDURE </b>(self:IntStream) <font color="#cc0033">allMatch</font>*(p0 : <a href="java_util_function.html#type-IntPredicate">java_util_function.IntPredicate</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:IntStream) <font color="#cc0033">anyMatch</font>*(p0 : <a href="java_util_function.html#type-IntPredicate">java_util_function.IntPredicate</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:IntStream) <font color="#cc0033">asDoubleStream</font>*() : <a href="#type-DoubleStream">DoubleStream</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:IntStream) <font color="#cc0033">asLongStream</font>*() : <a href="#type-LongStream">LongStream</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:IntStream) <font color="#cc0033">average</font>*() : <a href="java_util.html#type-OptionalDouble">java_util.OptionalDouble</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:IntStream) <font color="#cc0033">boxed</font>*() : <a href="#type-Stream">Stream</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:IntStream) <font color="#cc0033">collect</font>*(p0 : <a href="java_util_function.html#type-Supplier">java_util_function.Supplier</a>;
+                                    p1 : <a href="java_util_function.html#type-ObjIntConsumer">java_util_function.ObjIntConsumer</a>;
+                                    p2 : <a href="java_util_function.html#type-BiConsumer">java_util_function.BiConsumer</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:IntStream) <font color="#cc0033">count</font>*() : LONGINT<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:IntStream) <font color="#cc0033">distinct</font>*() : <a href="#type-IntStream">IntStream</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:IntStream) <font color="#cc0033">dropWhile</font>*(p0 : <a href="java_util_function.html#type-IntPredicate">java_util_function.IntPredicate</a>) : <a href="#type-IntStream">IntStream</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IntStream) <font color="#cc0033">filter</font>*(p0 : <a href="java_util_function.html#type-IntPredicate">java_util_function.IntPredicate</a>) : <a href="#type-IntStream">IntStream</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:IntStream) <font color="#cc0033">findAny</font>*() : <a href="java_util.html#type-OptionalInt">java_util.OptionalInt</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:IntStream) <font color="#cc0033">findFirst</font>*() : <a href="java_util.html#type-OptionalInt">java_util.OptionalInt</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:IntStream) <font color="#cc0033">flatMap</font>*(p0 : <a href="java_util_function.html#type-IntFunction">java_util_function.IntFunction</a>) : <a href="#type-IntStream">IntStream</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:IntStream) <font color="#cc0033">forEach</font>*(p0 : <a href="java_util_function.html#type-IntConsumer">java_util_function.IntConsumer</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:IntStream) <font color="#cc0033">forEachOrdered</font>*(p0 : <a href="java_util_function.html#type-IntConsumer">java_util_function.IntConsumer</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:IntStream) <font color="#cc0033">iterator</font>*() : <a href="java_util.html#type-PrimitiveIterator$OfInt">java_util.PrimitiveIterator$OfInt</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:IntStream) <font color="#cc0033">iterator</font>*() : <a href="java_util.html#type-Iterator">java_util.Iterator</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IntStream) <font color="#cc0033">limit</font>*(p0 : LONGINT) : <a href="#type-IntStream">IntStream</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:IntStream) <font color="#cc0033">map</font>*(p0 : <a href="java_util_function.html#type-IntUnaryOperator">java_util_function.IntUnaryOperator</a>) : <a href="#type-IntStream">IntStream</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:IntStream) <font color="#cc0033">mapMulti</font>*(p0 : <a href="#type-IntStream$IntMapMultiConsumer">IntStream$IntMapMultiConsumer</a>) : <a href="#type-IntStream">IntStream</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IntStream) <font color="#cc0033">mapToDouble</font>*(p0 : <a href="java_util_function.html#type-IntToDoubleFunction">java_util_function.IntToDoubleFunction</a>) : <a href="#type-DoubleStream">DoubleStream</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:IntStream) <font color="#cc0033">mapToLong</font>*(p0 : <a href="java_util_function.html#type-IntToLongFunction">java_util_function.IntToLongFunction</a>) : <a href="#type-LongStream">LongStream</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:IntStream) <font color="#cc0033">mapToObj</font>*(p0 : <a href="java_util_function.html#type-IntFunction">java_util_function.IntFunction</a>) : <a href="#type-Stream">Stream</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:IntStream) <font color="#cc0033">max</font>*() : <a href="java_util.html#type-OptionalInt">java_util.OptionalInt</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:IntStream) <font color="#cc0033">min</font>*() : <a href="java_util.html#type-OptionalInt">java_util.OptionalInt</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:IntStream) <font color="#cc0033">noneMatch</font>*(p0 : <a href="java_util_function.html#type-IntPredicate">java_util_function.IntPredicate</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:IntStream) <font color="#cc0033">parallel</font>*() : <a href="#type-IntStream">IntStream</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:IntStream) <font color="#cc0033">parallel</font>*() : <a href="#type-BaseStream">BaseStream</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IntStream) <font color="#cc0033">peek</font>*(p0 : <a href="java_util_function.html#type-IntConsumer">java_util_function.IntConsumer</a>) : <a href="#type-IntStream">IntStream</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:IntStream) <font color="#cc0033">reduce</font>*(p0 : INTEGER;
+                                   p1 : <a href="java_util_function.html#type-IntBinaryOperator">java_util_function.IntBinaryOperator</a>) : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:IntStream) <font color="#cc0033">reduce</font>*(p0 : <a href="java_util_function.html#type-IntBinaryOperator">java_util_function.IntBinaryOperator</a>) : <a href="java_util.html#type-OptionalInt">java_util.OptionalInt</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:IntStream) <font color="#cc0033">sequential</font>*() : <a href="#type-IntStream">IntStream</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:IntStream) <font color="#cc0033">sequential</font>*() : <a href="#type-BaseStream">BaseStream</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IntStream) <font color="#cc0033">skip</font>*(p0 : LONGINT) : <a href="#type-IntStream">IntStream</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:IntStream) <font color="#cc0033">sorted</font>*() : <a href="#type-IntStream">IntStream</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:IntStream) <font color="#cc0033">spliterator</font>*() : <a href="java_util.html#type-Spliterator$OfInt">java_util.Spliterator$OfInt</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:IntStream) <font color="#cc0033">spliterator</font>*() : <a href="java_util.html#type-Spliterator">java_util.Spliterator</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IntStream) <font color="#cc0033">sum</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:IntStream) <font color="#cc0033">summaryStatistics</font>*() : <a href="java_util.html#type-IntSummaryStatistics">java_util.IntSummaryStatistics</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:IntStream) <font color="#cc0033">takeWhile</font>*(p0 : <a href="java_util_function.html#type-IntPredicate">java_util_function.IntPredicate</a>) : <a href="#type-IntStream">IntStream</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IntStream) <font color="#cc0033">toArray</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>INTEGER<b>,NEW,ABSTRACT</b>;
+<a name="meths-IntStream$Builder"></a>
+<b>PROCEDURE </b>(self:IntStream$Builder) <font color="#cc0033">accept</font>*(p0 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:IntStream$Builder) <font color="#cc0033">add</font>*(p0 : INTEGER) : <a href="#type-IntStream$Builder">IntStream$Builder</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IntStream$Builder) <font color="#cc0033">build</font>*() : <a href="java_util_stream.html#type-IntStream">java_util_stream.IntStream</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-IntStream$IntMapMultiConsumer"></a>
+<b>PROCEDURE </b>(self:IntStream$IntMapMultiConsumer) <font color="#cc0033">accept</font>*(p0 : INTEGER;
+                                                       p1 : <a href="java_util_function.html#type-IntConsumer">java_util_function.IntConsumer</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-LongStream"></a>
+<b>PROCEDURE </b>(self:LongStream) <font color="#cc0033">allMatch</font>*(p0 : <a href="java_util_function.html#type-LongPredicate">java_util_function.LongPredicate</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:LongStream) <font color="#cc0033">anyMatch</font>*(p0 : <a href="java_util_function.html#type-LongPredicate">java_util_function.LongPredicate</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:LongStream) <font color="#cc0033">asDoubleStream</font>*() : <a href="#type-DoubleStream">DoubleStream</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:LongStream) <font color="#cc0033">average</font>*() : <a href="java_util.html#type-OptionalDouble">java_util.OptionalDouble</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:LongStream) <font color="#cc0033">boxed</font>*() : <a href="#type-Stream">Stream</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:LongStream) <font color="#cc0033">collect</font>*(p0 : <a href="java_util_function.html#type-Supplier">java_util_function.Supplier</a>;
+                                     p1 : <a href="java_util_function.html#type-ObjLongConsumer">java_util_function.ObjLongConsumer</a>;
+                                     p2 : <a href="java_util_function.html#type-BiConsumer">java_util_function.BiConsumer</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:LongStream) <font color="#cc0033">count</font>*() : LONGINT<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:LongStream) <font color="#cc0033">distinct</font>*() : <a href="#type-LongStream">LongStream</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:LongStream) <font color="#cc0033">dropWhile</font>*(p0 : <a href="java_util_function.html#type-LongPredicate">java_util_function.LongPredicate</a>) : <a href="#type-LongStream">LongStream</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LongStream) <font color="#cc0033">filter</font>*(p0 : <a href="java_util_function.html#type-LongPredicate">java_util_function.LongPredicate</a>) : <a href="#type-LongStream">LongStream</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:LongStream) <font color="#cc0033">findAny</font>*() : <a href="java_util.html#type-OptionalLong">java_util.OptionalLong</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:LongStream) <font color="#cc0033">findFirst</font>*() : <a href="java_util.html#type-OptionalLong">java_util.OptionalLong</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:LongStream) <font color="#cc0033">flatMap</font>*(p0 : <a href="java_util_function.html#type-LongFunction">java_util_function.LongFunction</a>) : <a href="#type-LongStream">LongStream</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:LongStream) <font color="#cc0033">forEach</font>*(p0 : <a href="java_util_function.html#type-LongConsumer">java_util_function.LongConsumer</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:LongStream) <font color="#cc0033">forEachOrdered</font>*(p0 : <a href="java_util_function.html#type-LongConsumer">java_util_function.LongConsumer</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:LongStream) <font color="#cc0033">iterator</font>*() : <a href="java_util.html#type-PrimitiveIterator$OfLong">java_util.PrimitiveIterator$OfLong</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:LongStream) <font color="#cc0033">iterator</font>*() : <a href="java_util.html#type-Iterator">java_util.Iterator</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LongStream) <font color="#cc0033">limit</font>*(p0 : LONGINT) : <a href="#type-LongStream">LongStream</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:LongStream) <font color="#cc0033">map</font>*(p0 : <a href="java_util_function.html#type-LongUnaryOperator">java_util_function.LongUnaryOperator</a>) : <a href="#type-LongStream">LongStream</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:LongStream) <font color="#cc0033">mapMulti</font>*(p0 : <a href="java_util_stream.html#type-LongStream$LongMapMultiConsumer">java_util_stream.LongStream$LongMapMultiConsumer</a>) : <a href="#type-LongStream">LongStream</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LongStream) <font color="#cc0033">mapToDouble</font>*(p0 : <a href="java_util_function.html#type-LongToDoubleFunction">java_util_function.LongToDoubleFunction</a>) : <a href="#type-DoubleStream">DoubleStream</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:LongStream) <font color="#cc0033">mapToInt</font>*(p0 : <a href="java_util_function.html#type-LongToIntFunction">java_util_function.LongToIntFunction</a>) : <a href="java_util_stream.html#type-IntStream">java_util_stream.IntStream</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:LongStream) <font color="#cc0033">mapToObj</font>*(p0 : <a href="java_util_function.html#type-LongFunction">java_util_function.LongFunction</a>) : <a href="#type-Stream">Stream</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:LongStream) <font color="#cc0033">max</font>*() : <a href="java_util.html#type-OptionalLong">java_util.OptionalLong</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:LongStream) <font color="#cc0033">min</font>*() : <a href="java_util.html#type-OptionalLong">java_util.OptionalLong</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:LongStream) <font color="#cc0033">noneMatch</font>*(p0 : <a href="java_util_function.html#type-LongPredicate">java_util_function.LongPredicate</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:LongStream) <font color="#cc0033">parallel</font>*() : <a href="#type-LongStream">LongStream</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:LongStream) <font color="#cc0033">parallel</font>*() : <a href="#type-BaseStream">BaseStream</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LongStream) <font color="#cc0033">peek</font>*(p0 : <a href="java_util_function.html#type-LongConsumer">java_util_function.LongConsumer</a>) : <a href="#type-LongStream">LongStream</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:LongStream) <font color="#cc0033">reduce</font>*(p0 : LONGINT;
+                                    p1 : <a href="java_util_function.html#type-LongBinaryOperator">java_util_function.LongBinaryOperator</a>) : LONGINT<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:LongStream) <font color="#cc0033">reduce</font>*(p0 : <a href="java_util_function.html#type-LongBinaryOperator">java_util_function.LongBinaryOperator</a>) : <a href="java_util.html#type-OptionalLong">java_util.OptionalLong</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:LongStream) <font color="#cc0033">sequential</font>*() : <a href="#type-LongStream">LongStream</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:LongStream) <font color="#cc0033">sequential</font>*() : <a href="#type-BaseStream">BaseStream</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LongStream) <font color="#cc0033">skip</font>*(p0 : LONGINT) : <a href="#type-LongStream">LongStream</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:LongStream) <font color="#cc0033">sorted</font>*() : <a href="#type-LongStream">LongStream</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:LongStream) <font color="#cc0033">spliterator</font>*() : <a href="java_util.html#type-Spliterator$OfLong">java_util.Spliterator$OfLong</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:LongStream) <font color="#cc0033">spliterator</font>*() : <a href="java_util.html#type-Spliterator">java_util.Spliterator</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LongStream) <font color="#cc0033">sum</font>*() : LONGINT<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:LongStream) <font color="#cc0033">summaryStatistics</font>*() : <a href="java_util.html#type-LongSummaryStatistics">java_util.LongSummaryStatistics</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:LongStream) <font color="#cc0033">takeWhile</font>*(p0 : <a href="java_util_function.html#type-LongPredicate">java_util_function.LongPredicate</a>) : <a href="#type-LongStream">LongStream</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LongStream) <font color="#cc0033">toArray</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>LONGINT<b>,NEW,ABSTRACT</b>;
+<a name="meths-LongStream$Builder"></a>
+<b>PROCEDURE </b>(self:LongStream$Builder) <font color="#cc0033">accept</font>*(p0 : LONGINT)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:LongStream$Builder) <font color="#cc0033">add</font>*(p0 : LONGINT) : <a href="#type-LongStream$Builder">LongStream$Builder</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LongStream$Builder) <font color="#cc0033">build</font>*() : <a href="java_util_stream.html#type-LongStream">java_util_stream.LongStream</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-LongStream$LongMapMultiConsumer"></a>
+<b>PROCEDURE </b>(self:LongStream$LongMapMultiConsumer) <font color="#cc0033">accept</font>*(p0 : LONGINT;
+                                                         p1 : <a href="java_util_function.html#type-LongConsumer">java_util_function.LongConsumer</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-Node$Builder"></a>
+<b>PROCEDURE </b>(self:Node$Builder) <font color="#cc0033">build</font>*() : <a href="java_util_stream.html#type-Node">java_util_stream.Node</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-Node$Builder$OfDouble"></a>
+<b>PROCEDURE </b>(self:Node$Builder$OfDouble) <font color="#cc0033">build</font>*() : <a href="java_util_stream.html#type-Node">java_util_stream.Node</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Node$Builder$OfDouble) <font color="#cc0033">build</font>*() : <a href="java_util_stream.html#type-Node$OfDouble">java_util_stream.Node$OfDouble</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-Node$Builder$OfInt"></a>
+<b>PROCEDURE </b>(self:Node$Builder$OfInt) <font color="#cc0033">build</font>*() : <a href="java_util_stream.html#type-Node">java_util_stream.Node</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Node$Builder$OfInt) <font color="#cc0033">build</font>*() : <a href="java_util_stream.html#type-Node$OfInt">java_util_stream.Node$OfInt</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-Node$Builder$OfLong"></a>
+<b>PROCEDURE </b>(self:Node$Builder$OfLong) <font color="#cc0033">build</font>*() : <a href="java_util_stream.html#type-Node">java_util_stream.Node</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Node$Builder$OfLong) <font color="#cc0033">build</font>*() : <a href="java_util_stream.html#type-Node$OfLong">java_util_stream.Node$OfLong</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-Node$OfDouble"></a>
+<b>PROCEDURE </b>(self:Node$OfDouble) <font color="#cc0033">copyInto</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                             p1 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Node$OfDouble) <font color="#cc0033">copyInto</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Double">java_lang.Double</a>;
+                                             p1 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Node$OfDouble) <font color="#cc0033">forEach</font>*(p0 : <a href="java_util_function.html#type-Consumer">java_util_function.Consumer</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Node$OfDouble) <font color="#cc0033">getShape</font>*() : <a href="java_util_stream.html#type-StreamShape">java_util_stream.StreamShape</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Node$OfDouble) <font color="#cc0033">newArray</font>*(p0 : INTEGER) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Node$OfDouble) <font color="#cc0033">newArray</font>*(p0 : INTEGER) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Node$OfDouble) <font color="#cc0033">truncate</font>*(p0 : LONGINT;
+                                         p1 : LONGINT;
+                                         p2 : <a href="java_util_function.html#type-IntFunction">java_util_function.IntFunction</a>) : <a href="java_util_stream.html#type-Node">java_util_stream.Node</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Node$OfDouble) <font color="#cc0033">truncate</font>*(p0 : LONGINT;
+                                         p1 : LONGINT;
+                                         p2 : <a href="java_util_function.html#type-IntFunction">java_util_function.IntFunction</a>) : <a href="#type-Node$OfDouble">Node$OfDouble</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Node$OfDouble) <font color="#cc0033">truncate</font>*(p0 : LONGINT;
+                                         p1 : LONGINT;
+                                         p2 : <a href="java_util_function.html#type-IntFunction">java_util_function.IntFunction</a>) : <a href="#type-Node$OfPrimitive">Node$OfPrimitive</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-Node$OfInt"></a>
+<b>PROCEDURE </b>(self:Node$OfInt) <font color="#cc0033">copyInto</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                          p1 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Node$OfInt) <font color="#cc0033">copyInto</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Integer">java_lang.Integer</a>;
+                                          p1 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Node$OfInt) <font color="#cc0033">forEach</font>*(p0 : <a href="java_util_function.html#type-Consumer">java_util_function.Consumer</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Node$OfInt) <font color="#cc0033">getShape</font>*() : <a href="java_util_stream.html#type-StreamShape">java_util_stream.StreamShape</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Node$OfInt) <font color="#cc0033">newArray</font>*(p0 : INTEGER) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Node$OfInt) <font color="#cc0033">newArray</font>*(p0 : INTEGER) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Node$OfInt) <font color="#cc0033">truncate</font>*(p0 : LONGINT;
+                                      p1 : LONGINT;
+                                      p2 : <a href="java_util_function.html#type-IntFunction">java_util_function.IntFunction</a>) : <a href="java_util_stream.html#type-Node">java_util_stream.Node</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Node$OfInt) <font color="#cc0033">truncate</font>*(p0 : LONGINT;
+                                      p1 : LONGINT;
+                                      p2 : <a href="java_util_function.html#type-IntFunction">java_util_function.IntFunction</a>) : <a href="#type-Node$OfInt">Node$OfInt</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Node$OfInt) <font color="#cc0033">truncate</font>*(p0 : LONGINT;
+                                      p1 : LONGINT;
+                                      p2 : <a href="java_util_function.html#type-IntFunction">java_util_function.IntFunction</a>) : <a href="#type-Node$OfPrimitive">Node$OfPrimitive</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-Node$OfLong"></a>
+<b>PROCEDURE </b>(self:Node$OfLong) <font color="#cc0033">copyInto</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                           p1 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Node$OfLong) <font color="#cc0033">copyInto</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Long">java_lang.Long</a>;
+                                           p1 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Node$OfLong) <font color="#cc0033">forEach</font>*(p0 : <a href="java_util_function.html#type-Consumer">java_util_function.Consumer</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Node$OfLong) <font color="#cc0033">getShape</font>*() : <a href="java_util_stream.html#type-StreamShape">java_util_stream.StreamShape</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Node$OfLong) <font color="#cc0033">newArray</font>*(p0 : INTEGER) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Node$OfLong) <font color="#cc0033">newArray</font>*(p0 : INTEGER) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Node$OfLong) <font color="#cc0033">truncate</font>*(p0 : LONGINT;
+                                       p1 : LONGINT;
+                                       p2 : <a href="java_util_function.html#type-IntFunction">java_util_function.IntFunction</a>) : <a href="java_util_stream.html#type-Node">java_util_stream.Node</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Node$OfLong) <font color="#cc0033">truncate</font>*(p0 : LONGINT;
+                                       p1 : LONGINT;
+                                       p2 : <a href="java_util_function.html#type-IntFunction">java_util_function.IntFunction</a>) : <a href="#type-Node$OfLong">Node$OfLong</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Node$OfLong) <font color="#cc0033">truncate</font>*(p0 : LONGINT;
+                                       p1 : LONGINT;
+                                       p2 : <a href="java_util_function.html#type-IntFunction">java_util_function.IntFunction</a>) : <a href="#type-Node$OfPrimitive">Node$OfPrimitive</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-Node$OfPrimitive"></a>
+<b>PROCEDURE </b>(self:Node$OfPrimitive) <font color="#cc0033">asArray</font>*(p0 : <a href="java_util_function.html#type-IntFunction">java_util_function.IntFunction</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Node$OfPrimitive) <font color="#cc0033">asPrimitiveArray</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Node$OfPrimitive) <font color="#cc0033">copyInto</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                            p1 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Node$OfPrimitive) <font color="#cc0033">forEach</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Node$OfPrimitive) <font color="#cc0033">getChild</font>*(p0 : INTEGER) : <a href="#type-Node$OfPrimitive">Node$OfPrimitive</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Node$OfPrimitive) <font color="#cc0033">getChild</font>*(p0 : INTEGER) : <a href="java_util_stream.html#type-Node">java_util_stream.Node</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Node$OfPrimitive) <font color="#cc0033">newArray</font>*(p0 : INTEGER) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Node$OfPrimitive) <font color="#cc0033">spliterator</font>*() : <a href="java_util.html#type-Spliterator">java_util.Spliterator</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Node$OfPrimitive) <font color="#cc0033">spliterator</font>*() : <a href="java_util.html#type-Spliterator$OfPrimitive">java_util.Spliterator$OfPrimitive</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Node$OfPrimitive) <font color="#cc0033">truncate</font>*(p0 : LONGINT;
+                                            p1 : LONGINT;
+                                            p2 : <a href="java_util_function.html#type-IntFunction">java_util_function.IntFunction</a>) : <a href="#type-Node$OfPrimitive">Node$OfPrimitive</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Node$OfPrimitive) <font color="#cc0033">truncate</font>*(p0 : LONGINT;
+                                            p1 : LONGINT;
+                                            p2 : <a href="java_util_function.html#type-IntFunction">java_util_function.IntFunction</a>) : <a href="java_util_stream.html#type-Node">java_util_stream.Node</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-Sink$ChainedDouble"></a>
+<b>PROCEDURE </b>(self:Sink$ChainedDouble) <font color="#cc0033">begin</font>*(p0 : LONGINT)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Sink$ChainedDouble) <font color="#cc0033">cancellationRequested</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Sink$ChainedDouble) <font color="#cc0033">end</font>*()<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-Sink$ChainedInt"></a>
+<b>PROCEDURE </b>(self:Sink$ChainedInt) <font color="#cc0033">begin</font>*(p0 : LONGINT)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Sink$ChainedInt) <font color="#cc0033">cancellationRequested</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Sink$ChainedInt) <font color="#cc0033">end</font>*()<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-Sink$ChainedLong"></a>
+<b>PROCEDURE </b>(self:Sink$ChainedLong) <font color="#cc0033">begin</font>*(p0 : LONGINT)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Sink$ChainedLong) <font color="#cc0033">cancellationRequested</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Sink$ChainedLong) <font color="#cc0033">end</font>*()<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-Sink$ChainedReference"></a>
+<b>PROCEDURE </b>(self:Sink$ChainedReference) <font color="#cc0033">begin</font>*(p0 : LONGINT)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Sink$ChainedReference) <font color="#cc0033">cancellationRequested</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Sink$ChainedReference) <font color="#cc0033">end</font>*()<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-Sink$OfDouble"></a>
+<b>PROCEDURE </b>(self:Sink$OfDouble) <font color="#cc0033">accept</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Sink$OfDouble) <font color="#cc0033">accept</font>*(p0 : <a href="java_lang.html#type-Double">java_lang.Double</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Sink$OfDouble) <font color="#cc0033">accept</font>*(p0 : REAL)<b>,NEW,ABSTRACT</b>;
+<a name="meths-Sink$OfInt"></a>
+<b>PROCEDURE </b>(self:Sink$OfInt) <font color="#cc0033">accept</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Sink$OfInt) <font color="#cc0033">accept</font>*(p0 : <a href="java_lang.html#type-Integer">java_lang.Integer</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Sink$OfInt) <font color="#cc0033">accept</font>*(p0 : INTEGER)<b>,NEW,ABSTRACT</b>;
+<a name="meths-Sink$OfLong"></a>
+<b>PROCEDURE </b>(self:Sink$OfLong) <font color="#cc0033">accept</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Sink$OfLong) <font color="#cc0033">accept</font>*(p0 : <a href="java_lang.html#type-Long">java_lang.Long</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Sink$OfLong) <font color="#cc0033">accept</font>*(p0 : LONGINT)<b>,NEW,ABSTRACT</b>;
+<a name="meths-Stream"></a>
+<b>PROCEDURE </b>(self:Stream) <font color="#cc0033">allMatch</font>*(p0 : <a href="java_util_function.html#type-Predicate">java_util_function.Predicate</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Stream) <font color="#cc0033">anyMatch</font>*(p0 : <a href="java_util_function.html#type-Predicate">java_util_function.Predicate</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Stream) <font color="#cc0033">collect</font>*(p0 : <a href="java_util_function.html#type-Supplier">java_util_function.Supplier</a>;
+                                 p1 : <a href="java_util_function.html#type-BiConsumer">java_util_function.BiConsumer</a>;
+                                 p2 : <a href="java_util_function.html#type-BiConsumer">java_util_function.BiConsumer</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Stream) <font color="#cc0033">collect</font>*(p0 : <a href="#type-Collector">Collector</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Stream) <font color="#cc0033">count</font>*() : LONGINT<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Stream) <font color="#cc0033">distinct</font>*() : <a href="#type-Stream">Stream</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Stream) <font color="#cc0033">dropWhile</font>*(p0 : <a href="java_util_function.html#type-Predicate">java_util_function.Predicate</a>) : <a href="#type-Stream">Stream</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Stream) <font color="#cc0033">filter</font>*(p0 : <a href="java_util_function.html#type-Predicate">java_util_function.Predicate</a>) : <a href="#type-Stream">Stream</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Stream) <font color="#cc0033">findAny</font>*() : <a href="java_util.html#type-Optional">java_util.Optional</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Stream) <font color="#cc0033">findFirst</font>*() : <a href="java_util.html#type-Optional">java_util.Optional</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Stream) <font color="#cc0033">flatMap</font>*(p0 : <a href="java_util_function.html#type-Function">java_util_function.Function</a>) : <a href="#type-Stream">Stream</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Stream) <font color="#cc0033">flatMapToDouble</font>*(p0 : <a href="java_util_function.html#type-Function">java_util_function.Function</a>) : <a href="#type-DoubleStream">DoubleStream</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Stream) <font color="#cc0033">flatMapToInt</font>*(p0 : <a href="java_util_function.html#type-Function">java_util_function.Function</a>) : <a href="java_util_stream.html#type-IntStream">java_util_stream.IntStream</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Stream) <font color="#cc0033">flatMapToLong</font>*(p0 : <a href="java_util_function.html#type-Function">java_util_function.Function</a>) : <a href="java_util_stream.html#type-LongStream">java_util_stream.LongStream</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Stream) <font color="#cc0033">forEach</font>*(p0 : <a href="java_util_function.html#type-Consumer">java_util_function.Consumer</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Stream) <font color="#cc0033">forEachOrdered</font>*(p0 : <a href="java_util_function.html#type-Consumer">java_util_function.Consumer</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Stream) <font color="#cc0033">limit</font>*(p0 : LONGINT) : <a href="#type-Stream">Stream</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Stream) <font color="#cc0033">map</font>*(p0 : <a href="java_util_function.html#type-Function">java_util_function.Function</a>) : <a href="#type-Stream">Stream</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Stream) <font color="#cc0033">mapMulti</font>*(p0 : <a href="java_util_function.html#type-BiConsumer">java_util_function.BiConsumer</a>) : <a href="#type-Stream">Stream</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Stream) <font color="#cc0033">mapMultiToDouble</font>*(p0 : <a href="java_util_function.html#type-BiConsumer">java_util_function.BiConsumer</a>) : <a href="#type-DoubleStream">DoubleStream</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Stream) <font color="#cc0033">mapMultiToInt</font>*(p0 : <a href="java_util_function.html#type-BiConsumer">java_util_function.BiConsumer</a>) : <a href="java_util_stream.html#type-IntStream">java_util_stream.IntStream</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Stream) <font color="#cc0033">mapMultiToLong</font>*(p0 : <a href="java_util_function.html#type-BiConsumer">java_util_function.BiConsumer</a>) : <a href="java_util_stream.html#type-LongStream">java_util_stream.LongStream</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Stream) <font color="#cc0033">mapToDouble</font>*(p0 : <a href="java_util_function.html#type-ToDoubleFunction">java_util_function.ToDoubleFunction</a>) : <a href="#type-DoubleStream">DoubleStream</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Stream) <font color="#cc0033">mapToInt</font>*(p0 : <a href="java_util_function.html#type-ToIntFunction">java_util_function.ToIntFunction</a>) : <a href="java_util_stream.html#type-IntStream">java_util_stream.IntStream</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Stream) <font color="#cc0033">mapToLong</font>*(p0 : <a href="java_util_function.html#type-ToLongFunction">java_util_function.ToLongFunction</a>) : <a href="java_util_stream.html#type-LongStream">java_util_stream.LongStream</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Stream) <font color="#cc0033">max</font>*(p0 : <a href="java_util.html#type-Comparator">java_util.Comparator</a>) : <a href="java_util.html#type-Optional">java_util.Optional</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Stream) <font color="#cc0033">min</font>*(p0 : <a href="java_util.html#type-Comparator">java_util.Comparator</a>) : <a href="java_util.html#type-Optional">java_util.Optional</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Stream) <font color="#cc0033">noneMatch</font>*(p0 : <a href="java_util_function.html#type-Predicate">java_util_function.Predicate</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Stream) <font color="#cc0033">peek</font>*(p0 : <a href="java_util_function.html#type-Consumer">java_util_function.Consumer</a>) : <a href="#type-Stream">Stream</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Stream) <font color="#cc0033">reduce</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                p1 : <a href="java_util_function.html#type-BinaryOperator">java_util_function.BinaryOperator</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Stream) <font color="#cc0033">reduce</font>*(p0 : <a href="java_util_function.html#type-BinaryOperator">java_util_function.BinaryOperator</a>) : <a href="java_util.html#type-Optional">java_util.Optional</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Stream) <font color="#cc0033">reduce</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                p1 : <a href="java_util_function.html#type-BiFunction">java_util_function.BiFunction</a>;
+                                p2 : <a href="java_util_function.html#type-BinaryOperator">java_util_function.BinaryOperator</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Stream) <font color="#cc0033">skip</font>*(p0 : LONGINT) : <a href="#type-Stream">Stream</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Stream) <font color="#cc0033">sorted</font>*(p0 : <a href="java_util.html#type-Comparator">java_util.Comparator</a>) : <a href="#type-Stream">Stream</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Stream) <font color="#cc0033">sorted</font>*() : <a href="#type-Stream">Stream</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Stream) <font color="#cc0033">takeWhile</font>*(p0 : <a href="java_util_function.html#type-Predicate">java_util_function.Predicate</a>) : <a href="#type-Stream">Stream</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Stream) <font color="#cc0033">toArray</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Stream) <font color="#cc0033">toArray</font>*(p0 : <a href="java_util_function.html#type-IntFunction">java_util_function.IntFunction</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Stream) <font color="#cc0033">toList</font>*() : <a href="java_util.html#type-List">java_util.List</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-Stream$Builder"></a>
+<b>PROCEDURE </b>(self:Stream$Builder) <font color="#cc0033">accept</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Stream$Builder) <font color="#cc0033">add</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="#type-Stream$Builder">Stream$Builder</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Stream$Builder) <font color="#cc0033">build</font>*() : <a href="#type-Stream">Stream</a><b>,NEW,ABSTRACT</b>;
+
+<b>END </b><font color="#cc0033">java_util_stream</font>.
+</font></pre></hr>
+<!-- BEGIN JavaScript -->
+<script>
+function toggle(node) {
+    node.classList.toggle("show"); 
+  }
+
+function cls(node) {
+    var prnt = node.parentNode;
+    var next = prnt.previousSibling;
+    var text = next.lastChild;
+    text.innerHTML = 
+        "The <b>class</b> property asserts that this type will be<br>" +
+        "implemented as a reference class in the underlying framework.";
+    text.classList.toggle("show");
+  }
+
+function newOk(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>has noArg-ctor</b> property asserts that this reference<br>" +
+        "class has a no-arg constructor, and thus objects of this<br>" +
+        "type can be allocated with NEW(). Component Pascal types<br>" +
+        "derived from this type can also be allocated using NEW().";
+    popuptext.classList.toggle("show"); 
+  }
+
+function noNew(node) { 
+    var prnt = node.parentNode; 
+    var next = prnt.previousSibling; 
+    var text = next.lastChild; 
+    text.innerHTML =  
+        "The <b>no noArg-ctor</b> property asserts that this reference<br>" +
+        "class does not have a noArg constructor. Objects of this<br>" +
+        "type cannot be allocated using NEW(), and Component<br>" +
+        "Pascal types  derived from this type also cannot be<br>" +
+        "allocated using NEW().";
+    text.classList.toggle("show");
+  }
+
+function noCpy(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>no value-assign</b> property asserts that this reference<br>" + 
+        "class does not have a value copy method. Therefore, it<br>" +
+        "is not possible to perform value assignments using<br>" +
+        "statements like <i>dst^</i> := <i>src^</i>";
+    popuptext.classList.toggle("show");
+  }
+
+function valueclass(node) { 
+        var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>valueclass</b> property asserts that this RECORD type is<br>" + 
+        "implemented as a value class in the CLR. It follows that<br>" +  
+        "value assignments can be made of these types. They can<br>" + 
+        "also be passed by value. Even pointers to records of<br>" + 
+        "such types may be dereferenced and copied using syntax<br>" + 
+        "such as  <i>dst^</i> := <i>src^</i>"; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+function argCtor(node) { 
+    var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>has arg-ctor</b> property asserts that this reference<br>" +  
+        "class has one or more constructors that take arguments.<br>" + 
+        "These constructors can be called from Component Pascal<br>" + 
+        "by calling an <i>init</i>(...) method from the static list<br>" + 
+        "here. Component Pascal types derived from this type<br>" + 
+        "can define constructors with arguments which call the<br>" + 
+        "super-type constructor.<br>" + 
+        "See <i>'Interfacing to constructors'</i> in the Release Notes."; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+</script>
+<!-- END JavaScript --> 
+
+</body></html>

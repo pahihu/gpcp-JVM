@@ -1,0 +1,570 @@
+<html><head><title>jdk_internal_org_objectweb_asm_tree_analysis</title>
+<style>
+<!-- BEGIN Inline CSS -->
+/* Popup container */
+.popup {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+/* The actual popup (appears on top) */
+.popup .popuptext {
+    visibility: hidden;
+    width: 430px;
+    background-color: white;
+    color: black;
+    text-align: left;
+    border-radius: 6px;
+    border-style: solid;
+    border-color: black;
+    padding: 8px 8px 8px 8px;
+    position: absolute;
+    z-index: 1;
+    margin-top: 30px;
+}
+
+/* Toggle this class when clicking on the popup container (hide and show the popup) */
+.popup .show {
+    visibility: visible;
+    opacity: 1;
+}
+
+</style>
+<!-- END Inline CSS -->
+</head><body bgcolor="white">
+<hr><pre>
+<font color="green">(*</font>
+<font color="green"> *  Creator PeToCps j2cps version 1.4.07 (March 2018)</font>
+<font color="green"> *  Compiled from jar-file /Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home/jmods/java.base.jmod</font>
+<font color="green"> *)</font>
+<b>FOREIGN MODULE </b><font color="#cc0033">jdk_internal_org_objectweb_asm_tree_analysis</font>;
+
+<b>IMPORT</b>
+    <a href="java_lang.html">java_lang</a> := "java.lang",
+    <a href="java_util.html">java_util</a> := "java.util",
+    <a href="jdk_internal_org_objectweb_asm.html">jdk_internal_org_objectweb_asm</a> := "jdk.internal.org.objectweb.asm",
+    <a href="jdk_internal_org_objectweb_asm_tree.html">jdk_internal_org_objectweb_asm_tree</a> := "jdk.internal.org.objectweb.asm.tree",
+    <a href="jdk_internal_org_objectweb_asm_tree.html">jdk_internal_org_objectweb_asm_tree</a> := "jdk.internal.org.objectweb.asm.tree",
+    <a href="jdk_internal_org_objectweb_asm_tree_analysis.html">jdk_internal_org_objectweb_asm_tree_analysis</a> := "jdk.internal.org.objectweb.asm.tree.analysis";
+
+<b>TYPE</b>
+
+  <a name="type-Analyzer"></a><font color="#cc0033">Analyzer</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="jdk_internal_org_objectweb_asm.html#type-Opcodes">jdk_internal_org_objectweb_asm.Opcodes</a>)
+              <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+              <font color="green"><b> (* </b><a href="#meths-Analyzer">Typebound Procedures</a><b> *)</b></font>
+              <b>STATIC</b>
+                <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-Interpreter">jdk_internal_org_objectweb_asm_tree_analysis.Interpreter</a>) : <a href="#type-Analyzer">Analyzer</a><b>,CONSTRUCTOR</b>;
+              <b>END</b>;
+
+  <a name="type-AnalyzerException"></a><font color="#cc0033">AnalyzerException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Exception">java_lang.Exception</a>)
+                       <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                         <font color="#cc0033">node</font>* : <a href="jdk_internal_org_objectweb_asm_tree.html#type-AbstractInsnNode">jdk_internal_org_objectweb_asm_tree.AbstractInsnNode</a>;
+                       <b>STATIC</b>
+                         <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="jdk_internal_org_objectweb_asm_tree.html#type-AbstractInsnNode">jdk_internal_org_objectweb_asm_tree.AbstractInsnNode</a>;
+                                         p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                         p2 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                         p3 : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-Value">jdk_internal_org_objectweb_asm_tree_analysis.Value</a>) : <a href="#type-AnalyzerException">AnalyzerException</a><b>,CONSTRUCTOR</b>;
+                         <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="jdk_internal_org_objectweb_asm_tree.html#type-AbstractInsnNode">jdk_internal_org_objectweb_asm_tree.AbstractInsnNode</a>;
+                                         p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                         p2 : <a href="java_lang.html#type-Throwable">java_lang.Throwable</a>) : <a href="#type-AnalyzerException">AnalyzerException</a><b>,CONSTRUCTOR</b>;
+                         <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="jdk_internal_org_objectweb_asm_tree.html#type-AbstractInsnNode">jdk_internal_org_objectweb_asm_tree.AbstractInsnNode</a>;
+                                         p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-AnalyzerException">AnalyzerException</a><b>,CONSTRUCTOR</b>;
+                       <b>END</b>;
+
+  <a name="type-BasicInterpreter"></a><font color="#cc0033">BasicInterpreter</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-Interpreter">Interpreter</a> + <a href="jdk_internal_org_objectweb_asm.html#type-Opcodes">jdk_internal_org_objectweb_asm.Opcodes</a>)
+                      <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                      <font color="green"><b> (* </b><a href="#meths-BasicInterpreter">Typebound Procedures</a><b> *)</b></font>
+                      <b>STATIC</b>
+                        <a name="type-NULL_TYPE"></a><font color="#cc0033">NULL_TYPE</font>* : <a href="jdk_internal_org_objectweb_asm.html#type-Type">jdk_internal_org_objectweb_asm.Type</a>;
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : INTEGER) : <a href="#type-BasicInterpreter">BasicInterpreter</a><b>,CONSTRUCTOR</b>;
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-BasicInterpreter">BasicInterpreter</a><b>,CONSTRUCTOR</b>;
+                      <b>END</b>;
+
+  <a name="type-BasicValue"></a><font color="#cc0033">BasicValue</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-Value">jdk_internal_org_objectweb_asm_tree_analysis.Value</a>)
+                <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                <font color="green"><b> (* </b><a href="#meths-BasicValue">Typebound Procedures</a><b> *)</b></font>
+                <b>STATIC</b>
+                  <a name="type-DOUBLE_VALUE"></a><font color="#cc0033">DOUBLE_VALUE</font>*        : <a href="#type-BasicValue">BasicValue</a>;
+                  <a name="type-FLOAT_VALUE"></a><font color="#cc0033">FLOAT_VALUE</font>*         : <a href="#type-BasicValue">BasicValue</a>;
+                  <a name="type-INT_VALUE"></a><font color="#cc0033">INT_VALUE</font>*           : <a href="#type-BasicValue">BasicValue</a>;
+                  <a name="type-LONG_VALUE"></a><font color="#cc0033">LONG_VALUE</font>*          : <a href="#type-BasicValue">BasicValue</a>;
+                  <a name="type-REFERENCE_VALUE"></a><font color="#cc0033">REFERENCE_VALUE</font>*     : <a href="#type-BasicValue">BasicValue</a>;
+                  <a name="type-RETURNADDRESS_VALUE"></a><font color="#cc0033">RETURNADDRESS_VALUE</font>* : <a href="#type-BasicValue">BasicValue</a>;
+                  <a name="type-UNINITIALIZED_VALUE"></a><font color="#cc0033">UNINITIALIZED_VALUE</font>* : <a href="#type-BasicValue">BasicValue</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="jdk_internal_org_objectweb_asm.html#type-Type">jdk_internal_org_objectweb_asm.Type</a>) : <a href="#type-BasicValue">BasicValue</a><b>,CONSTRUCTOR</b>;
+                <b>END</b>;
+
+  <a name="type-BasicVerifier"></a><font color="#cc0033">BasicVerifier</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-BasicInterpreter">jdk_internal_org_objectweb_asm_tree_analysis.BasicInterpreter</a>)
+                   <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                   <font color="green"><b> (* </b><a href="#meths-BasicVerifier">Typebound Procedures</a><b> *)</b></font>
+                   <b>STATIC</b>
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : INTEGER) : <a href="#type-BasicVerifier">BasicVerifier</a><b>,CONSTRUCTOR</b>;
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-BasicVerifier">BasicVerifier</a><b>,CONSTRUCTOR</b>;
+                   <b>END</b>;
+
+  <a name="type-Frame"></a><font color="#cc0033">Frame</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+           <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+           <font color="green"><b> (* </b><a href="#meths-Frame">Typebound Procedures</a><b> *)</b></font>
+           <b>STATIC</b>
+             <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="#type-Frame">Frame</a>) : <a href="#type-Frame">Frame</a><b>,CONSTRUCTOR</b>;
+             <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER;
+                             p1 : INTEGER) : <a href="#type-Frame">Frame</a><b>,CONSTRUCTOR</b>;
+           <b>END</b>;
+
+  <a name="type-Interpreter"></a><font color="#cc0033">Interpreter</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                 <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                 <font color="green"><b> (* </b><a href="#meths-Interpreter">Typebound Procedures</a><b> *)</b></font>
+                   <font color="#cc0033">api</font>! : INTEGER;
+                 <b>STATIC</b>
+                   <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : INTEGER) : <a href="#type-Interpreter">Interpreter</a><b>,CONSTRUCTOR</b>;
+                 <b>END</b>;
+
+  <a name="type-SimpleVerifier"></a><font color="#cc0033">SimpleVerifier</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-BasicVerifier">BasicVerifier</a>)
+                    <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                    <font color="green"><b> (* </b><a href="#meths-SimpleVerifier">Typebound Procedures</a><b> *)</b></font>
+                    <b>STATIC</b>
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="jdk_internal_org_objectweb_asm.html#type-Type">jdk_internal_org_objectweb_asm.Type</a>;
+                                      p1 : <a href="jdk_internal_org_objectweb_asm.html#type-Type">jdk_internal_org_objectweb_asm.Type</a>;
+                                      p2 : <a href="java_util.html#type-List">java_util.List</a>;
+                                      p3 : BOOLEAN) : <a href="#type-SimpleVerifier">SimpleVerifier</a><b>,CONSTRUCTOR</b>;
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : INTEGER;
+                                      p1 : <a href="jdk_internal_org_objectweb_asm.html#type-Type">jdk_internal_org_objectweb_asm.Type</a>;
+                                      p2 : <a href="jdk_internal_org_objectweb_asm.html#type-Type">jdk_internal_org_objectweb_asm.Type</a>;
+                                      p3 : <a href="java_util.html#type-List">java_util.List</a>;
+                                      p4 : BOOLEAN) : <a href="#type-SimpleVerifier">SimpleVerifier</a><b>,CONSTRUCTOR</b>;
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-SimpleVerifier">SimpleVerifier</a><b>,CONSTRUCTOR</b>;
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="jdk_internal_org_objectweb_asm.html#type-Type">jdk_internal_org_objectweb_asm.Type</a>;
+                                      p1 : <a href="jdk_internal_org_objectweb_asm.html#type-Type">jdk_internal_org_objectweb_asm.Type</a>;
+                                      p2 : BOOLEAN) : <a href="#type-SimpleVerifier">SimpleVerifier</a><b>,CONSTRUCTOR</b>;
+                    <b>END</b>;
+
+  <a name="type-SourceInterpreter"></a><font color="#cc0033">SourceInterpreter</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-Interpreter">Interpreter</a> + <a href="jdk_internal_org_objectweb_asm.html#type-Opcodes">jdk_internal_org_objectweb_asm.Opcodes</a>)
+                       <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                       <font color="green"><b> (* </b><a href="#meths-SourceInterpreter">Typebound Procedures</a><b> *)</b></font>
+                       <b>STATIC</b>
+                         <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : INTEGER) : <a href="#type-SourceInterpreter">SourceInterpreter</a><b>,CONSTRUCTOR</b>;
+                         <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-SourceInterpreter">SourceInterpreter</a><b>,CONSTRUCTOR</b>;
+                       <b>END</b>;
+
+  <a name="type-SourceValue"></a><font color="#cc0033">SourceValue</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-Value">jdk_internal_org_objectweb_asm_tree_analysis.Value</a>)
+                 <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                 <font color="green"><b> (* </b><a href="#meths-SourceValue">Typebound Procedures</a><b> *)</b></font>
+                   <font color="#cc0033">size</font>*  : INTEGER;
+                   <font color="#cc0033">insns</font>* : <a href="java_util.html#type-Set">java_util.Set</a>;
+                 <b>STATIC</b>
+                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER;
+                                   p1 : <a href="java_util.html#type-Set">java_util.Set</a>) : <a href="#type-SourceValue">SourceValue</a><b>,CONSTRUCTOR</b>;
+                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER;
+                                   p1 : <a href="jdk_internal_org_objectweb_asm_tree.html#type-AbstractInsnNode">jdk_internal_org_objectweb_asm_tree.AbstractInsnNode</a>) : <a href="#type-SourceValue">SourceValue</a><b>,CONSTRUCTOR</b>;
+                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER) : <a href="#type-SourceValue">SourceValue</a><b>,CONSTRUCTOR</b>;
+                 <b>END</b>;
+
+  <a name="type-Value"></a><font color="#cc0033">Value</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+           <font color="green"><b> (* </b><a href="#meths-Value">Typebound Procedures</a><b> *)</b></font>
+           <b>END</b>;
+
+
+
+<a name="meths-Analyzer"></a>
+<b>PROCEDURE </b>(self:Analyzer) <font color="#cc0033">analyze</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                   p1 : <a href="jdk_internal_org_objectweb_asm_tree.html#type-MethodNode">jdk_internal_org_objectweb_asm_tree.MethodNode</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-Frame">jdk_internal_org_objectweb_asm_tree_analysis.Frame</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Analyzer) <font color="#cc0033">getFrames</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-Frame">jdk_internal_org_objectweb_asm_tree_analysis.Frame</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Analyzer) <font color="#cc0033">getHandlers</font>*(p0 : INTEGER) : <a href="java_util.html#type-List">java_util.List</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Analyzer) <font color="#cc0033">init</font>!(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                p1 : <a href="jdk_internal_org_objectweb_asm_tree.html#type-MethodNode">jdk_internal_org_objectweb_asm_tree.MethodNode</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Analyzer) <font color="#cc0033">newControlFlowEdge</font>!(p0 : INTEGER;
+                                              p1 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Analyzer) <font color="#cc0033">newControlFlowExceptionEdge</font>!(p0 : INTEGER;
+                                                       p1 : INTEGER) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Analyzer) <font color="#cc0033">newControlFlowExceptionEdge</font>!(p0 : INTEGER;
+                                                       p1 : <a href="jdk_internal_org_objectweb_asm_tree.html#type-TryCatchBlockNode">jdk_internal_org_objectweb_asm_tree.TryCatchBlockNode</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Analyzer) <font color="#cc0033">newFrame</font>!(p0 : INTEGER;
+                                    p1 : INTEGER) : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-Frame">jdk_internal_org_objectweb_asm_tree_analysis.Frame</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Analyzer) <font color="#cc0033">newFrame</font>!(p0 : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-Frame">jdk_internal_org_objectweb_asm_tree_analysis.Frame</a>) : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-Frame">jdk_internal_org_objectweb_asm_tree_analysis.Frame</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-BasicInterpreter"></a>
+<b>PROCEDURE </b>(self:BasicInterpreter) <font color="#cc0033">binaryOperation</font>*(p0 : <a href="jdk_internal_org_objectweb_asm_tree.html#type-AbstractInsnNode">jdk_internal_org_objectweb_asm_tree.AbstractInsnNode</a>;
+                                                   p1 : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-Value">jdk_internal_org_objectweb_asm_tree_analysis.Value</a>;
+                                                   p2 : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-Value">jdk_internal_org_objectweb_asm_tree_analysis.Value</a>) : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-Value">jdk_internal_org_objectweb_asm_tree_analysis.Value</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BasicInterpreter) <font color="#cc0033">binaryOperation</font>*(p0 : <a href="jdk_internal_org_objectweb_asm_tree.html#type-AbstractInsnNode">jdk_internal_org_objectweb_asm_tree.AbstractInsnNode</a>;
+                                                   p1 : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-BasicValue">jdk_internal_org_objectweb_asm_tree_analysis.BasicValue</a>;
+                                                   p2 : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-BasicValue">jdk_internal_org_objectweb_asm_tree_analysis.BasicValue</a>) : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-BasicValue">jdk_internal_org_objectweb_asm_tree_analysis.BasicValue</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BasicInterpreter) <font color="#cc0033">copyOperation</font>*(p0 : <a href="jdk_internal_org_objectweb_asm_tree.html#type-AbstractInsnNode">jdk_internal_org_objectweb_asm_tree.AbstractInsnNode</a>;
+                                                 p1 : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-BasicValue">jdk_internal_org_objectweb_asm_tree_analysis.BasicValue</a>) : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-BasicValue">jdk_internal_org_objectweb_asm_tree_analysis.BasicValue</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BasicInterpreter) <font color="#cc0033">copyOperation</font>*(p0 : <a href="jdk_internal_org_objectweb_asm_tree.html#type-AbstractInsnNode">jdk_internal_org_objectweb_asm_tree.AbstractInsnNode</a>;
+                                                 p1 : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-Value">jdk_internal_org_objectweb_asm_tree_analysis.Value</a>) : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-Value">jdk_internal_org_objectweb_asm_tree_analysis.Value</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BasicInterpreter) <font color="#cc0033">merge</font>*(p0 : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-BasicValue">jdk_internal_org_objectweb_asm_tree_analysis.BasicValue</a>;
+                                         p1 : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-BasicValue">jdk_internal_org_objectweb_asm_tree_analysis.BasicValue</a>) : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-BasicValue">jdk_internal_org_objectweb_asm_tree_analysis.BasicValue</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BasicInterpreter) <font color="#cc0033">merge</font>*(p0 : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-Value">jdk_internal_org_objectweb_asm_tree_analysis.Value</a>;
+                                         p1 : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-Value">jdk_internal_org_objectweb_asm_tree_analysis.Value</a>) : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-Value">jdk_internal_org_objectweb_asm_tree_analysis.Value</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BasicInterpreter) <font color="#cc0033">naryOperation</font>*(p0 : <a href="jdk_internal_org_objectweb_asm_tree.html#type-AbstractInsnNode">jdk_internal_org_objectweb_asm_tree.AbstractInsnNode</a>;
+                                                 p1 : <a href="java_util.html#type-List">java_util.List</a>) : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-Value">jdk_internal_org_objectweb_asm_tree_analysis.Value</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BasicInterpreter) <font color="#cc0033">naryOperation</font>*(p0 : <a href="jdk_internal_org_objectweb_asm_tree.html#type-AbstractInsnNode">jdk_internal_org_objectweb_asm_tree.AbstractInsnNode</a>;
+                                                 p1 : <a href="java_util.html#type-List">java_util.List</a>) : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-BasicValue">jdk_internal_org_objectweb_asm_tree_analysis.BasicValue</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BasicInterpreter) <font color="#cc0033">newOperation</font>*(p0 : <a href="jdk_internal_org_objectweb_asm_tree.html#type-AbstractInsnNode">jdk_internal_org_objectweb_asm_tree.AbstractInsnNode</a>) : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-Value">jdk_internal_org_objectweb_asm_tree_analysis.Value</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BasicInterpreter) <font color="#cc0033">newOperation</font>*(p0 : <a href="jdk_internal_org_objectweb_asm_tree.html#type-AbstractInsnNode">jdk_internal_org_objectweb_asm_tree.AbstractInsnNode</a>) : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-BasicValue">jdk_internal_org_objectweb_asm_tree_analysis.BasicValue</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BasicInterpreter) <font color="#cc0033">newValue</font>*(p0 : <a href="jdk_internal_org_objectweb_asm.html#type-Type">jdk_internal_org_objectweb_asm.Type</a>) : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-BasicValue">jdk_internal_org_objectweb_asm_tree_analysis.BasicValue</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BasicInterpreter) <font color="#cc0033">newValue</font>*(p0 : <a href="jdk_internal_org_objectweb_asm.html#type-Type">jdk_internal_org_objectweb_asm.Type</a>) : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-Value">jdk_internal_org_objectweb_asm_tree_analysis.Value</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BasicInterpreter) <font color="#cc0033">returnOperation</font>*(p0 : <a href="jdk_internal_org_objectweb_asm_tree.html#type-AbstractInsnNode">jdk_internal_org_objectweb_asm_tree.AbstractInsnNode</a>;
+                                                   p1 : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-BasicValue">jdk_internal_org_objectweb_asm_tree_analysis.BasicValue</a>;
+                                                   p2 : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-BasicValue">jdk_internal_org_objectweb_asm_tree_analysis.BasicValue</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BasicInterpreter) <font color="#cc0033">returnOperation</font>*(p0 : <a href="jdk_internal_org_objectweb_asm_tree.html#type-AbstractInsnNode">jdk_internal_org_objectweb_asm_tree.AbstractInsnNode</a>;
+                                                   p1 : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-Value">jdk_internal_org_objectweb_asm_tree_analysis.Value</a>;
+                                                   p2 : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-Value">jdk_internal_org_objectweb_asm_tree_analysis.Value</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BasicInterpreter) <font color="#cc0033">ternaryOperation</font>*(p0 : <a href="jdk_internal_org_objectweb_asm_tree.html#type-AbstractInsnNode">jdk_internal_org_objectweb_asm_tree.AbstractInsnNode</a>;
+                                                    p1 : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-BasicValue">jdk_internal_org_objectweb_asm_tree_analysis.BasicValue</a>;
+                                                    p2 : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-BasicValue">jdk_internal_org_objectweb_asm_tree_analysis.BasicValue</a>;
+                                                    p3 : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-BasicValue">jdk_internal_org_objectweb_asm_tree_analysis.BasicValue</a>) : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-BasicValue">jdk_internal_org_objectweb_asm_tree_analysis.BasicValue</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BasicInterpreter) <font color="#cc0033">ternaryOperation</font>*(p0 : <a href="jdk_internal_org_objectweb_asm_tree.html#type-AbstractInsnNode">jdk_internal_org_objectweb_asm_tree.AbstractInsnNode</a>;
+                                                    p1 : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-Value">jdk_internal_org_objectweb_asm_tree_analysis.Value</a>;
+                                                    p2 : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-Value">jdk_internal_org_objectweb_asm_tree_analysis.Value</a>;
+                                                    p3 : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-Value">jdk_internal_org_objectweb_asm_tree_analysis.Value</a>) : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-Value">jdk_internal_org_objectweb_asm_tree_analysis.Value</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BasicInterpreter) <font color="#cc0033">unaryOperation</font>*(p0 : <a href="jdk_internal_org_objectweb_asm_tree.html#type-AbstractInsnNode">jdk_internal_org_objectweb_asm_tree.AbstractInsnNode</a>;
+                                                  p1 : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-Value">jdk_internal_org_objectweb_asm_tree_analysis.Value</a>) : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-Value">jdk_internal_org_objectweb_asm_tree_analysis.Value</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BasicInterpreter) <font color="#cc0033">unaryOperation</font>*(p0 : <a href="jdk_internal_org_objectweb_asm_tree.html#type-AbstractInsnNode">jdk_internal_org_objectweb_asm_tree.AbstractInsnNode</a>;
+                                                  p1 : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-BasicValue">jdk_internal_org_objectweb_asm_tree_analysis.BasicValue</a>) : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-BasicValue">jdk_internal_org_objectweb_asm_tree_analysis.BasicValue</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-BasicValue"></a>
+<b>PROCEDURE </b>(self:BasicValue) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BasicValue) <font color="#cc0033">getSize</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BasicValue) <font color="#cc0033">getType</font>*() : <a href="jdk_internal_org_objectweb_asm.html#type-Type">jdk_internal_org_objectweb_asm.Type</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BasicValue) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BasicValue) <font color="#cc0033">isReference</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BasicValue) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-BasicVerifier"></a>
+<b>PROCEDURE </b>(self:BasicVerifier) <font color="#cc0033">binaryOperation</font>*(p0 : <a href="jdk_internal_org_objectweb_asm_tree.html#type-AbstractInsnNode">jdk_internal_org_objectweb_asm_tree.AbstractInsnNode</a>;
+                                                p1 : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-BasicValue">jdk_internal_org_objectweb_asm_tree_analysis.BasicValue</a>;
+                                                p2 : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-BasicValue">jdk_internal_org_objectweb_asm_tree_analysis.BasicValue</a>) : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-BasicValue">jdk_internal_org_objectweb_asm_tree_analysis.BasicValue</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BasicVerifier) <font color="#cc0033">binaryOperation</font>*(p0 : <a href="jdk_internal_org_objectweb_asm_tree.html#type-AbstractInsnNode">jdk_internal_org_objectweb_asm_tree.AbstractInsnNode</a>;
+                                                p1 : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-Value">jdk_internal_org_objectweb_asm_tree_analysis.Value</a>;
+                                                p2 : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-Value">jdk_internal_org_objectweb_asm_tree_analysis.Value</a>) : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-Value">jdk_internal_org_objectweb_asm_tree_analysis.Value</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BasicVerifier) <font color="#cc0033">copyOperation</font>*(p0 : <a href="jdk_internal_org_objectweb_asm_tree.html#type-AbstractInsnNode">jdk_internal_org_objectweb_asm_tree.AbstractInsnNode</a>;
+                                              p1 : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-BasicValue">jdk_internal_org_objectweb_asm_tree_analysis.BasicValue</a>) : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-BasicValue">jdk_internal_org_objectweb_asm_tree_analysis.BasicValue</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BasicVerifier) <font color="#cc0033">copyOperation</font>*(p0 : <a href="jdk_internal_org_objectweb_asm_tree.html#type-AbstractInsnNode">jdk_internal_org_objectweb_asm_tree.AbstractInsnNode</a>;
+                                              p1 : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-Value">jdk_internal_org_objectweb_asm_tree_analysis.Value</a>) : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-Value">jdk_internal_org_objectweb_asm_tree_analysis.Value</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BasicVerifier) <font color="#cc0033">getElementValue</font>!(p0 : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-BasicValue">jdk_internal_org_objectweb_asm_tree_analysis.BasicValue</a>) : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-BasicValue">jdk_internal_org_objectweb_asm_tree_analysis.BasicValue</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BasicVerifier) <font color="#cc0033">isArrayValue</font>!(p0 : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-BasicValue">jdk_internal_org_objectweb_asm_tree_analysis.BasicValue</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BasicVerifier) <font color="#cc0033">isSubTypeOf</font>!(p0 : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-BasicValue">jdk_internal_org_objectweb_asm_tree_analysis.BasicValue</a>;
+                                            p1 : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-BasicValue">jdk_internal_org_objectweb_asm_tree_analysis.BasicValue</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BasicVerifier) <font color="#cc0033">naryOperation</font>*(p0 : <a href="jdk_internal_org_objectweb_asm_tree.html#type-AbstractInsnNode">jdk_internal_org_objectweb_asm_tree.AbstractInsnNode</a>;
+                                              p1 : <a href="java_util.html#type-List">java_util.List</a>) : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-BasicValue">jdk_internal_org_objectweb_asm_tree_analysis.BasicValue</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BasicVerifier) <font color="#cc0033">naryOperation</font>*(p0 : <a href="jdk_internal_org_objectweb_asm_tree.html#type-AbstractInsnNode">jdk_internal_org_objectweb_asm_tree.AbstractInsnNode</a>;
+                                              p1 : <a href="java_util.html#type-List">java_util.List</a>) : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-Value">jdk_internal_org_objectweb_asm_tree_analysis.Value</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BasicVerifier) <font color="#cc0033">returnOperation</font>*(p0 : <a href="jdk_internal_org_objectweb_asm_tree.html#type-AbstractInsnNode">jdk_internal_org_objectweb_asm_tree.AbstractInsnNode</a>;
+                                                p1 : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-Value">jdk_internal_org_objectweb_asm_tree_analysis.Value</a>;
+                                                p2 : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-Value">jdk_internal_org_objectweb_asm_tree_analysis.Value</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BasicVerifier) <font color="#cc0033">returnOperation</font>*(p0 : <a href="jdk_internal_org_objectweb_asm_tree.html#type-AbstractInsnNode">jdk_internal_org_objectweb_asm_tree.AbstractInsnNode</a>;
+                                                p1 : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-BasicValue">jdk_internal_org_objectweb_asm_tree_analysis.BasicValue</a>;
+                                                p2 : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-BasicValue">jdk_internal_org_objectweb_asm_tree_analysis.BasicValue</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BasicVerifier) <font color="#cc0033">ternaryOperation</font>*(p0 : <a href="jdk_internal_org_objectweb_asm_tree.html#type-AbstractInsnNode">jdk_internal_org_objectweb_asm_tree.AbstractInsnNode</a>;
+                                                 p1 : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-BasicValue">jdk_internal_org_objectweb_asm_tree_analysis.BasicValue</a>;
+                                                 p2 : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-BasicValue">jdk_internal_org_objectweb_asm_tree_analysis.BasicValue</a>;
+                                                 p3 : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-BasicValue">jdk_internal_org_objectweb_asm_tree_analysis.BasicValue</a>) : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-BasicValue">jdk_internal_org_objectweb_asm_tree_analysis.BasicValue</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BasicVerifier) <font color="#cc0033">ternaryOperation</font>*(p0 : <a href="jdk_internal_org_objectweb_asm_tree.html#type-AbstractInsnNode">jdk_internal_org_objectweb_asm_tree.AbstractInsnNode</a>;
+                                                 p1 : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-Value">jdk_internal_org_objectweb_asm_tree_analysis.Value</a>;
+                                                 p2 : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-Value">jdk_internal_org_objectweb_asm_tree_analysis.Value</a>;
+                                                 p3 : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-Value">jdk_internal_org_objectweb_asm_tree_analysis.Value</a>) : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-Value">jdk_internal_org_objectweb_asm_tree_analysis.Value</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BasicVerifier) <font color="#cc0033">unaryOperation</font>*(p0 : <a href="jdk_internal_org_objectweb_asm_tree.html#type-AbstractInsnNode">jdk_internal_org_objectweb_asm_tree.AbstractInsnNode</a>;
+                                               p1 : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-BasicValue">jdk_internal_org_objectweb_asm_tree_analysis.BasicValue</a>) : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-BasicValue">jdk_internal_org_objectweb_asm_tree_analysis.BasicValue</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BasicVerifier) <font color="#cc0033">unaryOperation</font>*(p0 : <a href="jdk_internal_org_objectweb_asm_tree.html#type-AbstractInsnNode">jdk_internal_org_objectweb_asm_tree.AbstractInsnNode</a>;
+                                               p1 : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-Value">jdk_internal_org_objectweb_asm_tree_analysis.Value</a>) : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-Value">jdk_internal_org_objectweb_asm_tree_analysis.Value</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-Frame"></a>
+<b>PROCEDURE </b>(self:Frame) <font color="#cc0033">clearStack</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Frame) <font color="#cc0033">execute</font>*(p0 : <a href="jdk_internal_org_objectweb_asm_tree.html#type-AbstractInsnNode">jdk_internal_org_objectweb_asm_tree.AbstractInsnNode</a>;
+                                p1 : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-Interpreter">jdk_internal_org_objectweb_asm_tree_analysis.Interpreter</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Frame) <font color="#cc0033">getLocal</font>*(p0 : INTEGER) : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-Value">jdk_internal_org_objectweb_asm_tree_analysis.Value</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Frame) <font color="#cc0033">getLocals</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Frame) <font color="#cc0033">getMaxStackSize</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Frame) <font color="#cc0033">getStack</font>*(p0 : INTEGER) : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-Value">jdk_internal_org_objectweb_asm_tree_analysis.Value</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Frame) <font color="#cc0033">getStackSize</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Frame) <font color="#cc0033">init</font>*(p0 : <a href="#type-Frame">Frame</a>) : <a href="#type-Frame">Frame</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Frame) <font color="#cc0033">initJumpTarget</font>*(p0 : INTEGER;
+                                       p1 : <a href="jdk_internal_org_objectweb_asm_tree.html#type-LabelNode">jdk_internal_org_objectweb_asm_tree.LabelNode</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Frame) <font color="#cc0033">merge</font>*(    p0 : <a href="#type-Frame">Frame</a>;
+                              IN  p1 : <b>ARRAY </b><b>OF </b>BOOLEAN) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Frame) <font color="#cc0033">merge</font>*(p0 : <a href="#type-Frame">Frame</a>;
+                              p1 : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-Interpreter">jdk_internal_org_objectweb_asm_tree_analysis.Interpreter</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Frame) <font color="#cc0033">pop</font>*() : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-Value">jdk_internal_org_objectweb_asm_tree_analysis.Value</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Frame) <font color="#cc0033">push</font>*(p0 : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-Value">jdk_internal_org_objectweb_asm_tree_analysis.Value</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Frame) <font color="#cc0033">setLocal</font>*(p0 : INTEGER;
+                                 p1 : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-Value">jdk_internal_org_objectweb_asm_tree_analysis.Value</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Frame) <font color="#cc0033">setReturn</font>*(p0 : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-Value">jdk_internal_org_objectweb_asm_tree_analysis.Value</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Frame) <font color="#cc0033">setStack</font>*(p0 : INTEGER;
+                                 p1 : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-Value">jdk_internal_org_objectweb_asm_tree_analysis.Value</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Frame) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-Interpreter"></a>
+<b>PROCEDURE </b>(self:Interpreter) <font color="#cc0033">binaryOperation</font>*(p0 : <a href="jdk_internal_org_objectweb_asm_tree.html#type-AbstractInsnNode">jdk_internal_org_objectweb_asm_tree.AbstractInsnNode</a>;
+                                              p1 : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-Value">jdk_internal_org_objectweb_asm_tree_analysis.Value</a>;
+                                              p2 : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-Value">jdk_internal_org_objectweb_asm_tree_analysis.Value</a>) : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-Value">jdk_internal_org_objectweb_asm_tree_analysis.Value</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Interpreter) <font color="#cc0033">copyOperation</font>*(p0 : <a href="jdk_internal_org_objectweb_asm_tree.html#type-AbstractInsnNode">jdk_internal_org_objectweb_asm_tree.AbstractInsnNode</a>;
+                                            p1 : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-Value">jdk_internal_org_objectweb_asm_tree_analysis.Value</a>) : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-Value">jdk_internal_org_objectweb_asm_tree_analysis.Value</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Interpreter) <font color="#cc0033">merge</font>*(p0 : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-Value">jdk_internal_org_objectweb_asm_tree_analysis.Value</a>;
+                                    p1 : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-Value">jdk_internal_org_objectweb_asm_tree_analysis.Value</a>) : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-Value">jdk_internal_org_objectweb_asm_tree_analysis.Value</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Interpreter) <font color="#cc0033">naryOperation</font>*(p0 : <a href="jdk_internal_org_objectweb_asm_tree.html#type-AbstractInsnNode">jdk_internal_org_objectweb_asm_tree.AbstractInsnNode</a>;
+                                            p1 : <a href="java_util.html#type-List">java_util.List</a>) : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-Value">jdk_internal_org_objectweb_asm_tree_analysis.Value</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Interpreter) <font color="#cc0033">newEmptyValue</font>*(p0 : INTEGER) : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-Value">jdk_internal_org_objectweb_asm_tree_analysis.Value</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Interpreter) <font color="#cc0033">newExceptionValue</font>*(p0 : <a href="jdk_internal_org_objectweb_asm_tree.html#type-TryCatchBlockNode">jdk_internal_org_objectweb_asm_tree.TryCatchBlockNode</a>;
+                                                p1 : <a href="#type-Frame">Frame</a>;
+                                                p2 : <a href="jdk_internal_org_objectweb_asm.html#type-Type">jdk_internal_org_objectweb_asm.Type</a>) : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-Value">jdk_internal_org_objectweb_asm_tree_analysis.Value</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Interpreter) <font color="#cc0033">newOperation</font>*(p0 : <a href="jdk_internal_org_objectweb_asm_tree.html#type-AbstractInsnNode">jdk_internal_org_objectweb_asm_tree.AbstractInsnNode</a>) : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-Value">jdk_internal_org_objectweb_asm_tree_analysis.Value</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Interpreter) <font color="#cc0033">newParameterValue</font>*(p0 : BOOLEAN;
+                                                p1 : INTEGER;
+                                                p2 : <a href="jdk_internal_org_objectweb_asm.html#type-Type">jdk_internal_org_objectweb_asm.Type</a>) : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-Value">jdk_internal_org_objectweb_asm_tree_analysis.Value</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Interpreter) <font color="#cc0033">newReturnTypeValue</font>*(p0 : <a href="jdk_internal_org_objectweb_asm.html#type-Type">jdk_internal_org_objectweb_asm.Type</a>) : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-Value">jdk_internal_org_objectweb_asm_tree_analysis.Value</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Interpreter) <font color="#cc0033">newValue</font>*(p0 : <a href="jdk_internal_org_objectweb_asm.html#type-Type">jdk_internal_org_objectweb_asm.Type</a>) : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-Value">jdk_internal_org_objectweb_asm_tree_analysis.Value</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Interpreter) <font color="#cc0033">returnOperation</font>*(p0 : <a href="jdk_internal_org_objectweb_asm_tree.html#type-AbstractInsnNode">jdk_internal_org_objectweb_asm_tree.AbstractInsnNode</a>;
+                                              p1 : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-Value">jdk_internal_org_objectweb_asm_tree_analysis.Value</a>;
+                                              p2 : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-Value">jdk_internal_org_objectweb_asm_tree_analysis.Value</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Interpreter) <font color="#cc0033">ternaryOperation</font>*(p0 : <a href="jdk_internal_org_objectweb_asm_tree.html#type-AbstractInsnNode">jdk_internal_org_objectweb_asm_tree.AbstractInsnNode</a>;
+                                               p1 : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-Value">jdk_internal_org_objectweb_asm_tree_analysis.Value</a>;
+                                               p2 : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-Value">jdk_internal_org_objectweb_asm_tree_analysis.Value</a>;
+                                               p3 : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-Value">jdk_internal_org_objectweb_asm_tree_analysis.Value</a>) : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-Value">jdk_internal_org_objectweb_asm_tree_analysis.Value</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Interpreter) <font color="#cc0033">unaryOperation</font>*(p0 : <a href="jdk_internal_org_objectweb_asm_tree.html#type-AbstractInsnNode">jdk_internal_org_objectweb_asm_tree.AbstractInsnNode</a>;
+                                             p1 : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-Value">jdk_internal_org_objectweb_asm_tree_analysis.Value</a>) : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-Value">jdk_internal_org_objectweb_asm_tree_analysis.Value</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-SimpleVerifier"></a>
+<b>PROCEDURE </b>(self:SimpleVerifier) <font color="#cc0033">getClass</font>!(p0 : <a href="jdk_internal_org_objectweb_asm.html#type-Type">jdk_internal_org_objectweb_asm.Type</a>) : <a href="java_lang.html#type-Class">java_lang.Class</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SimpleVerifier) <font color="#cc0033">getElementValue</font>!(p0 : <a href="#type-BasicValue">BasicValue</a>) : <a href="#type-BasicValue">BasicValue</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SimpleVerifier) <font color="#cc0033">getSuperClass</font>!(p0 : <a href="jdk_internal_org_objectweb_asm.html#type-Type">jdk_internal_org_objectweb_asm.Type</a>) : <a href="jdk_internal_org_objectweb_asm.html#type-Type">jdk_internal_org_objectweb_asm.Type</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SimpleVerifier) <font color="#cc0033">isArrayValue</font>!(p0 : <a href="#type-BasicValue">BasicValue</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SimpleVerifier) <font color="#cc0033">isAssignableFrom</font>!(p0 : <a href="jdk_internal_org_objectweb_asm.html#type-Type">jdk_internal_org_objectweb_asm.Type</a>;
+                                                  p1 : <a href="jdk_internal_org_objectweb_asm.html#type-Type">jdk_internal_org_objectweb_asm.Type</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SimpleVerifier) <font color="#cc0033">isInterface</font>!(p0 : <a href="jdk_internal_org_objectweb_asm.html#type-Type">jdk_internal_org_objectweb_asm.Type</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SimpleVerifier) <font color="#cc0033">isSubTypeOf</font>!(p0 : <a href="#type-BasicValue">BasicValue</a>;
+                                             p1 : <a href="#type-BasicValue">BasicValue</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SimpleVerifier) <font color="#cc0033">merge</font>*(p0 : <a href="#type-Value">Value</a>;
+                                       p1 : <a href="#type-Value">Value</a>) : <a href="#type-Value">Value</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SimpleVerifier) <font color="#cc0033">merge</font>*(p0 : <a href="#type-BasicValue">BasicValue</a>;
+                                       p1 : <a href="#type-BasicValue">BasicValue</a>) : <a href="#type-BasicValue">BasicValue</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SimpleVerifier) <font color="#cc0033">newValue</font>*(p0 : <a href="jdk_internal_org_objectweb_asm.html#type-Type">jdk_internal_org_objectweb_asm.Type</a>) : <a href="#type-Value">Value</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SimpleVerifier) <font color="#cc0033">newValue</font>*(p0 : <a href="jdk_internal_org_objectweb_asm.html#type-Type">jdk_internal_org_objectweb_asm.Type</a>) : <a href="#type-BasicValue">BasicValue</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SimpleVerifier) <font color="#cc0033">setClassLoader</font>*(p0 : <a href="java_lang.html#type-ClassLoader">java_lang.ClassLoader</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-SourceInterpreter"></a>
+<b>PROCEDURE </b>(self:SourceInterpreter) <font color="#cc0033">binaryOperation</font>*(p0 : <a href="jdk_internal_org_objectweb_asm_tree.html#type-AbstractInsnNode">jdk_internal_org_objectweb_asm_tree.AbstractInsnNode</a>;
+                                                    p1 : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-Value">jdk_internal_org_objectweb_asm_tree_analysis.Value</a>;
+                                                    p2 : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-Value">jdk_internal_org_objectweb_asm_tree_analysis.Value</a>) : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-Value">jdk_internal_org_objectweb_asm_tree_analysis.Value</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SourceInterpreter) <font color="#cc0033">binaryOperation</font>*(p0 : <a href="jdk_internal_org_objectweb_asm_tree.html#type-AbstractInsnNode">jdk_internal_org_objectweb_asm_tree.AbstractInsnNode</a>;
+                                                    p1 : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-SourceValue">jdk_internal_org_objectweb_asm_tree_analysis.SourceValue</a>;
+                                                    p2 : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-SourceValue">jdk_internal_org_objectweb_asm_tree_analysis.SourceValue</a>) : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-SourceValue">jdk_internal_org_objectweb_asm_tree_analysis.SourceValue</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SourceInterpreter) <font color="#cc0033">copyOperation</font>*(p0 : <a href="jdk_internal_org_objectweb_asm_tree.html#type-AbstractInsnNode">jdk_internal_org_objectweb_asm_tree.AbstractInsnNode</a>;
+                                                  p1 : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-SourceValue">jdk_internal_org_objectweb_asm_tree_analysis.SourceValue</a>) : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-SourceValue">jdk_internal_org_objectweb_asm_tree_analysis.SourceValue</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SourceInterpreter) <font color="#cc0033">copyOperation</font>*(p0 : <a href="jdk_internal_org_objectweb_asm_tree.html#type-AbstractInsnNode">jdk_internal_org_objectweb_asm_tree.AbstractInsnNode</a>;
+                                                  p1 : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-Value">jdk_internal_org_objectweb_asm_tree_analysis.Value</a>) : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-Value">jdk_internal_org_objectweb_asm_tree_analysis.Value</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SourceInterpreter) <font color="#cc0033">merge</font>*(p0 : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-SourceValue">jdk_internal_org_objectweb_asm_tree_analysis.SourceValue</a>;
+                                          p1 : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-SourceValue">jdk_internal_org_objectweb_asm_tree_analysis.SourceValue</a>) : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-SourceValue">jdk_internal_org_objectweb_asm_tree_analysis.SourceValue</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SourceInterpreter) <font color="#cc0033">merge</font>*(p0 : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-Value">jdk_internal_org_objectweb_asm_tree_analysis.Value</a>;
+                                          p1 : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-Value">jdk_internal_org_objectweb_asm_tree_analysis.Value</a>) : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-Value">jdk_internal_org_objectweb_asm_tree_analysis.Value</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SourceInterpreter) <font color="#cc0033">naryOperation</font>*(p0 : <a href="jdk_internal_org_objectweb_asm_tree.html#type-AbstractInsnNode">jdk_internal_org_objectweb_asm_tree.AbstractInsnNode</a>;
+                                                  p1 : <a href="java_util.html#type-List">java_util.List</a>) : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-Value">jdk_internal_org_objectweb_asm_tree_analysis.Value</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SourceInterpreter) <font color="#cc0033">naryOperation</font>*(p0 : <a href="jdk_internal_org_objectweb_asm_tree.html#type-AbstractInsnNode">jdk_internal_org_objectweb_asm_tree.AbstractInsnNode</a>;
+                                                  p1 : <a href="java_util.html#type-List">java_util.List</a>) : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-SourceValue">jdk_internal_org_objectweb_asm_tree_analysis.SourceValue</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SourceInterpreter) <font color="#cc0033">newOperation</font>*(p0 : <a href="jdk_internal_org_objectweb_asm_tree.html#type-AbstractInsnNode">jdk_internal_org_objectweb_asm_tree.AbstractInsnNode</a>) : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-Value">jdk_internal_org_objectweb_asm_tree_analysis.Value</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SourceInterpreter) <font color="#cc0033">newOperation</font>*(p0 : <a href="jdk_internal_org_objectweb_asm_tree.html#type-AbstractInsnNode">jdk_internal_org_objectweb_asm_tree.AbstractInsnNode</a>) : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-SourceValue">jdk_internal_org_objectweb_asm_tree_analysis.SourceValue</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SourceInterpreter) <font color="#cc0033">newValue</font>*(p0 : <a href="jdk_internal_org_objectweb_asm.html#type-Type">jdk_internal_org_objectweb_asm.Type</a>) : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-SourceValue">jdk_internal_org_objectweb_asm_tree_analysis.SourceValue</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SourceInterpreter) <font color="#cc0033">newValue</font>*(p0 : <a href="jdk_internal_org_objectweb_asm.html#type-Type">jdk_internal_org_objectweb_asm.Type</a>) : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-Value">jdk_internal_org_objectweb_asm_tree_analysis.Value</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SourceInterpreter) <font color="#cc0033">returnOperation</font>*(p0 : <a href="jdk_internal_org_objectweb_asm_tree.html#type-AbstractInsnNode">jdk_internal_org_objectweb_asm_tree.AbstractInsnNode</a>;
+                                                    p1 : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-SourceValue">jdk_internal_org_objectweb_asm_tree_analysis.SourceValue</a>;
+                                                    p2 : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-SourceValue">jdk_internal_org_objectweb_asm_tree_analysis.SourceValue</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SourceInterpreter) <font color="#cc0033">returnOperation</font>*(p0 : <a href="jdk_internal_org_objectweb_asm_tree.html#type-AbstractInsnNode">jdk_internal_org_objectweb_asm_tree.AbstractInsnNode</a>;
+                                                    p1 : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-Value">jdk_internal_org_objectweb_asm_tree_analysis.Value</a>;
+                                                    p2 : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-Value">jdk_internal_org_objectweb_asm_tree_analysis.Value</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SourceInterpreter) <font color="#cc0033">ternaryOperation</font>*(p0 : <a href="jdk_internal_org_objectweb_asm_tree.html#type-AbstractInsnNode">jdk_internal_org_objectweb_asm_tree.AbstractInsnNode</a>;
+                                                     p1 : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-SourceValue">jdk_internal_org_objectweb_asm_tree_analysis.SourceValue</a>;
+                                                     p2 : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-SourceValue">jdk_internal_org_objectweb_asm_tree_analysis.SourceValue</a>;
+                                                     p3 : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-SourceValue">jdk_internal_org_objectweb_asm_tree_analysis.SourceValue</a>) : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-SourceValue">jdk_internal_org_objectweb_asm_tree_analysis.SourceValue</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SourceInterpreter) <font color="#cc0033">ternaryOperation</font>*(p0 : <a href="jdk_internal_org_objectweb_asm_tree.html#type-AbstractInsnNode">jdk_internal_org_objectweb_asm_tree.AbstractInsnNode</a>;
+                                                     p1 : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-Value">jdk_internal_org_objectweb_asm_tree_analysis.Value</a>;
+                                                     p2 : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-Value">jdk_internal_org_objectweb_asm_tree_analysis.Value</a>;
+                                                     p3 : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-Value">jdk_internal_org_objectweb_asm_tree_analysis.Value</a>) : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-Value">jdk_internal_org_objectweb_asm_tree_analysis.Value</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SourceInterpreter) <font color="#cc0033">unaryOperation</font>*(p0 : <a href="jdk_internal_org_objectweb_asm_tree.html#type-AbstractInsnNode">jdk_internal_org_objectweb_asm_tree.AbstractInsnNode</a>;
+                                                   p1 : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-Value">jdk_internal_org_objectweb_asm_tree_analysis.Value</a>) : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-Value">jdk_internal_org_objectweb_asm_tree_analysis.Value</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SourceInterpreter) <font color="#cc0033">unaryOperation</font>*(p0 : <a href="jdk_internal_org_objectweb_asm_tree.html#type-AbstractInsnNode">jdk_internal_org_objectweb_asm_tree.AbstractInsnNode</a>;
+                                                   p1 : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-SourceValue">jdk_internal_org_objectweb_asm_tree_analysis.SourceValue</a>) : <a href="jdk_internal_org_objectweb_asm_tree_analysis.html#type-SourceValue">jdk_internal_org_objectweb_asm_tree_analysis.SourceValue</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-SourceValue"></a>
+<b>PROCEDURE </b>(self:SourceValue) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SourceValue) <font color="#cc0033">getSize</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SourceValue) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-Value"></a>
+<b>PROCEDURE </b>(self:Value) <font color="#cc0033">getSize</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>END </b><font color="#cc0033">jdk_internal_org_objectweb_asm_tree_analysis</font>.
+</font></pre></hr>
+<!-- BEGIN JavaScript -->
+<script>
+function toggle(node) {
+    node.classList.toggle("show"); 
+  }
+
+function cls(node) {
+    var prnt = node.parentNode;
+    var next = prnt.previousSibling;
+    var text = next.lastChild;
+    text.innerHTML = 
+        "The <b>class</b> property asserts that this type will be<br>" +
+        "implemented as a reference class in the underlying framework.";
+    text.classList.toggle("show");
+  }
+
+function newOk(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>has noArg-ctor</b> property asserts that this reference<br>" +
+        "class has a no-arg constructor, and thus objects of this<br>" +
+        "type can be allocated with NEW(). Component Pascal types<br>" +
+        "derived from this type can also be allocated using NEW().";
+    popuptext.classList.toggle("show"); 
+  }
+
+function noNew(node) { 
+    var prnt = node.parentNode; 
+    var next = prnt.previousSibling; 
+    var text = next.lastChild; 
+    text.innerHTML =  
+        "The <b>no noArg-ctor</b> property asserts that this reference<br>" +
+        "class does not have a noArg constructor. Objects of this<br>" +
+        "type cannot be allocated using NEW(), and Component<br>" +
+        "Pascal types  derived from this type also cannot be<br>" +
+        "allocated using NEW().";
+    text.classList.toggle("show");
+  }
+
+function noCpy(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>no value-assign</b> property asserts that this reference<br>" + 
+        "class does not have a value copy method. Therefore, it<br>" +
+        "is not possible to perform value assignments using<br>" +
+        "statements like <i>dst^</i> := <i>src^</i>";
+    popuptext.classList.toggle("show");
+  }
+
+function valueclass(node) { 
+        var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>valueclass</b> property asserts that this RECORD type is<br>" + 
+        "implemented as a value class in the CLR. It follows that<br>" +  
+        "value assignments can be made of these types. They can<br>" + 
+        "also be passed by value. Even pointers to records of<br>" + 
+        "such types may be dereferenced and copied using syntax<br>" + 
+        "such as  <i>dst^</i> := <i>src^</i>"; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+function argCtor(node) { 
+    var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>has arg-ctor</b> property asserts that this reference<br>" +  
+        "class has one or more constructors that take arguments.<br>" + 
+        "These constructors can be called from Component Pascal<br>" + 
+        "by calling an <i>init</i>(...) method from the static list<br>" + 
+        "here. Component Pascal types derived from this type<br>" + 
+        "can define constructors with arguments which call the<br>" + 
+        "super-type constructor.<br>" + 
+        "See <i>'Interfacing to constructors'</i> in the Release Notes."; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+</script>
+<!-- END JavaScript --> 
+
+</body></html>

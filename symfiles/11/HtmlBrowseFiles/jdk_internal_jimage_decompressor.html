@@ -1,0 +1,276 @@
+<html><head><title>jdk_internal_jimage_decompressor</title>
+<style>
+<!-- BEGIN Inline CSS -->
+/* Popup container */
+.popup {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+/* The actual popup (appears on top) */
+.popup .popuptext {
+    visibility: hidden;
+    width: 430px;
+    background-color: white;
+    color: black;
+    text-align: left;
+    border-radius: 6px;
+    border-style: solid;
+    border-color: black;
+    padding: 8px 8px 8px 8px;
+    position: absolute;
+    z-index: 1;
+    margin-top: 30px;
+}
+
+/* Toggle this class when clicking on the popup container (hide and show the popup) */
+.popup .show {
+    visibility: visible;
+    opacity: 1;
+}
+
+</style>
+<!-- END Inline CSS -->
+</head><body bgcolor="white">
+<hr><pre>
+<font color="green">(*</font>
+<font color="green"> *  Creator PeToCps j2cps version 1.4.07 (March 2018)</font>
+<font color="green"> *  Compiled from jar-file /Library/Java/JavaVirtualMachines/zulu-11.jdk/Contents/Home/jmods/java.base.jmod</font>
+<font color="green"> *)</font>
+<b>FOREIGN MODULE </b><font color="#cc0033">jdk_internal_jimage_decompressor</font>;
+
+<b>IMPORT</b>
+    <a href="java_io.html">java_io</a> := "java.io",
+    <a href="java_lang.html">java_lang</a> := "java.lang",
+    <a href="java_nio.html">java_nio</a> := "java.nio",
+    <a href="java_util.html">java_util</a> := "java.util",
+    <a href="jdk_internal_jimage_decompressor.html">jdk_internal_jimage_decompressor</a> := "jdk.internal.jimage.decompressor";
+
+<b>TYPE</b>
+
+  <a name="type-CompressedResourceHeader"></a><font color="#cc0033">CompressedResourceHeader</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                              <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                              <font color="green"><b> (* </b><a href="#meths-CompressedResourceHeader">Typebound Procedures</a><b> *)</b></font>
+                              <b>STATIC</b>
+                                <font color="#cc0033">MAGIC</font>*            = -889259270;
+                                <b>PROCEDURE </b><font color="#cc0033">getSize</font>*() : INTEGER;
+                                <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : LONGINT;
+                                                p1 : LONGINT;
+                                                p2 : INTEGER;
+                                                p3 : INTEGER;
+                                                p4 : BOOLEAN) : <a href="#type-CompressedResourceHeader">CompressedResourceHeader</a><b>,CONSTRUCTOR</b>;
+                                <b>PROCEDURE </b><font color="#cc0033">readFromResource</font>*(    p0 : <a href="java_nio.html#type-ByteOrder">java_nio.ByteOrder</a>;
+                                                            IN  p1 : <b>ARRAY </b><b>OF </b>BYTE) : <a href="#type-CompressedResourceHeader">CompressedResourceHeader</a>;
+                              <b>END</b>;
+
+  <a name="type-CompressIndexes"></a><font color="#cc0033">CompressIndexes</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                     <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                     <b>STATIC</b>
+                       <b>PROCEDURE </b><font color="#cc0033">compress</font>*(p0 : INTEGER) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE;
+                       <b>PROCEDURE </b><font color="#cc0033">decompress</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE;
+                                                 p1 : INTEGER) : INTEGER;
+                       <b>PROCEDURE </b><font color="#cc0033">decompressFlow</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE) : <a href="java_util.html#type-List">java_util.List</a>;
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CompressIndexes">CompressIndexes</a><b>,CONSTRUCTOR</b>;
+                       <b>PROCEDURE </b><font color="#cc0033">readInt</font>*(p0 : <a href="java_io.html#type-DataInputStream">java_io.DataInputStream</a>) : INTEGER;
+                     <b>END</b>;
+
+  <a name="type-Decompressor"></a><font color="#cc0033">Decompressor</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                  <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                  <font color="green"><b> (* </b><a href="#meths-Decompressor">Typebound Procedures</a><b> *)</b></font>
+                  <b>STATIC</b>
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-Decompressor">Decompressor</a><b>,CONSTRUCTOR</b>;
+                  <b>END</b>;
+
+  <a name="type-ResourceDecompressor"></a><font color="#cc0033">ResourceDecompressor</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                          <font color="green"><b> (* </b><a href="#meths-ResourceDecompressor">Typebound Procedures</a><b> *)</b></font>
+                          <b>END</b>;
+
+  <a name="type-ResourceDecompressor$StringsProvider"></a><font color="#cc0033">ResourceDecompressor$StringsProvider</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                                          <font color="green"><b> (* </b><a href="#meths-ResourceDecompressor$StringsProvider">Typebound Procedures</a><b> *)</b></font>
+                                          <b>END</b>;
+
+  <a name="type-ResourceDecompressorFactory"></a><font color="#cc0033">ResourceDecompressorFactory</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                                 <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                                 <font color="green"><b> (* </b><a href="#meths-ResourceDecompressorFactory">Typebound Procedures</a><b> *)</b></font>
+                                 <b>STATIC</b>
+                                   <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-ResourceDecompressorFactory">ResourceDecompressorFactory</a><b>,CONSTRUCTOR</b>;
+                                 <b>END</b>;
+
+  <a name="type-ResourceDecompressorRepository"></a><font color="#cc0033">ResourceDecompressorRepository</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                                    <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> *)</font>
+                                    <b>STATIC</b>
+                                      <b>PROCEDURE </b><font color="#cc0033">newResourceDecompressor</font>*(p0 : <a href="java_util.html#type-Properties">java_util.Properties</a>;
+                                                                         p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="jdk_internal_jimage_decompressor.html#type-ResourceDecompressor">jdk_internal_jimage_decompressor.ResourceDecompressor</a>;
+                                    <b>END</b>;
+
+  <a name="type-SignatureParser"></a><font color="#cc0033">SignatureParser</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                     <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> *)</font>
+                     <b>STATIC</b>
+                       <b>PROCEDURE </b><font color="#cc0033">parseSignatureDescriptor</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="jdk_internal_jimage_decompressor.html#type-SignatureParser$ParseResult">jdk_internal_jimage_decompressor.SignatureParser$ParseResult</a>;
+                       <b>PROCEDURE </b><font color="#cc0033">reconstruct</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                              p1 : <a href="java_util.html#type-List">java_util.List</a>) : <a href="java_lang.html#type-String">java_lang.String</a>;
+                     <b>END</b>;
+
+  <a name="type-SignatureParser$ParseResult"></a><font color="#cc0033">SignatureParser$ParseResult</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                                 <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> *)</font>
+                                   <font color="#cc0033">types</font>*     : <a href="java_util.html#type-List">java_util.List</a>;
+                                   <font color="#cc0033">formatted</font>* : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                 <b>END</b>;
+
+  <a name="type-StringSharingDecompressor"></a><font color="#cc0033">StringSharingDecompressor</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="jdk_internal_jimage_decompressor.html#type-ResourceDecompressor">jdk_internal_jimage_decompressor.ResourceDecompressor</a>)
+                               <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                               <font color="green"><b> (* </b><a href="#meths-StringSharingDecompressor">Typebound Procedures</a><b> *)</b></font>
+                               <b>STATIC</b>
+                                 <font color="#cc0033">EXTERNALIZED_STRING</font>*            = 23;
+                                 <font color="#cc0033">EXTERNALIZED_STRING_DESCRIPTOR</font>* = 25;
+                                 <b>PROCEDURE </b><font color="#cc0033">getEncoded</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE;
+                                 <b>PROCEDURE </b><font color="#cc0033">getSizes</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>INTEGER;
+                                 <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_util.html#type-Properties">java_util.Properties</a>) : <a href="#type-StringSharingDecompressor">StringSharingDecompressor</a><b>,CONSTRUCTOR</b>;
+                                 <b>PROCEDURE </b><font color="#cc0033">normalize</font>*(    p0 : <a href="#type-ResourceDecompressor$StringsProvider">ResourceDecompressor$StringsProvider</a>;
+                                                      IN  p1 : <b>ARRAY </b><b>OF </b>BYTE;
+                                                          p2 : INTEGER) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE;
+                               <b>END</b>;
+
+  <a name="type-StringSharingDecompressorFactory"></a><font color="#cc0033">StringSharingDecompressorFactory</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-ResourceDecompressorFactory">ResourceDecompressorFactory</a>)
+                                      <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                                      <font color="green"><b> (* </b><a href="#meths-StringSharingDecompressorFactory">Typebound Procedures</a><b> *)</b></font>
+                                      <b>STATIC</b>
+                                        <font color="#cc0033">NAME</font>* = "compact-cp";
+                                        <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-StringSharingDecompressorFactory">StringSharingDecompressorFactory</a><b>,CONSTRUCTOR</b>;
+                                      <b>END</b>;
+
+  <a name="type-ZipDecompressorFactory"></a><font color="#cc0033">ZipDecompressorFactory</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="jdk_internal_jimage_decompressor.html#type-ResourceDecompressorFactory">jdk_internal_jimage_decompressor.ResourceDecompressorFactory</a>)
+                            <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                            <font color="green"><b> (* </b><a href="#meths-ZipDecompressorFactory">Typebound Procedures</a><b> *)</b></font>
+                            <b>STATIC</b>
+                              <font color="#cc0033">NAME</font>* = "zip";
+                              <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-ZipDecompressorFactory">ZipDecompressorFactory</a><b>,CONSTRUCTOR</b>;
+                            <b>END</b>;
+
+
+
+<a name="meths-CompressedResourceHeader"></a>
+<b>PROCEDURE </b>(self:CompressedResourceHeader) <font color="#cc0033">getBytes</font>*(p0 : <a href="java_nio.html#type-ByteOrder">java_nio.ByteOrder</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CompressedResourceHeader) <font color="#cc0033">getContentOffset</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CompressedResourceHeader) <font color="#cc0033">getDecompressorNameOffset</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CompressedResourceHeader) <font color="#cc0033">getResourceSize</font>*() : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CompressedResourceHeader) <font color="#cc0033">getStoredContent</font>*(p0 : <a href="#type-ResourceDecompressor$StringsProvider">ResourceDecompressor$StringsProvider</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CompressedResourceHeader) <font color="#cc0033">getUncompressedSize</font>*() : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CompressedResourceHeader) <font color="#cc0033">isTerminal</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-Decompressor"></a>
+<b>PROCEDURE </b>(self:Decompressor) <font color="#cc0033">decompressResource</font>*(    p0 : <a href="java_nio.html#type-ByteOrder">java_nio.ByteOrder</a>;
+                                                      p1 : <a href="#type-ResourceDecompressor$StringsProvider">ResourceDecompressor$StringsProvider</a>;
+                                                  IN  p2 : <b>ARRAY </b><b>OF </b>BYTE) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-ResourceDecompressor"></a>
+<b>PROCEDURE </b>(self:ResourceDecompressor) <font color="#cc0033">decompress</font>*(    p0 : <a href="#type-ResourceDecompressor$StringsProvider">ResourceDecompressor$StringsProvider</a>;
+                                                  IN  p1 : <b>ARRAY </b><b>OF </b>BYTE;
+                                                      p2 : INTEGER;
+                                                      p3 : LONGINT) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ResourceDecompressor) <font color="#cc0033">getName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-ResourceDecompressor$StringsProvider"></a>
+<b>PROCEDURE </b>(self:ResourceDecompressor$StringsProvider) <font color="#cc0033">getString</font>*(p0 : INTEGER) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-ResourceDecompressorFactory"></a>
+<b>PROCEDURE </b>(self:ResourceDecompressorFactory) <font color="#cc0033">getName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ResourceDecompressorFactory) <font color="#cc0033">newDecompressor</font>*(p0 : <a href="java_util.html#type-Properties">java_util.Properties</a>) : <a href="#type-ResourceDecompressor">ResourceDecompressor</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-StringSharingDecompressor"></a>
+<b>PROCEDURE </b>(self:StringSharingDecompressor) <font color="#cc0033">decompress</font>*(    p0 : <a href="#type-ResourceDecompressor$StringsProvider">ResourceDecompressor$StringsProvider</a>;
+                                                       IN  p1 : <b>ARRAY </b><b>OF </b>BYTE;
+                                                           p2 : INTEGER;
+                                                           p3 : LONGINT) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:StringSharingDecompressor) <font color="#cc0033">getName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-StringSharingDecompressorFactory"></a>
+<b>PROCEDURE </b>(self:StringSharingDecompressorFactory) <font color="#cc0033">newDecompressor</font>*(p0 : <a href="java_util.html#type-Properties">java_util.Properties</a>) : <a href="#type-ResourceDecompressor">ResourceDecompressor</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-ZipDecompressorFactory"></a>
+<b>PROCEDURE </b>(self:ZipDecompressorFactory) <font color="#cc0033">newDecompressor</font>*(p0 : <a href="java_util.html#type-Properties">java_util.Properties</a>) : <a href="jdk_internal_jimage_decompressor.html#type-ResourceDecompressor">jdk_internal_jimage_decompressor.ResourceDecompressor</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>END </b><font color="#cc0033">jdk_internal_jimage_decompressor</font>.
+</font></pre></hr>
+<!-- BEGIN JavaScript -->
+<script>
+function toggle(node) {
+    node.classList.toggle("show"); 
+  }
+
+function cls(node) {
+    var prnt = node.parentNode;
+    var next = prnt.previousSibling;
+    var text = next.lastChild;
+    text.innerHTML = 
+        "The <b>class</b> property asserts that this type will be<br>" +
+        "implemented as a reference class in the underlying framework.";
+    text.classList.toggle("show");
+  }
+
+function newOk(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>has noArg-ctor</b> property asserts that this reference<br>" +
+        "class has a no-arg constructor, and thus objects of this<br>" +
+        "type can be allocated with NEW(). Component Pascal types<br>" +
+        "derived from this type can also be allocated using NEW().";
+    popuptext.classList.toggle("show"); 
+  }
+
+function noNew(node) { 
+    var prnt = node.parentNode; 
+    var next = prnt.previousSibling; 
+    var text = next.lastChild; 
+    text.innerHTML =  
+        "The <b>no noArg-ctor</b> property asserts that this reference<br>" +
+        "class does not have a noArg constructor. Objects of this<br>" +
+        "type cannot be allocated using NEW(), and Component<br>" +
+        "Pascal types  derived from this type also cannot be<br>" +
+        "allocated using NEW().";
+    text.classList.toggle("show");
+  }
+
+function noCpy(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>no value-assign</b> property asserts that this reference<br>" + 
+        "class does not have a value copy method. Therefore, it<br>" +
+        "is not possible to perform value assignments using<br>" +
+        "statements like <i>dst^</i> := <i>src^</i>";
+    popuptext.classList.toggle("show");
+  }
+
+function valueclass(node) { 
+        var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>valueclass</b> property asserts that this RECORD type is<br>" + 
+        "implemented as a value class in the CLR. It follows that<br>" +  
+        "value assignments can be made of these types. They can<br>" + 
+        "also be passed by value. Even pointers to records of<br>" + 
+        "such types may be dereferenced and copied using syntax<br>" + 
+        "such as  <i>dst^</i> := <i>src^</i>"; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+function argCtor(node) { 
+    var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>has arg-ctor</b> property asserts that this reference<br>" +  
+        "class has one or more constructors that take arguments.<br>" + 
+        "These constructors can be called from Component Pascal<br>" + 
+        "by calling an <i>init</i>(...) method from the static list<br>" + 
+        "here. Component Pascal types derived from this type<br>" + 
+        "can define constructors with arguments which call the<br>" + 
+        "super-type constructor.<br>" + 
+        "See <i>'Interfacing to constructors'</i> in the Release Notes."; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+</script>
+<!-- END JavaScript --> 
+
+</body></html>

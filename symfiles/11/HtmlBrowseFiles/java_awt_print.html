@@ -1,0 +1,332 @@
+<html><head><title>java_awt_print</title>
+<style>
+<!-- BEGIN Inline CSS -->
+/* Popup container */
+.popup {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+/* The actual popup (appears on top) */
+.popup .popuptext {
+    visibility: hidden;
+    width: 430px;
+    background-color: white;
+    color: black;
+    text-align: left;
+    border-radius: 6px;
+    border-style: solid;
+    border-color: black;
+    padding: 8px 8px 8px 8px;
+    position: absolute;
+    z-index: 1;
+    margin-top: 30px;
+}
+
+/* Toggle this class when clicking on the popup container (hide and show the popup) */
+.popup .show {
+    visibility: visible;
+    opacity: 1;
+}
+
+</style>
+<!-- END Inline CSS -->
+</head><body bgcolor="white">
+<hr><pre>
+<font color="green">(*</font>
+<font color="green"> *  Creator PeToCps j2cps version 1.4.07 (March 2018)</font>
+<font color="green"> *  Compiled from jar-file /Library/Java/JavaVirtualMachines/zulu-11.jdk/Contents/Home/jmods/java.desktop.jmod</font>
+<font color="green"> *)</font>
+<b>FOREIGN MODULE </b><font color="#cc0033">java_awt_print</font>;
+
+<b>IMPORT</b>
+    <a href="javax_print.html">javax_print</a> := "javax.print",
+    <a href="javax_print_attribute.html">javax_print_attribute</a> := "javax.print.attribute",
+    <a href="java_awt.html">java_awt</a> := "java.awt",
+    <a href="java_awt_print.html">java_awt_print</a> := "java.awt.print",
+    <a href="java_io.html">java_io</a> := "java.io",
+    <a href="java_lang.html">java_lang</a> := "java.lang";
+
+<b>TYPE</b>
+
+  <a name="type-Book"></a><font color="#cc0033">Book</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-Pageable">Pageable</a>)
+          <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+          <font color="green"><b> (* </b><a href="#meths-Book">Typebound Procedures</a><b> *)</b></font>
+          <b>STATIC</b>
+            <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-Book">Book</a><b>,CONSTRUCTOR</b>;
+          <b>END</b>;
+
+  <a name="type-Pageable"></a><font color="#cc0033">Pageable</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+              <font color="green"><b> (* </b><a href="#meths-Pageable">Typebound Procedures</a><b> *)</b></font>
+              <b>STATIC</b>
+                <font color="#cc0033">UNKNOWN_NUMBER_OF_PAGES</font>* = -1;
+              <b>END</b>;
+
+  <a name="type-PageFormat"></a><font color="#cc0033">PageFormat</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_lang.html#type-Cloneable">java_lang.Cloneable</a>)
+                <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                <font color="green"><b> (* </b><a href="#meths-PageFormat">Typebound Procedures</a><b> *)</b></font>
+                <b>STATIC</b>
+                  <font color="#cc0033">LANDSCAPE</font>*         = 0;
+                  <font color="#cc0033">PORTRAIT</font>*          = 1;
+                  <font color="#cc0033">REVERSE_LANDSCAPE</font>* = 2;
+                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-PageFormat">PageFormat</a><b>,CONSTRUCTOR</b>;
+                <b>END</b>;
+
+  <a name="type-Paper"></a><font color="#cc0033">Paper</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_lang.html#type-Cloneable">java_lang.Cloneable</a>)
+           <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+           <font color="green"><b> (* </b><a href="#meths-Paper">Typebound Procedures</a><b> *)</b></font>
+           <b>STATIC</b>
+             <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-Paper">Paper</a><b>,CONSTRUCTOR</b>;
+           <b>END</b>;
+
+  <a name="type-Printable"></a><font color="#cc0033">Printable</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+               <font color="green"><b> (* </b><a href="#meths-Printable">Typebound Procedures</a><b> *)</b></font>
+               <b>STATIC</b>
+                 <font color="#cc0033">NO_SUCH_PAGE</font>* = 1;
+                 <font color="#cc0033">PAGE_EXISTS</font>*  = 0;
+               <b>END</b>;
+
+  <a name="type-PrinterAbortException"></a><font color="#cc0033">PrinterAbortException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-PrinterException">PrinterException</a>)
+                           <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                           <b>STATIC</b>
+                             <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-PrinterAbortException">PrinterAbortException</a><b>,CONSTRUCTOR</b>;
+                             <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-PrinterAbortException">PrinterAbortException</a><b>,CONSTRUCTOR</b>;
+                           <b>END</b>;
+
+  <a name="type-PrinterException"></a><font color="#cc0033">PrinterException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Exception">java_lang.Exception</a>)
+                      <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                      <b>STATIC</b>
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-PrinterException">PrinterException</a><b>,CONSTRUCTOR</b>;
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-PrinterException">PrinterException</a><b>,CONSTRUCTOR</b>;
+                      <b>END</b>;
+
+  <a name="type-PrinterGraphics"></a><font color="#cc0033">PrinterGraphics</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                     <font color="green"><b> (* </b><a href="#meths-PrinterGraphics">Typebound Procedures</a><b> *)</b></font>
+                     <b>END</b>;
+
+  <a name="type-PrinterIOException"></a><font color="#cc0033">PrinterIOException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-PrinterException">PrinterException</a>)
+                        <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                        <font color="green"><b> (* </b><a href="#meths-PrinterIOException">Typebound Procedures</a><b> *)</b></font>
+                        <b>STATIC</b>
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_io.html#type-IOException">java_io.IOException</a>) : <a href="#type-PrinterIOException">PrinterIOException</a><b>,CONSTRUCTOR</b>;
+                        <b>END</b>;
+
+  <a name="type-PrinterJob"></a><font color="#cc0033">PrinterJob</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                <font color="green"><b> (* </b><a href="#meths-PrinterJob">Typebound Procedures</a><b> *)</b></font>
+                <b>STATIC</b>
+                  <b>PROCEDURE </b><font color="#cc0033">getPrinterJob</font>*() : <a href="#type-PrinterJob">PrinterJob</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-PrinterJob">PrinterJob</a><b>,CONSTRUCTOR</b>;
+                  <b>PROCEDURE </b><font color="#cc0033">lookupPrintServices</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="javax_print.html#type-PrintService">javax_print.PrintService</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">lookupStreamPrintServices</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="javax_print.html#type-StreamPrintServiceFactory">javax_print.StreamPrintServiceFactory</a>;
+                <b>END</b>;
+
+
+
+<a name="meths-Book"></a>
+<b>PROCEDURE </b>(self:Book) <font color="#cc0033">append</font>*(p0 : <a href="#type-Printable">Printable</a>;
+                              p1 : <a href="#type-PageFormat">PageFormat</a>;
+                              p2 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Book) <font color="#cc0033">append</font>*(p0 : <a href="#type-Printable">Printable</a>;
+                              p1 : <a href="#type-PageFormat">PageFormat</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Book) <font color="#cc0033">getNumberOfPages</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Book) <font color="#cc0033">getPageFormat</font>*(p0 : INTEGER) : <a href="#type-PageFormat">PageFormat</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Book) <font color="#cc0033">getPrintable</font>*(p0 : INTEGER) : <a href="#type-Printable">Printable</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Book) <font color="#cc0033">setPage</font>*(p0 : INTEGER;
+                               p1 : <a href="#type-Printable">Printable</a>;
+                               p2 : <a href="#type-PageFormat">PageFormat</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-Pageable"></a>
+<b>PROCEDURE </b>(self:Pageable) <font color="#cc0033">getNumberOfPages</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Pageable) <font color="#cc0033">getPageFormat</font>*(p0 : INTEGER) : <a href="java_awt_print.html#type-PageFormat">java_awt_print.PageFormat</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Pageable) <font color="#cc0033">getPrintable</font>*(p0 : INTEGER) : <a href="java_awt_print.html#type-Printable">java_awt_print.Printable</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-PageFormat"></a>
+<b>PROCEDURE </b>(self:PageFormat) <font color="#cc0033">clone</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PageFormat) <font color="#cc0033">getHeight</font>*() : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PageFormat) <font color="#cc0033">getImageableHeight</font>*() : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PageFormat) <font color="#cc0033">getImageableWidth</font>*() : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PageFormat) <font color="#cc0033">getImageableX</font>*() : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PageFormat) <font color="#cc0033">getImageableY</font>*() : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PageFormat) <font color="#cc0033">getMatrix</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PageFormat) <font color="#cc0033">getOrientation</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PageFormat) <font color="#cc0033">getPaper</font>*() : <a href="#type-Paper">Paper</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PageFormat) <font color="#cc0033">getWidth</font>*() : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PageFormat) <font color="#cc0033">setOrientation</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PageFormat) <font color="#cc0033">setPaper</font>*(p0 : <a href="#type-Paper">Paper</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-Paper"></a>
+<b>PROCEDURE </b>(self:Paper) <font color="#cc0033">clone</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Paper) <font color="#cc0033">getHeight</font>*() : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Paper) <font color="#cc0033">getImageableHeight</font>*() : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Paper) <font color="#cc0033">getImageableWidth</font>*() : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Paper) <font color="#cc0033">getImageableX</font>*() : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Paper) <font color="#cc0033">getImageableY</font>*() : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Paper) <font color="#cc0033">getWidth</font>*() : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Paper) <font color="#cc0033">setImageableArea</font>*(p0 : REAL;
+                                         p1 : REAL;
+                                         p2 : REAL;
+                                         p3 : REAL)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Paper) <font color="#cc0033">setSize</font>*(p0 : REAL;
+                                p1 : REAL)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-Printable"></a>
+<b>PROCEDURE </b>(self:Printable) <font color="#cc0033">print</font>*(p0 : <a href="java_awt.html#type-Graphics">java_awt.Graphics</a>;
+                                  p1 : <a href="java_awt_print.html#type-PageFormat">java_awt_print.PageFormat</a>;
+                                  p2 : INTEGER) : INTEGER<b>,NEW,ABSTRACT</b>;
+<a name="meths-PrinterGraphics"></a>
+<b>PROCEDURE </b>(self:PrinterGraphics) <font color="#cc0033">getPrinterJob</font>*() : <a href="java_awt_print.html#type-PrinterJob">java_awt_print.PrinterJob</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-PrinterIOException"></a>
+<b>PROCEDURE </b>(self:PrinterIOException) <font color="#cc0033">getCause</font>*() : <a href="java_lang.html#type-Throwable">java_lang.Throwable</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PrinterIOException) <font color="#cc0033">getIOException</font>*() : <a href="java_io.html#type-IOException">java_io.IOException</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-PrinterJob"></a>
+<b>PROCEDURE </b>(self:PrinterJob) <font color="#cc0033">cancel</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:PrinterJob) <font color="#cc0033">defaultPage</font>*(p0 : <a href="#type-PageFormat">PageFormat</a>) : <a href="#type-PageFormat">PageFormat</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:PrinterJob) <font color="#cc0033">defaultPage</font>*() : <a href="#type-PageFormat">PageFormat</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PrinterJob) <font color="#cc0033">getCopies</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:PrinterJob) <font color="#cc0033">getJobName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:PrinterJob) <font color="#cc0033">getPageFormat</font>*(p0 : <a href="javax_print_attribute.html#type-PrintRequestAttributeSet">javax_print_attribute.PrintRequestAttributeSet</a>) : <a href="#type-PageFormat">PageFormat</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PrinterJob) <font color="#cc0033">getPrintService</font>*() : <a href="javax_print.html#type-PrintService">javax_print.PrintService</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PrinterJob) <font color="#cc0033">getUserName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:PrinterJob) <font color="#cc0033">isCancelled</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:PrinterJob) <font color="#cc0033">pageDialog</font>*(p0 : <a href="#type-PageFormat">PageFormat</a>) : <a href="#type-PageFormat">PageFormat</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:PrinterJob) <font color="#cc0033">pageDialog</font>*(p0 : <a href="javax_print_attribute.html#type-PrintRequestAttributeSet">javax_print_attribute.PrintRequestAttributeSet</a>) : <a href="#type-PageFormat">PageFormat</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PrinterJob) <font color="#cc0033">print</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:PrinterJob) <font color="#cc0033">print</font>*(p0 : <a href="javax_print_attribute.html#type-PrintRequestAttributeSet">javax_print_attribute.PrintRequestAttributeSet</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PrinterJob) <font color="#cc0033">printDialog</font>*(p0 : <a href="javax_print_attribute.html#type-PrintRequestAttributeSet">javax_print_attribute.PrintRequestAttributeSet</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PrinterJob) <font color="#cc0033">printDialog</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:PrinterJob) <font color="#cc0033">setCopies</font>*(p0 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:PrinterJob) <font color="#cc0033">setJobName</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:PrinterJob) <font color="#cc0033">setPageable</font>*(p0 : <a href="#type-Pageable">Pageable</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:PrinterJob) <font color="#cc0033">setPrintable</font>*(p0 : <a href="#type-Printable">Printable</a>;
+                                          p1 : <a href="#type-PageFormat">PageFormat</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:PrinterJob) <font color="#cc0033">setPrintable</font>*(p0 : <a href="#type-Printable">Printable</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:PrinterJob) <font color="#cc0033">setPrintService</font>*(p0 : <a href="javax_print.html#type-PrintService">javax_print.PrintService</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PrinterJob) <font color="#cc0033">validatePage</font>*(p0 : <a href="#type-PageFormat">PageFormat</a>) : <a href="#type-PageFormat">PageFormat</a><b>,NEW,ABSTRACT</b>;
+
+<b>END </b><font color="#cc0033">java_awt_print</font>.
+</font></pre></hr>
+<!-- BEGIN JavaScript -->
+<script>
+function toggle(node) {
+    node.classList.toggle("show"); 
+  }
+
+function cls(node) {
+    var prnt = node.parentNode;
+    var next = prnt.previousSibling;
+    var text = next.lastChild;
+    text.innerHTML = 
+        "The <b>class</b> property asserts that this type will be<br>" +
+        "implemented as a reference class in the underlying framework.";
+    text.classList.toggle("show");
+  }
+
+function newOk(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>has noArg-ctor</b> property asserts that this reference<br>" +
+        "class has a no-arg constructor, and thus objects of this<br>" +
+        "type can be allocated with NEW(). Component Pascal types<br>" +
+        "derived from this type can also be allocated using NEW().";
+    popuptext.classList.toggle("show"); 
+  }
+
+function noNew(node) { 
+    var prnt = node.parentNode; 
+    var next = prnt.previousSibling; 
+    var text = next.lastChild; 
+    text.innerHTML =  
+        "The <b>no noArg-ctor</b> property asserts that this reference<br>" +
+        "class does not have a noArg constructor. Objects of this<br>" +
+        "type cannot be allocated using NEW(), and Component<br>" +
+        "Pascal types  derived from this type also cannot be<br>" +
+        "allocated using NEW().";
+    text.classList.toggle("show");
+  }
+
+function noCpy(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>no value-assign</b> property asserts that this reference<br>" + 
+        "class does not have a value copy method. Therefore, it<br>" +
+        "is not possible to perform value assignments using<br>" +
+        "statements like <i>dst^</i> := <i>src^</i>";
+    popuptext.classList.toggle("show");
+  }
+
+function valueclass(node) { 
+        var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>valueclass</b> property asserts that this RECORD type is<br>" + 
+        "implemented as a value class in the CLR. It follows that<br>" +  
+        "value assignments can be made of these types. They can<br>" + 
+        "also be passed by value. Even pointers to records of<br>" + 
+        "such types may be dereferenced and copied using syntax<br>" + 
+        "such as  <i>dst^</i> := <i>src^</i>"; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+function argCtor(node) { 
+    var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>has arg-ctor</b> property asserts that this reference<br>" +  
+        "class has one or more constructors that take arguments.<br>" + 
+        "These constructors can be called from Component Pascal<br>" + 
+        "by calling an <i>init</i>(...) method from the static list<br>" + 
+        "here. Component Pascal types derived from this type<br>" + 
+        "can define constructors with arguments which call the<br>" + 
+        "super-type constructor.<br>" + 
+        "See <i>'Interfacing to constructors'</i> in the Release Notes."; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+</script>
+<!-- END JavaScript --> 
+
+</body></html>

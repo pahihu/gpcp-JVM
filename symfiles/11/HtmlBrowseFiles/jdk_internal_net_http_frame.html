@@ -1,0 +1,525 @@
+<html><head><title>jdk_internal_net_http_frame</title>
+<style>
+<!-- BEGIN Inline CSS -->
+/* Popup container */
+.popup {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+/* The actual popup (appears on top) */
+.popup .popuptext {
+    visibility: hidden;
+    width: 430px;
+    background-color: white;
+    color: black;
+    text-align: left;
+    border-radius: 6px;
+    border-style: solid;
+    border-color: black;
+    padding: 8px 8px 8px 8px;
+    position: absolute;
+    z-index: 1;
+    margin-top: 30px;
+}
+
+/* Toggle this class when clicking on the popup container (hide and show the popup) */
+.popup .show {
+    visibility: visible;
+    opacity: 1;
+}
+
+</style>
+<!-- END Inline CSS -->
+</head><body bgcolor="white">
+<hr><pre>
+<font color="green">(*</font>
+<font color="green"> *  Creator PeToCps j2cps version 1.4.07 (March 2018)</font>
+<font color="green"> *  Compiled from jar-file /Library/Java/JavaVirtualMachines/zulu-11.jdk/Contents/Home/jmods/java.net.http.jmod</font>
+<font color="green"> *)</font>
+<b>FOREIGN MODULE </b><font color="#cc0033">jdk_internal_net_http_frame</font>;
+
+<b>IMPORT</b>
+    <a href="java_lang.html">java_lang</a> := "java.lang",
+    <a href="java_net_http.html">java_net_http</a> := "java.net.http",
+    <a href="java_nio.html">java_nio</a> := "java.nio",
+    <a href="java_util.html">java_util</a> := "java.util",
+    <a href="jdk_internal_net_http_frame.html">jdk_internal_net_http_frame</a> := "jdk.internal.net.http.frame";
+
+<b>TYPE</b>
+
+  <a name="type-ContinuationFrame"></a><font color="#cc0033">ContinuationFrame</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="jdk_internal_net_http_frame.html#type-HeaderFrame">jdk_internal_net_http_frame.HeaderFrame</a>)
+                       <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                       <font color="green"><b> (* </b><a href="#meths-ContinuationFrame">Typebound Procedures</a><b> *)</b></font>
+                       <b>STATIC</b>
+                         <font color="#cc0033">TYPE</font>* = 9;
+                         <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER;
+                                         p1 : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>) : <a href="#type-ContinuationFrame">ContinuationFrame</a><b>,CONSTRUCTOR</b>;
+                         <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER;
+                                         p1 : INTEGER;
+                                         p2 : <a href="java_util.html#type-List">java_util.List</a>) : <a href="#type-ContinuationFrame">ContinuationFrame</a><b>,CONSTRUCTOR</b>;
+                       <b>END</b>;
+
+  <a name="type-DataFrame"></a><font color="#cc0033">DataFrame</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="jdk_internal_net_http_frame.html#type-Http2Frame">jdk_internal_net_http_frame.Http2Frame</a>)
+               <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+               <font color="green"><b> (* </b><a href="#meths-DataFrame">Typebound Procedures</a><b> *)</b></font>
+               <b>STATIC</b>
+                 <font color="#cc0033">END_STREAM</font>* = 1;
+                 <font color="#cc0033">PADDED</font>*     = 8;
+                 <font color="#cc0033">TYPE</font>*       = 0;
+                 <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER;
+                                 p1 : INTEGER;
+                                 p2 : <a href="java_util.html#type-List">java_util.List</a>;
+                                 p3 : INTEGER) : <a href="#type-DataFrame">DataFrame</a><b>,CONSTRUCTOR</b>;
+                 <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER;
+                                 p1 : INTEGER;
+                                 p2 : <a href="java_util.html#type-List">java_util.List</a>) : <a href="#type-DataFrame">DataFrame</a><b>,CONSTRUCTOR</b>;
+                 <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER;
+                                 p1 : INTEGER;
+                                 p2 : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>) : <a href="#type-DataFrame">DataFrame</a><b>,CONSTRUCTOR</b>;
+               <b>END</b>;
+
+  <a name="type-ErrorFrame"></a><font color="#cc0033">ErrorFrame</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="jdk_internal_net_http_frame.html#type-Http2Frame">jdk_internal_net_http_frame.Http2Frame</a>)
+                <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                <font color="green"><b> (* </b><a href="#meths-ErrorFrame">Typebound Procedures</a><b> *)</b></font>
+                <b>STATIC</b>
+                  <font color="#cc0033">CANCEL</font>*              = 8;
+                  <font color="#cc0033">COMPRESSION_ERROR</font>*   = 9;
+                  <font color="#cc0033">CONNECT_ERROR</font>*       = 10;
+                  <font color="#cc0033">ENHANCE_YOUR_CALM</font>*   = 11;
+                  <font color="#cc0033">FLOW_CONTROL_ERROR</font>*  = 3;
+                  <font color="#cc0033">FRAME_SIZE_ERROR</font>*    = 6;
+                  <font color="#cc0033">HTTP_1_1_REQUIRED</font>*   = 13;
+                  <font color="#cc0033">INADEQUATE_SECURITY</font>* = 12;
+                  <font color="#cc0033">INTERNAL_ERROR</font>*      = 2;
+                  <font color="#cc0033">NO_ERROR</font>*            = 0;
+                  <font color="#cc0033">PROTOCOL_ERROR</font>*      = 1;
+                  <font color="#cc0033">REFUSED_STREAM</font>*      = 7;
+                  <font color="#cc0033">SETTINGS_TIMEOUT</font>*    = 4;
+                  <font color="#cc0033">STREAM_CLOSED</font>*       = 5;
+                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER;
+                                  p1 : INTEGER;
+                                  p2 : INTEGER) : <a href="#type-ErrorFrame">ErrorFrame</a><b>,CONSTRUCTOR</b>;
+                  <b>PROCEDURE </b><font color="#cc0033">stringForCode</font>*(p0 : INTEGER) : <a href="java_lang.html#type-String">java_lang.String</a>;
+                <b>END</b>;
+
+  <a name="type-FramesDecoder"></a><font color="#cc0033">FramesDecoder</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                   <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                   <font color="green"><b> (* </b><a href="#meths-FramesDecoder">Typebound Procedures</a><b> *)</b></font>
+                   <b>STATIC</b>
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="jdk_internal_net_http_frame.html#type-FramesDecoder$FrameProcessor">jdk_internal_net_http_frame.FramesDecoder$FrameProcessor</a>;
+                                     p1 : INTEGER) : <a href="#type-FramesDecoder">FramesDecoder</a><b>,CONSTRUCTOR</b>;
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="jdk_internal_net_http_frame.html#type-FramesDecoder$FrameProcessor">jdk_internal_net_http_frame.FramesDecoder$FrameProcessor</a>) : <a href="#type-FramesDecoder">FramesDecoder</a><b>,CONSTRUCTOR</b>;
+                   <b>END</b>;
+
+  <a name="type-FramesDecoder$FrameProcessor"></a><font color="#cc0033">FramesDecoder$FrameProcessor</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                                  <font color="green"><b> (* </b><a href="#meths-FramesDecoder$FrameProcessor">Typebound Procedures</a><b> *)</b></font>
+                                  <b>END</b>;
+
+  <a name="type-FramesEncoder"></a><font color="#cc0033">FramesEncoder</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                   <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                   <font color="green"><b> (* </b><a href="#meths-FramesEncoder">Typebound Procedures</a><b> *)</b></font>
+                   <b>STATIC</b>
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-FramesEncoder">FramesEncoder</a><b>,CONSTRUCTOR</b>;
+                   <b>END</b>;
+
+  <a name="type-GoAwayFrame"></a><font color="#cc0033">GoAwayFrame</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="jdk_internal_net_http_frame.html#type-ErrorFrame">jdk_internal_net_http_frame.ErrorFrame</a>)
+                 <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                 <font color="green"><b> (* </b><a href="#meths-GoAwayFrame">Typebound Procedures</a><b> *)</b></font>
+                 <b>STATIC</b>
+                   <font color="#cc0033">TYPE</font>* = 7;
+                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*(    p0 : INTEGER;
+                                       p1 : INTEGER;
+                                   IN  p2 : <b>ARRAY </b><b>OF </b>BYTE) : <a href="#type-GoAwayFrame">GoAwayFrame</a><b>,CONSTRUCTOR</b>;
+                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER;
+                                   p1 : INTEGER) : <a href="#type-GoAwayFrame">GoAwayFrame</a><b>,CONSTRUCTOR</b>;
+                 <b>END</b>;
+
+  <a name="type-HeaderFrame"></a><font color="#cc0033">HeaderFrame</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="jdk_internal_net_http_frame.html#type-Http2Frame">jdk_internal_net_http_frame.Http2Frame</a>)
+                 <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                 <font color="green"><b> (* </b><a href="#meths-HeaderFrame">Typebound Procedures</a><b> *)</b></font>
+                 <b>STATIC</b>
+                   <font color="#cc0033">END_HEADERS</font>* = 4;
+                   <font color="#cc0033">END_STREAM</font>*  = 1;
+                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER;
+                                   p1 : INTEGER;
+                                   p2 : <a href="java_util.html#type-List">java_util.List</a>) : <a href="#type-HeaderFrame">HeaderFrame</a><b>,CONSTRUCTOR</b>;
+                 <b>END</b>;
+
+  <a name="type-HeadersFrame"></a><font color="#cc0033">HeadersFrame</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-HeaderFrame">HeaderFrame</a>)
+                  <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                  <font color="green"><b> (* </b><a href="#meths-HeadersFrame">Typebound Procedures</a><b> *)</b></font>
+                  <b>STATIC</b>
+                    <font color="#cc0033">END_STREAM</font>* = 1;
+                    <font color="#cc0033">PADDED</font>*     = 8;
+                    <font color="#cc0033">PRIORITY</font>*   = 32;
+                    <font color="#cc0033">TYPE</font>*       = 1;
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER;
+                                    p1 : INTEGER;
+                                    p2 : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>) : <a href="#type-HeadersFrame">HeadersFrame</a><b>,CONSTRUCTOR</b>;
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER;
+                                    p1 : INTEGER;
+                                    p2 : <a href="java_util.html#type-List">java_util.List</a>) : <a href="#type-HeadersFrame">HeadersFrame</a><b>,CONSTRUCTOR</b>;
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER;
+                                    p1 : INTEGER;
+                                    p2 : <a href="java_util.html#type-List">java_util.List</a>;
+                                    p3 : INTEGER) : <a href="#type-HeadersFrame">HeadersFrame</a><b>,CONSTRUCTOR</b>;
+                  <b>END</b>;
+
+  <a name="type-Http2Frame"></a><font color="#cc0033">Http2Frame</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                <font color="green"><b> (* </b><a href="#meths-Http2Frame">Typebound Procedures</a><b> *)</b></font>
+                  <font color="#cc0033">streamid</font>! : INTEGER;
+                  <font color="#cc0033">flags</font>!    : INTEGER;
+                <b>STATIC</b>
+                  <font color="#cc0033">FRAME_HEADER_SIZE</font>* = 9;
+                  <b>PROCEDURE </b><font color="#cc0033">asString</font>*(p0 : INTEGER) : <a href="java_lang.html#type-String">java_lang.String</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER;
+                                  p1 : INTEGER) : <a href="#type-Http2Frame">Http2Frame</a><b>,CONSTRUCTOR</b>;
+                <b>END</b>;
+
+  <a name="type-MalformedFrame"></a><font color="#cc0033">MalformedFrame</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="jdk_internal_net_http_frame.html#type-Http2Frame">jdk_internal_net_http_frame.Http2Frame</a>)
+                    <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                    <font color="green"><b> (* </b><a href="#meths-MalformedFrame">Typebound Procedures</a><b> *)</b></font>
+                    <b>STATIC</b>
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER;
+                                      p1 : INTEGER;
+                                      p2 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-MalformedFrame">MalformedFrame</a><b>,CONSTRUCTOR</b>;
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER;
+                                      p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-MalformedFrame">MalformedFrame</a><b>,CONSTRUCTOR</b>;
+                    <b>END</b>;
+
+  <a name="type-OutgoingHeaders"></a><font color="#cc0033">OutgoingHeaders</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="jdk_internal_net_http_frame.html#type-Http2Frame">jdk_internal_net_http_frame.Http2Frame</a>)
+                     <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                     <font color="green"><b> (* </b><a href="#meths-OutgoingHeaders">Typebound Procedures</a><b> *)</b></font>
+                     <b>STATIC</b>
+                       <font color="#cc0033">PRIORITY</font>* = 32;
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_net_http.html#type-HttpHeaders">java_net_http.HttpHeaders</a>;
+                                       p1 : <a href="java_net_http.html#type-HttpHeaders">java_net_http.HttpHeaders</a>;
+                                       p2 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="#type-OutgoingHeaders">OutgoingHeaders</a><b>,CONSTRUCTOR</b>;
+                     <b>END</b>;
+
+  <a name="type-PingFrame"></a><font color="#cc0033">PingFrame</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="jdk_internal_net_http_frame.html#type-Http2Frame">jdk_internal_net_http_frame.Http2Frame</a>)
+               <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+               <font color="green"><b> (* </b><a href="#meths-PingFrame">Typebound Procedures</a><b> *)</b></font>
+               <b>STATIC</b>
+                 <font color="#cc0033">ACK</font>*  = 1;
+                 <font color="#cc0033">TYPE</font>* = 6;
+                 <b>PROCEDURE </b><font color="#cc0033">Init</font>*(    p0 : INTEGER;
+                                 IN  p1 : <b>ARRAY </b><b>OF </b>BYTE) : <a href="#type-PingFrame">PingFrame</a><b>,CONSTRUCTOR</b>;
+               <b>END</b>;
+
+  <a name="type-PriorityFrame"></a><font color="#cc0033">PriorityFrame</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="jdk_internal_net_http_frame.html#type-Http2Frame">jdk_internal_net_http_frame.Http2Frame</a>)
+                   <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                   <font color="green"><b> (* </b><a href="#meths-PriorityFrame">Typebound Procedures</a><b> *)</b></font>
+                   <b>STATIC</b>
+                     <font color="#cc0033">TYPE</font>* = 2;
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER;
+                                     p1 : INTEGER;
+                                     p2 : BOOLEAN;
+                                     p3 : INTEGER) : <a href="#type-PriorityFrame">PriorityFrame</a><b>,CONSTRUCTOR</b>;
+                   <b>END</b>;
+
+  <a name="type-PushPromiseFrame"></a><font color="#cc0033">PushPromiseFrame</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="jdk_internal_net_http_frame.html#type-HeaderFrame">jdk_internal_net_http_frame.HeaderFrame</a>)
+                      <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                      <font color="green"><b> (* </b><a href="#meths-PushPromiseFrame">Typebound Procedures</a><b> *)</b></font>
+                      <b>STATIC</b>
+                        <font color="#cc0033">END_HEADERS</font>* = 4;
+                        <font color="#cc0033">PADDED</font>*      = 8;
+                        <font color="#cc0033">TYPE</font>*        = 5;
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER;
+                                        p1 : INTEGER;
+                                        p2 : INTEGER;
+                                        p3 : <a href="java_util.html#type-List">java_util.List</a>;
+                                        p4 : INTEGER) : <a href="#type-PushPromiseFrame">PushPromiseFrame</a><b>,CONSTRUCTOR</b>;
+                      <b>END</b>;
+
+  <a name="type-ResetFrame"></a><font color="#cc0033">ResetFrame</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-ErrorFrame">ErrorFrame</a>)
+                <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                <font color="green"><b> (* </b><a href="#meths-ResetFrame">Typebound Procedures</a><b> *)</b></font>
+                <b>STATIC</b>
+                  <font color="#cc0033">TYPE</font>* = 3;
+                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER;
+                                  p1 : INTEGER) : <a href="#type-ResetFrame">ResetFrame</a><b>,CONSTRUCTOR</b>;
+                <b>END</b>;
+
+  <a name="type-SettingsFrame"></a><font color="#cc0033">SettingsFrame</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="jdk_internal_net_http_frame.html#type-Http2Frame">jdk_internal_net_http_frame.Http2Frame</a>)
+                   <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                   <font color="green"><b> (* </b><a href="#meths-SettingsFrame">Typebound Procedures</a><b> *)</b></font>
+                   <b>STATIC</b>
+                     <font color="#cc0033">ACK</font>*                            = 1;
+                     <font color="#cc0033">DEFAULT_ENABLE_PUSH</font>*            = 1;
+                     <font color="#cc0033">DEFAULT_HEADER_TABLE_SIZE</font>*      = 4096;
+                     <font color="#cc0033">DEFAULT_INITIAL_WINDOW_SIZE</font>*    = 65535;
+                     <font color="#cc0033">DEFAULT_MAX_CONCURRENT_STREAMS</font>* = 2147483647;
+                     <font color="#cc0033">DEFAULT_MAX_FRAME_SIZE</font>*         = 16384;
+                     <font color="#cc0033">ENABLE_PUSH</font>*                    = 2;
+                     <font color="#cc0033">HEADER_TABLE_SIZE</font>*              = 1;
+                     <font color="#cc0033">INITIAL_WINDOW_SIZE</font>*            = 4;
+                     <font color="#cc0033">MAX_CONCURRENT_STREAMS</font>*         = 3;
+                     <font color="#cc0033">MAX_FRAME_SIZE</font>*                 = 5;
+                     <font color="#cc0033">MAX_HEADER_LIST_SIZE</font>*           = 6;
+                     <font color="#cc0033">MAX_PARAM</font>*                      = 6;
+                     <font color="#cc0033">TYPE</font>*                           = 4;
+                     <b>PROCEDURE </b><font color="#cc0033">defaultRFCSettings</font>*() : <a href="#type-SettingsFrame">SettingsFrame</a>;
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="#type-SettingsFrame">SettingsFrame</a>) : <a href="#type-SettingsFrame">SettingsFrame</a><b>,CONSTRUCTOR</b>;
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER) : <a href="#type-SettingsFrame">SettingsFrame</a><b>,CONSTRUCTOR</b>;
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-SettingsFrame">SettingsFrame</a><b>,CONSTRUCTOR</b>;
+                   <b>END</b>;
+
+  <a name="type-WindowUpdateFrame"></a><font color="#cc0033">WindowUpdateFrame</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="jdk_internal_net_http_frame.html#type-Http2Frame">jdk_internal_net_http_frame.Http2Frame</a>)
+                       <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                       <font color="green"><b> (* </b><a href="#meths-WindowUpdateFrame">Typebound Procedures</a><b> *)</b></font>
+                       <b>STATIC</b>
+                         <font color="#cc0033">TYPE</font>* = 8;
+                         <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER;
+                                         p1 : INTEGER) : <a href="#type-WindowUpdateFrame">WindowUpdateFrame</a><b>,CONSTRUCTOR</b>;
+                       <b>END</b>;
+
+
+
+<a name="meths-ContinuationFrame"></a>
+<b>PROCEDURE </b>(self:ContinuationFrame) <font color="#cc0033">type</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-DataFrame"></a>
+<b>PROCEDURE </b>(self:DataFrame) <font color="#cc0033">flagAsString</font>*(p0 : INTEGER) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DataFrame) <font color="#cc0033">getData</font>*() : <a href="java_util.html#type-List">java_util.List</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DataFrame) <font color="#cc0033">getDataLength</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DataFrame) <font color="#cc0033">payloadLength</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DataFrame) <font color="#cc0033">setPadLength</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DataFrame) <font color="#cc0033">type</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-ErrorFrame"></a>
+<b>PROCEDURE </b>(self:ErrorFrame) <font color="#cc0033">getErrorCode</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ErrorFrame) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-FramesDecoder"></a>
+<b>PROCEDURE </b>(self:FramesDecoder) <font color="#cc0033">close</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FramesDecoder) <font color="#cc0033">decode</font>*(p0 : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FramesDecoder) <font color="#cc0033">getByte</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FramesDecoder) <font color="#cc0033">getBytes</font>*(p0 : INTEGER) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FramesDecoder) <font color="#cc0033">getInt</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FramesDecoder) <font color="#cc0033">getShort</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FramesDecoder) <font color="#cc0033">skipBytes</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-FramesDecoder$FrameProcessor"></a>
+<b>PROCEDURE </b>(self:FramesDecoder$FrameProcessor) <font color="#cc0033">processFrame</font>*(p0 : <a href="jdk_internal_net_http_frame.html#type-Http2Frame">jdk_internal_net_http_frame.Http2Frame</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-FramesEncoder"></a>
+<b>PROCEDURE </b>(self:FramesEncoder) <font color="#cc0033">encodeConnectionPreface</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE;
+                                                            p1 : <a href="jdk_internal_net_http_frame.html#type-SettingsFrame">jdk_internal_net_http_frame.SettingsFrame</a>) : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FramesEncoder) <font color="#cc0033">encodeFrame</font>*(p0 : <a href="jdk_internal_net_http_frame.html#type-Http2Frame">jdk_internal_net_http_frame.Http2Frame</a>) : <a href="java_util.html#type-List">java_util.List</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FramesEncoder) <font color="#cc0033">encodeFrames</font>*(p0 : <a href="java_util.html#type-List">java_util.List</a>) : <a href="java_util.html#type-List">java_util.List</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FramesEncoder) <font color="#cc0033">getPadding</font>*(p0 : INTEGER) : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-GoAwayFrame"></a>
+<b>PROCEDURE </b>(self:GoAwayFrame) <font color="#cc0033">getDebugData</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:GoAwayFrame) <font color="#cc0033">getLastStream</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:GoAwayFrame) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:GoAwayFrame) <font color="#cc0033">type</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-HeaderFrame"></a>
+<b>PROCEDURE </b>(self:HeaderFrame) <font color="#cc0033">endHeaders</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HeaderFrame) <font color="#cc0033">flagAsString</font>*(p0 : INTEGER) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HeaderFrame) <font color="#cc0033">getHeaderBlock</font>*() : <a href="java_util.html#type-List">java_util.List</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-HeadersFrame"></a>
+<b>PROCEDURE </b>(self:HeadersFrame) <font color="#cc0033">flagAsString</font>*(p0 : INTEGER) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HeadersFrame) <font color="#cc0033">getExclusive</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HeadersFrame) <font color="#cc0033">getStreamDependency</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HeadersFrame) <font color="#cc0033">getWeight</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HeadersFrame) <font color="#cc0033">setPadLength</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HeadersFrame) <font color="#cc0033">setPriority</font>*(p0 : INTEGER;
+                                           p1 : BOOLEAN;
+                                           p2 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HeadersFrame) <font color="#cc0033">type</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-Http2Frame"></a>
+<b>PROCEDURE </b>(self:Http2Frame) <font color="#cc0033">flagAsString</font>*(p0 : INTEGER) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Http2Frame) <font color="#cc0033">getFlag</font>*(p0 : INTEGER) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Http2Frame) <font color="#cc0033">getFlags</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Http2Frame) <font color="#cc0033">setFlag</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Http2Frame) <font color="#cc0033">streamid</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Http2Frame) <font color="#cc0033">streamid</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Http2Frame) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Http2Frame) <font color="#cc0033">type</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-MalformedFrame"></a>
+<b>PROCEDURE </b>(self:MalformedFrame) <font color="#cc0033">getErrorCode</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MalformedFrame) <font color="#cc0033">getMessage</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MalformedFrame) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-OutgoingHeaders"></a>
+<b>PROCEDURE </b>(self:OutgoingHeaders) <font color="#cc0033">getAttachment</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:OutgoingHeaders) <font color="#cc0033">getExclusive</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:OutgoingHeaders) <font color="#cc0033">getStreamDependency</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:OutgoingHeaders) <font color="#cc0033">getSystemHeaders</font>*() : <a href="java_net_http.html#type-HttpHeaders">java_net_http.HttpHeaders</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:OutgoingHeaders) <font color="#cc0033">getUserHeaders</font>*() : <a href="java_net_http.html#type-HttpHeaders">java_net_http.HttpHeaders</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:OutgoingHeaders) <font color="#cc0033">getWeight</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:OutgoingHeaders) <font color="#cc0033">setPriority</font>*(p0 : INTEGER;
+                                              p1 : BOOLEAN;
+                                              p2 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-PingFrame"></a>
+<b>PROCEDURE </b>(self:PingFrame) <font color="#cc0033">flagAsString</font>*(p0 : INTEGER) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PingFrame) <font color="#cc0033">getData</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PingFrame) <font color="#cc0033">type</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-PriorityFrame"></a>
+<b>PROCEDURE </b>(self:PriorityFrame) <font color="#cc0033">exclusive</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PriorityFrame) <font color="#cc0033">streamDependency</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PriorityFrame) <font color="#cc0033">type</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PriorityFrame) <font color="#cc0033">weight</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-PushPromiseFrame"></a>
+<b>PROCEDURE </b>(self:PushPromiseFrame) <font color="#cc0033">endHeaders</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PushPromiseFrame) <font color="#cc0033">flagAsString</font>*(p0 : INTEGER) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PushPromiseFrame) <font color="#cc0033">getPadLength</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PushPromiseFrame) <font color="#cc0033">getPromisedStream</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PushPromiseFrame) <font color="#cc0033">setPadLength</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PushPromiseFrame) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PushPromiseFrame) <font color="#cc0033">type</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-ResetFrame"></a>
+<b>PROCEDURE </b>(self:ResetFrame) <font color="#cc0033">type</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-SettingsFrame"></a>
+<b>PROCEDURE </b>(self:SettingsFrame) <font color="#cc0033">flagAsString</font>*(p0 : INTEGER) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SettingsFrame) <font color="#cc0033">getParameter</font>*(p0 : INTEGER) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SettingsFrame) <font color="#cc0033">setParameter</font>*(p0 : INTEGER;
+                                             p1 : INTEGER) : <a href="#type-SettingsFrame">SettingsFrame</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SettingsFrame) <font color="#cc0033">toByteArray</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SettingsFrame) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SettingsFrame) <font color="#cc0033">type</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SettingsFrame) <font color="#cc0033">update</font>*(p0 : <a href="#type-SettingsFrame">SettingsFrame</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-WindowUpdateFrame"></a>
+<b>PROCEDURE </b>(self:WindowUpdateFrame) <font color="#cc0033">getUpdate</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WindowUpdateFrame) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WindowUpdateFrame) <font color="#cc0033">type</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>END </b><font color="#cc0033">jdk_internal_net_http_frame</font>.
+</font></pre></hr>
+<!-- BEGIN JavaScript -->
+<script>
+function toggle(node) {
+    node.classList.toggle("show"); 
+  }
+
+function cls(node) {
+    var prnt = node.parentNode;
+    var next = prnt.previousSibling;
+    var text = next.lastChild;
+    text.innerHTML = 
+        "The <b>class</b> property asserts that this type will be<br>" +
+        "implemented as a reference class in the underlying framework.";
+    text.classList.toggle("show");
+  }
+
+function newOk(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>has noArg-ctor</b> property asserts that this reference<br>" +
+        "class has a no-arg constructor, and thus objects of this<br>" +
+        "type can be allocated with NEW(). Component Pascal types<br>" +
+        "derived from this type can also be allocated using NEW().";
+    popuptext.classList.toggle("show"); 
+  }
+
+function noNew(node) { 
+    var prnt = node.parentNode; 
+    var next = prnt.previousSibling; 
+    var text = next.lastChild; 
+    text.innerHTML =  
+        "The <b>no noArg-ctor</b> property asserts that this reference<br>" +
+        "class does not have a noArg constructor. Objects of this<br>" +
+        "type cannot be allocated using NEW(), and Component<br>" +
+        "Pascal types  derived from this type also cannot be<br>" +
+        "allocated using NEW().";
+    text.classList.toggle("show");
+  }
+
+function noCpy(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>no value-assign</b> property asserts that this reference<br>" + 
+        "class does not have a value copy method. Therefore, it<br>" +
+        "is not possible to perform value assignments using<br>" +
+        "statements like <i>dst^</i> := <i>src^</i>";
+    popuptext.classList.toggle("show");
+  }
+
+function valueclass(node) { 
+        var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>valueclass</b> property asserts that this RECORD type is<br>" + 
+        "implemented as a value class in the CLR. It follows that<br>" +  
+        "value assignments can be made of these types. They can<br>" + 
+        "also be passed by value. Even pointers to records of<br>" + 
+        "such types may be dereferenced and copied using syntax<br>" + 
+        "such as  <i>dst^</i> := <i>src^</i>"; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+function argCtor(node) { 
+    var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>has arg-ctor</b> property asserts that this reference<br>" +  
+        "class has one or more constructors that take arguments.<br>" + 
+        "These constructors can be called from Component Pascal<br>" + 
+        "by calling an <i>init</i>(...) method from the static list<br>" + 
+        "here. Component Pascal types derived from this type<br>" + 
+        "can define constructors with arguments which call the<br>" + 
+        "super-type constructor.<br>" + 
+        "See <i>'Interfacing to constructors'</i> in the Release Notes."; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+</script>
+<!-- END JavaScript --> 
+
+</body></html>

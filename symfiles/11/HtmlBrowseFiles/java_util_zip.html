@@ -1,0 +1,727 @@
+<html><head><title>java_util_zip</title>
+<style>
+<!-- BEGIN Inline CSS -->
+/* Popup container */
+.popup {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+/* The actual popup (appears on top) */
+.popup .popuptext {
+    visibility: hidden;
+    width: 430px;
+    background-color: white;
+    color: black;
+    text-align: left;
+    border-radius: 6px;
+    border-style: solid;
+    border-color: black;
+    padding: 8px 8px 8px 8px;
+    position: absolute;
+    z-index: 1;
+    margin-top: 30px;
+}
+
+/* Toggle this class when clicking on the popup container (hide and show the popup) */
+.popup .show {
+    visibility: visible;
+    opacity: 1;
+}
+
+</style>
+<!-- END Inline CSS -->
+</head><body bgcolor="white">
+<hr><pre>
+<font color="green">(*</font>
+<font color="green"> *  Creator PeToCps j2cps version 1.4.07 (March 2018)</font>
+<font color="green"> *  Compiled from jar-file /Library/Java/JavaVirtualMachines/zulu-11.jdk/Contents/Home/jmods/java.base.jmod</font>
+<font color="green"> *)</font>
+<b>FOREIGN MODULE </b><font color="#cc0033">java_util_zip</font>;
+
+<b>IMPORT</b>
+    <a href="java_io.html">java_io</a> := "java.io",
+    <a href="java_lang.html">java_lang</a> := "java.lang",
+    <a href="java_nio.html">java_nio</a> := "java.nio",
+    <a href="java_nio_charset.html">java_nio_charset</a> := "java.nio.charset",
+    <a href="java_nio_file_attribute.html">java_nio_file_attribute</a> := "java.nio.file.attribute",
+    <a href="java_time.html">java_time</a> := "java.time",
+    <a href="java_util.html">java_util</a> := "java.util",
+    <a href="java_util_stream.html">java_util_stream</a> := "java.util.stream",
+    <a href="java_util_zip.html">java_util_zip</a> := "java.util.zip";
+
+<b>TYPE</b>
+
+  <a name="type-Adler32"></a><font color="#cc0033">Adler32</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_util_zip.html#type-Checksum">java_util_zip.Checksum</a>)
+             <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+             <font color="green"><b> (* </b><a href="#meths-Adler32">Typebound Procedures</a><b> *)</b></font>
+             <b>STATIC</b>
+               <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-Adler32">Adler32</a><b>,CONSTRUCTOR</b>;
+             <b>END</b>;
+
+  <a name="type-CheckedInputStream"></a><font color="#cc0033">CheckedInputStream</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_io.html#type-FilterInputStream">java_io.FilterInputStream</a>)
+                        <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                        <font color="green"><b> (* </b><a href="#meths-CheckedInputStream">Typebound Procedures</a><b> *)</b></font>
+                        <b>STATIC</b>
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_io.html#type-InputStream">java_io.InputStream</a>;
+                                          p1 : <a href="java_util_zip.html#type-Checksum">java_util_zip.Checksum</a>) : <a href="#type-CheckedInputStream">CheckedInputStream</a><b>,CONSTRUCTOR</b>;
+                        <b>END</b>;
+
+  <a name="type-CheckedOutputStream"></a><font color="#cc0033">CheckedOutputStream</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_io.html#type-FilterOutputStream">java_io.FilterOutputStream</a>)
+                         <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                         <font color="green"><b> (* </b><a href="#meths-CheckedOutputStream">Typebound Procedures</a><b> *)</b></font>
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_io.html#type-OutputStream">java_io.OutputStream</a>;
+                                           p1 : <a href="java_util_zip.html#type-Checksum">java_util_zip.Checksum</a>) : <a href="#type-CheckedOutputStream">CheckedOutputStream</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-Checksum"></a><font color="#cc0033">Checksum</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+              <font color="green"><b> (* </b><a href="#meths-Checksum">Typebound Procedures</a><b> *)</b></font>
+              <b>END</b>;
+
+  <a name="type-CRC32"></a><font color="#cc0033">CRC32</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-Checksum">Checksum</a>)
+           <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+           <font color="green"><b> (* </b><a href="#meths-CRC32">Typebound Procedures</a><b> *)</b></font>
+           <b>STATIC</b>
+             <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CRC32">CRC32</a><b>,CONSTRUCTOR</b>;
+           <b>END</b>;
+
+  <a name="type-CRC32C"></a><font color="#cc0033">CRC32C</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-Checksum">Checksum</a>)
+            <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+            <font color="green"><b> (* </b><a href="#meths-CRC32C">Typebound Procedures</a><b> *)</b></font>
+            <b>STATIC</b>
+              <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CRC32C">CRC32C</a><b>,CONSTRUCTOR</b>;
+            <b>END</b>;
+
+  <a name="type-DataFormatException"></a><font color="#cc0033">DataFormatException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Exception">java_lang.Exception</a>)
+                         <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-DataFormatException">DataFormatException</a><b>,CONSTRUCTOR</b>;
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-DataFormatException">DataFormatException</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-Deflater"></a><font color="#cc0033">Deflater</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+              <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+              <font color="green"><b> (* </b><a href="#meths-Deflater">Typebound Procedures</a><b> *)</b></font>
+              <b>STATIC</b>
+                <font color="#cc0033">BEST_COMPRESSION</font>*    = 9;
+                <font color="#cc0033">BEST_SPEED</font>*          = 1;
+                <font color="#cc0033">DEFAULT_COMPRESSION</font>* = -1;
+                <font color="#cc0033">DEFAULT_STRATEGY</font>*    = 0;
+                <font color="#cc0033">DEFLATED</font>*            = 8;
+                <font color="#cc0033">FILTERED</font>*            = 1;
+                <font color="#cc0033">FULL_FLUSH</font>*          = 3;
+                <font color="#cc0033">HUFFMAN_ONLY</font>*        = 2;
+                <font color="#cc0033">NO_COMPRESSION</font>*      = 0;
+                <font color="#cc0033">NO_FLUSH</font>*            = 0;
+                <font color="#cc0033">SYNC_FLUSH</font>*          = 2;
+                <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-Deflater">Deflater</a><b>,CONSTRUCTOR</b>;
+                <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER) : <a href="#type-Deflater">Deflater</a><b>,CONSTRUCTOR</b>;
+                <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER;
+                                p1 : BOOLEAN) : <a href="#type-Deflater">Deflater</a><b>,CONSTRUCTOR</b>;
+              <b>END</b>;
+
+  <a name="type-DeflaterInputStream"></a><font color="#cc0033">DeflaterInputStream</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_io.html#type-FilterInputStream">java_io.FilterInputStream</a>)
+                         <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                         <font color="green"><b> (* </b><a href="#meths-DeflaterInputStream">Typebound Procedures</a><b> *)</b></font>
+                           <font color="#cc0033">def</font>! : <a href="java_util_zip.html#type-Deflater">java_util_zip.Deflater</a>;
+                           <font color="#cc0033">buf</font>! : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE;
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_io.html#type-InputStream">java_io.InputStream</a>;
+                                           p1 : <a href="java_util_zip.html#type-Deflater">java_util_zip.Deflater</a>;
+                                           p2 : INTEGER) : <a href="#type-DeflaterInputStream">DeflaterInputStream</a><b>,CONSTRUCTOR</b>;
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_io.html#type-InputStream">java_io.InputStream</a>;
+                                           p1 : <a href="java_util_zip.html#type-Deflater">java_util_zip.Deflater</a>) : <a href="#type-DeflaterInputStream">DeflaterInputStream</a><b>,CONSTRUCTOR</b>;
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_io.html#type-InputStream">java_io.InputStream</a>) : <a href="#type-DeflaterInputStream">DeflaterInputStream</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-DeflaterOutputStream"></a><font color="#cc0033">DeflaterOutputStream</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_io.html#type-FilterOutputStream">java_io.FilterOutputStream</a>)
+                          <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                          <font color="green"><b> (* </b><a href="#meths-DeflaterOutputStream">Typebound Procedures</a><b> *)</b></font>
+                            <font color="#cc0033">def</font>! : <a href="java_util_zip.html#type-Deflater">java_util_zip.Deflater</a>;
+                            <font color="#cc0033">buf</font>! : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE;
+                          <b>STATIC</b>
+                            <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_io.html#type-OutputStream">java_io.OutputStream</a>;
+                                            p1 : <a href="java_util_zip.html#type-Deflater">java_util_zip.Deflater</a>) : <a href="#type-DeflaterOutputStream">DeflaterOutputStream</a><b>,CONSTRUCTOR</b>;
+                            <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_io.html#type-OutputStream">java_io.OutputStream</a>;
+                                            p1 : BOOLEAN) : <a href="#type-DeflaterOutputStream">DeflaterOutputStream</a><b>,CONSTRUCTOR</b>;
+                            <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_io.html#type-OutputStream">java_io.OutputStream</a>) : <a href="#type-DeflaterOutputStream">DeflaterOutputStream</a><b>,CONSTRUCTOR</b>;
+                            <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_io.html#type-OutputStream">java_io.OutputStream</a>;
+                                            p1 : <a href="java_util_zip.html#type-Deflater">java_util_zip.Deflater</a>;
+                                            p2 : INTEGER;
+                                            p3 : BOOLEAN) : <a href="#type-DeflaterOutputStream">DeflaterOutputStream</a><b>,CONSTRUCTOR</b>;
+                            <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_io.html#type-OutputStream">java_io.OutputStream</a>;
+                                            p1 : <a href="java_util_zip.html#type-Deflater">java_util_zip.Deflater</a>;
+                                            p2 : INTEGER) : <a href="#type-DeflaterOutputStream">DeflaterOutputStream</a><b>,CONSTRUCTOR</b>;
+                            <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_io.html#type-OutputStream">java_io.OutputStream</a>;
+                                            p1 : <a href="java_util_zip.html#type-Deflater">java_util_zip.Deflater</a>;
+                                            p2 : BOOLEAN) : <a href="#type-DeflaterOutputStream">DeflaterOutputStream</a><b>,CONSTRUCTOR</b>;
+                          <b>END</b>;
+
+  <a name="type-GZIPInputStream"></a><font color="#cc0033">GZIPInputStream</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_util_zip.html#type-InflaterInputStream">java_util_zip.InflaterInputStream</a>)
+                     <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                     <font color="green"><b> (* </b><a href="#meths-GZIPInputStream">Typebound Procedures</a><b> *)</b></font>
+                       <font color="#cc0033">crc</font>! : <a href="java_util_zip.html#type-CRC32">java_util_zip.CRC32</a>;
+                       <font color="#cc0033">eos</font>! : BOOLEAN;
+                     <b>STATIC</b>
+                       <font color="#cc0033">GZIP_MAGIC</font>* = 35615;
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_io.html#type-InputStream">java_io.InputStream</a>) : <a href="#type-GZIPInputStream">GZIPInputStream</a><b>,CONSTRUCTOR</b>;
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_io.html#type-InputStream">java_io.InputStream</a>;
+                                       p1 : INTEGER) : <a href="#type-GZIPInputStream">GZIPInputStream</a><b>,CONSTRUCTOR</b>;
+                     <b>END</b>;
+
+  <a name="type-GZIPOutputStream"></a><font color="#cc0033">GZIPOutputStream</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-DeflaterOutputStream">DeflaterOutputStream</a>)
+                      <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                      <font color="green"><b> (* </b><a href="#meths-GZIPOutputStream">Typebound Procedures</a><b> *)</b></font>
+                        <font color="#cc0033">crc</font>! : <a href="#type-CRC32">CRC32</a>;
+                      <b>STATIC</b>
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_io.html#type-OutputStream">java_io.OutputStream</a>) : <a href="#type-GZIPOutputStream">GZIPOutputStream</a><b>,CONSTRUCTOR</b>;
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_io.html#type-OutputStream">java_io.OutputStream</a>;
+                                        p1 : BOOLEAN) : <a href="#type-GZIPOutputStream">GZIPOutputStream</a><b>,CONSTRUCTOR</b>;
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_io.html#type-OutputStream">java_io.OutputStream</a>;
+                                        p1 : INTEGER) : <a href="#type-GZIPOutputStream">GZIPOutputStream</a><b>,CONSTRUCTOR</b>;
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_io.html#type-OutputStream">java_io.OutputStream</a>;
+                                        p1 : INTEGER;
+                                        p2 : BOOLEAN) : <a href="#type-GZIPOutputStream">GZIPOutputStream</a><b>,CONSTRUCTOR</b>;
+                      <b>END</b>;
+
+  <a name="type-Inflater"></a><font color="#cc0033">Inflater</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+              <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+              <font color="green"><b> (* </b><a href="#meths-Inflater">Typebound Procedures</a><b> *)</b></font>
+              <b>STATIC</b>
+                <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-Inflater">Inflater</a><b>,CONSTRUCTOR</b>;
+                <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : BOOLEAN) : <a href="#type-Inflater">Inflater</a><b>,CONSTRUCTOR</b>;
+              <b>END</b>;
+
+  <a name="type-InflaterInputStream"></a><font color="#cc0033">InflaterInputStream</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_io.html#type-FilterInputStream">java_io.FilterInputStream</a>)
+                         <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                         <font color="green"><b> (* </b><a href="#meths-InflaterInputStream">Typebound Procedures</a><b> *)</b></font>
+                           <font color="#cc0033">inf</font>! : <a href="#type-Inflater">Inflater</a>;
+                           <font color="#cc0033">buf</font>! : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE;
+                           <font color="#cc0033">len</font>! : INTEGER;
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_io.html#type-InputStream">java_io.InputStream</a>) : <a href="#type-InflaterInputStream">InflaterInputStream</a><b>,CONSTRUCTOR</b>;
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_io.html#type-InputStream">java_io.InputStream</a>;
+                                           p1 : <a href="#type-Inflater">Inflater</a>) : <a href="#type-InflaterInputStream">InflaterInputStream</a><b>,CONSTRUCTOR</b>;
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_io.html#type-InputStream">java_io.InputStream</a>;
+                                           p1 : <a href="#type-Inflater">Inflater</a>;
+                                           p2 : INTEGER) : <a href="#type-InflaterInputStream">InflaterInputStream</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-InflaterOutputStream"></a><font color="#cc0033">InflaterOutputStream</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_io.html#type-FilterOutputStream">java_io.FilterOutputStream</a>)
+                          <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                          <font color="green"><b> (* </b><a href="#meths-InflaterOutputStream">Typebound Procedures</a><b> *)</b></font>
+                            <font color="#cc0033">inf</font>! : <a href="#type-Inflater">Inflater</a>;
+                            <font color="#cc0033">buf</font>! : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE;
+                          <b>STATIC</b>
+                            <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_io.html#type-OutputStream">java_io.OutputStream</a>;
+                                            p1 : <a href="#type-Inflater">Inflater</a>;
+                                            p2 : INTEGER) : <a href="#type-InflaterOutputStream">InflaterOutputStream</a><b>,CONSTRUCTOR</b>;
+                            <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_io.html#type-OutputStream">java_io.OutputStream</a>;
+                                            p1 : <a href="#type-Inflater">Inflater</a>) : <a href="#type-InflaterOutputStream">InflaterOutputStream</a><b>,CONSTRUCTOR</b>;
+                            <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_io.html#type-OutputStream">java_io.OutputStream</a>) : <a href="#type-InflaterOutputStream">InflaterOutputStream</a><b>,CONSTRUCTOR</b>;
+                          <b>END</b>;
+
+  <a name="type-ZipEntry"></a><font color="#cc0033">ZipEntry</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_util_zip.html#type-ZipConstants">java_util_zip.ZipConstants</a> + <a href="java_lang.html#type-Cloneable">java_lang.Cloneable</a>)
+              <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+              <font color="green"><b> (* </b><a href="#meths-ZipEntry">Typebound Procedures</a><b> *)</b></font>
+              <b>STATIC</b>
+                <font color="#cc0033">DEFLATED</font>* = 8;
+                <font color="#cc0033">STORED</font>*   = 0;
+                <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="#type-ZipEntry">ZipEntry</a>) : <a href="#type-ZipEntry">ZipEntry</a><b>,CONSTRUCTOR</b>;
+                <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-ZipEntry">ZipEntry</a><b>,CONSTRUCTOR</b>;
+              <b>END</b>;
+
+  <a name="type-ZipError"></a><font color="#cc0033">ZipError</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-InternalError">java_lang.InternalError</a>)
+              <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+              <b>STATIC</b>
+                <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-ZipError">ZipError</a><b>,CONSTRUCTOR</b>;
+              <b>END</b>;
+
+  <a name="type-ZipException"></a><font color="#cc0033">ZipException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_io.html#type-IOException">java_io.IOException</a>)
+                  <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                  <b>STATIC</b>
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-ZipException">ZipException</a><b>,CONSTRUCTOR</b>;
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-ZipException">ZipException</a><b>,CONSTRUCTOR</b>;
+                  <b>END</b>;
+
+  <a name="type-ZipFile"></a><font color="#cc0033">ZipFile</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_util_zip.html#type-ZipConstants">java_util_zip.ZipConstants</a> + <a href="java_io.html#type-Closeable">java_io.Closeable</a>)
+             <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+             <font color="green"><b> (* </b><a href="#meths-ZipFile">Typebound Procedures</a><b> *)</b></font>
+             <b>STATIC</b>
+               <font color="#cc0033">OPEN_DELETE</font>* = 4;
+               <font color="#cc0033">OPEN_READ</font>*   = 1;
+               <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_io.html#type-File">java_io.File</a>;
+                               p1 : INTEGER;
+                               p2 : <a href="java_nio_charset.html#type-Charset">java_nio_charset.Charset</a>) : <a href="#type-ZipFile">ZipFile</a><b>,CONSTRUCTOR</b>;
+               <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                               p1 : <a href="java_nio_charset.html#type-Charset">java_nio_charset.Charset</a>) : <a href="#type-ZipFile">ZipFile</a><b>,CONSTRUCTOR</b>;
+               <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_io.html#type-File">java_io.File</a>;
+                               p1 : <a href="java_nio_charset.html#type-Charset">java_nio_charset.Charset</a>) : <a href="#type-ZipFile">ZipFile</a><b>,CONSTRUCTOR</b>;
+               <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-ZipFile">ZipFile</a><b>,CONSTRUCTOR</b>;
+               <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_io.html#type-File">java_io.File</a>;
+                               p1 : INTEGER) : <a href="#type-ZipFile">ZipFile</a><b>,CONSTRUCTOR</b>;
+               <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_io.html#type-File">java_io.File</a>) : <a href="#type-ZipFile">ZipFile</a><b>,CONSTRUCTOR</b>;
+             <b>END</b>;
+
+  <a name="type-ZipInputStream"></a><font color="#cc0033">ZipInputStream</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-InflaterInputStream">InflaterInputStream</a> + <a href="java_util_zip.html#type-ZipConstants">java_util_zip.ZipConstants</a>)
+                    <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                    <font color="green"><b> (* </b><a href="#meths-ZipInputStream">Typebound Procedures</a><b> *)</b></font>
+                    <b>STATIC</b>
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_io.html#type-InputStream">java_io.InputStream</a>;
+                                      p1 : <a href="java_nio_charset.html#type-Charset">java_nio_charset.Charset</a>) : <a href="#type-ZipInputStream">ZipInputStream</a><b>,CONSTRUCTOR</b>;
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_io.html#type-InputStream">java_io.InputStream</a>) : <a href="#type-ZipInputStream">ZipInputStream</a><b>,CONSTRUCTOR</b>;
+                    <b>END</b>;
+
+  <a name="type-ZipOutputStream"></a><font color="#cc0033">ZipOutputStream</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_util_zip.html#type-DeflaterOutputStream">java_util_zip.DeflaterOutputStream</a> + <a href="java_util_zip.html#type-ZipConstants">java_util_zip.ZipConstants</a>)
+                     <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                     <font color="green"><b> (* </b><a href="#meths-ZipOutputStream">Typebound Procedures</a><b> *)</b></font>
+                     <b>STATIC</b>
+                       <font color="#cc0033">DEFLATED</font>* = 8;
+                       <font color="#cc0033">STORED</font>*   = 0;
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_io.html#type-OutputStream">java_io.OutputStream</a>;
+                                       p1 : <a href="java_nio_charset.html#type-Charset">java_nio_charset.Charset</a>) : <a href="#type-ZipOutputStream">ZipOutputStream</a><b>,CONSTRUCTOR</b>;
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_io.html#type-OutputStream">java_io.OutputStream</a>) : <a href="#type-ZipOutputStream">ZipOutputStream</a><b>,CONSTRUCTOR</b>;
+                     <b>END</b>;
+
+
+
+<a name="meths-Adler32"></a>
+<b>PROCEDURE </b>(self:Adler32) <font color="#cc0033">getValue</font>*() : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Adler32) <font color="#cc0033">reset</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Adler32) <font color="#cc0033">update</font>*(p0 : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Adler32) <font color="#cc0033">update</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Adler32) <font color="#cc0033">update</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE;
+                                     p1 : INTEGER;
+                                     p2 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-CheckedInputStream"></a>
+<b>PROCEDURE </b>(self:CheckedInputStream) <font color="#cc0033">getChecksum</font>*() : <a href="java_util_zip.html#type-Checksum">java_util_zip.Checksum</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CheckedInputStream) <font color="#cc0033">read</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE;
+                                              p1 : INTEGER;
+                                              p2 : INTEGER) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CheckedInputStream) <font color="#cc0033">read</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CheckedInputStream) <font color="#cc0033">skip</font>*(p0 : LONGINT) : LONGINT<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-CheckedOutputStream"></a>
+<b>PROCEDURE </b>(self:CheckedOutputStream) <font color="#cc0033">getChecksum</font>*() : <a href="java_util_zip.html#type-Checksum">java_util_zip.Checksum</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CheckedOutputStream) <font color="#cc0033">write</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE;
+                                                p1 : INTEGER;
+                                                p2 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CheckedOutputStream) <font color="#cc0033">write</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-Checksum"></a>
+<b>PROCEDURE </b>(self:Checksum) <font color="#cc0033">getValue</font>*() : LONGINT<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Checksum) <font color="#cc0033">reset</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Checksum) <font color="#cc0033">update</font>*(p0 : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Checksum) <font color="#cc0033">update</font>*(p0 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Checksum) <font color="#cc0033">update</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Checksum) <font color="#cc0033">update</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE;
+                                      p1 : INTEGER;
+                                      p2 : INTEGER)<b>,NEW,ABSTRACT</b>;
+<a name="meths-CRC32"></a>
+<b>PROCEDURE </b>(self:CRC32) <font color="#cc0033">getValue</font>*() : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CRC32) <font color="#cc0033">reset</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CRC32) <font color="#cc0033">update</font>*(p0 : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CRC32) <font color="#cc0033">update</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CRC32) <font color="#cc0033">update</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE;
+                                   p1 : INTEGER;
+                                   p2 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-CRC32C"></a>
+<b>PROCEDURE </b>(self:CRC32C) <font color="#cc0033">getValue</font>*() : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CRC32C) <font color="#cc0033">reset</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CRC32C) <font color="#cc0033">update</font>*(p0 : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CRC32C) <font color="#cc0033">update</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CRC32C) <font color="#cc0033">update</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE;
+                                    p1 : INTEGER;
+                                    p2 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-Deflater"></a>
+<b>PROCEDURE </b>(self:Deflater) <font color="#cc0033">deflate</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Deflater) <font color="#cc0033">deflate</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE;
+                                       p1 : INTEGER;
+                                       p2 : INTEGER) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Deflater) <font color="#cc0033">deflate</font>*(p0 : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Deflater) <font color="#cc0033">deflate</font>*(p0 : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>;
+                                   p1 : INTEGER) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Deflater) <font color="#cc0033">deflate</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE;
+                                       p1 : INTEGER;
+                                       p2 : INTEGER;
+                                       p3 : INTEGER) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Deflater) <font color="#cc0033">end</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Deflater) <font color="#cc0033">finalize</font>!()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Deflater) <font color="#cc0033">finish</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Deflater) <font color="#cc0033">finished</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Deflater) <font color="#cc0033">getAdler</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Deflater) <font color="#cc0033">getBytesRead</font>*() : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Deflater) <font color="#cc0033">getBytesWritten</font>*() : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Deflater) <font color="#cc0033">getTotalIn</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Deflater) <font color="#cc0033">getTotalOut</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Deflater) <font color="#cc0033">needsInput</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Deflater) <font color="#cc0033">reset</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Deflater) <font color="#cc0033">setDictionary</font>*(p0 : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Deflater) <font color="#cc0033">setDictionary</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Deflater) <font color="#cc0033">setDictionary</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE;
+                                             p1 : INTEGER;
+                                             p2 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Deflater) <font color="#cc0033">setInput</font>*(p0 : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Deflater) <font color="#cc0033">setInput</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Deflater) <font color="#cc0033">setInput</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE;
+                                        p1 : INTEGER;
+                                        p2 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Deflater) <font color="#cc0033">setLevel</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Deflater) <font color="#cc0033">setStrategy</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-DeflaterInputStream"></a>
+<b>PROCEDURE </b>(self:DeflaterInputStream) <font color="#cc0033">available</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DeflaterInputStream) <font color="#cc0033">close</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DeflaterInputStream) <font color="#cc0033">mark</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DeflaterInputStream) <font color="#cc0033">markSupported</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DeflaterInputStream) <font color="#cc0033">read</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DeflaterInputStream) <font color="#cc0033">read</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE;
+                                               p1 : INTEGER;
+                                               p2 : INTEGER) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DeflaterInputStream) <font color="#cc0033">reset</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DeflaterInputStream) <font color="#cc0033">skip</font>*(p0 : LONGINT) : LONGINT<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-DeflaterOutputStream"></a>
+<b>PROCEDURE </b>(self:DeflaterOutputStream) <font color="#cc0033">close</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DeflaterOutputStream) <font color="#cc0033">deflate</font>!()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DeflaterOutputStream) <font color="#cc0033">finish</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DeflaterOutputStream) <font color="#cc0033">flush</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DeflaterOutputStream) <font color="#cc0033">write</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DeflaterOutputStream) <font color="#cc0033">write</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE;
+                                                 p1 : INTEGER;
+                                                 p2 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-GZIPInputStream"></a>
+<b>PROCEDURE </b>(self:GZIPInputStream) <font color="#cc0033">close</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:GZIPInputStream) <font color="#cc0033">read</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE;
+                                           p1 : INTEGER;
+                                           p2 : INTEGER) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-GZIPOutputStream"></a>
+<b>PROCEDURE </b>(self:GZIPOutputStream) <font color="#cc0033">finish</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:GZIPOutputStream) <font color="#cc0033">write</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE;
+                                             p1 : INTEGER;
+                                             p2 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-Inflater"></a>
+<b>PROCEDURE </b>(self:Inflater) <font color="#cc0033">end</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Inflater) <font color="#cc0033">finalize</font>!()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Inflater) <font color="#cc0033">finished</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Inflater) <font color="#cc0033">getAdler</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Inflater) <font color="#cc0033">getBytesRead</font>*() : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Inflater) <font color="#cc0033">getBytesWritten</font>*() : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Inflater) <font color="#cc0033">getRemaining</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Inflater) <font color="#cc0033">getTotalIn</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Inflater) <font color="#cc0033">getTotalOut</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Inflater) <font color="#cc0033">inflate</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Inflater) <font color="#cc0033">inflate</font>*(p0 : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Inflater) <font color="#cc0033">inflate</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE;
+                                       p1 : INTEGER;
+                                       p2 : INTEGER) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Inflater) <font color="#cc0033">needsDictionary</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Inflater) <font color="#cc0033">needsInput</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Inflater) <font color="#cc0033">reset</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Inflater) <font color="#cc0033">setDictionary</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE;
+                                             p1 : INTEGER;
+                                             p2 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Inflater) <font color="#cc0033">setDictionary</font>*(p0 : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Inflater) <font color="#cc0033">setDictionary</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Inflater) <font color="#cc0033">setInput</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE;
+                                        p1 : INTEGER;
+                                        p2 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Inflater) <font color="#cc0033">setInput</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Inflater) <font color="#cc0033">setInput</font>*(p0 : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-InflaterInputStream"></a>
+<b>PROCEDURE </b>(self:InflaterInputStream) <font color="#cc0033">available</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:InflaterInputStream) <font color="#cc0033">close</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:InflaterInputStream) <font color="#cc0033">fill</font>!()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:InflaterInputStream) <font color="#cc0033">mark</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:InflaterInputStream) <font color="#cc0033">markSupported</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:InflaterInputStream) <font color="#cc0033">read</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE;
+                                               p1 : INTEGER;
+                                               p2 : INTEGER) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:InflaterInputStream) <font color="#cc0033">read</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:InflaterInputStream) <font color="#cc0033">reset</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:InflaterInputStream) <font color="#cc0033">skip</font>*(p0 : LONGINT) : LONGINT<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-InflaterOutputStream"></a>
+<b>PROCEDURE </b>(self:InflaterOutputStream) <font color="#cc0033">close</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:InflaterOutputStream) <font color="#cc0033">finish</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:InflaterOutputStream) <font color="#cc0033">flush</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:InflaterOutputStream) <font color="#cc0033">write</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE;
+                                                 p1 : INTEGER;
+                                                 p2 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:InflaterOutputStream) <font color="#cc0033">write</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-ZipEntry"></a>
+<b>PROCEDURE </b>(self:ZipEntry) <font color="#cc0033">clone</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ZipEntry) <font color="#cc0033">getComment</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ZipEntry) <font color="#cc0033">getCompressedSize</font>*() : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ZipEntry) <font color="#cc0033">getCrc</font>*() : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ZipEntry) <font color="#cc0033">getCreationTime</font>*() : <a href="java_nio_file_attribute.html#type-FileTime">java_nio_file_attribute.FileTime</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ZipEntry) <font color="#cc0033">getExtra</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ZipEntry) <font color="#cc0033">getLastAccessTime</font>*() : <a href="java_nio_file_attribute.html#type-FileTime">java_nio_file_attribute.FileTime</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ZipEntry) <font color="#cc0033">getLastModifiedTime</font>*() : <a href="java_nio_file_attribute.html#type-FileTime">java_nio_file_attribute.FileTime</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ZipEntry) <font color="#cc0033">getMethod</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ZipEntry) <font color="#cc0033">getName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ZipEntry) <font color="#cc0033">getSize</font>*() : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ZipEntry) <font color="#cc0033">getTime</font>*() : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ZipEntry) <font color="#cc0033">getTimeLocal</font>*() : <a href="java_time.html#type-LocalDateTime">java_time.LocalDateTime</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ZipEntry) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ZipEntry) <font color="#cc0033">isDirectory</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ZipEntry) <font color="#cc0033">setComment</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ZipEntry) <font color="#cc0033">setCompressedSize</font>*(p0 : LONGINT)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ZipEntry) <font color="#cc0033">setCrc</font>*(p0 : LONGINT)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ZipEntry) <font color="#cc0033">setCreationTime</font>*(p0 : <a href="java_nio_file_attribute.html#type-FileTime">java_nio_file_attribute.FileTime</a>) : <a href="#type-ZipEntry">ZipEntry</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ZipEntry) <font color="#cc0033">setExtra</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ZipEntry) <font color="#cc0033">setLastAccessTime</font>*(p0 : <a href="java_nio_file_attribute.html#type-FileTime">java_nio_file_attribute.FileTime</a>) : <a href="#type-ZipEntry">ZipEntry</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ZipEntry) <font color="#cc0033">setLastModifiedTime</font>*(p0 : <a href="java_nio_file_attribute.html#type-FileTime">java_nio_file_attribute.FileTime</a>) : <a href="#type-ZipEntry">ZipEntry</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ZipEntry) <font color="#cc0033">setMethod</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ZipEntry) <font color="#cc0033">setSize</font>*(p0 : LONGINT)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ZipEntry) <font color="#cc0033">setTime</font>*(p0 : LONGINT)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ZipEntry) <font color="#cc0033">setTimeLocal</font>*(p0 : <a href="java_time.html#type-LocalDateTime">java_time.LocalDateTime</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ZipEntry) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-ZipFile"></a>
+<b>PROCEDURE </b>(self:ZipFile) <font color="#cc0033">close</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ZipFile) <font color="#cc0033">entries</font>*() : <a href="java_util.html#type-Enumeration">java_util.Enumeration</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ZipFile) <font color="#cc0033">finalize</font>!()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ZipFile) <font color="#cc0033">getComment</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ZipFile) <font color="#cc0033">getEntry</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_util_zip.html#type-ZipEntry">java_util_zip.ZipEntry</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ZipFile) <font color="#cc0033">getInputStream</font>*(p0 : <a href="java_util_zip.html#type-ZipEntry">java_util_zip.ZipEntry</a>) : <a href="java_io.html#type-InputStream">java_io.InputStream</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ZipFile) <font color="#cc0033">getName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ZipFile) <font color="#cc0033">size</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ZipFile) <font color="#cc0033">stream</font>*() : <a href="java_util_stream.html#type-Stream">java_util_stream.Stream</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-ZipInputStream"></a>
+<b>PROCEDURE </b>(self:ZipInputStream) <font color="#cc0033">available</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ZipInputStream) <font color="#cc0033">close</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ZipInputStream) <font color="#cc0033">closeEntry</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ZipInputStream) <font color="#cc0033">createZipEntry</font>!(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-ZipEntry">ZipEntry</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ZipInputStream) <font color="#cc0033">getNextEntry</font>*() : <a href="#type-ZipEntry">ZipEntry</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ZipInputStream) <font color="#cc0033">read</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE;
+                                          p1 : INTEGER;
+                                          p2 : INTEGER) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ZipInputStream) <font color="#cc0033">skip</font>*(p0 : LONGINT) : LONGINT<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-ZipOutputStream"></a>
+<b>PROCEDURE </b>(self:ZipOutputStream) <font color="#cc0033">close</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ZipOutputStream) <font color="#cc0033">closeEntry</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ZipOutputStream) <font color="#cc0033">finish</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ZipOutputStream) <font color="#cc0033">putNextEntry</font>*(p0 : <a href="java_util_zip.html#type-ZipEntry">java_util_zip.ZipEntry</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ZipOutputStream) <font color="#cc0033">setComment</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ZipOutputStream) <font color="#cc0033">setLevel</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ZipOutputStream) <font color="#cc0033">setMethod</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ZipOutputStream) <font color="#cc0033">write</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE;
+                                            p1 : INTEGER;
+                                            p2 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>END </b><font color="#cc0033">java_util_zip</font>.
+</font></pre></hr>
+<!-- BEGIN JavaScript -->
+<script>
+function toggle(node) {
+    node.classList.toggle("show"); 
+  }
+
+function cls(node) {
+    var prnt = node.parentNode;
+    var next = prnt.previousSibling;
+    var text = next.lastChild;
+    text.innerHTML = 
+        "The <b>class</b> property asserts that this type will be<br>" +
+        "implemented as a reference class in the underlying framework.";
+    text.classList.toggle("show");
+  }
+
+function newOk(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>has noArg-ctor</b> property asserts that this reference<br>" +
+        "class has a no-arg constructor, and thus objects of this<br>" +
+        "type can be allocated with NEW(). Component Pascal types<br>" +
+        "derived from this type can also be allocated using NEW().";
+    popuptext.classList.toggle("show"); 
+  }
+
+function noNew(node) { 
+    var prnt = node.parentNode; 
+    var next = prnt.previousSibling; 
+    var text = next.lastChild; 
+    text.innerHTML =  
+        "The <b>no noArg-ctor</b> property asserts that this reference<br>" +
+        "class does not have a noArg constructor. Objects of this<br>" +
+        "type cannot be allocated using NEW(), and Component<br>" +
+        "Pascal types  derived from this type also cannot be<br>" +
+        "allocated using NEW().";
+    text.classList.toggle("show");
+  }
+
+function noCpy(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>no value-assign</b> property asserts that this reference<br>" + 
+        "class does not have a value copy method. Therefore, it<br>" +
+        "is not possible to perform value assignments using<br>" +
+        "statements like <i>dst^</i> := <i>src^</i>";
+    popuptext.classList.toggle("show");
+  }
+
+function valueclass(node) { 
+        var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>valueclass</b> property asserts that this RECORD type is<br>" + 
+        "implemented as a value class in the CLR. It follows that<br>" +  
+        "value assignments can be made of these types. They can<br>" + 
+        "also be passed by value. Even pointers to records of<br>" + 
+        "such types may be dereferenced and copied using syntax<br>" + 
+        "such as  <i>dst^</i> := <i>src^</i>"; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+function argCtor(node) { 
+    var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>has arg-ctor</b> property asserts that this reference<br>" +  
+        "class has one or more constructors that take arguments.<br>" + 
+        "These constructors can be called from Component Pascal<br>" + 
+        "by calling an <i>init</i>(...) method from the static list<br>" + 
+        "here. Component Pascal types derived from this type<br>" + 
+        "can define constructors with arguments which call the<br>" + 
+        "super-type constructor.<br>" + 
+        "See <i>'Interfacing to constructors'</i> in the Release Notes."; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+</script>
+<!-- END JavaScript --> 
+
+</body></html>

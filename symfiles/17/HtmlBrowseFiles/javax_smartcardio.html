@@ -1,0 +1,401 @@
+<html><head><title>javax_smartcardio</title>
+<style>
+<!-- BEGIN Inline CSS -->
+/* Popup container */
+.popup {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+/* The actual popup (appears on top) */
+.popup .popuptext {
+    visibility: hidden;
+    width: 430px;
+    background-color: white;
+    color: black;
+    text-align: left;
+    border-radius: 6px;
+    border-style: solid;
+    border-color: black;
+    padding: 8px 8px 8px 8px;
+    position: absolute;
+    z-index: 1;
+    margin-top: 30px;
+}
+
+/* Toggle this class when clicking on the popup container (hide and show the popup) */
+.popup .show {
+    visibility: visible;
+    opacity: 1;
+}
+
+</style>
+<!-- END Inline CSS -->
+</head><body bgcolor="white">
+<hr><pre>
+<font color="green">(*</font>
+<font color="green"> *  Creator PeToCps j2cps version 1.4.07 (March 2018)</font>
+<font color="green"> *  Compiled from jar-file /Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home/jmods/java.smartcardio.jmod</font>
+<font color="green"> *)</font>
+<b>FOREIGN MODULE </b><font color="#cc0033">javax_smartcardio</font>;
+
+<b>IMPORT</b>
+    <a href="javax_smartcardio.html">javax_smartcardio</a> := "javax.smartcardio",
+    <a href="java_io.html">java_io</a> := "java.io",
+    <a href="java_lang.html">java_lang</a> := "java.lang",
+    <a href="java_nio.html">java_nio</a> := "java.nio",
+    <a href="java_security.html">java_security</a> := "java.security",
+    <a href="java_util.html">java_util</a> := "java.util";
+
+<b>TYPE</b>
+
+  <a name="type-ATR"></a><font color="#cc0033">ATR</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_io.html#type-Serializable">java_io.Serializable</a>)
+         <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+         <font color="green"><b> (* </b><a href="#meths-ATR">Typebound Procedures</a><b> *)</b></font>
+         <b>STATIC</b>
+           <b>PROCEDURE </b><font color="#cc0033">Init</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE) : <a href="#type-ATR">ATR</a><b>,CONSTRUCTOR</b>;
+         <b>END</b>;
+
+  <a name="type-Card"></a><font color="#cc0033">Card</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+          <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+          <font color="green"><b> (* </b><a href="#meths-Card">Typebound Procedures</a><b> *)</b></font>
+          <b>STATIC</b>
+            <b>PROCEDURE </b><font color="#cc0033">Init</font>!() : <a href="#type-Card">Card</a><b>,CONSTRUCTOR</b>;
+          <b>END</b>;
+
+  <a name="type-CardChannel"></a><font color="#cc0033">CardChannel</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                 <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                 <font color="green"><b> (* </b><a href="#meths-CardChannel">Typebound Procedures</a><b> *)</b></font>
+                 <b>STATIC</b>
+                   <b>PROCEDURE </b><font color="#cc0033">Init</font>!() : <a href="#type-CardChannel">CardChannel</a><b>,CONSTRUCTOR</b>;
+                 <b>END</b>;
+
+  <a name="type-CardException"></a><font color="#cc0033">CardException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Exception">java_lang.Exception</a>)
+                   <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                   <b>STATIC</b>
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                     p1 : <a href="java_lang.html#type-Throwable">java_lang.Throwable</a>) : <a href="#type-CardException">CardException</a><b>,CONSTRUCTOR</b>;
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-Throwable">java_lang.Throwable</a>) : <a href="#type-CardException">CardException</a><b>,CONSTRUCTOR</b>;
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-CardException">CardException</a><b>,CONSTRUCTOR</b>;
+                   <b>END</b>;
+
+  <a name="type-CardNotPresentException"></a><font color="#cc0033">CardNotPresentException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-CardException">CardException</a>)
+                             <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                             <b>STATIC</b>
+                               <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                               p1 : <a href="java_lang.html#type-Throwable">java_lang.Throwable</a>) : <a href="#type-CardNotPresentException">CardNotPresentException</a><b>,CONSTRUCTOR</b>;
+                               <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-Throwable">java_lang.Throwable</a>) : <a href="#type-CardNotPresentException">CardNotPresentException</a><b>,CONSTRUCTOR</b>;
+                               <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-CardNotPresentException">CardNotPresentException</a><b>,CONSTRUCTOR</b>;
+                             <b>END</b>;
+
+  <a name="type-CardPermission"></a><font color="#cc0033">CardPermission</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_security.html#type-Permission">java_security.Permission</a>)
+                    <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                    <font color="green"><b> (* </b><a href="#meths-CardPermission">Typebound Procedures</a><b> *)</b></font>
+                    <b>STATIC</b>
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                      p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-CardPermission">CardPermission</a><b>,CONSTRUCTOR</b>;
+                    <b>END</b>;
+
+  <a name="type-CardTerminal"></a><font color="#cc0033">CardTerminal</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                  <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                  <font color="green"><b> (* </b><a href="#meths-CardTerminal">Typebound Procedures</a><b> *)</b></font>
+                  <b>STATIC</b>
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>!() : <a href="#type-CardTerminal">CardTerminal</a><b>,CONSTRUCTOR</b>;
+                  <b>END</b>;
+
+  <a name="type-CardTerminals"></a><font color="#cc0033">CardTerminals</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                   <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                   <font color="green"><b> (* </b><a href="#meths-CardTerminals">Typebound Procedures</a><b> *)</b></font>
+                   <b>STATIC</b>
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>!() : <a href="#type-CardTerminals">CardTerminals</a><b>,CONSTRUCTOR</b>;
+                   <b>END</b>;
+
+  <a name="type-CardTerminals$State"></a><font color="#cc0033">CardTerminals$State</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Enum">java_lang.Enum</a>)
+                         <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> *)</font>
+                         <b>STATIC</b>
+                           <a name="type-ALL"></a><font color="#cc0033">ALL</font>*            : <a href="#type-CardTerminals$State">CardTerminals$State</a>;
+                           <a name="type-CARD_ABSENT"></a><font color="#cc0033">CARD_ABSENT</font>*    : <a href="#type-CardTerminals$State">CardTerminals$State</a>;
+                           <a name="type-CARD_INSERTION"></a><font color="#cc0033">CARD_INSERTION</font>* : <a href="#type-CardTerminals$State">CardTerminals$State</a>;
+                           <a name="type-CARD_PRESENT"></a><font color="#cc0033">CARD_PRESENT</font>*   : <a href="#type-CardTerminals$State">CardTerminals$State</a>;
+                           <a name="type-CARD_REMOVAL"></a><font color="#cc0033">CARD_REMOVAL</font>*   : <a href="#type-CardTerminals$State">CardTerminals$State</a>;
+                           <b>PROCEDURE </b><font color="#cc0033">valueOf</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-CardTerminals$State">CardTerminals$State</a>;
+                           <b>PROCEDURE </b><font color="#cc0033">values</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-CardTerminals$State">CardTerminals$State</a>;
+                         <b>END</b>;
+
+  <a name="type-CommandAPDU"></a><font color="#cc0033">CommandAPDU</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_io.html#type-Serializable">java_io.Serializable</a>)
+                 <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                 <font color="green"><b> (* </b><a href="#meths-CommandAPDU">Typebound Procedures</a><b> *)</b></font>
+                 <b>STATIC</b>
+                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*(    p0 : INTEGER;
+                                       p1 : INTEGER;
+                                       p2 : INTEGER;
+                                       p3 : INTEGER;
+                                   IN  p4 : <b>ARRAY </b><b>OF </b>BYTE;
+                                       p5 : INTEGER;
+                                       p6 : INTEGER) : <a href="#type-CommandAPDU">CommandAPDU</a><b>,CONSTRUCTOR</b>;
+                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*(    p0 : INTEGER;
+                                       p1 : INTEGER;
+                                       p2 : INTEGER;
+                                       p3 : INTEGER;
+                                   IN  p4 : <b>ARRAY </b><b>OF </b>BYTE) : <a href="#type-CommandAPDU">CommandAPDU</a><b>,CONSTRUCTOR</b>;
+                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*(    p0 : INTEGER;
+                                       p1 : INTEGER;
+                                       p2 : INTEGER;
+                                       p3 : INTEGER;
+                                   IN  p4 : <b>ARRAY </b><b>OF </b>BYTE;
+                                       p5 : INTEGER;
+                                       p6 : INTEGER;
+                                       p7 : INTEGER) : <a href="#type-CommandAPDU">CommandAPDU</a><b>,CONSTRUCTOR</b>;
+                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*(    p0 : INTEGER;
+                                       p1 : INTEGER;
+                                       p2 : INTEGER;
+                                       p3 : INTEGER;
+                                   IN  p4 : <b>ARRAY </b><b>OF </b>BYTE;
+                                       p5 : INTEGER) : <a href="#type-CommandAPDU">CommandAPDU</a><b>,CONSTRUCTOR</b>;
+                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER;
+                                   p1 : INTEGER;
+                                   p2 : INTEGER;
+                                   p3 : INTEGER;
+                                   p4 : INTEGER) : <a href="#type-CommandAPDU">CommandAPDU</a><b>,CONSTRUCTOR</b>;
+                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE;
+                                       p1 : INTEGER;
+                                       p2 : INTEGER) : <a href="#type-CommandAPDU">CommandAPDU</a><b>,CONSTRUCTOR</b>;
+                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE) : <a href="#type-CommandAPDU">CommandAPDU</a><b>,CONSTRUCTOR</b>;
+                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER;
+                                   p1 : INTEGER;
+                                   p2 : INTEGER;
+                                   p3 : INTEGER) : <a href="#type-CommandAPDU">CommandAPDU</a><b>,CONSTRUCTOR</b>;
+                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>) : <a href="#type-CommandAPDU">CommandAPDU</a><b>,CONSTRUCTOR</b>;
+                 <b>END</b>;
+
+  <a name="type-ResponseAPDU"></a><font color="#cc0033">ResponseAPDU</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_io.html#type-Serializable">java_io.Serializable</a>)
+                  <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                  <font color="green"><b> (* </b><a href="#meths-ResponseAPDU">Typebound Procedures</a><b> *)</b></font>
+                  <b>STATIC</b>
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE) : <a href="#type-ResponseAPDU">ResponseAPDU</a><b>,CONSTRUCTOR</b>;
+                  <b>END</b>;
+
+  <a name="type-TerminalFactory"></a><font color="#cc0033">TerminalFactory</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                     <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> *)</font>
+                     <font color="green"><b> (* </b><a href="#meths-TerminalFactory">Typebound Procedures</a><b> *)</b></font>
+                     <b>STATIC</b>
+                       <b>PROCEDURE </b><font color="#cc0033">getDefault</font>*() : <a href="#type-TerminalFactory">TerminalFactory</a>;
+                       <b>PROCEDURE </b><font color="#cc0033">getDefaultType</font>*() : <a href="java_lang.html#type-String">java_lang.String</a>;
+                       <b>PROCEDURE </b><font color="#cc0033">getInstance</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                              p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                              p2 : <a href="java_security.html#type-Provider">java_security.Provider</a>) : <a href="#type-TerminalFactory">TerminalFactory</a>;
+                       <b>PROCEDURE </b><font color="#cc0033">getInstance</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                              p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                              p2 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-TerminalFactory">TerminalFactory</a>;
+                       <b>PROCEDURE </b><font color="#cc0033">getInstance</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                              p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="#type-TerminalFactory">TerminalFactory</a>;
+                     <b>END</b>;
+
+  <a name="type-TerminalFactorySpi"></a><font color="#cc0033">TerminalFactorySpi</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                        <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                        <font color="green"><b> (* </b><a href="#meths-TerminalFactorySpi">Typebound Procedures</a><b> *)</b></font>
+                        <b>STATIC</b>
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>!() : <a href="#type-TerminalFactorySpi">TerminalFactorySpi</a><b>,CONSTRUCTOR</b>;
+                        <b>END</b>;
+
+
+
+<a name="meths-ATR"></a>
+<b>PROCEDURE </b>(self:ATR) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ATR) <font color="#cc0033">getBytes</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ATR) <font color="#cc0033">getHistoricalBytes</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ATR) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ATR) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-Card"></a>
+<b>PROCEDURE </b>(self:Card) <font color="#cc0033">beginExclusive</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Card) <font color="#cc0033">disconnect</font>*(p0 : BOOLEAN)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Card) <font color="#cc0033">endExclusive</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Card) <font color="#cc0033">getATR</font>*() : <a href="javax_smartcardio.html#type-ATR">javax_smartcardio.ATR</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Card) <font color="#cc0033">getBasicChannel</font>*() : <a href="#type-CardChannel">CardChannel</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Card) <font color="#cc0033">getProtocol</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Card) <font color="#cc0033">openLogicalChannel</font>*() : <a href="#type-CardChannel">CardChannel</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Card) <font color="#cc0033">transmitControlCommand</font>*(    p0 : INTEGER;
+                                              IN  p1 : <b>ARRAY </b><b>OF </b>BYTE) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE<b>,NEW,ABSTRACT</b>;
+<a name="meths-CardChannel"></a>
+<b>PROCEDURE </b>(self:CardChannel) <font color="#cc0033">close</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CardChannel) <font color="#cc0033">getCard</font>*() : <a href="javax_smartcardio.html#type-Card">javax_smartcardio.Card</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CardChannel) <font color="#cc0033">getChannelNumber</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CardChannel) <font color="#cc0033">transmit</font>*(p0 : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>;
+                                       p1 : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>) : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CardChannel) <font color="#cc0033">transmit</font>*(p0 : <a href="javax_smartcardio.html#type-CommandAPDU">javax_smartcardio.CommandAPDU</a>) : <a href="#type-ResponseAPDU">ResponseAPDU</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-CardPermission"></a>
+<b>PROCEDURE </b>(self:CardPermission) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CardPermission) <font color="#cc0033">getActions</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CardPermission) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CardPermission) <font color="#cc0033">implies</font>*(p0 : <a href="java_security.html#type-Permission">java_security.Permission</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-CardTerminal"></a>
+<b>PROCEDURE </b>(self:CardTerminal) <font color="#cc0033">connect</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="javax_smartcardio.html#type-Card">javax_smartcardio.Card</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CardTerminal) <font color="#cc0033">getName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CardTerminal) <font color="#cc0033">isCardPresent</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CardTerminal) <font color="#cc0033">waitForCardAbsent</font>*(p0 : LONGINT) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CardTerminal) <font color="#cc0033">waitForCardPresent</font>*(p0 : LONGINT) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+<a name="meths-CardTerminals"></a>
+<b>PROCEDURE </b>(self:CardTerminals) <font color="#cc0033">getTerminal</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="javax_smartcardio.html#type-CardTerminal">javax_smartcardio.CardTerminal</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CardTerminals) <font color="#cc0033">list</font>*() : <a href="java_util.html#type-List">java_util.List</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CardTerminals) <font color="#cc0033">list</font>*(p0 : <a href="javax_smartcardio.html#type-CardTerminals$State">javax_smartcardio.CardTerminals$State</a>) : <a href="java_util.html#type-List">java_util.List</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CardTerminals) <font color="#cc0033">waitForChange</font>*(p0 : LONGINT) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CardTerminals) <font color="#cc0033">waitForChange</font>*()<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-CommandAPDU"></a>
+<b>PROCEDURE </b>(self:CommandAPDU) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CommandAPDU) <font color="#cc0033">getBytes</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CommandAPDU) <font color="#cc0033">getCLA</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CommandAPDU) <font color="#cc0033">getData</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CommandAPDU) <font color="#cc0033">getINS</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CommandAPDU) <font color="#cc0033">getNc</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CommandAPDU) <font color="#cc0033">getNe</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CommandAPDU) <font color="#cc0033">getP1</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CommandAPDU) <font color="#cc0033">getP2</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CommandAPDU) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CommandAPDU) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-ResponseAPDU"></a>
+<b>PROCEDURE </b>(self:ResponseAPDU) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ResponseAPDU) <font color="#cc0033">getBytes</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ResponseAPDU) <font color="#cc0033">getData</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ResponseAPDU) <font color="#cc0033">getNr</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ResponseAPDU) <font color="#cc0033">getSW</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ResponseAPDU) <font color="#cc0033">getSW1</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ResponseAPDU) <font color="#cc0033">getSW2</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ResponseAPDU) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ResponseAPDU) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-TerminalFactory"></a>
+<b>PROCEDURE </b>(self:TerminalFactory) <font color="#cc0033">getProvider</font>*() : <a href="java_security.html#type-Provider">java_security.Provider</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TerminalFactory) <font color="#cc0033">getType</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TerminalFactory) <font color="#cc0033">terminals</font>*() : <a href="#type-CardTerminals">CardTerminals</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TerminalFactory) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-TerminalFactorySpi"></a>
+<b>PROCEDURE </b>(self:TerminalFactorySpi) <font color="#cc0033">engineTerminals</font>!() : <a href="#type-CardTerminals">CardTerminals</a><b>,NEW,ABSTRACT</b>;
+
+<b>END </b><font color="#cc0033">javax_smartcardio</font>.
+</font></pre></hr>
+<!-- BEGIN JavaScript -->
+<script>
+function toggle(node) {
+    node.classList.toggle("show"); 
+  }
+
+function cls(node) {
+    var prnt = node.parentNode;
+    var next = prnt.previousSibling;
+    var text = next.lastChild;
+    text.innerHTML = 
+        "The <b>class</b> property asserts that this type will be<br>" +
+        "implemented as a reference class in the underlying framework.";
+    text.classList.toggle("show");
+  }
+
+function newOk(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>has noArg-ctor</b> property asserts that this reference<br>" +
+        "class has a no-arg constructor, and thus objects of this<br>" +
+        "type can be allocated with NEW(). Component Pascal types<br>" +
+        "derived from this type can also be allocated using NEW().";
+    popuptext.classList.toggle("show"); 
+  }
+
+function noNew(node) { 
+    var prnt = node.parentNode; 
+    var next = prnt.previousSibling; 
+    var text = next.lastChild; 
+    text.innerHTML =  
+        "The <b>no noArg-ctor</b> property asserts that this reference<br>" +
+        "class does not have a noArg constructor. Objects of this<br>" +
+        "type cannot be allocated using NEW(), and Component<br>" +
+        "Pascal types  derived from this type also cannot be<br>" +
+        "allocated using NEW().";
+    text.classList.toggle("show");
+  }
+
+function noCpy(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>no value-assign</b> property asserts that this reference<br>" + 
+        "class does not have a value copy method. Therefore, it<br>" +
+        "is not possible to perform value assignments using<br>" +
+        "statements like <i>dst^</i> := <i>src^</i>";
+    popuptext.classList.toggle("show");
+  }
+
+function valueclass(node) { 
+        var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>valueclass</b> property asserts that this RECORD type is<br>" + 
+        "implemented as a value class in the CLR. It follows that<br>" +  
+        "value assignments can be made of these types. They can<br>" + 
+        "also be passed by value. Even pointers to records of<br>" + 
+        "such types may be dereferenced and copied using syntax<br>" + 
+        "such as  <i>dst^</i> := <i>src^</i>"; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+function argCtor(node) { 
+    var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>has arg-ctor</b> property asserts that this reference<br>" +  
+        "class has one or more constructors that take arguments.<br>" + 
+        "These constructors can be called from Component Pascal<br>" + 
+        "by calling an <i>init</i>(...) method from the static list<br>" + 
+        "here. Component Pascal types derived from this type<br>" + 
+        "can define constructors with arguments which call the<br>" + 
+        "super-type constructor.<br>" + 
+        "See <i>'Interfacing to constructors'</i> in the Release Notes."; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+</script>
+<!-- END JavaScript --> 
+
+</body></html>

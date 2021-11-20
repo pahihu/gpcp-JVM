@@ -1,0 +1,753 @@
+<html><head><title>java_awt_dnd</title>
+<style>
+<!-- BEGIN Inline CSS -->
+/* Popup container */
+.popup {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+/* The actual popup (appears on top) */
+.popup .popuptext {
+    visibility: hidden;
+    width: 430px;
+    background-color: white;
+    color: black;
+    text-align: left;
+    border-radius: 6px;
+    border-style: solid;
+    border-color: black;
+    padding: 8px 8px 8px 8px;
+    position: absolute;
+    z-index: 1;
+    margin-top: 30px;
+}
+
+/* Toggle this class when clicking on the popup container (hide and show the popup) */
+.popup .show {
+    visibility: visible;
+    opacity: 1;
+}
+
+</style>
+<!-- END Inline CSS -->
+</head><body bgcolor="white">
+<hr><pre>
+<font color="green">(*</font>
+<font color="green"> *  Creator PeToCps j2cps version 1.4.07 (March 2018)</font>
+<font color="green"> *  Compiled from jar-file /Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home/jmods/java.desktop.jmod</font>
+<font color="green"> *)</font>
+<b>FOREIGN MODULE </b><font color="#cc0033">java_awt_dnd</font>;
+
+<b>IMPORT</b>
+    <a href="java_awt.html">java_awt</a> := "java.awt",
+    <a href="java_awt_datatransfer.html">java_awt_datatransfer</a> := "java.awt.datatransfer",
+    <a href="java_awt_dnd.html">java_awt_dnd</a> := "java.awt.dnd",
+    <a href="java_awt_event.html">java_awt_event</a> := "java.awt.event",
+    <a href="java_io.html">java_io</a> := "java.io",
+    <a href="java_lang.html">java_lang</a> := "java.lang",
+    <a href="java_util.html">java_util</a> := "java.util";
+
+<b>TYPE</b>
+
+  <a name="type-Autoscroll"></a><font color="#cc0033">Autoscroll</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                <font color="green"><b> (* </b><a href="#meths-Autoscroll">Typebound Procedures</a><b> *)</b></font>
+                <b>END</b>;
+
+  <a name="type-DnDConstants"></a><font color="#cc0033">DnDConstants</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                  <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> *)</font>
+                  <b>STATIC</b>
+                    <font color="#cc0033">ACTION_COPY</font>*         = 1;
+                    <font color="#cc0033">ACTION_COPY_OR_MOVE</font>* = 3;
+                    <font color="#cc0033">ACTION_LINK</font>*         = 1073741824;
+                    <font color="#cc0033">ACTION_MOVE</font>*         = 2;
+                    <font color="#cc0033">ACTION_NONE</font>*         = 0;
+                    <font color="#cc0033">ACTION_REFERENCE</font>*    = 1073741824;
+                  <b>END</b>;
+
+  <a name="type-DragGestureEvent"></a><font color="#cc0033">DragGestureEvent</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_util.html#type-EventObject">java_util.EventObject</a>)
+                      <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                      <font color="green"><b> (* </b><a href="#meths-DragGestureEvent">Typebound Procedures</a><b> *)</b></font>
+                      <b>STATIC</b>
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_awt_dnd.html#type-DragGestureRecognizer">java_awt_dnd.DragGestureRecognizer</a>;
+                                        p1 : INTEGER;
+                                        p2 : <a href="java_awt.html#type-Point">java_awt.Point</a>;
+                                        p3 : <a href="java_util.html#type-List">java_util.List</a>) : <a href="#type-DragGestureEvent">DragGestureEvent</a><b>,CONSTRUCTOR</b>;
+                      <b>END</b>;
+
+  <a name="type-DragGestureListener"></a><font color="#cc0033">DragGestureListener</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_util.html#type-EventListener">java_util.EventListener</a>)
+                         <font color="green"><b> (* </b><a href="#meths-DragGestureListener">Typebound Procedures</a><b> *)</b></font>
+                         <b>END</b>;
+
+  <a name="type-DragGestureRecognizer"></a><font color="#cc0033">DragGestureRecognizer</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_io.html#type-Serializable">java_io.Serializable</a>)
+                           <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                           <font color="green"><b> (* </b><a href="#meths-DragGestureRecognizer">Typebound Procedures</a><b> *)</b></font>
+                             <font color="#cc0033">dragSource</font>!          : <a href="#type-DragSource">DragSource</a>;
+                             <font color="#cc0033">component</font>!           : <a href="java_awt.html#type-Component">java_awt.Component</a>;
+                             <font color="#cc0033">dragGestureListener</font>! : <a href="#type-DragGestureListener">DragGestureListener</a>;
+                             <font color="#cc0033">sourceActions</font>!       : INTEGER;
+                             <font color="#cc0033">events</font>!              : <a href="java_util.html#type-ArrayList">java_util.ArrayList</a>;
+                           <b>STATIC</b>
+                             <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : <a href="#type-DragSource">DragSource</a>;
+                                             p1 : <a href="java_awt.html#type-Component">java_awt.Component</a>) : <a href="#type-DragGestureRecognizer">DragGestureRecognizer</a><b>,CONSTRUCTOR</b>;
+                             <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : <a href="#type-DragSource">DragSource</a>) : <a href="#type-DragGestureRecognizer">DragGestureRecognizer</a><b>,CONSTRUCTOR</b>;
+                             <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : <a href="#type-DragSource">DragSource</a>;
+                                             p1 : <a href="java_awt.html#type-Component">java_awt.Component</a>;
+                                             p2 : INTEGER;
+                                             p3 : <a href="#type-DragGestureListener">DragGestureListener</a>) : <a href="#type-DragGestureRecognizer">DragGestureRecognizer</a><b>,CONSTRUCTOR</b>;
+                             <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : <a href="#type-DragSource">DragSource</a>;
+                                             p1 : <a href="java_awt.html#type-Component">java_awt.Component</a>;
+                                             p2 : INTEGER) : <a href="#type-DragGestureRecognizer">DragGestureRecognizer</a><b>,CONSTRUCTOR</b>;
+                           <b>END</b>;
+
+  <a name="type-DragSource"></a><font color="#cc0033">DragSource</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_io.html#type-Serializable">java_io.Serializable</a>)
+                <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                <font color="green"><b> (* </b><a href="#meths-DragSource">Typebound Procedures</a><b> *)</b></font>
+                <b>STATIC</b>
+                  <a name="type-DefaultCopyDrop"></a><font color="#cc0033">DefaultCopyDrop</font>*      : <a href="java_awt.html#type-Cursor">java_awt.Cursor</a>;
+                  <a name="type-DefaultCopyNoDrop"></a><font color="#cc0033">DefaultCopyNoDrop</font>*    : <a href="java_awt.html#type-Cursor">java_awt.Cursor</a>;
+                  <a name="type-DefaultLinkDrop"></a><font color="#cc0033">DefaultLinkDrop</font>*      : <a href="java_awt.html#type-Cursor">java_awt.Cursor</a>;
+                  <a name="type-DefaultLinkNoDrop"></a><font color="#cc0033">DefaultLinkNoDrop</font>*    : <a href="java_awt.html#type-Cursor">java_awt.Cursor</a>;
+                  <a name="type-DefaultMoveDrop"></a><font color="#cc0033">DefaultMoveDrop</font>*      : <a href="java_awt.html#type-Cursor">java_awt.Cursor</a>;
+                  <a name="type-DefaultMoveNoDrop"></a><font color="#cc0033">DefaultMoveNoDrop</font>*    : <a href="java_awt.html#type-Cursor">java_awt.Cursor</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">getDefaultDragSource</font>*() : <a href="#type-DragSource">DragSource</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">getDragThreshold</font>*() : INTEGER;
+                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-DragSource">DragSource</a><b>,CONSTRUCTOR</b>;
+                  <b>PROCEDURE </b><font color="#cc0033">isDragImageSupported</font>*() : BOOLEAN;
+                <b>END</b>;
+
+  <a name="type-DragSourceAdapter"></a><font color="#cc0033">DragSourceAdapter</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_awt_dnd.html#type-DragSourceListener">java_awt_dnd.DragSourceListener</a> + <a href="java_awt_dnd.html#type-DragSourceMotionListener">java_awt_dnd.DragSourceMotionListener</a>)
+                       <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                       <font color="green"><b> (* </b><a href="#meths-DragSourceAdapter">Typebound Procedures</a><b> *)</b></font>
+                       <b>STATIC</b>
+                         <b>PROCEDURE </b><font color="#cc0033">Init</font>!() : <a href="#type-DragSourceAdapter">DragSourceAdapter</a><b>,CONSTRUCTOR</b>;
+                       <b>END</b>;
+
+  <a name="type-DragSourceContext"></a><font color="#cc0033">DragSourceContext</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_awt_dnd.html#type-DragSourceListener">java_awt_dnd.DragSourceListener</a> + <a href="java_awt_dnd.html#type-DragSourceMotionListener">java_awt_dnd.DragSourceMotionListener</a> + <a href="java_io.html#type-Serializable">java_io.Serializable</a>)
+                       <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                       <font color="green"><b> (* </b><a href="#meths-DragSourceContext">Typebound Procedures</a><b> *)</b></font>
+                       <b>STATIC</b>
+                         <font color="#cc0033">CHANGED</font>! = 3;
+                         <font color="#cc0033">DEFAULT</font>! = 0;
+                         <font color="#cc0033">ENTER</font>!   = 1;
+                         <font color="#cc0033">OVER</font>!    = 2;
+                         <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="#type-DragGestureEvent">DragGestureEvent</a>;
+                                         p1 : <a href="java_awt.html#type-Cursor">java_awt.Cursor</a>;
+                                         p2 : <a href="java_awt.html#type-Image">java_awt.Image</a>;
+                                         p3 : <a href="java_awt.html#type-Point">java_awt.Point</a>;
+                                         p4 : <a href="java_awt_datatransfer.html#type-Transferable">java_awt_datatransfer.Transferable</a>;
+                                         p5 : <a href="java_awt_dnd.html#type-DragSourceListener">java_awt_dnd.DragSourceListener</a>) : <a href="#type-DragSourceContext">DragSourceContext</a><b>,CONSTRUCTOR</b>;
+                       <b>END</b>;
+
+  <a name="type-DragSourceDragEvent"></a><font color="#cc0033">DragSourceDragEvent</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_awt_dnd.html#type-DragSourceEvent">java_awt_dnd.DragSourceEvent</a>)
+                         <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                         <font color="green"><b> (* </b><a href="#meths-DragSourceDragEvent">Typebound Procedures</a><b> *)</b></font>
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_awt_dnd.html#type-DragSourceContext">java_awt_dnd.DragSourceContext</a>;
+                                           p1 : INTEGER;
+                                           p2 : INTEGER;
+                                           p3 : INTEGER;
+                                           p4 : INTEGER;
+                                           p5 : INTEGER) : <a href="#type-DragSourceDragEvent">DragSourceDragEvent</a><b>,CONSTRUCTOR</b>;
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_awt_dnd.html#type-DragSourceContext">java_awt_dnd.DragSourceContext</a>;
+                                           p1 : INTEGER;
+                                           p2 : INTEGER;
+                                           p3 : INTEGER) : <a href="#type-DragSourceDragEvent">DragSourceDragEvent</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-DragSourceDropEvent"></a><font color="#cc0033">DragSourceDropEvent</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_awt_dnd.html#type-DragSourceEvent">java_awt_dnd.DragSourceEvent</a>)
+                         <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                         <font color="green"><b> (* </b><a href="#meths-DragSourceDropEvent">Typebound Procedures</a><b> *)</b></font>
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_awt_dnd.html#type-DragSourceContext">java_awt_dnd.DragSourceContext</a>) : <a href="#type-DragSourceDropEvent">DragSourceDropEvent</a><b>,CONSTRUCTOR</b>;
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_awt_dnd.html#type-DragSourceContext">java_awt_dnd.DragSourceContext</a>;
+                                           p1 : INTEGER;
+                                           p2 : BOOLEAN;
+                                           p3 : INTEGER;
+                                           p4 : INTEGER) : <a href="#type-DragSourceDropEvent">DragSourceDropEvent</a><b>,CONSTRUCTOR</b>;
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_awt_dnd.html#type-DragSourceContext">java_awt_dnd.DragSourceContext</a>;
+                                           p1 : INTEGER;
+                                           p2 : BOOLEAN) : <a href="#type-DragSourceDropEvent">DragSourceDropEvent</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-DragSourceEvent"></a><font color="#cc0033">DragSourceEvent</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_util.html#type-EventObject">java_util.EventObject</a>)
+                     <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                     <font color="green"><b> (* </b><a href="#meths-DragSourceEvent">Typebound Procedures</a><b> *)</b></font>
+                     <b>STATIC</b>
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="#type-DragSourceContext">DragSourceContext</a>;
+                                       p1 : INTEGER;
+                                       p2 : INTEGER) : <a href="#type-DragSourceEvent">DragSourceEvent</a><b>,CONSTRUCTOR</b>;
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="#type-DragSourceContext">DragSourceContext</a>) : <a href="#type-DragSourceEvent">DragSourceEvent</a><b>,CONSTRUCTOR</b>;
+                     <b>END</b>;
+
+  <a name="type-DragSourceListener"></a><font color="#cc0033">DragSourceListener</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_util.html#type-EventListener">java_util.EventListener</a>)
+                        <font color="green"><b> (* </b><a href="#meths-DragSourceListener">Typebound Procedures</a><b> *)</b></font>
+                        <b>END</b>;
+
+  <a name="type-DragSourceMotionListener"></a><font color="#cc0033">DragSourceMotionListener</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_util.html#type-EventListener">java_util.EventListener</a>)
+                              <font color="green"><b> (* </b><a href="#meths-DragSourceMotionListener">Typebound Procedures</a><b> *)</b></font>
+                              <b>END</b>;
+
+  <a name="type-DropTarget"></a><font color="#cc0033">DropTarget</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_awt_dnd.html#type-DropTargetListener">java_awt_dnd.DropTargetListener</a> + <a href="java_io.html#type-Serializable">java_io.Serializable</a>)
+                <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                <font color="green"><b> (* </b><a href="#meths-DropTarget">Typebound Procedures</a><b> *)</b></font>
+                <b>STATIC</b>
+                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_awt.html#type-Component">java_awt.Component</a>;
+                                  p1 : <a href="java_awt_dnd.html#type-DropTargetListener">java_awt_dnd.DropTargetListener</a>) : <a href="#type-DropTarget">DropTarget</a><b>,CONSTRUCTOR</b>;
+                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_awt.html#type-Component">java_awt.Component</a>;
+                                  p1 : INTEGER;
+                                  p2 : <a href="java_awt_dnd.html#type-DropTargetListener">java_awt_dnd.DropTargetListener</a>) : <a href="#type-DropTarget">DropTarget</a><b>,CONSTRUCTOR</b>;
+                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-DropTarget">DropTarget</a><b>,CONSTRUCTOR</b>;
+                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_awt.html#type-Component">java_awt.Component</a>;
+                                  p1 : INTEGER;
+                                  p2 : <a href="java_awt_dnd.html#type-DropTargetListener">java_awt_dnd.DropTargetListener</a>;
+                                  p3 : BOOLEAN;
+                                  p4 : <a href="java_awt_datatransfer.html#type-FlavorMap">java_awt_datatransfer.FlavorMap</a>) : <a href="#type-DropTarget">DropTarget</a><b>,CONSTRUCTOR</b>;
+                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_awt.html#type-Component">java_awt.Component</a>;
+                                  p1 : INTEGER;
+                                  p2 : <a href="java_awt_dnd.html#type-DropTargetListener">java_awt_dnd.DropTargetListener</a>;
+                                  p3 : BOOLEAN) : <a href="#type-DropTarget">DropTarget</a><b>,CONSTRUCTOR</b>;
+                <b>END</b>;
+
+  <a name="type-DropTarget$DropTargetAutoScroller"></a><font color="#cc0033">DropTarget$DropTargetAutoScroller</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_awt_event.html#type-ActionListener">java_awt_event.ActionListener</a>)
+                                       <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                                       <font color="green"><b> (* </b><a href="#meths-DropTarget$DropTargetAutoScroller">Typebound Procedures</a><b> *)</b></font>
+                                       <b>STATIC</b>
+                                         <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : <a href="java_awt.html#type-Component">java_awt.Component</a>;
+                                                         p1 : <a href="java_awt.html#type-Point">java_awt.Point</a>) : <a href="#type-DropTarget$DropTargetAutoScroller">DropTarget$DropTargetAutoScroller</a><b>,CONSTRUCTOR</b>;
+                                       <b>END</b>;
+
+  <a name="type-DropTargetAdapter"></a><font color="#cc0033">DropTargetAdapter</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-DropTargetListener">DropTargetListener</a>)
+                       <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                       <font color="green"><b> (* </b><a href="#meths-DropTargetAdapter">Typebound Procedures</a><b> *)</b></font>
+                       <b>STATIC</b>
+                         <b>PROCEDURE </b><font color="#cc0033">Init</font>!() : <a href="#type-DropTargetAdapter">DropTargetAdapter</a><b>,CONSTRUCTOR</b>;
+                       <b>END</b>;
+
+  <a name="type-DropTargetContext"></a><font color="#cc0033">DropTargetContext</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_io.html#type-Serializable">java_io.Serializable</a>)
+                       <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> *)</font>
+                       <font color="green"><b> (* </b><a href="#meths-DropTargetContext">Typebound Procedures</a><b> *)</b></font>
+                       <b>END</b>;
+
+  <a name="type-DropTargetContext$TransferableProxy"></a><font color="#cc0033">DropTargetContext$TransferableProxy</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_awt_datatransfer.html#type-Transferable">java_awt_datatransfer.Transferable</a>)
+                                         <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> *)</font>
+                                         <font color="green"><b> (* </b><a href="#meths-DropTargetContext$TransferableProxy">Typebound Procedures</a><b> *)</b></font>
+                                           <font color="#cc0033">transferable</font>! : <a href="java_awt_datatransfer.html#type-Transferable">java_awt_datatransfer.Transferable</a>;
+                                           <font color="#cc0033">isLocal</font>!      : BOOLEAN;
+                                         <b>END</b>;
+
+  <a name="type-DropTargetDragEvent"></a><font color="#cc0033">DropTargetDragEvent</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_awt_dnd.html#type-DropTargetEvent">java_awt_dnd.DropTargetEvent</a>)
+                         <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                         <font color="green"><b> (* </b><a href="#meths-DropTargetDragEvent">Typebound Procedures</a><b> *)</b></font>
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_awt_dnd.html#type-DropTargetContext">java_awt_dnd.DropTargetContext</a>;
+                                           p1 : <a href="java_awt.html#type-Point">java_awt.Point</a>;
+                                           p2 : INTEGER;
+                                           p3 : INTEGER) : <a href="#type-DropTargetDragEvent">DropTargetDragEvent</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-DropTargetDropEvent"></a><font color="#cc0033">DropTargetDropEvent</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_awt_dnd.html#type-DropTargetEvent">java_awt_dnd.DropTargetEvent</a>)
+                         <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                         <font color="green"><b> (* </b><a href="#meths-DropTargetDropEvent">Typebound Procedures</a><b> *)</b></font>
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_awt_dnd.html#type-DropTargetContext">java_awt_dnd.DropTargetContext</a>;
+                                           p1 : <a href="java_awt.html#type-Point">java_awt.Point</a>;
+                                           p2 : INTEGER;
+                                           p3 : INTEGER;
+                                           p4 : BOOLEAN) : <a href="#type-DropTargetDropEvent">DropTargetDropEvent</a><b>,CONSTRUCTOR</b>;
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_awt_dnd.html#type-DropTargetContext">java_awt_dnd.DropTargetContext</a>;
+                                           p1 : <a href="java_awt.html#type-Point">java_awt.Point</a>;
+                                           p2 : INTEGER;
+                                           p3 : INTEGER) : <a href="#type-DropTargetDropEvent">DropTargetDropEvent</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-DropTargetEvent"></a><font color="#cc0033">DropTargetEvent</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_util.html#type-EventObject">java_util.EventObject</a>)
+                     <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                     <font color="green"><b> (* </b><a href="#meths-DropTargetEvent">Typebound Procedures</a><b> *)</b></font>
+                       <font color="#cc0033">context</font>! : <a href="#type-DropTargetContext">DropTargetContext</a>;
+                     <b>STATIC</b>
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="#type-DropTargetContext">DropTargetContext</a>) : <a href="#type-DropTargetEvent">DropTargetEvent</a><b>,CONSTRUCTOR</b>;
+                     <b>END</b>;
+
+  <a name="type-DropTargetListener"></a><font color="#cc0033">DropTargetListener</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_util.html#type-EventListener">java_util.EventListener</a>)
+                        <font color="green"><b> (* </b><a href="#meths-DropTargetListener">Typebound Procedures</a><b> *)</b></font>
+                        <b>END</b>;
+
+  <a name="type-InvalidDnDOperationException"></a><font color="#cc0033">InvalidDnDOperationException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-IllegalStateException">java_lang.IllegalStateException</a>)
+                                  <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                                  <b>STATIC</b>
+                                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-InvalidDnDOperationException">InvalidDnDOperationException</a><b>,CONSTRUCTOR</b>;
+                                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-InvalidDnDOperationException">InvalidDnDOperationException</a><b>,CONSTRUCTOR</b>;
+                                  <b>END</b>;
+
+  <a name="type-MouseDragGestureRecognizer"></a><font color="#cc0033">MouseDragGestureRecognizer</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_awt_dnd.html#type-DragGestureRecognizer">java_awt_dnd.DragGestureRecognizer</a> + <a href="java_awt_event.html#type-MouseListener">java_awt_event.MouseListener</a> + <a href="java_awt_event.html#type-MouseMotionListener">java_awt_event.MouseMotionListener</a>)
+                                <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                                <font color="green"><b> (* </b><a href="#meths-MouseDragGestureRecognizer">Typebound Procedures</a><b> *)</b></font>
+                                <b>STATIC</b>
+                                  <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : <a href="java_awt_dnd.html#type-DragSource">java_awt_dnd.DragSource</a>;
+                                                  p1 : <a href="java_awt.html#type-Component">java_awt.Component</a>) : <a href="#type-MouseDragGestureRecognizer">MouseDragGestureRecognizer</a><b>,CONSTRUCTOR</b>;
+                                  <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : <a href="java_awt_dnd.html#type-DragSource">java_awt_dnd.DragSource</a>) : <a href="#type-MouseDragGestureRecognizer">MouseDragGestureRecognizer</a><b>,CONSTRUCTOR</b>;
+                                  <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : <a href="java_awt_dnd.html#type-DragSource">java_awt_dnd.DragSource</a>;
+                                                  p1 : <a href="java_awt.html#type-Component">java_awt.Component</a>;
+                                                  p2 : INTEGER;
+                                                  p3 : <a href="java_awt_dnd.html#type-DragGestureListener">java_awt_dnd.DragGestureListener</a>) : <a href="#type-MouseDragGestureRecognizer">MouseDragGestureRecognizer</a><b>,CONSTRUCTOR</b>;
+                                  <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : <a href="java_awt_dnd.html#type-DragSource">java_awt_dnd.DragSource</a>;
+                                                  p1 : <a href="java_awt.html#type-Component">java_awt.Component</a>;
+                                                  p2 : INTEGER) : <a href="#type-MouseDragGestureRecognizer">MouseDragGestureRecognizer</a><b>,CONSTRUCTOR</b>;
+                                <b>END</b>;
+
+
+
+<a name="meths-Autoscroll"></a>
+<b>PROCEDURE </b>(self:Autoscroll) <font color="#cc0033">autoscroll</font>*(p0 : <a href="java_awt.html#type-Point">java_awt.Point</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Autoscroll) <font color="#cc0033">getAutoscrollInsets</font>*() : <a href="java_awt.html#type-Insets">java_awt.Insets</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-DragGestureEvent"></a>
+<b>PROCEDURE </b>(self:DragGestureEvent) <font color="#cc0033">getComponent</font>*() : <a href="java_awt.html#type-Component">java_awt.Component</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DragGestureEvent) <font color="#cc0033">getDragAction</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DragGestureEvent) <font color="#cc0033">getDragOrigin</font>*() : <a href="java_awt.html#type-Point">java_awt.Point</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DragGestureEvent) <font color="#cc0033">getDragSource</font>*() : <a href="#type-DragSource">DragSource</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DragGestureEvent) <font color="#cc0033">getSourceAsDragGestureRecognizer</font>*() : <a href="java_awt_dnd.html#type-DragGestureRecognizer">java_awt_dnd.DragGestureRecognizer</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DragGestureEvent) <font color="#cc0033">getTriggerEvent</font>*() : <a href="java_awt_event.html#type-InputEvent">java_awt_event.InputEvent</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DragGestureEvent) <font color="#cc0033">iterator</font>*() : <a href="java_util.html#type-Iterator">java_util.Iterator</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DragGestureEvent) <font color="#cc0033">startDrag</font>*(p0 : <a href="java_awt.html#type-Cursor">java_awt.Cursor</a>;
+                                             p1 : <a href="java_awt_datatransfer.html#type-Transferable">java_awt_datatransfer.Transferable</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DragGestureEvent) <font color="#cc0033">startDrag</font>*(p0 : <a href="java_awt.html#type-Cursor">java_awt.Cursor</a>;
+                                             p1 : <a href="java_awt_datatransfer.html#type-Transferable">java_awt_datatransfer.Transferable</a>;
+                                             p2 : <a href="java_awt_dnd.html#type-DragSourceListener">java_awt_dnd.DragSourceListener</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DragGestureEvent) <font color="#cc0033">startDrag</font>*(p0 : <a href="java_awt.html#type-Cursor">java_awt.Cursor</a>;
+                                             p1 : <a href="java_awt.html#type-Image">java_awt.Image</a>;
+                                             p2 : <a href="java_awt.html#type-Point">java_awt.Point</a>;
+                                             p3 : <a href="java_awt_datatransfer.html#type-Transferable">java_awt_datatransfer.Transferable</a>;
+                                             p4 : <a href="java_awt_dnd.html#type-DragSourceListener">java_awt_dnd.DragSourceListener</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DragGestureEvent) <font color="#cc0033">toArray</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DragGestureEvent) <font color="#cc0033">toArray</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-DragGestureListener"></a>
+<b>PROCEDURE </b>(self:DragGestureListener) <font color="#cc0033">dragGestureRecognized</font>*(p0 : <a href="java_awt_dnd.html#type-DragGestureEvent">java_awt_dnd.DragGestureEvent</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-DragGestureRecognizer"></a>
+<b>PROCEDURE </b>(self:DragGestureRecognizer) <font color="#cc0033">addDragGestureListener</font>*(p0 : <a href="#type-DragGestureListener">DragGestureListener</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DragGestureRecognizer) <font color="#cc0033">appendEvent</font>!(p0 : <a href="java_awt_event.html#type-InputEvent">java_awt_event.InputEvent</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DragGestureRecognizer) <font color="#cc0033">fireDragGestureRecognized</font>!(p0 : INTEGER;
+                                                                  p1 : <a href="java_awt.html#type-Point">java_awt.Point</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DragGestureRecognizer) <font color="#cc0033">getComponent</font>*() : <a href="java_awt.html#type-Component">java_awt.Component</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DragGestureRecognizer) <font color="#cc0033">getDragSource</font>*() : <a href="#type-DragSource">DragSource</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DragGestureRecognizer) <font color="#cc0033">getSourceActions</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DragGestureRecognizer) <font color="#cc0033">getTriggerEvent</font>*() : <a href="java_awt_event.html#type-InputEvent">java_awt_event.InputEvent</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DragGestureRecognizer) <font color="#cc0033">registerListeners</font>!()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DragGestureRecognizer) <font color="#cc0033">removeDragGestureListener</font>*(p0 : <a href="#type-DragGestureListener">DragGestureListener</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DragGestureRecognizer) <font color="#cc0033">resetRecognizer</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DragGestureRecognizer) <font color="#cc0033">setComponent</font>*(p0 : <a href="java_awt.html#type-Component">java_awt.Component</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DragGestureRecognizer) <font color="#cc0033">setSourceActions</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DragGestureRecognizer) <font color="#cc0033">unregisterListeners</font>!()<b>,NEW,ABSTRACT</b>;
+<a name="meths-DragSource"></a>
+<b>PROCEDURE </b>(self:DragSource) <font color="#cc0033">addDragSourceListener</font>*(p0 : <a href="java_awt_dnd.html#type-DragSourceListener">java_awt_dnd.DragSourceListener</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DragSource) <font color="#cc0033">addDragSourceMotionListener</font>*(p0 : <a href="java_awt_dnd.html#type-DragSourceMotionListener">java_awt_dnd.DragSourceMotionListener</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DragSource) <font color="#cc0033">createDefaultDragGestureRecognizer</font>*(p0 : <a href="java_awt.html#type-Component">java_awt.Component</a>;
+                                                                p1 : INTEGER;
+                                                                p2 : <a href="#type-DragGestureListener">DragGestureListener</a>) : <a href="java_awt_dnd.html#type-DragGestureRecognizer">java_awt_dnd.DragGestureRecognizer</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DragSource) <font color="#cc0033">createDragGestureRecognizer</font>*(p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                                                         p1 : <a href="java_awt.html#type-Component">java_awt.Component</a>;
+                                                         p2 : INTEGER;
+                                                         p3 : <a href="#type-DragGestureListener">DragGestureListener</a>) : <a href="java_awt_dnd.html#type-DragGestureRecognizer">java_awt_dnd.DragGestureRecognizer</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DragSource) <font color="#cc0033">createDragSourceContext</font>!(p0 : <a href="java_awt_dnd.html#type-DragGestureEvent">java_awt_dnd.DragGestureEvent</a>;
+                                                     p1 : <a href="java_awt.html#type-Cursor">java_awt.Cursor</a>;
+                                                     p2 : <a href="java_awt.html#type-Image">java_awt.Image</a>;
+                                                     p3 : <a href="java_awt.html#type-Point">java_awt.Point</a>;
+                                                     p4 : <a href="java_awt_datatransfer.html#type-Transferable">java_awt_datatransfer.Transferable</a>;
+                                                     p5 : <a href="java_awt_dnd.html#type-DragSourceListener">java_awt_dnd.DragSourceListener</a>) : <a href="java_awt_dnd.html#type-DragSourceContext">java_awt_dnd.DragSourceContext</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DragSource) <font color="#cc0033">getDragSourceListeners</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_awt_dnd.html#type-DragSourceListener">java_awt_dnd.DragSourceListener</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DragSource) <font color="#cc0033">getDragSourceMotionListeners</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_awt_dnd.html#type-DragSourceMotionListener">java_awt_dnd.DragSourceMotionListener</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DragSource) <font color="#cc0033">getFlavorMap</font>*() : <a href="java_awt_datatransfer.html#type-FlavorMap">java_awt_datatransfer.FlavorMap</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DragSource) <font color="#cc0033">getListeners</font>*(p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_util.html#type-EventListener">java_util.EventListener</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DragSource) <font color="#cc0033">removeDragSourceListener</font>*(p0 : <a href="java_awt_dnd.html#type-DragSourceListener">java_awt_dnd.DragSourceListener</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DragSource) <font color="#cc0033">removeDragSourceMotionListener</font>*(p0 : <a href="java_awt_dnd.html#type-DragSourceMotionListener">java_awt_dnd.DragSourceMotionListener</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DragSource) <font color="#cc0033">startDrag</font>*(p0 : <a href="java_awt_dnd.html#type-DragGestureEvent">java_awt_dnd.DragGestureEvent</a>;
+                                       p1 : <a href="java_awt.html#type-Cursor">java_awt.Cursor</a>;
+                                       p2 : <a href="java_awt.html#type-Image">java_awt.Image</a>;
+                                       p3 : <a href="java_awt.html#type-Point">java_awt.Point</a>;
+                                       p4 : <a href="java_awt_datatransfer.html#type-Transferable">java_awt_datatransfer.Transferable</a>;
+                                       p5 : <a href="java_awt_dnd.html#type-DragSourceListener">java_awt_dnd.DragSourceListener</a>;
+                                       p6 : <a href="java_awt_datatransfer.html#type-FlavorMap">java_awt_datatransfer.FlavorMap</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DragSource) <font color="#cc0033">startDrag</font>*(p0 : <a href="java_awt_dnd.html#type-DragGestureEvent">java_awt_dnd.DragGestureEvent</a>;
+                                       p1 : <a href="java_awt.html#type-Cursor">java_awt.Cursor</a>;
+                                       p2 : <a href="java_awt_datatransfer.html#type-Transferable">java_awt_datatransfer.Transferable</a>;
+                                       p3 : <a href="java_awt_dnd.html#type-DragSourceListener">java_awt_dnd.DragSourceListener</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DragSource) <font color="#cc0033">startDrag</font>*(p0 : <a href="java_awt_dnd.html#type-DragGestureEvent">java_awt_dnd.DragGestureEvent</a>;
+                                       p1 : <a href="java_awt.html#type-Cursor">java_awt.Cursor</a>;
+                                       p2 : <a href="java_awt.html#type-Image">java_awt.Image</a>;
+                                       p3 : <a href="java_awt.html#type-Point">java_awt.Point</a>;
+                                       p4 : <a href="java_awt_datatransfer.html#type-Transferable">java_awt_datatransfer.Transferable</a>;
+                                       p5 : <a href="java_awt_dnd.html#type-DragSourceListener">java_awt_dnd.DragSourceListener</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DragSource) <font color="#cc0033">startDrag</font>*(p0 : <a href="java_awt_dnd.html#type-DragGestureEvent">java_awt_dnd.DragGestureEvent</a>;
+                                       p1 : <a href="java_awt.html#type-Cursor">java_awt.Cursor</a>;
+                                       p2 : <a href="java_awt_datatransfer.html#type-Transferable">java_awt_datatransfer.Transferable</a>;
+                                       p3 : <a href="java_awt_dnd.html#type-DragSourceListener">java_awt_dnd.DragSourceListener</a>;
+                                       p4 : <a href="java_awt_datatransfer.html#type-FlavorMap">java_awt_datatransfer.FlavorMap</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-DragSourceAdapter"></a>
+<b>PROCEDURE </b>(self:DragSourceAdapter) <font color="#cc0033">dragDropEnd</font>*(p0 : <a href="java_awt_dnd.html#type-DragSourceDropEvent">java_awt_dnd.DragSourceDropEvent</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DragSourceAdapter) <font color="#cc0033">dragEnter</font>*(p0 : <a href="#type-DragSourceDragEvent">DragSourceDragEvent</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DragSourceAdapter) <font color="#cc0033">dragExit</font>*(p0 : <a href="java_awt_dnd.html#type-DragSourceEvent">java_awt_dnd.DragSourceEvent</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DragSourceAdapter) <font color="#cc0033">dragMouseMoved</font>*(p0 : <a href="#type-DragSourceDragEvent">DragSourceDragEvent</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DragSourceAdapter) <font color="#cc0033">dragOver</font>*(p0 : <a href="#type-DragSourceDragEvent">DragSourceDragEvent</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DragSourceAdapter) <font color="#cc0033">dropActionChanged</font>*(p0 : <a href="#type-DragSourceDragEvent">DragSourceDragEvent</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-DragSourceContext"></a>
+<b>PROCEDURE </b>(self:DragSourceContext) <font color="#cc0033">addDragSourceListener</font>*(p0 : <a href="java_awt_dnd.html#type-DragSourceListener">java_awt_dnd.DragSourceListener</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DragSourceContext) <font color="#cc0033">dragDropEnd</font>*(p0 : <a href="#type-DragSourceDropEvent">DragSourceDropEvent</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DragSourceContext) <font color="#cc0033">dragEnter</font>*(p0 : <a href="#type-DragSourceDragEvent">DragSourceDragEvent</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DragSourceContext) <font color="#cc0033">dragExit</font>*(p0 : <a href="java_awt_dnd.html#type-DragSourceEvent">java_awt_dnd.DragSourceEvent</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DragSourceContext) <font color="#cc0033">dragMouseMoved</font>*(p0 : <a href="#type-DragSourceDragEvent">DragSourceDragEvent</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DragSourceContext) <font color="#cc0033">dragOver</font>*(p0 : <a href="#type-DragSourceDragEvent">DragSourceDragEvent</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DragSourceContext) <font color="#cc0033">dropActionChanged</font>*(p0 : <a href="#type-DragSourceDragEvent">DragSourceDragEvent</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DragSourceContext) <font color="#cc0033">getComponent</font>*() : <a href="java_awt.html#type-Component">java_awt.Component</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DragSourceContext) <font color="#cc0033">getCursor</font>*() : <a href="java_awt.html#type-Cursor">java_awt.Cursor</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DragSourceContext) <font color="#cc0033">getDragSource</font>*() : <a href="#type-DragSource">DragSource</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DragSourceContext) <font color="#cc0033">getSourceActions</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DragSourceContext) <font color="#cc0033">getTransferable</font>*() : <a href="java_awt_datatransfer.html#type-Transferable">java_awt_datatransfer.Transferable</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DragSourceContext) <font color="#cc0033">getTrigger</font>*() : <a href="#type-DragGestureEvent">DragGestureEvent</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DragSourceContext) <font color="#cc0033">removeDragSourceListener</font>*(p0 : <a href="java_awt_dnd.html#type-DragSourceListener">java_awt_dnd.DragSourceListener</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DragSourceContext) <font color="#cc0033">setCursor</font>*(p0 : <a href="java_awt.html#type-Cursor">java_awt.Cursor</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DragSourceContext) <font color="#cc0033">transferablesFlavorsChanged</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DragSourceContext) <font color="#cc0033">updateCurrentCursor</font>!(p0 : INTEGER;
+                                                        p1 : INTEGER;
+                                                        p2 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-DragSourceDragEvent"></a>
+<b>PROCEDURE </b>(self:DragSourceDragEvent) <font color="#cc0033">getDropAction</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DragSourceDragEvent) <font color="#cc0033">getGestureModifiers</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DragSourceDragEvent) <font color="#cc0033">getGestureModifiersEx</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DragSourceDragEvent) <font color="#cc0033">getTargetActions</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DragSourceDragEvent) <font color="#cc0033">getUserAction</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-DragSourceDropEvent"></a>
+<b>PROCEDURE </b>(self:DragSourceDropEvent) <font color="#cc0033">getDropAction</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DragSourceDropEvent) <font color="#cc0033">getDropSuccess</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-DragSourceEvent"></a>
+<b>PROCEDURE </b>(self:DragSourceEvent) <font color="#cc0033">getDragSourceContext</font>*() : <a href="#type-DragSourceContext">DragSourceContext</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DragSourceEvent) <font color="#cc0033">getLocation</font>*() : <a href="java_awt.html#type-Point">java_awt.Point</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DragSourceEvent) <font color="#cc0033">getX</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DragSourceEvent) <font color="#cc0033">getY</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-DragSourceListener"></a>
+<b>PROCEDURE </b>(self:DragSourceListener) <font color="#cc0033">dragDropEnd</font>*(p0 : <a href="#type-DragSourceDropEvent">DragSourceDropEvent</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DragSourceListener) <font color="#cc0033">dragEnter</font>*(p0 : <a href="#type-DragSourceDragEvent">DragSourceDragEvent</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DragSourceListener) <font color="#cc0033">dragExit</font>*(p0 : <a href="java_awt_dnd.html#type-DragSourceEvent">java_awt_dnd.DragSourceEvent</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DragSourceListener) <font color="#cc0033">dragOver</font>*(p0 : <a href="#type-DragSourceDragEvent">DragSourceDragEvent</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DragSourceListener) <font color="#cc0033">dropActionChanged</font>*(p0 : <a href="#type-DragSourceDragEvent">DragSourceDragEvent</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-DragSourceMotionListener"></a>
+<b>PROCEDURE </b>(self:DragSourceMotionListener) <font color="#cc0033">dragMouseMoved</font>*(p0 : <a href="#type-DragSourceDragEvent">DragSourceDragEvent</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-DropTarget"></a>
+<b>PROCEDURE </b>(self:DropTarget) <font color="#cc0033">addDropTargetListener</font>*(p0 : <a href="java_awt_dnd.html#type-DropTargetListener">java_awt_dnd.DropTargetListener</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DropTarget) <font color="#cc0033">addNotify</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DropTarget) <font color="#cc0033">clearAutoscroll</font>!()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DropTarget) <font color="#cc0033">createDropTargetAutoScroller</font>!(p0 : <a href="java_awt.html#type-Component">java_awt.Component</a>;
+                                                          p1 : <a href="java_awt.html#type-Point">java_awt.Point</a>) : <a href="java_awt_dnd.html#type-DropTarget$DropTargetAutoScroller">java_awt_dnd.DropTarget$DropTargetAutoScroller</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DropTarget) <font color="#cc0033">createDropTargetContext</font>!() : <a href="java_awt_dnd.html#type-DropTargetContext">java_awt_dnd.DropTargetContext</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DropTarget) <font color="#cc0033">dragEnter</font>*(p0 : <a href="java_awt_dnd.html#type-DropTargetDragEvent">java_awt_dnd.DropTargetDragEvent</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DropTarget) <font color="#cc0033">dragExit</font>*(p0 : <a href="java_awt_dnd.html#type-DropTargetEvent">java_awt_dnd.DropTargetEvent</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DropTarget) <font color="#cc0033">dragOver</font>*(p0 : <a href="java_awt_dnd.html#type-DropTargetDragEvent">java_awt_dnd.DropTargetDragEvent</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DropTarget) <font color="#cc0033">drop</font>*(p0 : <a href="java_awt_dnd.html#type-DropTargetDropEvent">java_awt_dnd.DropTargetDropEvent</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DropTarget) <font color="#cc0033">dropActionChanged</font>*(p0 : <a href="java_awt_dnd.html#type-DropTargetDragEvent">java_awt_dnd.DropTargetDragEvent</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DropTarget) <font color="#cc0033">getComponent</font>*() : <a href="java_awt.html#type-Component">java_awt.Component</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DropTarget) <font color="#cc0033">getDefaultActions</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DropTarget) <font color="#cc0033">getDropTargetContext</font>*() : <a href="java_awt_dnd.html#type-DropTargetContext">java_awt_dnd.DropTargetContext</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DropTarget) <font color="#cc0033">getFlavorMap</font>*() : <a href="java_awt_datatransfer.html#type-FlavorMap">java_awt_datatransfer.FlavorMap</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DropTarget) <font color="#cc0033">initializeAutoscrolling</font>!(p0 : <a href="java_awt.html#type-Point">java_awt.Point</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DropTarget) <font color="#cc0033">isActive</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DropTarget) <font color="#cc0033">removeDropTargetListener</font>*(p0 : <a href="java_awt_dnd.html#type-DropTargetListener">java_awt_dnd.DropTargetListener</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DropTarget) <font color="#cc0033">removeNotify</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DropTarget) <font color="#cc0033">setActive</font>*(p0 : BOOLEAN)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DropTarget) <font color="#cc0033">setComponent</font>*(p0 : <a href="java_awt.html#type-Component">java_awt.Component</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DropTarget) <font color="#cc0033">setDefaultActions</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DropTarget) <font color="#cc0033">setFlavorMap</font>*(p0 : <a href="java_awt_datatransfer.html#type-FlavorMap">java_awt_datatransfer.FlavorMap</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DropTarget) <font color="#cc0033">updateAutoscroll</font>!(p0 : <a href="java_awt.html#type-Point">java_awt.Point</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-DropTarget$DropTargetAutoScroller"></a>
+<b>PROCEDURE </b>(self:DropTarget$DropTargetAutoScroller) <font color="#cc0033">actionPerformed</font>*(p0 : <a href="java_awt_event.html#type-ActionEvent">java_awt_event.ActionEvent</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DropTarget$DropTargetAutoScroller) <font color="#cc0033">stop</font>!()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DropTarget$DropTargetAutoScroller) <font color="#cc0033">updateLocation</font>!(p0 : <a href="java_awt.html#type-Point">java_awt.Point</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-DropTargetAdapter"></a>
+<b>PROCEDURE </b>(self:DropTargetAdapter) <font color="#cc0033">dragEnter</font>*(p0 : <a href="#type-DropTargetDragEvent">DropTargetDragEvent</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DropTargetAdapter) <font color="#cc0033">dragExit</font>*(p0 : <a href="#type-DropTargetEvent">DropTargetEvent</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DropTargetAdapter) <font color="#cc0033">dragOver</font>*(p0 : <a href="#type-DropTargetDragEvent">DropTargetDragEvent</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DropTargetAdapter) <font color="#cc0033">dropActionChanged</font>*(p0 : <a href="#type-DropTargetDragEvent">DropTargetDragEvent</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-DropTargetContext"></a>
+<b>PROCEDURE </b>(self:DropTargetContext) <font color="#cc0033">acceptDrag</font>!(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DropTargetContext) <font color="#cc0033">acceptDrop</font>!(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DropTargetContext) <font color="#cc0033">createTransferableProxy</font>!(p0 : <a href="java_awt_datatransfer.html#type-Transferable">java_awt_datatransfer.Transferable</a>;
+                                                            p1 : BOOLEAN) : <a href="java_awt_datatransfer.html#type-Transferable">java_awt_datatransfer.Transferable</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DropTargetContext) <font color="#cc0033">dropComplete</font>*(p0 : BOOLEAN)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DropTargetContext) <font color="#cc0033">getComponent</font>*() : <a href="java_awt.html#type-Component">java_awt.Component</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DropTargetContext) <font color="#cc0033">getCurrentDataFlavors</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_awt_datatransfer.html#type-DataFlavor">java_awt_datatransfer.DataFlavor</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DropTargetContext) <font color="#cc0033">getCurrentDataFlavorsAsList</font>!() : <a href="java_util.html#type-List">java_util.List</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DropTargetContext) <font color="#cc0033">getDropTarget</font>*() : <a href="#type-DropTarget">DropTarget</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DropTargetContext) <font color="#cc0033">getTargetActions</font>!() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DropTargetContext) <font color="#cc0033">getTransferable</font>!() : <a href="java_awt_datatransfer.html#type-Transferable">java_awt_datatransfer.Transferable</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DropTargetContext) <font color="#cc0033">isDataFlavorSupported</font>!(p0 : <a href="java_awt_datatransfer.html#type-DataFlavor">java_awt_datatransfer.DataFlavor</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DropTargetContext) <font color="#cc0033">rejectDrag</font>!()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DropTargetContext) <font color="#cc0033">rejectDrop</font>!()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DropTargetContext) <font color="#cc0033">setTargetActions</font>!(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-DropTargetContext$TransferableProxy"></a>
+<b>PROCEDURE </b>(self:DropTargetContext$TransferableProxy) <font color="#cc0033">getTransferData</font>*(p0 : <a href="java_awt_datatransfer.html#type-DataFlavor">java_awt_datatransfer.DataFlavor</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DropTargetContext$TransferableProxy) <font color="#cc0033">getTransferDataFlavors</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_awt_datatransfer.html#type-DataFlavor">java_awt_datatransfer.DataFlavor</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DropTargetContext$TransferableProxy) <font color="#cc0033">isDataFlavorSupported</font>*(p0 : <a href="java_awt_datatransfer.html#type-DataFlavor">java_awt_datatransfer.DataFlavor</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-DropTargetDragEvent"></a>
+<b>PROCEDURE </b>(self:DropTargetDragEvent) <font color="#cc0033">acceptDrag</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DropTargetDragEvent) <font color="#cc0033">getCurrentDataFlavors</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_awt_datatransfer.html#type-DataFlavor">java_awt_datatransfer.DataFlavor</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DropTargetDragEvent) <font color="#cc0033">getCurrentDataFlavorsAsList</font>*() : <a href="java_util.html#type-List">java_util.List</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DropTargetDragEvent) <font color="#cc0033">getDropAction</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DropTargetDragEvent) <font color="#cc0033">getLocation</font>*() : <a href="java_awt.html#type-Point">java_awt.Point</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DropTargetDragEvent) <font color="#cc0033">getSourceActions</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DropTargetDragEvent) <font color="#cc0033">getTransferable</font>*() : <a href="java_awt_datatransfer.html#type-Transferable">java_awt_datatransfer.Transferable</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DropTargetDragEvent) <font color="#cc0033">isDataFlavorSupported</font>*(p0 : <a href="java_awt_datatransfer.html#type-DataFlavor">java_awt_datatransfer.DataFlavor</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DropTargetDragEvent) <font color="#cc0033">rejectDrag</font>*()<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-DropTargetDropEvent"></a>
+<b>PROCEDURE </b>(self:DropTargetDropEvent) <font color="#cc0033">acceptDrop</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DropTargetDropEvent) <font color="#cc0033">dropComplete</font>*(p0 : BOOLEAN)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DropTargetDropEvent) <font color="#cc0033">getCurrentDataFlavors</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_awt_datatransfer.html#type-DataFlavor">java_awt_datatransfer.DataFlavor</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DropTargetDropEvent) <font color="#cc0033">getCurrentDataFlavorsAsList</font>*() : <a href="java_util.html#type-List">java_util.List</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DropTargetDropEvent) <font color="#cc0033">getDropAction</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DropTargetDropEvent) <font color="#cc0033">getLocation</font>*() : <a href="java_awt.html#type-Point">java_awt.Point</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DropTargetDropEvent) <font color="#cc0033">getSourceActions</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DropTargetDropEvent) <font color="#cc0033">getTransferable</font>*() : <a href="java_awt_datatransfer.html#type-Transferable">java_awt_datatransfer.Transferable</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DropTargetDropEvent) <font color="#cc0033">isDataFlavorSupported</font>*(p0 : <a href="java_awt_datatransfer.html#type-DataFlavor">java_awt_datatransfer.DataFlavor</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DropTargetDropEvent) <font color="#cc0033">isLocalTransfer</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DropTargetDropEvent) <font color="#cc0033">rejectDrop</font>*()<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-DropTargetEvent"></a>
+<b>PROCEDURE </b>(self:DropTargetEvent) <font color="#cc0033">getDropTargetContext</font>*() : <a href="#type-DropTargetContext">DropTargetContext</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-DropTargetListener"></a>
+<b>PROCEDURE </b>(self:DropTargetListener) <font color="#cc0033">dragEnter</font>*(p0 : <a href="java_awt_dnd.html#type-DropTargetDragEvent">java_awt_dnd.DropTargetDragEvent</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DropTargetListener) <font color="#cc0033">dragExit</font>*(p0 : <a href="java_awt_dnd.html#type-DropTargetEvent">java_awt_dnd.DropTargetEvent</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DropTargetListener) <font color="#cc0033">dragOver</font>*(p0 : <a href="java_awt_dnd.html#type-DropTargetDragEvent">java_awt_dnd.DropTargetDragEvent</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DropTargetListener) <font color="#cc0033">drop</font>*(p0 : <a href="#type-DropTargetDropEvent">DropTargetDropEvent</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DropTargetListener) <font color="#cc0033">dropActionChanged</font>*(p0 : <a href="java_awt_dnd.html#type-DropTargetDragEvent">java_awt_dnd.DropTargetDragEvent</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-MouseDragGestureRecognizer"></a>
+<b>PROCEDURE </b>(self:MouseDragGestureRecognizer) <font color="#cc0033">mouseClicked</font>*(p0 : <a href="java_awt_event.html#type-MouseEvent">java_awt_event.MouseEvent</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MouseDragGestureRecognizer) <font color="#cc0033">mouseDragged</font>*(p0 : <a href="java_awt_event.html#type-MouseEvent">java_awt_event.MouseEvent</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MouseDragGestureRecognizer) <font color="#cc0033">mouseEntered</font>*(p0 : <a href="java_awt_event.html#type-MouseEvent">java_awt_event.MouseEvent</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MouseDragGestureRecognizer) <font color="#cc0033">mouseExited</font>*(p0 : <a href="java_awt_event.html#type-MouseEvent">java_awt_event.MouseEvent</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MouseDragGestureRecognizer) <font color="#cc0033">mouseMoved</font>*(p0 : <a href="java_awt_event.html#type-MouseEvent">java_awt_event.MouseEvent</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MouseDragGestureRecognizer) <font color="#cc0033">mousePressed</font>*(p0 : <a href="java_awt_event.html#type-MouseEvent">java_awt_event.MouseEvent</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MouseDragGestureRecognizer) <font color="#cc0033">mouseReleased</font>*(p0 : <a href="java_awt_event.html#type-MouseEvent">java_awt_event.MouseEvent</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MouseDragGestureRecognizer) <font color="#cc0033">registerListeners</font>!()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MouseDragGestureRecognizer) <font color="#cc0033">unregisterListeners</font>!()<b>,NEW,EXTENSIBLE</b>;
+
+<b>END </b><font color="#cc0033">java_awt_dnd</font>.
+</font></pre></hr>
+<!-- BEGIN JavaScript -->
+<script>
+function toggle(node) {
+    node.classList.toggle("show"); 
+  }
+
+function cls(node) {
+    var prnt = node.parentNode;
+    var next = prnt.previousSibling;
+    var text = next.lastChild;
+    text.innerHTML = 
+        "The <b>class</b> property asserts that this type will be<br>" +
+        "implemented as a reference class in the underlying framework.";
+    text.classList.toggle("show");
+  }
+
+function newOk(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>has noArg-ctor</b> property asserts that this reference<br>" +
+        "class has a no-arg constructor, and thus objects of this<br>" +
+        "type can be allocated with NEW(). Component Pascal types<br>" +
+        "derived from this type can also be allocated using NEW().";
+    popuptext.classList.toggle("show"); 
+  }
+
+function noNew(node) { 
+    var prnt = node.parentNode; 
+    var next = prnt.previousSibling; 
+    var text = next.lastChild; 
+    text.innerHTML =  
+        "The <b>no noArg-ctor</b> property asserts that this reference<br>" +
+        "class does not have a noArg constructor. Objects of this<br>" +
+        "type cannot be allocated using NEW(), and Component<br>" +
+        "Pascal types  derived from this type also cannot be<br>" +
+        "allocated using NEW().";
+    text.classList.toggle("show");
+  }
+
+function noCpy(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>no value-assign</b> property asserts that this reference<br>" + 
+        "class does not have a value copy method. Therefore, it<br>" +
+        "is not possible to perform value assignments using<br>" +
+        "statements like <i>dst^</i> := <i>src^</i>";
+    popuptext.classList.toggle("show");
+  }
+
+function valueclass(node) { 
+        var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>valueclass</b> property asserts that this RECORD type is<br>" + 
+        "implemented as a value class in the CLR. It follows that<br>" +  
+        "value assignments can be made of these types. They can<br>" + 
+        "also be passed by value. Even pointers to records of<br>" + 
+        "such types may be dereferenced and copied using syntax<br>" + 
+        "such as  <i>dst^</i> := <i>src^</i>"; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+function argCtor(node) { 
+    var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>has arg-ctor</b> property asserts that this reference<br>" +  
+        "class has one or more constructors that take arguments.<br>" + 
+        "These constructors can be called from Component Pascal<br>" + 
+        "by calling an <i>init</i>(...) method from the static list<br>" + 
+        "here. Component Pascal types derived from this type<br>" + 
+        "can define constructors with arguments which call the<br>" + 
+        "super-type constructor.<br>" + 
+        "See <i>'Interfacing to constructors'</i> in the Release Notes."; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+</script>
+<!-- END JavaScript --> 
+
+</body></html>

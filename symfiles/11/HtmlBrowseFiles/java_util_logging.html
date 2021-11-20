@@ -1,0 +1,687 @@
+<html><head><title>java_util_logging</title>
+<style>
+<!-- BEGIN Inline CSS -->
+/* Popup container */
+.popup {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+/* The actual popup (appears on top) */
+.popup .popuptext {
+    visibility: hidden;
+    width: 430px;
+    background-color: white;
+    color: black;
+    text-align: left;
+    border-radius: 6px;
+    border-style: solid;
+    border-color: black;
+    padding: 8px 8px 8px 8px;
+    position: absolute;
+    z-index: 1;
+    margin-top: 30px;
+}
+
+/* Toggle this class when clicking on the popup container (hide and show the popup) */
+.popup .show {
+    visibility: visible;
+    opacity: 1;
+}
+
+</style>
+<!-- END Inline CSS -->
+</head><body bgcolor="white">
+<hr><pre>
+<font color="green">(*</font>
+<font color="green"> *  Creator PeToCps j2cps version 1.4.07 (March 2018)</font>
+<font color="green"> *  Compiled from jar-file /Library/Java/JavaVirtualMachines/zulu-11.jdk/Contents/Home/jmods/java.logging.jmod</font>
+<font color="green"> *)</font>
+<b>FOREIGN MODULE </b><font color="#cc0033">java_util_logging</font>;
+
+<b>IMPORT</b>
+    <a href="java_io.html">java_io</a> := "java.io",
+    <a href="java_lang.html">java_lang</a> := "java.lang",
+    <a href="java_security.html">java_security</a> := "java.security",
+    <a href="java_time.html">java_time</a> := "java.time",
+    <a href="java_util.html">java_util</a> := "java.util",
+    <a href="java_util_function.html">java_util_function</a> := "java.util.function",
+    <a href="java_util_logging.html">java_util_logging</a> := "java.util.logging";
+
+<b>TYPE</b>
+
+  <a name="type-ConsoleHandler"></a><font color="#cc0033">ConsoleHandler</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_util_logging.html#type-StreamHandler">java_util_logging.StreamHandler</a>)
+                    <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                    <font color="green"><b> (* </b><a href="#meths-ConsoleHandler">Typebound Procedures</a><b> *)</b></font>
+                    <b>STATIC</b>
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-ConsoleHandler">ConsoleHandler</a><b>,CONSTRUCTOR</b>;
+                    <b>END</b>;
+
+  <a name="type-ErrorManager"></a><font color="#cc0033">ErrorManager</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                  <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                  <font color="green"><b> (* </b><a href="#meths-ErrorManager">Typebound Procedures</a><b> *)</b></font>
+                  <b>STATIC</b>
+                    <font color="#cc0033">CLOSE_FAILURE</font>*   = 3;
+                    <font color="#cc0033">FLUSH_FAILURE</font>*   = 2;
+                    <font color="#cc0033">FORMAT_FAILURE</font>*  = 5;
+                    <font color="#cc0033">GENERIC_FAILURE</font>* = 0;
+                    <font color="#cc0033">OPEN_FAILURE</font>*    = 4;
+                    <font color="#cc0033">WRITE_FAILURE</font>*   = 1;
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-ErrorManager">ErrorManager</a><b>,CONSTRUCTOR</b>;
+                  <b>END</b>;
+
+  <a name="type-FileHandler"></a><font color="#cc0033">FileHandler</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-StreamHandler">StreamHandler</a>)
+                 <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                 <font color="green"><b> (* </b><a href="#meths-FileHandler">Typebound Procedures</a><b> *)</b></font>
+                 <b>STATIC</b>
+                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                   p1 : INTEGER;
+                                   p2 : INTEGER) : <a href="#type-FileHandler">FileHandler</a><b>,CONSTRUCTOR</b>;
+                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                   p1 : INTEGER;
+                                   p2 : INTEGER;
+                                   p3 : BOOLEAN) : <a href="#type-FileHandler">FileHandler</a><b>,CONSTRUCTOR</b>;
+                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                   p1 : LONGINT;
+                                   p2 : INTEGER;
+                                   p3 : BOOLEAN) : <a href="#type-FileHandler">FileHandler</a><b>,CONSTRUCTOR</b>;
+                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-FileHandler">FileHandler</a><b>,CONSTRUCTOR</b>;
+                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-FileHandler">FileHandler</a><b>,CONSTRUCTOR</b>;
+                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                   p1 : BOOLEAN) : <a href="#type-FileHandler">FileHandler</a><b>,CONSTRUCTOR</b>;
+                 <b>END</b>;
+
+  <a name="type-Filter"></a><font color="#cc0033">Filter</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+            <font color="green"><b> (* </b><a href="#meths-Filter">Typebound Procedures</a><b> *)</b></font>
+            <b>END</b>;
+
+  <a name="type-Formatter"></a><font color="#cc0033">Formatter</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+               <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+               <font color="green"><b> (* </b><a href="#meths-Formatter">Typebound Procedures</a><b> *)</b></font>
+               <b>STATIC</b>
+                 <b>PROCEDURE </b><font color="#cc0033">Init</font>!() : <a href="#type-Formatter">Formatter</a><b>,CONSTRUCTOR</b>;
+               <b>END</b>;
+
+  <a name="type-Handler"></a><font color="#cc0033">Handler</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+             <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+             <font color="green"><b> (* </b><a href="#meths-Handler">Typebound Procedures</a><b> *)</b></font>
+             <b>STATIC</b>
+               <b>PROCEDURE </b><font color="#cc0033">Init</font>!() : <a href="#type-Handler">Handler</a><b>,CONSTRUCTOR</b>;
+             <b>END</b>;
+
+  <a name="type-Level"></a><font color="#cc0033">Level</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_io.html#type-Serializable">java_io.Serializable</a>)
+           <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+           <font color="green"><b> (* </b><a href="#meths-Level">Typebound Procedures</a><b> *)</b></font>
+           <b>STATIC</b>
+             <a name="type-ALL"></a><font color="#cc0033">ALL</font>*     : <a href="#type-Level">Level</a>;
+             <a name="type-CONFIG"></a><font color="#cc0033">CONFIG</font>*  : <a href="#type-Level">Level</a>;
+             <a name="type-FINE"></a><font color="#cc0033">FINE</font>*    : <a href="#type-Level">Level</a>;
+             <a name="type-FINER"></a><font color="#cc0033">FINER</font>*   : <a href="#type-Level">Level</a>;
+             <a name="type-FINEST"></a><font color="#cc0033">FINEST</font>*  : <a href="#type-Level">Level</a>;
+             <a name="type-INFO"></a><font color="#cc0033">INFO</font>*    : <a href="#type-Level">Level</a>;
+             <a name="type-OFF"></a><font color="#cc0033">OFF</font>*     : <a href="#type-Level">Level</a>;
+             <a name="type-SEVERE"></a><font color="#cc0033">SEVERE</font>*  : <a href="#type-Level">Level</a>;
+             <a name="type-WARNING"></a><font color="#cc0033">WARNING</font>* : <a href="#type-Level">Level</a>;
+             <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                             p1 : INTEGER;
+                             p2 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-Level">Level</a><b>,CONSTRUCTOR</b>;
+             <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                             p1 : INTEGER) : <a href="#type-Level">Level</a><b>,CONSTRUCTOR</b>;
+             <b>PROCEDURE </b><font color="#cc0033">parse</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-Level">Level</a>;
+           <b>END</b>;
+
+  <a name="type-Logger"></a><font color="#cc0033">Logger</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+            <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+            <font color="green"><b> (* </b><a href="#meths-Logger">Typebound Procedures</a><b> *)</b></font>
+            <b>STATIC</b>
+              <a name="type-global"></a><font color="#cc0033">global</font>*             : <a href="#type-Logger">Logger</a>;
+              <font color="#cc0033">GLOBAL_LOGGER_NAME</font>* = "global";
+              <b>PROCEDURE </b><font color="#cc0033">getAnonymousLogger</font>*() : <a href="#type-Logger">Logger</a>;
+              <b>PROCEDURE </b><font color="#cc0033">getAnonymousLogger</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-Logger">Logger</a>;
+              <b>PROCEDURE </b><font color="#cc0033">getGlobal</font>*() : <a href="#type-Logger">Logger</a>;
+              <b>PROCEDURE </b><font color="#cc0033">getLogger</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                   p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-Logger">Logger</a>;
+              <b>PROCEDURE </b><font color="#cc0033">getLogger</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-Logger">Logger</a>;
+              <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                              p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-Logger">Logger</a><b>,CONSTRUCTOR</b>;
+            <b>END</b>;
+
+  <a name="type-LoggingMXBean"></a><font color="#cc0033">LoggingMXBean</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                   <font color="green"><b> (* </b><a href="#meths-LoggingMXBean">Typebound Procedures</a><b> *)</b></font>
+                   <b>END</b>;
+
+  <a name="type-LoggingPermission"></a><font color="#cc0033">LoggingPermission</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_security.html#type-BasicPermission">java_security.BasicPermission</a>)
+                       <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                       <b>STATIC</b>
+                         <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                         p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-LoggingPermission">LoggingPermission</a><b>,CONSTRUCTOR</b>;
+                       <b>END</b>;
+
+  <a name="type-LogManager"></a><font color="#cc0033">LogManager</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                <font color="green"><b> (* </b><a href="#meths-LogManager">Typebound Procedures</a><b> *)</b></font>
+                <b>STATIC</b>
+                  <font color="#cc0033">LOGGING_MXBEAN_NAME</font>* = "java.util.logging:type=Logging";
+                  <b>PROCEDURE </b><font color="#cc0033">getLoggingMXBean</font>*() : <a href="#type-LoggingMXBean">LoggingMXBean</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">getLogManager</font>*() : <a href="#type-LogManager">LogManager</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">Init</font>!() : <a href="#type-LogManager">LogManager</a><b>,CONSTRUCTOR</b>;
+                <b>END</b>;
+
+  <a name="type-LogRecord"></a><font color="#cc0033">LogRecord</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_io.html#type-Serializable">java_io.Serializable</a>)
+               <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+               <font color="green"><b> (* </b><a href="#meths-LogRecord">Typebound Procedures</a><b> *)</b></font>
+               <b>STATIC</b>
+                 <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_util_logging.html#type-Level">java_util_logging.Level</a>;
+                                 p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-LogRecord">LogRecord</a><b>,CONSTRUCTOR</b>;
+               <b>END</b>;
+
+  <a name="type-MemoryHandler"></a><font color="#cc0033">MemoryHandler</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-Handler">Handler</a>)
+                   <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                   <font color="green"><b> (* </b><a href="#meths-MemoryHandler">Typebound Procedures</a><b> *)</b></font>
+                   <b>STATIC</b>
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="#type-Handler">Handler</a>;
+                                     p1 : INTEGER;
+                                     p2 : <a href="java_util_logging.html#type-Level">java_util_logging.Level</a>) : <a href="#type-MemoryHandler">MemoryHandler</a><b>,CONSTRUCTOR</b>;
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-MemoryHandler">MemoryHandler</a><b>,CONSTRUCTOR</b>;
+                   <b>END</b>;
+
+  <a name="type-SimpleFormatter"></a><font color="#cc0033">SimpleFormatter</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_util_logging.html#type-Formatter">java_util_logging.Formatter</a>)
+                     <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                     <font color="green"><b> (* </b><a href="#meths-SimpleFormatter">Typebound Procedures</a><b> *)</b></font>
+                     <b>STATIC</b>
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-SimpleFormatter">SimpleFormatter</a><b>,CONSTRUCTOR</b>;
+                     <b>END</b>;
+
+  <a name="type-SocketHandler"></a><font color="#cc0033">SocketHandler</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_util_logging.html#type-StreamHandler">java_util_logging.StreamHandler</a>)
+                   <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                   <font color="green"><b> (* </b><a href="#meths-SocketHandler">Typebound Procedures</a><b> *)</b></font>
+                   <b>STATIC</b>
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                     p1 : INTEGER) : <a href="#type-SocketHandler">SocketHandler</a><b>,CONSTRUCTOR</b>;
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-SocketHandler">SocketHandler</a><b>,CONSTRUCTOR</b>;
+                   <b>END</b>;
+
+  <a name="type-StreamHandler"></a><font color="#cc0033">StreamHandler</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-Handler">Handler</a>)
+                   <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                   <font color="green"><b> (* </b><a href="#meths-StreamHandler">Typebound Procedures</a><b> *)</b></font>
+                   <b>STATIC</b>
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_io.html#type-OutputStream">java_io.OutputStream</a>;
+                                     p1 : <a href="#type-Formatter">Formatter</a>) : <a href="#type-StreamHandler">StreamHandler</a><b>,CONSTRUCTOR</b>;
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-StreamHandler">StreamHandler</a><b>,CONSTRUCTOR</b>;
+                   <b>END</b>;
+
+  <a name="type-XMLFormatter"></a><font color="#cc0033">XMLFormatter</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_util_logging.html#type-Formatter">java_util_logging.Formatter</a>)
+                  <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                  <font color="green"><b> (* </b><a href="#meths-XMLFormatter">Typebound Procedures</a><b> *)</b></font>
+                  <b>STATIC</b>
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-XMLFormatter">XMLFormatter</a><b>,CONSTRUCTOR</b>;
+                  <b>END</b>;
+
+
+
+<a name="meths-ConsoleHandler"></a>
+<b>PROCEDURE </b>(self:ConsoleHandler) <font color="#cc0033">close</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConsoleHandler) <font color="#cc0033">publish</font>*(p0 : <a href="java_util_logging.html#type-LogRecord">java_util_logging.LogRecord</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-ErrorManager"></a>
+<b>PROCEDURE </b>(self:ErrorManager) <font color="#cc0033">error</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                     p1 : <a href="java_lang.html#type-Exception">java_lang.Exception</a>;
+                                     p2 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-FileHandler"></a>
+<b>PROCEDURE </b>(self:FileHandler) <font color="#cc0033">close</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FileHandler) <font color="#cc0033">publish</font>*(p0 : <a href="#type-LogRecord">LogRecord</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-Filter"></a>
+<b>PROCEDURE </b>(self:Filter) <font color="#cc0033">isLoggable</font>*(p0 : <a href="java_util_logging.html#type-LogRecord">java_util_logging.LogRecord</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+<a name="meths-Formatter"></a>
+<b>PROCEDURE </b>(self:Formatter) <font color="#cc0033">format</font>*(p0 : <a href="#type-LogRecord">LogRecord</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Formatter) <font color="#cc0033">formatMessage</font>*(p0 : <a href="#type-LogRecord">LogRecord</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Formatter) <font color="#cc0033">getHead</font>*(p0 : <a href="#type-Handler">Handler</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Formatter) <font color="#cc0033">getTail</font>*(p0 : <a href="#type-Handler">Handler</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-Handler"></a>
+<b>PROCEDURE </b>(self:Handler) <font color="#cc0033">close</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Handler) <font color="#cc0033">flush</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Handler) <font color="#cc0033">getEncoding</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Handler) <font color="#cc0033">getErrorManager</font>*() : <a href="java_util_logging.html#type-ErrorManager">java_util_logging.ErrorManager</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Handler) <font color="#cc0033">getFilter</font>*() : <a href="java_util_logging.html#type-Filter">java_util_logging.Filter</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Handler) <font color="#cc0033">getFormatter</font>*() : <a href="java_util_logging.html#type-Formatter">java_util_logging.Formatter</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Handler) <font color="#cc0033">getLevel</font>*() : <a href="java_util_logging.html#type-Level">java_util_logging.Level</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Handler) <font color="#cc0033">isLoggable</font>*(p0 : <a href="java_util_logging.html#type-LogRecord">java_util_logging.LogRecord</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Handler) <font color="#cc0033">publish</font>*(p0 : <a href="java_util_logging.html#type-LogRecord">java_util_logging.LogRecord</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Handler) <font color="#cc0033">reportError</font>!(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                      p1 : <a href="java_lang.html#type-Exception">java_lang.Exception</a>;
+                                      p2 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Handler) <font color="#cc0033">setEncoding</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Handler) <font color="#cc0033">setErrorManager</font>*(p0 : <a href="java_util_logging.html#type-ErrorManager">java_util_logging.ErrorManager</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Handler) <font color="#cc0033">setFilter</font>*(p0 : <a href="java_util_logging.html#type-Filter">java_util_logging.Filter</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Handler) <font color="#cc0033">setFormatter</font>*(p0 : <a href="java_util_logging.html#type-Formatter">java_util_logging.Formatter</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Handler) <font color="#cc0033">setLevel</font>*(p0 : <a href="java_util_logging.html#type-Level">java_util_logging.Level</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-Level"></a>
+<b>PROCEDURE </b>(self:Level) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Level) <font color="#cc0033">getLocalizedName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Level) <font color="#cc0033">getName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Level) <font color="#cc0033">getResourceBundleName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Level) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Level) <font color="#cc0033">intValue</font>*() : INTEGER<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:Level) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW</b>;
+<a name="meths-Logger"></a>
+<b>PROCEDURE </b>(self:Logger) <font color="#cc0033">addHandler</font>*(p0 : <a href="java_util_logging.html#type-Handler">java_util_logging.Handler</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Logger) <font color="#cc0033">config</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Logger) <font color="#cc0033">config</font>*(p0 : <a href="java_util_function.html#type-Supplier">java_util_function.Supplier</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Logger) <font color="#cc0033">entering</font>*(    p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                      p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                  IN  p2 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Logger) <font color="#cc0033">entering</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                  p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                  p2 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Logger) <font color="#cc0033">entering</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                  p1 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Logger) <font color="#cc0033">exiting</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                 p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                 p2 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Logger) <font color="#cc0033">exiting</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                 p1 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Logger) <font color="#cc0033">fine</font>*(p0 : <a href="java_util_function.html#type-Supplier">java_util_function.Supplier</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Logger) <font color="#cc0033">fine</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Logger) <font color="#cc0033">finer</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Logger) <font color="#cc0033">finer</font>*(p0 : <a href="java_util_function.html#type-Supplier">java_util_function.Supplier</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Logger) <font color="#cc0033">finest</font>*(p0 : <a href="java_util_function.html#type-Supplier">java_util_function.Supplier</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Logger) <font color="#cc0033">finest</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Logger) <font color="#cc0033">getFilter</font>*() : <a href="java_util_logging.html#type-Filter">java_util_logging.Filter</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Logger) <font color="#cc0033">getHandlers</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_util_logging.html#type-Handler">java_util_logging.Handler</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Logger) <font color="#cc0033">getLevel</font>*() : <a href="java_util_logging.html#type-Level">java_util_logging.Level</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Logger) <font color="#cc0033">getName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Logger) <font color="#cc0033">getParent</font>*() : <a href="#type-Logger">Logger</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Logger) <font color="#cc0033">getResourceBundle</font>*() : <a href="java_util.html#type-ResourceBundle">java_util.ResourceBundle</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Logger) <font color="#cc0033">getResourceBundleName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Logger) <font color="#cc0033">getUseParentHandlers</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Logger) <font color="#cc0033">info</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Logger) <font color="#cc0033">info</font>*(p0 : <a href="java_util_function.html#type-Supplier">java_util_function.Supplier</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Logger) <font color="#cc0033">isLoggable</font>*(p0 : <a href="java_util_logging.html#type-Level">java_util_logging.Level</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Logger) <font color="#cc0033">log</font>*(    p0 : <a href="java_util_logging.html#type-Level">java_util_logging.Level</a>;
+                                 p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                             IN  p2 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Logger) <font color="#cc0033">log</font>*(p0 : <a href="java_util_logging.html#type-Level">java_util_logging.Level</a>;
+                             p1 : <a href="java_lang.html#type-Throwable">java_lang.Throwable</a>;
+                             p2 : <a href="java_util_function.html#type-Supplier">java_util_function.Supplier</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Logger) <font color="#cc0033">log</font>*(p0 : <a href="java_util_logging.html#type-Level">java_util_logging.Level</a>;
+                             p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                             p2 : <a href="java_lang.html#type-Throwable">java_lang.Throwable</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Logger) <font color="#cc0033">log</font>*(p0 : <a href="java_util_logging.html#type-LogRecord">java_util_logging.LogRecord</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Logger) <font color="#cc0033">log</font>*(p0 : <a href="java_util_logging.html#type-Level">java_util_logging.Level</a>;
+                             p1 : <a href="java_util_function.html#type-Supplier">java_util_function.Supplier</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Logger) <font color="#cc0033">log</font>*(p0 : <a href="java_util_logging.html#type-Level">java_util_logging.Level</a>;
+                             p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                             p2 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Logger) <font color="#cc0033">log</font>*(p0 : <a href="java_util_logging.html#type-Level">java_util_logging.Level</a>;
+                             p1 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Logger) <font color="#cc0033">logp</font>*(p0 : <a href="java_util_logging.html#type-Level">java_util_logging.Level</a>;
+                              p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                              p2 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                              p3 : <a href="java_util_function.html#type-Supplier">java_util_function.Supplier</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Logger) <font color="#cc0033">logp</font>*(p0 : <a href="java_util_logging.html#type-Level">java_util_logging.Level</a>;
+                              p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                              p2 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                              p3 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Logger) <font color="#cc0033">logp</font>*(p0 : <a href="java_util_logging.html#type-Level">java_util_logging.Level</a>;
+                              p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                              p2 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                              p3 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                              p4 : <a href="java_lang.html#type-Throwable">java_lang.Throwable</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Logger) <font color="#cc0033">logp</font>*(p0 : <a href="java_util_logging.html#type-Level">java_util_logging.Level</a>;
+                              p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                              p2 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                              p3 : <a href="java_lang.html#type-Throwable">java_lang.Throwable</a>;
+                              p4 : <a href="java_util_function.html#type-Supplier">java_util_function.Supplier</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Logger) <font color="#cc0033">logp</font>*(    p0 : <a href="java_util_logging.html#type-Level">java_util_logging.Level</a>;
+                                  p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                  p2 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                  p3 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                              IN  p4 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Logger) <font color="#cc0033">logp</font>*(p0 : <a href="java_util_logging.html#type-Level">java_util_logging.Level</a>;
+                              p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                              p2 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                              p3 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                              p4 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Logger) <font color="#cc0033">logrb</font>*(p0 : <a href="java_util_logging.html#type-Level">java_util_logging.Level</a>;
+                               p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                               p2 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                               p3 : <a href="java_util.html#type-ResourceBundle">java_util.ResourceBundle</a>;
+                               p4 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                               p5 : <a href="java_lang.html#type-Throwable">java_lang.Throwable</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Logger) <font color="#cc0033">logrb</font>*(p0 : <a href="java_util_logging.html#type-Level">java_util_logging.Level</a>;
+                               p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                               p2 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                               p3 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                               p4 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                               p5 : <a href="java_lang.html#type-Throwable">java_lang.Throwable</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Logger) <font color="#cc0033">logrb</font>*(p0 : <a href="java_util_logging.html#type-Level">java_util_logging.Level</a>;
+                               p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                               p2 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                               p3 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                               p4 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Logger) <font color="#cc0033">logrb</font>*(p0 : <a href="java_util_logging.html#type-Level">java_util_logging.Level</a>;
+                               p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                               p2 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                               p3 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                               p4 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                               p5 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Logger) <font color="#cc0033">logrb</font>*(    p0 : <a href="java_util_logging.html#type-Level">java_util_logging.Level</a>;
+                                   p1 : <a href="java_util.html#type-ResourceBundle">java_util.ResourceBundle</a>;
+                                   p2 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                               IN  p3 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Logger) <font color="#cc0033">logrb</font>*(p0 : <a href="java_util_logging.html#type-Level">java_util_logging.Level</a>;
+                               p1 : <a href="java_util.html#type-ResourceBundle">java_util.ResourceBundle</a>;
+                               p2 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                               p3 : <a href="java_lang.html#type-Throwable">java_lang.Throwable</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Logger) <font color="#cc0033">logrb</font>*(    p0 : <a href="java_util_logging.html#type-Level">java_util_logging.Level</a>;
+                                   p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                   p2 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                   p3 : <a href="java_util.html#type-ResourceBundle">java_util.ResourceBundle</a>;
+                                   p4 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                               IN  p5 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Logger) <font color="#cc0033">logrb</font>*(    p0 : <a href="java_util_logging.html#type-Level">java_util_logging.Level</a>;
+                                   p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                   p2 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                   p3 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                   p4 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                               IN  p5 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Logger) <font color="#cc0033">removeHandler</font>*(p0 : <a href="java_util_logging.html#type-Handler">java_util_logging.Handler</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Logger) <font color="#cc0033">setFilter</font>*(p0 : <a href="java_util_logging.html#type-Filter">java_util_logging.Filter</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Logger) <font color="#cc0033">setLevel</font>*(p0 : <a href="java_util_logging.html#type-Level">java_util_logging.Level</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Logger) <font color="#cc0033">setParent</font>*(p0 : <a href="#type-Logger">Logger</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Logger) <font color="#cc0033">setResourceBundle</font>*(p0 : <a href="java_util.html#type-ResourceBundle">java_util.ResourceBundle</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Logger) <font color="#cc0033">setUseParentHandlers</font>*(p0 : BOOLEAN)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Logger) <font color="#cc0033">severe</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Logger) <font color="#cc0033">severe</font>*(p0 : <a href="java_util_function.html#type-Supplier">java_util_function.Supplier</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Logger) <font color="#cc0033">throwing</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                  p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                  p2 : <a href="java_lang.html#type-Throwable">java_lang.Throwable</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Logger) <font color="#cc0033">warning</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Logger) <font color="#cc0033">warning</font>*(p0 : <a href="java_util_function.html#type-Supplier">java_util_function.Supplier</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-LoggingMXBean"></a>
+<b>PROCEDURE </b>(self:LoggingMXBean) <font color="#cc0033">getLoggerLevel</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:LoggingMXBean) <font color="#cc0033">getLoggerNames</font>*() : <a href="java_util.html#type-List">java_util.List</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:LoggingMXBean) <font color="#cc0033">getParentLoggerName</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:LoggingMXBean) <font color="#cc0033">setLoggerLevel</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                               p1 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-LogManager"></a>
+<b>PROCEDURE </b>(self:LogManager) <font color="#cc0033">addConfigurationListener</font>*(p0 : <a href="java_lang.html#type-Runnable">java_lang.Runnable</a>) : <a href="#type-LogManager">LogManager</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LogManager) <font color="#cc0033">addLogger</font>*(p0 : <a href="#type-Logger">Logger</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LogManager) <font color="#cc0033">checkAccess</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LogManager) <font color="#cc0033">getLogger</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-Logger">Logger</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LogManager) <font color="#cc0033">getLoggerNames</font>*() : <a href="java_util.html#type-Enumeration">java_util.Enumeration</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LogManager) <font color="#cc0033">getProperty</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LogManager) <font color="#cc0033">readConfiguration</font>*(p0 : <a href="java_io.html#type-InputStream">java_io.InputStream</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LogManager) <font color="#cc0033">readConfiguration</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LogManager) <font color="#cc0033">removeConfigurationListener</font>*(p0 : <a href="java_lang.html#type-Runnable">java_lang.Runnable</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LogManager) <font color="#cc0033">reset</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LogManager) <font color="#cc0033">updateConfiguration</font>*(p0 : <a href="java_io.html#type-InputStream">java_io.InputStream</a>;
+                                                 p1 : <a href="java_util_function.html#type-Function">java_util_function.Function</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LogManager) <font color="#cc0033">updateConfiguration</font>*(p0 : <a href="java_util_function.html#type-Function">java_util_function.Function</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-LogRecord"></a>
+<b>PROCEDURE </b>(self:LogRecord) <font color="#cc0033">getInstant</font>*() : <a href="java_time.html#type-Instant">java_time.Instant</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LogRecord) <font color="#cc0033">getLevel</font>*() : <a href="java_util_logging.html#type-Level">java_util_logging.Level</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LogRecord) <font color="#cc0033">getLoggerName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LogRecord) <font color="#cc0033">getMessage</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LogRecord) <font color="#cc0033">getMillis</font>*() : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LogRecord) <font color="#cc0033">getParameters</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LogRecord) <font color="#cc0033">getResourceBundle</font>*() : <a href="java_util.html#type-ResourceBundle">java_util.ResourceBundle</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LogRecord) <font color="#cc0033">getResourceBundleName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LogRecord) <font color="#cc0033">getSequenceNumber</font>*() : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LogRecord) <font color="#cc0033">getSourceClassName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LogRecord) <font color="#cc0033">getSourceMethodName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LogRecord) <font color="#cc0033">getThreadID</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LogRecord) <font color="#cc0033">getThrown</font>*() : <a href="java_lang.html#type-Throwable">java_lang.Throwable</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LogRecord) <font color="#cc0033">setInstant</font>*(p0 : <a href="java_time.html#type-Instant">java_time.Instant</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LogRecord) <font color="#cc0033">setLevel</font>*(p0 : <a href="java_util_logging.html#type-Level">java_util_logging.Level</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LogRecord) <font color="#cc0033">setLoggerName</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LogRecord) <font color="#cc0033">setMessage</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LogRecord) <font color="#cc0033">setMillis</font>*(p0 : LONGINT)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LogRecord) <font color="#cc0033">setParameters</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LogRecord) <font color="#cc0033">setResourceBundle</font>*(p0 : <a href="java_util.html#type-ResourceBundle">java_util.ResourceBundle</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LogRecord) <font color="#cc0033">setResourceBundleName</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LogRecord) <font color="#cc0033">setSequenceNumber</font>*(p0 : LONGINT)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LogRecord) <font color="#cc0033">setSourceClassName</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LogRecord) <font color="#cc0033">setSourceMethodName</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LogRecord) <font color="#cc0033">setThreadID</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LogRecord) <font color="#cc0033">setThrown</font>*(p0 : <a href="java_lang.html#type-Throwable">java_lang.Throwable</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-MemoryHandler"></a>
+<b>PROCEDURE </b>(self:MemoryHandler) <font color="#cc0033">close</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MemoryHandler) <font color="#cc0033">flush</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MemoryHandler) <font color="#cc0033">getPushLevel</font>*() : <a href="java_util_logging.html#type-Level">java_util_logging.Level</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MemoryHandler) <font color="#cc0033">isLoggable</font>*(p0 : <a href="#type-LogRecord">LogRecord</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MemoryHandler) <font color="#cc0033">publish</font>*(p0 : <a href="#type-LogRecord">LogRecord</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MemoryHandler) <font color="#cc0033">push</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MemoryHandler) <font color="#cc0033">setPushLevel</font>*(p0 : <a href="java_util_logging.html#type-Level">java_util_logging.Level</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-SimpleFormatter"></a>
+<b>PROCEDURE </b>(self:SimpleFormatter) <font color="#cc0033">format</font>*(p0 : <a href="java_util_logging.html#type-LogRecord">java_util_logging.LogRecord</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-SocketHandler"></a>
+<b>PROCEDURE </b>(self:SocketHandler) <font color="#cc0033">close</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SocketHandler) <font color="#cc0033">publish</font>*(p0 : <a href="java_util_logging.html#type-LogRecord">java_util_logging.LogRecord</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-StreamHandler"></a>
+<b>PROCEDURE </b>(self:StreamHandler) <font color="#cc0033">close</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:StreamHandler) <font color="#cc0033">flush</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:StreamHandler) <font color="#cc0033">isLoggable</font>*(p0 : <a href="#type-LogRecord">LogRecord</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:StreamHandler) <font color="#cc0033">publish</font>*(p0 : <a href="#type-LogRecord">LogRecord</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:StreamHandler) <font color="#cc0033">setEncoding</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:StreamHandler) <font color="#cc0033">setOutputStream</font>!(p0 : <a href="java_io.html#type-OutputStream">java_io.OutputStream</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-XMLFormatter"></a>
+<b>PROCEDURE </b>(self:XMLFormatter) <font color="#cc0033">format</font>*(p0 : <a href="java_util_logging.html#type-LogRecord">java_util_logging.LogRecord</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:XMLFormatter) <font color="#cc0033">getHead</font>*(p0 : <a href="java_util_logging.html#type-Handler">java_util_logging.Handler</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:XMLFormatter) <font color="#cc0033">getTail</font>*(p0 : <a href="java_util_logging.html#type-Handler">java_util_logging.Handler</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>END </b><font color="#cc0033">java_util_logging</font>.
+</font></pre></hr>
+<!-- BEGIN JavaScript -->
+<script>
+function toggle(node) {
+    node.classList.toggle("show"); 
+  }
+
+function cls(node) {
+    var prnt = node.parentNode;
+    var next = prnt.previousSibling;
+    var text = next.lastChild;
+    text.innerHTML = 
+        "The <b>class</b> property asserts that this type will be<br>" +
+        "implemented as a reference class in the underlying framework.";
+    text.classList.toggle("show");
+  }
+
+function newOk(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>has noArg-ctor</b> property asserts that this reference<br>" +
+        "class has a no-arg constructor, and thus objects of this<br>" +
+        "type can be allocated with NEW(). Component Pascal types<br>" +
+        "derived from this type can also be allocated using NEW().";
+    popuptext.classList.toggle("show"); 
+  }
+
+function noNew(node) { 
+    var prnt = node.parentNode; 
+    var next = prnt.previousSibling; 
+    var text = next.lastChild; 
+    text.innerHTML =  
+        "The <b>no noArg-ctor</b> property asserts that this reference<br>" +
+        "class does not have a noArg constructor. Objects of this<br>" +
+        "type cannot be allocated using NEW(), and Component<br>" +
+        "Pascal types  derived from this type also cannot be<br>" +
+        "allocated using NEW().";
+    text.classList.toggle("show");
+  }
+
+function noCpy(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>no value-assign</b> property asserts that this reference<br>" + 
+        "class does not have a value copy method. Therefore, it<br>" +
+        "is not possible to perform value assignments using<br>" +
+        "statements like <i>dst^</i> := <i>src^</i>";
+    popuptext.classList.toggle("show");
+  }
+
+function valueclass(node) { 
+        var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>valueclass</b> property asserts that this RECORD type is<br>" + 
+        "implemented as a value class in the CLR. It follows that<br>" +  
+        "value assignments can be made of these types. They can<br>" + 
+        "also be passed by value. Even pointers to records of<br>" + 
+        "such types may be dereferenced and copied using syntax<br>" + 
+        "such as  <i>dst^</i> := <i>src^</i>"; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+function argCtor(node) { 
+    var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>has arg-ctor</b> property asserts that this reference<br>" +  
+        "class has one or more constructors that take arguments.<br>" + 
+        "These constructors can be called from Component Pascal<br>" + 
+        "by calling an <i>init</i>(...) method from the static list<br>" + 
+        "here. Component Pascal types derived from this type<br>" + 
+        "can define constructors with arguments which call the<br>" + 
+        "super-type constructor.<br>" + 
+        "See <i>'Interfacing to constructors'</i> in the Release Notes."; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+</script>
+<!-- END JavaScript --> 
+
+</body></html>

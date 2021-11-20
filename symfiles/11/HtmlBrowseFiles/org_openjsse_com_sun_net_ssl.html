@@ -1,0 +1,322 @@
+<html><head><title>org_openjsse_com_sun_net_ssl</title>
+<style>
+<!-- BEGIN Inline CSS -->
+/* Popup container */
+.popup {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+/* The actual popup (appears on top) */
+.popup .popuptext {
+    visibility: hidden;
+    width: 430px;
+    background-color: white;
+    color: black;
+    text-align: left;
+    border-radius: 6px;
+    border-style: solid;
+    border-color: black;
+    padding: 8px 8px 8px 8px;
+    position: absolute;
+    z-index: 1;
+    margin-top: 30px;
+}
+
+/* Toggle this class when clicking on the popup container (hide and show the popup) */
+.popup .show {
+    visibility: visible;
+    opacity: 1;
+}
+
+</style>
+<!-- END Inline CSS -->
+</head><body bgcolor="white">
+<hr><pre>
+<font color="green">(*</font>
+<font color="green"> *  Creator PeToCps j2cps version 1.4.07 (March 2018)</font>
+<font color="green"> *  Compiled from jar-file /Library/Java/JavaVirtualMachines/zulu-11.jdk/Contents/Home/jmods/org.openjsse.jmod</font>
+<font color="green"> *)</font>
+<b>FOREIGN MODULE </b><font color="#cc0033">org_openjsse_com_sun_net_ssl</font>;
+
+<b>IMPORT</b>
+    <a href="javax_net_ssl.html">javax_net_ssl</a> := "javax.net.ssl",
+    <a href="java_lang.html">java_lang</a> := "java.lang",
+    <a href="java_net.html">java_net</a> := "java.net",
+    <a href="java_security.html">java_security</a> := "java.security",
+    <a href="java_security_cert.html">java_security_cert</a> := "java.security.cert",
+    <a href="org_openjsse_com_sun_net_ssl.html">org_openjsse_com_sun_net_ssl</a> := "org.openjsse.com.sun.net.ssl";
+
+<b>TYPE</b>
+
+  <a name="type-HostnameVerifier"></a><font color="#cc0033">HostnameVerifier</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                      <font color="green"><b> (* </b><a href="#meths-HostnameVerifier">Typebound Procedures</a><b> *)</b></font>
+                      <b>END</b>;
+
+  <a name="type-HttpsURLConnection"></a><font color="#cc0033">HttpsURLConnection</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_net.html#type-HttpURLConnection">java_net.HttpURLConnection</a>)
+                        <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                        <font color="green"><b> (* </b><a href="#meths-HttpsURLConnection">Typebound Procedures</a><b> *)</b></font>
+                          <font color="#cc0033">hostnameVerifier</font>! : <a href="org_openjsse_com_sun_net_ssl.html#type-HostnameVerifier">org_openjsse_com_sun_net_ssl.HostnameVerifier</a>;
+                        <b>STATIC</b>
+                          <b>PROCEDURE </b><font color="#cc0033">getDefaultHostnameVerifier</font>*() : <a href="org_openjsse_com_sun_net_ssl.html#type-HostnameVerifier">org_openjsse_com_sun_net_ssl.HostnameVerifier</a>;
+                          <b>PROCEDURE </b><font color="#cc0033">getDefaultSSLSocketFactory</font>*() : <a href="javax_net_ssl.html#type-SSLSocketFactory">javax_net_ssl.SSLSocketFactory</a>;
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_net.html#type-URL">java_net.URL</a>) : <a href="#type-HttpsURLConnection">HttpsURLConnection</a><b>,CONSTRUCTOR</b>;
+                          <b>PROCEDURE </b><font color="#cc0033">setDefaultHostnameVerifier</font>*(p0 : <a href="org_openjsse_com_sun_net_ssl.html#type-HostnameVerifier">org_openjsse_com_sun_net_ssl.HostnameVerifier</a>);
+                          <b>PROCEDURE </b><font color="#cc0033">setDefaultSSLSocketFactory</font>*(p0 : <a href="javax_net_ssl.html#type-SSLSocketFactory">javax_net_ssl.SSLSocketFactory</a>);
+                        <b>END</b>;
+
+  <a name="type-KeyManager"></a><font color="#cc0033">KeyManager</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                <b>END</b>;
+
+  <a name="type-KeyManagerFactory"></a><font color="#cc0033">KeyManagerFactory</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                       <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                       <font color="green"><b> (* </b><a href="#meths-KeyManagerFactory">Typebound Procedures</a><b> *)</b></font>
+                       <b>STATIC</b>
+                         <b>PROCEDURE </b><font color="#cc0033">getDefaultAlgorithm</font>*() : <a href="java_lang.html#type-String">java_lang.String</a>;
+                         <b>PROCEDURE </b><font color="#cc0033">getInstance</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-KeyManagerFactory">KeyManagerFactory</a>;
+                         <b>PROCEDURE </b><font color="#cc0033">getInstance</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                p1 : <a href="java_security.html#type-Provider">java_security.Provider</a>) : <a href="#type-KeyManagerFactory">KeyManagerFactory</a>;
+                         <b>PROCEDURE </b><font color="#cc0033">getInstance</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-KeyManagerFactory">KeyManagerFactory</a>;
+                         <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : <a href="org_openjsse_com_sun_net_ssl.html#type-KeyManagerFactorySpi">org_openjsse_com_sun_net_ssl.KeyManagerFactorySpi</a>;
+                                         p1 : <a href="java_security.html#type-Provider">java_security.Provider</a>;
+                                         p2 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-KeyManagerFactory">KeyManagerFactory</a><b>,CONSTRUCTOR</b>;
+                       <b>END</b>;
+
+  <a name="type-KeyManagerFactorySpi"></a><font color="#cc0033">KeyManagerFactorySpi</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                          <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                          <font color="green"><b> (* </b><a href="#meths-KeyManagerFactorySpi">Typebound Procedures</a><b> *)</b></font>
+                          <b>STATIC</b>
+                            <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-KeyManagerFactorySpi">KeyManagerFactorySpi</a><b>,CONSTRUCTOR</b>;
+                          <b>END</b>;
+
+  <a name="type-SSLContext"></a><font color="#cc0033">SSLContext</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                <font color="green"><b> (* </b><a href="#meths-SSLContext">Typebound Procedures</a><b> *)</b></font>
+                <b>STATIC</b>
+                  <b>PROCEDURE </b><font color="#cc0033">getInstance</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                         p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-SSLContext">SSLContext</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">getInstance</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                         p1 : <a href="java_security.html#type-Provider">java_security.Provider</a>) : <a href="#type-SSLContext">SSLContext</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">getInstance</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-SSLContext">SSLContext</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : <a href="#type-SSLContextSpi">SSLContextSpi</a>;
+                                  p1 : <a href="java_security.html#type-Provider">java_security.Provider</a>;
+                                  p2 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-SSLContext">SSLContext</a><b>,CONSTRUCTOR</b>;
+                <b>END</b>;
+
+  <a name="type-SSLContextSpi"></a><font color="#cc0033">SSLContextSpi</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                   <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                   <font color="green"><b> (* </b><a href="#meths-SSLContextSpi">Typebound Procedures</a><b> *)</b></font>
+                   <b>STATIC</b>
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-SSLContextSpi">SSLContextSpi</a><b>,CONSTRUCTOR</b>;
+                   <b>END</b>;
+
+  <a name="type-SSLPermission"></a><font color="#cc0033">SSLPermission</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_security.html#type-BasicPermission">java_security.BasicPermission</a>)
+                   <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                   <b>STATIC</b>
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                     p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-SSLPermission">SSLPermission</a><b>,CONSTRUCTOR</b>;
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-SSLPermission">SSLPermission</a><b>,CONSTRUCTOR</b>;
+                   <b>END</b>;
+
+  <a name="type-TrustManager"></a><font color="#cc0033">TrustManager</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                  <b>END</b>;
+
+  <a name="type-TrustManagerFactory"></a><font color="#cc0033">TrustManagerFactory</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                         <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                         <font color="green"><b> (* </b><a href="#meths-TrustManagerFactory">Typebound Procedures</a><b> *)</b></font>
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">getDefaultAlgorithm</font>*() : <a href="java_lang.html#type-String">java_lang.String</a>;
+                           <b>PROCEDURE </b><font color="#cc0033">getInstance</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                  p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-TrustManagerFactory">TrustManagerFactory</a>;
+                           <b>PROCEDURE </b><font color="#cc0033">getInstance</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                  p1 : <a href="java_security.html#type-Provider">java_security.Provider</a>) : <a href="#type-TrustManagerFactory">TrustManagerFactory</a>;
+                           <b>PROCEDURE </b><font color="#cc0033">getInstance</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-TrustManagerFactory">TrustManagerFactory</a>;
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : <a href="#type-TrustManagerFactorySpi">TrustManagerFactorySpi</a>;
+                                           p1 : <a href="java_security.html#type-Provider">java_security.Provider</a>;
+                                           p2 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-TrustManagerFactory">TrustManagerFactory</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-TrustManagerFactorySpi"></a><font color="#cc0033">TrustManagerFactorySpi</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                            <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                            <font color="green"><b> (* </b><a href="#meths-TrustManagerFactorySpi">Typebound Procedures</a><b> *)</b></font>
+                            <b>STATIC</b>
+                              <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-TrustManagerFactorySpi">TrustManagerFactorySpi</a><b>,CONSTRUCTOR</b>;
+                            <b>END</b>;
+
+  <a name="type-X509KeyManager"></a><font color="#cc0033">X509KeyManager</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="org_openjsse_com_sun_net_ssl.html#type-KeyManager">org_openjsse_com_sun_net_ssl.KeyManager</a>)
+                    <font color="green"><b> (* </b><a href="#meths-X509KeyManager">Typebound Procedures</a><b> *)</b></font>
+                    <b>END</b>;
+
+  <a name="type-X509TrustManager"></a><font color="#cc0033">X509TrustManager</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="org_openjsse_com_sun_net_ssl.html#type-TrustManager">org_openjsse_com_sun_net_ssl.TrustManager</a>)
+                      <font color="green"><b> (* </b><a href="#meths-X509TrustManager">Typebound Procedures</a><b> *)</b></font>
+                      <b>END</b>;
+
+
+
+<a name="meths-HostnameVerifier"></a>
+<b>PROCEDURE </b>(self:HostnameVerifier) <font color="#cc0033">verify</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                          p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+<a name="meths-HttpsURLConnection"></a>
+<b>PROCEDURE </b>(self:HttpsURLConnection) <font color="#cc0033">getCipherSuite</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:HttpsURLConnection) <font color="#cc0033">getHostnameVerifier</font>*() : <a href="org_openjsse_com_sun_net_ssl.html#type-HostnameVerifier">org_openjsse_com_sun_net_ssl.HostnameVerifier</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HttpsURLConnection) <font color="#cc0033">getServerCertificates</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_security_cert.html#type-Certificate">java_security_cert.Certificate</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:HttpsURLConnection) <font color="#cc0033">getSSLSocketFactory</font>*() : <a href="javax_net_ssl.html#type-SSLSocketFactory">javax_net_ssl.SSLSocketFactory</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HttpsURLConnection) <font color="#cc0033">setHostnameVerifier</font>*(p0 : <a href="org_openjsse_com_sun_net_ssl.html#type-HostnameVerifier">org_openjsse_com_sun_net_ssl.HostnameVerifier</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HttpsURLConnection) <font color="#cc0033">setSSLSocketFactory</font>*(p0 : <a href="javax_net_ssl.html#type-SSLSocketFactory">javax_net_ssl.SSLSocketFactory</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-KeyManagerFactory"></a>
+<b>PROCEDURE </b>(self:KeyManagerFactory) <font color="#cc0033">getAlgorithm</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:KeyManagerFactory) <font color="#cc0033">getKeyManagers</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-KeyManager">KeyManager</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:KeyManagerFactory) <font color="#cc0033">getProvider</font>*() : <a href="java_security.html#type-Provider">java_security.Provider</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:KeyManagerFactory) <font color="#cc0033">init</font>*(    p0 : <a href="java_security.html#type-KeyStore">java_security.KeyStore</a>;
+                                         IN  p1 : <b>ARRAY </b><b>OF </b>CHAR)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-KeyManagerFactorySpi"></a>
+<b>PROCEDURE </b>(self:KeyManagerFactorySpi) <font color="#cc0033">engineGetKeyManagers</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-KeyManager">KeyManager</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:KeyManagerFactorySpi) <font color="#cc0033">engineInit</font>!(    p0 : <a href="java_security.html#type-KeyStore">java_security.KeyStore</a>;
+                                                  IN  p1 : <b>ARRAY </b><b>OF </b>CHAR)<b>,NEW,ABSTRACT</b>;
+<a name="meths-SSLContext"></a>
+<b>PROCEDURE </b>(self:SSLContext) <font color="#cc0033">getProtocol</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:SSLContext) <font color="#cc0033">getProvider</font>*() : <a href="java_security.html#type-Provider">java_security.Provider</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:SSLContext) <font color="#cc0033">getServerSocketFactory</font>*() : <a href="javax_net_ssl.html#type-SSLServerSocketFactory">javax_net_ssl.SSLServerSocketFactory</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:SSLContext) <font color="#cc0033">getSocketFactory</font>*() : <a href="javax_net_ssl.html#type-SSLSocketFactory">javax_net_ssl.SSLSocketFactory</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:SSLContext) <font color="#cc0033">init</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="#type-KeyManager">KeyManager</a>;
+                                  IN  p1 : <b>ARRAY </b><b>OF </b><a href="#type-TrustManager">TrustManager</a>;
+                                      p2 : <a href="java_security.html#type-SecureRandom">java_security.SecureRandom</a>)<b>,NEW</b>;
+<a name="meths-SSLContextSpi"></a>
+<b>PROCEDURE </b>(self:SSLContextSpi) <font color="#cc0033">engineGetServerSocketFactory</font>!() : <a href="javax_net_ssl.html#type-SSLServerSocketFactory">javax_net_ssl.SSLServerSocketFactory</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SSLContextSpi) <font color="#cc0033">engineGetSocketFactory</font>!() : <a href="javax_net_ssl.html#type-SSLSocketFactory">javax_net_ssl.SSLSocketFactory</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SSLContextSpi) <font color="#cc0033">engineInit</font>!(IN  p0 : <b>ARRAY </b><b>OF </b><a href="org_openjsse_com_sun_net_ssl.html#type-KeyManager">org_openjsse_com_sun_net_ssl.KeyManager</a>;
+                                           IN  p1 : <b>ARRAY </b><b>OF </b><a href="org_openjsse_com_sun_net_ssl.html#type-TrustManager">org_openjsse_com_sun_net_ssl.TrustManager</a>;
+                                               p2 : <a href="java_security.html#type-SecureRandom">java_security.SecureRandom</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-TrustManagerFactory"></a>
+<b>PROCEDURE </b>(self:TrustManagerFactory) <font color="#cc0033">getAlgorithm</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:TrustManagerFactory) <font color="#cc0033">getProvider</font>*() : <a href="java_security.html#type-Provider">java_security.Provider</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:TrustManagerFactory) <font color="#cc0033">getTrustManagers</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="org_openjsse_com_sun_net_ssl.html#type-TrustManager">org_openjsse_com_sun_net_ssl.TrustManager</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TrustManagerFactory) <font color="#cc0033">init</font>*(p0 : <a href="java_security.html#type-KeyStore">java_security.KeyStore</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-TrustManagerFactorySpi"></a>
+<b>PROCEDURE </b>(self:TrustManagerFactorySpi) <font color="#cc0033">engineGetTrustManagers</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="org_openjsse_com_sun_net_ssl.html#type-TrustManager">org_openjsse_com_sun_net_ssl.TrustManager</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TrustManagerFactorySpi) <font color="#cc0033">engineInit</font>!(p0 : <a href="java_security.html#type-KeyStore">java_security.KeyStore</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-X509KeyManager"></a>
+<b>PROCEDURE </b>(self:X509KeyManager) <font color="#cc0033">chooseClientAlias</font>*(    p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                   IN  p1 : <b>ARRAY </b><b>OF </b><a href="java_security.html#type-Principal">java_security.Principal</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:X509KeyManager) <font color="#cc0033">chooseServerAlias</font>*(    p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                   IN  p1 : <b>ARRAY </b><b>OF </b><a href="java_security.html#type-Principal">java_security.Principal</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:X509KeyManager) <font color="#cc0033">getCertificateChain</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_security_cert.html#type-X509Certificate">java_security_cert.X509Certificate</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:X509KeyManager) <font color="#cc0033">getClientAliases</font>*(    p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                  IN  p1 : <b>ARRAY </b><b>OF </b><a href="java_security.html#type-Principal">java_security.Principal</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:X509KeyManager) <font color="#cc0033">getPrivateKey</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_security.html#type-PrivateKey">java_security.PrivateKey</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:X509KeyManager) <font color="#cc0033">getServerAliases</font>*(    p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                  IN  p1 : <b>ARRAY </b><b>OF </b><a href="java_security.html#type-Principal">java_security.Principal</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-X509TrustManager"></a>
+<b>PROCEDURE </b>(self:X509TrustManager) <font color="#cc0033">getAcceptedIssuers</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_security_cert.html#type-X509Certificate">java_security_cert.X509Certificate</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:X509TrustManager) <font color="#cc0033">isClientTrusted</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="java_security_cert.html#type-X509Certificate">java_security_cert.X509Certificate</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:X509TrustManager) <font color="#cc0033">isServerTrusted</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="java_security_cert.html#type-X509Certificate">java_security_cert.X509Certificate</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>END </b><font color="#cc0033">org_openjsse_com_sun_net_ssl</font>.
+</font></pre></hr>
+<!-- BEGIN JavaScript -->
+<script>
+function toggle(node) {
+    node.classList.toggle("show"); 
+  }
+
+function cls(node) {
+    var prnt = node.parentNode;
+    var next = prnt.previousSibling;
+    var text = next.lastChild;
+    text.innerHTML = 
+        "The <b>class</b> property asserts that this type will be<br>" +
+        "implemented as a reference class in the underlying framework.";
+    text.classList.toggle("show");
+  }
+
+function newOk(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>has noArg-ctor</b> property asserts that this reference<br>" +
+        "class has a no-arg constructor, and thus objects of this<br>" +
+        "type can be allocated with NEW(). Component Pascal types<br>" +
+        "derived from this type can also be allocated using NEW().";
+    popuptext.classList.toggle("show"); 
+  }
+
+function noNew(node) { 
+    var prnt = node.parentNode; 
+    var next = prnt.previousSibling; 
+    var text = next.lastChild; 
+    text.innerHTML =  
+        "The <b>no noArg-ctor</b> property asserts that this reference<br>" +
+        "class does not have a noArg constructor. Objects of this<br>" +
+        "type cannot be allocated using NEW(), and Component<br>" +
+        "Pascal types  derived from this type also cannot be<br>" +
+        "allocated using NEW().";
+    text.classList.toggle("show");
+  }
+
+function noCpy(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>no value-assign</b> property asserts that this reference<br>" + 
+        "class does not have a value copy method. Therefore, it<br>" +
+        "is not possible to perform value assignments using<br>" +
+        "statements like <i>dst^</i> := <i>src^</i>";
+    popuptext.classList.toggle("show");
+  }
+
+function valueclass(node) { 
+        var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>valueclass</b> property asserts that this RECORD type is<br>" + 
+        "implemented as a value class in the CLR. It follows that<br>" +  
+        "value assignments can be made of these types. They can<br>" + 
+        "also be passed by value. Even pointers to records of<br>" + 
+        "such types may be dereferenced and copied using syntax<br>" + 
+        "such as  <i>dst^</i> := <i>src^</i>"; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+function argCtor(node) { 
+    var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>has arg-ctor</b> property asserts that this reference<br>" +  
+        "class has one or more constructors that take arguments.<br>" + 
+        "These constructors can be called from Component Pascal<br>" + 
+        "by calling an <i>init</i>(...) method from the static list<br>" + 
+        "here. Component Pascal types derived from this type<br>" + 
+        "can define constructors with arguments which call the<br>" + 
+        "super-type constructor.<br>" + 
+        "See <i>'Interfacing to constructors'</i> in the Release Notes."; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+</script>
+<!-- END JavaScript --> 
+
+</body></html>

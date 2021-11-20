@@ -1,0 +1,520 @@
+<html><head><title>java_lang_module</title>
+<style>
+<!-- BEGIN Inline CSS -->
+/* Popup container */
+.popup {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+/* The actual popup (appears on top) */
+.popup .popuptext {
+    visibility: hidden;
+    width: 430px;
+    background-color: white;
+    color: black;
+    text-align: left;
+    border-radius: 6px;
+    border-style: solid;
+    border-color: black;
+    padding: 8px 8px 8px 8px;
+    position: absolute;
+    z-index: 1;
+    margin-top: 30px;
+}
+
+/* Toggle this class when clicking on the popup container (hide and show the popup) */
+.popup .show {
+    visibility: visible;
+    opacity: 1;
+}
+
+</style>
+<!-- END Inline CSS -->
+</head><body bgcolor="white">
+<hr><pre>
+<font color="green">(*</font>
+<font color="green"> *  Creator PeToCps j2cps version 1.4.07 (March 2018)</font>
+<font color="green"> *  Compiled from jar-file /Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home/jmods/java.base.jmod</font>
+<font color="green"> *)</font>
+<b>FOREIGN MODULE </b><font color="#cc0033">java_lang_module</font>;
+
+<b>IMPORT</b>
+    <a href="java_io.html">java_io</a> := "java.io",
+    <a href="java_lang.html">java_lang</a> := "java.lang",
+    <a href="java_lang.html">java_lang</a> := "java.lang",
+    <a href="java_lang_module.html">java_lang_module</a> := "java.lang.module",
+    <a href="java_net.html">java_net</a> := "java.net",
+    <a href="java_nio.html">java_nio</a> := "java.nio",
+    <a href="java_nio_file.html">java_nio_file</a> := "java.nio.file",
+    <a href="java_util.html">java_util</a> := "java.util",
+    <a href="java_util_function.html">java_util_function</a> := "java.util.function",
+    <a href="java_util_stream.html">java_util_stream</a> := "java.util.stream";
+
+<b>TYPE</b>
+
+  <a name="type-Configuration"></a><font color="#cc0033">Configuration</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                   <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> *)</font>
+                   <font color="green"><b> (* </b><a href="#meths-Configuration">Typebound Procedures</a><b> *)</b></font>
+                   <b>STATIC</b>
+                     <b>PROCEDURE </b><font color="#cc0033">empty</font>*() : <a href="#type-Configuration">Configuration</a>;
+                     <b>PROCEDURE </b><font color="#cc0033">resolve</font>*(p0 : <a href="#type-ModuleFinder">ModuleFinder</a>;
+                                        p1 : <a href="java_util.html#type-List">java_util.List</a>;
+                                        p2 : <a href="#type-ModuleFinder">ModuleFinder</a>;
+                                        p3 : <a href="java_util.html#type-Collection">java_util.Collection</a>) : <a href="#type-Configuration">Configuration</a>;
+                     <b>PROCEDURE </b><font color="#cc0033">resolveAndBind</font>*(p0 : <a href="#type-ModuleFinder">ModuleFinder</a>;
+                                               p1 : <a href="java_util.html#type-List">java_util.List</a>;
+                                               p2 : <a href="#type-ModuleFinder">ModuleFinder</a>;
+                                               p3 : <a href="java_util.html#type-Collection">java_util.Collection</a>) : <a href="#type-Configuration">Configuration</a>;
+                   <b>END</b>;
+
+  <a name="type-FindException"></a><font color="#cc0033">FindException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-RuntimeException">java_lang.RuntimeException</a>)
+                   <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                   <b>STATIC</b>
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-Throwable">java_lang.Throwable</a>) : <a href="#type-FindException">FindException</a><b>,CONSTRUCTOR</b>;
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                     p1 : <a href="java_lang.html#type-Throwable">java_lang.Throwable</a>) : <a href="#type-FindException">FindException</a><b>,CONSTRUCTOR</b>;
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-FindException">FindException</a><b>,CONSTRUCTOR</b>;
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-FindException">FindException</a><b>,CONSTRUCTOR</b>;
+                   <b>END</b>;
+
+  <a name="type-InvalidModuleDescriptorException"></a><font color="#cc0033">InvalidModuleDescriptorException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-RuntimeException">java_lang.RuntimeException</a>)
+                                      <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                                      <b>STATIC</b>
+                                        <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-InvalidModuleDescriptorException">InvalidModuleDescriptorException</a><b>,CONSTRUCTOR</b>;
+                                        <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-InvalidModuleDescriptorException">InvalidModuleDescriptorException</a><b>,CONSTRUCTOR</b>;
+                                      <b>END</b>;
+
+  <a name="type-ModuleDescriptor"></a><font color="#cc0033">ModuleDescriptor</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_lang.html#type-Comparable">java_lang.Comparable</a>)
+                      <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> *)</font>
+                      <font color="green"><b> (* </b><a href="#meths-ModuleDescriptor">Typebound Procedures</a><b> *)</b></font>
+                      <b>STATIC</b>
+                        <b>PROCEDURE </b><font color="#cc0033">newAutomaticModule</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-ModuleDescriptor$Builder">ModuleDescriptor$Builder</a>;
+                        <b>PROCEDURE </b><font color="#cc0033">newModule</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                             p1 : <a href="java_util.html#type-Set">java_util.Set</a>) : <a href="#type-ModuleDescriptor$Builder">ModuleDescriptor$Builder</a>;
+                        <b>PROCEDURE </b><font color="#cc0033">newModule</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-ModuleDescriptor$Builder">ModuleDescriptor$Builder</a>;
+                        <b>PROCEDURE </b><font color="#cc0033">newOpenModule</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-ModuleDescriptor$Builder">ModuleDescriptor$Builder</a>;
+                        <b>PROCEDURE </b><font color="#cc0033">read</font>*(p0 : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>;
+                                        p1 : <a href="java_util_function.html#type-Supplier">java_util_function.Supplier</a>) : <a href="#type-ModuleDescriptor">ModuleDescriptor</a>;
+                        <b>PROCEDURE </b><font color="#cc0033">read</font>*(p0 : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>) : <a href="#type-ModuleDescriptor">ModuleDescriptor</a>;
+                        <b>PROCEDURE </b><font color="#cc0033">read</font>*(p0 : <a href="java_io.html#type-InputStream">java_io.InputStream</a>;
+                                        p1 : <a href="java_util_function.html#type-Supplier">java_util_function.Supplier</a>) : <a href="#type-ModuleDescriptor">ModuleDescriptor</a>;
+                        <b>PROCEDURE </b><font color="#cc0033">read</font>*(p0 : <a href="java_io.html#type-InputStream">java_io.InputStream</a>) : <a href="#type-ModuleDescriptor">ModuleDescriptor</a>;
+                      <b>END</b>;
+
+  <a name="type-ModuleDescriptor$Builder"></a><font color="#cc0033">ModuleDescriptor$Builder</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                              <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> *)</font>
+                              <font color="green"><b> (* </b><a href="#meths-ModuleDescriptor$Builder">Typebound Procedures</a><b> *)</b></font>
+                              <b>END</b>;
+
+  <a name="type-ModuleDescriptor$Exports"></a><font color="#cc0033">ModuleDescriptor$Exports</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_lang.html#type-Comparable">java_lang.Comparable</a>)
+                              <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> *)</font>
+                              <font color="green"><b> (* </b><a href="#meths-ModuleDescriptor$Exports">Typebound Procedures</a><b> *)</b></font>
+                              <b>END</b>;
+
+  <a name="type-ModuleDescriptor$Exports$Modifier"></a><font color="#cc0033">ModuleDescriptor$Exports$Modifier</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Enum">java_lang.Enum</a>)
+                                       <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> *)</font>
+                                       <b>STATIC</b>
+                                         <a name="type-MANDATED"></a><font color="#cc0033">MANDATED</font>*  : <a href="#type-ModuleDescriptor$Exports$Modifier">ModuleDescriptor$Exports$Modifier</a>;
+                                         <a name="type-SYNTHETIC"></a><font color="#cc0033">SYNTHETIC</font>* : <a href="#type-ModuleDescriptor$Exports$Modifier">ModuleDescriptor$Exports$Modifier</a>;
+                                         <b>PROCEDURE </b><font color="#cc0033">valueOf</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-ModuleDescriptor$Exports$Modifier">ModuleDescriptor$Exports$Modifier</a>;
+                                         <b>PROCEDURE </b><font color="#cc0033">values</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-ModuleDescriptor$Exports$Modifier">ModuleDescriptor$Exports$Modifier</a>;
+                                       <b>END</b>;
+
+  <a name="type-ModuleDescriptor$Modifier"></a><font color="#cc0033">ModuleDescriptor$Modifier</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Enum">java_lang.Enum</a>)
+                               <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> *)</font>
+                               <b>STATIC</b>
+                                 <a name="type-AUTOMATIC"></a><font color="#cc0033">AUTOMATIC</font>* : <a href="#type-ModuleDescriptor$Modifier">ModuleDescriptor$Modifier</a>;
+                                 <a name="type-MANDATED"></a><font color="#cc0033">MANDATED</font>*  : <a href="#type-ModuleDescriptor$Modifier">ModuleDescriptor$Modifier</a>;
+                                 <a name="type-OPEN"></a><font color="#cc0033">OPEN</font>*      : <a href="#type-ModuleDescriptor$Modifier">ModuleDescriptor$Modifier</a>;
+                                 <a name="type-SYNTHETIC"></a><font color="#cc0033">SYNTHETIC</font>* : <a href="#type-ModuleDescriptor$Modifier">ModuleDescriptor$Modifier</a>;
+                                 <b>PROCEDURE </b><font color="#cc0033">valueOf</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-ModuleDescriptor$Modifier">ModuleDescriptor$Modifier</a>;
+                                 <b>PROCEDURE </b><font color="#cc0033">values</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-ModuleDescriptor$Modifier">ModuleDescriptor$Modifier</a>;
+                               <b>END</b>;
+
+  <a name="type-ModuleDescriptor$Opens"></a><font color="#cc0033">ModuleDescriptor$Opens</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_lang.html#type-Comparable">java_lang.Comparable</a>)
+                            <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> *)</font>
+                            <font color="green"><b> (* </b><a href="#meths-ModuleDescriptor$Opens">Typebound Procedures</a><b> *)</b></font>
+                            <b>END</b>;
+
+  <a name="type-ModuleDescriptor$Opens$Modifier"></a><font color="#cc0033">ModuleDescriptor$Opens$Modifier</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Enum">java_lang.Enum</a>)
+                                     <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> *)</font>
+                                     <b>STATIC</b>
+                                       <a name="type-MANDATED"></a><font color="#cc0033">MANDATED</font>*  : <a href="#type-ModuleDescriptor$Opens$Modifier">ModuleDescriptor$Opens$Modifier</a>;
+                                       <a name="type-SYNTHETIC"></a><font color="#cc0033">SYNTHETIC</font>* : <a href="#type-ModuleDescriptor$Opens$Modifier">ModuleDescriptor$Opens$Modifier</a>;
+                                       <b>PROCEDURE </b><font color="#cc0033">valueOf</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-ModuleDescriptor$Opens$Modifier">ModuleDescriptor$Opens$Modifier</a>;
+                                       <b>PROCEDURE </b><font color="#cc0033">values</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-ModuleDescriptor$Opens$Modifier">ModuleDescriptor$Opens$Modifier</a>;
+                                     <b>END</b>;
+
+  <a name="type-ModuleDescriptor$Provides"></a><font color="#cc0033">ModuleDescriptor$Provides</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_lang.html#type-Comparable">java_lang.Comparable</a>)
+                               <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> *)</font>
+                               <font color="green"><b> (* </b><a href="#meths-ModuleDescriptor$Provides">Typebound Procedures</a><b> *)</b></font>
+                               <b>END</b>;
+
+  <a name="type-ModuleDescriptor$Requires"></a><font color="#cc0033">ModuleDescriptor$Requires</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_lang.html#type-Comparable">java_lang.Comparable</a>)
+                               <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> *)</font>
+                               <font color="green"><b> (* </b><a href="#meths-ModuleDescriptor$Requires">Typebound Procedures</a><b> *)</b></font>
+                               <b>END</b>;
+
+  <a name="type-ModuleDescriptor$Requires$Modifier"></a><font color="#cc0033">ModuleDescriptor$Requires$Modifier</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Enum">java_lang.Enum</a>)
+                                        <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> *)</font>
+                                        <b>STATIC</b>
+                                          <a name="type-MANDATED"></a><font color="#cc0033">MANDATED</font>*   : <a href="#type-ModuleDescriptor$Requires$Modifier">ModuleDescriptor$Requires$Modifier</a>;
+                                          <a name="type-STATIC"></a><font color="#cc0033">STATIC</font>*     : <a href="#type-ModuleDescriptor$Requires$Modifier">ModuleDescriptor$Requires$Modifier</a>;
+                                          <a name="type-SYNTHETIC"></a><font color="#cc0033">SYNTHETIC</font>*  : <a href="#type-ModuleDescriptor$Requires$Modifier">ModuleDescriptor$Requires$Modifier</a>;
+                                          <a name="type-TRANSITIVE"></a><font color="#cc0033">TRANSITIVE</font>* : <a href="#type-ModuleDescriptor$Requires$Modifier">ModuleDescriptor$Requires$Modifier</a>;
+                                          <b>PROCEDURE </b><font color="#cc0033">valueOf</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-ModuleDescriptor$Requires$Modifier">ModuleDescriptor$Requires$Modifier</a>;
+                                          <b>PROCEDURE </b><font color="#cc0033">values</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-ModuleDescriptor$Requires$Modifier">ModuleDescriptor$Requires$Modifier</a>;
+                                        <b>END</b>;
+
+  <a name="type-ModuleDescriptor$Version"></a><font color="#cc0033">ModuleDescriptor$Version</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_lang.html#type-Comparable">java_lang.Comparable</a>)
+                              <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> *)</font>
+                              <font color="green"><b> (* </b><a href="#meths-ModuleDescriptor$Version">Typebound Procedures</a><b> *)</b></font>
+                              <b>STATIC</b>
+                                <b>PROCEDURE </b><font color="#cc0033">parse</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-ModuleDescriptor$Version">ModuleDescriptor$Version</a>;
+                              <b>END</b>;
+
+  <a name="type-ModuleFinder"></a><font color="#cc0033">ModuleFinder</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                  <font color="green"><b> (* </b><a href="#meths-ModuleFinder">Typebound Procedures</a><b> *)</b></font>
+                  <b>STATIC</b>
+                    <b>PROCEDURE </b><font color="#cc0033">compose</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="#type-ModuleFinder">ModuleFinder</a>) : <a href="#type-ModuleFinder">ModuleFinder</a>;
+                    <b>PROCEDURE </b><font color="#cc0033">of</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="java_nio_file.html#type-Path">java_nio_file.Path</a>) : <a href="#type-ModuleFinder">ModuleFinder</a>;
+                    <b>PROCEDURE </b><font color="#cc0033">ofSystem</font>*() : <a href="#type-ModuleFinder">ModuleFinder</a>;
+                  <b>END</b>;
+
+  <a name="type-ModuleReader"></a><font color="#cc0033">ModuleReader</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_io.html#type-Closeable">java_io.Closeable</a>)
+                  <font color="green"><b> (* </b><a href="#meths-ModuleReader">Typebound Procedures</a><b> *)</b></font>
+                  <b>END</b>;
+
+  <a name="type-ModuleReference"></a><font color="#cc0033">ModuleReference</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                     <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                     <font color="green"><b> (* </b><a href="#meths-ModuleReference">Typebound Procedures</a><b> *)</b></font>
+                     <b>STATIC</b>
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : <a href="java_lang_module.html#type-ModuleDescriptor">java_lang_module.ModuleDescriptor</a>;
+                                       p1 : <a href="java_net.html#type-URI">java_net.URI</a>) : <a href="#type-ModuleReference">ModuleReference</a><b>,CONSTRUCTOR</b>;
+                     <b>END</b>;
+
+  <a name="type-ResolutionException"></a><font color="#cc0033">ResolutionException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-RuntimeException">java_lang.RuntimeException</a>)
+                         <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-Throwable">java_lang.Throwable</a>) : <a href="#type-ResolutionException">ResolutionException</a><b>,CONSTRUCTOR</b>;
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                           p1 : <a href="java_lang.html#type-Throwable">java_lang.Throwable</a>) : <a href="#type-ResolutionException">ResolutionException</a><b>,CONSTRUCTOR</b>;
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-ResolutionException">ResolutionException</a><b>,CONSTRUCTOR</b>;
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-ResolutionException">ResolutionException</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-ResolvedModule"></a><font color="#cc0033">ResolvedModule</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                    <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> *)</font>
+                    <font color="green"><b> (* </b><a href="#meths-ResolvedModule">Typebound Procedures</a><b> *)</b></font>
+                    <b>END</b>;
+
+
+
+<a name="meths-Configuration"></a>
+<b>PROCEDURE </b>(self:Configuration) <font color="#cc0033">findModule</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_util.html#type-Optional">java_util.Optional</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Configuration) <font color="#cc0033">modules</font>*() : <a href="java_util.html#type-Set">java_util.Set</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Configuration) <font color="#cc0033">parents</font>*() : <a href="java_util.html#type-List">java_util.List</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Configuration) <font color="#cc0033">resolve</font>*(p0 : <a href="#type-ModuleFinder">ModuleFinder</a>;
+                                        p1 : <a href="#type-ModuleFinder">ModuleFinder</a>;
+                                        p2 : <a href="java_util.html#type-Collection">java_util.Collection</a>) : <a href="#type-Configuration">Configuration</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Configuration) <font color="#cc0033">resolveAndBind</font>*(p0 : <a href="#type-ModuleFinder">ModuleFinder</a>;
+                                               p1 : <a href="#type-ModuleFinder">ModuleFinder</a>;
+                                               p2 : <a href="java_util.html#type-Collection">java_util.Collection</a>) : <a href="#type-Configuration">Configuration</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Configuration) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-ModuleDescriptor"></a>
+<b>PROCEDURE </b>(self:ModuleDescriptor) <font color="#cc0033">compareTo</font>*(p0 : <a href="#type-ModuleDescriptor">ModuleDescriptor</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ModuleDescriptor) <font color="#cc0033">compareTo</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ModuleDescriptor) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ModuleDescriptor) <font color="#cc0033">exports</font>*() : <a href="java_util.html#type-Set">java_util.Set</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ModuleDescriptor) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ModuleDescriptor) <font color="#cc0033">isAutomatic</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ModuleDescriptor) <font color="#cc0033">isOpen</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ModuleDescriptor) <font color="#cc0033">mainClass</font>*() : <a href="java_util.html#type-Optional">java_util.Optional</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ModuleDescriptor) <font color="#cc0033">modifiers</font>*() : <a href="java_util.html#type-Set">java_util.Set</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ModuleDescriptor) <font color="#cc0033">name</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ModuleDescriptor) <font color="#cc0033">opens</font>*() : <a href="java_util.html#type-Set">java_util.Set</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ModuleDescriptor) <font color="#cc0033">packages</font>*() : <a href="java_util.html#type-Set">java_util.Set</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ModuleDescriptor) <font color="#cc0033">provides</font>*() : <a href="java_util.html#type-Set">java_util.Set</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ModuleDescriptor) <font color="#cc0033">rawVersion</font>*() : <a href="java_util.html#type-Optional">java_util.Optional</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ModuleDescriptor) <font color="#cc0033">requires</font>*() : <a href="java_util.html#type-Set">java_util.Set</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ModuleDescriptor) <font color="#cc0033">toNameAndVersion</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ModuleDescriptor) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ModuleDescriptor) <font color="#cc0033">uses</font>*() : <a href="java_util.html#type-Set">java_util.Set</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ModuleDescriptor) <font color="#cc0033">version</font>*() : <a href="java_util.html#type-Optional">java_util.Optional</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-ModuleDescriptor$Builder"></a>
+<b>PROCEDURE </b>(self:ModuleDescriptor$Builder) <font color="#cc0033">build</font>*() : <a href="java_lang_module.html#type-ModuleDescriptor">java_lang_module.ModuleDescriptor</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ModuleDescriptor$Builder) <font color="#cc0033">exports</font>*(p0 : <a href="java_util.html#type-Set">java_util.Set</a>;
+                                                   p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-ModuleDescriptor$Builder">ModuleDescriptor$Builder</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ModuleDescriptor$Builder) <font color="#cc0033">exports</font>*(p0 : <a href="java_util.html#type-Set">java_util.Set</a>;
+                                                   p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                   p2 : <a href="java_util.html#type-Set">java_util.Set</a>) : <a href="#type-ModuleDescriptor$Builder">ModuleDescriptor$Builder</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ModuleDescriptor$Builder) <font color="#cc0033">exports</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-ModuleDescriptor$Builder">ModuleDescriptor$Builder</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ModuleDescriptor$Builder) <font color="#cc0033">exports</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                   p1 : <a href="java_util.html#type-Set">java_util.Set</a>) : <a href="#type-ModuleDescriptor$Builder">ModuleDescriptor$Builder</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ModuleDescriptor$Builder) <font color="#cc0033">exports</font>*(p0 : <a href="#type-ModuleDescriptor$Exports">ModuleDescriptor$Exports</a>) : <a href="#type-ModuleDescriptor$Builder">ModuleDescriptor$Builder</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ModuleDescriptor$Builder) <font color="#cc0033">mainClass</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-ModuleDescriptor$Builder">ModuleDescriptor$Builder</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ModuleDescriptor$Builder) <font color="#cc0033">opens</font>*(p0 : <a href="java_util.html#type-Set">java_util.Set</a>;
+                                                 p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-ModuleDescriptor$Builder">ModuleDescriptor$Builder</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ModuleDescriptor$Builder) <font color="#cc0033">opens</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                 p1 : <a href="java_util.html#type-Set">java_util.Set</a>) : <a href="#type-ModuleDescriptor$Builder">ModuleDescriptor$Builder</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ModuleDescriptor$Builder) <font color="#cc0033">opens</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-ModuleDescriptor$Builder">ModuleDescriptor$Builder</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ModuleDescriptor$Builder) <font color="#cc0033">opens</font>*(p0 : <a href="java_util.html#type-Set">java_util.Set</a>;
+                                                 p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                 p2 : <a href="java_util.html#type-Set">java_util.Set</a>) : <a href="#type-ModuleDescriptor$Builder">ModuleDescriptor$Builder</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ModuleDescriptor$Builder) <font color="#cc0033">opens</font>*(p0 : <a href="#type-ModuleDescriptor$Opens">ModuleDescriptor$Opens</a>) : <a href="#type-ModuleDescriptor$Builder">ModuleDescriptor$Builder</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ModuleDescriptor$Builder) <font color="#cc0033">packages</font>*(p0 : <a href="java_util.html#type-Set">java_util.Set</a>) : <a href="#type-ModuleDescriptor$Builder">ModuleDescriptor$Builder</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ModuleDescriptor$Builder) <font color="#cc0033">provides</font>*(p0 : <a href="#type-ModuleDescriptor$Provides">ModuleDescriptor$Provides</a>) : <a href="#type-ModuleDescriptor$Builder">ModuleDescriptor$Builder</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ModuleDescriptor$Builder) <font color="#cc0033">provides</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                    p1 : <a href="java_util.html#type-List">java_util.List</a>) : <a href="#type-ModuleDescriptor$Builder">ModuleDescriptor$Builder</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ModuleDescriptor$Builder) <font color="#cc0033">requires</font>*(p0 : <a href="#type-ModuleDescriptor$Requires">ModuleDescriptor$Requires</a>) : <a href="#type-ModuleDescriptor$Builder">ModuleDescriptor$Builder</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ModuleDescriptor$Builder) <font color="#cc0033">requires</font>*(p0 : <a href="java_util.html#type-Set">java_util.Set</a>;
+                                                    p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                    p2 : <a href="java_lang_module.html#type-ModuleDescriptor$Version">java_lang_module.ModuleDescriptor$Version</a>) : <a href="#type-ModuleDescriptor$Builder">ModuleDescriptor$Builder</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ModuleDescriptor$Builder) <font color="#cc0033">requires</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-ModuleDescriptor$Builder">ModuleDescriptor$Builder</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ModuleDescriptor$Builder) <font color="#cc0033">requires</font>*(p0 : <a href="java_util.html#type-Set">java_util.Set</a>;
+                                                    p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-ModuleDescriptor$Builder">ModuleDescriptor$Builder</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ModuleDescriptor$Builder) <font color="#cc0033">uses</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-ModuleDescriptor$Builder">ModuleDescriptor$Builder</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ModuleDescriptor$Builder) <font color="#cc0033">version</font>*(p0 : <a href="java_lang_module.html#type-ModuleDescriptor$Version">java_lang_module.ModuleDescriptor$Version</a>) : <a href="#type-ModuleDescriptor$Builder">ModuleDescriptor$Builder</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ModuleDescriptor$Builder) <font color="#cc0033">version</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-ModuleDescriptor$Builder">ModuleDescriptor$Builder</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-ModuleDescriptor$Exports"></a>
+<b>PROCEDURE </b>(self:ModuleDescriptor$Exports) <font color="#cc0033">compareTo</font>*(p0 : <a href="#type-ModuleDescriptor$Exports">ModuleDescriptor$Exports</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ModuleDescriptor$Exports) <font color="#cc0033">compareTo</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ModuleDescriptor$Exports) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ModuleDescriptor$Exports) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ModuleDescriptor$Exports) <font color="#cc0033">isQualified</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ModuleDescriptor$Exports) <font color="#cc0033">modifiers</font>*() : <a href="java_util.html#type-Set">java_util.Set</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ModuleDescriptor$Exports) <font color="#cc0033">source</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ModuleDescriptor$Exports) <font color="#cc0033">targets</font>*() : <a href="java_util.html#type-Set">java_util.Set</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ModuleDescriptor$Exports) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-ModuleDescriptor$Opens"></a>
+<b>PROCEDURE </b>(self:ModuleDescriptor$Opens) <font color="#cc0033">compareTo</font>*(p0 : <a href="#type-ModuleDescriptor$Opens">ModuleDescriptor$Opens</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ModuleDescriptor$Opens) <font color="#cc0033">compareTo</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ModuleDescriptor$Opens) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ModuleDescriptor$Opens) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ModuleDescriptor$Opens) <font color="#cc0033">isQualified</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ModuleDescriptor$Opens) <font color="#cc0033">modifiers</font>*() : <a href="java_util.html#type-Set">java_util.Set</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ModuleDescriptor$Opens) <font color="#cc0033">source</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ModuleDescriptor$Opens) <font color="#cc0033">targets</font>*() : <a href="java_util.html#type-Set">java_util.Set</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ModuleDescriptor$Opens) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-ModuleDescriptor$Provides"></a>
+<b>PROCEDURE </b>(self:ModuleDescriptor$Provides) <font color="#cc0033">compareTo</font>*(p0 : <a href="#type-ModuleDescriptor$Provides">ModuleDescriptor$Provides</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ModuleDescriptor$Provides) <font color="#cc0033">compareTo</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ModuleDescriptor$Provides) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ModuleDescriptor$Provides) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ModuleDescriptor$Provides) <font color="#cc0033">providers</font>*() : <a href="java_util.html#type-List">java_util.List</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ModuleDescriptor$Provides) <font color="#cc0033">service</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ModuleDescriptor$Provides) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-ModuleDescriptor$Requires"></a>
+<b>PROCEDURE </b>(self:ModuleDescriptor$Requires) <font color="#cc0033">compareTo</font>*(p0 : <a href="#type-ModuleDescriptor$Requires">ModuleDescriptor$Requires</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ModuleDescriptor$Requires) <font color="#cc0033">compareTo</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ModuleDescriptor$Requires) <font color="#cc0033">compiledVersion</font>*() : <a href="java_util.html#type-Optional">java_util.Optional</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ModuleDescriptor$Requires) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ModuleDescriptor$Requires) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ModuleDescriptor$Requires) <font color="#cc0033">modifiers</font>*() : <a href="java_util.html#type-Set">java_util.Set</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ModuleDescriptor$Requires) <font color="#cc0033">name</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ModuleDescriptor$Requires) <font color="#cc0033">rawCompiledVersion</font>*() : <a href="java_util.html#type-Optional">java_util.Optional</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ModuleDescriptor$Requires) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-ModuleDescriptor$Version"></a>
+<b>PROCEDURE </b>(self:ModuleDescriptor$Version) <font color="#cc0033">compareTo</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ModuleDescriptor$Version) <font color="#cc0033">compareTo</font>*(p0 : <a href="#type-ModuleDescriptor$Version">ModuleDescriptor$Version</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ModuleDescriptor$Version) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ModuleDescriptor$Version) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ModuleDescriptor$Version) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-ModuleFinder"></a>
+<b>PROCEDURE </b>(self:ModuleFinder) <font color="#cc0033">find</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_util.html#type-Optional">java_util.Optional</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ModuleFinder) <font color="#cc0033">findAll</font>*() : <a href="java_util.html#type-Set">java_util.Set</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-ModuleReader"></a>
+<b>PROCEDURE </b>(self:ModuleReader) <font color="#cc0033">close</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ModuleReader) <font color="#cc0033">find</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_util.html#type-Optional">java_util.Optional</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ModuleReader) <font color="#cc0033">list</font>*() : <a href="java_util_stream.html#type-Stream">java_util_stream.Stream</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ModuleReader) <font color="#cc0033">open</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_util.html#type-Optional">java_util.Optional</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ModuleReader) <font color="#cc0033">read</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_util.html#type-Optional">java_util.Optional</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ModuleReader) <font color="#cc0033">release</font>*(p0 : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-ModuleReference"></a>
+<b>PROCEDURE </b>(self:ModuleReference) <font color="#cc0033">descriptor</font>*() : <a href="java_lang_module.html#type-ModuleDescriptor">java_lang_module.ModuleDescriptor</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:ModuleReference) <font color="#cc0033">location</font>*() : <a href="java_util.html#type-Optional">java_util.Optional</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:ModuleReference) <font color="#cc0033">open</font>*() : <a href="java_lang_module.html#type-ModuleReader">java_lang_module.ModuleReader</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-ResolvedModule"></a>
+<b>PROCEDURE </b>(self:ResolvedModule) <font color="#cc0033">configuration</font>*() : <a href="java_lang_module.html#type-Configuration">java_lang_module.Configuration</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ResolvedModule) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ResolvedModule) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ResolvedModule) <font color="#cc0033">name</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ResolvedModule) <font color="#cc0033">reads</font>*() : <a href="java_util.html#type-Set">java_util.Set</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ResolvedModule) <font color="#cc0033">reference</font>*() : <a href="java_lang_module.html#type-ModuleReference">java_lang_module.ModuleReference</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ResolvedModule) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>END </b><font color="#cc0033">java_lang_module</font>.
+</font></pre></hr>
+<!-- BEGIN JavaScript -->
+<script>
+function toggle(node) {
+    node.classList.toggle("show"); 
+  }
+
+function cls(node) {
+    var prnt = node.parentNode;
+    var next = prnt.previousSibling;
+    var text = next.lastChild;
+    text.innerHTML = 
+        "The <b>class</b> property asserts that this type will be<br>" +
+        "implemented as a reference class in the underlying framework.";
+    text.classList.toggle("show");
+  }
+
+function newOk(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>has noArg-ctor</b> property asserts that this reference<br>" +
+        "class has a no-arg constructor, and thus objects of this<br>" +
+        "type can be allocated with NEW(). Component Pascal types<br>" +
+        "derived from this type can also be allocated using NEW().";
+    popuptext.classList.toggle("show"); 
+  }
+
+function noNew(node) { 
+    var prnt = node.parentNode; 
+    var next = prnt.previousSibling; 
+    var text = next.lastChild; 
+    text.innerHTML =  
+        "The <b>no noArg-ctor</b> property asserts that this reference<br>" +
+        "class does not have a noArg constructor. Objects of this<br>" +
+        "type cannot be allocated using NEW(), and Component<br>" +
+        "Pascal types  derived from this type also cannot be<br>" +
+        "allocated using NEW().";
+    text.classList.toggle("show");
+  }
+
+function noCpy(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>no value-assign</b> property asserts that this reference<br>" + 
+        "class does not have a value copy method. Therefore, it<br>" +
+        "is not possible to perform value assignments using<br>" +
+        "statements like <i>dst^</i> := <i>src^</i>";
+    popuptext.classList.toggle("show");
+  }
+
+function valueclass(node) { 
+        var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>valueclass</b> property asserts that this RECORD type is<br>" + 
+        "implemented as a value class in the CLR. It follows that<br>" +  
+        "value assignments can be made of these types. They can<br>" + 
+        "also be passed by value. Even pointers to records of<br>" + 
+        "such types may be dereferenced and copied using syntax<br>" + 
+        "such as  <i>dst^</i> := <i>src^</i>"; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+function argCtor(node) { 
+    var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>has arg-ctor</b> property asserts that this reference<br>" +  
+        "class has one or more constructors that take arguments.<br>" + 
+        "These constructors can be called from Component Pascal<br>" + 
+        "by calling an <i>init</i>(...) method from the static list<br>" + 
+        "here. Component Pascal types derived from this type<br>" + 
+        "can define constructors with arguments which call the<br>" + 
+        "super-type constructor.<br>" + 
+        "See <i>'Interfacing to constructors'</i> in the Release Notes."; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+</script>
+<!-- END JavaScript --> 
+
+</body></html>

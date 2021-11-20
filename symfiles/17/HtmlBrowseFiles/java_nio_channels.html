@@ -1,0 +1,1043 @@
+<html><head><title>java_nio_channels</title>
+<style>
+<!-- BEGIN Inline CSS -->
+/* Popup container */
+.popup {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+/* The actual popup (appears on top) */
+.popup .popuptext {
+    visibility: hidden;
+    width: 430px;
+    background-color: white;
+    color: black;
+    text-align: left;
+    border-radius: 6px;
+    border-style: solid;
+    border-color: black;
+    padding: 8px 8px 8px 8px;
+    position: absolute;
+    z-index: 1;
+    margin-top: 30px;
+}
+
+/* Toggle this class when clicking on the popup container (hide and show the popup) */
+.popup .show {
+    visibility: visible;
+    opacity: 1;
+}
+
+</style>
+<!-- END Inline CSS -->
+</head><body bgcolor="white">
+<hr><pre>
+<font color="green">(*</font>
+<font color="green"> *  Creator PeToCps j2cps version 1.4.07 (March 2018)</font>
+<font color="green"> *  Compiled from jar-file /Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home/jmods/java.base.jmod</font>
+<font color="green"> *)</font>
+<b>FOREIGN MODULE </b><font color="#cc0033">java_nio_channels</font>;
+
+<b>IMPORT</b>
+    <a href="java_io.html">java_io</a> := "java.io",
+    <a href="java_lang.html">java_lang</a> := "java.lang",
+    <a href="java_net.html">java_net</a> := "java.net",
+    <a href="java_nio.html">java_nio</a> := "java.nio",
+    <a href="java_nio_channels.html">java_nio_channels</a> := "java.nio.channels",
+    <a href="java_nio_channels_spi.html">java_nio_channels_spi</a> := "java.nio.channels.spi",
+    <a href="java_nio_channels_spi.html">java_nio_channels_spi</a> := "java.nio.channels.spi",
+    <a href="java_nio_charset.html">java_nio_charset</a> := "java.nio.charset",
+    <a href="java_nio_file.html">java_nio_file</a> := "java.nio.file",
+    <a href="java_nio_file_attribute.html">java_nio_file_attribute</a> := "java.nio.file.attribute",
+    <a href="java_util.html">java_util</a> := "java.util",
+    <a href="java_util_concurrent.html">java_util_concurrent</a> := "java.util.concurrent",
+    <a href="java_util_function.html">java_util_function</a> := "java.util.function";
+
+<b>TYPE</b>
+
+  <a name="type-AcceptPendingException"></a><font color="#cc0033">AcceptPendingException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-IllegalStateException">java_lang.IllegalStateException</a>)
+                            <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                            <b>STATIC</b>
+                              <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-AcceptPendingException">AcceptPendingException</a><b>,CONSTRUCTOR</b>;
+                            <b>END</b>;
+
+  <a name="type-AlreadyBoundException"></a><font color="#cc0033">AlreadyBoundException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-IllegalStateException">java_lang.IllegalStateException</a>)
+                           <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                           <b>STATIC</b>
+                             <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-AlreadyBoundException">AlreadyBoundException</a><b>,CONSTRUCTOR</b>;
+                           <b>END</b>;
+
+  <a name="type-AlreadyConnectedException"></a><font color="#cc0033">AlreadyConnectedException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-IllegalStateException">java_lang.IllegalStateException</a>)
+                               <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                               <b>STATIC</b>
+                                 <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-AlreadyConnectedException">AlreadyConnectedException</a><b>,CONSTRUCTOR</b>;
+                               <b>END</b>;
+
+  <a name="type-AsynchronousByteChannel"></a><font color="#cc0033">AsynchronousByteChannel</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_nio_channels.html#type-AsynchronousChannel">java_nio_channels.AsynchronousChannel</a>)
+                             <font color="green"><b> (* </b><a href="#meths-AsynchronousByteChannel">Typebound Procedures</a><b> *)</b></font>
+                             <b>END</b>;
+
+  <a name="type-AsynchronousChannel"></a><font color="#cc0033">AsynchronousChannel</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-Channel">Channel</a>)
+                         <font color="green"><b> (* </b><a href="#meths-AsynchronousChannel">Typebound Procedures</a><b> *)</b></font>
+                         <b>END</b>;
+
+  <a name="type-AsynchronousChannelGroup"></a><font color="#cc0033">AsynchronousChannelGroup</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                              <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                              <font color="green"><b> (* </b><a href="#meths-AsynchronousChannelGroup">Typebound Procedures</a><b> *)</b></font>
+                              <b>STATIC</b>
+                                <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : <a href="java_nio_channels_spi.html#type-AsynchronousChannelProvider">java_nio_channels_spi.AsynchronousChannelProvider</a>) : <a href="#type-AsynchronousChannelGroup">AsynchronousChannelGroup</a><b>,CONSTRUCTOR</b>;
+                                <b>PROCEDURE </b><font color="#cc0033">withCachedThreadPool</font>*(p0 : <a href="java_util_concurrent.html#type-ExecutorService">java_util_concurrent.ExecutorService</a>;
+                                                                p1 : INTEGER) : <a href="#type-AsynchronousChannelGroup">AsynchronousChannelGroup</a>;
+                                <b>PROCEDURE </b><font color="#cc0033">withFixedThreadPool</font>*(p0 : INTEGER;
+                                                               p1 : <a href="java_util_concurrent.html#type-ThreadFactory">java_util_concurrent.ThreadFactory</a>) : <a href="#type-AsynchronousChannelGroup">AsynchronousChannelGroup</a>;
+                                <b>PROCEDURE </b><font color="#cc0033">withThreadPool</font>*(p0 : <a href="java_util_concurrent.html#type-ExecutorService">java_util_concurrent.ExecutorService</a>) : <a href="#type-AsynchronousChannelGroup">AsynchronousChannelGroup</a>;
+                              <b>END</b>;
+
+  <a name="type-AsynchronousCloseException"></a><font color="#cc0033">AsynchronousCloseException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_nio_channels.html#type-ClosedChannelException">java_nio_channels.ClosedChannelException</a>)
+                                <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                                <b>STATIC</b>
+                                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-AsynchronousCloseException">AsynchronousCloseException</a><b>,CONSTRUCTOR</b>;
+                                <b>END</b>;
+
+  <a name="type-AsynchronousFileChannel"></a><font color="#cc0033">AsynchronousFileChannel</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_nio_channels.html#type-AsynchronousChannel">java_nio_channels.AsynchronousChannel</a>)
+                             <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                             <font color="green"><b> (* </b><a href="#meths-AsynchronousFileChannel">Typebound Procedures</a><b> *)</b></font>
+                             <b>STATIC</b>
+                               <b>PROCEDURE </b><font color="#cc0033">Init</font>!() : <a href="#type-AsynchronousFileChannel">AsynchronousFileChannel</a><b>,CONSTRUCTOR</b>;
+                               <b>PROCEDURE </b><font color="#cc0033">open</font>*(    p0 : <a href="java_nio_file.html#type-Path">java_nio_file.Path</a>;
+                                               IN  p1 : <b>ARRAY </b><b>OF </b><a href="java_nio_file.html#type-OpenOption">java_nio_file.OpenOption</a>) : <a href="#type-AsynchronousFileChannel">AsynchronousFileChannel</a>;
+                               <b>PROCEDURE </b><font color="#cc0033">open</font>*(    p0 : <a href="java_nio_file.html#type-Path">java_nio_file.Path</a>;
+                                                   p1 : <a href="java_util.html#type-Set">java_util.Set</a>;
+                                                   p2 : <a href="java_util_concurrent.html#type-ExecutorService">java_util_concurrent.ExecutorService</a>;
+                                               IN  p3 : <b>ARRAY </b><b>OF </b><a href="java_nio_file_attribute.html#type-FileAttribute">java_nio_file_attribute.FileAttribute</a>) : <a href="#type-AsynchronousFileChannel">AsynchronousFileChannel</a>;
+                             <b>END</b>;
+
+  <a name="type-AsynchronousServerSocketChannel"></a><font color="#cc0033">AsynchronousServerSocketChannel</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_nio_channels.html#type-AsynchronousChannel">java_nio_channels.AsynchronousChannel</a> + <a href="#type-NetworkChannel">NetworkChannel</a>)
+                                     <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                                     <font color="green"><b> (* </b><a href="#meths-AsynchronousServerSocketChannel">Typebound Procedures</a><b> *)</b></font>
+                                     <b>STATIC</b>
+                                       <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : <a href="java_nio_channels_spi.html#type-AsynchronousChannelProvider">java_nio_channels_spi.AsynchronousChannelProvider</a>) : <a href="#type-AsynchronousServerSocketChannel">AsynchronousServerSocketChannel</a><b>,CONSTRUCTOR</b>;
+                                       <b>PROCEDURE </b><font color="#cc0033">open</font>*() : <a href="#type-AsynchronousServerSocketChannel">AsynchronousServerSocketChannel</a>;
+                                       <b>PROCEDURE </b><font color="#cc0033">open</font>*(p0 : <a href="java_nio_channels.html#type-AsynchronousChannelGroup">java_nio_channels.AsynchronousChannelGroup</a>) : <a href="#type-AsynchronousServerSocketChannel">AsynchronousServerSocketChannel</a>;
+                                     <b>END</b>;
+
+  <a name="type-AsynchronousSocketChannel"></a><font color="#cc0033">AsynchronousSocketChannel</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-AsynchronousByteChannel">AsynchronousByteChannel</a> + <a href="#type-NetworkChannel">NetworkChannel</a>)
+                               <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                               <font color="green"><b> (* </b><a href="#meths-AsynchronousSocketChannel">Typebound Procedures</a><b> *)</b></font>
+                               <b>STATIC</b>
+                                 <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : <a href="java_nio_channels_spi.html#type-AsynchronousChannelProvider">java_nio_channels_spi.AsynchronousChannelProvider</a>) : <a href="#type-AsynchronousSocketChannel">AsynchronousSocketChannel</a><b>,CONSTRUCTOR</b>;
+                                 <b>PROCEDURE </b><font color="#cc0033">open</font>*() : <a href="#type-AsynchronousSocketChannel">AsynchronousSocketChannel</a>;
+                                 <b>PROCEDURE </b><font color="#cc0033">open</font>*(p0 : <a href="java_nio_channels.html#type-AsynchronousChannelGroup">java_nio_channels.AsynchronousChannelGroup</a>) : <a href="#type-AsynchronousSocketChannel">AsynchronousSocketChannel</a>;
+                               <b>END</b>;
+
+  <a name="type-ByteChannel"></a><font color="#cc0033">ByteChannel</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_nio_channels.html#type-ReadableByteChannel">java_nio_channels.ReadableByteChannel</a> + <a href="java_nio_channels.html#type-WritableByteChannel">java_nio_channels.WritableByteChannel</a>)
+                 <b>END</b>;
+
+  <a name="type-CancelledKeyException"></a><font color="#cc0033">CancelledKeyException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-IllegalStateException">java_lang.IllegalStateException</a>)
+                           <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                           <b>STATIC</b>
+                             <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CancelledKeyException">CancelledKeyException</a><b>,CONSTRUCTOR</b>;
+                           <b>END</b>;
+
+  <a name="type-Channel"></a><font color="#cc0033">Channel</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_io.html#type-Closeable">java_io.Closeable</a>)
+             <font color="green"><b> (* </b><a href="#meths-Channel">Typebound Procedures</a><b> *)</b></font>
+             <b>END</b>;
+
+  <a name="type-Channels"></a><font color="#cc0033">Channels</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+              <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> *)</font>
+              <b>STATIC</b>
+                <b>PROCEDURE </b><font color="#cc0033">newChannel</font>*(p0 : <a href="java_io.html#type-InputStream">java_io.InputStream</a>) : <a href="java_nio_channels.html#type-ReadableByteChannel">java_nio_channels.ReadableByteChannel</a>;
+                <b>PROCEDURE </b><font color="#cc0033">newChannel</font>*(p0 : <a href="java_io.html#type-OutputStream">java_io.OutputStream</a>) : <a href="java_nio_channels.html#type-WritableByteChannel">java_nio_channels.WritableByteChannel</a>;
+                <b>PROCEDURE </b><font color="#cc0033">newInputStream</font>*(p0 : <a href="java_nio_channels.html#type-ReadableByteChannel">java_nio_channels.ReadableByteChannel</a>) : <a href="java_io.html#type-InputStream">java_io.InputStream</a>;
+                <b>PROCEDURE </b><font color="#cc0033">newInputStream</font>*(p0 : <a href="#type-AsynchronousByteChannel">AsynchronousByteChannel</a>) : <a href="java_io.html#type-InputStream">java_io.InputStream</a>;
+                <b>PROCEDURE </b><font color="#cc0033">newOutputStream</font>*(p0 : <a href="java_nio_channels.html#type-WritableByteChannel">java_nio_channels.WritableByteChannel</a>) : <a href="java_io.html#type-OutputStream">java_io.OutputStream</a>;
+                <b>PROCEDURE </b><font color="#cc0033">newOutputStream</font>*(p0 : <a href="#type-AsynchronousByteChannel">AsynchronousByteChannel</a>) : <a href="java_io.html#type-OutputStream">java_io.OutputStream</a>;
+                <b>PROCEDURE </b><font color="#cc0033">newReader</font>*(p0 : <a href="java_nio_channels.html#type-ReadableByteChannel">java_nio_channels.ReadableByteChannel</a>;
+                                     p1 : <a href="java_nio_charset.html#type-Charset">java_nio_charset.Charset</a>) : <a href="java_io.html#type-Reader">java_io.Reader</a>;
+                <b>PROCEDURE </b><font color="#cc0033">newReader</font>*(p0 : <a href="java_nio_channels.html#type-ReadableByteChannel">java_nio_channels.ReadableByteChannel</a>;
+                                     p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_io.html#type-Reader">java_io.Reader</a>;
+                <b>PROCEDURE </b><font color="#cc0033">newReader</font>*(p0 : <a href="java_nio_channels.html#type-ReadableByteChannel">java_nio_channels.ReadableByteChannel</a>;
+                                     p1 : <a href="java_nio_charset.html#type-CharsetDecoder">java_nio_charset.CharsetDecoder</a>;
+                                     p2 : INTEGER) : <a href="java_io.html#type-Reader">java_io.Reader</a>;
+                <b>PROCEDURE </b><font color="#cc0033">newWriter</font>*(p0 : <a href="java_nio_channels.html#type-WritableByteChannel">java_nio_channels.WritableByteChannel</a>;
+                                     p1 : <a href="java_nio_charset.html#type-Charset">java_nio_charset.Charset</a>) : <a href="java_io.html#type-Writer">java_io.Writer</a>;
+                <b>PROCEDURE </b><font color="#cc0033">newWriter</font>*(p0 : <a href="java_nio_channels.html#type-WritableByteChannel">java_nio_channels.WritableByteChannel</a>;
+                                     p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_io.html#type-Writer">java_io.Writer</a>;
+                <b>PROCEDURE </b><font color="#cc0033">newWriter</font>*(p0 : <a href="java_nio_channels.html#type-WritableByteChannel">java_nio_channels.WritableByteChannel</a>;
+                                     p1 : <a href="java_nio_charset.html#type-CharsetEncoder">java_nio_charset.CharsetEncoder</a>;
+                                     p2 : INTEGER) : <a href="java_io.html#type-Writer">java_io.Writer</a>;
+              <b>END</b>;
+
+  <a name="type-ClosedByInterruptException"></a><font color="#cc0033">ClosedByInterruptException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_nio_channels.html#type-AsynchronousCloseException">java_nio_channels.AsynchronousCloseException</a>)
+                                <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                                <b>STATIC</b>
+                                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-ClosedByInterruptException">ClosedByInterruptException</a><b>,CONSTRUCTOR</b>;
+                                <b>END</b>;
+
+  <a name="type-ClosedChannelException"></a><font color="#cc0033">ClosedChannelException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_io.html#type-IOException">java_io.IOException</a>)
+                            <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                            <b>STATIC</b>
+                              <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-ClosedChannelException">ClosedChannelException</a><b>,CONSTRUCTOR</b>;
+                            <b>END</b>;
+
+  <a name="type-ClosedSelectorException"></a><font color="#cc0033">ClosedSelectorException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-IllegalStateException">java_lang.IllegalStateException</a>)
+                             <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                             <b>STATIC</b>
+                               <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-ClosedSelectorException">ClosedSelectorException</a><b>,CONSTRUCTOR</b>;
+                             <b>END</b>;
+
+  <a name="type-CompletionHandler"></a><font color="#cc0033">CompletionHandler</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                       <font color="green"><b> (* </b><a href="#meths-CompletionHandler">Typebound Procedures</a><b> *)</b></font>
+                       <b>END</b>;
+
+  <a name="type-ConnectionPendingException"></a><font color="#cc0033">ConnectionPendingException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-IllegalStateException">java_lang.IllegalStateException</a>)
+                                <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                                <b>STATIC</b>
+                                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-ConnectionPendingException">ConnectionPendingException</a><b>,CONSTRUCTOR</b>;
+                                <b>END</b>;
+
+  <a name="type-DatagramChannel"></a><font color="#cc0033">DatagramChannel</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_nio_channels_spi.html#type-AbstractSelectableChannel">java_nio_channels_spi.AbstractSelectableChannel</a> + <a href="java_nio_channels.html#type-ByteChannel">java_nio_channels.ByteChannel</a> + <a href="java_nio_channels.html#type-ScatteringByteChannel">java_nio_channels.ScatteringByteChannel</a> + <a href="java_nio_channels.html#type-GatheringByteChannel">java_nio_channels.GatheringByteChannel</a> + <a href="java_nio_channels.html#type-MulticastChannel">java_nio_channels.MulticastChannel</a>)
+                     <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                     <font color="green"><b> (* </b><a href="#meths-DatagramChannel">Typebound Procedures</a><b> *)</b></font>
+                     <b>STATIC</b>
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : <a href="java_nio_channels_spi.html#type-SelectorProvider">java_nio_channels_spi.SelectorProvider</a>) : <a href="#type-DatagramChannel">DatagramChannel</a><b>,CONSTRUCTOR</b>;
+                       <b>PROCEDURE </b><font color="#cc0033">open</font>*(p0 : <a href="java_net.html#type-ProtocolFamily">java_net.ProtocolFamily</a>) : <a href="#type-DatagramChannel">DatagramChannel</a>;
+                       <b>PROCEDURE </b><font color="#cc0033">open</font>*() : <a href="#type-DatagramChannel">DatagramChannel</a>;
+                     <b>END</b>;
+
+  <a name="type-FileChannel"></a><font color="#cc0033">FileChannel</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_nio_channels_spi.html#type-AbstractInterruptibleChannel">java_nio_channels_spi.AbstractInterruptibleChannel</a> + <a href="#type-SeekableByteChannel">SeekableByteChannel</a> + <a href="java_nio_channels.html#type-GatheringByteChannel">java_nio_channels.GatheringByteChannel</a> + <a href="java_nio_channels.html#type-ScatteringByteChannel">java_nio_channels.ScatteringByteChannel</a>)
+                 <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                 <font color="green"><b> (* </b><a href="#meths-FileChannel">Typebound Procedures</a><b> *)</b></font>
+                 <b>STATIC</b>
+                   <b>PROCEDURE </b><font color="#cc0033">Init</font>!() : <a href="#type-FileChannel">FileChannel</a><b>,CONSTRUCTOR</b>;
+                   <b>PROCEDURE </b><font color="#cc0033">open</font>*(    p0 : <a href="java_nio_file.html#type-Path">java_nio_file.Path</a>;
+                                   IN  p1 : <b>ARRAY </b><b>OF </b><a href="java_nio_file.html#type-OpenOption">java_nio_file.OpenOption</a>) : <a href="#type-FileChannel">FileChannel</a>;
+                   <b>PROCEDURE </b><font color="#cc0033">open</font>*(    p0 : <a href="java_nio_file.html#type-Path">java_nio_file.Path</a>;
+                                       p1 : <a href="java_util.html#type-Set">java_util.Set</a>;
+                                   IN  p2 : <b>ARRAY </b><b>OF </b><a href="java_nio_file_attribute.html#type-FileAttribute">java_nio_file_attribute.FileAttribute</a>) : <a href="#type-FileChannel">FileChannel</a>;
+                 <b>END</b>;
+
+  <a name="type-FileChannel$MapMode"></a><font color="#cc0033">FileChannel$MapMode</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                         <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> *)</font>
+                         <font color="green"><b> (* </b><a href="#meths-FileChannel$MapMode">Typebound Procedures</a><b> *)</b></font>
+                         <b>STATIC</b>
+                           <a name="type-PRIVATE"></a><font color="#cc0033">PRIVATE</font>*    : <a href="#type-FileChannel$MapMode">FileChannel$MapMode</a>;
+                           <a name="type-READ_ONLY"></a><font color="#cc0033">READ_ONLY</font>*  : <a href="#type-FileChannel$MapMode">FileChannel$MapMode</a>;
+                           <a name="type-READ_WRITE"></a><font color="#cc0033">READ_WRITE</font>* : <a href="#type-FileChannel$MapMode">FileChannel$MapMode</a>;
+                         <b>END</b>;
+
+  <a name="type-FileLock"></a><font color="#cc0033">FileLock</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_lang.html#type-AutoCloseable">java_lang.AutoCloseable</a>)
+              <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+              <font color="green"><b> (* </b><a href="#meths-FileLock">Typebound Procedures</a><b> *)</b></font>
+              <b>STATIC</b>
+                <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : <a href="java_nio_channels.html#type-AsynchronousFileChannel">java_nio_channels.AsynchronousFileChannel</a>;
+                                p1 : LONGINT;
+                                p2 : LONGINT;
+                                p3 : BOOLEAN) : <a href="#type-FileLock">FileLock</a><b>,CONSTRUCTOR</b>;
+                <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : <a href="#type-FileChannel">FileChannel</a>;
+                                p1 : LONGINT;
+                                p2 : LONGINT;
+                                p3 : BOOLEAN) : <a href="#type-FileLock">FileLock</a><b>,CONSTRUCTOR</b>;
+              <b>END</b>;
+
+  <a name="type-FileLockInterruptionException"></a><font color="#cc0033">FileLockInterruptionException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_io.html#type-IOException">java_io.IOException</a>)
+                                   <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                                   <b>STATIC</b>
+                                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-FileLockInterruptionException">FileLockInterruptionException</a><b>,CONSTRUCTOR</b>;
+                                   <b>END</b>;
+
+  <a name="type-GatheringByteChannel"></a><font color="#cc0033">GatheringByteChannel</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-WritableByteChannel">WritableByteChannel</a>)
+                          <font color="green"><b> (* </b><a href="#meths-GatheringByteChannel">Typebound Procedures</a><b> *)</b></font>
+                          <b>END</b>;
+
+  <a name="type-IllegalBlockingModeException"></a><font color="#cc0033">IllegalBlockingModeException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-IllegalStateException">java_lang.IllegalStateException</a>)
+                                  <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                                  <b>STATIC</b>
+                                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-IllegalBlockingModeException">IllegalBlockingModeException</a><b>,CONSTRUCTOR</b>;
+                                  <b>END</b>;
+
+  <a name="type-IllegalChannelGroupException"></a><font color="#cc0033">IllegalChannelGroupException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-IllegalArgumentException">java_lang.IllegalArgumentException</a>)
+                                  <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                                  <b>STATIC</b>
+                                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-IllegalChannelGroupException">IllegalChannelGroupException</a><b>,CONSTRUCTOR</b>;
+                                  <b>END</b>;
+
+  <a name="type-IllegalSelectorException"></a><font color="#cc0033">IllegalSelectorException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-IllegalArgumentException">java_lang.IllegalArgumentException</a>)
+                              <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                              <b>STATIC</b>
+                                <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-IllegalSelectorException">IllegalSelectorException</a><b>,CONSTRUCTOR</b>;
+                              <b>END</b>;
+
+  <a name="type-InterruptedByTimeoutException"></a><font color="#cc0033">InterruptedByTimeoutException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_io.html#type-IOException">java_io.IOException</a>)
+                                   <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                                   <b>STATIC</b>
+                                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-InterruptedByTimeoutException">InterruptedByTimeoutException</a><b>,CONSTRUCTOR</b>;
+                                   <b>END</b>;
+
+  <a name="type-InterruptibleChannel"></a><font color="#cc0033">InterruptibleChannel</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-Channel">Channel</a>)
+                          <font color="green"><b> (* </b><a href="#meths-InterruptibleChannel">Typebound Procedures</a><b> *)</b></font>
+                          <b>END</b>;
+
+  <a name="type-MembershipKey"></a><font color="#cc0033">MembershipKey</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                   <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                   <font color="green"><b> (* </b><a href="#meths-MembershipKey">Typebound Procedures</a><b> *)</b></font>
+                   <b>STATIC</b>
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>!() : <a href="#type-MembershipKey">MembershipKey</a><b>,CONSTRUCTOR</b>;
+                   <b>END</b>;
+
+  <a name="type-MulticastChannel"></a><font color="#cc0033">MulticastChannel</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-NetworkChannel">NetworkChannel</a>)
+                      <font color="green"><b> (* </b><a href="#meths-MulticastChannel">Typebound Procedures</a><b> *)</b></font>
+                      <b>END</b>;
+
+  <a name="type-NetworkChannel"></a><font color="#cc0033">NetworkChannel</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_nio_channels.html#type-Channel">java_nio_channels.Channel</a>)
+                    <font color="green"><b> (* </b><a href="#meths-NetworkChannel">Typebound Procedures</a><b> *)</b></font>
+                    <b>END</b>;
+
+  <a name="type-NoConnectionPendingException"></a><font color="#cc0033">NoConnectionPendingException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-IllegalStateException">java_lang.IllegalStateException</a>)
+                                  <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                                  <b>STATIC</b>
+                                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-NoConnectionPendingException">NoConnectionPendingException</a><b>,CONSTRUCTOR</b>;
+                                  <b>END</b>;
+
+  <a name="type-NonReadableChannelException"></a><font color="#cc0033">NonReadableChannelException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-IllegalStateException">java_lang.IllegalStateException</a>)
+                                 <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                                 <b>STATIC</b>
+                                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-NonReadableChannelException">NonReadableChannelException</a><b>,CONSTRUCTOR</b>;
+                                 <b>END</b>;
+
+  <a name="type-NonWritableChannelException"></a><font color="#cc0033">NonWritableChannelException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-IllegalStateException">java_lang.IllegalStateException</a>)
+                                 <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                                 <b>STATIC</b>
+                                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-NonWritableChannelException">NonWritableChannelException</a><b>,CONSTRUCTOR</b>;
+                                 <b>END</b>;
+
+  <a name="type-NotYetBoundException"></a><font color="#cc0033">NotYetBoundException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-IllegalStateException">java_lang.IllegalStateException</a>)
+                          <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                          <b>STATIC</b>
+                            <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-NotYetBoundException">NotYetBoundException</a><b>,CONSTRUCTOR</b>;
+                          <b>END</b>;
+
+  <a name="type-NotYetConnectedException"></a><font color="#cc0033">NotYetConnectedException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-IllegalStateException">java_lang.IllegalStateException</a>)
+                              <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                              <b>STATIC</b>
+                                <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-NotYetConnectedException">NotYetConnectedException</a><b>,CONSTRUCTOR</b>;
+                              <b>END</b>;
+
+  <a name="type-OverlappingFileLockException"></a><font color="#cc0033">OverlappingFileLockException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-IllegalStateException">java_lang.IllegalStateException</a>)
+                                  <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                                  <b>STATIC</b>
+                                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-OverlappingFileLockException">OverlappingFileLockException</a><b>,CONSTRUCTOR</b>;
+                                  <b>END</b>;
+
+  <a name="type-Pipe"></a><font color="#cc0033">Pipe</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+          <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+          <font color="green"><b> (* </b><a href="#meths-Pipe">Typebound Procedures</a><b> *)</b></font>
+          <b>STATIC</b>
+            <b>PROCEDURE </b><font color="#cc0033">Init</font>!() : <a href="#type-Pipe">Pipe</a><b>,CONSTRUCTOR</b>;
+            <b>PROCEDURE </b><font color="#cc0033">open</font>*() : <a href="#type-Pipe">Pipe</a>;
+          <b>END</b>;
+
+  <a name="type-Pipe$SinkChannel"></a><font color="#cc0033">Pipe$SinkChannel</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_nio_channels_spi.html#type-AbstractSelectableChannel">java_nio_channels_spi.AbstractSelectableChannel</a> + <a href="java_nio_channels.html#type-WritableByteChannel">java_nio_channels.WritableByteChannel</a> + <a href="java_nio_channels.html#type-GatheringByteChannel">java_nio_channels.GatheringByteChannel</a>)
+                      <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                      <font color="green"><b> (* </b><a href="#meths-Pipe$SinkChannel">Typebound Procedures</a><b> *)</b></font>
+                      <b>STATIC</b>
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : <a href="java_nio_channels_spi.html#type-SelectorProvider">java_nio_channels_spi.SelectorProvider</a>) : <a href="#type-Pipe$SinkChannel">Pipe$SinkChannel</a><b>,CONSTRUCTOR</b>;
+                      <b>END</b>;
+
+  <a name="type-Pipe$SourceChannel"></a><font color="#cc0033">Pipe$SourceChannel</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_nio_channels_spi.html#type-AbstractSelectableChannel">java_nio_channels_spi.AbstractSelectableChannel</a> + <a href="java_nio_channels.html#type-ReadableByteChannel">java_nio_channels.ReadableByteChannel</a> + <a href="java_nio_channels.html#type-ScatteringByteChannel">java_nio_channels.ScatteringByteChannel</a>)
+                        <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                        <font color="green"><b> (* </b><a href="#meths-Pipe$SourceChannel">Typebound Procedures</a><b> *)</b></font>
+                        <b>STATIC</b>
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : <a href="java_nio_channels_spi.html#type-SelectorProvider">java_nio_channels_spi.SelectorProvider</a>) : <a href="#type-Pipe$SourceChannel">Pipe$SourceChannel</a><b>,CONSTRUCTOR</b>;
+                        <b>END</b>;
+
+  <a name="type-ReadableByteChannel"></a><font color="#cc0033">ReadableByteChannel</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-Channel">Channel</a>)
+                         <font color="green"><b> (* </b><a href="#meths-ReadableByteChannel">Typebound Procedures</a><b> *)</b></font>
+                         <b>END</b>;
+
+  <a name="type-ReadPendingException"></a><font color="#cc0033">ReadPendingException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-IllegalStateException">java_lang.IllegalStateException</a>)
+                          <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                          <b>STATIC</b>
+                            <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-ReadPendingException">ReadPendingException</a><b>,CONSTRUCTOR</b>;
+                          <b>END</b>;
+
+  <a name="type-ScatteringByteChannel"></a><font color="#cc0033">ScatteringByteChannel</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_nio_channels.html#type-ReadableByteChannel">java_nio_channels.ReadableByteChannel</a>)
+                           <font color="green"><b> (* </b><a href="#meths-ScatteringByteChannel">Typebound Procedures</a><b> *)</b></font>
+                           <b>END</b>;
+
+  <a name="type-SeekableByteChannel"></a><font color="#cc0033">SeekableByteChannel</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_nio_channels.html#type-ByteChannel">java_nio_channels.ByteChannel</a>)
+                         <font color="green"><b> (* </b><a href="#meths-SeekableByteChannel">Typebound Procedures</a><b> *)</b></font>
+                         <b>END</b>;
+
+  <a name="type-SelectableChannel"></a><font color="#cc0033">SelectableChannel</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_nio_channels_spi.html#type-AbstractInterruptibleChannel">java_nio_channels_spi.AbstractInterruptibleChannel</a> + <a href="#type-Channel">Channel</a>)
+                       <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                       <font color="green"><b> (* </b><a href="#meths-SelectableChannel">Typebound Procedures</a><b> *)</b></font>
+                       <b>STATIC</b>
+                         <b>PROCEDURE </b><font color="#cc0033">Init</font>!() : <a href="#type-SelectableChannel">SelectableChannel</a><b>,CONSTRUCTOR</b>;
+                       <b>END</b>;
+
+  <a name="type-SelectionKey"></a><font color="#cc0033">SelectionKey</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                  <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                  <font color="green"><b> (* </b><a href="#meths-SelectionKey">Typebound Procedures</a><b> *)</b></font>
+                  <b>STATIC</b>
+                    <font color="#cc0033">OP_ACCEPT</font>*  = 16;
+                    <font color="#cc0033">OP_CONNECT</font>* = 8;
+                    <font color="#cc0033">OP_READ</font>*    = 1;
+                    <font color="#cc0033">OP_WRITE</font>*   = 4;
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>!() : <a href="#type-SelectionKey">SelectionKey</a><b>,CONSTRUCTOR</b>;
+                  <b>END</b>;
+
+  <a name="type-Selector"></a><font color="#cc0033">Selector</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_io.html#type-Closeable">java_io.Closeable</a>)
+              <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+              <font color="green"><b> (* </b><a href="#meths-Selector">Typebound Procedures</a><b> *)</b></font>
+              <b>STATIC</b>
+                <b>PROCEDURE </b><font color="#cc0033">Init</font>!() : <a href="#type-Selector">Selector</a><b>,CONSTRUCTOR</b>;
+                <b>PROCEDURE </b><font color="#cc0033">open</font>*() : <a href="#type-Selector">Selector</a>;
+              <b>END</b>;
+
+  <a name="type-ServerSocketChannel"></a><font color="#cc0033">ServerSocketChannel</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_nio_channels_spi.html#type-AbstractSelectableChannel">java_nio_channels_spi.AbstractSelectableChannel</a> + <a href="#type-NetworkChannel">NetworkChannel</a>)
+                         <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                         <font color="green"><b> (* </b><a href="#meths-ServerSocketChannel">Typebound Procedures</a><b> *)</b></font>
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : <a href="java_nio_channels_spi.html#type-SelectorProvider">java_nio_channels_spi.SelectorProvider</a>) : <a href="#type-ServerSocketChannel">ServerSocketChannel</a><b>,CONSTRUCTOR</b>;
+                           <b>PROCEDURE </b><font color="#cc0033">open</font>*(p0 : <a href="java_net.html#type-ProtocolFamily">java_net.ProtocolFamily</a>) : <a href="#type-ServerSocketChannel">ServerSocketChannel</a>;
+                           <b>PROCEDURE </b><font color="#cc0033">open</font>*() : <a href="#type-ServerSocketChannel">ServerSocketChannel</a>;
+                         <b>END</b>;
+
+  <a name="type-ShutdownChannelGroupException"></a><font color="#cc0033">ShutdownChannelGroupException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-IllegalStateException">java_lang.IllegalStateException</a>)
+                                   <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                                   <b>STATIC</b>
+                                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-ShutdownChannelGroupException">ShutdownChannelGroupException</a><b>,CONSTRUCTOR</b>;
+                                   <b>END</b>;
+
+  <a name="type-SocketChannel"></a><font color="#cc0033">SocketChannel</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_nio_channels_spi.html#type-AbstractSelectableChannel">java_nio_channels_spi.AbstractSelectableChannel</a> + <a href="#type-ByteChannel">ByteChannel</a> + <a href="java_nio_channels.html#type-ScatteringByteChannel">java_nio_channels.ScatteringByteChannel</a> + <a href="java_nio_channels.html#type-GatheringByteChannel">java_nio_channels.GatheringByteChannel</a> + <a href="#type-NetworkChannel">NetworkChannel</a>)
+                   <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                   <font color="green"><b> (* </b><a href="#meths-SocketChannel">Typebound Procedures</a><b> *)</b></font>
+                   <b>STATIC</b>
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : <a href="java_nio_channels_spi.html#type-SelectorProvider">java_nio_channels_spi.SelectorProvider</a>) : <a href="#type-SocketChannel">SocketChannel</a><b>,CONSTRUCTOR</b>;
+                     <b>PROCEDURE </b><font color="#cc0033">open</font>*(p0 : <a href="java_net.html#type-SocketAddress">java_net.SocketAddress</a>) : <a href="#type-SocketChannel">SocketChannel</a>;
+                     <b>PROCEDURE </b><font color="#cc0033">open</font>*(p0 : <a href="java_net.html#type-ProtocolFamily">java_net.ProtocolFamily</a>) : <a href="#type-SocketChannel">SocketChannel</a>;
+                     <b>PROCEDURE </b><font color="#cc0033">open</font>*() : <a href="#type-SocketChannel">SocketChannel</a>;
+                   <b>END</b>;
+
+  <a name="type-UnresolvedAddressException"></a><font color="#cc0033">UnresolvedAddressException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-IllegalArgumentException">java_lang.IllegalArgumentException</a>)
+                                <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                                <b>STATIC</b>
+                                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-UnresolvedAddressException">UnresolvedAddressException</a><b>,CONSTRUCTOR</b>;
+                                <b>END</b>;
+
+  <a name="type-UnsupportedAddressTypeException"></a><font color="#cc0033">UnsupportedAddressTypeException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-IllegalArgumentException">java_lang.IllegalArgumentException</a>)
+                                     <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                                     <b>STATIC</b>
+                                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-UnsupportedAddressTypeException">UnsupportedAddressTypeException</a><b>,CONSTRUCTOR</b>;
+                                     <b>END</b>;
+
+  <a name="type-WritableByteChannel"></a><font color="#cc0033">WritableByteChannel</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-Channel">Channel</a>)
+                         <font color="green"><b> (* </b><a href="#meths-WritableByteChannel">Typebound Procedures</a><b> *)</b></font>
+                         <b>END</b>;
+
+  <a name="type-WritePendingException"></a><font color="#cc0033">WritePendingException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-IllegalStateException">java_lang.IllegalStateException</a>)
+                           <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                           <b>STATIC</b>
+                             <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-WritePendingException">WritePendingException</a><b>,CONSTRUCTOR</b>;
+                           <b>END</b>;
+
+
+
+<a name="meths-AsynchronousByteChannel"></a>
+<b>PROCEDURE </b>(self:AsynchronousByteChannel) <font color="#cc0033">read</font>*(p0 : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>) : <a href="java_util_concurrent.html#type-Future">java_util_concurrent.Future</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AsynchronousByteChannel) <font color="#cc0033">read</font>*(p0 : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>;
+                                               p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                               p2 : <a href="java_nio_channels.html#type-CompletionHandler">java_nio_channels.CompletionHandler</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AsynchronousByteChannel) <font color="#cc0033">write</font>*(p0 : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>) : <a href="java_util_concurrent.html#type-Future">java_util_concurrent.Future</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AsynchronousByteChannel) <font color="#cc0033">write</font>*(p0 : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>;
+                                                p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                p2 : <a href="java_nio_channels.html#type-CompletionHandler">java_nio_channels.CompletionHandler</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-AsynchronousChannel"></a>
+<b>PROCEDURE </b>(self:AsynchronousChannel) <font color="#cc0033">close</font>*()<b>,NEW,ABSTRACT</b>;
+<a name="meths-AsynchronousChannelGroup"></a>
+<b>PROCEDURE </b>(self:AsynchronousChannelGroup) <font color="#cc0033">awaitTermination</font>*(p0 : LONGINT;
+                                                            p1 : <a href="java_util_concurrent.html#type-TimeUnit">java_util_concurrent.TimeUnit</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AsynchronousChannelGroup) <font color="#cc0033">isShutdown</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AsynchronousChannelGroup) <font color="#cc0033">isTerminated</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AsynchronousChannelGroup) <font color="#cc0033">provider</font>*() : <a href="java_nio_channels_spi.html#type-AsynchronousChannelProvider">java_nio_channels_spi.AsynchronousChannelProvider</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AsynchronousChannelGroup) <font color="#cc0033">shutdown</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AsynchronousChannelGroup) <font color="#cc0033">shutdownNow</font>*()<b>,NEW,ABSTRACT</b>;
+<a name="meths-AsynchronousFileChannel"></a>
+<b>PROCEDURE </b>(self:AsynchronousFileChannel) <font color="#cc0033">force</font>*(p0 : BOOLEAN)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AsynchronousFileChannel) <font color="#cc0033">lock</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                               p1 : <a href="#type-CompletionHandler">CompletionHandler</a>)<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AsynchronousFileChannel) <font color="#cc0033">lock</font>*() : <a href="java_util_concurrent.html#type-Future">java_util_concurrent.Future</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AsynchronousFileChannel) <font color="#cc0033">lock</font>*(p0 : LONGINT;
+                                               p1 : LONGINT;
+                                               p2 : BOOLEAN) : <a href="java_util_concurrent.html#type-Future">java_util_concurrent.Future</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AsynchronousFileChannel) <font color="#cc0033">lock</font>*(p0 : LONGINT;
+                                               p1 : LONGINT;
+                                               p2 : BOOLEAN;
+                                               p3 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                               p4 : <a href="#type-CompletionHandler">CompletionHandler</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AsynchronousFileChannel) <font color="#cc0033">read</font>*(p0 : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>;
+                                               p1 : LONGINT) : <a href="java_util_concurrent.html#type-Future">java_util_concurrent.Future</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AsynchronousFileChannel) <font color="#cc0033">read</font>*(p0 : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>;
+                                               p1 : LONGINT;
+                                               p2 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                               p3 : <a href="#type-CompletionHandler">CompletionHandler</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AsynchronousFileChannel) <font color="#cc0033">size</font>*() : LONGINT<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AsynchronousFileChannel) <font color="#cc0033">truncate</font>*(p0 : LONGINT) : <a href="#type-AsynchronousFileChannel">AsynchronousFileChannel</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AsynchronousFileChannel) <font color="#cc0033">tryLock</font>*(p0 : LONGINT;
+                                                  p1 : LONGINT;
+                                                  p2 : BOOLEAN) : <a href="#type-FileLock">FileLock</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AsynchronousFileChannel) <font color="#cc0033">tryLock</font>*() : <a href="#type-FileLock">FileLock</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AsynchronousFileChannel) <font color="#cc0033">write</font>*(p0 : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>;
+                                                p1 : LONGINT) : <a href="java_util_concurrent.html#type-Future">java_util_concurrent.Future</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AsynchronousFileChannel) <font color="#cc0033">write</font>*(p0 : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>;
+                                                p1 : LONGINT;
+                                                p2 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                p3 : <a href="#type-CompletionHandler">CompletionHandler</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-AsynchronousServerSocketChannel"></a>
+<b>PROCEDURE </b>(self:AsynchronousServerSocketChannel) <font color="#cc0033">accept</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                         p1 : <a href="java_nio_channels.html#type-CompletionHandler">java_nio_channels.CompletionHandler</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AsynchronousServerSocketChannel) <font color="#cc0033">accept</font>*() : <a href="java_util_concurrent.html#type-Future">java_util_concurrent.Future</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AsynchronousServerSocketChannel) <font color="#cc0033">bind</font>*(p0 : <a href="java_net.html#type-SocketAddress">java_net.SocketAddress</a>) : <a href="#type-AsynchronousServerSocketChannel">AsynchronousServerSocketChannel</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AsynchronousServerSocketChannel) <font color="#cc0033">bind</font>*(p0 : <a href="java_net.html#type-SocketAddress">java_net.SocketAddress</a>) : <a href="#type-NetworkChannel">NetworkChannel</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AsynchronousServerSocketChannel) <font color="#cc0033">bind</font>*(p0 : <a href="java_net.html#type-SocketAddress">java_net.SocketAddress</a>;
+                                                       p1 : INTEGER) : <a href="#type-AsynchronousServerSocketChannel">AsynchronousServerSocketChannel</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AsynchronousServerSocketChannel) <font color="#cc0033">getLocalAddress</font>*() : <a href="java_net.html#type-SocketAddress">java_net.SocketAddress</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AsynchronousServerSocketChannel) <font color="#cc0033">provider</font>*() : <a href="java_nio_channels_spi.html#type-AsynchronousChannelProvider">java_nio_channels_spi.AsynchronousChannelProvider</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AsynchronousServerSocketChannel) <font color="#cc0033">setOption</font>*(p0 : <a href="java_net.html#type-SocketOption">java_net.SocketOption</a>;
+                                                            p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="#type-AsynchronousServerSocketChannel">AsynchronousServerSocketChannel</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AsynchronousServerSocketChannel) <font color="#cc0033">setOption</font>*(p0 : <a href="java_net.html#type-SocketOption">java_net.SocketOption</a>;
+                                                            p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="#type-NetworkChannel">NetworkChannel</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-AsynchronousSocketChannel"></a>
+<b>PROCEDURE </b>(self:AsynchronousSocketChannel) <font color="#cc0033">bind</font>*(p0 : <a href="java_net.html#type-SocketAddress">java_net.SocketAddress</a>) : <a href="#type-NetworkChannel">NetworkChannel</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AsynchronousSocketChannel) <font color="#cc0033">bind</font>*(p0 : <a href="java_net.html#type-SocketAddress">java_net.SocketAddress</a>) : <a href="#type-AsynchronousSocketChannel">AsynchronousSocketChannel</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AsynchronousSocketChannel) <font color="#cc0033">connect</font>*(p0 : <a href="java_net.html#type-SocketAddress">java_net.SocketAddress</a>;
+                                                    p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                    p2 : <a href="java_nio_channels.html#type-CompletionHandler">java_nio_channels.CompletionHandler</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AsynchronousSocketChannel) <font color="#cc0033">connect</font>*(p0 : <a href="java_net.html#type-SocketAddress">java_net.SocketAddress</a>) : <a href="java_util_concurrent.html#type-Future">java_util_concurrent.Future</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AsynchronousSocketChannel) <font color="#cc0033">getLocalAddress</font>*() : <a href="java_net.html#type-SocketAddress">java_net.SocketAddress</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AsynchronousSocketChannel) <font color="#cc0033">getRemoteAddress</font>*() : <a href="java_net.html#type-SocketAddress">java_net.SocketAddress</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AsynchronousSocketChannel) <font color="#cc0033">provider</font>*() : <a href="java_nio_channels_spi.html#type-AsynchronousChannelProvider">java_nio_channels_spi.AsynchronousChannelProvider</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AsynchronousSocketChannel) <font color="#cc0033">read</font>*(p0 : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>) : <a href="java_util_concurrent.html#type-Future">java_util_concurrent.Future</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AsynchronousSocketChannel) <font color="#cc0033">read</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>;
+                                                     p1 : INTEGER;
+                                                     p2 : INTEGER;
+                                                     p3 : LONGINT;
+                                                     p4 : <a href="java_util_concurrent.html#type-TimeUnit">java_util_concurrent.TimeUnit</a>;
+                                                     p5 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                     p6 : <a href="java_nio_channels.html#type-CompletionHandler">java_nio_channels.CompletionHandler</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AsynchronousSocketChannel) <font color="#cc0033">read</font>*(p0 : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>;
+                                                 p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                 p2 : <a href="java_nio_channels.html#type-CompletionHandler">java_nio_channels.CompletionHandler</a>)<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AsynchronousSocketChannel) <font color="#cc0033">read</font>*(p0 : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>;
+                                                 p1 : LONGINT;
+                                                 p2 : <a href="java_util_concurrent.html#type-TimeUnit">java_util_concurrent.TimeUnit</a>;
+                                                 p3 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                 p4 : <a href="java_nio_channels.html#type-CompletionHandler">java_nio_channels.CompletionHandler</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AsynchronousSocketChannel) <font color="#cc0033">setOption</font>*(p0 : <a href="java_net.html#type-SocketOption">java_net.SocketOption</a>;
+                                                      p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="#type-NetworkChannel">NetworkChannel</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AsynchronousSocketChannel) <font color="#cc0033">setOption</font>*(p0 : <a href="java_net.html#type-SocketOption">java_net.SocketOption</a>;
+                                                      p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="#type-AsynchronousSocketChannel">AsynchronousSocketChannel</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AsynchronousSocketChannel) <font color="#cc0033">shutdownInput</font>*() : <a href="#type-AsynchronousSocketChannel">AsynchronousSocketChannel</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AsynchronousSocketChannel) <font color="#cc0033">shutdownOutput</font>*() : <a href="#type-AsynchronousSocketChannel">AsynchronousSocketChannel</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AsynchronousSocketChannel) <font color="#cc0033">write</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>;
+                                                      p1 : INTEGER;
+                                                      p2 : INTEGER;
+                                                      p3 : LONGINT;
+                                                      p4 : <a href="java_util_concurrent.html#type-TimeUnit">java_util_concurrent.TimeUnit</a>;
+                                                      p5 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                      p6 : <a href="java_nio_channels.html#type-CompletionHandler">java_nio_channels.CompletionHandler</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AsynchronousSocketChannel) <font color="#cc0033">write</font>*(p0 : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>;
+                                                  p1 : LONGINT;
+                                                  p2 : <a href="java_util_concurrent.html#type-TimeUnit">java_util_concurrent.TimeUnit</a>;
+                                                  p3 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                  p4 : <a href="java_nio_channels.html#type-CompletionHandler">java_nio_channels.CompletionHandler</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AsynchronousSocketChannel) <font color="#cc0033">write</font>*(p0 : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>;
+                                                  p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                  p2 : <a href="java_nio_channels.html#type-CompletionHandler">java_nio_channels.CompletionHandler</a>)<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AsynchronousSocketChannel) <font color="#cc0033">write</font>*(p0 : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>) : <a href="java_util_concurrent.html#type-Future">java_util_concurrent.Future</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-Channel"></a>
+<b>PROCEDURE </b>(self:Channel) <font color="#cc0033">close</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Channel) <font color="#cc0033">isOpen</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+<a name="meths-CompletionHandler"></a>
+<b>PROCEDURE </b>(self:CompletionHandler) <font color="#cc0033">completed</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                              p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CompletionHandler) <font color="#cc0033">failed</font>*(p0 : <a href="java_lang.html#type-Throwable">java_lang.Throwable</a>;
+                                           p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-DatagramChannel"></a>
+<b>PROCEDURE </b>(self:DatagramChannel) <font color="#cc0033">bind</font>*(p0 : <a href="java_net.html#type-SocketAddress">java_net.SocketAddress</a>) : <a href="#type-DatagramChannel">DatagramChannel</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DatagramChannel) <font color="#cc0033">bind</font>*(p0 : <a href="java_net.html#type-SocketAddress">java_net.SocketAddress</a>) : <a href="#type-NetworkChannel">NetworkChannel</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DatagramChannel) <font color="#cc0033">connect</font>*(p0 : <a href="java_net.html#type-SocketAddress">java_net.SocketAddress</a>) : <a href="#type-DatagramChannel">DatagramChannel</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DatagramChannel) <font color="#cc0033">disconnect</font>*() : <a href="#type-DatagramChannel">DatagramChannel</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DatagramChannel) <font color="#cc0033">getLocalAddress</font>*() : <a href="java_net.html#type-SocketAddress">java_net.SocketAddress</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DatagramChannel) <font color="#cc0033">getRemoteAddress</font>*() : <a href="java_net.html#type-SocketAddress">java_net.SocketAddress</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DatagramChannel) <font color="#cc0033">isConnected</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DatagramChannel) <font color="#cc0033">read</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>;
+                                           p1 : INTEGER;
+                                           p2 : INTEGER) : LONGINT<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DatagramChannel) <font color="#cc0033">read</font>*(p0 : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>) : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DatagramChannel) <font color="#cc0033">read</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>) : LONGINT<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:DatagramChannel) <font color="#cc0033">receive</font>*(p0 : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>) : <a href="java_net.html#type-SocketAddress">java_net.SocketAddress</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DatagramChannel) <font color="#cc0033">send</font>*(p0 : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>;
+                                       p1 : <a href="java_net.html#type-SocketAddress">java_net.SocketAddress</a>) : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DatagramChannel) <font color="#cc0033">setOption</font>*(p0 : <a href="java_net.html#type-SocketOption">java_net.SocketOption</a>;
+                                            p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="#type-DatagramChannel">DatagramChannel</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DatagramChannel) <font color="#cc0033">setOption</font>*(p0 : <a href="java_net.html#type-SocketOption">java_net.SocketOption</a>;
+                                            p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="#type-NetworkChannel">NetworkChannel</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DatagramChannel) <font color="#cc0033">socket</font>*() : <a href="java_net.html#type-DatagramSocket">java_net.DatagramSocket</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DatagramChannel) <font color="#cc0033">validOps</font>*() : INTEGER<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:DatagramChannel) <font color="#cc0033">write</font>*(p0 : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>) : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DatagramChannel) <font color="#cc0033">write</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>;
+                                            p1 : INTEGER;
+                                            p2 : INTEGER) : LONGINT<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DatagramChannel) <font color="#cc0033">write</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>) : LONGINT<b>,NEW</b>;
+<a name="meths-FileChannel"></a>
+<b>PROCEDURE </b>(self:FileChannel) <font color="#cc0033">force</font>*(p0 : BOOLEAN)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:FileChannel) <font color="#cc0033">lock</font>*() : <a href="java_nio_channels.html#type-FileLock">java_nio_channels.FileLock</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:FileChannel) <font color="#cc0033">lock</font>*(p0 : LONGINT;
+                                   p1 : LONGINT;
+                                   p2 : BOOLEAN) : <a href="java_nio_channels.html#type-FileLock">java_nio_channels.FileLock</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:FileChannel) <font color="#cc0033">map</font>*(p0 : <a href="java_nio_channels.html#type-FileChannel$MapMode">java_nio_channels.FileChannel$MapMode</a>;
+                                  p1 : LONGINT;
+                                  p2 : LONGINT) : <a href="java_nio.html#type-MappedByteBuffer">java_nio.MappedByteBuffer</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:FileChannel) <font color="#cc0033">position</font>*(p0 : LONGINT) : <a href="#type-FileChannel">FileChannel</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:FileChannel) <font color="#cc0033">position</font>*() : LONGINT<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:FileChannel) <font color="#cc0033">position</font>*(p0 : LONGINT) : <a href="#type-SeekableByteChannel">SeekableByteChannel</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FileChannel) <font color="#cc0033">read</font>*(p0 : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>) : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:FileChannel) <font color="#cc0033">read</font>*(p0 : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>;
+                                   p1 : LONGINT) : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:FileChannel) <font color="#cc0033">read</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>;
+                                       p1 : INTEGER;
+                                       p2 : INTEGER) : LONGINT<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:FileChannel) <font color="#cc0033">read</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>) : LONGINT<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:FileChannel) <font color="#cc0033">size</font>*() : LONGINT<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:FileChannel) <font color="#cc0033">transferFrom</font>*(p0 : <a href="java_nio_channels.html#type-ReadableByteChannel">java_nio_channels.ReadableByteChannel</a>;
+                                           p1 : LONGINT;
+                                           p2 : LONGINT) : LONGINT<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:FileChannel) <font color="#cc0033">transferTo</font>*(p0 : LONGINT;
+                                         p1 : LONGINT;
+                                         p2 : <a href="java_nio_channels.html#type-WritableByteChannel">java_nio_channels.WritableByteChannel</a>) : LONGINT<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:FileChannel) <font color="#cc0033">truncate</font>*(p0 : LONGINT) : <a href="#type-SeekableByteChannel">SeekableByteChannel</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FileChannel) <font color="#cc0033">truncate</font>*(p0 : LONGINT) : <a href="#type-FileChannel">FileChannel</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:FileChannel) <font color="#cc0033">tryLock</font>*(p0 : LONGINT;
+                                      p1 : LONGINT;
+                                      p2 : BOOLEAN) : <a href="java_nio_channels.html#type-FileLock">java_nio_channels.FileLock</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:FileChannel) <font color="#cc0033">tryLock</font>*() : <a href="java_nio_channels.html#type-FileLock">java_nio_channels.FileLock</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:FileChannel) <font color="#cc0033">write</font>*(p0 : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>) : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:FileChannel) <font color="#cc0033">write</font>*(p0 : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>;
+                                    p1 : LONGINT) : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:FileChannel) <font color="#cc0033">write</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>) : LONGINT<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:FileChannel) <font color="#cc0033">write</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>;
+                                        p1 : INTEGER;
+                                        p2 : INTEGER) : LONGINT<b>,NEW,ABSTRACT</b>;
+<a name="meths-FileChannel$MapMode"></a>
+<b>PROCEDURE </b>(self:FileChannel$MapMode) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-FileLock"></a>
+<b>PROCEDURE </b>(self:FileLock) <font color="#cc0033">acquiredBy</font>*() : <a href="java_nio_channels.html#type-Channel">java_nio_channels.Channel</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FileLock) <font color="#cc0033">channel</font>*() : <a href="#type-FileChannel">FileChannel</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:FileLock) <font color="#cc0033">close</font>*()<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:FileLock) <font color="#cc0033">isShared</font>*() : BOOLEAN<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:FileLock) <font color="#cc0033">isValid</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:FileLock) <font color="#cc0033">overlaps</font>*(p0 : LONGINT;
+                                    p1 : LONGINT) : BOOLEAN<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:FileLock) <font color="#cc0033">position</font>*() : LONGINT<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:FileLock) <font color="#cc0033">release</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:FileLock) <font color="#cc0033">size</font>*() : LONGINT<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:FileLock) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW</b>;
+<a name="meths-GatheringByteChannel"></a>
+<b>PROCEDURE </b>(self:GatheringByteChannel) <font color="#cc0033">write</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>) : LONGINT<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:GatheringByteChannel) <font color="#cc0033">write</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>;
+                                                 p1 : INTEGER;
+                                                 p2 : INTEGER) : LONGINT<b>,NEW,ABSTRACT</b>;
+<a name="meths-InterruptibleChannel"></a>
+<b>PROCEDURE </b>(self:InterruptibleChannel) <font color="#cc0033">close</font>*()<b>,NEW,ABSTRACT</b>;
+<a name="meths-MembershipKey"></a>
+<b>PROCEDURE </b>(self:MembershipKey) <font color="#cc0033">block</font>*(p0 : <a href="java_net.html#type-InetAddress">java_net.InetAddress</a>) : <a href="#type-MembershipKey">MembershipKey</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MembershipKey) <font color="#cc0033">channel</font>*() : <a href="java_nio_channels.html#type-MulticastChannel">java_nio_channels.MulticastChannel</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MembershipKey) <font color="#cc0033">drop</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MembershipKey) <font color="#cc0033">group</font>*() : <a href="java_net.html#type-InetAddress">java_net.InetAddress</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MembershipKey) <font color="#cc0033">isValid</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MembershipKey) <font color="#cc0033">networkInterface</font>*() : <a href="java_net.html#type-NetworkInterface">java_net.NetworkInterface</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MembershipKey) <font color="#cc0033">sourceAddress</font>*() : <a href="java_net.html#type-InetAddress">java_net.InetAddress</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MembershipKey) <font color="#cc0033">unblock</font>*(p0 : <a href="java_net.html#type-InetAddress">java_net.InetAddress</a>) : <a href="#type-MembershipKey">MembershipKey</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-MulticastChannel"></a>
+<b>PROCEDURE </b>(self:MulticastChannel) <font color="#cc0033">close</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MulticastChannel) <font color="#cc0033">join</font>*(p0 : <a href="java_net.html#type-InetAddress">java_net.InetAddress</a>;
+                                        p1 : <a href="java_net.html#type-NetworkInterface">java_net.NetworkInterface</a>;
+                                        p2 : <a href="java_net.html#type-InetAddress">java_net.InetAddress</a>) : <a href="#type-MembershipKey">MembershipKey</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MulticastChannel) <font color="#cc0033">join</font>*(p0 : <a href="java_net.html#type-InetAddress">java_net.InetAddress</a>;
+                                        p1 : <a href="java_net.html#type-NetworkInterface">java_net.NetworkInterface</a>) : <a href="#type-MembershipKey">MembershipKey</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-NetworkChannel"></a>
+<b>PROCEDURE </b>(self:NetworkChannel) <font color="#cc0033">bind</font>*(p0 : <a href="java_net.html#type-SocketAddress">java_net.SocketAddress</a>) : <a href="#type-NetworkChannel">NetworkChannel</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:NetworkChannel) <font color="#cc0033">getLocalAddress</font>*() : <a href="java_net.html#type-SocketAddress">java_net.SocketAddress</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:NetworkChannel) <font color="#cc0033">getOption</font>*(p0 : <a href="java_net.html#type-SocketOption">java_net.SocketOption</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:NetworkChannel) <font color="#cc0033">setOption</font>*(p0 : <a href="java_net.html#type-SocketOption">java_net.SocketOption</a>;
+                                           p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="#type-NetworkChannel">NetworkChannel</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:NetworkChannel) <font color="#cc0033">supportedOptions</font>*() : <a href="java_util.html#type-Set">java_util.Set</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-Pipe"></a>
+<b>PROCEDURE </b>(self:Pipe) <font color="#cc0033">sink</font>*() : <a href="#type-Pipe$SinkChannel">Pipe$SinkChannel</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Pipe) <font color="#cc0033">source</font>*() : <a href="java_nio_channels.html#type-Pipe$SourceChannel">java_nio_channels.Pipe$SourceChannel</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-Pipe$SinkChannel"></a>
+<b>PROCEDURE </b>(self:Pipe$SinkChannel) <font color="#cc0033">validOps</font>*() : INTEGER<b>,NEW</b>;
+<a name="meths-Pipe$SourceChannel"></a>
+<b>PROCEDURE </b>(self:Pipe$SourceChannel) <font color="#cc0033">validOps</font>*() : INTEGER<b>,NEW</b>;
+<a name="meths-ReadableByteChannel"></a>
+<b>PROCEDURE </b>(self:ReadableByteChannel) <font color="#cc0033">read</font>*(p0 : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>) : INTEGER<b>,NEW,ABSTRACT</b>;
+<a name="meths-ScatteringByteChannel"></a>
+<b>PROCEDURE </b>(self:ScatteringByteChannel) <font color="#cc0033">read</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>) : LONGINT<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ScatteringByteChannel) <font color="#cc0033">read</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>;
+                                                 p1 : INTEGER;
+                                                 p2 : INTEGER) : LONGINT<b>,NEW,ABSTRACT</b>;
+<a name="meths-SeekableByteChannel"></a>
+<b>PROCEDURE </b>(self:SeekableByteChannel) <font color="#cc0033">position</font>*() : LONGINT<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SeekableByteChannel) <font color="#cc0033">position</font>*(p0 : LONGINT) : <a href="#type-SeekableByteChannel">SeekableByteChannel</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SeekableByteChannel) <font color="#cc0033">read</font>*(p0 : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>) : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SeekableByteChannel) <font color="#cc0033">size</font>*() : LONGINT<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SeekableByteChannel) <font color="#cc0033">truncate</font>*(p0 : LONGINT) : <a href="#type-SeekableByteChannel">SeekableByteChannel</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SeekableByteChannel) <font color="#cc0033">write</font>*(p0 : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>) : INTEGER<b>,NEW,ABSTRACT</b>;
+<a name="meths-SelectableChannel"></a>
+<b>PROCEDURE </b>(self:SelectableChannel) <font color="#cc0033">blockingLock</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SelectableChannel) <font color="#cc0033">configureBlocking</font>*(p0 : BOOLEAN) : <a href="#type-SelectableChannel">SelectableChannel</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SelectableChannel) <font color="#cc0033">isBlocking</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SelectableChannel) <font color="#cc0033">isRegistered</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SelectableChannel) <font color="#cc0033">keyFor</font>*(p0 : <a href="#type-Selector">Selector</a>) : <a href="#type-SelectionKey">SelectionKey</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SelectableChannel) <font color="#cc0033">provider</font>*() : <a href="java_nio_channels_spi.html#type-SelectorProvider">java_nio_channels_spi.SelectorProvider</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SelectableChannel) <font color="#cc0033">register</font>*(p0 : <a href="#type-Selector">Selector</a>;
+                                             p1 : INTEGER;
+                                             p2 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="#type-SelectionKey">SelectionKey</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SelectableChannel) <font color="#cc0033">register</font>*(p0 : <a href="#type-Selector">Selector</a>;
+                                             p1 : INTEGER) : <a href="#type-SelectionKey">SelectionKey</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:SelectableChannel) <font color="#cc0033">validOps</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+<a name="meths-SelectionKey"></a>
+<b>PROCEDURE </b>(self:SelectionKey) <font color="#cc0033">attach</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:SelectionKey) <font color="#cc0033">attachment</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:SelectionKey) <font color="#cc0033">cancel</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SelectionKey) <font color="#cc0033">channel</font>*() : <a href="java_nio_channels.html#type-SelectableChannel">java_nio_channels.SelectableChannel</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SelectionKey) <font color="#cc0033">interestOps</font>*(p0 : INTEGER) : <a href="#type-SelectionKey">SelectionKey</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SelectionKey) <font color="#cc0033">interestOps</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SelectionKey) <font color="#cc0033">interestOpsAnd</font>*(p0 : INTEGER) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SelectionKey) <font color="#cc0033">interestOpsOr</font>*(p0 : INTEGER) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SelectionKey) <font color="#cc0033">isAcceptable</font>*() : BOOLEAN<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:SelectionKey) <font color="#cc0033">isConnectable</font>*() : BOOLEAN<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:SelectionKey) <font color="#cc0033">isReadable</font>*() : BOOLEAN<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:SelectionKey) <font color="#cc0033">isValid</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SelectionKey) <font color="#cc0033">isWritable</font>*() : BOOLEAN<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:SelectionKey) <font color="#cc0033">readyOps</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SelectionKey) <font color="#cc0033">selector</font>*() : <a href="#type-Selector">Selector</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-Selector"></a>
+<b>PROCEDURE </b>(self:Selector) <font color="#cc0033">close</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Selector) <font color="#cc0033">isOpen</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Selector) <font color="#cc0033">keys</font>*() : <a href="java_util.html#type-Set">java_util.Set</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Selector) <font color="#cc0033">provider</font>*() : <a href="java_nio_channels_spi.html#type-SelectorProvider">java_nio_channels_spi.SelectorProvider</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Selector) <font color="#cc0033">select</font>*(p0 : <a href="java_util_function.html#type-Consumer">java_util_function.Consumer</a>;
+                                  p1 : LONGINT) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Selector) <font color="#cc0033">select</font>*(p0 : <a href="java_util_function.html#type-Consumer">java_util_function.Consumer</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Selector) <font color="#cc0033">select</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Selector) <font color="#cc0033">select</font>*(p0 : LONGINT) : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Selector) <font color="#cc0033">selectedKeys</font>*() : <a href="java_util.html#type-Set">java_util.Set</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Selector) <font color="#cc0033">selectNow</font>*(p0 : <a href="java_util_function.html#type-Consumer">java_util_function.Consumer</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Selector) <font color="#cc0033">selectNow</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Selector) <font color="#cc0033">wakeup</font>*() : <a href="#type-Selector">Selector</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-ServerSocketChannel"></a>
+<b>PROCEDURE </b>(self:ServerSocketChannel) <font color="#cc0033">accept</font>*() : <a href="java_nio_channels.html#type-SocketChannel">java_nio_channels.SocketChannel</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ServerSocketChannel) <font color="#cc0033">bind</font>*(p0 : <a href="java_net.html#type-SocketAddress">java_net.SocketAddress</a>;
+                                           p1 : INTEGER) : <a href="#type-ServerSocketChannel">ServerSocketChannel</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ServerSocketChannel) <font color="#cc0033">bind</font>*(p0 : <a href="java_net.html#type-SocketAddress">java_net.SocketAddress</a>) : <a href="#type-NetworkChannel">NetworkChannel</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ServerSocketChannel) <font color="#cc0033">bind</font>*(p0 : <a href="java_net.html#type-SocketAddress">java_net.SocketAddress</a>) : <a href="#type-ServerSocketChannel">ServerSocketChannel</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:ServerSocketChannel) <font color="#cc0033">getLocalAddress</font>*() : <a href="java_net.html#type-SocketAddress">java_net.SocketAddress</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ServerSocketChannel) <font color="#cc0033">setOption</font>*(p0 : <a href="java_net.html#type-SocketOption">java_net.SocketOption</a>;
+                                                p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="#type-ServerSocketChannel">ServerSocketChannel</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ServerSocketChannel) <font color="#cc0033">setOption</font>*(p0 : <a href="java_net.html#type-SocketOption">java_net.SocketOption</a>;
+                                                p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="#type-NetworkChannel">NetworkChannel</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ServerSocketChannel) <font color="#cc0033">socket</font>*() : <a href="java_net.html#type-ServerSocket">java_net.ServerSocket</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ServerSocketChannel) <font color="#cc0033">validOps</font>*() : INTEGER<b>,NEW</b>;
+<a name="meths-SocketChannel"></a>
+<b>PROCEDURE </b>(self:SocketChannel) <font color="#cc0033">bind</font>*(p0 : <a href="java_net.html#type-SocketAddress">java_net.SocketAddress</a>) : <a href="#type-SocketChannel">SocketChannel</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SocketChannel) <font color="#cc0033">bind</font>*(p0 : <a href="java_net.html#type-SocketAddress">java_net.SocketAddress</a>) : <a href="#type-NetworkChannel">NetworkChannel</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SocketChannel) <font color="#cc0033">connect</font>*(p0 : <a href="java_net.html#type-SocketAddress">java_net.SocketAddress</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SocketChannel) <font color="#cc0033">finishConnect</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SocketChannel) <font color="#cc0033">getLocalAddress</font>*() : <a href="java_net.html#type-SocketAddress">java_net.SocketAddress</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SocketChannel) <font color="#cc0033">getRemoteAddress</font>*() : <a href="java_net.html#type-SocketAddress">java_net.SocketAddress</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SocketChannel) <font color="#cc0033">isConnected</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SocketChannel) <font color="#cc0033">isConnectionPending</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SocketChannel) <font color="#cc0033">read</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>) : LONGINT<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:SocketChannel) <font color="#cc0033">read</font>*(p0 : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>) : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SocketChannel) <font color="#cc0033">read</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>;
+                                         p1 : INTEGER;
+                                         p2 : INTEGER) : LONGINT<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SocketChannel) <font color="#cc0033">setOption</font>*(p0 : <a href="java_net.html#type-SocketOption">java_net.SocketOption</a>;
+                                          p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="#type-NetworkChannel">NetworkChannel</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SocketChannel) <font color="#cc0033">setOption</font>*(p0 : <a href="java_net.html#type-SocketOption">java_net.SocketOption</a>;
+                                          p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="#type-SocketChannel">SocketChannel</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SocketChannel) <font color="#cc0033">shutdownInput</font>*() : <a href="#type-SocketChannel">SocketChannel</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SocketChannel) <font color="#cc0033">shutdownOutput</font>*() : <a href="#type-SocketChannel">SocketChannel</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SocketChannel) <font color="#cc0033">socket</font>*() : <a href="java_net.html#type-Socket">java_net.Socket</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SocketChannel) <font color="#cc0033">validOps</font>*() : INTEGER<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:SocketChannel) <font color="#cc0033">write</font>*(p0 : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>) : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SocketChannel) <font color="#cc0033">write</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>;
+                                          p1 : INTEGER;
+                                          p2 : INTEGER) : LONGINT<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SocketChannel) <font color="#cc0033">write</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>) : LONGINT<b>,NEW</b>;
+<a name="meths-WritableByteChannel"></a>
+<b>PROCEDURE </b>(self:WritableByteChannel) <font color="#cc0033">write</font>*(p0 : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>) : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>END </b><font color="#cc0033">java_nio_channels</font>.
+</font></pre></hr>
+<!-- BEGIN JavaScript -->
+<script>
+function toggle(node) {
+    node.classList.toggle("show"); 
+  }
+
+function cls(node) {
+    var prnt = node.parentNode;
+    var next = prnt.previousSibling;
+    var text = next.lastChild;
+    text.innerHTML = 
+        "The <b>class</b> property asserts that this type will be<br>" +
+        "implemented as a reference class in the underlying framework.";
+    text.classList.toggle("show");
+  }
+
+function newOk(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>has noArg-ctor</b> property asserts that this reference<br>" +
+        "class has a no-arg constructor, and thus objects of this<br>" +
+        "type can be allocated with NEW(). Component Pascal types<br>" +
+        "derived from this type can also be allocated using NEW().";
+    popuptext.classList.toggle("show"); 
+  }
+
+function noNew(node) { 
+    var prnt = node.parentNode; 
+    var next = prnt.previousSibling; 
+    var text = next.lastChild; 
+    text.innerHTML =  
+        "The <b>no noArg-ctor</b> property asserts that this reference<br>" +
+        "class does not have a noArg constructor. Objects of this<br>" +
+        "type cannot be allocated using NEW(), and Component<br>" +
+        "Pascal types  derived from this type also cannot be<br>" +
+        "allocated using NEW().";
+    text.classList.toggle("show");
+  }
+
+function noCpy(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>no value-assign</b> property asserts that this reference<br>" + 
+        "class does not have a value copy method. Therefore, it<br>" +
+        "is not possible to perform value assignments using<br>" +
+        "statements like <i>dst^</i> := <i>src^</i>";
+    popuptext.classList.toggle("show");
+  }
+
+function valueclass(node) { 
+        var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>valueclass</b> property asserts that this RECORD type is<br>" + 
+        "implemented as a value class in the CLR. It follows that<br>" +  
+        "value assignments can be made of these types. They can<br>" + 
+        "also be passed by value. Even pointers to records of<br>" + 
+        "such types may be dereferenced and copied using syntax<br>" + 
+        "such as  <i>dst^</i> := <i>src^</i>"; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+function argCtor(node) { 
+    var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>has arg-ctor</b> property asserts that this reference<br>" +  
+        "class has one or more constructors that take arguments.<br>" + 
+        "These constructors can be called from Component Pascal<br>" + 
+        "by calling an <i>init</i>(...) method from the static list<br>" + 
+        "here. Component Pascal types derived from this type<br>" + 
+        "can define constructors with arguments which call the<br>" + 
+        "super-type constructor.<br>" + 
+        "See <i>'Interfacing to constructors'</i> in the Release Notes."; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+</script>
+<!-- END JavaScript --> 
+
+</body></html>

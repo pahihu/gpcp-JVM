@@ -1,0 +1,656 @@
+<html><head><title>java_beans_beancontext</title>
+<style>
+<!-- BEGIN Inline CSS -->
+/* Popup container */
+.popup {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+/* The actual popup (appears on top) */
+.popup .popuptext {
+    visibility: hidden;
+    width: 430px;
+    background-color: white;
+    color: black;
+    text-align: left;
+    border-radius: 6px;
+    border-style: solid;
+    border-color: black;
+    padding: 8px 8px 8px 8px;
+    position: absolute;
+    z-index: 1;
+    margin-top: 30px;
+}
+
+/* Toggle this class when clicking on the popup container (hide and show the popup) */
+.popup .show {
+    visibility: visible;
+    opacity: 1;
+}
+
+</style>
+<!-- END Inline CSS -->
+</head><body bgcolor="white">
+<hr><pre>
+<font color="green">(*</font>
+<font color="green"> *  Creator PeToCps j2cps version 1.4.07 (March 2018)</font>
+<font color="green"> *  Compiled from jar-file /Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home/jmods/java.desktop.jmod</font>
+<font color="green"> *)</font>
+<b>FOREIGN MODULE </b><font color="#cc0033">java_beans_beancontext</font>;
+
+<b>IMPORT</b>
+    <a href="java_awt.html">java_awt</a> := "java.awt",
+    <a href="java_beans.html">java_beans</a> := "java.beans",
+    <a href="java_beans.html">java_beans</a> := "java.beans",
+    <a href="java_beans_beancontext.html">java_beans_beancontext</a> := "java.beans.beancontext",
+    <a href="java_io.html">java_io</a> := "java.io",
+    <a href="java_lang.html">java_lang</a> := "java.lang",
+    <a href="java_net.html">java_net</a> := "java.net",
+    <a href="java_util.html">java_util</a> := "java.util";
+
+<b>TYPE</b>
+
+  <a name="type-BeanContext"></a><font color="#cc0033">BeanContext</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_beans_beancontext.html#type-BeanContextChild">java_beans_beancontext.BeanContextChild</a> + <a href="java_util.html#type-Collection">java_util.Collection</a> + <a href="java_beans.html#type-DesignMode">java_beans.DesignMode</a> + <a href="java_beans.html#type-Visibility">java_beans.Visibility</a>)
+                 <font color="green"><b> (* </b><a href="#meths-BeanContext">Typebound Procedures</a><b> *)</b></font>
+                 <b>STATIC</b>
+                   <a name="type-globalHierarchyLock"></a><font color="#cc0033">globalHierarchyLock</font>* : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                 <b>END</b>;
+
+  <a name="type-BeanContextChild"></a><font color="#cc0033">BeanContextChild</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                      <font color="green"><b> (* </b><a href="#meths-BeanContextChild">Typebound Procedures</a><b> *)</b></font>
+                      <b>END</b>;
+
+  <a name="type-BeanContextChildComponentProxy"></a><font color="#cc0033">BeanContextChildComponentProxy</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                                    <font color="green"><b> (* </b><a href="#meths-BeanContextChildComponentProxy">Typebound Procedures</a><b> *)</b></font>
+                                    <b>END</b>;
+
+  <a name="type-BeanContextChildSupport"></a><font color="#cc0033">BeanContextChildSupport</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_beans_beancontext.html#type-BeanContextChild">java_beans_beancontext.BeanContextChild</a> + <a href="java_beans_beancontext.html#type-BeanContextServicesListener">java_beans_beancontext.BeanContextServicesListener</a> + <a href="java_io.html#type-Serializable">java_io.Serializable</a>)
+                             <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                             <font color="green"><b> (* </b><a href="#meths-BeanContextChildSupport">Typebound Procedures</a><b> *)</b></font>
+                               <font color="#cc0033">beanContextChildPeer</font>* : <a href="java_beans_beancontext.html#type-BeanContextChild">java_beans_beancontext.BeanContextChild</a>;
+                               <font color="#cc0033">pcSupport</font>!            : <a href="java_beans.html#type-PropertyChangeSupport">java_beans.PropertyChangeSupport</a>;
+                               <font color="#cc0033">vcSupport</font>!            : <a href="java_beans.html#type-VetoableChangeSupport">java_beans.VetoableChangeSupport</a>;
+                               <font color="#cc0033">beanContext</font>!          : <a href="#type-BeanContext">BeanContext</a>;
+                               <font color="#cc0033">rejectedSetBCOnce</font>!    : BOOLEAN;
+                             <b>STATIC</b>
+                               <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_beans_beancontext.html#type-BeanContextChild">java_beans_beancontext.BeanContextChild</a>) : <a href="#type-BeanContextChildSupport">BeanContextChildSupport</a><b>,CONSTRUCTOR</b>;
+                               <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-BeanContextChildSupport">BeanContextChildSupport</a><b>,CONSTRUCTOR</b>;
+                             <b>END</b>;
+
+  <a name="type-BeanContextContainerProxy"></a><font color="#cc0033">BeanContextContainerProxy</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                               <font color="green"><b> (* </b><a href="#meths-BeanContextContainerProxy">Typebound Procedures</a><b> *)</b></font>
+                               <b>END</b>;
+
+  <a name="type-BeanContextEvent"></a><font color="#cc0033">BeanContextEvent</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_util.html#type-EventObject">java_util.EventObject</a>)
+                      <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                      <font color="green"><b> (* </b><a href="#meths-BeanContextEvent">Typebound Procedures</a><b> *)</b></font>
+                        <font color="#cc0033">propagatedFrom</font>! : <a href="#type-BeanContext">BeanContext</a>;
+                      <b>STATIC</b>
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : <a href="#type-BeanContext">BeanContext</a>) : <a href="#type-BeanContextEvent">BeanContextEvent</a><b>,CONSTRUCTOR</b>;
+                      <b>END</b>;
+
+  <a name="type-BeanContextMembershipEvent"></a><font color="#cc0033">BeanContextMembershipEvent</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_beans_beancontext.html#type-BeanContextEvent">java_beans_beancontext.BeanContextEvent</a>)
+                                <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                                <font color="green"><b> (* </b><a href="#meths-BeanContextMembershipEvent">Typebound Procedures</a><b> *)</b></font>
+                                  <font color="#cc0033">children</font>! : <a href="java_util.html#type-Collection">java_util.Collection</a>;
+                                <b>STATIC</b>
+                                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*(    p0 : <a href="#type-BeanContext">BeanContext</a>;
+                                                  IN  p1 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="#type-BeanContextMembershipEvent">BeanContextMembershipEvent</a><b>,CONSTRUCTOR</b>;
+                                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="#type-BeanContext">BeanContext</a>;
+                                                  p1 : <a href="java_util.html#type-Collection">java_util.Collection</a>) : <a href="#type-BeanContextMembershipEvent">BeanContextMembershipEvent</a><b>,CONSTRUCTOR</b>;
+                                <b>END</b>;
+
+  <a name="type-BeanContextMembershipListener"></a><font color="#cc0033">BeanContextMembershipListener</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_util.html#type-EventListener">java_util.EventListener</a>)
+                                   <font color="green"><b> (* </b><a href="#meths-BeanContextMembershipListener">Typebound Procedures</a><b> *)</b></font>
+                                   <b>END</b>;
+
+  <a name="type-BeanContextProxy"></a><font color="#cc0033">BeanContextProxy</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                      <font color="green"><b> (* </b><a href="#meths-BeanContextProxy">Typebound Procedures</a><b> *)</b></font>
+                      <b>END</b>;
+
+  <a name="type-BeanContextServiceAvailableEvent"></a><font color="#cc0033">BeanContextServiceAvailableEvent</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_beans_beancontext.html#type-BeanContextEvent">java_beans_beancontext.BeanContextEvent</a>)
+                                      <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                                      <font color="green"><b> (* </b><a href="#meths-BeanContextServiceAvailableEvent">Typebound Procedures</a><b> *)</b></font>
+                                        <font color="#cc0033">serviceClass</font>! : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                                      <b>STATIC</b>
+                                        <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="#type-BeanContextServices">BeanContextServices</a>;
+                                                        p1 : <a href="java_lang.html#type-Class">java_lang.Class</a>) : <a href="#type-BeanContextServiceAvailableEvent">BeanContextServiceAvailableEvent</a><b>,CONSTRUCTOR</b>;
+                                      <b>END</b>;
+
+  <a name="type-BeanContextServiceProvider"></a><font color="#cc0033">BeanContextServiceProvider</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                                <font color="green"><b> (* </b><a href="#meths-BeanContextServiceProvider">Typebound Procedures</a><b> *)</b></font>
+                                <b>END</b>;
+
+  <a name="type-BeanContextServiceProviderBeanInfo"></a><font color="#cc0033">BeanContextServiceProviderBeanInfo</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_beans.html#type-BeanInfo">java_beans.BeanInfo</a>)
+                                        <font color="green"><b> (* </b><a href="#meths-BeanContextServiceProviderBeanInfo">Typebound Procedures</a><b> *)</b></font>
+                                        <b>END</b>;
+
+  <a name="type-BeanContextServiceRevokedEvent"></a><font color="#cc0033">BeanContextServiceRevokedEvent</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_beans_beancontext.html#type-BeanContextEvent">java_beans_beancontext.BeanContextEvent</a>)
+                                    <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                                    <font color="green"><b> (* </b><a href="#meths-BeanContextServiceRevokedEvent">Typebound Procedures</a><b> *)</b></font>
+                                      <font color="#cc0033">serviceClass</font>! : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                                    <b>STATIC</b>
+                                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="#type-BeanContextServices">BeanContextServices</a>;
+                                                      p1 : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                                                      p2 : BOOLEAN) : <a href="#type-BeanContextServiceRevokedEvent">BeanContextServiceRevokedEvent</a><b>,CONSTRUCTOR</b>;
+                                    <b>END</b>;
+
+  <a name="type-BeanContextServiceRevokedListener"></a><font color="#cc0033">BeanContextServiceRevokedListener</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_util.html#type-EventListener">java_util.EventListener</a>)
+                                       <font color="green"><b> (* </b><a href="#meths-BeanContextServiceRevokedListener">Typebound Procedures</a><b> *)</b></font>
+                                       <b>END</b>;
+
+  <a name="type-BeanContextServices"></a><font color="#cc0033">BeanContextServices</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-BeanContext">BeanContext</a> + <a href="java_beans_beancontext.html#type-BeanContextServicesListener">java_beans_beancontext.BeanContextServicesListener</a>)
+                         <font color="green"><b> (* </b><a href="#meths-BeanContextServices">Typebound Procedures</a><b> *)</b></font>
+                         <b>END</b>;
+
+  <a name="type-BeanContextServicesListener"></a><font color="#cc0033">BeanContextServicesListener</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_beans_beancontext.html#type-BeanContextServiceRevokedListener">java_beans_beancontext.BeanContextServiceRevokedListener</a>)
+                                 <font color="green"><b> (* </b><a href="#meths-BeanContextServicesListener">Typebound Procedures</a><b> *)</b></font>
+                                 <b>END</b>;
+
+  <a name="type-BeanContextServicesSupport"></a><font color="#cc0033">BeanContextServicesSupport</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-BeanContextSupport">BeanContextSupport</a> + <a href="#type-BeanContextServices">BeanContextServices</a>)
+                                <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                                <font color="green"><b> (* </b><a href="#meths-BeanContextServicesSupport">Typebound Procedures</a><b> *)</b></font>
+                                  <font color="#cc0033">services</font>!     : <a href="java_util.html#type-HashMap">java_util.HashMap</a>;
+                                  <font color="#cc0033">serializable</font>! : INTEGER;
+                                  <font color="#cc0033">proxy</font>!        : <a href="java_beans_beancontext.html#type-BeanContextServicesSupport$BCSSProxyServiceProvider">java_beans_beancontext.BeanContextServicesSupport$BCSSProxyServiceProvider</a>;
+                                  <font color="#cc0033">bcsListeners</font>! : <a href="java_util.html#type-ArrayList">java_util.ArrayList</a>;
+                                <b>STATIC</b>
+                                  <b>PROCEDURE </b><font color="#cc0033">getChildBeanContextServicesListener</font>!(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="#type-BeanContextServicesListener">BeanContextServicesListener</a>;
+                                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="#type-BeanContextServices">BeanContextServices</a>) : <a href="#type-BeanContextServicesSupport">BeanContextServicesSupport</a><b>,CONSTRUCTOR</b>;
+                                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-BeanContextServicesSupport">BeanContextServicesSupport</a><b>,CONSTRUCTOR</b>;
+                                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="#type-BeanContextServices">BeanContextServices</a>;
+                                                  p1 : <a href="java_util.html#type-Locale">java_util.Locale</a>;
+                                                  p2 : BOOLEAN;
+                                                  p3 : BOOLEAN) : <a href="#type-BeanContextServicesSupport">BeanContextServicesSupport</a><b>,CONSTRUCTOR</b>;
+                                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="#type-BeanContextServices">BeanContextServices</a>;
+                                                  p1 : <a href="java_util.html#type-Locale">java_util.Locale</a>;
+                                                  p2 : BOOLEAN) : <a href="#type-BeanContextServicesSupport">BeanContextServicesSupport</a><b>,CONSTRUCTOR</b>;
+                                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="#type-BeanContextServices">BeanContextServices</a>;
+                                                  p1 : <a href="java_util.html#type-Locale">java_util.Locale</a>) : <a href="#type-BeanContextServicesSupport">BeanContextServicesSupport</a><b>,CONSTRUCTOR</b>;
+                                <b>END</b>;
+
+  <a name="type-BeanContextServicesSupport$BCSSChild"></a><font color="#cc0033">BeanContextServicesSupport$BCSSChild</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-BeanContextSupport$BCSChild">BeanContextSupport$BCSChild</a>)
+                                          <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> *)</font>
+                                          <b>END</b>;
+
+  <a name="type-BeanContextServicesSupport$BCSSProxyServiceProvider"></a><font color="#cc0033">BeanContextServicesSupport$BCSSProxyServiceProvider</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-BeanContextServiceProvider">BeanContextServiceProvider</a> + <a href="java_beans_beancontext.html#type-BeanContextServiceRevokedListener">java_beans_beancontext.BeanContextServiceRevokedListener</a>)
+                                                         <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> *)</font>
+                                                         <font color="green"><b> (* </b><a href="#meths-BeanContextServicesSupport$BCSSProxyServiceProvider">Typebound Procedures</a><b> *)</b></font>
+                                                         <b>END</b>;
+
+  <a name="type-BeanContextServicesSupport$BCSSServiceProvider"></a><font color="#cc0033">BeanContextServicesSupport$BCSSServiceProvider</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_io.html#type-Serializable">java_io.Serializable</a>)
+                                                    <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> *)</font>
+                                                    <font color="green"><b> (* </b><a href="#meths-BeanContextServicesSupport$BCSSServiceProvider">Typebound Procedures</a><b> *)</b></font>
+                                                      <font color="#cc0033">serviceProvider</font>! : <a href="#type-BeanContextServiceProvider">BeanContextServiceProvider</a>;
+                                                    <b>END</b>;
+
+  <a name="type-BeanContextSupport"></a><font color="#cc0033">BeanContextSupport</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-BeanContextChildSupport">BeanContextChildSupport</a> + <a href="#type-BeanContext">BeanContext</a> + <a href="java_io.html#type-Serializable">java_io.Serializable</a> + <a href="java_beans.html#type-PropertyChangeListener">java_beans.PropertyChangeListener</a> + <a href="java_beans.html#type-VetoableChangeListener">java_beans.VetoableChangeListener</a>)
+                        <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                        <font color="green"><b> (* </b><a href="#meths-BeanContextSupport">Typebound Procedures</a><b> *)</b></font>
+                          <font color="#cc0033">children</font>!     : <a href="java_util.html#type-HashMap">java_util.HashMap</a>;
+                          <font color="#cc0033">bcmListeners</font>! : <a href="java_util.html#type-ArrayList">java_util.ArrayList</a>;
+                          <font color="#cc0033">locale</font>!       : <a href="java_util.html#type-Locale">java_util.Locale</a>;
+                          <font color="#cc0033">okToUseGui</font>!   : BOOLEAN;
+                          <font color="#cc0033">designTime</font>!   : BOOLEAN;
+                        <b>STATIC</b>
+                          <b>PROCEDURE </b><font color="#cc0033">classEquals</font>!(p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                                                 p1 : <a href="java_lang.html#type-Class">java_lang.Class</a>) : BOOLEAN;
+                          <b>PROCEDURE </b><font color="#cc0033">getChildBeanContextChild</font>!(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_beans_beancontext.html#type-BeanContextChild">java_beans_beancontext.BeanContextChild</a>;
+                          <b>PROCEDURE </b><font color="#cc0033">getChildBeanContextMembershipListener</font>!(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="#type-BeanContextMembershipListener">BeanContextMembershipListener</a>;
+                          <b>PROCEDURE </b><font color="#cc0033">getChildPropertyChangeListener</font>!(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_beans.html#type-PropertyChangeListener">java_beans.PropertyChangeListener</a>;
+                          <b>PROCEDURE </b><font color="#cc0033">getChildSerializable</font>!(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_io.html#type-Serializable">java_io.Serializable</a>;
+                          <b>PROCEDURE </b><font color="#cc0033">getChildVetoableChangeListener</font>!(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_beans.html#type-VetoableChangeListener">java_beans.VetoableChangeListener</a>;
+                          <b>PROCEDURE </b><font color="#cc0033">getChildVisibility</font>!(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_beans.html#type-Visibility">java_beans.Visibility</a>;
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="#type-BeanContext">BeanContext</a>;
+                                          p1 : <a href="java_util.html#type-Locale">java_util.Locale</a>;
+                                          p2 : BOOLEAN) : <a href="#type-BeanContextSupport">BeanContextSupport</a><b>,CONSTRUCTOR</b>;
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="#type-BeanContext">BeanContext</a>;
+                                          p1 : <a href="java_util.html#type-Locale">java_util.Locale</a>;
+                                          p2 : BOOLEAN;
+                                          p3 : BOOLEAN) : <a href="#type-BeanContextSupport">BeanContextSupport</a><b>,CONSTRUCTOR</b>;
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="#type-BeanContext">BeanContext</a>;
+                                          p1 : <a href="java_util.html#type-Locale">java_util.Locale</a>) : <a href="#type-BeanContextSupport">BeanContextSupport</a><b>,CONSTRUCTOR</b>;
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-BeanContextSupport">BeanContextSupport</a><b>,CONSTRUCTOR</b>;
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="#type-BeanContext">BeanContext</a>) : <a href="#type-BeanContextSupport">BeanContextSupport</a><b>,CONSTRUCTOR</b>;
+                        <b>END</b>;
+
+  <a name="type-BeanContextSupport$BCSChild"></a><font color="#cc0033">BeanContextSupport$BCSChild</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_io.html#type-Serializable">java_io.Serializable</a>)
+                                 <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> *)</font>
+                                 <b>END</b>;
+
+  <a name="type-BeanContextSupport$BCSIterator"></a><font color="#cc0033">BeanContextSupport$BCSIterator</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_util.html#type-Iterator">java_util.Iterator</a>)
+                                    <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> *)</font>
+                                    <font color="green"><b> (* </b><a href="#meths-BeanContextSupport$BCSIterator">Typebound Procedures</a><b> *)</b></font>
+                                    <b>END</b>;
+
+
+
+<a name="meths-BeanContext"></a>
+<b>PROCEDURE </b>(self:BeanContext) <font color="#cc0033">addBeanContextMembershipListener</font>*(p0 : <a href="java_beans_beancontext.html#type-BeanContextMembershipListener">java_beans_beancontext.BeanContextMembershipListener</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:BeanContext) <font color="#cc0033">getResource</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                          p1 : <a href="java_beans_beancontext.html#type-BeanContextChild">java_beans_beancontext.BeanContextChild</a>) : <a href="java_net.html#type-URL">java_net.URL</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:BeanContext) <font color="#cc0033">getResourceAsStream</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                  p1 : <a href="java_beans_beancontext.html#type-BeanContextChild">java_beans_beancontext.BeanContextChild</a>) : <a href="java_io.html#type-InputStream">java_io.InputStream</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:BeanContext) <font color="#cc0033">instantiateChild</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:BeanContext) <font color="#cc0033">removeBeanContextMembershipListener</font>*(p0 : <a href="java_beans_beancontext.html#type-BeanContextMembershipListener">java_beans_beancontext.BeanContextMembershipListener</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-BeanContextChild"></a>
+<b>PROCEDURE </b>(self:BeanContextChild) <font color="#cc0033">addPropertyChangeListener</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                             p1 : <a href="java_beans.html#type-PropertyChangeListener">java_beans.PropertyChangeListener</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:BeanContextChild) <font color="#cc0033">addVetoableChangeListener</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                             p1 : <a href="java_beans.html#type-VetoableChangeListener">java_beans.VetoableChangeListener</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:BeanContextChild) <font color="#cc0033">getBeanContext</font>*() : <a href="#type-BeanContext">BeanContext</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:BeanContextChild) <font color="#cc0033">removePropertyChangeListener</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                                p1 : <a href="java_beans.html#type-PropertyChangeListener">java_beans.PropertyChangeListener</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:BeanContextChild) <font color="#cc0033">removeVetoableChangeListener</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                                p1 : <a href="java_beans.html#type-VetoableChangeListener">java_beans.VetoableChangeListener</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:BeanContextChild) <font color="#cc0033">setBeanContext</font>*(p0 : <a href="#type-BeanContext">BeanContext</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-BeanContextChildComponentProxy"></a>
+<b>PROCEDURE </b>(self:BeanContextChildComponentProxy) <font color="#cc0033">getComponent</font>*() : <a href="java_awt.html#type-Component">java_awt.Component</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-BeanContextChildSupport"></a>
+<b>PROCEDURE </b>(self:BeanContextChildSupport) <font color="#cc0033">addPropertyChangeListener</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                                    p1 : <a href="java_beans.html#type-PropertyChangeListener">java_beans.PropertyChangeListener</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BeanContextChildSupport) <font color="#cc0033">addVetoableChangeListener</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                                    p1 : <a href="java_beans.html#type-VetoableChangeListener">java_beans.VetoableChangeListener</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BeanContextChildSupport) <font color="#cc0033">firePropertyChange</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                             p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                             p2 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BeanContextChildSupport) <font color="#cc0033">fireVetoableChange</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                             p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                             p2 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BeanContextChildSupport) <font color="#cc0033">getBeanContext</font>*() : <a href="#type-BeanContext">BeanContext</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BeanContextChildSupport) <font color="#cc0033">getBeanContextChildPeer</font>*() : <a href="java_beans_beancontext.html#type-BeanContextChild">java_beans_beancontext.BeanContextChild</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BeanContextChildSupport) <font color="#cc0033">initializeBeanContextResources</font>!()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BeanContextChildSupport) <font color="#cc0033">isDelegated</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BeanContextChildSupport) <font color="#cc0033">releaseBeanContextResources</font>!()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BeanContextChildSupport) <font color="#cc0033">removePropertyChangeListener</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                                       p1 : <a href="java_beans.html#type-PropertyChangeListener">java_beans.PropertyChangeListener</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BeanContextChildSupport) <font color="#cc0033">removeVetoableChangeListener</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                                       p1 : <a href="java_beans.html#type-VetoableChangeListener">java_beans.VetoableChangeListener</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BeanContextChildSupport) <font color="#cc0033">serviceAvailable</font>*(p0 : <a href="#type-BeanContextServiceAvailableEvent">BeanContextServiceAvailableEvent</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BeanContextChildSupport) <font color="#cc0033">serviceRevoked</font>*(p0 : <a href="java_beans_beancontext.html#type-BeanContextServiceRevokedEvent">java_beans_beancontext.BeanContextServiceRevokedEvent</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BeanContextChildSupport) <font color="#cc0033">setBeanContext</font>*(p0 : <a href="#type-BeanContext">BeanContext</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BeanContextChildSupport) <font color="#cc0033">validatePendingSetBeanContext</font>*(p0 : <a href="#type-BeanContext">BeanContext</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-BeanContextContainerProxy"></a>
+<b>PROCEDURE </b>(self:BeanContextContainerProxy) <font color="#cc0033">getContainer</font>*() : <a href="java_awt.html#type-Container">java_awt.Container</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-BeanContextEvent"></a>
+<b>PROCEDURE </b>(self:BeanContextEvent) <font color="#cc0033">getBeanContext</font>*() : <a href="#type-BeanContext">BeanContext</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BeanContextEvent) <font color="#cc0033">getPropagatedFrom</font>*() : <a href="#type-BeanContext">BeanContext</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BeanContextEvent) <font color="#cc0033">isPropagated</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BeanContextEvent) <font color="#cc0033">setPropagatedFrom</font>*(p0 : <a href="#type-BeanContext">BeanContext</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-BeanContextMembershipEvent"></a>
+<b>PROCEDURE </b>(self:BeanContextMembershipEvent) <font color="#cc0033">contains</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BeanContextMembershipEvent) <font color="#cc0033">iterator</font>*() : <a href="java_util.html#type-Iterator">java_util.Iterator</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BeanContextMembershipEvent) <font color="#cc0033">size</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BeanContextMembershipEvent) <font color="#cc0033">toArray</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-BeanContextMembershipListener"></a>
+<b>PROCEDURE </b>(self:BeanContextMembershipListener) <font color="#cc0033">childrenAdded</font>*(p0 : <a href="java_beans_beancontext.html#type-BeanContextMembershipEvent">java_beans_beancontext.BeanContextMembershipEvent</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:BeanContextMembershipListener) <font color="#cc0033">childrenRemoved</font>*(p0 : <a href="java_beans_beancontext.html#type-BeanContextMembershipEvent">java_beans_beancontext.BeanContextMembershipEvent</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-BeanContextProxy"></a>
+<b>PROCEDURE </b>(self:BeanContextProxy) <font color="#cc0033">getBeanContextProxy</font>*() : <a href="#type-BeanContextChild">BeanContextChild</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-BeanContextServiceAvailableEvent"></a>
+<b>PROCEDURE </b>(self:BeanContextServiceAvailableEvent) <font color="#cc0033">getCurrentServiceSelectors</font>*() : <a href="java_util.html#type-Iterator">java_util.Iterator</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BeanContextServiceAvailableEvent) <font color="#cc0033">getServiceClass</font>*() : <a href="java_lang.html#type-Class">java_lang.Class</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BeanContextServiceAvailableEvent) <font color="#cc0033">getSourceAsBeanContextServices</font>*() : <a href="#type-BeanContextServices">BeanContextServices</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-BeanContextServiceProvider"></a>
+<b>PROCEDURE </b>(self:BeanContextServiceProvider) <font color="#cc0033">getCurrentServiceSelectors</font>*(p0 : <a href="java_beans_beancontext.html#type-BeanContextServices">java_beans_beancontext.BeanContextServices</a>;
+                                                                        p1 : <a href="java_lang.html#type-Class">java_lang.Class</a>) : <a href="java_util.html#type-Iterator">java_util.Iterator</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:BeanContextServiceProvider) <font color="#cc0033">getService</font>*(p0 : <a href="java_beans_beancontext.html#type-BeanContextServices">java_beans_beancontext.BeanContextServices</a>;
+                                                        p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                        p2 : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                                                        p3 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:BeanContextServiceProvider) <font color="#cc0033">releaseService</font>*(p0 : <a href="java_beans_beancontext.html#type-BeanContextServices">java_beans_beancontext.BeanContextServices</a>;
+                                                            p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                            p2 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-BeanContextServiceProviderBeanInfo"></a>
+<b>PROCEDURE </b>(self:BeanContextServiceProviderBeanInfo) <font color="#cc0033">getServicesBeanInfo</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_beans.html#type-BeanInfo">java_beans.BeanInfo</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-BeanContextServiceRevokedEvent"></a>
+<b>PROCEDURE </b>(self:BeanContextServiceRevokedEvent) <font color="#cc0033">getServiceClass</font>*() : <a href="java_lang.html#type-Class">java_lang.Class</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BeanContextServiceRevokedEvent) <font color="#cc0033">getSourceAsBeanContextServices</font>*() : <a href="#type-BeanContextServices">BeanContextServices</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BeanContextServiceRevokedEvent) <font color="#cc0033">isCurrentServiceInvalidNow</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BeanContextServiceRevokedEvent) <font color="#cc0033">isServiceClass</font>*(p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-BeanContextServiceRevokedListener"></a>
+<b>PROCEDURE </b>(self:BeanContextServiceRevokedListener) <font color="#cc0033">serviceRevoked</font>*(p0 : <a href="#type-BeanContextServiceRevokedEvent">BeanContextServiceRevokedEvent</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-BeanContextServices"></a>
+<b>PROCEDURE </b>(self:BeanContextServices) <font color="#cc0033">addBeanContextServicesListener</font>*(p0 : <a href="java_beans_beancontext.html#type-BeanContextServicesListener">java_beans_beancontext.BeanContextServicesListener</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:BeanContextServices) <font color="#cc0033">addService</font>*(p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                                                 p1 : <a href="#type-BeanContextServiceProvider">BeanContextServiceProvider</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:BeanContextServices) <font color="#cc0033">getCurrentServiceClasses</font>*() : <a href="java_util.html#type-Iterator">java_util.Iterator</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:BeanContextServices) <font color="#cc0033">getCurrentServiceSelectors</font>*(p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>) : <a href="java_util.html#type-Iterator">java_util.Iterator</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:BeanContextServices) <font color="#cc0033">getService</font>*(p0 : <a href="java_beans_beancontext.html#type-BeanContextChild">java_beans_beancontext.BeanContextChild</a>;
+                                                 p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                 p2 : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                                                 p3 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                 p4 : <a href="java_beans_beancontext.html#type-BeanContextServiceRevokedListener">java_beans_beancontext.BeanContextServiceRevokedListener</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:BeanContextServices) <font color="#cc0033">hasService</font>*(p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:BeanContextServices) <font color="#cc0033">releaseService</font>*(p0 : <a href="java_beans_beancontext.html#type-BeanContextChild">java_beans_beancontext.BeanContextChild</a>;
+                                                     p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                     p2 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:BeanContextServices) <font color="#cc0033">removeBeanContextServicesListener</font>*(p0 : <a href="java_beans_beancontext.html#type-BeanContextServicesListener">java_beans_beancontext.BeanContextServicesListener</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:BeanContextServices) <font color="#cc0033">revokeService</font>*(p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                                                    p1 : <a href="#type-BeanContextServiceProvider">BeanContextServiceProvider</a>;
+                                                    p2 : BOOLEAN)<b>,NEW,ABSTRACT</b>;
+<a name="meths-BeanContextServicesListener"></a>
+<b>PROCEDURE </b>(self:BeanContextServicesListener) <font color="#cc0033">serviceAvailable</font>*(p0 : <a href="#type-BeanContextServiceAvailableEvent">BeanContextServiceAvailableEvent</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-BeanContextServicesSupport"></a>
+<b>PROCEDURE </b>(self:BeanContextServicesSupport) <font color="#cc0033">addBeanContextServicesListener</font>*(p0 : <a href="#type-BeanContextServicesListener">BeanContextServicesListener</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BeanContextServicesSupport) <font color="#cc0033">addService</font>*(p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                                                        p1 : <a href="#type-BeanContextServiceProvider">BeanContextServiceProvider</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BeanContextServicesSupport) <font color="#cc0033">addService</font>!(p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                                                        p1 : <a href="#type-BeanContextServiceProvider">BeanContextServiceProvider</a>;
+                                                        p2 : BOOLEAN) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BeanContextServicesSupport) <font color="#cc0033">bcsPreDeserializationHook</font>!(p0 : <a href="java_io.html#type-ObjectInputStream">java_io.ObjectInputStream</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BeanContextServicesSupport) <font color="#cc0033">bcsPreSerializationHook</font>!(p0 : <a href="java_io.html#type-ObjectOutputStream">java_io.ObjectOutputStream</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BeanContextServicesSupport) <font color="#cc0033">childJustRemovedHook</font>!(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                                  p1 : <a href="#type-BeanContextSupport$BCSChild">BeanContextSupport$BCSChild</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BeanContextServicesSupport) <font color="#cc0033">createBCSChild</font>!(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                            p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="#type-BeanContextSupport$BCSChild">BeanContextSupport$BCSChild</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BeanContextServicesSupport) <font color="#cc0033">createBCSSServiceProvider</font>!(p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                                                                       p1 : <a href="#type-BeanContextServiceProvider">BeanContextServiceProvider</a>) : <a href="java_beans_beancontext.html#type-BeanContextServicesSupport$BCSSServiceProvider">java_beans_beancontext.BeanContextServicesSupport$BCSSServiceProvider</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BeanContextServicesSupport) <font color="#cc0033">fireServiceAdded</font>!(p0 : <a href="#type-BeanContextServiceAvailableEvent">BeanContextServiceAvailableEvent</a>)<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:BeanContextServicesSupport) <font color="#cc0033">fireServiceAdded</font>!(p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>)<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:BeanContextServicesSupport) <font color="#cc0033">fireServiceRevoked</font>!(p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                                                                p1 : BOOLEAN)<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:BeanContextServicesSupport) <font color="#cc0033">fireServiceRevoked</font>!(p0 : <a href="#type-BeanContextServiceRevokedEvent">BeanContextServiceRevokedEvent</a>)<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:BeanContextServicesSupport) <font color="#cc0033">getBeanContextServicesPeer</font>*() : <a href="#type-BeanContextServices">BeanContextServices</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BeanContextServicesSupport) <font color="#cc0033">getCurrentServiceClasses</font>*() : <a href="java_util.html#type-Iterator">java_util.Iterator</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BeanContextServicesSupport) <font color="#cc0033">getCurrentServiceSelectors</font>*(p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>) : <a href="java_util.html#type-Iterator">java_util.Iterator</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BeanContextServicesSupport) <font color="#cc0033">getService</font>*(p0 : <a href="java_beans_beancontext.html#type-BeanContextChild">java_beans_beancontext.BeanContextChild</a>;
+                                                        p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                        p2 : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                                                        p3 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                        p4 : <a href="java_beans_beancontext.html#type-BeanContextServiceRevokedListener">java_beans_beancontext.BeanContextServiceRevokedListener</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BeanContextServicesSupport) <font color="#cc0033">hasService</font>*(p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BeanContextServicesSupport) <font color="#cc0033">initialize</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BeanContextServicesSupport) <font color="#cc0033">initializeBeanContextResources</font>!()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BeanContextServicesSupport) <font color="#cc0033">releaseBeanContextResources</font>!()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BeanContextServicesSupport) <font color="#cc0033">releaseService</font>*(p0 : <a href="java_beans_beancontext.html#type-BeanContextChild">java_beans_beancontext.BeanContextChild</a>;
+                                                            p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                            p2 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BeanContextServicesSupport) <font color="#cc0033">removeBeanContextServicesListener</font>*(p0 : <a href="#type-BeanContextServicesListener">BeanContextServicesListener</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BeanContextServicesSupport) <font color="#cc0033">revokeService</font>*(p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                                                           p1 : <a href="#type-BeanContextServiceProvider">BeanContextServiceProvider</a>;
+                                                           p2 : BOOLEAN)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BeanContextServicesSupport) <font color="#cc0033">serviceAvailable</font>*(p0 : <a href="#type-BeanContextServiceAvailableEvent">BeanContextServiceAvailableEvent</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BeanContextServicesSupport) <font color="#cc0033">serviceRevoked</font>*(p0 : <a href="#type-BeanContextServiceRevokedEvent">BeanContextServiceRevokedEvent</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-BeanContextServicesSupport$BCSSProxyServiceProvider"></a>
+<b>PROCEDURE </b>(self:BeanContextServicesSupport$BCSSProxyServiceProvider) <font color="#cc0033">getCurrentServiceSelectors</font>*(p0 : <a href="#type-BeanContextServices">BeanContextServices</a>;
+                                                                                                 p1 : <a href="java_lang.html#type-Class">java_lang.Class</a>) : <a href="java_util.html#type-Iterator">java_util.Iterator</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BeanContextServicesSupport$BCSSProxyServiceProvider) <font color="#cc0033">getService</font>*(p0 : <a href="#type-BeanContextServices">BeanContextServices</a>;
+                                                                                 p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                                                 p2 : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                                                                                 p3 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BeanContextServicesSupport$BCSSProxyServiceProvider) <font color="#cc0033">releaseService</font>*(p0 : <a href="#type-BeanContextServices">BeanContextServices</a>;
+                                                                                     p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                                                     p2 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BeanContextServicesSupport$BCSSProxyServiceProvider) <font color="#cc0033">serviceRevoked</font>*(p0 : <a href="#type-BeanContextServiceRevokedEvent">BeanContextServiceRevokedEvent</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-BeanContextServicesSupport$BCSSServiceProvider"></a>
+<b>PROCEDURE </b>(self:BeanContextServicesSupport$BCSSServiceProvider) <font color="#cc0033">getServiceProvider</font>!() : <a href="#type-BeanContextServiceProvider">BeanContextServiceProvider</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-BeanContextSupport"></a>
+<b>PROCEDURE </b>(self:BeanContextSupport) <font color="#cc0033">add</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BeanContextSupport) <font color="#cc0033">addAll</font>*(p0 : <a href="java_util.html#type-Collection">java_util.Collection</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BeanContextSupport) <font color="#cc0033">addBeanContextMembershipListener</font>*(p0 : <a href="#type-BeanContextMembershipListener">BeanContextMembershipListener</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BeanContextSupport) <font color="#cc0033">avoidingGui</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BeanContextSupport) <font color="#cc0033">bcsChildren</font>!() : <a href="java_util.html#type-Iterator">java_util.Iterator</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BeanContextSupport) <font color="#cc0033">bcsPreDeserializationHook</font>!(p0 : <a href="java_io.html#type-ObjectInputStream">java_io.ObjectInputStream</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BeanContextSupport) <font color="#cc0033">bcsPreSerializationHook</font>!(p0 : <a href="java_io.html#type-ObjectOutputStream">java_io.ObjectOutputStream</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BeanContextSupport) <font color="#cc0033">childDeserializedHook</font>!(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                           p1 : <a href="#type-BeanContextSupport$BCSChild">BeanContextSupport$BCSChild</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BeanContextSupport) <font color="#cc0033">childJustAddedHook</font>!(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                        p1 : <a href="#type-BeanContextSupport$BCSChild">BeanContextSupport$BCSChild</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BeanContextSupport) <font color="#cc0033">childJustRemovedHook</font>!(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                          p1 : <a href="#type-BeanContextSupport$BCSChild">BeanContextSupport$BCSChild</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BeanContextSupport) <font color="#cc0033">clear</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BeanContextSupport) <font color="#cc0033">contains</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BeanContextSupport) <font color="#cc0033">containsAll</font>*(p0 : <a href="java_util.html#type-Collection">java_util.Collection</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BeanContextSupport) <font color="#cc0033">containsKey</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BeanContextSupport) <font color="#cc0033">copyChildren</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:BeanContextSupport) <font color="#cc0033">createBCSChild</font>!(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                    p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="#type-BeanContextSupport$BCSChild">BeanContextSupport$BCSChild</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BeanContextSupport) <font color="#cc0033">deserialize</font>!(p0 : <a href="java_io.html#type-ObjectInputStream">java_io.ObjectInputStream</a>;
+                                                 p1 : <a href="java_util.html#type-Collection">java_util.Collection</a>)<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:BeanContextSupport) <font color="#cc0033">dontUseGui</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BeanContextSupport) <font color="#cc0033">fireChildrenAdded</font>!(p0 : <a href="java_beans_beancontext.html#type-BeanContextMembershipEvent">java_beans_beancontext.BeanContextMembershipEvent</a>)<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:BeanContextSupport) <font color="#cc0033">fireChildrenRemoved</font>!(p0 : <a href="java_beans_beancontext.html#type-BeanContextMembershipEvent">java_beans_beancontext.BeanContextMembershipEvent</a>)<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:BeanContextSupport) <font color="#cc0033">getBeanContextPeer</font>*() : <a href="#type-BeanContext">BeanContext</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BeanContextSupport) <font color="#cc0033">getLocale</font>*() : <a href="java_util.html#type-Locale">java_util.Locale</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BeanContextSupport) <font color="#cc0033">getResource</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                 p1 : <a href="java_beans_beancontext.html#type-BeanContextChild">java_beans_beancontext.BeanContextChild</a>) : <a href="java_net.html#type-URL">java_net.URL</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BeanContextSupport) <font color="#cc0033">getResourceAsStream</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                         p1 : <a href="java_beans_beancontext.html#type-BeanContextChild">java_beans_beancontext.BeanContextChild</a>) : <a href="java_io.html#type-InputStream">java_io.InputStream</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BeanContextSupport) <font color="#cc0033">initialize</font>!()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BeanContextSupport) <font color="#cc0033">instantiateChild</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BeanContextSupport) <font color="#cc0033">isDesignTime</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BeanContextSupport) <font color="#cc0033">isEmpty</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BeanContextSupport) <font color="#cc0033">isSerializing</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BeanContextSupport) <font color="#cc0033">iterator</font>*() : <a href="java_util.html#type-Iterator">java_util.Iterator</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BeanContextSupport) <font color="#cc0033">needsGui</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BeanContextSupport) <font color="#cc0033">okToUseGui</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BeanContextSupport) <font color="#cc0033">propertyChange</font>*(p0 : <a href="java_beans.html#type-PropertyChangeEvent">java_beans.PropertyChangeEvent</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BeanContextSupport) <font color="#cc0033">readChildren</font>*(p0 : <a href="java_io.html#type-ObjectInputStream">java_io.ObjectInputStream</a>)<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:BeanContextSupport) <font color="#cc0033">remove</font>!(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                            p1 : BOOLEAN) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BeanContextSupport) <font color="#cc0033">remove</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BeanContextSupport) <font color="#cc0033">removeAll</font>*(p0 : <a href="java_util.html#type-Collection">java_util.Collection</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BeanContextSupport) <font color="#cc0033">removeBeanContextMembershipListener</font>*(p0 : <a href="#type-BeanContextMembershipListener">BeanContextMembershipListener</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BeanContextSupport) <font color="#cc0033">retainAll</font>*(p0 : <a href="java_util.html#type-Collection">java_util.Collection</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BeanContextSupport) <font color="#cc0033">serialize</font>!(p0 : <a href="java_io.html#type-ObjectOutputStream">java_io.ObjectOutputStream</a>;
+                                               p1 : <a href="java_util.html#type-Collection">java_util.Collection</a>)<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:BeanContextSupport) <font color="#cc0033">setDesignTime</font>*(p0 : BOOLEAN)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BeanContextSupport) <font color="#cc0033">setLocale</font>*(p0 : <a href="java_util.html#type-Locale">java_util.Locale</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BeanContextSupport) <font color="#cc0033">size</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BeanContextSupport) <font color="#cc0033">toArray</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BeanContextSupport) <font color="#cc0033">toArray</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BeanContextSupport) <font color="#cc0033">validatePendingAdd</font>!(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BeanContextSupport) <font color="#cc0033">validatePendingRemove</font>!(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BeanContextSupport) <font color="#cc0033">vetoableChange</font>*(p0 : <a href="java_beans.html#type-PropertyChangeEvent">java_beans.PropertyChangeEvent</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BeanContextSupport) <font color="#cc0033">writeChildren</font>*(p0 : <a href="java_io.html#type-ObjectOutputStream">java_io.ObjectOutputStream</a>)<b>,NEW</b>;
+<a name="meths-BeanContextSupport$BCSIterator"></a>
+<b>PROCEDURE </b>(self:BeanContextSupport$BCSIterator) <font color="#cc0033">hasNext</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BeanContextSupport$BCSIterator) <font color="#cc0033">next</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BeanContextSupport$BCSIterator) <font color="#cc0033">remove</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>END </b><font color="#cc0033">java_beans_beancontext</font>.
+</font></pre></hr>
+<!-- BEGIN JavaScript -->
+<script>
+function toggle(node) {
+    node.classList.toggle("show"); 
+  }
+
+function cls(node) {
+    var prnt = node.parentNode;
+    var next = prnt.previousSibling;
+    var text = next.lastChild;
+    text.innerHTML = 
+        "The <b>class</b> property asserts that this type will be<br>" +
+        "implemented as a reference class in the underlying framework.";
+    text.classList.toggle("show");
+  }
+
+function newOk(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>has noArg-ctor</b> property asserts that this reference<br>" +
+        "class has a no-arg constructor, and thus objects of this<br>" +
+        "type can be allocated with NEW(). Component Pascal types<br>" +
+        "derived from this type can also be allocated using NEW().";
+    popuptext.classList.toggle("show"); 
+  }
+
+function noNew(node) { 
+    var prnt = node.parentNode; 
+    var next = prnt.previousSibling; 
+    var text = next.lastChild; 
+    text.innerHTML =  
+        "The <b>no noArg-ctor</b> property asserts that this reference<br>" +
+        "class does not have a noArg constructor. Objects of this<br>" +
+        "type cannot be allocated using NEW(), and Component<br>" +
+        "Pascal types  derived from this type also cannot be<br>" +
+        "allocated using NEW().";
+    text.classList.toggle("show");
+  }
+
+function noCpy(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>no value-assign</b> property asserts that this reference<br>" + 
+        "class does not have a value copy method. Therefore, it<br>" +
+        "is not possible to perform value assignments using<br>" +
+        "statements like <i>dst^</i> := <i>src^</i>";
+    popuptext.classList.toggle("show");
+  }
+
+function valueclass(node) { 
+        var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>valueclass</b> property asserts that this RECORD type is<br>" + 
+        "implemented as a value class in the CLR. It follows that<br>" +  
+        "value assignments can be made of these types. They can<br>" + 
+        "also be passed by value. Even pointers to records of<br>" + 
+        "such types may be dereferenced and copied using syntax<br>" + 
+        "such as  <i>dst^</i> := <i>src^</i>"; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+function argCtor(node) { 
+    var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>has arg-ctor</b> property asserts that this reference<br>" +  
+        "class has one or more constructors that take arguments.<br>" + 
+        "These constructors can be called from Component Pascal<br>" + 
+        "by calling an <i>init</i>(...) method from the static list<br>" + 
+        "here. Component Pascal types derived from this type<br>" + 
+        "can define constructors with arguments which call the<br>" + 
+        "super-type constructor.<br>" + 
+        "See <i>'Interfacing to constructors'</i> in the Release Notes."; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+</script>
+<!-- END JavaScript --> 
+
+</body></html>

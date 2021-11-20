@@ -1,0 +1,1957 @@
+<html><head><title>java_net</title>
+<style>
+<!-- BEGIN Inline CSS -->
+/* Popup container */
+.popup {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+/* The actual popup (appears on top) */
+.popup .popuptext {
+    visibility: hidden;
+    width: 430px;
+    background-color: white;
+    color: black;
+    text-align: left;
+    border-radius: 6px;
+    border-style: solid;
+    border-color: black;
+    padding: 8px 8px 8px 8px;
+    position: absolute;
+    z-index: 1;
+    margin-top: 30px;
+}
+
+/* Toggle this class when clicking on the popup container (hide and show the popup) */
+.popup .show {
+    visibility: visible;
+    opacity: 1;
+}
+
+</style>
+<!-- END Inline CSS -->
+</head><body bgcolor="white">
+<hr><pre>
+<font color="green">(*</font>
+<font color="green"> *  Creator PeToCps j2cps version 1.4.07 (March 2018)</font>
+<font color="green"> *  Compiled from jar-file /Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home/jmods/java.base.jmod</font>
+<font color="green"> *)</font>
+<b>FOREIGN MODULE </b><font color="#cc0033">java_net</font>;
+
+<b>IMPORT</b>
+    <a href="java_io.html">java_io</a> := "java.io",
+    <a href="java_lang.html">java_lang</a> := "java.lang",
+    <a href="java_net.html">java_net</a> := "java.net",
+    <a href="java_nio_channels.html">java_nio_channels</a> := "java.nio.channels",
+    <a href="java_nio_charset.html">java_nio_charset</a> := "java.nio.charset",
+    <a href="java_nio_file.html">java_nio_file</a> := "java.nio.file",
+    <a href="java_security.html">java_security</a> := "java.security",
+    <a href="java_security_cert.html">java_security_cert</a> := "java.security.cert",
+    <a href="java_util.html">java_util</a> := "java.util",
+    <a href="java_util_jar.html">java_util_jar</a> := "java.util.jar",
+    <a href="java_util_stream.html">java_util_stream</a> := "java.util.stream";
+
+<b>TYPE</b>
+
+  <a name="type-Authenticator"></a><font color="#cc0033">Authenticator</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                   <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                   <font color="green"><b> (* </b><a href="#meths-Authenticator">Typebound Procedures</a><b> *)</b></font>
+                   <b>STATIC</b>
+                     <b>PROCEDURE </b><font color="#cc0033">getDefault</font>*() : <a href="#type-Authenticator">Authenticator</a>;
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-Authenticator">Authenticator</a><b>,CONSTRUCTOR</b>;
+                     <b>PROCEDURE </b><font color="#cc0033">requestPasswordAuthentication</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                              p1 : <a href="#type-InetAddress">InetAddress</a>;
+                                                              p2 : INTEGER;
+                                                              p3 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                              p4 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                              p5 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                              p6 : <a href="java_net.html#type-URL">java_net.URL</a>;
+                                                              p7 : <a href="#type-Authenticator$RequestorType">Authenticator$RequestorType</a>) : <a href="#type-PasswordAuthentication">PasswordAuthentication</a>;
+                     <b>PROCEDURE </b><font color="#cc0033">requestPasswordAuthentication</font>*(p0 : <a href="#type-Authenticator">Authenticator</a>;
+                                                              p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                              p2 : <a href="#type-InetAddress">InetAddress</a>;
+                                                              p3 : INTEGER;
+                                                              p4 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                              p5 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                              p6 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                              p7 : <a href="java_net.html#type-URL">java_net.URL</a>;
+                                                              p8 : <a href="#type-Authenticator$RequestorType">Authenticator$RequestorType</a>) : <a href="#type-PasswordAuthentication">PasswordAuthentication</a>;
+                     <b>PROCEDURE </b><font color="#cc0033">requestPasswordAuthentication</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                              p1 : <a href="#type-InetAddress">InetAddress</a>;
+                                                              p2 : INTEGER;
+                                                              p3 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                              p4 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                              p5 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-PasswordAuthentication">PasswordAuthentication</a>;
+                     <b>PROCEDURE </b><font color="#cc0033">requestPasswordAuthentication</font>*(p0 : <a href="#type-InetAddress">InetAddress</a>;
+                                                              p1 : INTEGER;
+                                                              p2 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                              p3 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                              p4 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-PasswordAuthentication">PasswordAuthentication</a>;
+                     <b>PROCEDURE </b><font color="#cc0033">setDefault</font>*(p0 : <a href="#type-Authenticator">Authenticator</a>);
+                   <b>END</b>;
+
+  <a name="type-Authenticator$RequestorType"></a><font color="#cc0033">Authenticator$RequestorType</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Enum">java_lang.Enum</a>)
+                                 <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> *)</font>
+                                 <b>STATIC</b>
+                                   <a name="type-PROXY"></a><font color="#cc0033">PROXY</font>*   : <a href="#type-Authenticator$RequestorType">Authenticator$RequestorType</a>;
+                                   <a name="type-SERVER"></a><font color="#cc0033">SERVER</font>*  : <a href="#type-Authenticator$RequestorType">Authenticator$RequestorType</a>;
+                                   <b>PROCEDURE </b><font color="#cc0033">valueOf</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-Authenticator$RequestorType">Authenticator$RequestorType</a>;
+                                   <b>PROCEDURE </b><font color="#cc0033">values</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-Authenticator$RequestorType">Authenticator$RequestorType</a>;
+                                 <b>END</b>;
+
+  <a name="type-BindException"></a><font color="#cc0033">BindException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_net.html#type-SocketException">java_net.SocketException</a>)
+                   <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                   <b>STATIC</b>
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-BindException">BindException</a><b>,CONSTRUCTOR</b>;
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-BindException">BindException</a><b>,CONSTRUCTOR</b>;
+                   <b>END</b>;
+
+  <a name="type-CacheRequest"></a><font color="#cc0033">CacheRequest</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                  <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                  <font color="green"><b> (* </b><a href="#meths-CacheRequest">Typebound Procedures</a><b> *)</b></font>
+                  <b>STATIC</b>
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CacheRequest">CacheRequest</a><b>,CONSTRUCTOR</b>;
+                  <b>END</b>;
+
+  <a name="type-CacheResponse"></a><font color="#cc0033">CacheResponse</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                   <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                   <font color="green"><b> (* </b><a href="#meths-CacheResponse">Typebound Procedures</a><b> *)</b></font>
+                   <b>STATIC</b>
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CacheResponse">CacheResponse</a><b>,CONSTRUCTOR</b>;
+                   <b>END</b>;
+
+  <a name="type-ConnectException"></a><font color="#cc0033">ConnectException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_net.html#type-SocketException">java_net.SocketException</a>)
+                      <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                      <b>STATIC</b>
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-ConnectException">ConnectException</a><b>,CONSTRUCTOR</b>;
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-ConnectException">ConnectException</a><b>,CONSTRUCTOR</b>;
+                      <b>END</b>;
+
+  <a name="type-ContentHandler"></a><font color="#cc0033">ContentHandler</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                    <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                    <font color="green"><b> (* </b><a href="#meths-ContentHandler">Typebound Procedures</a><b> *)</b></font>
+                    <b>STATIC</b>
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-ContentHandler">ContentHandler</a><b>,CONSTRUCTOR</b>;
+                    <b>END</b>;
+
+  <a name="type-ContentHandlerFactory"></a><font color="#cc0033">ContentHandlerFactory</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                           <font color="green"><b> (* </b><a href="#meths-ContentHandlerFactory">Typebound Procedures</a><b> *)</b></font>
+                           <b>END</b>;
+
+  <a name="type-CookieHandler"></a><font color="#cc0033">CookieHandler</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                   <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                   <font color="green"><b> (* </b><a href="#meths-CookieHandler">Typebound Procedures</a><b> *)</b></font>
+                   <b>STATIC</b>
+                     <b>PROCEDURE </b><font color="#cc0033">getDefault</font>*() : <a href="#type-CookieHandler">CookieHandler</a>;
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CookieHandler">CookieHandler</a><b>,CONSTRUCTOR</b>;
+                     <b>PROCEDURE </b><font color="#cc0033">setDefault</font>*(p0 : <a href="#type-CookieHandler">CookieHandler</a>);
+                   <b>END</b>;
+
+  <a name="type-CookieManager"></a><font color="#cc0033">CookieManager</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-CookieHandler">CookieHandler</a>)
+                   <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                   <font color="green"><b> (* </b><a href="#meths-CookieManager">Typebound Procedures</a><b> *)</b></font>
+                   <b>STATIC</b>
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="#type-CookieStore">CookieStore</a>;
+                                     p1 : <a href="#type-CookiePolicy">CookiePolicy</a>) : <a href="#type-CookieManager">CookieManager</a><b>,CONSTRUCTOR</b>;
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CookieManager">CookieManager</a><b>,CONSTRUCTOR</b>;
+                   <b>END</b>;
+
+  <a name="type-CookiePolicy"></a><font color="#cc0033">CookiePolicy</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                  <font color="green"><b> (* </b><a href="#meths-CookiePolicy">Typebound Procedures</a><b> *)</b></font>
+                  <b>STATIC</b>
+                    <a name="type-ACCEPT_ALL"></a><font color="#cc0033">ACCEPT_ALL</font>*             : <a href="#type-CookiePolicy">CookiePolicy</a>;
+                    <a name="type-ACCEPT_NONE"></a><font color="#cc0033">ACCEPT_NONE</font>*            : <a href="#type-CookiePolicy">CookiePolicy</a>;
+                    <a name="type-ACCEPT_ORIGINAL_SERVER"></a><font color="#cc0033">ACCEPT_ORIGINAL_SERVER</font>* : <a href="#type-CookiePolicy">CookiePolicy</a>;
+                  <b>END</b>;
+
+  <a name="type-CookieStore"></a><font color="#cc0033">CookieStore</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                 <font color="green"><b> (* </b><a href="#meths-CookieStore">Typebound Procedures</a><b> *)</b></font>
+                 <b>END</b>;
+
+  <a name="type-DatagramPacket"></a><font color="#cc0033">DatagramPacket</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                    <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                    <font color="green"><b> (* </b><a href="#meths-DatagramPacket">Typebound Procedures</a><b> *)</b></font>
+                    <b>STATIC</b>
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE;
+                                          p1 : INTEGER;
+                                          p2 : INTEGER;
+                                          p3 : <a href="java_net.html#type-SocketAddress">java_net.SocketAddress</a>) : <a href="#type-DatagramPacket">DatagramPacket</a><b>,CONSTRUCTOR</b>;
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE;
+                                          p1 : INTEGER;
+                                          p2 : <a href="java_net.html#type-InetAddress">java_net.InetAddress</a>;
+                                          p3 : INTEGER) : <a href="#type-DatagramPacket">DatagramPacket</a><b>,CONSTRUCTOR</b>;
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE;
+                                          p1 : INTEGER;
+                                          p2 : <a href="java_net.html#type-SocketAddress">java_net.SocketAddress</a>) : <a href="#type-DatagramPacket">DatagramPacket</a><b>,CONSTRUCTOR</b>;
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE;
+                                          p1 : INTEGER;
+                                          p2 : INTEGER) : <a href="#type-DatagramPacket">DatagramPacket</a><b>,CONSTRUCTOR</b>;
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE;
+                                          p1 : INTEGER) : <a href="#type-DatagramPacket">DatagramPacket</a><b>,CONSTRUCTOR</b>;
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE;
+                                          p1 : INTEGER;
+                                          p2 : INTEGER;
+                                          p3 : <a href="java_net.html#type-InetAddress">java_net.InetAddress</a>;
+                                          p4 : INTEGER) : <a href="#type-DatagramPacket">DatagramPacket</a><b>,CONSTRUCTOR</b>;
+                    <b>END</b>;
+
+  <a name="type-DatagramSocket"></a><font color="#cc0033">DatagramSocket</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_io.html#type-Closeable">java_io.Closeable</a>)
+                    <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                    <font color="green"><b> (* </b><a href="#meths-DatagramSocket">Typebound Procedures</a><b> *)</b></font>
+                    <b>STATIC</b>
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER) : <a href="#type-DatagramSocket">DatagramSocket</a><b>,CONSTRUCTOR</b>;
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER;
+                                      p1 : <a href="#type-InetAddress">InetAddress</a>) : <a href="#type-DatagramSocket">DatagramSocket</a><b>,CONSTRUCTOR</b>;
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_net.html#type-SocketAddress">java_net.SocketAddress</a>) : <a href="#type-DatagramSocket">DatagramSocket</a><b>,CONSTRUCTOR</b>;
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-DatagramSocket">DatagramSocket</a><b>,CONSTRUCTOR</b>;
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : <a href="#type-DatagramSocketImpl">DatagramSocketImpl</a>) : <a href="#type-DatagramSocket">DatagramSocket</a><b>,CONSTRUCTOR</b>;
+                      <b>PROCEDURE </b><font color="#cc0033">setDatagramSocketImplFactory</font>*(p0 : <a href="#type-DatagramSocketImplFactory">DatagramSocketImplFactory</a>);
+                    <b>END</b>;
+
+  <a name="type-DatagramSocketImpl"></a><font color="#cc0033">DatagramSocketImpl</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_net.html#type-SocketOptions">java_net.SocketOptions</a>)
+                        <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                        <font color="green"><b> (* </b><a href="#meths-DatagramSocketImpl">Typebound Procedures</a><b> *)</b></font>
+                          <font color="#cc0033">localPort</font>! : INTEGER;
+                          <font color="#cc0033">fd</font>!        : <a href="java_io.html#type-FileDescriptor">java_io.FileDescriptor</a>;
+                        <b>STATIC</b>
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-DatagramSocketImpl">DatagramSocketImpl</a><b>,CONSTRUCTOR</b>;
+                        <b>END</b>;
+
+  <a name="type-DatagramSocketImplFactory"></a><font color="#cc0033">DatagramSocketImplFactory</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                               <font color="green"><b> (* </b><a href="#meths-DatagramSocketImplFactory">Typebound Procedures</a><b> *)</b></font>
+                               <b>END</b>;
+
+  <a name="type-FileNameMap"></a><font color="#cc0033">FileNameMap</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                 <font color="green"><b> (* </b><a href="#meths-FileNameMap">Typebound Procedures</a><b> *)</b></font>
+                 <b>END</b>;
+
+  <a name="type-HttpCookie"></a><font color="#cc0033">HttpCookie</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_lang.html#type-Cloneable">java_lang.Cloneable</a>)
+                <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                <font color="green"><b> (* </b><a href="#meths-HttpCookie">Typebound Procedures</a><b> *)</b></font>
+                <b>STATIC</b>
+                  <b>PROCEDURE </b><font color="#cc0033">domainMatches</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                           p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : BOOLEAN;
+                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                  p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-HttpCookie">HttpCookie</a><b>,CONSTRUCTOR</b>;
+                  <b>PROCEDURE </b><font color="#cc0033">parse</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_util.html#type-List">java_util.List</a>;
+                <b>END</b>;
+
+  <a name="type-HttpRetryException"></a><font color="#cc0033">HttpRetryException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_io.html#type-IOException">java_io.IOException</a>)
+                        <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                        <font color="green"><b> (* </b><a href="#meths-HttpRetryException">Typebound Procedures</a><b> *)</b></font>
+                        <b>STATIC</b>
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                          p1 : INTEGER;
+                                          p2 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-HttpRetryException">HttpRetryException</a><b>,CONSTRUCTOR</b>;
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                          p1 : INTEGER) : <a href="#type-HttpRetryException">HttpRetryException</a><b>,CONSTRUCTOR</b>;
+                        <b>END</b>;
+
+  <a name="type-HttpURLConnection"></a><font color="#cc0033">HttpURLConnection</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_net.html#type-URLConnection">java_net.URLConnection</a>)
+                       <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                       <font color="green"><b> (* </b><a href="#meths-HttpURLConnection">Typebound Procedures</a><b> *)</b></font>
+                         <font color="#cc0033">method</font>!                  : <a href="java_lang.html#type-String">java_lang.String</a>;
+                         <font color="#cc0033">chunkLength</font>!             : INTEGER;
+                         <font color="#cc0033">fixedContentLength</font>!      : INTEGER;
+                         <font color="#cc0033">fixedContentLengthLong</font>!  : LONGINT;
+                         <font color="#cc0033">responseCode</font>!            : INTEGER;
+                         <font color="#cc0033">responseMessage</font>!         : <a href="java_lang.html#type-String">java_lang.String</a>;
+                         <font color="#cc0033">instanceFollowRedirects</font>! : BOOLEAN;
+                       <b>STATIC</b>
+                         <font color="#cc0033">HTTP_ACCEPTED</font>*          = 202;
+                         <font color="#cc0033">HTTP_BAD_GATEWAY</font>*       = 502;
+                         <font color="#cc0033">HTTP_BAD_METHOD</font>*        = 405;
+                         <font color="#cc0033">HTTP_BAD_REQUEST</font>*       = 400;
+                         <font color="#cc0033">HTTP_CLIENT_TIMEOUT</font>*    = 408;
+                         <font color="#cc0033">HTTP_CONFLICT</font>*          = 409;
+                         <font color="#cc0033">HTTP_CREATED</font>*           = 201;
+                         <font color="#cc0033">HTTP_ENTITY_TOO_LARGE</font>*  = 413;
+                         <font color="#cc0033">HTTP_FORBIDDEN</font>*         = 403;
+                         <font color="#cc0033">HTTP_GATEWAY_TIMEOUT</font>*   = 504;
+                         <font color="#cc0033">HTTP_GONE</font>*              = 410;
+                         <font color="#cc0033">HTTP_INTERNAL_ERROR</font>*    = 500;
+                         <font color="#cc0033">HTTP_LENGTH_REQUIRED</font>*   = 411;
+                         <font color="#cc0033">HTTP_MOVED_PERM</font>*        = 301;
+                         <font color="#cc0033">HTTP_MOVED_TEMP</font>*        = 302;
+                         <font color="#cc0033">HTTP_MULT_CHOICE</font>*       = 300;
+                         <font color="#cc0033">HTTP_NOT_ACCEPTABLE</font>*    = 406;
+                         <font color="#cc0033">HTTP_NOT_AUTHORITATIVE</font>* = 203;
+                         <font color="#cc0033">HTTP_NOT_FOUND</font>*         = 404;
+                         <font color="#cc0033">HTTP_NOT_IMPLEMENTED</font>*   = 501;
+                         <font color="#cc0033">HTTP_NOT_MODIFIED</font>*      = 304;
+                         <font color="#cc0033">HTTP_NO_CONTENT</font>*        = 204;
+                         <font color="#cc0033">HTTP_OK</font>*                = 200;
+                         <font color="#cc0033">HTTP_PARTIAL</font>*           = 206;
+                         <font color="#cc0033">HTTP_PAYMENT_REQUIRED</font>*  = 402;
+                         <font color="#cc0033">HTTP_PRECON_FAILED</font>*     = 412;
+                         <font color="#cc0033">HTTP_PROXY_AUTH</font>*        = 407;
+                         <font color="#cc0033">HTTP_REQ_TOO_LONG</font>*      = 414;
+                         <font color="#cc0033">HTTP_RESET</font>*             = 205;
+                         <font color="#cc0033">HTTP_SEE_OTHER</font>*         = 303;
+                         <font color="#cc0033">HTTP_SERVER_ERROR</font>*      = 500;
+                         <font color="#cc0033">HTTP_UNAUTHORIZED</font>*      = 401;
+                         <font color="#cc0033">HTTP_UNAVAILABLE</font>*       = 503;
+                         <font color="#cc0033">HTTP_UNSUPPORTED_TYPE</font>*  = 415;
+                         <font color="#cc0033">HTTP_USE_PROXY</font>*         = 305;
+                         <font color="#cc0033">HTTP_VERSION</font>*           = 505;
+                         <b>PROCEDURE </b><font color="#cc0033">getFollowRedirects</font>*() : BOOLEAN;
+                         <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : <a href="java_net.html#type-URL">java_net.URL</a>) : <a href="#type-HttpURLConnection">HttpURLConnection</a><b>,CONSTRUCTOR</b>;
+                         <b>PROCEDURE </b><font color="#cc0033">setFollowRedirects</font>*(p0 : BOOLEAN);
+                       <b>END</b>;
+
+  <a name="type-IDN"></a><font color="#cc0033">IDN</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+         <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> *)</font>
+         <b>STATIC</b>
+           <font color="#cc0033">ALLOW_UNASSIGNED</font>*     = 1;
+           <font color="#cc0033">USE_STD3_ASCII_RULES</font>* = 2;
+           <b>PROCEDURE </b><font color="#cc0033">toASCII</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-String">java_lang.String</a>;
+           <b>PROCEDURE </b><font color="#cc0033">toASCII</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                              p1 : INTEGER) : <a href="java_lang.html#type-String">java_lang.String</a>;
+           <b>PROCEDURE </b><font color="#cc0033">toUnicode</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-String">java_lang.String</a>;
+           <b>PROCEDURE </b><font color="#cc0033">toUnicode</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                p1 : INTEGER) : <a href="java_lang.html#type-String">java_lang.String</a>;
+         <b>END</b>;
+
+  <a name="type-Inet4Address"></a><font color="#cc0033">Inet4Address</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_net.html#type-InetAddress">java_net.InetAddress</a>)
+                  <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> *)</font>
+                  <font color="green"><b> (* </b><a href="#meths-Inet4Address">Typebound Procedures</a><b> *)</b></font>
+                  <b>END</b>;
+
+  <a name="type-Inet6Address"></a><font color="#cc0033">Inet6Address</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-InetAddress">InetAddress</a>)
+                  <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> *)</font>
+                  <font color="green"><b> (* </b><a href="#meths-Inet6Address">Typebound Procedures</a><b> *)</b></font>
+                  <b>STATIC</b>
+                    <b>PROCEDURE </b><font color="#cc0033">getByAddress</font>*(    p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                            IN  p1 : <b>ARRAY </b><b>OF </b>BYTE;
+                                                p2 : INTEGER) : <a href="#type-Inet6Address">Inet6Address</a>;
+                    <b>PROCEDURE </b><font color="#cc0033">getByAddress</font>*(    p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                            IN  p1 : <b>ARRAY </b><b>OF </b>BYTE;
+                                                p2 : <a href="#type-NetworkInterface">NetworkInterface</a>) : <a href="#type-Inet6Address">Inet6Address</a>;
+                  <b>END</b>;
+
+  <a name="type-InetAddress"></a><font color="#cc0033">InetAddress</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_io.html#type-Serializable">java_io.Serializable</a>)
+                 <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> *)</font>
+                 <font color="green"><b> (* </b><a href="#meths-InetAddress">Typebound Procedures</a><b> *)</b></font>
+                 <b>STATIC</b>
+                   <b>PROCEDURE </b><font color="#cc0033">getAllByName</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-InetAddress">InetAddress</a>;
+                   <b>PROCEDURE </b><font color="#cc0033">getByAddress</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE) : <a href="#type-InetAddress">InetAddress</a>;
+                   <b>PROCEDURE </b><font color="#cc0033">getByAddress</font>*(    p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                           IN  p1 : <b>ARRAY </b><b>OF </b>BYTE) : <a href="#type-InetAddress">InetAddress</a>;
+                   <b>PROCEDURE </b><font color="#cc0033">getByName</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-InetAddress">InetAddress</a>;
+                   <b>PROCEDURE </b><font color="#cc0033">getLocalHost</font>*() : <a href="#type-InetAddress">InetAddress</a>;
+                   <b>PROCEDURE </b><font color="#cc0033">getLoopbackAddress</font>*() : <a href="#type-InetAddress">InetAddress</a>;
+                 <b>END</b>;
+
+  <a name="type-InetSocketAddress"></a><font color="#cc0033">InetSocketAddress</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_net.html#type-SocketAddress">java_net.SocketAddress</a>)
+                       <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                       <font color="green"><b> (* </b><a href="#meths-InetSocketAddress">Typebound Procedures</a><b> *)</b></font>
+                       <b>STATIC</b>
+                         <b>PROCEDURE </b><font color="#cc0033">createUnresolved</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                     p1 : INTEGER) : <a href="#type-InetSocketAddress">InetSocketAddress</a>;
+                         <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                         p1 : INTEGER) : <a href="#type-InetSocketAddress">InetSocketAddress</a><b>,CONSTRUCTOR</b>;
+                         <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER) : <a href="#type-InetSocketAddress">InetSocketAddress</a><b>,CONSTRUCTOR</b>;
+                         <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_net.html#type-InetAddress">java_net.InetAddress</a>;
+                                         p1 : INTEGER) : <a href="#type-InetSocketAddress">InetSocketAddress</a><b>,CONSTRUCTOR</b>;
+                       <b>END</b>;
+
+  <a name="type-InterfaceAddress"></a><font color="#cc0033">InterfaceAddress</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                      <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> *)</font>
+                      <font color="green"><b> (* </b><a href="#meths-InterfaceAddress">Typebound Procedures</a><b> *)</b></font>
+                      <b>END</b>;
+
+  <a name="type-JarURLConnection"></a><font color="#cc0033">JarURLConnection</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_net.html#type-URLConnection">java_net.URLConnection</a>)
+                      <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                      <font color="green"><b> (* </b><a href="#meths-JarURLConnection">Typebound Procedures</a><b> *)</b></font>
+                        <font color="#cc0033">jarFileURLConnection</font>! : <a href="java_net.html#type-URLConnection">java_net.URLConnection</a>;
+                      <b>STATIC</b>
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : <a href="#type-URL">URL</a>) : <a href="#type-JarURLConnection">JarURLConnection</a><b>,CONSTRUCTOR</b>;
+                      <b>END</b>;
+
+  <a name="type-MalformedURLException"></a><font color="#cc0033">MalformedURLException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_io.html#type-IOException">java_io.IOException</a>)
+                           <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                           <b>STATIC</b>
+                             <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-MalformedURLException">MalformedURLException</a><b>,CONSTRUCTOR</b>;
+                             <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-MalformedURLException">MalformedURLException</a><b>,CONSTRUCTOR</b>;
+                           <b>END</b>;
+
+  <a name="type-MulticastSocket"></a><font color="#cc0033">MulticastSocket</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_net.html#type-DatagramSocket">java_net.DatagramSocket</a>)
+                     <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                     <font color="green"><b> (* </b><a href="#meths-MulticastSocket">Typebound Procedures</a><b> *)</b></font>
+                     <b>STATIC</b>
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_net.html#type-SocketAddress">java_net.SocketAddress</a>) : <a href="#type-MulticastSocket">MulticastSocket</a><b>,CONSTRUCTOR</b>;
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER) : <a href="#type-MulticastSocket">MulticastSocket</a><b>,CONSTRUCTOR</b>;
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-MulticastSocket">MulticastSocket</a><b>,CONSTRUCTOR</b>;
+                     <b>END</b>;
+
+  <a name="type-NetPermission"></a><font color="#cc0033">NetPermission</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_security.html#type-BasicPermission">java_security.BasicPermission</a>)
+                   <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                   <b>STATIC</b>
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                     p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-NetPermission">NetPermission</a><b>,CONSTRUCTOR</b>;
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-NetPermission">NetPermission</a><b>,CONSTRUCTOR</b>;
+                   <b>END</b>;
+
+  <a name="type-NetworkInterface"></a><font color="#cc0033">NetworkInterface</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                      <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> *)</font>
+                      <font color="green"><b> (* </b><a href="#meths-NetworkInterface">Typebound Procedures</a><b> *)</b></font>
+                      <b>STATIC</b>
+                        <b>PROCEDURE </b><font color="#cc0033">getByIndex</font>*(p0 : INTEGER) : <a href="#type-NetworkInterface">NetworkInterface</a>;
+                        <b>PROCEDURE </b><font color="#cc0033">getByInetAddress</font>*(p0 : <a href="java_net.html#type-InetAddress">java_net.InetAddress</a>) : <a href="#type-NetworkInterface">NetworkInterface</a>;
+                        <b>PROCEDURE </b><font color="#cc0033">getByName</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-NetworkInterface">NetworkInterface</a>;
+                        <b>PROCEDURE </b><font color="#cc0033">getNetworkInterfaces</font>*() : <a href="java_util.html#type-Enumeration">java_util.Enumeration</a>;
+                        <b>PROCEDURE </b><font color="#cc0033">networkInterfaces</font>*() : <a href="java_util_stream.html#type-Stream">java_util_stream.Stream</a>;
+                      <b>END</b>;
+
+  <a name="type-NoRouteToHostException"></a><font color="#cc0033">NoRouteToHostException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_net.html#type-SocketException">java_net.SocketException</a>)
+                            <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                            <b>STATIC</b>
+                              <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-NoRouteToHostException">NoRouteToHostException</a><b>,CONSTRUCTOR</b>;
+                              <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-NoRouteToHostException">NoRouteToHostException</a><b>,CONSTRUCTOR</b>;
+                            <b>END</b>;
+
+  <a name="type-PasswordAuthentication"></a><font color="#cc0033">PasswordAuthentication</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                            <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                            <font color="green"><b> (* </b><a href="#meths-PasswordAuthentication">Typebound Procedures</a><b> *)</b></font>
+                            <b>STATIC</b>
+                              <b>PROCEDURE </b><font color="#cc0033">Init</font>*(    p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                              IN  p1 : <b>ARRAY </b><b>OF </b>CHAR) : <a href="#type-PasswordAuthentication">PasswordAuthentication</a><b>,CONSTRUCTOR</b>;
+                            <b>END</b>;
+
+  <a name="type-PortUnreachableException"></a><font color="#cc0033">PortUnreachableException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_net.html#type-SocketException">java_net.SocketException</a>)
+                              <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                              <b>STATIC</b>
+                                <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-PortUnreachableException">PortUnreachableException</a><b>,CONSTRUCTOR</b>;
+                                <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-PortUnreachableException">PortUnreachableException</a><b>,CONSTRUCTOR</b>;
+                              <b>END</b>;
+
+  <a name="type-ProtocolException"></a><font color="#cc0033">ProtocolException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_io.html#type-IOException">java_io.IOException</a>)
+                       <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                       <b>STATIC</b>
+                         <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-ProtocolException">ProtocolException</a><b>,CONSTRUCTOR</b>;
+                         <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-ProtocolException">ProtocolException</a><b>,CONSTRUCTOR</b>;
+                       <b>END</b>;
+
+  <a name="type-ProtocolFamily"></a><font color="#cc0033">ProtocolFamily</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                    <font color="green"><b> (* </b><a href="#meths-ProtocolFamily">Typebound Procedures</a><b> *)</b></font>
+                    <b>END</b>;
+
+  <a name="type-Proxy"></a><font color="#cc0033">Proxy</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+           <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+           <font color="green"><b> (* </b><a href="#meths-Proxy">Typebound Procedures</a><b> *)</b></font>
+           <b>STATIC</b>
+             <a name="type-NO_PROXY"></a><font color="#cc0033">NO_PROXY</font>* : <a href="#type-Proxy">Proxy</a>;
+             <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_net.html#type-Proxy$Type">java_net.Proxy$Type</a>;
+                             p1 : <a href="java_net.html#type-SocketAddress">java_net.SocketAddress</a>) : <a href="#type-Proxy">Proxy</a><b>,CONSTRUCTOR</b>;
+           <b>END</b>;
+
+  <a name="type-Proxy$Type"></a><font color="#cc0033">Proxy$Type</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Enum">java_lang.Enum</a>)
+                <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> *)</font>
+                <b>STATIC</b>
+                  <a name="type-DIRECT"></a><font color="#cc0033">DIRECT</font>*  : <a href="#type-Proxy$Type">Proxy$Type</a>;
+                  <a name="type-HTTP"></a><font color="#cc0033">HTTP</font>*    : <a href="#type-Proxy$Type">Proxy$Type</a>;
+                  <a name="type-SOCKS"></a><font color="#cc0033">SOCKS</font>*   : <a href="#type-Proxy$Type">Proxy$Type</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">valueOf</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-Proxy$Type">Proxy$Type</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">values</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-Proxy$Type">Proxy$Type</a>;
+                <b>END</b>;
+
+  <a name="type-ProxySelector"></a><font color="#cc0033">ProxySelector</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                   <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                   <font color="green"><b> (* </b><a href="#meths-ProxySelector">Typebound Procedures</a><b> *)</b></font>
+                   <b>STATIC</b>
+                     <b>PROCEDURE </b><font color="#cc0033">getDefault</font>*() : <a href="#type-ProxySelector">ProxySelector</a>;
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-ProxySelector">ProxySelector</a><b>,CONSTRUCTOR</b>;
+                     <b>PROCEDURE </b><font color="#cc0033">of</font>*(p0 : <a href="#type-InetSocketAddress">InetSocketAddress</a>) : <a href="#type-ProxySelector">ProxySelector</a>;
+                     <b>PROCEDURE </b><font color="#cc0033">setDefault</font>*(p0 : <a href="#type-ProxySelector">ProxySelector</a>);
+                   <b>END</b>;
+
+  <a name="type-ResponseCache"></a><font color="#cc0033">ResponseCache</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                   <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                   <font color="green"><b> (* </b><a href="#meths-ResponseCache">Typebound Procedures</a><b> *)</b></font>
+                   <b>STATIC</b>
+                     <b>PROCEDURE </b><font color="#cc0033">getDefault</font>*() : <a href="#type-ResponseCache">ResponseCache</a>;
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-ResponseCache">ResponseCache</a><b>,CONSTRUCTOR</b>;
+                     <b>PROCEDURE </b><font color="#cc0033">setDefault</font>*(p0 : <a href="#type-ResponseCache">ResponseCache</a>);
+                   <b>END</b>;
+
+  <a name="type-SecureCacheResponse"></a><font color="#cc0033">SecureCacheResponse</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_net.html#type-CacheResponse">java_net.CacheResponse</a>)
+                         <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                         <font color="green"><b> (* </b><a href="#meths-SecureCacheResponse">Typebound Procedures</a><b> *)</b></font>
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-SecureCacheResponse">SecureCacheResponse</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-ServerSocket"></a><font color="#cc0033">ServerSocket</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_io.html#type-Closeable">java_io.Closeable</a>)
+                  <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                  <font color="green"><b> (* </b><a href="#meths-ServerSocket">Typebound Procedures</a><b> *)</b></font>
+                  <b>STATIC</b>
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER;
+                                    p1 : INTEGER) : <a href="#type-ServerSocket">ServerSocket</a><b>,CONSTRUCTOR</b>;
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER;
+                                    p1 : INTEGER;
+                                    p2 : <a href="java_net.html#type-InetAddress">java_net.InetAddress</a>) : <a href="#type-ServerSocket">ServerSocket</a><b>,CONSTRUCTOR</b>;
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER) : <a href="#type-ServerSocket">ServerSocket</a><b>,CONSTRUCTOR</b>;
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : <a href="java_net.html#type-SocketImpl">java_net.SocketImpl</a>) : <a href="#type-ServerSocket">ServerSocket</a><b>,CONSTRUCTOR</b>;
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-ServerSocket">ServerSocket</a><b>,CONSTRUCTOR</b>;
+                    <b>PROCEDURE </b><font color="#cc0033">setSocketFactory</font>*(p0 : <a href="java_net.html#type-SocketImplFactory">java_net.SocketImplFactory</a>);
+                  <b>END</b>;
+
+  <a name="type-Socket"></a><font color="#cc0033">Socket</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_io.html#type-Closeable">java_io.Closeable</a>)
+            <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+            <font color="green"><b> (* </b><a href="#meths-Socket">Typebound Procedures</a><b> *)</b></font>
+            <b>STATIC</b>
+              <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="#type-InetAddress">InetAddress</a>;
+                              p1 : INTEGER;
+                              p2 : <a href="#type-InetAddress">InetAddress</a>;
+                              p3 : INTEGER) : <a href="#type-Socket">Socket</a><b>,CONSTRUCTOR</b>;
+              <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                              p1 : INTEGER;
+                              p2 : <a href="#type-InetAddress">InetAddress</a>;
+                              p3 : INTEGER) : <a href="#type-Socket">Socket</a><b>,CONSTRUCTOR</b>;
+              <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="#type-InetAddress">InetAddress</a>;
+                              p1 : INTEGER;
+                              p2 : BOOLEAN) : <a href="#type-Socket">Socket</a><b>,CONSTRUCTOR</b>;
+              <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                              p1 : INTEGER;
+                              p2 : BOOLEAN) : <a href="#type-Socket">Socket</a><b>,CONSTRUCTOR</b>;
+              <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="#type-InetAddress">InetAddress</a>;
+                              p1 : INTEGER) : <a href="#type-Socket">Socket</a><b>,CONSTRUCTOR</b>;
+              <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="#type-Proxy">Proxy</a>) : <a href="#type-Socket">Socket</a><b>,CONSTRUCTOR</b>;
+              <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-Socket">Socket</a><b>,CONSTRUCTOR</b>;
+              <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                              p1 : INTEGER) : <a href="#type-Socket">Socket</a><b>,CONSTRUCTOR</b>;
+              <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : <a href="java_net.html#type-SocketImpl">java_net.SocketImpl</a>) : <a href="#type-Socket">Socket</a><b>,CONSTRUCTOR</b>;
+              <b>PROCEDURE </b><font color="#cc0033">setSocketImplFactory</font>*(p0 : <a href="#type-SocketImplFactory">SocketImplFactory</a>);
+            <b>END</b>;
+
+  <a name="type-SocketAddress"></a><font color="#cc0033">SocketAddress</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_io.html#type-Serializable">java_io.Serializable</a>)
+                   <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                   <b>STATIC</b>
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-SocketAddress">SocketAddress</a><b>,CONSTRUCTOR</b>;
+                   <b>END</b>;
+
+  <a name="type-SocketException"></a><font color="#cc0033">SocketException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_io.html#type-IOException">java_io.IOException</a>)
+                     <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                     <b>STATIC</b>
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-SocketException">SocketException</a><b>,CONSTRUCTOR</b>;
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-SocketException">SocketException</a><b>,CONSTRUCTOR</b>;
+                     <b>END</b>;
+
+  <a name="type-SocketImpl"></a><font color="#cc0033">SocketImpl</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_net.html#type-SocketOptions">java_net.SocketOptions</a>)
+                <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                <font color="green"><b> (* </b><a href="#meths-SocketImpl">Typebound Procedures</a><b> *)</b></font>
+                  <font color="#cc0033">fd</font>!        : <a href="java_io.html#type-FileDescriptor">java_io.FileDescriptor</a>;
+                  <font color="#cc0033">address</font>!   : <a href="#type-InetAddress">InetAddress</a>;
+                  <font color="#cc0033">port</font>!      : INTEGER;
+                  <font color="#cc0033">localport</font>! : INTEGER;
+                <b>STATIC</b>
+                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-SocketImpl">SocketImpl</a><b>,CONSTRUCTOR</b>;
+                <b>END</b>;
+
+  <a name="type-SocketImplFactory"></a><font color="#cc0033">SocketImplFactory</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                       <font color="green"><b> (* </b><a href="#meths-SocketImplFactory">Typebound Procedures</a><b> *)</b></font>
+                       <b>END</b>;
+
+  <a name="type-SocketOption"></a><font color="#cc0033">SocketOption</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                  <font color="green"><b> (* </b><a href="#meths-SocketOption">Typebound Procedures</a><b> *)</b></font>
+                  <b>END</b>;
+
+  <a name="type-SocketOptions"></a><font color="#cc0033">SocketOptions</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                   <font color="green"><b> (* </b><a href="#meths-SocketOptions">Typebound Procedures</a><b> *)</b></font>
+                   <b>STATIC</b>
+                     <font color="#cc0033">IP_MULTICAST_IF</font>*   = 16;
+                     <font color="#cc0033">IP_MULTICAST_IF2</font>*  = 31;
+                     <font color="#cc0033">IP_MULTICAST_LOOP</font>* = 18;
+                     <font color="#cc0033">IP_TOS</font>*            = 3;
+                     <font color="#cc0033">SO_BINDADDR</font>*       = 15;
+                     <font color="#cc0033">SO_BROADCAST</font>*      = 32;
+                     <font color="#cc0033">SO_KEEPALIVE</font>*      = 8;
+                     <font color="#cc0033">SO_LINGER</font>*         = 128;
+                     <font color="#cc0033">SO_OOBINLINE</font>*      = 4099;
+                     <font color="#cc0033">SO_RCVBUF</font>*         = 4098;
+                     <font color="#cc0033">SO_REUSEADDR</font>*      = 4;
+                     <font color="#cc0033">SO_REUSEPORT</font>*      = 14;
+                     <font color="#cc0033">SO_SNDBUF</font>*         = 4097;
+                     <font color="#cc0033">SO_TIMEOUT</font>*        = 4102;
+                     <font color="#cc0033">TCP_NODELAY</font>*       = 1;
+                   <b>END</b>;
+
+  <a name="type-SocketPermission"></a><font color="#cc0033">SocketPermission</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_security.html#type-Permission">java_security.Permission</a> + <a href="java_io.html#type-Serializable">java_io.Serializable</a>)
+                      <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                      <font color="green"><b> (* </b><a href="#meths-SocketPermission">Typebound Procedures</a><b> *)</b></font>
+                      <b>STATIC</b>
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                        p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-SocketPermission">SocketPermission</a><b>,CONSTRUCTOR</b>;
+                      <b>END</b>;
+
+  <a name="type-SocketTimeoutException"></a><font color="#cc0033">SocketTimeoutException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_io.html#type-InterruptedIOException">java_io.InterruptedIOException</a>)
+                            <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                            <b>STATIC</b>
+                              <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-SocketTimeoutException">SocketTimeoutException</a><b>,CONSTRUCTOR</b>;
+                              <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-SocketTimeoutException">SocketTimeoutException</a><b>,CONSTRUCTOR</b>;
+                            <b>END</b>;
+
+  <a name="type-StandardProtocolFamily"></a><font color="#cc0033">StandardProtocolFamily</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Enum">java_lang.Enum</a> + <a href="#type-ProtocolFamily">ProtocolFamily</a>)
+                            <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> *)</font>
+                            <b>STATIC</b>
+                              <a name="type-INET"></a><font color="#cc0033">INET</font>*    : <a href="#type-StandardProtocolFamily">StandardProtocolFamily</a>;
+                              <a name="type-INET6"></a><font color="#cc0033">INET6</font>*   : <a href="#type-StandardProtocolFamily">StandardProtocolFamily</a>;
+                              <a name="type-UNIX"></a><font color="#cc0033">UNIX</font>*    : <a href="#type-StandardProtocolFamily">StandardProtocolFamily</a>;
+                              <b>PROCEDURE </b><font color="#cc0033">valueOf</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-StandardProtocolFamily">StandardProtocolFamily</a>;
+                              <b>PROCEDURE </b><font color="#cc0033">values</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-StandardProtocolFamily">StandardProtocolFamily</a>;
+                            <b>END</b>;
+
+  <a name="type-StandardSocketOptions"></a><font color="#cc0033">StandardSocketOptions</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                           <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> *)</font>
+                           <b>STATIC</b>
+                             <a name="type-IP_MULTICAST_IF"></a><font color="#cc0033">IP_MULTICAST_IF</font>*   : <a href="#type-SocketOption">SocketOption</a>;
+                             <a name="type-IP_MULTICAST_LOOP"></a><font color="#cc0033">IP_MULTICAST_LOOP</font>* : <a href="#type-SocketOption">SocketOption</a>;
+                             <a name="type-IP_MULTICAST_TTL"></a><font color="#cc0033">IP_MULTICAST_TTL</font>*  : <a href="#type-SocketOption">SocketOption</a>;
+                             <a name="type-IP_TOS"></a><font color="#cc0033">IP_TOS</font>*            : <a href="#type-SocketOption">SocketOption</a>;
+                             <a name="type-SO_BROADCAST"></a><font color="#cc0033">SO_BROADCAST</font>*      : <a href="#type-SocketOption">SocketOption</a>;
+                             <a name="type-SO_KEEPALIVE"></a><font color="#cc0033">SO_KEEPALIVE</font>*      : <a href="#type-SocketOption">SocketOption</a>;
+                             <a name="type-SO_LINGER"></a><font color="#cc0033">SO_LINGER</font>*         : <a href="#type-SocketOption">SocketOption</a>;
+                             <a name="type-SO_RCVBUF"></a><font color="#cc0033">SO_RCVBUF</font>*         : <a href="#type-SocketOption">SocketOption</a>;
+                             <a name="type-SO_REUSEADDR"></a><font color="#cc0033">SO_REUSEADDR</font>*      : <a href="#type-SocketOption">SocketOption</a>;
+                             <a name="type-SO_REUSEPORT"></a><font color="#cc0033">SO_REUSEPORT</font>*      : <a href="#type-SocketOption">SocketOption</a>;
+                             <a name="type-SO_SNDBUF"></a><font color="#cc0033">SO_SNDBUF</font>*         : <a href="#type-SocketOption">SocketOption</a>;
+                             <a name="type-TCP_NODELAY"></a><font color="#cc0033">TCP_NODELAY</font>*       : <a href="#type-SocketOption">SocketOption</a>;
+                           <b>END</b>;
+
+  <a name="type-UnixDomainSocketAddress"></a><font color="#cc0033">UnixDomainSocketAddress</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_net.html#type-SocketAddress">java_net.SocketAddress</a>)
+                             <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> *)</font>
+                             <font color="green"><b> (* </b><a href="#meths-UnixDomainSocketAddress">Typebound Procedures</a><b> *)</b></font>
+                             <b>STATIC</b>
+                               <b>PROCEDURE </b><font color="#cc0033">of</font>*(p0 : <a href="java_nio_file.html#type-Path">java_nio_file.Path</a>) : <a href="#type-UnixDomainSocketAddress">UnixDomainSocketAddress</a>;
+                               <b>PROCEDURE </b><font color="#cc0033">of</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-UnixDomainSocketAddress">UnixDomainSocketAddress</a>;
+                             <b>END</b>;
+
+  <a name="type-UnknownHostException"></a><font color="#cc0033">UnknownHostException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_io.html#type-IOException">java_io.IOException</a>)
+                          <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                          <b>STATIC</b>
+                            <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-UnknownHostException">UnknownHostException</a><b>,CONSTRUCTOR</b>;
+                            <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-UnknownHostException">UnknownHostException</a><b>,CONSTRUCTOR</b>;
+                          <b>END</b>;
+
+  <a name="type-UnknownServiceException"></a><font color="#cc0033">UnknownServiceException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_io.html#type-IOException">java_io.IOException</a>)
+                             <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                             <b>STATIC</b>
+                               <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-UnknownServiceException">UnknownServiceException</a><b>,CONSTRUCTOR</b>;
+                               <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-UnknownServiceException">UnknownServiceException</a><b>,CONSTRUCTOR</b>;
+                             <b>END</b>;
+
+  <a name="type-URI"></a><font color="#cc0033">URI</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_lang.html#type-Comparable">java_lang.Comparable</a> + <a href="java_io.html#type-Serializable">java_io.Serializable</a>)
+         <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+         <font color="green"><b> (* </b><a href="#meths-URI">Typebound Procedures</a><b> *)</b></font>
+         <b>STATIC</b>
+           <b>PROCEDURE </b><font color="#cc0033">create</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-URI">URI</a>;
+           <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                           p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                           p2 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                           p3 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-URI">URI</a><b>,CONSTRUCTOR</b>;
+           <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                           p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                           p2 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-URI">URI</a><b>,CONSTRUCTOR</b>;
+           <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-URI">URI</a><b>,CONSTRUCTOR</b>;
+           <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                           p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                           p2 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                           p3 : INTEGER;
+                           p4 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                           p5 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                           p6 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-URI">URI</a><b>,CONSTRUCTOR</b>;
+           <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                           p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                           p2 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                           p3 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                           p4 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-URI">URI</a><b>,CONSTRUCTOR</b>;
+         <b>END</b>;
+
+  <a name="type-URISyntaxException"></a><font color="#cc0033">URISyntaxException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Exception">java_lang.Exception</a>)
+                        <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                        <font color="green"><b> (* </b><a href="#meths-URISyntaxException">Typebound Procedures</a><b> *)</b></font>
+                        <b>STATIC</b>
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                          p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-URISyntaxException">URISyntaxException</a><b>,CONSTRUCTOR</b>;
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                          p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                          p2 : INTEGER) : <a href="#type-URISyntaxException">URISyntaxException</a><b>,CONSTRUCTOR</b>;
+                        <b>END</b>;
+
+  <a name="type-URL"></a><font color="#cc0033">URL</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_io.html#type-Serializable">java_io.Serializable</a>)
+         <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+         <font color="green"><b> (* </b><a href="#meths-URL">Typebound Procedures</a><b> *)</b></font>
+         <b>STATIC</b>
+           <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-URL">URL</a><b>,CONSTRUCTOR</b>;
+           <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="#type-URL">URL</a>;
+                           p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-URL">URL</a><b>,CONSTRUCTOR</b>;
+           <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="#type-URL">URL</a>;
+                           p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                           p2 : <a href="#type-URLStreamHandler">URLStreamHandler</a>) : <a href="#type-URL">URL</a><b>,CONSTRUCTOR</b>;
+           <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                           p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                           p2 : INTEGER;
+                           p3 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-URL">URL</a><b>,CONSTRUCTOR</b>;
+           <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                           p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                           p2 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-URL">URL</a><b>,CONSTRUCTOR</b>;
+           <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                           p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                           p2 : INTEGER;
+                           p3 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                           p4 : <a href="#type-URLStreamHandler">URLStreamHandler</a>) : <a href="#type-URL">URL</a><b>,CONSTRUCTOR</b>;
+           <b>PROCEDURE </b><font color="#cc0033">setURLStreamHandlerFactory</font>*(p0 : <a href="#type-URLStreamHandlerFactory">URLStreamHandlerFactory</a>);
+         <b>END</b>;
+
+  <a name="type-URLClassLoader"></a><font color="#cc0033">URLClassLoader</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_security.html#type-SecureClassLoader">java_security.SecureClassLoader</a> + <a href="java_io.html#type-Closeable">java_io.Closeable</a>)
+                    <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                    <font color="green"><b> (* </b><a href="#meths-URLClassLoader">Typebound Procedures</a><b> *)</b></font>
+                    <b>STATIC</b>
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*(    p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                      IN  p1 : <b>ARRAY </b><b>OF </b><a href="#type-URL">URL</a>;
+                                          p2 : <a href="java_lang.html#type-ClassLoader">java_lang.ClassLoader</a>) : <a href="#type-URLClassLoader">URLClassLoader</a><b>,CONSTRUCTOR</b>;
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*(    p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                      IN  p1 : <b>ARRAY </b><b>OF </b><a href="#type-URL">URL</a>;
+                                          p2 : <a href="java_lang.html#type-ClassLoader">java_lang.ClassLoader</a>;
+                                          p3 : <a href="#type-URLStreamHandlerFactory">URLStreamHandlerFactory</a>) : <a href="#type-URLClassLoader">URLClassLoader</a><b>,CONSTRUCTOR</b>;
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="#type-URL">URL</a>;
+                                          p1 : <a href="java_lang.html#type-ClassLoader">java_lang.ClassLoader</a>;
+                                          p2 : <a href="#type-URLStreamHandlerFactory">URLStreamHandlerFactory</a>) : <a href="#type-URLClassLoader">URLClassLoader</a><b>,CONSTRUCTOR</b>;
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="#type-URL">URL</a>;
+                                          p1 : <a href="java_lang.html#type-ClassLoader">java_lang.ClassLoader</a>) : <a href="#type-URLClassLoader">URLClassLoader</a><b>,CONSTRUCTOR</b>;
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="#type-URL">URL</a>) : <a href="#type-URLClassLoader">URLClassLoader</a><b>,CONSTRUCTOR</b>;
+                      <b>PROCEDURE </b><font color="#cc0033">newInstance</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="#type-URL">URL</a>) : <a href="#type-URLClassLoader">URLClassLoader</a>;
+                      <b>PROCEDURE </b><font color="#cc0033">newInstance</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="#type-URL">URL</a>;
+                                                 p1 : <a href="java_lang.html#type-ClassLoader">java_lang.ClassLoader</a>) : <a href="#type-URLClassLoader">URLClassLoader</a>;
+                    <b>END</b>;
+
+  <a name="type-URLConnection"></a><font color="#cc0033">URLConnection</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                   <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                   <font color="green"><b> (* </b><a href="#meths-URLConnection">Typebound Procedures</a><b> *)</b></font>
+                     <font color="#cc0033">url</font>!                  : <a href="#type-URL">URL</a>;
+                     <font color="#cc0033">doInput</font>!              : BOOLEAN;
+                     <font color="#cc0033">doOutput</font>!             : BOOLEAN;
+                     <font color="#cc0033">allowUserInteraction</font>! : BOOLEAN;
+                     <font color="#cc0033">useCaches</font>!            : BOOLEAN;
+                     <font color="#cc0033">ifModifiedSince</font>!      : LONGINT;
+                     <font color="#cc0033">connected</font>!            : BOOLEAN;
+                   <b>STATIC</b>
+                     <b>PROCEDURE </b><font color="#cc0033">getDefaultAllowUserInteraction</font>*() : BOOLEAN;
+                     <b>PROCEDURE </b><font color="#cc0033">getDefaultRequestProperty</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-String">java_lang.String</a>;
+                     <b>PROCEDURE </b><font color="#cc0033">getDefaultUseCaches</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : BOOLEAN;
+                     <b>PROCEDURE </b><font color="#cc0033">getFileNameMap</font>*() : <a href="#type-FileNameMap">FileNameMap</a>;
+                     <b>PROCEDURE </b><font color="#cc0033">guessContentTypeFromName</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-String">java_lang.String</a>;
+                     <b>PROCEDURE </b><font color="#cc0033">guessContentTypeFromStream</font>*(p0 : <a href="java_io.html#type-InputStream">java_io.InputStream</a>) : <a href="java_lang.html#type-String">java_lang.String</a>;
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : <a href="#type-URL">URL</a>) : <a href="#type-URLConnection">URLConnection</a><b>,CONSTRUCTOR</b>;
+                     <b>PROCEDURE </b><font color="#cc0033">setContentHandlerFactory</font>*(p0 : <a href="#type-ContentHandlerFactory">ContentHandlerFactory</a>);
+                     <b>PROCEDURE </b><font color="#cc0033">setDefaultAllowUserInteraction</font>*(p0 : BOOLEAN);
+                     <b>PROCEDURE </b><font color="#cc0033">setDefaultRequestProperty</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                          p1 : <a href="java_lang.html#type-String">java_lang.String</a>);
+                     <b>PROCEDURE </b><font color="#cc0033">setDefaultUseCaches</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                    p1 : BOOLEAN);
+                     <b>PROCEDURE </b><font color="#cc0033">setFileNameMap</font>*(p0 : <a href="#type-FileNameMap">FileNameMap</a>);
+                   <b>END</b>;
+
+  <a name="type-URLDecoder"></a><font color="#cc0033">URLDecoder</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> *)</font>
+                <b>STATIC</b>
+                  <b>PROCEDURE </b><font color="#cc0033">decode</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                    p1 : <a href="java_nio_charset.html#type-Charset">java_nio_charset.Charset</a>) : <a href="java_lang.html#type-String">java_lang.String</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">decode</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                    p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-String">java_lang.String</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">decode</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-String">java_lang.String</a>;
+                <b>END</b>;
+
+  <a name="type-URLEncoder"></a><font color="#cc0033">URLEncoder</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> *)</font>
+                <b>STATIC</b>
+                  <b>PROCEDURE </b><font color="#cc0033">encode</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                    p1 : <a href="java_nio_charset.html#type-Charset">java_nio_charset.Charset</a>) : <a href="java_lang.html#type-String">java_lang.String</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">encode</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                    p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-String">java_lang.String</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">encode</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-String">java_lang.String</a>;
+                <b>END</b>;
+
+  <a name="type-URLPermission"></a><font color="#cc0033">URLPermission</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_security.html#type-Permission">java_security.Permission</a>)
+                   <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                   <font color="green"><b> (* </b><a href="#meths-URLPermission">Typebound Procedures</a><b> *)</b></font>
+                   <b>STATIC</b>
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-URLPermission">URLPermission</a><b>,CONSTRUCTOR</b>;
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                     p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-URLPermission">URLPermission</a><b>,CONSTRUCTOR</b>;
+                   <b>END</b>;
+
+  <a name="type-URLStreamHandler"></a><font color="#cc0033">URLStreamHandler</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                      <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                      <font color="green"><b> (* </b><a href="#meths-URLStreamHandler">Typebound Procedures</a><b> *)</b></font>
+                      <b>STATIC</b>
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-URLStreamHandler">URLStreamHandler</a><b>,CONSTRUCTOR</b>;
+                      <b>END</b>;
+
+  <a name="type-URLStreamHandlerFactory"></a><font color="#cc0033">URLStreamHandlerFactory</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                             <font color="green"><b> (* </b><a href="#meths-URLStreamHandlerFactory">Typebound Procedures</a><b> *)</b></font>
+                             <b>END</b>;
+
+
+
+<a name="meths-Authenticator"></a>
+<b>PROCEDURE </b>(self:Authenticator) <font color="#cc0033">getPasswordAuthentication</font>!() : <a href="#type-PasswordAuthentication">PasswordAuthentication</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Authenticator) <font color="#cc0033">getRequestingHost</font>!() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:Authenticator) <font color="#cc0033">getRequestingPort</font>!() : INTEGER<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:Authenticator) <font color="#cc0033">getRequestingPrompt</font>!() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:Authenticator) <font color="#cc0033">getRequestingProtocol</font>!() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:Authenticator) <font color="#cc0033">getRequestingScheme</font>!() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:Authenticator) <font color="#cc0033">getRequestingSite</font>!() : <a href="#type-InetAddress">InetAddress</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:Authenticator) <font color="#cc0033">getRequestingURL</font>!() : <a href="java_net.html#type-URL">java_net.URL</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Authenticator) <font color="#cc0033">getRequestorType</font>!() : <a href="#type-Authenticator$RequestorType">Authenticator$RequestorType</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Authenticator) <font color="#cc0033">requestPasswordAuthenticationInstance</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                                      p1 : <a href="#type-InetAddress">InetAddress</a>;
+                                                                      p2 : INTEGER;
+                                                                      p3 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                                      p4 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                                      p5 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                                      p6 : <a href="java_net.html#type-URL">java_net.URL</a>;
+                                                                      p7 : <a href="#type-Authenticator$RequestorType">Authenticator$RequestorType</a>) : <a href="#type-PasswordAuthentication">PasswordAuthentication</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-CacheRequest"></a>
+<b>PROCEDURE </b>(self:CacheRequest) <font color="#cc0033">abort</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CacheRequest) <font color="#cc0033">getBody</font>*() : <a href="java_io.html#type-OutputStream">java_io.OutputStream</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-CacheResponse"></a>
+<b>PROCEDURE </b>(self:CacheResponse) <font color="#cc0033">getBody</font>*() : <a href="java_io.html#type-InputStream">java_io.InputStream</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CacheResponse) <font color="#cc0033">getHeaders</font>*() : <a href="java_util.html#type-Map">java_util.Map</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-ContentHandler"></a>
+<b>PROCEDURE </b>(self:ContentHandler) <font color="#cc0033">getContent</font>*(    p0 : <a href="java_net.html#type-URLConnection">java_net.URLConnection</a>;
+                                            IN  p1 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Class">java_lang.Class</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ContentHandler) <font color="#cc0033">getContent</font>*(p0 : <a href="java_net.html#type-URLConnection">java_net.URLConnection</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-ContentHandlerFactory"></a>
+<b>PROCEDURE </b>(self:ContentHandlerFactory) <font color="#cc0033">createContentHandler</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_net.html#type-ContentHandler">java_net.ContentHandler</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-CookieHandler"></a>
+<b>PROCEDURE </b>(self:CookieHandler) <font color="#cc0033">get</font>*(p0 : <a href="java_net.html#type-URI">java_net.URI</a>;
+                                    p1 : <a href="java_util.html#type-Map">java_util.Map</a>) : <a href="java_util.html#type-Map">java_util.Map</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CookieHandler) <font color="#cc0033">put</font>*(p0 : <a href="java_net.html#type-URI">java_net.URI</a>;
+                                    p1 : <a href="java_util.html#type-Map">java_util.Map</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-CookieManager"></a>
+<b>PROCEDURE </b>(self:CookieManager) <font color="#cc0033">get</font>*(p0 : <a href="#type-URI">URI</a>;
+                                    p1 : <a href="java_util.html#type-Map">java_util.Map</a>) : <a href="java_util.html#type-Map">java_util.Map</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CookieManager) <font color="#cc0033">getCookieStore</font>*() : <a href="#type-CookieStore">CookieStore</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CookieManager) <font color="#cc0033">put</font>*(p0 : <a href="#type-URI">URI</a>;
+                                    p1 : <a href="java_util.html#type-Map">java_util.Map</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CookieManager) <font color="#cc0033">setCookiePolicy</font>*(p0 : <a href="#type-CookiePolicy">CookiePolicy</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-CookiePolicy"></a>
+<b>PROCEDURE </b>(self:CookiePolicy) <font color="#cc0033">shouldAccept</font>*(p0 : <a href="#type-URI">URI</a>;
+                                            p1 : <a href="#type-HttpCookie">HttpCookie</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+<a name="meths-CookieStore"></a>
+<b>PROCEDURE </b>(self:CookieStore) <font color="#cc0033">add</font>*(p0 : <a href="java_net.html#type-URI">java_net.URI</a>;
+                                  p1 : <a href="#type-HttpCookie">HttpCookie</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CookieStore) <font color="#cc0033">get</font>*(p0 : <a href="java_net.html#type-URI">java_net.URI</a>) : <a href="java_util.html#type-List">java_util.List</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CookieStore) <font color="#cc0033">getCookies</font>*() : <a href="java_util.html#type-List">java_util.List</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CookieStore) <font color="#cc0033">getURIs</font>*() : <a href="java_util.html#type-List">java_util.List</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CookieStore) <font color="#cc0033">remove</font>*(p0 : <a href="java_net.html#type-URI">java_net.URI</a>;
+                                     p1 : <a href="#type-HttpCookie">HttpCookie</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CookieStore) <font color="#cc0033">removeAll</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+<a name="meths-DatagramPacket"></a>
+<b>PROCEDURE </b>(self:DatagramPacket) <font color="#cc0033">getAddress</font>*() : <a href="java_net.html#type-InetAddress">java_net.InetAddress</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DatagramPacket) <font color="#cc0033">getData</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DatagramPacket) <font color="#cc0033">getLength</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DatagramPacket) <font color="#cc0033">getOffset</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DatagramPacket) <font color="#cc0033">getPort</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DatagramPacket) <font color="#cc0033">getSocketAddress</font>*() : <a href="java_net.html#type-SocketAddress">java_net.SocketAddress</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DatagramPacket) <font color="#cc0033">setAddress</font>*(p0 : <a href="java_net.html#type-InetAddress">java_net.InetAddress</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DatagramPacket) <font color="#cc0033">setData</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DatagramPacket) <font color="#cc0033">setData</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE;
+                                             p1 : INTEGER;
+                                             p2 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DatagramPacket) <font color="#cc0033">setLength</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DatagramPacket) <font color="#cc0033">setPort</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DatagramPacket) <font color="#cc0033">setSocketAddress</font>*(p0 : <a href="java_net.html#type-SocketAddress">java_net.SocketAddress</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-DatagramSocket"></a>
+<b>PROCEDURE </b>(self:DatagramSocket) <font color="#cc0033">bind</font>*(p0 : <a href="java_net.html#type-SocketAddress">java_net.SocketAddress</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DatagramSocket) <font color="#cc0033">close</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DatagramSocket) <font color="#cc0033">connect</font>*(p0 : <a href="#type-InetAddress">InetAddress</a>;
+                                         p1 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DatagramSocket) <font color="#cc0033">connect</font>*(p0 : <a href="java_net.html#type-SocketAddress">java_net.SocketAddress</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DatagramSocket) <font color="#cc0033">disconnect</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DatagramSocket) <font color="#cc0033">getBroadcast</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DatagramSocket) <font color="#cc0033">getChannel</font>*() : <a href="java_nio_channels.html#type-DatagramChannel">java_nio_channels.DatagramChannel</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DatagramSocket) <font color="#cc0033">getInetAddress</font>*() : <a href="#type-InetAddress">InetAddress</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DatagramSocket) <font color="#cc0033">getLocalAddress</font>*() : <a href="#type-InetAddress">InetAddress</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DatagramSocket) <font color="#cc0033">getLocalPort</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DatagramSocket) <font color="#cc0033">getLocalSocketAddress</font>*() : <a href="java_net.html#type-SocketAddress">java_net.SocketAddress</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DatagramSocket) <font color="#cc0033">getOption</font>*(p0 : <a href="#type-SocketOption">SocketOption</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DatagramSocket) <font color="#cc0033">getPort</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DatagramSocket) <font color="#cc0033">getReceiveBufferSize</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DatagramSocket) <font color="#cc0033">getRemoteSocketAddress</font>*() : <a href="java_net.html#type-SocketAddress">java_net.SocketAddress</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DatagramSocket) <font color="#cc0033">getReuseAddress</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DatagramSocket) <font color="#cc0033">getSendBufferSize</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DatagramSocket) <font color="#cc0033">getSoTimeout</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DatagramSocket) <font color="#cc0033">getTrafficClass</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DatagramSocket) <font color="#cc0033">isBound</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DatagramSocket) <font color="#cc0033">isClosed</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DatagramSocket) <font color="#cc0033">isConnected</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DatagramSocket) <font color="#cc0033">joinGroup</font>*(p0 : <a href="java_net.html#type-SocketAddress">java_net.SocketAddress</a>;
+                                           p1 : <a href="#type-NetworkInterface">NetworkInterface</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DatagramSocket) <font color="#cc0033">leaveGroup</font>*(p0 : <a href="java_net.html#type-SocketAddress">java_net.SocketAddress</a>;
+                                            p1 : <a href="#type-NetworkInterface">NetworkInterface</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DatagramSocket) <font color="#cc0033">receive</font>*(p0 : <a href="#type-DatagramPacket">DatagramPacket</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DatagramSocket) <font color="#cc0033">send</font>*(p0 : <a href="#type-DatagramPacket">DatagramPacket</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DatagramSocket) <font color="#cc0033">setBroadcast</font>*(p0 : BOOLEAN)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DatagramSocket) <font color="#cc0033">setOption</font>*(p0 : <a href="#type-SocketOption">SocketOption</a>;
+                                           p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="#type-DatagramSocket">DatagramSocket</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DatagramSocket) <font color="#cc0033">setReceiveBufferSize</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DatagramSocket) <font color="#cc0033">setReuseAddress</font>*(p0 : BOOLEAN)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DatagramSocket) <font color="#cc0033">setSendBufferSize</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DatagramSocket) <font color="#cc0033">setSoTimeout</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DatagramSocket) <font color="#cc0033">setTrafficClass</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DatagramSocket) <font color="#cc0033">supportedOptions</font>*() : <a href="java_util.html#type-Set">java_util.Set</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-DatagramSocketImpl"></a>
+<b>PROCEDURE </b>(self:DatagramSocketImpl) <font color="#cc0033">bind</font>!(p0 : INTEGER;
+                                          p1 : <a href="java_net.html#type-InetAddress">java_net.InetAddress</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DatagramSocketImpl) <font color="#cc0033">close</font>!()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DatagramSocketImpl) <font color="#cc0033">connect</font>!(p0 : <a href="java_net.html#type-InetAddress">java_net.InetAddress</a>;
+                                             p1 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DatagramSocketImpl) <font color="#cc0033">create</font>!()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DatagramSocketImpl) <font color="#cc0033">disconnect</font>!()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DatagramSocketImpl) <font color="#cc0033">getFileDescriptor</font>!() : <a href="java_io.html#type-FileDescriptor">java_io.FileDescriptor</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DatagramSocketImpl) <font color="#cc0033">getLocalPort</font>!() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DatagramSocketImpl) <font color="#cc0033">getOption</font>!(p0 : <a href="java_net.html#type-SocketOption">java_net.SocketOption</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DatagramSocketImpl) <font color="#cc0033">getTimeToLive</font>!() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DatagramSocketImpl) <font color="#cc0033">getTTL</font>!() : BYTE<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DatagramSocketImpl) <font color="#cc0033">join</font>!(p0 : <a href="java_net.html#type-InetAddress">java_net.InetAddress</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DatagramSocketImpl) <font color="#cc0033">joinGroup</font>!(p0 : <a href="java_net.html#type-SocketAddress">java_net.SocketAddress</a>;
+                                               p1 : <a href="java_net.html#type-NetworkInterface">java_net.NetworkInterface</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DatagramSocketImpl) <font color="#cc0033">leave</font>!(p0 : <a href="java_net.html#type-InetAddress">java_net.InetAddress</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DatagramSocketImpl) <font color="#cc0033">leaveGroup</font>!(p0 : <a href="java_net.html#type-SocketAddress">java_net.SocketAddress</a>;
+                                                p1 : <a href="java_net.html#type-NetworkInterface">java_net.NetworkInterface</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DatagramSocketImpl) <font color="#cc0033">peek</font>!(p0 : <a href="java_net.html#type-InetAddress">java_net.InetAddress</a>) : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DatagramSocketImpl) <font color="#cc0033">peekData</font>!(p0 : <a href="java_net.html#type-DatagramPacket">java_net.DatagramPacket</a>) : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DatagramSocketImpl) <font color="#cc0033">receive</font>!(p0 : <a href="java_net.html#type-DatagramPacket">java_net.DatagramPacket</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DatagramSocketImpl) <font color="#cc0033">send</font>!(p0 : <a href="java_net.html#type-DatagramPacket">java_net.DatagramPacket</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DatagramSocketImpl) <font color="#cc0033">setOption</font>!(p0 : <a href="java_net.html#type-SocketOption">java_net.SocketOption</a>;
+                                               p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DatagramSocketImpl) <font color="#cc0033">setTimeToLive</font>!(p0 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DatagramSocketImpl) <font color="#cc0033">setTTL</font>!(p0 : BYTE)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DatagramSocketImpl) <font color="#cc0033">supportedOptions</font>!() : <a href="java_util.html#type-Set">java_util.Set</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-DatagramSocketImplFactory"></a>
+<b>PROCEDURE </b>(self:DatagramSocketImplFactory) <font color="#cc0033">createDatagramSocketImpl</font>*() : <a href="#type-DatagramSocketImpl">DatagramSocketImpl</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-FileNameMap"></a>
+<b>PROCEDURE </b>(self:FileNameMap) <font color="#cc0033">getContentTypeFor</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-HttpCookie"></a>
+<b>PROCEDURE </b>(self:HttpCookie) <font color="#cc0033">clone</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HttpCookie) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HttpCookie) <font color="#cc0033">getComment</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HttpCookie) <font color="#cc0033">getCommentURL</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HttpCookie) <font color="#cc0033">getDiscard</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HttpCookie) <font color="#cc0033">getDomain</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HttpCookie) <font color="#cc0033">getMaxAge</font>*() : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HttpCookie) <font color="#cc0033">getName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HttpCookie) <font color="#cc0033">getPath</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HttpCookie) <font color="#cc0033">getPortlist</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HttpCookie) <font color="#cc0033">getSecure</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HttpCookie) <font color="#cc0033">getValue</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HttpCookie) <font color="#cc0033">getVersion</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HttpCookie) <font color="#cc0033">hasExpired</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HttpCookie) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HttpCookie) <font color="#cc0033">isHttpOnly</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HttpCookie) <font color="#cc0033">setComment</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HttpCookie) <font color="#cc0033">setCommentURL</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HttpCookie) <font color="#cc0033">setDiscard</font>*(p0 : BOOLEAN)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HttpCookie) <font color="#cc0033">setDomain</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HttpCookie) <font color="#cc0033">setHttpOnly</font>*(p0 : BOOLEAN)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HttpCookie) <font color="#cc0033">setMaxAge</font>*(p0 : LONGINT)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HttpCookie) <font color="#cc0033">setPath</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HttpCookie) <font color="#cc0033">setPortlist</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HttpCookie) <font color="#cc0033">setSecure</font>*(p0 : BOOLEAN)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HttpCookie) <font color="#cc0033">setValue</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HttpCookie) <font color="#cc0033">setVersion</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HttpCookie) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-HttpRetryException"></a>
+<b>PROCEDURE </b>(self:HttpRetryException) <font color="#cc0033">getLocation</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HttpRetryException) <font color="#cc0033">getReason</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HttpRetryException) <font color="#cc0033">responseCode</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-HttpURLConnection"></a>
+<b>PROCEDURE </b>(self:HttpURLConnection) <font color="#cc0033">disconnect</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:HttpURLConnection) <font color="#cc0033">getErrorStream</font>*() : <a href="java_io.html#type-InputStream">java_io.InputStream</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HttpURLConnection) <font color="#cc0033">getHeaderField</font>*(p0 : INTEGER) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HttpURLConnection) <font color="#cc0033">getHeaderFieldDate</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                       p1 : LONGINT) : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HttpURLConnection) <font color="#cc0033">getHeaderFieldKey</font>*(p0 : INTEGER) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HttpURLConnection) <font color="#cc0033">getInstanceFollowRedirects</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HttpURLConnection) <font color="#cc0033">getPermission</font>*() : <a href="java_security.html#type-Permission">java_security.Permission</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HttpURLConnection) <font color="#cc0033">getRequestMethod</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HttpURLConnection) <font color="#cc0033">getResponseCode</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HttpURLConnection) <font color="#cc0033">getResponseMessage</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HttpURLConnection) <font color="#cc0033">setAuthenticator</font>*(p0 : <a href="java_net.html#type-Authenticator">java_net.Authenticator</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HttpURLConnection) <font color="#cc0033">setChunkedStreamingMode</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HttpURLConnection) <font color="#cc0033">setFixedLengthStreamingMode</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HttpURLConnection) <font color="#cc0033">setFixedLengthStreamingMode</font>*(p0 : LONGINT)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HttpURLConnection) <font color="#cc0033">setInstanceFollowRedirects</font>*(p0 : BOOLEAN)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HttpURLConnection) <font color="#cc0033">setRequestMethod</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HttpURLConnection) <font color="#cc0033">usingProxy</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+<a name="meths-Inet4Address"></a>
+<b>PROCEDURE </b>(self:Inet4Address) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Inet4Address) <font color="#cc0033">getAddress</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Inet4Address) <font color="#cc0033">getHostAddress</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Inet4Address) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Inet4Address) <font color="#cc0033">isAnyLocalAddress</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Inet4Address) <font color="#cc0033">isLinkLocalAddress</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Inet4Address) <font color="#cc0033">isLoopbackAddress</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Inet4Address) <font color="#cc0033">isMCGlobal</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Inet4Address) <font color="#cc0033">isMCLinkLocal</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Inet4Address) <font color="#cc0033">isMCNodeLocal</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Inet4Address) <font color="#cc0033">isMCOrgLocal</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Inet4Address) <font color="#cc0033">isMCSiteLocal</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Inet4Address) <font color="#cc0033">isMulticastAddress</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Inet4Address) <font color="#cc0033">isSiteLocalAddress</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-Inet6Address"></a>
+<b>PROCEDURE </b>(self:Inet6Address) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Inet6Address) <font color="#cc0033">getAddress</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Inet6Address) <font color="#cc0033">getHostAddress</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Inet6Address) <font color="#cc0033">getScopedInterface</font>*() : <a href="#type-NetworkInterface">NetworkInterface</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Inet6Address) <font color="#cc0033">getScopeId</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Inet6Address) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Inet6Address) <font color="#cc0033">isAnyLocalAddress</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Inet6Address) <font color="#cc0033">isIPv4CompatibleAddress</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Inet6Address) <font color="#cc0033">isLinkLocalAddress</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Inet6Address) <font color="#cc0033">isLoopbackAddress</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Inet6Address) <font color="#cc0033">isMCGlobal</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Inet6Address) <font color="#cc0033">isMCLinkLocal</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Inet6Address) <font color="#cc0033">isMCNodeLocal</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Inet6Address) <font color="#cc0033">isMCOrgLocal</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Inet6Address) <font color="#cc0033">isMCSiteLocal</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Inet6Address) <font color="#cc0033">isMulticastAddress</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Inet6Address) <font color="#cc0033">isSiteLocalAddress</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-InetAddress"></a>
+<b>PROCEDURE </b>(self:InetAddress) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:InetAddress) <font color="#cc0033">getAddress</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:InetAddress) <font color="#cc0033">getCanonicalHostName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:InetAddress) <font color="#cc0033">getHostAddress</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:InetAddress) <font color="#cc0033">getHostName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:InetAddress) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:InetAddress) <font color="#cc0033">isAnyLocalAddress</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:InetAddress) <font color="#cc0033">isLinkLocalAddress</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:InetAddress) <font color="#cc0033">isLoopbackAddress</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:InetAddress) <font color="#cc0033">isMCGlobal</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:InetAddress) <font color="#cc0033">isMCLinkLocal</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:InetAddress) <font color="#cc0033">isMCNodeLocal</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:InetAddress) <font color="#cc0033">isMCOrgLocal</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:InetAddress) <font color="#cc0033">isMCSiteLocal</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:InetAddress) <font color="#cc0033">isMulticastAddress</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:InetAddress) <font color="#cc0033">isReachable</font>*(p0 : <a href="#type-NetworkInterface">NetworkInterface</a>;
+                                          p1 : INTEGER;
+                                          p2 : INTEGER) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:InetAddress) <font color="#cc0033">isReachable</font>*(p0 : INTEGER) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:InetAddress) <font color="#cc0033">isSiteLocalAddress</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:InetAddress) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-InetSocketAddress"></a>
+<b>PROCEDURE </b>(self:InetSocketAddress) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:InetSocketAddress) <font color="#cc0033">getAddress</font>*() : <a href="java_net.html#type-InetAddress">java_net.InetAddress</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:InetSocketAddress) <font color="#cc0033">getHostName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:InetSocketAddress) <font color="#cc0033">getHostString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:InetSocketAddress) <font color="#cc0033">getPort</font>*() : INTEGER<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:InetSocketAddress) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:InetSocketAddress) <font color="#cc0033">isUnresolved</font>*() : BOOLEAN<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:InetSocketAddress) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-InterfaceAddress"></a>
+<b>PROCEDURE </b>(self:InterfaceAddress) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:InterfaceAddress) <font color="#cc0033">getAddress</font>*() : <a href="#type-InetAddress">InetAddress</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:InterfaceAddress) <font color="#cc0033">getBroadcast</font>*() : <a href="#type-InetAddress">InetAddress</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:InterfaceAddress) <font color="#cc0033">getNetworkPrefixLength</font>*() : SHORTINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:InterfaceAddress) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:InterfaceAddress) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-JarURLConnection"></a>
+<b>PROCEDURE </b>(self:JarURLConnection) <font color="#cc0033">getAttributes</font>*() : <a href="java_util_jar.html#type-Attributes">java_util_jar.Attributes</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:JarURLConnection) <font color="#cc0033">getCertificates</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_security_cert.html#type-Certificate">java_security_cert.Certificate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:JarURLConnection) <font color="#cc0033">getEntryName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:JarURLConnection) <font color="#cc0033">getJarEntry</font>*() : <a href="java_util_jar.html#type-JarEntry">java_util_jar.JarEntry</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:JarURLConnection) <font color="#cc0033">getJarFile</font>*() : <a href="java_util_jar.html#type-JarFile">java_util_jar.JarFile</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:JarURLConnection) <font color="#cc0033">getJarFileURL</font>*() : <a href="#type-URL">URL</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:JarURLConnection) <font color="#cc0033">getMainAttributes</font>*() : <a href="java_util_jar.html#type-Attributes">java_util_jar.Attributes</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:JarURLConnection) <font color="#cc0033">getManifest</font>*() : <a href="java_util_jar.html#type-Manifest">java_util_jar.Manifest</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-MulticastSocket"></a>
+<b>PROCEDURE </b>(self:MulticastSocket) <font color="#cc0033">getInterface</font>*() : <a href="java_net.html#type-InetAddress">java_net.InetAddress</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MulticastSocket) <font color="#cc0033">getLoopbackMode</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MulticastSocket) <font color="#cc0033">getNetworkInterface</font>*() : <a href="java_net.html#type-NetworkInterface">java_net.NetworkInterface</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MulticastSocket) <font color="#cc0033">getTimeToLive</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MulticastSocket) <font color="#cc0033">getTTL</font>*() : BYTE<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MulticastSocket) <font color="#cc0033">joinGroup</font>*(p0 : <a href="java_net.html#type-SocketAddress">java_net.SocketAddress</a>;
+                                            p1 : <a href="java_net.html#type-NetworkInterface">java_net.NetworkInterface</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MulticastSocket) <font color="#cc0033">joinGroup</font>*(p0 : <a href="java_net.html#type-InetAddress">java_net.InetAddress</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MulticastSocket) <font color="#cc0033">leaveGroup</font>*(p0 : <a href="java_net.html#type-SocketAddress">java_net.SocketAddress</a>;
+                                             p1 : <a href="java_net.html#type-NetworkInterface">java_net.NetworkInterface</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MulticastSocket) <font color="#cc0033">leaveGroup</font>*(p0 : <a href="java_net.html#type-InetAddress">java_net.InetAddress</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MulticastSocket) <font color="#cc0033">send</font>*(p0 : <a href="java_net.html#type-DatagramPacket">java_net.DatagramPacket</a>;
+                                       p1 : BYTE)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MulticastSocket) <font color="#cc0033">setInterface</font>*(p0 : <a href="java_net.html#type-InetAddress">java_net.InetAddress</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MulticastSocket) <font color="#cc0033">setLoopbackMode</font>*(p0 : BOOLEAN)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MulticastSocket) <font color="#cc0033">setNetworkInterface</font>*(p0 : <a href="java_net.html#type-NetworkInterface">java_net.NetworkInterface</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MulticastSocket) <font color="#cc0033">setTimeToLive</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MulticastSocket) <font color="#cc0033">setTTL</font>*(p0 : BYTE)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-NetworkInterface"></a>
+<b>PROCEDURE </b>(self:NetworkInterface) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:NetworkInterface) <font color="#cc0033">getDisplayName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:NetworkInterface) <font color="#cc0033">getHardwareAddress</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:NetworkInterface) <font color="#cc0033">getIndex</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:NetworkInterface) <font color="#cc0033">getInetAddresses</font>*() : <a href="java_util.html#type-Enumeration">java_util.Enumeration</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:NetworkInterface) <font color="#cc0033">getInterfaceAddresses</font>*() : <a href="java_util.html#type-List">java_util.List</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:NetworkInterface) <font color="#cc0033">getMTU</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:NetworkInterface) <font color="#cc0033">getName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:NetworkInterface) <font color="#cc0033">getParent</font>*() : <a href="#type-NetworkInterface">NetworkInterface</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:NetworkInterface) <font color="#cc0033">getSubInterfaces</font>*() : <a href="java_util.html#type-Enumeration">java_util.Enumeration</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:NetworkInterface) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:NetworkInterface) <font color="#cc0033">inetAddresses</font>*() : <a href="java_util_stream.html#type-Stream">java_util_stream.Stream</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:NetworkInterface) <font color="#cc0033">isLoopback</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:NetworkInterface) <font color="#cc0033">isPointToPoint</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:NetworkInterface) <font color="#cc0033">isUp</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:NetworkInterface) <font color="#cc0033">isVirtual</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:NetworkInterface) <font color="#cc0033">subInterfaces</font>*() : <a href="java_util_stream.html#type-Stream">java_util_stream.Stream</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:NetworkInterface) <font color="#cc0033">supportsMulticast</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:NetworkInterface) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-PasswordAuthentication"></a>
+<b>PROCEDURE </b>(self:PasswordAuthentication) <font color="#cc0033">getPassword</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>CHAR<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PasswordAuthentication) <font color="#cc0033">getUserName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-ProtocolFamily"></a>
+<b>PROCEDURE </b>(self:ProtocolFamily) <font color="#cc0033">name</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-Proxy"></a>
+<b>PROCEDURE </b>(self:Proxy) <font color="#cc0033">address</font>*() : <a href="java_net.html#type-SocketAddress">java_net.SocketAddress</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Proxy) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:Proxy) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:Proxy) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Proxy) <font color="#cc0033">type</font>*() : <a href="java_net.html#type-Proxy$Type">java_net.Proxy$Type</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-ProxySelector"></a>
+<b>PROCEDURE </b>(self:ProxySelector) <font color="#cc0033">connectFailed</font>*(p0 : <a href="java_net.html#type-URI">java_net.URI</a>;
+                                              p1 : <a href="java_net.html#type-SocketAddress">java_net.SocketAddress</a>;
+                                              p2 : <a href="java_io.html#type-IOException">java_io.IOException</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ProxySelector) <font color="#cc0033">select</font>*(p0 : <a href="java_net.html#type-URI">java_net.URI</a>) : <a href="java_util.html#type-List">java_util.List</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-ResponseCache"></a>
+<b>PROCEDURE </b>(self:ResponseCache) <font color="#cc0033">get</font>*(p0 : <a href="java_net.html#type-URI">java_net.URI</a>;
+                                    p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                    p2 : <a href="java_util.html#type-Map">java_util.Map</a>) : <a href="#type-CacheResponse">CacheResponse</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ResponseCache) <font color="#cc0033">put</font>*(p0 : <a href="java_net.html#type-URI">java_net.URI</a>;
+                                    p1 : <a href="java_net.html#type-URLConnection">java_net.URLConnection</a>) : <a href="#type-CacheRequest">CacheRequest</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-SecureCacheResponse"></a>
+<b>PROCEDURE </b>(self:SecureCacheResponse) <font color="#cc0033">getCipherSuite</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SecureCacheResponse) <font color="#cc0033">getLocalCertificateChain</font>*() : <a href="java_util.html#type-List">java_util.List</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SecureCacheResponse) <font color="#cc0033">getLocalPrincipal</font>*() : <a href="java_security.html#type-Principal">java_security.Principal</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SecureCacheResponse) <font color="#cc0033">getPeerPrincipal</font>*() : <a href="java_security.html#type-Principal">java_security.Principal</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SecureCacheResponse) <font color="#cc0033">getServerCertificateChain</font>*() : <a href="java_util.html#type-List">java_util.List</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SecureCacheResponse) <font color="#cc0033">getSSLSession</font>*() : <a href="java_util.html#type-Optional">java_util.Optional</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-ServerSocket"></a>
+<b>PROCEDURE </b>(self:ServerSocket) <font color="#cc0033">accept</font>*() : <a href="java_net.html#type-Socket">java_net.Socket</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ServerSocket) <font color="#cc0033">bind</font>*(p0 : <a href="java_net.html#type-SocketAddress">java_net.SocketAddress</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ServerSocket) <font color="#cc0033">bind</font>*(p0 : <a href="java_net.html#type-SocketAddress">java_net.SocketAddress</a>;
+                                    p1 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ServerSocket) <font color="#cc0033">close</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ServerSocket) <font color="#cc0033">getChannel</font>*() : <a href="java_nio_channels.html#type-ServerSocketChannel">java_nio_channels.ServerSocketChannel</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ServerSocket) <font color="#cc0033">getInetAddress</font>*() : <a href="java_net.html#type-InetAddress">java_net.InetAddress</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ServerSocket) <font color="#cc0033">getLocalPort</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ServerSocket) <font color="#cc0033">getLocalSocketAddress</font>*() : <a href="java_net.html#type-SocketAddress">java_net.SocketAddress</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ServerSocket) <font color="#cc0033">getOption</font>*(p0 : <a href="java_net.html#type-SocketOption">java_net.SocketOption</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ServerSocket) <font color="#cc0033">getReceiveBufferSize</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ServerSocket) <font color="#cc0033">getReuseAddress</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ServerSocket) <font color="#cc0033">getSoTimeout</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ServerSocket) <font color="#cc0033">implAccept</font>!(p0 : <a href="java_net.html#type-Socket">java_net.Socket</a>)<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:ServerSocket) <font color="#cc0033">isBound</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ServerSocket) <font color="#cc0033">isClosed</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ServerSocket) <font color="#cc0033">setOption</font>*(p0 : <a href="java_net.html#type-SocketOption">java_net.SocketOption</a>;
+                                         p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="#type-ServerSocket">ServerSocket</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ServerSocket) <font color="#cc0033">setPerformancePreferences</font>*(p0 : INTEGER;
+                                                         p1 : INTEGER;
+                                                         p2 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ServerSocket) <font color="#cc0033">setReceiveBufferSize</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ServerSocket) <font color="#cc0033">setReuseAddress</font>*(p0 : BOOLEAN)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ServerSocket) <font color="#cc0033">setSoTimeout</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ServerSocket) <font color="#cc0033">supportedOptions</font>*() : <a href="java_util.html#type-Set">java_util.Set</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ServerSocket) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-Socket"></a>
+<b>PROCEDURE </b>(self:Socket) <font color="#cc0033">bind</font>*(p0 : <a href="#type-SocketAddress">SocketAddress</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Socket) <font color="#cc0033">close</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Socket) <font color="#cc0033">connect</font>*(p0 : <a href="#type-SocketAddress">SocketAddress</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Socket) <font color="#cc0033">connect</font>*(p0 : <a href="#type-SocketAddress">SocketAddress</a>;
+                                 p1 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Socket) <font color="#cc0033">getChannel</font>*() : <a href="java_nio_channels.html#type-SocketChannel">java_nio_channels.SocketChannel</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Socket) <font color="#cc0033">getInetAddress</font>*() : <a href="#type-InetAddress">InetAddress</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Socket) <font color="#cc0033">getInputStream</font>*() : <a href="java_io.html#type-InputStream">java_io.InputStream</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Socket) <font color="#cc0033">getKeepAlive</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Socket) <font color="#cc0033">getLocalAddress</font>*() : <a href="#type-InetAddress">InetAddress</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Socket) <font color="#cc0033">getLocalPort</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Socket) <font color="#cc0033">getLocalSocketAddress</font>*() : <a href="#type-SocketAddress">SocketAddress</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Socket) <font color="#cc0033">getOOBInline</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Socket) <font color="#cc0033">getOption</font>*(p0 : <a href="#type-SocketOption">SocketOption</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Socket) <font color="#cc0033">getOutputStream</font>*() : <a href="java_io.html#type-OutputStream">java_io.OutputStream</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Socket) <font color="#cc0033">getPort</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Socket) <font color="#cc0033">getReceiveBufferSize</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Socket) <font color="#cc0033">getRemoteSocketAddress</font>*() : <a href="#type-SocketAddress">SocketAddress</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Socket) <font color="#cc0033">getReuseAddress</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Socket) <font color="#cc0033">getSendBufferSize</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Socket) <font color="#cc0033">getSoLinger</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Socket) <font color="#cc0033">getSoTimeout</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Socket) <font color="#cc0033">getTcpNoDelay</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Socket) <font color="#cc0033">getTrafficClass</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Socket) <font color="#cc0033">isBound</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Socket) <font color="#cc0033">isClosed</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Socket) <font color="#cc0033">isConnected</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Socket) <font color="#cc0033">isInputShutdown</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Socket) <font color="#cc0033">isOutputShutdown</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Socket) <font color="#cc0033">sendUrgentData</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Socket) <font color="#cc0033">setKeepAlive</font>*(p0 : BOOLEAN)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Socket) <font color="#cc0033">setOOBInline</font>*(p0 : BOOLEAN)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Socket) <font color="#cc0033">setOption</font>*(p0 : <a href="#type-SocketOption">SocketOption</a>;
+                                   p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="#type-Socket">Socket</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Socket) <font color="#cc0033">setPerformancePreferences</font>*(p0 : INTEGER;
+                                                   p1 : INTEGER;
+                                                   p2 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Socket) <font color="#cc0033">setReceiveBufferSize</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Socket) <font color="#cc0033">setReuseAddress</font>*(p0 : BOOLEAN)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Socket) <font color="#cc0033">setSendBufferSize</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Socket) <font color="#cc0033">setSoLinger</font>*(p0 : BOOLEAN;
+                                     p1 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Socket) <font color="#cc0033">setSoTimeout</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Socket) <font color="#cc0033">setTcpNoDelay</font>*(p0 : BOOLEAN)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Socket) <font color="#cc0033">setTrafficClass</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Socket) <font color="#cc0033">shutdownInput</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Socket) <font color="#cc0033">shutdownOutput</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Socket) <font color="#cc0033">supportedOptions</font>*() : <a href="java_util.html#type-Set">java_util.Set</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Socket) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-SocketImpl"></a>
+<b>PROCEDURE </b>(self:SocketImpl) <font color="#cc0033">accept</font>!(p0 : <a href="#type-SocketImpl">SocketImpl</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SocketImpl) <font color="#cc0033">available</font>!() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SocketImpl) <font color="#cc0033">bind</font>!(p0 : <a href="#type-InetAddress">InetAddress</a>;
+                                  p1 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SocketImpl) <font color="#cc0033">close</font>!()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SocketImpl) <font color="#cc0033">connect</font>!(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                     p1 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SocketImpl) <font color="#cc0033">connect</font>!(p0 : <a href="#type-InetAddress">InetAddress</a>;
+                                     p1 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SocketImpl) <font color="#cc0033">connect</font>!(p0 : <a href="#type-SocketAddress">SocketAddress</a>;
+                                     p1 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SocketImpl) <font color="#cc0033">create</font>!(p0 : BOOLEAN)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SocketImpl) <font color="#cc0033">getFileDescriptor</font>!() : <a href="java_io.html#type-FileDescriptor">java_io.FileDescriptor</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SocketImpl) <font color="#cc0033">getInetAddress</font>!() : <a href="#type-InetAddress">InetAddress</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SocketImpl) <font color="#cc0033">getInputStream</font>!() : <a href="java_io.html#type-InputStream">java_io.InputStream</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SocketImpl) <font color="#cc0033">getLocalPort</font>!() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SocketImpl) <font color="#cc0033">getOption</font>!(p0 : <a href="#type-SocketOption">SocketOption</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SocketImpl) <font color="#cc0033">getOutputStream</font>!() : <a href="java_io.html#type-OutputStream">java_io.OutputStream</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SocketImpl) <font color="#cc0033">getPort</font>!() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SocketImpl) <font color="#cc0033">listen</font>!(p0 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SocketImpl) <font color="#cc0033">sendUrgentData</font>!(p0 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SocketImpl) <font color="#cc0033">setOption</font>!(p0 : <a href="#type-SocketOption">SocketOption</a>;
+                                       p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SocketImpl) <font color="#cc0033">setPerformancePreferences</font>!(p0 : INTEGER;
+                                                       p1 : INTEGER;
+                                                       p2 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SocketImpl) <font color="#cc0033">shutdownInput</font>!()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SocketImpl) <font color="#cc0033">shutdownOutput</font>!()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SocketImpl) <font color="#cc0033">supportedOptions</font>!() : <a href="java_util.html#type-Set">java_util.Set</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SocketImpl) <font color="#cc0033">supportsUrgentData</font>!() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SocketImpl) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-SocketImplFactory"></a>
+<b>PROCEDURE </b>(self:SocketImplFactory) <font color="#cc0033">createSocketImpl</font>*() : <a href="java_net.html#type-SocketImpl">java_net.SocketImpl</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-SocketOption"></a>
+<b>PROCEDURE </b>(self:SocketOption) <font color="#cc0033">name</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SocketOption) <font color="#cc0033">type</font>*() : <a href="java_lang.html#type-Class">java_lang.Class</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-SocketOptions"></a>
+<b>PROCEDURE </b>(self:SocketOptions) <font color="#cc0033">getOption</font>*(p0 : INTEGER) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SocketOptions) <font color="#cc0033">setOption</font>*(p0 : INTEGER;
+                                          p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-SocketPermission"></a>
+<b>PROCEDURE </b>(self:SocketPermission) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SocketPermission) <font color="#cc0033">getActions</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SocketPermission) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SocketPermission) <font color="#cc0033">implies</font>*(p0 : <a href="java_security.html#type-Permission">java_security.Permission</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SocketPermission) <font color="#cc0033">newPermissionCollection</font>*() : <a href="java_security.html#type-PermissionCollection">java_security.PermissionCollection</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-UnixDomainSocketAddress"></a>
+<b>PROCEDURE </b>(self:UnixDomainSocketAddress) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:UnixDomainSocketAddress) <font color="#cc0033">getPath</font>*() : <a href="java_nio_file.html#type-Path">java_nio_file.Path</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:UnixDomainSocketAddress) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:UnixDomainSocketAddress) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-URI"></a>
+<b>PROCEDURE </b>(self:URI) <font color="#cc0033">compareTo</font>*(p0 : <a href="#type-URI">URI</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:URI) <font color="#cc0033">compareTo</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:URI) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:URI) <font color="#cc0033">getAuthority</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:URI) <font color="#cc0033">getFragment</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:URI) <font color="#cc0033">getHost</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:URI) <font color="#cc0033">getPath</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:URI) <font color="#cc0033">getPort</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:URI) <font color="#cc0033">getQuery</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:URI) <font color="#cc0033">getRawAuthority</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:URI) <font color="#cc0033">getRawFragment</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:URI) <font color="#cc0033">getRawPath</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:URI) <font color="#cc0033">getRawQuery</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:URI) <font color="#cc0033">getRawSchemeSpecificPart</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:URI) <font color="#cc0033">getRawUserInfo</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:URI) <font color="#cc0033">getScheme</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:URI) <font color="#cc0033">getSchemeSpecificPart</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:URI) <font color="#cc0033">getUserInfo</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:URI) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:URI) <font color="#cc0033">isAbsolute</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:URI) <font color="#cc0033">isOpaque</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:URI) <font color="#cc0033">normalize</font>*() : <a href="#type-URI">URI</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:URI) <font color="#cc0033">parseServerAuthority</font>*() : <a href="#type-URI">URI</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:URI) <font color="#cc0033">relativize</font>*(p0 : <a href="#type-URI">URI</a>) : <a href="#type-URI">URI</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:URI) <font color="#cc0033">resolve</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-URI">URI</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:URI) <font color="#cc0033">resolve</font>*(p0 : <a href="#type-URI">URI</a>) : <a href="#type-URI">URI</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:URI) <font color="#cc0033">toASCIIString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:URI) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:URI) <font color="#cc0033">toURL</font>*() : <a href="#type-URL">URL</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-URISyntaxException"></a>
+<b>PROCEDURE </b>(self:URISyntaxException) <font color="#cc0033">getIndex</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:URISyntaxException) <font color="#cc0033">getInput</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:URISyntaxException) <font color="#cc0033">getMessage</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:URISyntaxException) <font color="#cc0033">getReason</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-URL"></a>
+<b>PROCEDURE </b>(self:URL) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:URL) <font color="#cc0033">getAuthority</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:URL) <font color="#cc0033">getContent</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Class">java_lang.Class</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:URL) <font color="#cc0033">getContent</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:URL) <font color="#cc0033">getDefaultPort</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:URL) <font color="#cc0033">getFile</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:URL) <font color="#cc0033">getHost</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:URL) <font color="#cc0033">getPath</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:URL) <font color="#cc0033">getPort</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:URL) <font color="#cc0033">getProtocol</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:URL) <font color="#cc0033">getQuery</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:URL) <font color="#cc0033">getRef</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:URL) <font color="#cc0033">getUserInfo</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:URL) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:URL) <font color="#cc0033">openConnection</font>*() : <a href="java_net.html#type-URLConnection">java_net.URLConnection</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:URL) <font color="#cc0033">openConnection</font>*(p0 : <a href="#type-Proxy">Proxy</a>) : <a href="java_net.html#type-URLConnection">java_net.URLConnection</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:URL) <font color="#cc0033">openStream</font>*() : <a href="java_io.html#type-InputStream">java_io.InputStream</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:URL) <font color="#cc0033">sameFile</font>*(p0 : <a href="#type-URL">URL</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:URL) <font color="#cc0033">toExternalForm</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:URL) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:URL) <font color="#cc0033">toURI</font>*() : <a href="java_net.html#type-URI">java_net.URI</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-URLClassLoader"></a>
+<b>PROCEDURE </b>(self:URLClassLoader) <font color="#cc0033">addURL</font>!(p0 : <a href="#type-URL">URL</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:URLClassLoader) <font color="#cc0033">close</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:URLClassLoader) <font color="#cc0033">definePackage</font>!(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                               p1 : <a href="java_util_jar.html#type-Manifest">java_util_jar.Manifest</a>;
+                                               p2 : <a href="#type-URL">URL</a>) : <a href="java_lang.html#type-Package">java_lang.Package</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:URLClassLoader) <font color="#cc0033">findClass</font>!(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-Class">java_lang.Class</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:URLClassLoader) <font color="#cc0033">findResource</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-URL">URL</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:URLClassLoader) <font color="#cc0033">findResources</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_util.html#type-Enumeration">java_util.Enumeration</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:URLClassLoader) <font color="#cc0033">getPermissions</font>!(p0 : <a href="java_security.html#type-CodeSource">java_security.CodeSource</a>) : <a href="java_security.html#type-PermissionCollection">java_security.PermissionCollection</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:URLClassLoader) <font color="#cc0033">getResourceAsStream</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_io.html#type-InputStream">java_io.InputStream</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:URLClassLoader) <font color="#cc0033">getURLs</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-URL">URL</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-URLConnection"></a>
+<b>PROCEDURE </b>(self:URLConnection) <font color="#cc0033">addRequestProperty</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                   p1 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:URLConnection) <font color="#cc0033">connect</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:URLConnection) <font color="#cc0033">getAllowUserInteraction</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:URLConnection) <font color="#cc0033">getConnectTimeout</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:URLConnection) <font color="#cc0033">getContent</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:URLConnection) <font color="#cc0033">getContent</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Class">java_lang.Class</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:URLConnection) <font color="#cc0033">getContentEncoding</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:URLConnection) <font color="#cc0033">getContentLength</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:URLConnection) <font color="#cc0033">getContentLengthLong</font>*() : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:URLConnection) <font color="#cc0033">getContentType</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:URLConnection) <font color="#cc0033">getDate</font>*() : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:URLConnection) <font color="#cc0033">getDefaultUseCaches</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:URLConnection) <font color="#cc0033">getDoInput</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:URLConnection) <font color="#cc0033">getDoOutput</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:URLConnection) <font color="#cc0033">getExpiration</font>*() : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:URLConnection) <font color="#cc0033">getHeaderField</font>*(p0 : INTEGER) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:URLConnection) <font color="#cc0033">getHeaderField</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:URLConnection) <font color="#cc0033">getHeaderFieldDate</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                   p1 : LONGINT) : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:URLConnection) <font color="#cc0033">getHeaderFieldInt</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                  p1 : INTEGER) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:URLConnection) <font color="#cc0033">getHeaderFieldKey</font>*(p0 : INTEGER) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:URLConnection) <font color="#cc0033">getHeaderFieldLong</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                   p1 : LONGINT) : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:URLConnection) <font color="#cc0033">getHeaderFields</font>*() : <a href="java_util.html#type-Map">java_util.Map</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:URLConnection) <font color="#cc0033">getIfModifiedSince</font>*() : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:URLConnection) <font color="#cc0033">getInputStream</font>*() : <a href="java_io.html#type-InputStream">java_io.InputStream</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:URLConnection) <font color="#cc0033">getLastModified</font>*() : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:URLConnection) <font color="#cc0033">getOutputStream</font>*() : <a href="java_io.html#type-OutputStream">java_io.OutputStream</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:URLConnection) <font color="#cc0033">getPermission</font>*() : <a href="java_security.html#type-Permission">java_security.Permission</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:URLConnection) <font color="#cc0033">getReadTimeout</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:URLConnection) <font color="#cc0033">getRequestProperties</font>*() : <a href="java_util.html#type-Map">java_util.Map</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:URLConnection) <font color="#cc0033">getRequestProperty</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:URLConnection) <font color="#cc0033">getURL</font>*() : <a href="#type-URL">URL</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:URLConnection) <font color="#cc0033">getUseCaches</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:URLConnection) <font color="#cc0033">setAllowUserInteraction</font>*(p0 : BOOLEAN)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:URLConnection) <font color="#cc0033">setConnectTimeout</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:URLConnection) <font color="#cc0033">setDefaultUseCaches</font>*(p0 : BOOLEAN)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:URLConnection) <font color="#cc0033">setDoInput</font>*(p0 : BOOLEAN)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:URLConnection) <font color="#cc0033">setDoOutput</font>*(p0 : BOOLEAN)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:URLConnection) <font color="#cc0033">setIfModifiedSince</font>*(p0 : LONGINT)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:URLConnection) <font color="#cc0033">setReadTimeout</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:URLConnection) <font color="#cc0033">setRequestProperty</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                   p1 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:URLConnection) <font color="#cc0033">setUseCaches</font>*(p0 : BOOLEAN)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:URLConnection) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-URLPermission"></a>
+<b>PROCEDURE </b>(self:URLPermission) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:URLPermission) <font color="#cc0033">getActions</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:URLPermission) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:URLPermission) <font color="#cc0033">implies</font>*(p0 : <a href="java_security.html#type-Permission">java_security.Permission</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-URLStreamHandler"></a>
+<b>PROCEDURE </b>(self:URLStreamHandler) <font color="#cc0033">equals</font>!(p0 : <a href="java_net.html#type-URL">java_net.URL</a>;
+                                          p1 : <a href="java_net.html#type-URL">java_net.URL</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:URLStreamHandler) <font color="#cc0033">getDefaultPort</font>!() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:URLStreamHandler) <font color="#cc0033">getHostAddress</font>!(p0 : <a href="java_net.html#type-URL">java_net.URL</a>) : <a href="java_net.html#type-InetAddress">java_net.InetAddress</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:URLStreamHandler) <font color="#cc0033">hashCode</font>!(p0 : <a href="java_net.html#type-URL">java_net.URL</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:URLStreamHandler) <font color="#cc0033">hostsEqual</font>!(p0 : <a href="java_net.html#type-URL">java_net.URL</a>;
+                                              p1 : <a href="java_net.html#type-URL">java_net.URL</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:URLStreamHandler) <font color="#cc0033">openConnection</font>!(p0 : <a href="java_net.html#type-URL">java_net.URL</a>) : <a href="java_net.html#type-URLConnection">java_net.URLConnection</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:URLStreamHandler) <font color="#cc0033">openConnection</font>!(p0 : <a href="java_net.html#type-URL">java_net.URL</a>;
+                                                  p1 : <a href="#type-Proxy">Proxy</a>) : <a href="java_net.html#type-URLConnection">java_net.URLConnection</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:URLStreamHandler) <font color="#cc0033">parseURL</font>!(p0 : <a href="java_net.html#type-URL">java_net.URL</a>;
+                                            p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                            p2 : INTEGER;
+                                            p3 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:URLStreamHandler) <font color="#cc0033">sameFile</font>!(p0 : <a href="java_net.html#type-URL">java_net.URL</a>;
+                                            p1 : <a href="java_net.html#type-URL">java_net.URL</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:URLStreamHandler) <font color="#cc0033">setURL</font>!(p0 : <a href="java_net.html#type-URL">java_net.URL</a>;
+                                          p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                          p2 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                          p3 : INTEGER;
+                                          p4 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                          p5 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                          p6 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                          p7 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                          p8 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:URLStreamHandler) <font color="#cc0033">setURL</font>!(p0 : <a href="java_net.html#type-URL">java_net.URL</a>;
+                                          p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                          p2 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                          p3 : INTEGER;
+                                          p4 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                          p5 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:URLStreamHandler) <font color="#cc0033">toExternalForm</font>!(p0 : <a href="java_net.html#type-URL">java_net.URL</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-URLStreamHandlerFactory"></a>
+<b>PROCEDURE </b>(self:URLStreamHandlerFactory) <font color="#cc0033">createURLStreamHandler</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-URLStreamHandler">URLStreamHandler</a><b>,NEW,ABSTRACT</b>;
+
+<b>END </b><font color="#cc0033">java_net</font>.
+</font></pre></hr>
+<!-- BEGIN JavaScript -->
+<script>
+function toggle(node) {
+    node.classList.toggle("show"); 
+  }
+
+function cls(node) {
+    var prnt = node.parentNode;
+    var next = prnt.previousSibling;
+    var text = next.lastChild;
+    text.innerHTML = 
+        "The <b>class</b> property asserts that this type will be<br>" +
+        "implemented as a reference class in the underlying framework.";
+    text.classList.toggle("show");
+  }
+
+function newOk(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>has noArg-ctor</b> property asserts that this reference<br>" +
+        "class has a no-arg constructor, and thus objects of this<br>" +
+        "type can be allocated with NEW(). Component Pascal types<br>" +
+        "derived from this type can also be allocated using NEW().";
+    popuptext.classList.toggle("show"); 
+  }
+
+function noNew(node) { 
+    var prnt = node.parentNode; 
+    var next = prnt.previousSibling; 
+    var text = next.lastChild; 
+    text.innerHTML =  
+        "The <b>no noArg-ctor</b> property asserts that this reference<br>" +
+        "class does not have a noArg constructor. Objects of this<br>" +
+        "type cannot be allocated using NEW(), and Component<br>" +
+        "Pascal types  derived from this type also cannot be<br>" +
+        "allocated using NEW().";
+    text.classList.toggle("show");
+  }
+
+function noCpy(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>no value-assign</b> property asserts that this reference<br>" + 
+        "class does not have a value copy method. Therefore, it<br>" +
+        "is not possible to perform value assignments using<br>" +
+        "statements like <i>dst^</i> := <i>src^</i>";
+    popuptext.classList.toggle("show");
+  }
+
+function valueclass(node) { 
+        var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>valueclass</b> property asserts that this RECORD type is<br>" + 
+        "implemented as a value class in the CLR. It follows that<br>" +  
+        "value assignments can be made of these types. They can<br>" + 
+        "also be passed by value. Even pointers to records of<br>" + 
+        "such types may be dereferenced and copied using syntax<br>" + 
+        "such as  <i>dst^</i> := <i>src^</i>"; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+function argCtor(node) { 
+    var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>has arg-ctor</b> property asserts that this reference<br>" +  
+        "class has one or more constructors that take arguments.<br>" + 
+        "These constructors can be called from Component Pascal<br>" + 
+        "by calling an <i>init</i>(...) method from the static list<br>" + 
+        "here. Component Pascal types derived from this type<br>" + 
+        "can define constructors with arguments which call the<br>" + 
+        "super-type constructor.<br>" + 
+        "See <i>'Interfacing to constructors'</i> in the Release Notes."; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+</script>
+<!-- END JavaScript --> 
+
+</body></html>

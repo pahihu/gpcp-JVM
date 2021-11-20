@@ -1,0 +1,263 @@
+<html><head><title>jdk_internal_math</title>
+<style>
+<!-- BEGIN Inline CSS -->
+/* Popup container */
+.popup {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+/* The actual popup (appears on top) */
+.popup .popuptext {
+    visibility: hidden;
+    width: 430px;
+    background-color: white;
+    color: black;
+    text-align: left;
+    border-radius: 6px;
+    border-style: solid;
+    border-color: black;
+    padding: 8px 8px 8px 8px;
+    position: absolute;
+    z-index: 1;
+    margin-top: 30px;
+}
+
+/* Toggle this class when clicking on the popup container (hide and show the popup) */
+.popup .show {
+    visibility: visible;
+    opacity: 1;
+}
+
+</style>
+<!-- END Inline CSS -->
+</head><body bgcolor="white">
+<hr><pre>
+<font color="green">(*</font>
+<font color="green"> *  Creator PeToCps j2cps version 1.4.07 (March 2018)</font>
+<font color="green"> *  Compiled from jar-file /Library/Java/JavaVirtualMachines/zulu-11.jdk/Contents/Home/jmods/java.base.jmod</font>
+<font color="green"> *)</font>
+<b>FOREIGN MODULE </b><font color="#cc0033">jdk_internal_math</font>;
+
+<b>IMPORT</b>
+    <a href="java_lang.html">java_lang</a> := "java.lang",
+    <a href="java_math.html">java_math</a> := "java.math",
+    <a href="jdk_internal_math.html">jdk_internal_math</a> := "jdk.internal.math";
+
+<b>TYPE</b>
+
+  <a name="type-DoubleConsts"></a><font color="#cc0033">DoubleConsts</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                  <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> *)</font>
+                  <b>STATIC</b>
+                    <font color="#cc0033">EXP_BIAS</font>*          = 1023;
+                    <font color="#cc0033">EXP_BIT_MASK</font>*      = 9218868437227405312;
+                    <font color="#cc0033">MIN_SUB_EXPONENT</font>*  = -1074;
+                    <font color="#cc0033">SIGNIFICAND_WIDTH</font>* = 53;
+                    <font color="#cc0033">SIGNIF_BIT_MASK</font>*   = 4503599627370495;
+                    <font color="#cc0033">SIGN_BIT_MASK</font>*     = -9223372036854775808;
+                  <b>END</b>;
+
+  <a name="type-FDBigInteger"></a><font color="#cc0033">FDBigInteger</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                  <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                  <font color="green"><b> (* </b><a href="#meths-FDBigInteger">Typebound Procedures</a><b> *)</b></font>
+                  <b>STATIC</b>
+                    <a name="type-ZERO"></a><font color="#cc0033">ZERO</font>*            : <a href="#type-FDBigInteger">FDBigInteger</a>;
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*(    p0 : LONGINT;
+                                    IN  p1 : <b>ARRAY </b><b>OF </b>CHAR;
+                                        p2 : INTEGER;
+                                        p3 : INTEGER) : <a href="#type-FDBigInteger">FDBigInteger</a><b>,CONSTRUCTOR</b>;
+                    <b>PROCEDURE </b><font color="#cc0033">valueOfMulPow52</font>*(p0 : LONGINT;
+                                               p1 : INTEGER;
+                                               p2 : INTEGER) : <a href="#type-FDBigInteger">FDBigInteger</a>;
+                    <b>PROCEDURE </b><font color="#cc0033">valueOfPow52</font>*(p0 : INTEGER;
+                                            p1 : INTEGER) : <a href="#type-FDBigInteger">FDBigInteger</a>;
+                  <b>END</b>;
+
+  <a name="type-FloatConsts"></a><font color="#cc0033">FloatConsts</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                 <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> *)</font>
+                 <b>STATIC</b>
+                   <font color="#cc0033">EXP_BIAS</font>*          = 127;
+                   <font color="#cc0033">EXP_BIT_MASK</font>*      = 2139095040;
+                   <font color="#cc0033">MIN_SUB_EXPONENT</font>*  = -149;
+                   <font color="#cc0033">SIGNIFICAND_WIDTH</font>* = 24;
+                   <font color="#cc0033">SIGNIF_BIT_MASK</font>*   = 8388607;
+                   <font color="#cc0033">SIGN_BIT_MASK</font>*     = -2147483648;
+                 <b>END</b>;
+
+  <a name="type-FloatingDecimal"></a><font color="#cc0033">FloatingDecimal</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                     <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                     <b>STATIC</b>
+                       <b>PROCEDURE </b><font color="#cc0033">appendTo</font>*(p0 : REAL;
+                                           p1 : <a href="java_lang.html#type-Appendable">java_lang.Appendable</a>);
+                       <b>PROCEDURE </b><font color="#cc0033">appendTo</font>*(p0 : SHORTREAL;
+                                           p1 : <a href="java_lang.html#type-Appendable">java_lang.Appendable</a>);
+                       <b>PROCEDURE </b><font color="#cc0033">getBinaryToASCIIConverter</font>*(p0 : REAL) : <a href="jdk_internal_math.html#type-FloatingDecimal$BinaryToASCIIConverter">jdk_internal_math.FloatingDecimal$BinaryToASCIIConverter</a>;
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-FloatingDecimal">FloatingDecimal</a><b>,CONSTRUCTOR</b>;
+                       <b>PROCEDURE </b><font color="#cc0033">parseDouble</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : REAL;
+                       <b>PROCEDURE </b><font color="#cc0033">parseFloat</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : SHORTREAL;
+                       <b>PROCEDURE </b><font color="#cc0033">toJavaFormatString</font>*(p0 : SHORTREAL) : <a href="java_lang.html#type-String">java_lang.String</a>;
+                       <b>PROCEDURE </b><font color="#cc0033">toJavaFormatString</font>*(p0 : REAL) : <a href="java_lang.html#type-String">java_lang.String</a>;
+                     <b>END</b>;
+
+  <a name="type-FloatingDecimal$BinaryToASCIIConverter"></a><font color="#cc0033">FloatingDecimal$BinaryToASCIIConverter</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                                            <font color="green"><b> (* </b><a href="#meths-FloatingDecimal$BinaryToASCIIConverter">Typebound Procedures</a><b> *)</b></font>
+                                            <b>END</b>;
+
+  <a name="type-FormattedFloatingDecimal"></a><font color="#cc0033">FormattedFloatingDecimal</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                              <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> *)</font>
+                              <font color="green"><b> (* </b><a href="#meths-FormattedFloatingDecimal">Typebound Procedures</a><b> *)</b></font>
+                              <b>STATIC</b>
+                                <b>PROCEDURE </b><font color="#cc0033">valueOf</font>*(p0 : REAL;
+                                                   p1 : INTEGER;
+                                                   p2 : <a href="#type-FormattedFloatingDecimal$Form">FormattedFloatingDecimal$Form</a>) : <a href="#type-FormattedFloatingDecimal">FormattedFloatingDecimal</a>;
+                              <b>END</b>;
+
+  <a name="type-FormattedFloatingDecimal$Form"></a><font color="#cc0033">FormattedFloatingDecimal$Form</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Enum">java_lang.Enum</a>)
+                                   <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> *)</font>
+                                   <b>STATIC</b>
+                                     <a name="type-COMPATIBLE"></a><font color="#cc0033">COMPATIBLE</font>*    : <a href="#type-FormattedFloatingDecimal$Form">FormattedFloatingDecimal$Form</a>;
+                                     <a name="type-DECIMAL_FLOAT"></a><font color="#cc0033">DECIMAL_FLOAT</font>* : <a href="#type-FormattedFloatingDecimal$Form">FormattedFloatingDecimal$Form</a>;
+                                     <a name="type-GENERAL"></a><font color="#cc0033">GENERAL</font>*       : <a href="#type-FormattedFloatingDecimal$Form">FormattedFloatingDecimal$Form</a>;
+                                     <a name="type-SCIENTIFIC"></a><font color="#cc0033">SCIENTIFIC</font>*    : <a href="#type-FormattedFloatingDecimal$Form">FormattedFloatingDecimal$Form</a>;
+                                     <b>PROCEDURE </b><font color="#cc0033">valueOf</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-FormattedFloatingDecimal$Form">FormattedFloatingDecimal$Form</a>;
+                                     <b>PROCEDURE </b><font color="#cc0033">values</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-FormattedFloatingDecimal$Form">FormattedFloatingDecimal$Form</a>;
+                                   <b>END</b>;
+
+
+
+<a name="meths-FDBigInteger"></a>
+<b>PROCEDURE </b>(self:FDBigInteger) <font color="#cc0033">addAndCmp</font>*(p0 : <a href="#type-FDBigInteger">FDBigInteger</a>;
+                                         p1 : <a href="#type-FDBigInteger">FDBigInteger</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FDBigInteger) <font color="#cc0033">cmp</font>*(p0 : <a href="#type-FDBigInteger">FDBigInteger</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FDBigInteger) <font color="#cc0033">cmpPow52</font>*(p0 : INTEGER;
+                                        p1 : INTEGER) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FDBigInteger) <font color="#cc0033">getNormalizationBias</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FDBigInteger) <font color="#cc0033">leftInplaceSub</font>*(p0 : <a href="#type-FDBigInteger">FDBigInteger</a>) : <a href="#type-FDBigInteger">FDBigInteger</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FDBigInteger) <font color="#cc0033">leftShift</font>*(p0 : INTEGER) : <a href="#type-FDBigInteger">FDBigInteger</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FDBigInteger) <font color="#cc0033">makeImmutable</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FDBigInteger) <font color="#cc0033">multBy10</font>*() : <a href="#type-FDBigInteger">FDBigInteger</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FDBigInteger) <font color="#cc0033">multByPow52</font>*(p0 : INTEGER;
+                                           p1 : INTEGER) : <a href="#type-FDBigInteger">FDBigInteger</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FDBigInteger) <font color="#cc0033">quoRemIteration</font>*(p0 : <a href="#type-FDBigInteger">FDBigInteger</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FDBigInteger) <font color="#cc0033">rightInplaceSub</font>*(p0 : <a href="#type-FDBigInteger">FDBigInteger</a>) : <a href="#type-FDBigInteger">FDBigInteger</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FDBigInteger) <font color="#cc0033">toBigInteger</font>*() : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FDBigInteger) <font color="#cc0033">toHexString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FDBigInteger) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-FloatingDecimal$BinaryToASCIIConverter"></a>
+<b>PROCEDURE </b>(self:FloatingDecimal$BinaryToASCIIConverter) <font color="#cc0033">appendTo</font>*(p0 : <a href="java_lang.html#type-Appendable">java_lang.Appendable</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:FloatingDecimal$BinaryToASCIIConverter) <font color="#cc0033">decimalDigitsExact</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:FloatingDecimal$BinaryToASCIIConverter) <font color="#cc0033">digitsRoundedUp</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:FloatingDecimal$BinaryToASCIIConverter) <font color="#cc0033">getDecimalExponent</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:FloatingDecimal$BinaryToASCIIConverter) <font color="#cc0033">getDigits</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>CHAR) : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:FloatingDecimal$BinaryToASCIIConverter) <font color="#cc0033">isExceptional</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:FloatingDecimal$BinaryToASCIIConverter) <font color="#cc0033">isNegative</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:FloatingDecimal$BinaryToASCIIConverter) <font color="#cc0033">toJavaFormatString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-FormattedFloatingDecimal"></a>
+<b>PROCEDURE </b>(self:FormattedFloatingDecimal) <font color="#cc0033">getExponent</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>CHAR<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FormattedFloatingDecimal) <font color="#cc0033">getExponentRounded</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FormattedFloatingDecimal) <font color="#cc0033">getMantissa</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>CHAR<b>,NEW,EXTENSIBLE</b>;
+
+<b>END </b><font color="#cc0033">jdk_internal_math</font>.
+</font></pre></hr>
+<!-- BEGIN JavaScript -->
+<script>
+function toggle(node) {
+    node.classList.toggle("show"); 
+  }
+
+function cls(node) {
+    var prnt = node.parentNode;
+    var next = prnt.previousSibling;
+    var text = next.lastChild;
+    text.innerHTML = 
+        "The <b>class</b> property asserts that this type will be<br>" +
+        "implemented as a reference class in the underlying framework.";
+    text.classList.toggle("show");
+  }
+
+function newOk(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>has noArg-ctor</b> property asserts that this reference<br>" +
+        "class has a no-arg constructor, and thus objects of this<br>" +
+        "type can be allocated with NEW(). Component Pascal types<br>" +
+        "derived from this type can also be allocated using NEW().";
+    popuptext.classList.toggle("show"); 
+  }
+
+function noNew(node) { 
+    var prnt = node.parentNode; 
+    var next = prnt.previousSibling; 
+    var text = next.lastChild; 
+    text.innerHTML =  
+        "The <b>no noArg-ctor</b> property asserts that this reference<br>" +
+        "class does not have a noArg constructor. Objects of this<br>" +
+        "type cannot be allocated using NEW(), and Component<br>" +
+        "Pascal types  derived from this type also cannot be<br>" +
+        "allocated using NEW().";
+    text.classList.toggle("show");
+  }
+
+function noCpy(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>no value-assign</b> property asserts that this reference<br>" + 
+        "class does not have a value copy method. Therefore, it<br>" +
+        "is not possible to perform value assignments using<br>" +
+        "statements like <i>dst^</i> := <i>src^</i>";
+    popuptext.classList.toggle("show");
+  }
+
+function valueclass(node) { 
+        var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>valueclass</b> property asserts that this RECORD type is<br>" + 
+        "implemented as a value class in the CLR. It follows that<br>" +  
+        "value assignments can be made of these types. They can<br>" + 
+        "also be passed by value. Even pointers to records of<br>" + 
+        "such types may be dereferenced and copied using syntax<br>" + 
+        "such as  <i>dst^</i> := <i>src^</i>"; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+function argCtor(node) { 
+    var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>has arg-ctor</b> property asserts that this reference<br>" +  
+        "class has one or more constructors that take arguments.<br>" + 
+        "These constructors can be called from Component Pascal<br>" + 
+        "by calling an <i>init</i>(...) method from the static list<br>" + 
+        "here. Component Pascal types derived from this type<br>" + 
+        "can define constructors with arguments which call the<br>" + 
+        "super-type constructor.<br>" + 
+        "See <i>'Interfacing to constructors'</i> in the Release Notes."; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+</script>
+<!-- END JavaScript --> 
+
+</body></html>

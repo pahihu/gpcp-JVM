@@ -1,0 +1,686 @@
+<html><head><title>javax_xml_stream</title>
+<style>
+<!-- BEGIN Inline CSS -->
+/* Popup container */
+.popup {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+/* The actual popup (appears on top) */
+.popup .popuptext {
+    visibility: hidden;
+    width: 430px;
+    background-color: white;
+    color: black;
+    text-align: left;
+    border-radius: 6px;
+    border-style: solid;
+    border-color: black;
+    padding: 8px 8px 8px 8px;
+    position: absolute;
+    z-index: 1;
+    margin-top: 30px;
+}
+
+/* Toggle this class when clicking on the popup container (hide and show the popup) */
+.popup .show {
+    visibility: visible;
+    opacity: 1;
+}
+
+</style>
+<!-- END Inline CSS -->
+</head><body bgcolor="white">
+<hr><pre>
+<font color="green">(*</font>
+<font color="green"> *  Creator PeToCps j2cps version 1.4.07 (March 2018)</font>
+<font color="green"> *  Compiled from jar-file /Library/Java/JavaVirtualMachines/zulu-11.jdk/Contents/Home/jmods/java.xml.jmod</font>
+<font color="green"> *)</font>
+<b>FOREIGN MODULE </b><font color="#cc0033">javax_xml_stream</font>;
+
+<b>IMPORT</b>
+    <a href="javax_xml_namespace.html">javax_xml_namespace</a> := "javax.xml.namespace",
+    <a href="javax_xml_stream.html">javax_xml_stream</a> := "javax.xml.stream",
+    <a href="javax_xml_stream_events.html">javax_xml_stream_events</a> := "javax.xml.stream.events",
+    <a href="javax_xml_stream_events.html">javax_xml_stream_events</a> := "javax.xml.stream.events",
+    <a href="javax_xml_stream_util.html">javax_xml_stream_util</a> := "javax.xml.stream.util",
+    <a href="javax_xml_transform.html">javax_xml_transform</a> := "javax.xml.transform",
+    <a href="java_io.html">java_io</a> := "java.io",
+    <a href="java_lang.html">java_lang</a> := "java.lang",
+    <a href="java_util.html">java_util</a> := "java.util";
+
+<b>TYPE</b>
+
+  <a name="type-EventFilter"></a><font color="#cc0033">EventFilter</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                 <font color="green"><b> (* </b><a href="#meths-EventFilter">Typebound Procedures</a><b> *)</b></font>
+                 <b>END</b>;
+
+  <a name="type-FactoryConfigurationError"></a><font color="#cc0033">FactoryConfigurationError</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Error">java_lang.Error</a>)
+                               <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                               <font color="green"><b> (* </b><a href="#meths-FactoryConfigurationError">Typebound Procedures</a><b> *)</b></font>
+                               <b>STATIC</b>
+                                 <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                 p1 : <a href="java_lang.html#type-Exception">java_lang.Exception</a>) : <a href="#type-FactoryConfigurationError">FactoryConfigurationError</a><b>,CONSTRUCTOR</b>;
+                                 <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-FactoryConfigurationError">FactoryConfigurationError</a><b>,CONSTRUCTOR</b>;
+                                 <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-Exception">java_lang.Exception</a>;
+                                                 p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-FactoryConfigurationError">FactoryConfigurationError</a><b>,CONSTRUCTOR</b>;
+                                 <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-FactoryConfigurationError">FactoryConfigurationError</a><b>,CONSTRUCTOR</b>;
+                                 <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-Exception">java_lang.Exception</a>) : <a href="#type-FactoryConfigurationError">FactoryConfigurationError</a><b>,CONSTRUCTOR</b>;
+                               <b>END</b>;
+
+  <a name="type-Location"></a><font color="#cc0033">Location</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+              <font color="green"><b> (* </b><a href="#meths-Location">Typebound Procedures</a><b> *)</b></font>
+              <b>END</b>;
+
+  <a name="type-StreamFilter"></a><font color="#cc0033">StreamFilter</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                  <font color="green"><b> (* </b><a href="#meths-StreamFilter">Typebound Procedures</a><b> *)</b></font>
+                  <b>END</b>;
+
+  <a name="type-XMLEventFactory"></a><font color="#cc0033">XMLEventFactory</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                     <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                     <font color="green"><b> (* </b><a href="#meths-XMLEventFactory">Typebound Procedures</a><b> *)</b></font>
+                     <b>STATIC</b>
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>!() : <a href="#type-XMLEventFactory">XMLEventFactory</a><b>,CONSTRUCTOR</b>;
+                       <b>PROCEDURE </b><font color="#cc0033">newDefaultFactory</font>*() : <a href="#type-XMLEventFactory">XMLEventFactory</a>;
+                       <b>PROCEDURE </b><font color="#cc0033">newFactory</font>*() : <a href="#type-XMLEventFactory">XMLEventFactory</a>;
+                       <b>PROCEDURE </b><font color="#cc0033">newFactory</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                             p1 : <a href="java_lang.html#type-ClassLoader">java_lang.ClassLoader</a>) : <a href="#type-XMLEventFactory">XMLEventFactory</a>;
+                       <b>PROCEDURE </b><font color="#cc0033">newInstance</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                              p1 : <a href="java_lang.html#type-ClassLoader">java_lang.ClassLoader</a>) : <a href="#type-XMLEventFactory">XMLEventFactory</a>;
+                       <b>PROCEDURE </b><font color="#cc0033">newInstance</font>*() : <a href="#type-XMLEventFactory">XMLEventFactory</a>;
+                     <b>END</b>;
+
+  <a name="type-XMLEventReader"></a><font color="#cc0033">XMLEventReader</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_util.html#type-Iterator">java_util.Iterator</a>)
+                    <font color="green"><b> (* </b><a href="#meths-XMLEventReader">Typebound Procedures</a><b> *)</b></font>
+                    <b>END</b>;
+
+  <a name="type-XMLEventWriter"></a><font color="#cc0033">XMLEventWriter</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="javax_xml_stream_util.html#type-XMLEventConsumer">javax_xml_stream_util.XMLEventConsumer</a>)
+                    <font color="green"><b> (* </b><a href="#meths-XMLEventWriter">Typebound Procedures</a><b> *)</b></font>
+                    <b>END</b>;
+
+  <a name="type-XMLInputFactory"></a><font color="#cc0033">XMLInputFactory</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                     <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                     <font color="green"><b> (* </b><a href="#meths-XMLInputFactory">Typebound Procedures</a><b> *)</b></font>
+                     <b>STATIC</b>
+                       <font color="#cc0033">ALLOCATOR</font>*                       = "javax.xml.stream.allocator";
+                       <font color="#cc0033">IS_COALESCING</font>*                   = "javax.xml.stream.isCoalescing";
+                       <font color="#cc0033">IS_NAMESPACE_AWARE</font>*              = "javax.xml.stream.isNamespaceAware";
+                       <font color="#cc0033">IS_REPLACING_ENTITY_REFERENCES</font>*  = "javax.xml.stream.isReplacingEntityReferences";
+                       <font color="#cc0033">IS_SUPPORTING_EXTERNAL_ENTITIES</font>* = "javax.xml.stream.isSupportingExternalEntities";
+                       <font color="#cc0033">IS_VALIDATING</font>*                   = "javax.xml.stream.isValidating";
+                       <font color="#cc0033">REPORTER</font>*                        = "javax.xml.stream.reporter";
+                       <font color="#cc0033">RESOLVER</font>*                        = "javax.xml.stream.resolver";
+                       <font color="#cc0033">SUPPORT_DTD</font>*                     = "javax.xml.stream.supportDTD";
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>!() : <a href="#type-XMLInputFactory">XMLInputFactory</a><b>,CONSTRUCTOR</b>;
+                       <b>PROCEDURE </b><font color="#cc0033">newDefaultFactory</font>*() : <a href="#type-XMLInputFactory">XMLInputFactory</a>;
+                       <b>PROCEDURE </b><font color="#cc0033">newFactory</font>*() : <a href="#type-XMLInputFactory">XMLInputFactory</a>;
+                       <b>PROCEDURE </b><font color="#cc0033">newFactory</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                             p1 : <a href="java_lang.html#type-ClassLoader">java_lang.ClassLoader</a>) : <a href="#type-XMLInputFactory">XMLInputFactory</a>;
+                       <b>PROCEDURE </b><font color="#cc0033">newInstance</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                              p1 : <a href="java_lang.html#type-ClassLoader">java_lang.ClassLoader</a>) : <a href="#type-XMLInputFactory">XMLInputFactory</a>;
+                       <b>PROCEDURE </b><font color="#cc0033">newInstance</font>*() : <a href="#type-XMLInputFactory">XMLInputFactory</a>;
+                     <b>END</b>;
+
+  <a name="type-XMLOutputFactory"></a><font color="#cc0033">XMLOutputFactory</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                      <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                      <font color="green"><b> (* </b><a href="#meths-XMLOutputFactory">Typebound Procedures</a><b> *)</b></font>
+                      <b>STATIC</b>
+                        <font color="#cc0033">IS_REPAIRING_NAMESPACES</font>* = "javax.xml.stream.isRepairingNamespaces";
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>!() : <a href="#type-XMLOutputFactory">XMLOutputFactory</a><b>,CONSTRUCTOR</b>;
+                        <b>PROCEDURE </b><font color="#cc0033">newDefaultFactory</font>*() : <a href="#type-XMLOutputFactory">XMLOutputFactory</a>;
+                        <b>PROCEDURE </b><font color="#cc0033">newFactory</font>*() : <a href="#type-XMLOutputFactory">XMLOutputFactory</a>;
+                        <b>PROCEDURE </b><font color="#cc0033">newFactory</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                              p1 : <a href="java_lang.html#type-ClassLoader">java_lang.ClassLoader</a>) : <a href="#type-XMLOutputFactory">XMLOutputFactory</a>;
+                        <b>PROCEDURE </b><font color="#cc0033">newInstance</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                               p1 : <a href="java_lang.html#type-ClassLoader">java_lang.ClassLoader</a>) : <a href="#type-XMLInputFactory">XMLInputFactory</a>;
+                        <b>PROCEDURE </b><font color="#cc0033">newInstance</font>*() : <a href="#type-XMLOutputFactory">XMLOutputFactory</a>;
+                      <b>END</b>;
+
+  <a name="type-XMLReporter"></a><font color="#cc0033">XMLReporter</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                 <font color="green"><b> (* </b><a href="#meths-XMLReporter">Typebound Procedures</a><b> *)</b></font>
+                 <b>END</b>;
+
+  <a name="type-XMLResolver"></a><font color="#cc0033">XMLResolver</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                 <font color="green"><b> (* </b><a href="#meths-XMLResolver">Typebound Procedures</a><b> *)</b></font>
+                 <b>END</b>;
+
+  <a name="type-XMLStreamConstants"></a><font color="#cc0033">XMLStreamConstants</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                        <b>STATIC</b>
+                          <font color="#cc0033">ATTRIBUTE</font>*              = 10;
+                          <font color="#cc0033">CDATA</font>*                  = 12;
+                          <font color="#cc0033">CHARACTERS</font>*             = 4;
+                          <font color="#cc0033">COMMENT</font>*                = 5;
+                          <font color="#cc0033">DTD</font>*                    = 11;
+                          <font color="#cc0033">END_DOCUMENT</font>*           = 8;
+                          <font color="#cc0033">END_ELEMENT</font>*            = 2;
+                          <font color="#cc0033">ENTITY_DECLARATION</font>*     = 15;
+                          <font color="#cc0033">ENTITY_REFERENCE</font>*       = 9;
+                          <font color="#cc0033">NAMESPACE</font>*              = 13;
+                          <font color="#cc0033">NOTATION_DECLARATION</font>*   = 14;
+                          <font color="#cc0033">PROCESSING_INSTRUCTION</font>* = 3;
+                          <font color="#cc0033">SPACE</font>*                  = 6;
+                          <font color="#cc0033">START_DOCUMENT</font>*         = 7;
+                          <font color="#cc0033">START_ELEMENT</font>*          = 1;
+                        <b>END</b>;
+
+  <a name="type-XMLStreamException"></a><font color="#cc0033">XMLStreamException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Exception">java_lang.Exception</a>)
+                        <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                        <font color="green"><b> (* </b><a href="#meths-XMLStreamException">Typebound Procedures</a><b> *)</b></font>
+                          <font color="#cc0033">nested</font>!   : <a href="java_lang.html#type-Throwable">java_lang.Throwable</a>;
+                          <font color="#cc0033">location</font>! : <a href="#type-Location">Location</a>;
+                        <b>STATIC</b>
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                          p1 : <a href="java_lang.html#type-Throwable">java_lang.Throwable</a>) : <a href="#type-XMLStreamException">XMLStreamException</a><b>,CONSTRUCTOR</b>;
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                          p1 : <a href="#type-Location">Location</a>;
+                                          p2 : <a href="java_lang.html#type-Throwable">java_lang.Throwable</a>) : <a href="#type-XMLStreamException">XMLStreamException</a><b>,CONSTRUCTOR</b>;
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                          p1 : <a href="#type-Location">Location</a>) : <a href="#type-XMLStreamException">XMLStreamException</a><b>,CONSTRUCTOR</b>;
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-XMLStreamException">XMLStreamException</a><b>,CONSTRUCTOR</b>;
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-XMLStreamException">XMLStreamException</a><b>,CONSTRUCTOR</b>;
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-Throwable">java_lang.Throwable</a>) : <a href="#type-XMLStreamException">XMLStreamException</a><b>,CONSTRUCTOR</b>;
+                        <b>END</b>;
+
+  <a name="type-XMLStreamReader"></a><font color="#cc0033">XMLStreamReader</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="javax_xml_stream.html#type-XMLStreamConstants">javax_xml_stream.XMLStreamConstants</a>)
+                     <font color="green"><b> (* </b><a href="#meths-XMLStreamReader">Typebound Procedures</a><b> *)</b></font>
+                     <b>END</b>;
+
+  <a name="type-XMLStreamWriter"></a><font color="#cc0033">XMLStreamWriter</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                     <font color="green"><b> (* </b><a href="#meths-XMLStreamWriter">Typebound Procedures</a><b> *)</b></font>
+                     <b>END</b>;
+
+
+
+<a name="meths-EventFilter"></a>
+<b>PROCEDURE </b>(self:EventFilter) <font color="#cc0033">accept</font>*(p0 : <a href="javax_xml_stream_events.html#type-XMLEvent">javax_xml_stream_events.XMLEvent</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+<a name="meths-FactoryConfigurationError"></a>
+<b>PROCEDURE </b>(self:FactoryConfigurationError) <font color="#cc0033">getCause</font>*() : <a href="java_lang.html#type-Throwable">java_lang.Throwable</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FactoryConfigurationError) <font color="#cc0033">getException</font>*() : <a href="java_lang.html#type-Exception">java_lang.Exception</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FactoryConfigurationError) <font color="#cc0033">getMessage</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-Location"></a>
+<b>PROCEDURE </b>(self:Location) <font color="#cc0033">getCharacterOffset</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Location) <font color="#cc0033">getColumnNumber</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Location) <font color="#cc0033">getLineNumber</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Location) <font color="#cc0033">getPublicId</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Location) <font color="#cc0033">getSystemId</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-StreamFilter"></a>
+<b>PROCEDURE </b>(self:StreamFilter) <font color="#cc0033">accept</font>*(p0 : <a href="#type-XMLStreamReader">XMLStreamReader</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+<a name="meths-XMLEventFactory"></a>
+<b>PROCEDURE </b>(self:XMLEventFactory) <font color="#cc0033">createAttribute</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                  p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="javax_xml_stream_events.html#type-Attribute">javax_xml_stream_events.Attribute</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLEventFactory) <font color="#cc0033">createAttribute</font>*(p0 : <a href="javax_xml_namespace.html#type-QName">javax_xml_namespace.QName</a>;
+                                                  p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="javax_xml_stream_events.html#type-Attribute">javax_xml_stream_events.Attribute</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLEventFactory) <font color="#cc0033">createAttribute</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                  p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                  p2 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                  p3 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="javax_xml_stream_events.html#type-Attribute">javax_xml_stream_events.Attribute</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLEventFactory) <font color="#cc0033">createCData</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="javax_xml_stream_events.html#type-Characters">javax_xml_stream_events.Characters</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLEventFactory) <font color="#cc0033">createCharacters</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="javax_xml_stream_events.html#type-Characters">javax_xml_stream_events.Characters</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLEventFactory) <font color="#cc0033">createComment</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="javax_xml_stream_events.html#type-Comment">javax_xml_stream_events.Comment</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLEventFactory) <font color="#cc0033">createDTD</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="javax_xml_stream_events.html#type-DTD">javax_xml_stream_events.DTD</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLEventFactory) <font color="#cc0033">createEndDocument</font>*() : <a href="javax_xml_stream_events.html#type-EndDocument">javax_xml_stream_events.EndDocument</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLEventFactory) <font color="#cc0033">createEndElement</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                   p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                   p2 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="javax_xml_stream_events.html#type-EndElement">javax_xml_stream_events.EndElement</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLEventFactory) <font color="#cc0033">createEndElement</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                   p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                   p2 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                   p3 : <a href="java_util.html#type-Iterator">java_util.Iterator</a>) : <a href="javax_xml_stream_events.html#type-EndElement">javax_xml_stream_events.EndElement</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLEventFactory) <font color="#cc0033">createEndElement</font>*(p0 : <a href="javax_xml_namespace.html#type-QName">javax_xml_namespace.QName</a>;
+                                                   p1 : <a href="java_util.html#type-Iterator">java_util.Iterator</a>) : <a href="javax_xml_stream_events.html#type-EndElement">javax_xml_stream_events.EndElement</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLEventFactory) <font color="#cc0033">createEntityReference</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                        p1 : <a href="javax_xml_stream_events.html#type-EntityDeclaration">javax_xml_stream_events.EntityDeclaration</a>) : <a href="javax_xml_stream_events.html#type-EntityReference">javax_xml_stream_events.EntityReference</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLEventFactory) <font color="#cc0033">createIgnorableSpace</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="javax_xml_stream_events.html#type-Characters">javax_xml_stream_events.Characters</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLEventFactory) <font color="#cc0033">createNamespace</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                  p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="javax_xml_stream_events.html#type-Namespace">javax_xml_stream_events.Namespace</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLEventFactory) <font color="#cc0033">createNamespace</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="javax_xml_stream_events.html#type-Namespace">javax_xml_stream_events.Namespace</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLEventFactory) <font color="#cc0033">createProcessingInstruction</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                              p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="javax_xml_stream_events.html#type-ProcessingInstruction">javax_xml_stream_events.ProcessingInstruction</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLEventFactory) <font color="#cc0033">createSpace</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="javax_xml_stream_events.html#type-Characters">javax_xml_stream_events.Characters</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLEventFactory) <font color="#cc0033">createStartDocument</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                      p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="javax_xml_stream_events.html#type-StartDocument">javax_xml_stream_events.StartDocument</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLEventFactory) <font color="#cc0033">createStartDocument</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="javax_xml_stream_events.html#type-StartDocument">javax_xml_stream_events.StartDocument</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLEventFactory) <font color="#cc0033">createStartDocument</font>*() : <a href="javax_xml_stream_events.html#type-StartDocument">javax_xml_stream_events.StartDocument</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLEventFactory) <font color="#cc0033">createStartDocument</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                      p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                      p2 : BOOLEAN) : <a href="javax_xml_stream_events.html#type-StartDocument">javax_xml_stream_events.StartDocument</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLEventFactory) <font color="#cc0033">createStartElement</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                     p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                     p2 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                     p3 : <a href="java_util.html#type-Iterator">java_util.Iterator</a>;
+                                                     p4 : <a href="java_util.html#type-Iterator">java_util.Iterator</a>) : <a href="javax_xml_stream_events.html#type-StartElement">javax_xml_stream_events.StartElement</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLEventFactory) <font color="#cc0033">createStartElement</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                     p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                     p2 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                     p3 : <a href="java_util.html#type-Iterator">java_util.Iterator</a>;
+                                                     p4 : <a href="java_util.html#type-Iterator">java_util.Iterator</a>;
+                                                     p5 : <a href="javax_xml_namespace.html#type-NamespaceContext">javax_xml_namespace.NamespaceContext</a>) : <a href="javax_xml_stream_events.html#type-StartElement">javax_xml_stream_events.StartElement</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLEventFactory) <font color="#cc0033">createStartElement</font>*(p0 : <a href="javax_xml_namespace.html#type-QName">javax_xml_namespace.QName</a>;
+                                                     p1 : <a href="java_util.html#type-Iterator">java_util.Iterator</a>;
+                                                     p2 : <a href="java_util.html#type-Iterator">java_util.Iterator</a>) : <a href="javax_xml_stream_events.html#type-StartElement">javax_xml_stream_events.StartElement</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLEventFactory) <font color="#cc0033">createStartElement</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                     p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                     p2 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="javax_xml_stream_events.html#type-StartElement">javax_xml_stream_events.StartElement</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLEventFactory) <font color="#cc0033">setLocation</font>*(p0 : <a href="#type-Location">Location</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-XMLEventReader"></a>
+<b>PROCEDURE </b>(self:XMLEventReader) <font color="#cc0033">close</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLEventReader) <font color="#cc0033">getElementText</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLEventReader) <font color="#cc0033">getProperty</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLEventReader) <font color="#cc0033">hasNext</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLEventReader) <font color="#cc0033">nextEvent</font>*() : <a href="javax_xml_stream_events.html#type-XMLEvent">javax_xml_stream_events.XMLEvent</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLEventReader) <font color="#cc0033">nextTag</font>*() : <a href="javax_xml_stream_events.html#type-XMLEvent">javax_xml_stream_events.XMLEvent</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLEventReader) <font color="#cc0033">peek</font>*() : <a href="javax_xml_stream_events.html#type-XMLEvent">javax_xml_stream_events.XMLEvent</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-XMLEventWriter"></a>
+<b>PROCEDURE </b>(self:XMLEventWriter) <font color="#cc0033">add</font>*(p0 : <a href="javax_xml_stream_events.html#type-XMLEvent">javax_xml_stream_events.XMLEvent</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLEventWriter) <font color="#cc0033">add</font>*(p0 : <a href="#type-XMLEventReader">XMLEventReader</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLEventWriter) <font color="#cc0033">close</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLEventWriter) <font color="#cc0033">flush</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLEventWriter) <font color="#cc0033">getNamespaceContext</font>*() : <a href="javax_xml_namespace.html#type-NamespaceContext">javax_xml_namespace.NamespaceContext</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLEventWriter) <font color="#cc0033">getPrefix</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLEventWriter) <font color="#cc0033">setDefaultNamespace</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLEventWriter) <font color="#cc0033">setNamespaceContext</font>*(p0 : <a href="javax_xml_namespace.html#type-NamespaceContext">javax_xml_namespace.NamespaceContext</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLEventWriter) <font color="#cc0033">setPrefix</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                           p1 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-XMLInputFactory"></a>
+<b>PROCEDURE </b>(self:XMLInputFactory) <font color="#cc0033">createFilteredReader</font>*(p0 : <a href="#type-XMLStreamReader">XMLStreamReader</a>;
+                                                       p1 : <a href="javax_xml_stream.html#type-StreamFilter">javax_xml_stream.StreamFilter</a>) : <a href="#type-XMLStreamReader">XMLStreamReader</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLInputFactory) <font color="#cc0033">createFilteredReader</font>*(p0 : <a href="#type-XMLEventReader">XMLEventReader</a>;
+                                                       p1 : <a href="javax_xml_stream.html#type-EventFilter">javax_xml_stream.EventFilter</a>) : <a href="#type-XMLEventReader">XMLEventReader</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLInputFactory) <font color="#cc0033">createXMLEventReader</font>*(p0 : <a href="javax_xml_transform.html#type-Source">javax_xml_transform.Source</a>) : <a href="#type-XMLEventReader">XMLEventReader</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLInputFactory) <font color="#cc0033">createXMLEventReader</font>*(p0 : <a href="#type-XMLStreamReader">XMLStreamReader</a>) : <a href="#type-XMLEventReader">XMLEventReader</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLInputFactory) <font color="#cc0033">createXMLEventReader</font>*(p0 : <a href="java_io.html#type-InputStream">java_io.InputStream</a>) : <a href="#type-XMLEventReader">XMLEventReader</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLInputFactory) <font color="#cc0033">createXMLEventReader</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                       p1 : <a href="java_io.html#type-InputStream">java_io.InputStream</a>) : <a href="#type-XMLEventReader">XMLEventReader</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLInputFactory) <font color="#cc0033">createXMLEventReader</font>*(p0 : <a href="java_io.html#type-InputStream">java_io.InputStream</a>;
+                                                       p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-XMLEventReader">XMLEventReader</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLInputFactory) <font color="#cc0033">createXMLEventReader</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                       p1 : <a href="java_io.html#type-Reader">java_io.Reader</a>) : <a href="#type-XMLEventReader">XMLEventReader</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLInputFactory) <font color="#cc0033">createXMLEventReader</font>*(p0 : <a href="java_io.html#type-Reader">java_io.Reader</a>) : <a href="#type-XMLEventReader">XMLEventReader</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLInputFactory) <font color="#cc0033">createXMLStreamReader</font>*(p0 : <a href="java_io.html#type-InputStream">java_io.InputStream</a>) : <a href="#type-XMLStreamReader">XMLStreamReader</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLInputFactory) <font color="#cc0033">createXMLStreamReader</font>*(p0 : <a href="javax_xml_transform.html#type-Source">javax_xml_transform.Source</a>) : <a href="#type-XMLStreamReader">XMLStreamReader</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLInputFactory) <font color="#cc0033">createXMLStreamReader</font>*(p0 : <a href="java_io.html#type-Reader">java_io.Reader</a>) : <a href="#type-XMLStreamReader">XMLStreamReader</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLInputFactory) <font color="#cc0033">createXMLStreamReader</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                        p1 : <a href="java_io.html#type-Reader">java_io.Reader</a>) : <a href="#type-XMLStreamReader">XMLStreamReader</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLInputFactory) <font color="#cc0033">createXMLStreamReader</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                        p1 : <a href="java_io.html#type-InputStream">java_io.InputStream</a>) : <a href="#type-XMLStreamReader">XMLStreamReader</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLInputFactory) <font color="#cc0033">createXMLStreamReader</font>*(p0 : <a href="java_io.html#type-InputStream">java_io.InputStream</a>;
+                                                        p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-XMLStreamReader">XMLStreamReader</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLInputFactory) <font color="#cc0033">getEventAllocator</font>*() : <a href="javax_xml_stream_util.html#type-XMLEventAllocator">javax_xml_stream_util.XMLEventAllocator</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLInputFactory) <font color="#cc0033">getProperty</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLInputFactory) <font color="#cc0033">getXMLReporter</font>*() : <a href="#type-XMLReporter">XMLReporter</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLInputFactory) <font color="#cc0033">getXMLResolver</font>*() : <a href="javax_xml_stream.html#type-XMLResolver">javax_xml_stream.XMLResolver</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLInputFactory) <font color="#cc0033">isPropertySupported</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLInputFactory) <font color="#cc0033">setEventAllocator</font>*(p0 : <a href="javax_xml_stream_util.html#type-XMLEventAllocator">javax_xml_stream_util.XMLEventAllocator</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLInputFactory) <font color="#cc0033">setProperty</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                              p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLInputFactory) <font color="#cc0033">setXMLReporter</font>*(p0 : <a href="#type-XMLReporter">XMLReporter</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLInputFactory) <font color="#cc0033">setXMLResolver</font>*(p0 : <a href="javax_xml_stream.html#type-XMLResolver">javax_xml_stream.XMLResolver</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-XMLOutputFactory"></a>
+<b>PROCEDURE </b>(self:XMLOutputFactory) <font color="#cc0033">createXMLEventWriter</font>*(p0 : <a href="java_io.html#type-OutputStream">java_io.OutputStream</a>) : <a href="javax_xml_stream.html#type-XMLEventWriter">javax_xml_stream.XMLEventWriter</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLOutputFactory) <font color="#cc0033">createXMLEventWriter</font>*(p0 : <a href="javax_xml_transform.html#type-Result">javax_xml_transform.Result</a>) : <a href="javax_xml_stream.html#type-XMLEventWriter">javax_xml_stream.XMLEventWriter</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLOutputFactory) <font color="#cc0033">createXMLEventWriter</font>*(p0 : <a href="java_io.html#type-Writer">java_io.Writer</a>) : <a href="javax_xml_stream.html#type-XMLEventWriter">javax_xml_stream.XMLEventWriter</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLOutputFactory) <font color="#cc0033">createXMLEventWriter</font>*(p0 : <a href="java_io.html#type-OutputStream">java_io.OutputStream</a>;
+                                                        p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="javax_xml_stream.html#type-XMLEventWriter">javax_xml_stream.XMLEventWriter</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLOutputFactory) <font color="#cc0033">createXMLStreamWriter</font>*(p0 : <a href="java_io.html#type-OutputStream">java_io.OutputStream</a>) : <a href="#type-XMLStreamWriter">XMLStreamWriter</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLOutputFactory) <font color="#cc0033">createXMLStreamWriter</font>*(p0 : <a href="java_io.html#type-Writer">java_io.Writer</a>) : <a href="#type-XMLStreamWriter">XMLStreamWriter</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLOutputFactory) <font color="#cc0033">createXMLStreamWriter</font>*(p0 : <a href="javax_xml_transform.html#type-Result">javax_xml_transform.Result</a>) : <a href="#type-XMLStreamWriter">XMLStreamWriter</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLOutputFactory) <font color="#cc0033">createXMLStreamWriter</font>*(p0 : <a href="java_io.html#type-OutputStream">java_io.OutputStream</a>;
+                                                         p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-XMLStreamWriter">XMLStreamWriter</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLOutputFactory) <font color="#cc0033">getProperty</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLOutputFactory) <font color="#cc0033">isPropertySupported</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLOutputFactory) <font color="#cc0033">setProperty</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                               p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-XMLReporter"></a>
+<b>PROCEDURE </b>(self:XMLReporter) <font color="#cc0033">report</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                     p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                     p2 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                     p3 : <a href="#type-Location">Location</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-XMLResolver"></a>
+<b>PROCEDURE </b>(self:XMLResolver) <font color="#cc0033">resolveEntity</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                            p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                            p2 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                            p3 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-XMLStreamException"></a>
+<b>PROCEDURE </b>(self:XMLStreamException) <font color="#cc0033">getLocation</font>*() : <a href="#type-Location">Location</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:XMLStreamException) <font color="#cc0033">getNestedException</font>*() : <a href="java_lang.html#type-Throwable">java_lang.Throwable</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-XMLStreamReader"></a>
+<b>PROCEDURE </b>(self:XMLStreamReader) <font color="#cc0033">close</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLStreamReader) <font color="#cc0033">getAttributeCount</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLStreamReader) <font color="#cc0033">getAttributeLocalName</font>*(p0 : INTEGER) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLStreamReader) <font color="#cc0033">getAttributeName</font>*(p0 : INTEGER) : <a href="javax_xml_namespace.html#type-QName">javax_xml_namespace.QName</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLStreamReader) <font color="#cc0033">getAttributeNamespace</font>*(p0 : INTEGER) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLStreamReader) <font color="#cc0033">getAttributePrefix</font>*(p0 : INTEGER) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLStreamReader) <font color="#cc0033">getAttributeType</font>*(p0 : INTEGER) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLStreamReader) <font color="#cc0033">getAttributeValue</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                    p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLStreamReader) <font color="#cc0033">getAttributeValue</font>*(p0 : INTEGER) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLStreamReader) <font color="#cc0033">getCharacterEncodingScheme</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLStreamReader) <font color="#cc0033">getElementText</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLStreamReader) <font color="#cc0033">getEncoding</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLStreamReader) <font color="#cc0033">getEventType</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLStreamReader) <font color="#cc0033">getLocalName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLStreamReader) <font color="#cc0033">getLocation</font>*() : <a href="#type-Location">Location</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLStreamReader) <font color="#cc0033">getName</font>*() : <a href="javax_xml_namespace.html#type-QName">javax_xml_namespace.QName</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLStreamReader) <font color="#cc0033">getNamespaceContext</font>*() : <a href="javax_xml_namespace.html#type-NamespaceContext">javax_xml_namespace.NamespaceContext</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLStreamReader) <font color="#cc0033">getNamespaceCount</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLStreamReader) <font color="#cc0033">getNamespacePrefix</font>*(p0 : INTEGER) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLStreamReader) <font color="#cc0033">getNamespaceURI</font>*(p0 : INTEGER) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLStreamReader) <font color="#cc0033">getNamespaceURI</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLStreamReader) <font color="#cc0033">getNamespaceURI</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLStreamReader) <font color="#cc0033">getPIData</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLStreamReader) <font color="#cc0033">getPITarget</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLStreamReader) <font color="#cc0033">getPrefix</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLStreamReader) <font color="#cc0033">getProperty</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLStreamReader) <font color="#cc0033">getText</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLStreamReader) <font color="#cc0033">getTextCharacters</font>*(    p0 : INTEGER;
+                                                    IN  p1 : <b>ARRAY </b><b>OF </b>CHAR;
+                                                        p2 : INTEGER;
+                                                        p3 : INTEGER) : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLStreamReader) <font color="#cc0033">getTextCharacters</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>CHAR<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLStreamReader) <font color="#cc0033">getTextLength</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLStreamReader) <font color="#cc0033">getTextStart</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLStreamReader) <font color="#cc0033">getVersion</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLStreamReader) <font color="#cc0033">hasName</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLStreamReader) <font color="#cc0033">hasNext</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLStreamReader) <font color="#cc0033">hasText</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLStreamReader) <font color="#cc0033">isAttributeSpecified</font>*(p0 : INTEGER) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLStreamReader) <font color="#cc0033">isCharacters</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLStreamReader) <font color="#cc0033">isEndElement</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLStreamReader) <font color="#cc0033">isStandalone</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLStreamReader) <font color="#cc0033">isStartElement</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLStreamReader) <font color="#cc0033">isWhiteSpace</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLStreamReader) <font color="#cc0033">next</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLStreamReader) <font color="#cc0033">nextTag</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLStreamReader) <font color="#cc0033">require</font>*(p0 : INTEGER;
+                                          p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                          p2 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLStreamReader) <font color="#cc0033">standaloneSet</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+<a name="meths-XMLStreamWriter"></a>
+<b>PROCEDURE </b>(self:XMLStreamWriter) <font color="#cc0033">close</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLStreamWriter) <font color="#cc0033">flush</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLStreamWriter) <font color="#cc0033">getNamespaceContext</font>*() : <a href="javax_xml_namespace.html#type-NamespaceContext">javax_xml_namespace.NamespaceContext</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLStreamWriter) <font color="#cc0033">getPrefix</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLStreamWriter) <font color="#cc0033">getProperty</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLStreamWriter) <font color="#cc0033">setDefaultNamespace</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLStreamWriter) <font color="#cc0033">setNamespaceContext</font>*(p0 : <a href="javax_xml_namespace.html#type-NamespaceContext">javax_xml_namespace.NamespaceContext</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLStreamWriter) <font color="#cc0033">setPrefix</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                            p1 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLStreamWriter) <font color="#cc0033">writeAttribute</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                 p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                 p2 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                 p3 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLStreamWriter) <font color="#cc0033">writeAttribute</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                 p1 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLStreamWriter) <font color="#cc0033">writeAttribute</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                 p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                 p2 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLStreamWriter) <font color="#cc0033">writeCData</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLStreamWriter) <font color="#cc0033">writeCharacters</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>CHAR;
+                                                      p1 : INTEGER;
+                                                      p2 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLStreamWriter) <font color="#cc0033">writeCharacters</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLStreamWriter) <font color="#cc0033">writeComment</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLStreamWriter) <font color="#cc0033">writeDefaultNamespace</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLStreamWriter) <font color="#cc0033">writeDTD</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLStreamWriter) <font color="#cc0033">writeEmptyElement</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                    p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                    p2 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLStreamWriter) <font color="#cc0033">writeEmptyElement</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                    p1 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLStreamWriter) <font color="#cc0033">writeEmptyElement</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLStreamWriter) <font color="#cc0033">writeEndDocument</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLStreamWriter) <font color="#cc0033">writeEndElement</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLStreamWriter) <font color="#cc0033">writeEntityRef</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLStreamWriter) <font color="#cc0033">writeNamespace</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                 p1 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLStreamWriter) <font color="#cc0033">writeProcessingInstruction</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLStreamWriter) <font color="#cc0033">writeProcessingInstruction</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                             p1 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLStreamWriter) <font color="#cc0033">writeStartDocument</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLStreamWriter) <font color="#cc0033">writeStartDocument</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLStreamWriter) <font color="#cc0033">writeStartDocument</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                     p1 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLStreamWriter) <font color="#cc0033">writeStartElement</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLStreamWriter) <font color="#cc0033">writeStartElement</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                    p1 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLStreamWriter) <font color="#cc0033">writeStartElement</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                    p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                    p2 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>END </b><font color="#cc0033">javax_xml_stream</font>.
+</font></pre></hr>
+<!-- BEGIN JavaScript -->
+<script>
+function toggle(node) {
+    node.classList.toggle("show"); 
+  }
+
+function cls(node) {
+    var prnt = node.parentNode;
+    var next = prnt.previousSibling;
+    var text = next.lastChild;
+    text.innerHTML = 
+        "The <b>class</b> property asserts that this type will be<br>" +
+        "implemented as a reference class in the underlying framework.";
+    text.classList.toggle("show");
+  }
+
+function newOk(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>has noArg-ctor</b> property asserts that this reference<br>" +
+        "class has a no-arg constructor, and thus objects of this<br>" +
+        "type can be allocated with NEW(). Component Pascal types<br>" +
+        "derived from this type can also be allocated using NEW().";
+    popuptext.classList.toggle("show"); 
+  }
+
+function noNew(node) { 
+    var prnt = node.parentNode; 
+    var next = prnt.previousSibling; 
+    var text = next.lastChild; 
+    text.innerHTML =  
+        "The <b>no noArg-ctor</b> property asserts that this reference<br>" +
+        "class does not have a noArg constructor. Objects of this<br>" +
+        "type cannot be allocated using NEW(), and Component<br>" +
+        "Pascal types  derived from this type also cannot be<br>" +
+        "allocated using NEW().";
+    text.classList.toggle("show");
+  }
+
+function noCpy(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>no value-assign</b> property asserts that this reference<br>" + 
+        "class does not have a value copy method. Therefore, it<br>" +
+        "is not possible to perform value assignments using<br>" +
+        "statements like <i>dst^</i> := <i>src^</i>";
+    popuptext.classList.toggle("show");
+  }
+
+function valueclass(node) { 
+        var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>valueclass</b> property asserts that this RECORD type is<br>" + 
+        "implemented as a value class in the CLR. It follows that<br>" +  
+        "value assignments can be made of these types. They can<br>" + 
+        "also be passed by value. Even pointers to records of<br>" + 
+        "such types may be dereferenced and copied using syntax<br>" + 
+        "such as  <i>dst^</i> := <i>src^</i>"; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+function argCtor(node) { 
+    var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>has arg-ctor</b> property asserts that this reference<br>" +  
+        "class has one or more constructors that take arguments.<br>" + 
+        "These constructors can be called from Component Pascal<br>" + 
+        "by calling an <i>init</i>(...) method from the static list<br>" + 
+        "here. Component Pascal types derived from this type<br>" + 
+        "can define constructors with arguments which call the<br>" + 
+        "super-type constructor.<br>" + 
+        "See <i>'Interfacing to constructors'</i> in the Release Notes."; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+</script>
+<!-- END JavaScript --> 
+
+</body></html>

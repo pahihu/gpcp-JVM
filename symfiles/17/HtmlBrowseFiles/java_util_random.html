@@ -1,0 +1,360 @@
+<html><head><title>java_util_random</title>
+<style>
+<!-- BEGIN Inline CSS -->
+/* Popup container */
+.popup {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+/* The actual popup (appears on top) */
+.popup .popuptext {
+    visibility: hidden;
+    width: 430px;
+    background-color: white;
+    color: black;
+    text-align: left;
+    border-radius: 6px;
+    border-style: solid;
+    border-color: black;
+    padding: 8px 8px 8px 8px;
+    position: absolute;
+    z-index: 1;
+    margin-top: 30px;
+}
+
+/* Toggle this class when clicking on the popup container (hide and show the popup) */
+.popup .show {
+    visibility: visible;
+    opacity: 1;
+}
+
+</style>
+<!-- END Inline CSS -->
+</head><body bgcolor="white">
+<hr><pre>
+<font color="green">(*</font>
+<font color="green"> *  Creator PeToCps j2cps version 1.4.07 (March 2018)</font>
+<font color="green"> *  Compiled from jar-file /Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home/jmods/java.base.jmod</font>
+<font color="green"> *)</font>
+<b>FOREIGN MODULE </b><font color="#cc0033">java_util_random</font>;
+
+<b>IMPORT</b>
+    <a href="java_lang.html">java_lang</a> := "java.lang",
+    <a href="java_math.html">java_math</a> := "java.math",
+    <a href="java_util_random.html">java_util_random</a> := "java.util.random",
+    <a href="java_util_stream.html">java_util_stream</a> := "java.util.stream";
+
+<b>TYPE</b>
+
+  <a name="type-RandomGenerator"></a><font color="#cc0033">RandomGenerator</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                     <font color="green"><b> (* </b><a href="#meths-RandomGenerator">Typebound Procedures</a><b> *)</b></font>
+                     <b>STATIC</b>
+                       <b>PROCEDURE </b><font color="#cc0033">getDefault</font>*() : <a href="#type-RandomGenerator">RandomGenerator</a>;
+                       <b>PROCEDURE </b><font color="#cc0033">of</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-RandomGenerator">RandomGenerator</a>;
+                     <b>END</b>;
+
+  <a name="type-RandomGenerator$ArbitrarilyJumpableGenerator"></a><font color="#cc0033">RandomGenerator$ArbitrarilyJumpableGenerator</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-RandomGenerator$LeapableGenerator">RandomGenerator$LeapableGenerator</a>)
+                                                  <font color="green"><b> (* </b><a href="#meths-RandomGenerator$ArbitrarilyJumpableGenerator">Typebound Procedures</a><b> *)</b></font>
+                                                  <b>STATIC</b>
+                                                    <b>PROCEDURE </b><font color="#cc0033">of</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-RandomGenerator$ArbitrarilyJumpableGenerator">RandomGenerator$ArbitrarilyJumpableGenerator</a>;
+                                                  <b>END</b>;
+
+  <a name="type-RandomGenerator$JumpableGenerator"></a><font color="#cc0033">RandomGenerator$JumpableGenerator</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-RandomGenerator$StreamableGenerator">RandomGenerator$StreamableGenerator</a>)
+                                       <font color="green"><b> (* </b><a href="#meths-RandomGenerator$JumpableGenerator">Typebound Procedures</a><b> *)</b></font>
+                                       <b>STATIC</b>
+                                         <b>PROCEDURE </b><font color="#cc0033">of</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-RandomGenerator$JumpableGenerator">RandomGenerator$JumpableGenerator</a>;
+                                       <b>END</b>;
+
+  <a name="type-RandomGenerator$LeapableGenerator"></a><font color="#cc0033">RandomGenerator$LeapableGenerator</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_util_random.html#type-RandomGenerator$JumpableGenerator">java_util_random.RandomGenerator$JumpableGenerator</a>)
+                                       <font color="green"><b> (* </b><a href="#meths-RandomGenerator$LeapableGenerator">Typebound Procedures</a><b> *)</b></font>
+                                       <b>STATIC</b>
+                                         <b>PROCEDURE </b><font color="#cc0033">of</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-RandomGenerator$LeapableGenerator">RandomGenerator$LeapableGenerator</a>;
+                                       <b>END</b>;
+
+  <a name="type-RandomGenerator$SplittableGenerator"></a><font color="#cc0033">RandomGenerator$SplittableGenerator</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-RandomGenerator$StreamableGenerator">RandomGenerator$StreamableGenerator</a>)
+                                         <font color="green"><b> (* </b><a href="#meths-RandomGenerator$SplittableGenerator">Typebound Procedures</a><b> *)</b></font>
+                                         <b>STATIC</b>
+                                           <b>PROCEDURE </b><font color="#cc0033">of</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-RandomGenerator$SplittableGenerator">RandomGenerator$SplittableGenerator</a>;
+                                         <b>END</b>;
+
+  <a name="type-RandomGenerator$StreamableGenerator"></a><font color="#cc0033">RandomGenerator$StreamableGenerator</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_util_random.html#type-RandomGenerator">java_util_random.RandomGenerator</a>)
+                                         <font color="green"><b> (* </b><a href="#meths-RandomGenerator$StreamableGenerator">Typebound Procedures</a><b> *)</b></font>
+                                         <b>STATIC</b>
+                                           <b>PROCEDURE </b><font color="#cc0033">of</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-RandomGenerator$StreamableGenerator">RandomGenerator$StreamableGenerator</a>;
+                                         <b>END</b>;
+
+  <a name="type-RandomGeneratorFactory"></a><font color="#cc0033">RandomGeneratorFactory</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                            <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> *)</font>
+                            <font color="green"><b> (* </b><a href="#meths-RandomGeneratorFactory">Typebound Procedures</a><b> *)</b></font>
+                            <b>STATIC</b>
+                              <b>PROCEDURE </b><font color="#cc0033">all</font>*() : <a href="java_util_stream.html#type-Stream">java_util_stream.Stream</a>;
+                              <b>PROCEDURE </b><font color="#cc0033">getDefault</font>*() : <a href="#type-RandomGeneratorFactory">RandomGeneratorFactory</a>;
+                              <b>PROCEDURE </b><font color="#cc0033">of</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-RandomGeneratorFactory">RandomGeneratorFactory</a>;
+                            <b>END</b>;
+
+
+
+<a name="meths-RandomGenerator"></a>
+<b>PROCEDURE </b>(self:RandomGenerator) <font color="#cc0033">doubles</font>*(p0 : LONGINT) : <a href="java_util_stream.html#type-DoubleStream">java_util_stream.DoubleStream</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RandomGenerator) <font color="#cc0033">doubles</font>*(p0 : LONGINT;
+                                          p1 : REAL;
+                                          p2 : REAL) : <a href="java_util_stream.html#type-DoubleStream">java_util_stream.DoubleStream</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RandomGenerator) <font color="#cc0033">doubles</font>*(p0 : REAL;
+                                          p1 : REAL) : <a href="java_util_stream.html#type-DoubleStream">java_util_stream.DoubleStream</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RandomGenerator) <font color="#cc0033">doubles</font>*() : <a href="java_util_stream.html#type-DoubleStream">java_util_stream.DoubleStream</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RandomGenerator) <font color="#cc0033">ints</font>*(p0 : LONGINT) : <a href="java_util_stream.html#type-IntStream">java_util_stream.IntStream</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RandomGenerator) <font color="#cc0033">ints</font>*(p0 : LONGINT;
+                                       p1 : INTEGER;
+                                       p2 : INTEGER) : <a href="java_util_stream.html#type-IntStream">java_util_stream.IntStream</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RandomGenerator) <font color="#cc0033">ints</font>*(p0 : INTEGER;
+                                       p1 : INTEGER) : <a href="java_util_stream.html#type-IntStream">java_util_stream.IntStream</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RandomGenerator) <font color="#cc0033">ints</font>*() : <a href="java_util_stream.html#type-IntStream">java_util_stream.IntStream</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RandomGenerator) <font color="#cc0033">isDeprecated</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RandomGenerator) <font color="#cc0033">longs</font>*(p0 : LONGINT) : <a href="java_util_stream.html#type-LongStream">java_util_stream.LongStream</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RandomGenerator) <font color="#cc0033">longs</font>*(p0 : LONGINT;
+                                        p1 : LONGINT;
+                                        p2 : LONGINT) : <a href="java_util_stream.html#type-LongStream">java_util_stream.LongStream</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RandomGenerator) <font color="#cc0033">longs</font>*() : <a href="java_util_stream.html#type-LongStream">java_util_stream.LongStream</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RandomGenerator) <font color="#cc0033">longs</font>*(p0 : LONGINT;
+                                        p1 : LONGINT) : <a href="java_util_stream.html#type-LongStream">java_util_stream.LongStream</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RandomGenerator) <font color="#cc0033">nextBoolean</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RandomGenerator) <font color="#cc0033">nextBytes</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RandomGenerator) <font color="#cc0033">nextDouble</font>*() : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RandomGenerator) <font color="#cc0033">nextDouble</font>*(p0 : REAL) : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RandomGenerator) <font color="#cc0033">nextDouble</font>*(p0 : REAL;
+                                             p1 : REAL) : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RandomGenerator) <font color="#cc0033">nextExponential</font>*() : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RandomGenerator) <font color="#cc0033">nextFloat</font>*() : SHORTREAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RandomGenerator) <font color="#cc0033">nextFloat</font>*(p0 : SHORTREAL;
+                                            p1 : SHORTREAL) : SHORTREAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RandomGenerator) <font color="#cc0033">nextFloat</font>*(p0 : SHORTREAL) : SHORTREAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RandomGenerator) <font color="#cc0033">nextGaussian</font>*() : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RandomGenerator) <font color="#cc0033">nextGaussian</font>*(p0 : REAL;
+                                               p1 : REAL) : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RandomGenerator) <font color="#cc0033">nextInt</font>*(p0 : INTEGER;
+                                          p1 : INTEGER) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RandomGenerator) <font color="#cc0033">nextInt</font>*(p0 : INTEGER) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RandomGenerator) <font color="#cc0033">nextInt</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RandomGenerator) <font color="#cc0033">nextLong</font>*() : LONGINT<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RandomGenerator) <font color="#cc0033">nextLong</font>*(p0 : LONGINT) : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RandomGenerator) <font color="#cc0033">nextLong</font>*(p0 : LONGINT;
+                                           p1 : LONGINT) : LONGINT<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-RandomGenerator$ArbitrarilyJumpableGenerator"></a>
+<b>PROCEDURE </b>(self:RandomGenerator$ArbitrarilyJumpableGenerator) <font color="#cc0033">copy</font>*() : <a href="#type-RandomGenerator$LeapableGenerator">RandomGenerator$LeapableGenerator</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RandomGenerator$ArbitrarilyJumpableGenerator) <font color="#cc0033">copy</font>*() : <a href="#type-RandomGenerator$JumpableGenerator">RandomGenerator$JumpableGenerator</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RandomGenerator$ArbitrarilyJumpableGenerator) <font color="#cc0033">copy</font>*() : <a href="#type-RandomGenerator$ArbitrarilyJumpableGenerator">RandomGenerator$ArbitrarilyJumpableGenerator</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RandomGenerator$ArbitrarilyJumpableGenerator) <font color="#cc0033">copyAndJump</font>*(p0 : REAL) : <a href="#type-RandomGenerator$ArbitrarilyJumpableGenerator">RandomGenerator$ArbitrarilyJumpableGenerator</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RandomGenerator$ArbitrarilyJumpableGenerator) <font color="#cc0033">jump</font>*(p0 : REAL)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RandomGenerator$ArbitrarilyJumpableGenerator) <font color="#cc0033">jump</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RandomGenerator$ArbitrarilyJumpableGenerator) <font color="#cc0033">jumpPowerOfTwo</font>*(p0 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RandomGenerator$ArbitrarilyJumpableGenerator) <font color="#cc0033">jumps</font>*(p0 : REAL) : <a href="java_util_stream.html#type-Stream">java_util_stream.Stream</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RandomGenerator$ArbitrarilyJumpableGenerator) <font color="#cc0033">jumps</font>*(p0 : LONGINT;
+                                                                     p1 : REAL) : <a href="java_util_stream.html#type-Stream">java_util_stream.Stream</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RandomGenerator$ArbitrarilyJumpableGenerator) <font color="#cc0033">leap</font>*()<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-RandomGenerator$JumpableGenerator"></a>
+<b>PROCEDURE </b>(self:RandomGenerator$JumpableGenerator) <font color="#cc0033">copy</font>*() : <a href="#type-RandomGenerator$JumpableGenerator">RandomGenerator$JumpableGenerator</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RandomGenerator$JumpableGenerator) <font color="#cc0033">copyAndJump</font>*() : <a href="#type-RandomGenerator">RandomGenerator</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RandomGenerator$JumpableGenerator) <font color="#cc0033">jump</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RandomGenerator$JumpableGenerator) <font color="#cc0033">jumpDistance</font>*() : REAL<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RandomGenerator$JumpableGenerator) <font color="#cc0033">jumps</font>*(p0 : LONGINT) : <a href="java_util_stream.html#type-Stream">java_util_stream.Stream</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RandomGenerator$JumpableGenerator) <font color="#cc0033">jumps</font>*() : <a href="java_util_stream.html#type-Stream">java_util_stream.Stream</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RandomGenerator$JumpableGenerator) <font color="#cc0033">rngs</font>*(p0 : LONGINT) : <a href="java_util_stream.html#type-Stream">java_util_stream.Stream</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RandomGenerator$JumpableGenerator) <font color="#cc0033">rngs</font>*() : <a href="java_util_stream.html#type-Stream">java_util_stream.Stream</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-RandomGenerator$LeapableGenerator"></a>
+<b>PROCEDURE </b>(self:RandomGenerator$LeapableGenerator) <font color="#cc0033">copy</font>*() : <a href="java_util_random.html#type-RandomGenerator$JumpableGenerator">java_util_random.RandomGenerator$JumpableGenerator</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RandomGenerator$LeapableGenerator) <font color="#cc0033">copy</font>*() : <a href="#type-RandomGenerator$LeapableGenerator">RandomGenerator$LeapableGenerator</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RandomGenerator$LeapableGenerator) <font color="#cc0033">copyAndLeap</font>*() : <a href="java_util_random.html#type-RandomGenerator$JumpableGenerator">java_util_random.RandomGenerator$JumpableGenerator</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RandomGenerator$LeapableGenerator) <font color="#cc0033">leap</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RandomGenerator$LeapableGenerator) <font color="#cc0033">leapDistance</font>*() : REAL<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RandomGenerator$LeapableGenerator) <font color="#cc0033">leaps</font>*() : <a href="java_util_stream.html#type-Stream">java_util_stream.Stream</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RandomGenerator$LeapableGenerator) <font color="#cc0033">leaps</font>*(p0 : LONGINT) : <a href="java_util_stream.html#type-Stream">java_util_stream.Stream</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-RandomGenerator$SplittableGenerator"></a>
+<b>PROCEDURE </b>(self:RandomGenerator$SplittableGenerator) <font color="#cc0033">rngs</font>*(p0 : LONGINT) : <a href="java_util_stream.html#type-Stream">java_util_stream.Stream</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RandomGenerator$SplittableGenerator) <font color="#cc0033">rngs</font>*() : <a href="java_util_stream.html#type-Stream">java_util_stream.Stream</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RandomGenerator$SplittableGenerator) <font color="#cc0033">split</font>*() : <a href="#type-RandomGenerator$SplittableGenerator">RandomGenerator$SplittableGenerator</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RandomGenerator$SplittableGenerator) <font color="#cc0033">split</font>*(p0 : <a href="#type-RandomGenerator$SplittableGenerator">RandomGenerator$SplittableGenerator</a>) : <a href="#type-RandomGenerator$SplittableGenerator">RandomGenerator$SplittableGenerator</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RandomGenerator$SplittableGenerator) <font color="#cc0033">splits</font>*(p0 : LONGINT;
+                                                             p1 : <a href="#type-RandomGenerator$SplittableGenerator">RandomGenerator$SplittableGenerator</a>) : <a href="java_util_stream.html#type-Stream">java_util_stream.Stream</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RandomGenerator$SplittableGenerator) <font color="#cc0033">splits</font>*() : <a href="java_util_stream.html#type-Stream">java_util_stream.Stream</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RandomGenerator$SplittableGenerator) <font color="#cc0033">splits</font>*(p0 : LONGINT) : <a href="java_util_stream.html#type-Stream">java_util_stream.Stream</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RandomGenerator$SplittableGenerator) <font color="#cc0033">splits</font>*(p0 : <a href="#type-RandomGenerator$SplittableGenerator">RandomGenerator$SplittableGenerator</a>) : <a href="java_util_stream.html#type-Stream">java_util_stream.Stream</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-RandomGenerator$StreamableGenerator"></a>
+<b>PROCEDURE </b>(self:RandomGenerator$StreamableGenerator) <font color="#cc0033">rngs</font>*(p0 : LONGINT) : <a href="java_util_stream.html#type-Stream">java_util_stream.Stream</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RandomGenerator$StreamableGenerator) <font color="#cc0033">rngs</font>*() : <a href="java_util_stream.html#type-Stream">java_util_stream.Stream</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-RandomGeneratorFactory"></a>
+<b>PROCEDURE </b>(self:RandomGeneratorFactory) <font color="#cc0033">create</font>*(p0 : LONGINT) : <a href="#type-RandomGenerator">RandomGenerator</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RandomGeneratorFactory) <font color="#cc0033">create</font>*() : <a href="#type-RandomGenerator">RandomGenerator</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RandomGeneratorFactory) <font color="#cc0033">create</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE) : <a href="#type-RandomGenerator">RandomGenerator</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RandomGeneratorFactory) <font color="#cc0033">equidistribution</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RandomGeneratorFactory) <font color="#cc0033">group</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RandomGeneratorFactory) <font color="#cc0033">isArbitrarilyJumpable</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RandomGeneratorFactory) <font color="#cc0033">isDeprecated</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RandomGeneratorFactory) <font color="#cc0033">isHardware</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RandomGeneratorFactory) <font color="#cc0033">isJumpable</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RandomGeneratorFactory) <font color="#cc0033">isLeapable</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RandomGeneratorFactory) <font color="#cc0033">isSplittable</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RandomGeneratorFactory) <font color="#cc0033">isStatistical</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RandomGeneratorFactory) <font color="#cc0033">isStochastic</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RandomGeneratorFactory) <font color="#cc0033">isStreamable</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RandomGeneratorFactory) <font color="#cc0033">name</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RandomGeneratorFactory) <font color="#cc0033">period</font>*() : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RandomGeneratorFactory) <font color="#cc0033">stateBits</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>END </b><font color="#cc0033">java_util_random</font>.
+</font></pre></hr>
+<!-- BEGIN JavaScript -->
+<script>
+function toggle(node) {
+    node.classList.toggle("show"); 
+  }
+
+function cls(node) {
+    var prnt = node.parentNode;
+    var next = prnt.previousSibling;
+    var text = next.lastChild;
+    text.innerHTML = 
+        "The <b>class</b> property asserts that this type will be<br>" +
+        "implemented as a reference class in the underlying framework.";
+    text.classList.toggle("show");
+  }
+
+function newOk(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>has noArg-ctor</b> property asserts that this reference<br>" +
+        "class has a no-arg constructor, and thus objects of this<br>" +
+        "type can be allocated with NEW(). Component Pascal types<br>" +
+        "derived from this type can also be allocated using NEW().";
+    popuptext.classList.toggle("show"); 
+  }
+
+function noNew(node) { 
+    var prnt = node.parentNode; 
+    var next = prnt.previousSibling; 
+    var text = next.lastChild; 
+    text.innerHTML =  
+        "The <b>no noArg-ctor</b> property asserts that this reference<br>" +
+        "class does not have a noArg constructor. Objects of this<br>" +
+        "type cannot be allocated using NEW(), and Component<br>" +
+        "Pascal types  derived from this type also cannot be<br>" +
+        "allocated using NEW().";
+    text.classList.toggle("show");
+  }
+
+function noCpy(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>no value-assign</b> property asserts that this reference<br>" + 
+        "class does not have a value copy method. Therefore, it<br>" +
+        "is not possible to perform value assignments using<br>" +
+        "statements like <i>dst^</i> := <i>src^</i>";
+    popuptext.classList.toggle("show");
+  }
+
+function valueclass(node) { 
+        var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>valueclass</b> property asserts that this RECORD type is<br>" + 
+        "implemented as a value class in the CLR. It follows that<br>" +  
+        "value assignments can be made of these types. They can<br>" + 
+        "also be passed by value. Even pointers to records of<br>" + 
+        "such types may be dereferenced and copied using syntax<br>" + 
+        "such as  <i>dst^</i> := <i>src^</i>"; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+function argCtor(node) { 
+    var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>has arg-ctor</b> property asserts that this reference<br>" +  
+        "class has one or more constructors that take arguments.<br>" + 
+        "These constructors can be called from Component Pascal<br>" + 
+        "by calling an <i>init</i>(...) method from the static list<br>" + 
+        "here. Component Pascal types derived from this type<br>" + 
+        "can define constructors with arguments which call the<br>" + 
+        "super-type constructor.<br>" + 
+        "See <i>'Interfacing to constructors'</i> in the Release Notes."; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+</script>
+<!-- END JavaScript --> 
+
+</body></html>

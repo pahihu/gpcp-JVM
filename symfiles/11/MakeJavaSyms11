@@ -1,0 +1,55 @@
+# Java home
+HDIR=`/usr/libexec/java_home -v11`
+MDIR="$HDIR/jmods"
+
+# clean up
+rm -rf JvmSystem HtmlBrowseFiles
+mkdir JvmSystem
+
+jmods="\
+java.compiler.jmod \
+java.datatransfer.jmod \
+java.desktop.jmod \
+java.instrument.jmod \
+java.logging.jmod \
+java.management.jmod \
+java.management.rmi.jmod \
+java.naming.jmod \
+java.net.http.jmod \
+java.prefs.jmod \
+java.rmi.jmod \
+java.scripting.jmod \
+java.se.jmod \
+java.security.jgss.jmod \
+java.security.sasl.jmod \
+java.smartcardio.jmod \
+java.sql.jmod \
+java.sql.rowset.jmod \
+java.transaction.xa.jmod \
+java.xml.crypto.jmod \
+java.xml.jmod \
+org.openjsse.jmod"
+
+for m in $jmods
+do
+  j2cps -dst JvmSystem -jar $MDIR/$m
+done
+
+j2cps -dst JvmSystem -nocpsym -jar $MDIR/java.base.jmod
+
+# symbol browser files
+
+pushd JvmSystem
+# cleanup
+rm sun_* com_sun_* com_apple_* apple_*
+
+browse -html -sort -dst:HtmlBrowseFiles *.cps
+
+pushd HtmlBrowseFiles
+makeindex -dst:.
+popd
+
+mv HtmlBrowseFiles ..
+popd
+
+

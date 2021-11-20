@@ -1,0 +1,522 @@
+<html><head><title>jdk_internal_icu_text</title>
+<style>
+<!-- BEGIN Inline CSS -->
+/* Popup container */
+.popup {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+/* The actual popup (appears on top) */
+.popup .popuptext {
+    visibility: hidden;
+    width: 430px;
+    background-color: white;
+    color: black;
+    text-align: left;
+    border-radius: 6px;
+    border-style: solid;
+    border-color: black;
+    padding: 8px 8px 8px 8px;
+    position: absolute;
+    z-index: 1;
+    margin-top: 30px;
+}
+
+/* Toggle this class when clicking on the popup container (hide and show the popup) */
+.popup .show {
+    visibility: visible;
+    opacity: 1;
+}
+
+</style>
+<!-- END Inline CSS -->
+</head><body bgcolor="white">
+<hr><pre>
+<font color="green">(*</font>
+<font color="green"> *  Creator PeToCps j2cps version 1.4.07 (March 2018)</font>
+<font color="green"> *  Compiled from jar-file /Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home/jmods/java.base.jmod</font>
+<font color="green"> *)</font>
+<b>FOREIGN MODULE </b><font color="#cc0033">jdk_internal_icu_text</font>;
+
+<b>IMPORT</b>
+    <a href="java_io.html">java_io</a> := "java.io",
+    <a href="java_lang.html">java_lang</a> := "java.lang",
+    <a href="java_text.html">java_text</a> := "java.text",
+    <a href="jdk_internal_icu_text.html">jdk_internal_icu_text</a> := "jdk.internal.icu.text",
+    <a href="jdk_internal_icu_util.html">jdk_internal_icu_util</a> := "jdk.internal.icu.util";
+
+<b>TYPE</b>
+
+  <a name="type-BidiBase"></a><font color="#cc0033">BidiBase</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+              <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+              <font color="green"><b> (* </b><a href="#meths-BidiBase">Typebound Procedures</a><b> *)</b></font>
+                <font color="#cc0033">length</font>* : INTEGER;
+              <b>STATIC</b>
+                <font color="#cc0033">BIDI_PAIRED_BRACKET_TYPE</font>*        = 4117;
+                <font color="#cc0033">DIRECTION_DEFAULT_RIGHT_TO_LEFT</font>* = 127;
+                <font color="#cc0033">DO_MIRRORING</font>*                    = 2;
+                <font color="#cc0033">INSERT_LRM_FOR_NUMERIC</font>*          = 4;
+                <font color="#cc0033">KEEP_BASE_COMBINING</font>*             = 1;
+                <font color="#cc0033">LEVEL_DEFAULT_LTR</font>*               = 126;
+                <font color="#cc0033">LEVEL_DEFAULT_RTL</font>*               = 127;
+                <font color="#cc0033">LEVEL_OVERRIDE</font>*                  = -128;
+                <font color="#cc0033">LTR</font>*                             = 0;
+                <font color="#cc0033">MAP_NOWHERE</font>*                     = -1;
+                <font color="#cc0033">MAX_EXPLICIT_LEVEL</font>*              = 125;
+                <font color="#cc0033">MIXED</font>*                           = 2;
+                <font color="#cc0033">OUTPUT_REVERSE</font>*                  = 16;
+                <font color="#cc0033">REMOVE_BIDI_CONTROLS</font>*            = 8;
+                <font color="#cc0033">RTL</font>*                             = 1;
+                <b>PROCEDURE </b><font color="#cc0033">Init</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>CHAR;
+                                    p1 : INTEGER;
+                                IN  p2 : <b>ARRAY </b><b>OF </b>BYTE;
+                                    p3 : INTEGER;
+                                    p4 : INTEGER;
+                                    p5 : INTEGER) : <a href="#type-BidiBase">BidiBase</a><b>,CONSTRUCTOR</b>;
+                <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER;
+                                p1 : INTEGER) : <a href="#type-BidiBase">BidiBase</a><b>,CONSTRUCTOR</b>;
+                <b>PROCEDURE </b><font color="#cc0033">reorderVisually</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE;
+                                               p1 : INTEGER;
+                                           IN  p2 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                               p3 : INTEGER;
+                                               p4 : INTEGER);
+                <b>PROCEDURE </b><font color="#cc0033">requiresBidi</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>CHAR;
+                                            p1 : INTEGER;
+                                            p2 : INTEGER) : BOOLEAN;
+              <b>END</b>;
+
+  <a name="type-BidiBase$BidiPairedBracketType"></a><font color="#cc0033">BidiBase$BidiPairedBracketType</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                                    <b>STATIC</b>
+                                      <font color="#cc0033">CLOSE</font>* = 2;
+                                      <font color="#cc0033">COUNT</font>* = 3;
+                                      <font color="#cc0033">NONE</font>*  = 0;
+                                      <font color="#cc0033">OPEN</font>*  = 1;
+                                    <b>END</b>;
+
+  <a name="type-Normalizer2"></a><font color="#cc0033">Normalizer2</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                 <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                 <font color="green"><b> (* </b><a href="#meths-Normalizer2">Typebound Procedures</a><b> *)</b></font>
+                 <b>STATIC</b>
+                   <b>PROCEDURE </b><font color="#cc0033">getNFCInstance</font>*() : <a href="#type-Normalizer2">Normalizer2</a>;
+                   <b>PROCEDURE </b><font color="#cc0033">getNFDInstance</font>*() : <a href="#type-Normalizer2">Normalizer2</a>;
+                   <b>PROCEDURE </b><font color="#cc0033">getNFKCInstance</font>*() : <a href="#type-Normalizer2">Normalizer2</a>;
+                   <b>PROCEDURE </b><font color="#cc0033">getNFKDInstance</font>*() : <a href="#type-Normalizer2">Normalizer2</a>;
+                   <b>PROCEDURE </b><font color="#cc0033">Init</font>!() : <a href="#type-Normalizer2">Normalizer2</a><b>,CONSTRUCTOR</b>;
+                 <b>END</b>;
+
+  <a name="type-NormalizerBase"></a><font color="#cc0033">NormalizerBase</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_lang.html#type-Cloneable">java_lang.Cloneable</a>)
+                    <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                    <font color="green"><b> (* </b><a href="#meths-NormalizerBase">Typebound Procedures</a><b> *)</b></font>
+                    <b>STATIC</b>
+                      <font color="#cc0033">DONE</font>*                   = -1;
+                      <a name="type-NFC"></a><font color="#cc0033">NFC</font>*                    : <a href="jdk_internal_icu_text.html#type-NormalizerBase$Mode">jdk_internal_icu_text.NormalizerBase$Mode</a>;
+                      <a name="type-NFD"></a><font color="#cc0033">NFD</font>*                    : <a href="jdk_internal_icu_text.html#type-NormalizerBase$Mode">jdk_internal_icu_text.NormalizerBase$Mode</a>;
+                      <a name="type-NFKC"></a><font color="#cc0033">NFKC</font>*                   : <a href="jdk_internal_icu_text.html#type-NormalizerBase$Mode">jdk_internal_icu_text.NormalizerBase$Mode</a>;
+                      <a name="type-NFKD"></a><font color="#cc0033">NFKD</font>*                   : <a href="jdk_internal_icu_text.html#type-NormalizerBase$Mode">jdk_internal_icu_text.NormalizerBase$Mode</a>;
+                      <a name="type-NONE"></a><font color="#cc0033">NONE</font>*                   : <a href="jdk_internal_icu_text.html#type-NormalizerBase$Mode">jdk_internal_icu_text.NormalizerBase$Mode</a>;
+                      <font color="#cc0033">UNICODE_3_2</font>*            = 32;
+                      <font color="#cc0033">UNICODE_3_2_0_ORIGINAL</font>* = 32;
+                      <font color="#cc0033">UNICODE_LATEST</font>*         = 0;
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_text.html#type-CharacterIterator">java_text.CharacterIterator</a>;
+                                      p1 : <a href="jdk_internal_icu_text.html#type-NormalizerBase$Mode">jdk_internal_icu_text.NormalizerBase$Mode</a>;
+                                      p2 : INTEGER) : <a href="#type-NormalizerBase">NormalizerBase</a><b>,CONSTRUCTOR</b>;
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_text.html#type-CharacterIterator">java_text.CharacterIterator</a>;
+                                      p1 : <a href="jdk_internal_icu_text.html#type-NormalizerBase$Mode">jdk_internal_icu_text.NormalizerBase$Mode</a>) : <a href="#type-NormalizerBase">NormalizerBase</a><b>,CONSTRUCTOR</b>;
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                      p1 : <a href="jdk_internal_icu_text.html#type-NormalizerBase$Mode">jdk_internal_icu_text.NormalizerBase$Mode</a>;
+                                      p2 : INTEGER) : <a href="#type-NormalizerBase">NormalizerBase</a><b>,CONSTRUCTOR</b>;
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                      p1 : <a href="jdk_internal_icu_text.html#type-NormalizerBase$Mode">jdk_internal_icu_text.NormalizerBase$Mode</a>) : <a href="#type-NormalizerBase">NormalizerBase</a><b>,CONSTRUCTOR</b>;
+                      <b>PROCEDURE </b><font color="#cc0033">isNormalized</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                              p1 : <a href="jdk_internal_icu_text.html#type-NormalizerBase$Mode">jdk_internal_icu_text.NormalizerBase$Mode</a>;
+                                              p2 : INTEGER) : BOOLEAN;
+                      <b>PROCEDURE </b><font color="#cc0033">isNormalized</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                              p1 : <a href="java_text.html#type-Normalizer$Form">java_text.Normalizer$Form</a>) : BOOLEAN;
+                      <b>PROCEDURE </b><font color="#cc0033">isNormalized</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                              p1 : <a href="java_text.html#type-Normalizer$Form">java_text.Normalizer$Form</a>;
+                                              p2 : INTEGER) : BOOLEAN;
+                      <b>PROCEDURE </b><font color="#cc0033">normalize</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                           p1 : <a href="jdk_internal_icu_text.html#type-NormalizerBase$Mode">jdk_internal_icu_text.NormalizerBase$Mode</a>;
+                                           p2 : INTEGER) : <a href="java_lang.html#type-String">java_lang.String</a>;
+                      <b>PROCEDURE </b><font color="#cc0033">normalize</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                           p1 : <a href="java_text.html#type-Normalizer$Form">java_text.Normalizer$Form</a>) : <a href="java_lang.html#type-String">java_lang.String</a>;
+                      <b>PROCEDURE </b><font color="#cc0033">normalize</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                           p1 : <a href="java_text.html#type-Normalizer$Form">java_text.Normalizer$Form</a>;
+                                           p2 : INTEGER) : <a href="java_lang.html#type-String">java_lang.String</a>;
+                    <b>END</b>;
+
+  <a name="type-NormalizerBase$Mode"></a><font color="#cc0033">NormalizerBase$Mode</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                         <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                         <font color="green"><b> (* </b><a href="#meths-NormalizerBase$Mode">Typebound Procedures</a><b> *)</b></font>
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>!() : <a href="#type-NormalizerBase$Mode">NormalizerBase$Mode</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-Replaceable"></a><font color="#cc0033">Replaceable</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                 <font color="green"><b> (* </b><a href="#meths-Replaceable">Typebound Procedures</a><b> *)</b></font>
+                 <b>END</b>;
+
+  <a name="type-ReplaceableString"></a><font color="#cc0033">ReplaceableString</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-Replaceable">Replaceable</a>)
+                       <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                       <font color="green"><b> (* </b><a href="#meths-ReplaceableString">Typebound Procedures</a><b> *)</b></font>
+                       <b>STATIC</b>
+                         <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-StringBuffer">java_lang.StringBuffer</a>) : <a href="#type-ReplaceableString">ReplaceableString</a><b>,CONSTRUCTOR</b>;
+                         <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-ReplaceableString">ReplaceableString</a><b>,CONSTRUCTOR</b>;
+                       <b>END</b>;
+
+  <a name="type-StringPrep"></a><font color="#cc0033">StringPrep</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                <font color="green"><b> (* </b><a href="#meths-StringPrep">Typebound Procedures</a><b> *)</b></font>
+                <b>STATIC</b>
+                  <font color="#cc0033">ALLOW_UNASSIGNED</font>* = 1;
+                  <font color="#cc0033">DEFAULT</font>*          = 0;
+                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_io.html#type-InputStream">java_io.InputStream</a>) : <a href="#type-StringPrep">StringPrep</a><b>,CONSTRUCTOR</b>;
+                <b>END</b>;
+
+  <a name="type-UCharacterIterator"></a><font color="#cc0033">UCharacterIterator</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_lang.html#type-Cloneable">java_lang.Cloneable</a>)
+                        <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                        <font color="green"><b> (* </b><a href="#meths-UCharacterIterator">Typebound Procedures</a><b> *)</b></font>
+                        <b>STATIC</b>
+                          <font color="#cc0033">DONE</font>*        = -1;
+                          <b>PROCEDURE </b><font color="#cc0033">getInstance</font>*(p0 : <a href="java_lang.html#type-StringBuffer">java_lang.StringBuffer</a>) : <a href="#type-UCharacterIterator">UCharacterIterator</a>;
+                          <b>PROCEDURE </b><font color="#cc0033">getInstance</font>*(p0 : <a href="java_text.html#type-CharacterIterator">java_text.CharacterIterator</a>) : <a href="#type-UCharacterIterator">UCharacterIterator</a>;
+                          <b>PROCEDURE </b><font color="#cc0033">getInstance</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-UCharacterIterator">UCharacterIterator</a>;
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>!() : <a href="#type-UCharacterIterator">UCharacterIterator</a><b>,CONSTRUCTOR</b>;
+                        <b>END</b>;
+
+  <a name="type-UnicodeSet"></a><font color="#cc0033">UnicodeSet</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                <font color="green"><b> (* </b><a href="#meths-UnicodeSet">Typebound Procedures</a><b> *)</b></font>
+                <b>STATIC</b>
+                  <font color="#cc0033">MAX_VALUE</font>* = 1114111;
+                  <font color="#cc0033">MIN_VALUE</font>* = 0;
+                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-UnicodeSet">UnicodeSet</a><b>,CONSTRUCTOR</b>;
+                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER;
+                                  p1 : INTEGER) : <a href="#type-UnicodeSet">UnicodeSet</a><b>,CONSTRUCTOR</b>;
+                <b>END</b>;
+
+  <a name="type-UnicodeSet$SpanCondition"></a><font color="#cc0033">UnicodeSet$SpanCondition</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Enum">java_lang.Enum</a>)
+                              <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> *)</font>
+                              <b>STATIC</b>
+                                <a name="type-CONTAINED"></a><font color="#cc0033">CONTAINED</font>*     : <a href="#type-UnicodeSet$SpanCondition">UnicodeSet$SpanCondition</a>;
+                                <a name="type-NOT_CONTAINED"></a><font color="#cc0033">NOT_CONTAINED</font>* : <a href="#type-UnicodeSet$SpanCondition">UnicodeSet$SpanCondition</a>;
+                                <a name="type-SIMPLE"></a><font color="#cc0033">SIMPLE</font>*        : <a href="#type-UnicodeSet$SpanCondition">UnicodeSet$SpanCondition</a>;
+                                <b>PROCEDURE </b><font color="#cc0033">valueOf</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-UnicodeSet$SpanCondition">UnicodeSet$SpanCondition</a>;
+                                <b>PROCEDURE </b><font color="#cc0033">values</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-UnicodeSet$SpanCondition">UnicodeSet$SpanCondition</a>;
+                              <b>END</b>;
+
+  <a name="type-UTF16"></a><font color="#cc0033">UTF16</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+           <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> *)</font>
+           <b>STATIC</b>
+             <font color="#cc0033">CODEPOINT_MAX_VALUE</font>*       = 1114111;
+             <font color="#cc0033">CODEPOINT_MIN_VALUE</font>*       = 0;
+             <font color="#cc0033">LEAD_SURROGATE_MAX_VALUE</font>*  = 56319;
+             <font color="#cc0033">LEAD_SURROGATE_MIN_VALUE</font>*  = 55296;
+             <font color="#cc0033">SUPPLEMENTARY_MIN_VALUE</font>*   = 65536;
+             <font color="#cc0033">SURROGATE_MIN_VALUE</font>*       = 55296;
+             <font color="#cc0033">TRAIL_SURROGATE_MAX_VALUE</font>* = 57343;
+             <font color="#cc0033">TRAIL_SURROGATE_MIN_VALUE</font>* = 56320;
+             <b>PROCEDURE </b><font color="#cc0033">append</font>*(p0 : <a href="java_lang.html#type-StringBuffer">java_lang.StringBuffer</a>;
+                               p1 : INTEGER) : <a href="java_lang.html#type-StringBuffer">java_lang.StringBuffer</a>;
+             <b>PROCEDURE </b><font color="#cc0033">charAt</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>CHAR;
+                                   p1 : INTEGER;
+                                   p2 : INTEGER;
+                                   p3 : INTEGER) : INTEGER;
+             <b>PROCEDURE </b><font color="#cc0033">charAt</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                               p1 : INTEGER) : INTEGER;
+             <b>PROCEDURE </b><font color="#cc0033">charAt</font>*(p0 : <a href="java_lang.html#type-CharSequence">java_lang.CharSequence</a>;
+                               p1 : INTEGER) : INTEGER;
+             <b>PROCEDURE </b><font color="#cc0033">getCharCount</font>*(p0 : INTEGER) : INTEGER;
+             <b>PROCEDURE </b><font color="#cc0033">getLeadSurrogate</font>*(p0 : INTEGER) : CHAR;
+             <b>PROCEDURE </b><font color="#cc0033">getTrailSurrogate</font>*(p0 : INTEGER) : CHAR;
+             <b>PROCEDURE </b><font color="#cc0033">isLeadSurrogate</font>*(p0 : CHAR) : BOOLEAN;
+             <b>PROCEDURE </b><font color="#cc0033">isSurrogate</font>*(p0 : CHAR) : BOOLEAN;
+             <b>PROCEDURE </b><font color="#cc0033">isTrailSurrogate</font>*(p0 : CHAR) : BOOLEAN;
+             <b>PROCEDURE </b><font color="#cc0033">moveCodePointOffset</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>CHAR;
+                                                p1 : INTEGER;
+                                                p2 : INTEGER;
+                                                p3 : INTEGER;
+                                                p4 : INTEGER) : INTEGER;
+             <b>PROCEDURE </b><font color="#cc0033">valueOf</font>*(p0 : INTEGER) : <a href="java_lang.html#type-String">java_lang.String</a>;
+           <b>END</b>;
+
+
+
+<a name="meths-BidiBase"></a>
+<b>PROCEDURE </b>(self:BidiBase) <font color="#cc0033">baseIsLeftToRight</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BidiBase) <font color="#cc0033">countRuns</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BidiBase) <font color="#cc0033">getBaseLevel</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BidiBase) <font color="#cc0033">getCustomizedClass</font>*(p0 : INTEGER) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BidiBase) <font color="#cc0033">getDirection</font>*() : BYTE<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BidiBase) <font color="#cc0033">getLength</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BidiBase) <font color="#cc0033">getLevelAt</font>*(p0 : INTEGER) : BYTE<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BidiBase) <font color="#cc0033">getParaLevel</font>*() : BYTE<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BidiBase) <font color="#cc0033">getRunLevel</font>*(p0 : INTEGER) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BidiBase) <font color="#cc0033">getRunLimit</font>*(p0 : INTEGER) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BidiBase) <font color="#cc0033">getRunStart</font>*(p0 : INTEGER) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BidiBase) <font color="#cc0033">isInverse</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BidiBase) <font color="#cc0033">isLeftToRight</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BidiBase) <font color="#cc0033">isMixed</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BidiBase) <font color="#cc0033">isRightToLeft</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BidiBase) <font color="#cc0033">orderParagraphsLTR</font>*(p0 : BOOLEAN)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BidiBase) <font color="#cc0033">setLine</font>*(p0 : <a href="java_text.html#type-Bidi">java_text.Bidi</a>;
+                                   p1 : <a href="#type-BidiBase">BidiBase</a>;
+                                   p2 : <a href="java_text.html#type-Bidi">java_text.Bidi</a>;
+                                   p3 : <a href="#type-BidiBase">BidiBase</a>;
+                                   p4 : INTEGER;
+                                   p5 : INTEGER) : <a href="java_text.html#type-Bidi">java_text.Bidi</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BidiBase) <font color="#cc0033">setPara</font>*(p0 : <a href="java_text.html#type-AttributedCharacterIterator">java_text.AttributedCharacterIterator</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BidiBase) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BidiBase) <font color="#cc0033">writeReordered</font>*(p0 : INTEGER) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-Normalizer2"></a>
+<b>PROCEDURE </b>(self:Normalizer2) <font color="#cc0033">append</font>*(p0 : <a href="java_lang.html#type-StringBuilder">java_lang.StringBuilder</a>;
+                                     p1 : <a href="java_lang.html#type-CharSequence">java_lang.CharSequence</a>) : <a href="java_lang.html#type-StringBuilder">java_lang.StringBuilder</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Normalizer2) <font color="#cc0033">getCombiningClass</font>*(p0 : INTEGER) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Normalizer2) <font color="#cc0033">getDecomposition</font>*(p0 : INTEGER) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Normalizer2) <font color="#cc0033">hasBoundaryBefore</font>*(p0 : INTEGER) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Normalizer2) <font color="#cc0033">isNormalized</font>*(p0 : <a href="java_lang.html#type-CharSequence">java_lang.CharSequence</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Normalizer2) <font color="#cc0033">normalize</font>*(p0 : <a href="java_lang.html#type-CharSequence">java_lang.CharSequence</a>;
+                                        p1 : <a href="java_lang.html#type-StringBuilder">java_lang.StringBuilder</a>) : <a href="java_lang.html#type-StringBuilder">java_lang.StringBuilder</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Normalizer2) <font color="#cc0033">normalize</font>*(p0 : <a href="java_lang.html#type-CharSequence">java_lang.CharSequence</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Normalizer2) <font color="#cc0033">normalize</font>*(p0 : <a href="java_lang.html#type-CharSequence">java_lang.CharSequence</a>;
+                                        p1 : <a href="java_lang.html#type-Appendable">java_lang.Appendable</a>) : <a href="java_lang.html#type-Appendable">java_lang.Appendable</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Normalizer2) <font color="#cc0033">normalizeSecondAndAppend</font>*(p0 : <a href="java_lang.html#type-StringBuilder">java_lang.StringBuilder</a>;
+                                                       p1 : <a href="java_lang.html#type-CharSequence">java_lang.CharSequence</a>) : <a href="java_lang.html#type-StringBuilder">java_lang.StringBuilder</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Normalizer2) <font color="#cc0033">spanQuickCheckYes</font>*(p0 : <a href="java_lang.html#type-CharSequence">java_lang.CharSequence</a>) : INTEGER<b>,NEW,ABSTRACT</b>;
+<a name="meths-NormalizerBase"></a>
+<b>PROCEDURE </b>(self:NormalizerBase) <font color="#cc0033">clone</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:NormalizerBase) <font color="#cc0033">current</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:NormalizerBase) <font color="#cc0033">endIndex</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:NormalizerBase) <font color="#cc0033">getBeginIndex</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:NormalizerBase) <font color="#cc0033">getEndIndex</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:NormalizerBase) <font color="#cc0033">getIndex</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:NormalizerBase) <font color="#cc0033">getMode</font>*() : <a href="jdk_internal_icu_text.html#type-NormalizerBase$Mode">jdk_internal_icu_text.NormalizerBase$Mode</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:NormalizerBase) <font color="#cc0033">next</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:NormalizerBase) <font color="#cc0033">previous</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:NormalizerBase) <font color="#cc0033">reset</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:NormalizerBase) <font color="#cc0033">setIndex</font>*(p0 : INTEGER) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:NormalizerBase) <font color="#cc0033">setIndexOnly</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:NormalizerBase) <font color="#cc0033">setMode</font>*(p0 : <a href="jdk_internal_icu_text.html#type-NormalizerBase$Mode">jdk_internal_icu_text.NormalizerBase$Mode</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:NormalizerBase) <font color="#cc0033">setText</font>*(p0 : <a href="java_text.html#type-CharacterIterator">java_text.CharacterIterator</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:NormalizerBase) <font color="#cc0033">setText</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-NormalizerBase$Mode"></a>
+<b>PROCEDURE </b>(self:NormalizerBase$Mode) <font color="#cc0033">getNormalizer2</font>!(p0 : INTEGER) : <a href="#type-Normalizer2">Normalizer2</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-Replaceable"></a>
+<b>PROCEDURE </b>(self:Replaceable) <font color="#cc0033">charAt</font>*(p0 : INTEGER) : CHAR<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Replaceable) <font color="#cc0033">getChars</font>*(    p0 : INTEGER;
+                                           p1 : INTEGER;
+                                       IN  p2 : <b>ARRAY </b><b>OF </b>CHAR;
+                                           p3 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Replaceable) <font color="#cc0033">length</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+<a name="meths-ReplaceableString"></a>
+<b>PROCEDURE </b>(self:ReplaceableString) <font color="#cc0033">charAt</font>*(p0 : INTEGER) : CHAR<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ReplaceableString) <font color="#cc0033">getChars</font>*(    p0 : INTEGER;
+                                                 p1 : INTEGER;
+                                             IN  p2 : <b>ARRAY </b><b>OF </b>CHAR;
+                                                 p3 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ReplaceableString) <font color="#cc0033">length</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-StringPrep"></a>
+<b>PROCEDURE </b>(self:StringPrep) <font color="#cc0033">prepare</font>*(p0 : <a href="#type-UCharacterIterator">UCharacterIterator</a>;
+                                     p1 : INTEGER) : <a href="java_lang.html#type-StringBuffer">java_lang.StringBuffer</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-UCharacterIterator"></a>
+<b>PROCEDURE </b>(self:UCharacterIterator) <font color="#cc0033">clone</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:UCharacterIterator) <font color="#cc0033">getIndex</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:UCharacterIterator) <font color="#cc0033">getLength</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:UCharacterIterator) <font color="#cc0033">getText</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:UCharacterIterator) <font color="#cc0033">getText</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>CHAR;
+                                                 p1 : INTEGER) : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:UCharacterIterator) <font color="#cc0033">getText</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>CHAR) : INTEGER<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:UCharacterIterator) <font color="#cc0033">moveCodePointIndex</font>*(p0 : INTEGER) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:UCharacterIterator) <font color="#cc0033">next</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:UCharacterIterator) <font color="#cc0033">nextCodePoint</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:UCharacterIterator) <font color="#cc0033">previous</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:UCharacterIterator) <font color="#cc0033">previousCodePoint</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:UCharacterIterator) <font color="#cc0033">setIndex</font>*(p0 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:UCharacterIterator) <font color="#cc0033">setToStart</font>*()<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-UnicodeSet"></a>
+<b>PROCEDURE </b>(self:UnicodeSet) <font color="#cc0033">add</font>*(p0 : INTEGER) : <a href="#type-UnicodeSet">UnicodeSet</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:UnicodeSet) <font color="#cc0033">add</font>*(p0 : <a href="java_lang.html#type-CharSequence">java_lang.CharSequence</a>) : <a href="#type-UnicodeSet">UnicodeSet</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:UnicodeSet) <font color="#cc0033">clear</font>*() : <a href="#type-UnicodeSet">UnicodeSet</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:UnicodeSet) <font color="#cc0033">cloneAsThawed</font>*() : <a href="#type-UnicodeSet">UnicodeSet</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:UnicodeSet) <font color="#cc0033">complement</font>*(p0 : INTEGER;
+                                        p1 : INTEGER) : <a href="#type-UnicodeSet">UnicodeSet</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:UnicodeSet) <font color="#cc0033">contains</font>*(p0 : INTEGER) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:UnicodeSet) <font color="#cc0033">freeze</font>*() : <a href="#type-UnicodeSet">UnicodeSet</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:UnicodeSet) <font color="#cc0033">getRangeCount</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:UnicodeSet) <font color="#cc0033">getRangeEnd</font>*(p0 : INTEGER) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:UnicodeSet) <font color="#cc0033">getRangeStart</font>*(p0 : INTEGER) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:UnicodeSet) <font color="#cc0033">isFrozen</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:UnicodeSet) <font color="#cc0033">retainAll</font>*(p0 : <a href="#type-UnicodeSet">UnicodeSet</a>) : <a href="#type-UnicodeSet">UnicodeSet</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:UnicodeSet) <font color="#cc0033">set</font>*(p0 : <a href="#type-UnicodeSet">UnicodeSet</a>) : <a href="#type-UnicodeSet">UnicodeSet</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:UnicodeSet) <font color="#cc0033">size</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:UnicodeSet) <font color="#cc0033">span</font>*(p0 : <a href="java_lang.html#type-CharSequence">java_lang.CharSequence</a>;
+                                  p1 : INTEGER;
+                                  p2 : <a href="#type-UnicodeSet$SpanCondition">UnicodeSet$SpanCondition</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:UnicodeSet) <font color="#cc0033">span</font>*(p0 : <a href="java_lang.html#type-CharSequence">java_lang.CharSequence</a>;
+                                  p1 : <a href="#type-UnicodeSet$SpanCondition">UnicodeSet$SpanCondition</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:UnicodeSet) <font color="#cc0033">spanAndCount</font>*(p0 : <a href="java_lang.html#type-CharSequence">java_lang.CharSequence</a>;
+                                          p1 : INTEGER;
+                                          p2 : <a href="#type-UnicodeSet$SpanCondition">UnicodeSet$SpanCondition</a>;
+                                          p3 : <a href="jdk_internal_icu_util.html#type-OutputInt">jdk_internal_icu_util.OutputInt</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:UnicodeSet) <font color="#cc0033">spanBack</font>*(p0 : <a href="java_lang.html#type-CharSequence">java_lang.CharSequence</a>;
+                                      p1 : INTEGER;
+                                      p2 : <a href="#type-UnicodeSet$SpanCondition">UnicodeSet$SpanCondition</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>END </b><font color="#cc0033">jdk_internal_icu_text</font>.
+</font></pre></hr>
+<!-- BEGIN JavaScript -->
+<script>
+function toggle(node) {
+    node.classList.toggle("show"); 
+  }
+
+function cls(node) {
+    var prnt = node.parentNode;
+    var next = prnt.previousSibling;
+    var text = next.lastChild;
+    text.innerHTML = 
+        "The <b>class</b> property asserts that this type will be<br>" +
+        "implemented as a reference class in the underlying framework.";
+    text.classList.toggle("show");
+  }
+
+function newOk(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>has noArg-ctor</b> property asserts that this reference<br>" +
+        "class has a no-arg constructor, and thus objects of this<br>" +
+        "type can be allocated with NEW(). Component Pascal types<br>" +
+        "derived from this type can also be allocated using NEW().";
+    popuptext.classList.toggle("show"); 
+  }
+
+function noNew(node) { 
+    var prnt = node.parentNode; 
+    var next = prnt.previousSibling; 
+    var text = next.lastChild; 
+    text.innerHTML =  
+        "The <b>no noArg-ctor</b> property asserts that this reference<br>" +
+        "class does not have a noArg constructor. Objects of this<br>" +
+        "type cannot be allocated using NEW(), and Component<br>" +
+        "Pascal types  derived from this type also cannot be<br>" +
+        "allocated using NEW().";
+    text.classList.toggle("show");
+  }
+
+function noCpy(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>no value-assign</b> property asserts that this reference<br>" + 
+        "class does not have a value copy method. Therefore, it<br>" +
+        "is not possible to perform value assignments using<br>" +
+        "statements like <i>dst^</i> := <i>src^</i>";
+    popuptext.classList.toggle("show");
+  }
+
+function valueclass(node) { 
+        var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>valueclass</b> property asserts that this RECORD type is<br>" + 
+        "implemented as a value class in the CLR. It follows that<br>" +  
+        "value assignments can be made of these types. They can<br>" + 
+        "also be passed by value. Even pointers to records of<br>" + 
+        "such types may be dereferenced and copied using syntax<br>" + 
+        "such as  <i>dst^</i> := <i>src^</i>"; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+function argCtor(node) { 
+    var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>has arg-ctor</b> property asserts that this reference<br>" +  
+        "class has one or more constructors that take arguments.<br>" + 
+        "These constructors can be called from Component Pascal<br>" + 
+        "by calling an <i>init</i>(...) method from the static list<br>" + 
+        "here. Component Pascal types derived from this type<br>" + 
+        "can define constructors with arguments which call the<br>" + 
+        "super-type constructor.<br>" + 
+        "See <i>'Interfacing to constructors'</i> in the Release Notes."; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+</script>
+<!-- END JavaScript --> 
+
+</body></html>

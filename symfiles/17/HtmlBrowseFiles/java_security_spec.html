@@ -1,0 +1,678 @@
+<html><head><title>java_security_spec</title>
+<style>
+<!-- BEGIN Inline CSS -->
+/* Popup container */
+.popup {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+/* The actual popup (appears on top) */
+.popup .popuptext {
+    visibility: hidden;
+    width: 430px;
+    background-color: white;
+    color: black;
+    text-align: left;
+    border-radius: 6px;
+    border-style: solid;
+    border-color: black;
+    padding: 8px 8px 8px 8px;
+    position: absolute;
+    z-index: 1;
+    margin-top: 30px;
+}
+
+/* Toggle this class when clicking on the popup container (hide and show the popup) */
+.popup .show {
+    visibility: visible;
+    opacity: 1;
+}
+
+</style>
+<!-- END Inline CSS -->
+</head><body bgcolor="white">
+<hr><pre>
+<font color="green">(*</font>
+<font color="green"> *  Creator PeToCps j2cps version 1.4.07 (March 2018)</font>
+<font color="green"> *  Compiled from jar-file /Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home/jmods/java.base.jmod</font>
+<font color="green"> *)</font>
+<b>FOREIGN MODULE </b><font color="#cc0033">java_security_spec</font>;
+
+<b>IMPORT</b>
+    <a href="java_lang.html">java_lang</a> := "java.lang",
+    <a href="java_math.html">java_math</a> := "java.math",
+    <a href="java_security.html">java_security</a> := "java.security",
+    <a href="java_security_interfaces.html">java_security_interfaces</a> := "java.security.interfaces",
+    <a href="java_security_spec.html">java_security_spec</a> := "java.security.spec",
+    <a href="java_util.html">java_util</a> := "java.util";
+
+<b>TYPE</b>
+
+  <a name="type-AlgorithmParameterSpec"></a><font color="#cc0033">AlgorithmParameterSpec</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                            <b>END</b>;
+
+  <a name="type-DSAGenParameterSpec"></a><font color="#cc0033">DSAGenParameterSpec</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-AlgorithmParameterSpec">AlgorithmParameterSpec</a>)
+                         <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                         <font color="green"><b> (* </b><a href="#meths-DSAGenParameterSpec">Typebound Procedures</a><b> *)</b></font>
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER;
+                                           p1 : INTEGER;
+                                           p2 : INTEGER) : <a href="#type-DSAGenParameterSpec">DSAGenParameterSpec</a><b>,CONSTRUCTOR</b>;
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER;
+                                           p1 : INTEGER) : <a href="#type-DSAGenParameterSpec">DSAGenParameterSpec</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-DSAParameterSpec"></a><font color="#cc0033">DSAParameterSpec</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_security_spec.html#type-AlgorithmParameterSpec">java_security_spec.AlgorithmParameterSpec</a> + <a href="java_security_interfaces.html#type-DSAParams">java_security_interfaces.DSAParams</a>)
+                      <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                      <font color="green"><b> (* </b><a href="#meths-DSAParameterSpec">Typebound Procedures</a><b> *)</b></font>
+                      <b>STATIC</b>
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a>;
+                                        p1 : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a>;
+                                        p2 : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a>) : <a href="#type-DSAParameterSpec">DSAParameterSpec</a><b>,CONSTRUCTOR</b>;
+                      <b>END</b>;
+
+  <a name="type-DSAPrivateKeySpec"></a><font color="#cc0033">DSAPrivateKeySpec</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_security_spec.html#type-KeySpec">java_security_spec.KeySpec</a>)
+                       <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                       <font color="green"><b> (* </b><a href="#meths-DSAPrivateKeySpec">Typebound Procedures</a><b> *)</b></font>
+                       <b>STATIC</b>
+                         <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a>;
+                                         p1 : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a>;
+                                         p2 : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a>;
+                                         p3 : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a>) : <a href="#type-DSAPrivateKeySpec">DSAPrivateKeySpec</a><b>,CONSTRUCTOR</b>;
+                       <b>END</b>;
+
+  <a name="type-DSAPublicKeySpec"></a><font color="#cc0033">DSAPublicKeySpec</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-KeySpec">KeySpec</a>)
+                      <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                      <font color="green"><b> (* </b><a href="#meths-DSAPublicKeySpec">Typebound Procedures</a><b> *)</b></font>
+                      <b>STATIC</b>
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a>;
+                                        p1 : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a>;
+                                        p2 : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a>;
+                                        p3 : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a>) : <a href="#type-DSAPublicKeySpec">DSAPublicKeySpec</a><b>,CONSTRUCTOR</b>;
+                      <b>END</b>;
+
+  <a name="type-ECField"></a><font color="#cc0033">ECField</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+             <font color="green"><b> (* </b><a href="#meths-ECField">Typebound Procedures</a><b> *)</b></font>
+             <b>END</b>;
+
+  <a name="type-ECFieldF2m"></a><font color="#cc0033">ECFieldF2m</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-ECField">ECField</a>)
+                <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                <font color="green"><b> (* </b><a href="#meths-ECFieldF2m">Typebound Procedures</a><b> *)</b></font>
+                <b>STATIC</b>
+                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*(    p0 : INTEGER;
+                                  IN  p1 : <b>ARRAY </b><b>OF </b>INTEGER) : <a href="#type-ECFieldF2m">ECFieldF2m</a><b>,CONSTRUCTOR</b>;
+                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER;
+                                  p1 : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a>) : <a href="#type-ECFieldF2m">ECFieldF2m</a><b>,CONSTRUCTOR</b>;
+                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER) : <a href="#type-ECFieldF2m">ECFieldF2m</a><b>,CONSTRUCTOR</b>;
+                <b>END</b>;
+
+  <a name="type-ECFieldFp"></a><font color="#cc0033">ECFieldFp</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_security_spec.html#type-ECField">java_security_spec.ECField</a>)
+               <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+               <font color="green"><b> (* </b><a href="#meths-ECFieldFp">Typebound Procedures</a><b> *)</b></font>
+               <b>STATIC</b>
+                 <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a>) : <a href="#type-ECFieldFp">ECFieldFp</a><b>,CONSTRUCTOR</b>;
+               <b>END</b>;
+
+  <a name="type-ECGenParameterSpec"></a><font color="#cc0033">ECGenParameterSpec</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_security_spec.html#type-NamedParameterSpec">java_security_spec.NamedParameterSpec</a>)
+                        <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                        <b>STATIC</b>
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-ECGenParameterSpec">ECGenParameterSpec</a><b>,CONSTRUCTOR</b>;
+                        <b>END</b>;
+
+  <a name="type-ECParameterSpec"></a><font color="#cc0033">ECParameterSpec</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-AlgorithmParameterSpec">AlgorithmParameterSpec</a>)
+                     <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                     <font color="green"><b> (* </b><a href="#meths-ECParameterSpec">Typebound Procedures</a><b> *)</b></font>
+                     <b>STATIC</b>
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="#type-EllipticCurve">EllipticCurve</a>;
+                                       p1 : <a href="#type-ECPoint">ECPoint</a>;
+                                       p2 : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a>;
+                                       p3 : INTEGER) : <a href="#type-ECParameterSpec">ECParameterSpec</a><b>,CONSTRUCTOR</b>;
+                     <b>END</b>;
+
+  <a name="type-ECPoint"></a><font color="#cc0033">ECPoint</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+             <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+             <font color="green"><b> (* </b><a href="#meths-ECPoint">Typebound Procedures</a><b> *)</b></font>
+             <b>STATIC</b>
+               <a name="type-POINT_INFINITY"></a><font color="#cc0033">POINT_INFINITY</font>* : <a href="#type-ECPoint">ECPoint</a>;
+               <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a>;
+                               p1 : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a>) : <a href="#type-ECPoint">ECPoint</a><b>,CONSTRUCTOR</b>;
+             <b>END</b>;
+
+  <a name="type-ECPrivateKeySpec"></a><font color="#cc0033">ECPrivateKeySpec</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_security_spec.html#type-KeySpec">java_security_spec.KeySpec</a>)
+                      <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                      <font color="green"><b> (* </b><a href="#meths-ECPrivateKeySpec">Typebound Procedures</a><b> *)</b></font>
+                      <b>STATIC</b>
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a>;
+                                        p1 : <a href="java_security_spec.html#type-ECParameterSpec">java_security_spec.ECParameterSpec</a>) : <a href="#type-ECPrivateKeySpec">ECPrivateKeySpec</a><b>,CONSTRUCTOR</b>;
+                      <b>END</b>;
+
+  <a name="type-ECPublicKeySpec"></a><font color="#cc0033">ECPublicKeySpec</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_security_spec.html#type-KeySpec">java_security_spec.KeySpec</a>)
+                     <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                     <font color="green"><b> (* </b><a href="#meths-ECPublicKeySpec">Typebound Procedures</a><b> *)</b></font>
+                     <b>STATIC</b>
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="#type-ECPoint">ECPoint</a>;
+                                       p1 : <a href="java_security_spec.html#type-ECParameterSpec">java_security_spec.ECParameterSpec</a>) : <a href="#type-ECPublicKeySpec">ECPublicKeySpec</a><b>,CONSTRUCTOR</b>;
+                     <b>END</b>;
+
+  <a name="type-EdDSAParameterSpec"></a><font color="#cc0033">EdDSAParameterSpec</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-AlgorithmParameterSpec">AlgorithmParameterSpec</a>)
+                        <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                        <font color="green"><b> (* </b><a href="#meths-EdDSAParameterSpec">Typebound Procedures</a><b> *)</b></font>
+                        <b>STATIC</b>
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>*(    p0 : BOOLEAN;
+                                          IN  p1 : <b>ARRAY </b><b>OF </b>BYTE) : <a href="#type-EdDSAParameterSpec">EdDSAParameterSpec</a><b>,CONSTRUCTOR</b>;
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : BOOLEAN) : <a href="#type-EdDSAParameterSpec">EdDSAParameterSpec</a><b>,CONSTRUCTOR</b>;
+                        <b>END</b>;
+
+  <a name="type-EdECPoint"></a><font color="#cc0033">EdECPoint</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+               <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+               <font color="green"><b> (* </b><a href="#meths-EdECPoint">Typebound Procedures</a><b> *)</b></font>
+               <b>STATIC</b>
+                 <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : BOOLEAN;
+                                 p1 : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a>) : <a href="#type-EdECPoint">EdECPoint</a><b>,CONSTRUCTOR</b>;
+               <b>END</b>;
+
+  <a name="type-EdECPrivateKeySpec"></a><font color="#cc0033">EdECPrivateKeySpec</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_security_spec.html#type-KeySpec">java_security_spec.KeySpec</a>)
+                        <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                        <font color="green"><b> (* </b><a href="#meths-EdECPrivateKeySpec">Typebound Procedures</a><b> *)</b></font>
+                        <b>STATIC</b>
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>*(    p0 : <a href="java_security_spec.html#type-NamedParameterSpec">java_security_spec.NamedParameterSpec</a>;
+                                          IN  p1 : <b>ARRAY </b><b>OF </b>BYTE) : <a href="#type-EdECPrivateKeySpec">EdECPrivateKeySpec</a><b>,CONSTRUCTOR</b>;
+                        <b>END</b>;
+
+  <a name="type-EdECPublicKeySpec"></a><font color="#cc0033">EdECPublicKeySpec</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-KeySpec">KeySpec</a>)
+                       <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                       <font color="green"><b> (* </b><a href="#meths-EdECPublicKeySpec">Typebound Procedures</a><b> *)</b></font>
+                       <b>STATIC</b>
+                         <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="#type-NamedParameterSpec">NamedParameterSpec</a>;
+                                         p1 : <a href="#type-EdECPoint">EdECPoint</a>) : <a href="#type-EdECPublicKeySpec">EdECPublicKeySpec</a><b>,CONSTRUCTOR</b>;
+                       <b>END</b>;
+
+  <a name="type-EllipticCurve"></a><font color="#cc0033">EllipticCurve</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                   <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                   <font color="green"><b> (* </b><a href="#meths-EllipticCurve">Typebound Procedures</a><b> *)</b></font>
+                   <b>STATIC</b>
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*(    p0 : <a href="java_security_spec.html#type-ECField">java_security_spec.ECField</a>;
+                                         p1 : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a>;
+                                         p2 : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a>;
+                                     IN  p3 : <b>ARRAY </b><b>OF </b>BYTE) : <a href="#type-EllipticCurve">EllipticCurve</a><b>,CONSTRUCTOR</b>;
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_security_spec.html#type-ECField">java_security_spec.ECField</a>;
+                                     p1 : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a>;
+                                     p2 : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a>) : <a href="#type-EllipticCurve">EllipticCurve</a><b>,CONSTRUCTOR</b>;
+                   <b>END</b>;
+
+  <a name="type-EncodedKeySpec"></a><font color="#cc0033">EncodedKeySpec</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_security_spec.html#type-KeySpec">java_security_spec.KeySpec</a>)
+                    <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                    <font color="green"><b> (* </b><a href="#meths-EncodedKeySpec">Typebound Procedures</a><b> *)</b></font>
+                    <b>STATIC</b>
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>!(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE;
+                                          p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-EncodedKeySpec">EncodedKeySpec</a><b>,CONSTRUCTOR</b>;
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE) : <a href="#type-EncodedKeySpec">EncodedKeySpec</a><b>,CONSTRUCTOR</b>;
+                    <b>END</b>;
+
+  <a name="type-InvalidKeySpecException"></a><font color="#cc0033">InvalidKeySpecException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_security.html#type-GeneralSecurityException">java_security.GeneralSecurityException</a>)
+                             <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                             <b>STATIC</b>
+                               <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                               p1 : <a href="java_lang.html#type-Throwable">java_lang.Throwable</a>) : <a href="#type-InvalidKeySpecException">InvalidKeySpecException</a><b>,CONSTRUCTOR</b>;
+                               <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-Throwable">java_lang.Throwable</a>) : <a href="#type-InvalidKeySpecException">InvalidKeySpecException</a><b>,CONSTRUCTOR</b>;
+                               <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-InvalidKeySpecException">InvalidKeySpecException</a><b>,CONSTRUCTOR</b>;
+                               <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-InvalidKeySpecException">InvalidKeySpecException</a><b>,CONSTRUCTOR</b>;
+                             <b>END</b>;
+
+  <a name="type-InvalidParameterSpecException"></a><font color="#cc0033">InvalidParameterSpecException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_security.html#type-GeneralSecurityException">java_security.GeneralSecurityException</a>)
+                                   <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                                   <b>STATIC</b>
+                                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-InvalidParameterSpecException">InvalidParameterSpecException</a><b>,CONSTRUCTOR</b>;
+                                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-InvalidParameterSpecException">InvalidParameterSpecException</a><b>,CONSTRUCTOR</b>;
+                                   <b>END</b>;
+
+  <a name="type-KeySpec"></a><font color="#cc0033">KeySpec</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+             <b>END</b>;
+
+  <a name="type-MGF1ParameterSpec"></a><font color="#cc0033">MGF1ParameterSpec</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-AlgorithmParameterSpec">AlgorithmParameterSpec</a>)
+                       <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                       <font color="green"><b> (* </b><a href="#meths-MGF1ParameterSpec">Typebound Procedures</a><b> *)</b></font>
+                       <b>STATIC</b>
+                         <a name="type-SHA1"></a><font color="#cc0033">SHA1</font>*       : <a href="#type-MGF1ParameterSpec">MGF1ParameterSpec</a>;
+                         <a name="type-SHA224"></a><font color="#cc0033">SHA224</font>*     : <a href="#type-MGF1ParameterSpec">MGF1ParameterSpec</a>;
+                         <a name="type-SHA256"></a><font color="#cc0033">SHA256</font>*     : <a href="#type-MGF1ParameterSpec">MGF1ParameterSpec</a>;
+                         <a name="type-SHA384"></a><font color="#cc0033">SHA384</font>*     : <a href="#type-MGF1ParameterSpec">MGF1ParameterSpec</a>;
+                         <a name="type-SHA3_224"></a><font color="#cc0033">SHA3_224</font>*   : <a href="#type-MGF1ParameterSpec">MGF1ParameterSpec</a>;
+                         <a name="type-SHA3_256"></a><font color="#cc0033">SHA3_256</font>*   : <a href="#type-MGF1ParameterSpec">MGF1ParameterSpec</a>;
+                         <a name="type-SHA3_384"></a><font color="#cc0033">SHA3_384</font>*   : <a href="#type-MGF1ParameterSpec">MGF1ParameterSpec</a>;
+                         <a name="type-SHA3_512"></a><font color="#cc0033">SHA3_512</font>*   : <a href="#type-MGF1ParameterSpec">MGF1ParameterSpec</a>;
+                         <a name="type-SHA512"></a><font color="#cc0033">SHA512</font>*     : <a href="#type-MGF1ParameterSpec">MGF1ParameterSpec</a>;
+                         <a name="type-SHA512_224"></a><font color="#cc0033">SHA512_224</font>* : <a href="#type-MGF1ParameterSpec">MGF1ParameterSpec</a>;
+                         <a name="type-SHA512_256"></a><font color="#cc0033">SHA512_256</font>* : <a href="#type-MGF1ParameterSpec">MGF1ParameterSpec</a>;
+                         <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-MGF1ParameterSpec">MGF1ParameterSpec</a><b>,CONSTRUCTOR</b>;
+                       <b>END</b>;
+
+  <a name="type-NamedParameterSpec"></a><font color="#cc0033">NamedParameterSpec</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-AlgorithmParameterSpec">AlgorithmParameterSpec</a>)
+                        <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                        <font color="green"><b> (* </b><a href="#meths-NamedParameterSpec">Typebound Procedures</a><b> *)</b></font>
+                        <b>STATIC</b>
+                          <a name="type-ED25519"></a><font color="#cc0033">ED25519</font>* : <a href="#type-NamedParameterSpec">NamedParameterSpec</a>;
+                          <a name="type-ED448"></a><font color="#cc0033">ED448</font>*   : <a href="#type-NamedParameterSpec">NamedParameterSpec</a>;
+                          <a name="type-X25519"></a><font color="#cc0033">X25519</font>*  : <a href="#type-NamedParameterSpec">NamedParameterSpec</a>;
+                          <a name="type-X448"></a><font color="#cc0033">X448</font>*    : <a href="#type-NamedParameterSpec">NamedParameterSpec</a>;
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-NamedParameterSpec">NamedParameterSpec</a><b>,CONSTRUCTOR</b>;
+                        <b>END</b>;
+
+  <a name="type-PKCS8EncodedKeySpec"></a><font color="#cc0033">PKCS8EncodedKeySpec</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-EncodedKeySpec">EncodedKeySpec</a>)
+                         <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                         <font color="green"><b> (* </b><a href="#meths-PKCS8EncodedKeySpec">Typebound Procedures</a><b> *)</b></font>
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE;
+                                               p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-PKCS8EncodedKeySpec">PKCS8EncodedKeySpec</a><b>,CONSTRUCTOR</b>;
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE) : <a href="#type-PKCS8EncodedKeySpec">PKCS8EncodedKeySpec</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-PSSParameterSpec"></a><font color="#cc0033">PSSParameterSpec</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-AlgorithmParameterSpec">AlgorithmParameterSpec</a>)
+                      <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                      <font color="green"><b> (* </b><a href="#meths-PSSParameterSpec">Typebound Procedures</a><b> *)</b></font>
+                      <b>STATIC</b>
+                        <a name="type-DEFAULT"></a><font color="#cc0033">DEFAULT</font>*          : <a href="#type-PSSParameterSpec">PSSParameterSpec</a>;
+                        <font color="#cc0033">TRAILER_FIELD_BC</font>* = 1;
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER) : <a href="#type-PSSParameterSpec">PSSParameterSpec</a><b>,CONSTRUCTOR</b>;
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                        p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                        p2 : <a href="#type-AlgorithmParameterSpec">AlgorithmParameterSpec</a>;
+                                        p3 : INTEGER;
+                                        p4 : INTEGER) : <a href="#type-PSSParameterSpec">PSSParameterSpec</a><b>,CONSTRUCTOR</b>;
+                      <b>END</b>;
+
+  <a name="type-RSAKeyGenParameterSpec"></a><font color="#cc0033">RSAKeyGenParameterSpec</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_security_spec.html#type-AlgorithmParameterSpec">java_security_spec.AlgorithmParameterSpec</a>)
+                            <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                            <font color="green"><b> (* </b><a href="#meths-RSAKeyGenParameterSpec">Typebound Procedures</a><b> *)</b></font>
+                            <b>STATIC</b>
+                              <a name="type-F0"></a><font color="#cc0033">F0</font>*   : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a>;
+                              <a name="type-F4"></a><font color="#cc0033">F4</font>*   : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a>;
+                              <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER;
+                                              p1 : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a>;
+                                              p2 : <a href="java_security_spec.html#type-AlgorithmParameterSpec">java_security_spec.AlgorithmParameterSpec</a>) : <a href="#type-RSAKeyGenParameterSpec">RSAKeyGenParameterSpec</a><b>,CONSTRUCTOR</b>;
+                              <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER;
+                                              p1 : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a>) : <a href="#type-RSAKeyGenParameterSpec">RSAKeyGenParameterSpec</a><b>,CONSTRUCTOR</b>;
+                            <b>END</b>;
+
+  <a name="type-RSAMultiPrimePrivateCrtKeySpec"></a><font color="#cc0033">RSAMultiPrimePrivateCrtKeySpec</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_security_spec.html#type-RSAPrivateKeySpec">java_security_spec.RSAPrivateKeySpec</a>)
+                                    <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                                    <font color="green"><b> (* </b><a href="#meths-RSAMultiPrimePrivateCrtKeySpec">Typebound Procedures</a><b> *)</b></font>
+                                    <b>STATIC</b>
+                                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*(    p0 : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a>;
+                                                          p1 : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a>;
+                                                          p2 : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a>;
+                                                          p3 : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a>;
+                                                          p4 : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a>;
+                                                          p5 : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a>;
+                                                          p6 : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a>;
+                                                          p7 : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a>;
+                                                      IN  p8 : <b>ARRAY </b><b>OF </b><a href="#type-RSAOtherPrimeInfo">RSAOtherPrimeInfo</a>;
+                                                          p9 : <a href="#type-AlgorithmParameterSpec">AlgorithmParameterSpec</a>) : <a href="#type-RSAMultiPrimePrivateCrtKeySpec">RSAMultiPrimePrivateCrtKeySpec</a><b>,CONSTRUCTOR</b>;
+                                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*(    p0 : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a>;
+                                                          p1 : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a>;
+                                                          p2 : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a>;
+                                                          p3 : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a>;
+                                                          p4 : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a>;
+                                                          p5 : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a>;
+                                                          p6 : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a>;
+                                                          p7 : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a>;
+                                                      IN  p8 : <b>ARRAY </b><b>OF </b><a href="#type-RSAOtherPrimeInfo">RSAOtherPrimeInfo</a>) : <a href="#type-RSAMultiPrimePrivateCrtKeySpec">RSAMultiPrimePrivateCrtKeySpec</a><b>,CONSTRUCTOR</b>;
+                                    <b>END</b>;
+
+  <a name="type-RSAOtherPrimeInfo"></a><font color="#cc0033">RSAOtherPrimeInfo</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                       <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                       <font color="green"><b> (* </b><a href="#meths-RSAOtherPrimeInfo">Typebound Procedures</a><b> *)</b></font>
+                       <b>STATIC</b>
+                         <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a>;
+                                         p1 : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a>;
+                                         p2 : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a>) : <a href="#type-RSAOtherPrimeInfo">RSAOtherPrimeInfo</a><b>,CONSTRUCTOR</b>;
+                       <b>END</b>;
+
+  <a name="type-RSAPrivateCrtKeySpec"></a><font color="#cc0033">RSAPrivateCrtKeySpec</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_security_spec.html#type-RSAPrivateKeySpec">java_security_spec.RSAPrivateKeySpec</a>)
+                          <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                          <font color="green"><b> (* </b><a href="#meths-RSAPrivateCrtKeySpec">Typebound Procedures</a><b> *)</b></font>
+                          <b>STATIC</b>
+                            <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a>;
+                                            p1 : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a>;
+                                            p2 : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a>;
+                                            p3 : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a>;
+                                            p4 : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a>;
+                                            p5 : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a>;
+                                            p6 : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a>;
+                                            p7 : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a>;
+                                            p8 : <a href="#type-AlgorithmParameterSpec">AlgorithmParameterSpec</a>) : <a href="#type-RSAPrivateCrtKeySpec">RSAPrivateCrtKeySpec</a><b>,CONSTRUCTOR</b>;
+                            <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a>;
+                                            p1 : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a>;
+                                            p2 : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a>;
+                                            p3 : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a>;
+                                            p4 : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a>;
+                                            p5 : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a>;
+                                            p6 : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a>;
+                                            p7 : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a>) : <a href="#type-RSAPrivateCrtKeySpec">RSAPrivateCrtKeySpec</a><b>,CONSTRUCTOR</b>;
+                          <b>END</b>;
+
+  <a name="type-RSAPrivateKeySpec"></a><font color="#cc0033">RSAPrivateKeySpec</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-KeySpec">KeySpec</a>)
+                       <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                       <font color="green"><b> (* </b><a href="#meths-RSAPrivateKeySpec">Typebound Procedures</a><b> *)</b></font>
+                       <b>STATIC</b>
+                         <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a>;
+                                         p1 : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a>;
+                                         p2 : <a href="#type-AlgorithmParameterSpec">AlgorithmParameterSpec</a>) : <a href="#type-RSAPrivateKeySpec">RSAPrivateKeySpec</a><b>,CONSTRUCTOR</b>;
+                         <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a>;
+                                         p1 : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a>) : <a href="#type-RSAPrivateKeySpec">RSAPrivateKeySpec</a><b>,CONSTRUCTOR</b>;
+                       <b>END</b>;
+
+  <a name="type-RSAPublicKeySpec"></a><font color="#cc0033">RSAPublicKeySpec</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_security_spec.html#type-KeySpec">java_security_spec.KeySpec</a>)
+                      <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                      <font color="green"><b> (* </b><a href="#meths-RSAPublicKeySpec">Typebound Procedures</a><b> *)</b></font>
+                      <b>STATIC</b>
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a>;
+                                        p1 : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a>;
+                                        p2 : <a href="java_security_spec.html#type-AlgorithmParameterSpec">java_security_spec.AlgorithmParameterSpec</a>) : <a href="#type-RSAPublicKeySpec">RSAPublicKeySpec</a><b>,CONSTRUCTOR</b>;
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a>;
+                                        p1 : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a>) : <a href="#type-RSAPublicKeySpec">RSAPublicKeySpec</a><b>,CONSTRUCTOR</b>;
+                      <b>END</b>;
+
+  <a name="type-X509EncodedKeySpec"></a><font color="#cc0033">X509EncodedKeySpec</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_security_spec.html#type-EncodedKeySpec">java_security_spec.EncodedKeySpec</a>)
+                        <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                        <font color="green"><b> (* </b><a href="#meths-X509EncodedKeySpec">Typebound Procedures</a><b> *)</b></font>
+                        <b>STATIC</b>
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE;
+                                              p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-X509EncodedKeySpec">X509EncodedKeySpec</a><b>,CONSTRUCTOR</b>;
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE) : <a href="#type-X509EncodedKeySpec">X509EncodedKeySpec</a><b>,CONSTRUCTOR</b>;
+                        <b>END</b>;
+
+  <a name="type-XECPrivateKeySpec"></a><font color="#cc0033">XECPrivateKeySpec</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_security_spec.html#type-KeySpec">java_security_spec.KeySpec</a>)
+                       <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                       <font color="green"><b> (* </b><a href="#meths-XECPrivateKeySpec">Typebound Procedures</a><b> *)</b></font>
+                       <b>STATIC</b>
+                         <b>PROCEDURE </b><font color="#cc0033">Init</font>*(    p0 : <a href="#type-AlgorithmParameterSpec">AlgorithmParameterSpec</a>;
+                                         IN  p1 : <b>ARRAY </b><b>OF </b>BYTE) : <a href="#type-XECPrivateKeySpec">XECPrivateKeySpec</a><b>,CONSTRUCTOR</b>;
+                       <b>END</b>;
+
+  <a name="type-XECPublicKeySpec"></a><font color="#cc0033">XECPublicKeySpec</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-KeySpec">KeySpec</a>)
+                      <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                      <font color="green"><b> (* </b><a href="#meths-XECPublicKeySpec">Typebound Procedures</a><b> *)</b></font>
+                      <b>STATIC</b>
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="#type-AlgorithmParameterSpec">AlgorithmParameterSpec</a>;
+                                        p1 : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a>) : <a href="#type-XECPublicKeySpec">XECPublicKeySpec</a><b>,CONSTRUCTOR</b>;
+                      <b>END</b>;
+
+
+
+<a name="meths-DSAGenParameterSpec"></a>
+<b>PROCEDURE </b>(self:DSAGenParameterSpec) <font color="#cc0033">getPrimePLength</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DSAGenParameterSpec) <font color="#cc0033">getSeedLength</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DSAGenParameterSpec) <font color="#cc0033">getSubprimeQLength</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-DSAParameterSpec"></a>
+<b>PROCEDURE </b>(self:DSAParameterSpec) <font color="#cc0033">getG</font>*() : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DSAParameterSpec) <font color="#cc0033">getP</font>*() : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DSAParameterSpec) <font color="#cc0033">getQ</font>*() : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-DSAPrivateKeySpec"></a>
+<b>PROCEDURE </b>(self:DSAPrivateKeySpec) <font color="#cc0033">getG</font>*() : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DSAPrivateKeySpec) <font color="#cc0033">getP</font>*() : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DSAPrivateKeySpec) <font color="#cc0033">getQ</font>*() : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DSAPrivateKeySpec) <font color="#cc0033">getX</font>*() : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-DSAPublicKeySpec"></a>
+<b>PROCEDURE </b>(self:DSAPublicKeySpec) <font color="#cc0033">getG</font>*() : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DSAPublicKeySpec) <font color="#cc0033">getP</font>*() : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DSAPublicKeySpec) <font color="#cc0033">getQ</font>*() : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DSAPublicKeySpec) <font color="#cc0033">getY</font>*() : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-ECField"></a>
+<b>PROCEDURE </b>(self:ECField) <font color="#cc0033">getFieldSize</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+<a name="meths-ECFieldF2m"></a>
+<b>PROCEDURE </b>(self:ECFieldF2m) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ECFieldF2m) <font color="#cc0033">getFieldSize</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ECFieldF2m) <font color="#cc0033">getM</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ECFieldF2m) <font color="#cc0033">getMidTermsOfReductionPolynomial</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ECFieldF2m) <font color="#cc0033">getReductionPolynomial</font>*() : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ECFieldF2m) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-ECFieldFp"></a>
+<b>PROCEDURE </b>(self:ECFieldFp) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ECFieldFp) <font color="#cc0033">getFieldSize</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ECFieldFp) <font color="#cc0033">getP</font>*() : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ECFieldFp) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-ECParameterSpec"></a>
+<b>PROCEDURE </b>(self:ECParameterSpec) <font color="#cc0033">getCofactor</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ECParameterSpec) <font color="#cc0033">getCurve</font>*() : <a href="#type-EllipticCurve">EllipticCurve</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ECParameterSpec) <font color="#cc0033">getGenerator</font>*() : <a href="#type-ECPoint">ECPoint</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ECParameterSpec) <font color="#cc0033">getOrder</font>*() : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-ECPoint"></a>
+<b>PROCEDURE </b>(self:ECPoint) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ECPoint) <font color="#cc0033">getAffineX</font>*() : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ECPoint) <font color="#cc0033">getAffineY</font>*() : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ECPoint) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-ECPrivateKeySpec"></a>
+<b>PROCEDURE </b>(self:ECPrivateKeySpec) <font color="#cc0033">getParams</font>*() : <a href="java_security_spec.html#type-ECParameterSpec">java_security_spec.ECParameterSpec</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ECPrivateKeySpec) <font color="#cc0033">getS</font>*() : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-ECPublicKeySpec"></a>
+<b>PROCEDURE </b>(self:ECPublicKeySpec) <font color="#cc0033">getParams</font>*() : <a href="java_security_spec.html#type-ECParameterSpec">java_security_spec.ECParameterSpec</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ECPublicKeySpec) <font color="#cc0033">getW</font>*() : <a href="#type-ECPoint">ECPoint</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-EdDSAParameterSpec"></a>
+<b>PROCEDURE </b>(self:EdDSAParameterSpec) <font color="#cc0033">getContext</font>*() : <a href="java_util.html#type-Optional">java_util.Optional</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:EdDSAParameterSpec) <font color="#cc0033">isPrehash</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-EdECPoint"></a>
+<b>PROCEDURE </b>(self:EdECPoint) <font color="#cc0033">getY</font>*() : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:EdECPoint) <font color="#cc0033">isXOdd</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-EdECPrivateKeySpec"></a>
+<b>PROCEDURE </b>(self:EdECPrivateKeySpec) <font color="#cc0033">getBytes</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:EdECPrivateKeySpec) <font color="#cc0033">getParams</font>*() : <a href="java_security_spec.html#type-NamedParameterSpec">java_security_spec.NamedParameterSpec</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-EdECPublicKeySpec"></a>
+<b>PROCEDURE </b>(self:EdECPublicKeySpec) <font color="#cc0033">getParams</font>*() : <a href="#type-NamedParameterSpec">NamedParameterSpec</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:EdECPublicKeySpec) <font color="#cc0033">getPoint</font>*() : <a href="#type-EdECPoint">EdECPoint</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-EllipticCurve"></a>
+<b>PROCEDURE </b>(self:EllipticCurve) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:EllipticCurve) <font color="#cc0033">getA</font>*() : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:EllipticCurve) <font color="#cc0033">getB</font>*() : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:EllipticCurve) <font color="#cc0033">getField</font>*() : <a href="java_security_spec.html#type-ECField">java_security_spec.ECField</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:EllipticCurve) <font color="#cc0033">getSeed</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:EllipticCurve) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-EncodedKeySpec"></a>
+<b>PROCEDURE </b>(self:EncodedKeySpec) <font color="#cc0033">getAlgorithm</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:EncodedKeySpec) <font color="#cc0033">getEncoded</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:EncodedKeySpec) <font color="#cc0033">getFormat</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-MGF1ParameterSpec"></a>
+<b>PROCEDURE </b>(self:MGF1ParameterSpec) <font color="#cc0033">getDigestAlgorithm</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MGF1ParameterSpec) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-NamedParameterSpec"></a>
+<b>PROCEDURE </b>(self:NamedParameterSpec) <font color="#cc0033">getName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-PKCS8EncodedKeySpec"></a>
+<b>PROCEDURE </b>(self:PKCS8EncodedKeySpec) <font color="#cc0033">getEncoded</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PKCS8EncodedKeySpec) <font color="#cc0033">getFormat</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW</b>;
+<a name="meths-PSSParameterSpec"></a>
+<b>PROCEDURE </b>(self:PSSParameterSpec) <font color="#cc0033">getDigestAlgorithm</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PSSParameterSpec) <font color="#cc0033">getMGFAlgorithm</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PSSParameterSpec) <font color="#cc0033">getMGFParameters</font>*() : <a href="#type-AlgorithmParameterSpec">AlgorithmParameterSpec</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PSSParameterSpec) <font color="#cc0033">getSaltLength</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PSSParameterSpec) <font color="#cc0033">getTrailerField</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PSSParameterSpec) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-RSAKeyGenParameterSpec"></a>
+<b>PROCEDURE </b>(self:RSAKeyGenParameterSpec) <font color="#cc0033">getKeyParams</font>*() : <a href="java_security_spec.html#type-AlgorithmParameterSpec">java_security_spec.AlgorithmParameterSpec</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RSAKeyGenParameterSpec) <font color="#cc0033">getKeysize</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RSAKeyGenParameterSpec) <font color="#cc0033">getPublicExponent</font>*() : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-RSAMultiPrimePrivateCrtKeySpec"></a>
+<b>PROCEDURE </b>(self:RSAMultiPrimePrivateCrtKeySpec) <font color="#cc0033">getCrtCoefficient</font>*() : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RSAMultiPrimePrivateCrtKeySpec) <font color="#cc0033">getOtherPrimeInfo</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-RSAOtherPrimeInfo">RSAOtherPrimeInfo</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RSAMultiPrimePrivateCrtKeySpec) <font color="#cc0033">getPrimeExponentP</font>*() : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RSAMultiPrimePrivateCrtKeySpec) <font color="#cc0033">getPrimeExponentQ</font>*() : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RSAMultiPrimePrivateCrtKeySpec) <font color="#cc0033">getPrimeP</font>*() : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RSAMultiPrimePrivateCrtKeySpec) <font color="#cc0033">getPrimeQ</font>*() : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RSAMultiPrimePrivateCrtKeySpec) <font color="#cc0033">getPublicExponent</font>*() : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-RSAOtherPrimeInfo"></a>
+<b>PROCEDURE </b>(self:RSAOtherPrimeInfo) <font color="#cc0033">getCrtCoefficient</font>*() : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:RSAOtherPrimeInfo) <font color="#cc0033">getExponent</font>*() : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:RSAOtherPrimeInfo) <font color="#cc0033">getPrime</font>*() : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a><b>,NEW</b>;
+<a name="meths-RSAPrivateCrtKeySpec"></a>
+<b>PROCEDURE </b>(self:RSAPrivateCrtKeySpec) <font color="#cc0033">getCrtCoefficient</font>*() : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RSAPrivateCrtKeySpec) <font color="#cc0033">getPrimeExponentP</font>*() : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RSAPrivateCrtKeySpec) <font color="#cc0033">getPrimeExponentQ</font>*() : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RSAPrivateCrtKeySpec) <font color="#cc0033">getPrimeP</font>*() : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RSAPrivateCrtKeySpec) <font color="#cc0033">getPrimeQ</font>*() : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RSAPrivateCrtKeySpec) <font color="#cc0033">getPublicExponent</font>*() : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-RSAPrivateKeySpec"></a>
+<b>PROCEDURE </b>(self:RSAPrivateKeySpec) <font color="#cc0033">getModulus</font>*() : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RSAPrivateKeySpec) <font color="#cc0033">getParams</font>*() : <a href="#type-AlgorithmParameterSpec">AlgorithmParameterSpec</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RSAPrivateKeySpec) <font color="#cc0033">getPrivateExponent</font>*() : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-RSAPublicKeySpec"></a>
+<b>PROCEDURE </b>(self:RSAPublicKeySpec) <font color="#cc0033">getModulus</font>*() : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RSAPublicKeySpec) <font color="#cc0033">getParams</font>*() : <a href="java_security_spec.html#type-AlgorithmParameterSpec">java_security_spec.AlgorithmParameterSpec</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RSAPublicKeySpec) <font color="#cc0033">getPublicExponent</font>*() : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-X509EncodedKeySpec"></a>
+<b>PROCEDURE </b>(self:X509EncodedKeySpec) <font color="#cc0033">getEncoded</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:X509EncodedKeySpec) <font color="#cc0033">getFormat</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW</b>;
+<a name="meths-XECPrivateKeySpec"></a>
+<b>PROCEDURE </b>(self:XECPrivateKeySpec) <font color="#cc0033">getParams</font>*() : <a href="#type-AlgorithmParameterSpec">AlgorithmParameterSpec</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:XECPrivateKeySpec) <font color="#cc0033">getScalar</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-XECPublicKeySpec"></a>
+<b>PROCEDURE </b>(self:XECPublicKeySpec) <font color="#cc0033">getParams</font>*() : <a href="#type-AlgorithmParameterSpec">AlgorithmParameterSpec</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:XECPublicKeySpec) <font color="#cc0033">getU</font>*() : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>END </b><font color="#cc0033">java_security_spec</font>.
+</font></pre></hr>
+<!-- BEGIN JavaScript -->
+<script>
+function toggle(node) {
+    node.classList.toggle("show"); 
+  }
+
+function cls(node) {
+    var prnt = node.parentNode;
+    var next = prnt.previousSibling;
+    var text = next.lastChild;
+    text.innerHTML = 
+        "The <b>class</b> property asserts that this type will be<br>" +
+        "implemented as a reference class in the underlying framework.";
+    text.classList.toggle("show");
+  }
+
+function newOk(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>has noArg-ctor</b> property asserts that this reference<br>" +
+        "class has a no-arg constructor, and thus objects of this<br>" +
+        "type can be allocated with NEW(). Component Pascal types<br>" +
+        "derived from this type can also be allocated using NEW().";
+    popuptext.classList.toggle("show"); 
+  }
+
+function noNew(node) { 
+    var prnt = node.parentNode; 
+    var next = prnt.previousSibling; 
+    var text = next.lastChild; 
+    text.innerHTML =  
+        "The <b>no noArg-ctor</b> property asserts that this reference<br>" +
+        "class does not have a noArg constructor. Objects of this<br>" +
+        "type cannot be allocated using NEW(), and Component<br>" +
+        "Pascal types  derived from this type also cannot be<br>" +
+        "allocated using NEW().";
+    text.classList.toggle("show");
+  }
+
+function noCpy(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>no value-assign</b> property asserts that this reference<br>" + 
+        "class does not have a value copy method. Therefore, it<br>" +
+        "is not possible to perform value assignments using<br>" +
+        "statements like <i>dst^</i> := <i>src^</i>";
+    popuptext.classList.toggle("show");
+  }
+
+function valueclass(node) { 
+        var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>valueclass</b> property asserts that this RECORD type is<br>" + 
+        "implemented as a value class in the CLR. It follows that<br>" +  
+        "value assignments can be made of these types. They can<br>" + 
+        "also be passed by value. Even pointers to records of<br>" + 
+        "such types may be dereferenced and copied using syntax<br>" + 
+        "such as  <i>dst^</i> := <i>src^</i>"; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+function argCtor(node) { 
+    var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>has arg-ctor</b> property asserts that this reference<br>" +  
+        "class has one or more constructors that take arguments.<br>" + 
+        "These constructors can be called from Component Pascal<br>" + 
+        "by calling an <i>init</i>(...) method from the static list<br>" + 
+        "here. Component Pascal types derived from this type<br>" + 
+        "can define constructors with arguments which call the<br>" + 
+        "super-type constructor.<br>" + 
+        "See <i>'Interfacing to constructors'</i> in the Release Notes."; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+</script>
+<!-- END JavaScript --> 
+
+</body></html>

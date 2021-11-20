@@ -1,0 +1,463 @@
+<html><head><title>jdk_internal_net_http_websocket</title>
+<style>
+<!-- BEGIN Inline CSS -->
+/* Popup container */
+.popup {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+/* The actual popup (appears on top) */
+.popup .popuptext {
+    visibility: hidden;
+    width: 430px;
+    background-color: white;
+    color: black;
+    text-align: left;
+    border-radius: 6px;
+    border-style: solid;
+    border-color: black;
+    padding: 8px 8px 8px 8px;
+    position: absolute;
+    z-index: 1;
+    margin-top: 30px;
+}
+
+/* Toggle this class when clicking on the popup container (hide and show the popup) */
+.popup .show {
+    visibility: visible;
+    opacity: 1;
+}
+
+</style>
+<!-- END Inline CSS -->
+</head><body bgcolor="white">
+<hr><pre>
+<font color="green">(*</font>
+<font color="green"> *  Creator PeToCps j2cps version 1.4.07 (March 2018)</font>
+<font color="green"> *  Compiled from jar-file /Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home/jmods/java.net.http.jmod</font>
+<font color="green"> *)</font>
+<b>FOREIGN MODULE </b><font color="#cc0033">jdk_internal_net_http_websocket</font>;
+
+<b>IMPORT</b>
+    <a href="java_io.html">java_io</a> := "java.io",
+    <a href="java_lang.html">java_lang</a> := "java.lang",
+    <a href="java_net.html">java_net</a> := "java.net",
+    <a href="java_net_http.html">java_net_http</a> := "java.net.http",
+    <a href="java_nio.html">java_nio</a> := "java.nio",
+    <a href="java_time.html">java_time</a> := "java.time",
+    <a href="java_util_concurrent.html">java_util_concurrent</a> := "java.util.concurrent",
+    <a href="java_util_function.html">java_util_function</a> := "java.util.function",
+    <a href="jdk_internal_net_http_websocket.html">jdk_internal_net_http_websocket</a> := "jdk.internal.net.http.websocket";
+
+<b>TYPE</b>
+
+  <a name="type-BuilderImpl"></a><font color="#cc0033">BuilderImpl</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_net_http.html#type-WebSocket$Builder">java_net_http.WebSocket$Builder</a>)
+                 <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                 <font color="green"><b> (* </b><a href="#meths-BuilderImpl">Typebound Procedures</a><b> *)</b></font>
+                 <b>STATIC</b>
+                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_net_http.html#type-HttpClient">java_net_http.HttpClient</a>;
+                                   p1 : <a href="java_net.html#type-ProxySelector">java_net.ProxySelector</a>) : <a href="#type-BuilderImpl">BuilderImpl</a><b>,CONSTRUCTOR</b>;
+                 <b>END</b>;
+
+  <a name="type-MessageEncoder"></a><font color="#cc0033">MessageEncoder</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                    <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                    <font color="green"><b> (* </b><a href="#meths-MessageEncoder">Typebound Procedures</a><b> *)</b></font>
+                    <b>STATIC</b>
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-MessageEncoder">MessageEncoder</a><b>,CONSTRUCTOR</b>;
+                    <b>END</b>;
+
+  <a name="type-MessageQueue"></a><font color="#cc0033">MessageQueue</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                  <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                  <font color="green"><b> (* </b><a href="#meths-MessageQueue">Typebound Procedures</a><b> *)</b></font>
+                  <b>STATIC</b>
+                    <b>PROCEDURE </b><font color="#cc0033">effectiveCapacityOf</font>!(p0 : INTEGER) : INTEGER;
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER) : <a href="#type-MessageQueue">MessageQueue</a><b>,CONSTRUCTOR</b>;
+                  <b>END</b>;
+
+  <a name="type-MessageQueue$QueueCallback"></a><font color="#cc0033">MessageQueue$QueueCallback</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                                <font color="green"><b> (* </b><a href="#meths-MessageQueue$QueueCallback">Typebound Procedures</a><b> *)</b></font>
+                                <b>END</b>;
+
+  <a name="type-OpeningHandshake"></a><font color="#cc0033">OpeningHandshake</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                      <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                      <font color="green"><b> (* </b><a href="#meths-OpeningHandshake">Typebound Procedures</a><b> *)</b></font>
+                      <b>STATIC</b>
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="#type-BuilderImpl">BuilderImpl</a>) : <a href="#type-OpeningHandshake">OpeningHandshake</a><b>,CONSTRUCTOR</b>;
+                      <b>END</b>;
+
+  <a name="type-RawChannel"></a><font color="#cc0033">RawChannel</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_io.html#type-Closeable">java_io.Closeable</a>)
+                <font color="green"><b> (* </b><a href="#meths-RawChannel">Typebound Procedures</a><b> *)</b></font>
+                <b>END</b>;
+
+  <a name="type-RawChannel$Provider"></a><font color="#cc0033">RawChannel$Provider</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                         <font color="green"><b> (* </b><a href="#meths-RawChannel$Provider">Typebound Procedures</a><b> *)</b></font>
+                         <b>END</b>;
+
+  <a name="type-RawChannel$RawEvent"></a><font color="#cc0033">RawChannel$RawEvent</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                         <font color="green"><b> (* </b><a href="#meths-RawChannel$RawEvent">Typebound Procedures</a><b> *)</b></font>
+                         <b>END</b>;
+
+  <a name="type-Transport"></a><font color="#cc0033">Transport</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+               <font color="green"><b> (* </b><a href="#meths-Transport">Typebound Procedures</a><b> *)</b></font>
+               <b>END</b>;
+
+  <a name="type-TransportFactory"></a><font color="#cc0033">TransportFactory</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                      <font color="green"><b> (* </b><a href="#meths-TransportFactory">Typebound Procedures</a><b> *)</b></font>
+                      <b>END</b>;
+
+  <a name="type-TransportFactoryImpl"></a><font color="#cc0033">TransportFactoryImpl</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="jdk_internal_net_http_websocket.html#type-TransportFactory">jdk_internal_net_http_websocket.TransportFactory</a>)
+                          <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                          <font color="green"><b> (* </b><a href="#meths-TransportFactoryImpl">Typebound Procedures</a><b> *)</b></font>
+                          <b>STATIC</b>
+                            <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="jdk_internal_net_http_websocket.html#type-RawChannel">jdk_internal_net_http_websocket.RawChannel</a>) : <a href="#type-TransportFactoryImpl">TransportFactoryImpl</a><b>,CONSTRUCTOR</b>;
+                          <b>END</b>;
+
+  <a name="type-TransportImpl"></a><font color="#cc0033">TransportImpl</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-Transport">Transport</a>)
+                   <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                   <font color="green"><b> (* </b><a href="#meths-TransportImpl">Typebound Procedures</a><b> *)</b></font>
+                   <b>STATIC</b>
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="jdk_internal_net_http_websocket.html#type-MessageQueue">jdk_internal_net_http_websocket.MessageQueue</a>;
+                                     p1 : <a href="jdk_internal_net_http_websocket.html#type-MessageStreamConsumer">jdk_internal_net_http_websocket.MessageStreamConsumer</a>;
+                                     p2 : <a href="jdk_internal_net_http_websocket.html#type-RawChannel">jdk_internal_net_http_websocket.RawChannel</a>) : <a href="#type-TransportImpl">TransportImpl</a><b>,CONSTRUCTOR</b>;
+                   <b>END</b>;
+
+  <a name="type-WebSocketImpl"></a><font color="#cc0033">WebSocketImpl</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_net_http.html#type-WebSocket">java_net_http.WebSocket</a>)
+                   <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> *)</font>
+                   <font color="green"><b> (* </b><a href="#meths-WebSocketImpl">Typebound Procedures</a><b> *)</b></font>
+                   <b>STATIC</b>
+                     <b>PROCEDURE </b><font color="#cc0033">newInstanceAsync</font>*(p0 : <a href="#type-BuilderImpl">BuilderImpl</a>) : <a href="java_util_concurrent.html#type-CompletableFuture">java_util_concurrent.CompletableFuture</a>;
+                   <b>END</b>;
+
+  <a name="type-WebSocketRequest"></a><font color="#cc0033">WebSocketRequest</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                      <font color="green"><b> (* </b><a href="#meths-WebSocketRequest">Typebound Procedures</a><b> *)</b></font>
+                      <b>END</b>;
+
+
+
+<a name="meths-BuilderImpl"></a>
+<b>PROCEDURE </b>(self:BuilderImpl) <font color="#cc0033">buildAsync</font>*(p0 : <a href="java_net.html#type-URI">java_net.URI</a>;
+                                         p1 : <a href="java_net_http.html#type-WebSocket$Listener">java_net_http.WebSocket$Listener</a>) : <a href="java_util_concurrent.html#type-CompletableFuture">java_util_concurrent.CompletableFuture</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BuilderImpl) <font color="#cc0033">connectTimeout</font>*(p0 : <a href="java_time.html#type-Duration">java_time.Duration</a>) : <a href="java_net_http.html#type-WebSocket$Builder">java_net_http.WebSocket$Builder</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BuilderImpl) <font color="#cc0033">header</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                     p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_net_http.html#type-WebSocket$Builder">java_net_http.WebSocket$Builder</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BuilderImpl) <font color="#cc0033">subprotocols</font>*(    p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                           IN  p1 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_net_http.html#type-WebSocket$Builder">java_net_http.WebSocket$Builder</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-MessageEncoder"></a>
+<b>PROCEDURE </b>(self:MessageEncoder) <font color="#cc0033">createIntermediateBuffer</font>!(p0 : INTEGER) : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MessageEncoder) <font color="#cc0033">encodeBinary</font>*(p0 : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>;
+                                              p1 : BOOLEAN;
+                                              p2 : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MessageEncoder) <font color="#cc0033">encodeClose</font>*(p0 : INTEGER;
+                                             p1 : <a href="java_nio.html#type-CharBuffer">java_nio.CharBuffer</a>;
+                                             p2 : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MessageEncoder) <font color="#cc0033">encodePing</font>*(p0 : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>;
+                                            p1 : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MessageEncoder) <font color="#cc0033">encodePong</font>*(p0 : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>;
+                                            p1 : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MessageEncoder) <font color="#cc0033">encodeText</font>*(p0 : <a href="java_nio.html#type-CharBuffer">java_nio.CharBuffer</a>;
+                                            p1 : BOOLEAN;
+                                            p2 : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MessageEncoder) <font color="#cc0033">reset</font>*()<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-MessageQueue"></a>
+<b>PROCEDURE </b>(self:MessageQueue) <font color="#cc0033">addBinary</font>*(p0 : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>;
+                                         p1 : BOOLEAN;
+                                         p2 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                         p3 : <a href="java_util_function.html#type-BiConsumer">java_util_function.BiConsumer</a>;
+                                         p4 : <a href="java_util_concurrent.html#type-CompletableFuture">java_util_concurrent.CompletableFuture</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MessageQueue) <font color="#cc0033">addClose</font>*(p0 : INTEGER;
+                                        p1 : <a href="java_nio.html#type-CharBuffer">java_nio.CharBuffer</a>;
+                                        p2 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                        p3 : <a href="java_util_function.html#type-BiConsumer">java_util_function.BiConsumer</a>;
+                                        p4 : <a href="java_util_concurrent.html#type-CompletableFuture">java_util_concurrent.CompletableFuture</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MessageQueue) <font color="#cc0033">addPing</font>*(p0 : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>;
+                                       p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                       p2 : <a href="java_util_function.html#type-BiConsumer">java_util_function.BiConsumer</a>;
+                                       p3 : <a href="java_util_concurrent.html#type-CompletableFuture">java_util_concurrent.CompletableFuture</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MessageQueue) <font color="#cc0033">addPong</font>*(p0 : <a href="java_util_function.html#type-Supplier">java_util_function.Supplier</a>;
+                                       p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                       p2 : <a href="java_util_function.html#type-BiConsumer">java_util_function.BiConsumer</a>;
+                                       p3 : <a href="java_util_concurrent.html#type-CompletableFuture">java_util_concurrent.CompletableFuture</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MessageQueue) <font color="#cc0033">addPong</font>*(p0 : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>;
+                                       p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                       p2 : <a href="java_util_function.html#type-BiConsumer">java_util_function.BiConsumer</a>;
+                                       p3 : <a href="java_util_concurrent.html#type-CompletableFuture">java_util_concurrent.CompletableFuture</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MessageQueue) <font color="#cc0033">addText</font>*(p0 : <a href="java_nio.html#type-CharBuffer">java_nio.CharBuffer</a>;
+                                       p1 : BOOLEAN;
+                                       p2 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                       p3 : <a href="java_util_function.html#type-BiConsumer">java_util_function.BiConsumer</a>;
+                                       p4 : <a href="java_util_concurrent.html#type-CompletableFuture">java_util_concurrent.CompletableFuture</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MessageQueue) <font color="#cc0033">isEmpty</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MessageQueue) <font color="#cc0033">peek</font>*(p0 : <a href="#type-MessageQueue$QueueCallback">MessageQueue$QueueCallback</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MessageQueue) <font color="#cc0033">remove</font>*()<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-MessageQueue$QueueCallback"></a>
+<b>PROCEDURE </b>(self:MessageQueue$QueueCallback) <font color="#cc0033">onBinary</font>*(p0 : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>;
+                                                      p1 : BOOLEAN;
+                                                      p2 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                      p3 : <a href="java_util_function.html#type-BiConsumer">java_util_function.BiConsumer</a>;
+                                                      p4 : <a href="java_util_concurrent.html#type-CompletableFuture">java_util_concurrent.CompletableFuture</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MessageQueue$QueueCallback) <font color="#cc0033">onClose</font>*(p0 : INTEGER;
+                                                     p1 : <a href="java_nio.html#type-CharBuffer">java_nio.CharBuffer</a>;
+                                                     p2 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                     p3 : <a href="java_util_function.html#type-BiConsumer">java_util_function.BiConsumer</a>;
+                                                     p4 : <a href="java_util_concurrent.html#type-CompletableFuture">java_util_concurrent.CompletableFuture</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MessageQueue$QueueCallback) <font color="#cc0033">onEmpty</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MessageQueue$QueueCallback) <font color="#cc0033">onPing</font>*(p0 : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>;
+                                                    p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                    p2 : <a href="java_util_function.html#type-BiConsumer">java_util_function.BiConsumer</a>;
+                                                    p3 : <a href="java_util_concurrent.html#type-CompletableFuture">java_util_concurrent.CompletableFuture</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MessageQueue$QueueCallback) <font color="#cc0033">onPong</font>*(p0 : <a href="java_util_function.html#type-Supplier">java_util_function.Supplier</a>;
+                                                    p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                    p2 : <a href="java_util_function.html#type-BiConsumer">java_util_function.BiConsumer</a>;
+                                                    p3 : <a href="java_util_concurrent.html#type-CompletableFuture">java_util_concurrent.CompletableFuture</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MessageQueue$QueueCallback) <font color="#cc0033">onPong</font>*(p0 : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>;
+                                                    p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                    p2 : <a href="java_util_function.html#type-BiConsumer">java_util_function.BiConsumer</a>;
+                                                    p3 : <a href="java_util_concurrent.html#type-CompletableFuture">java_util_concurrent.CompletableFuture</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MessageQueue$QueueCallback) <font color="#cc0033">onText</font>*(p0 : <a href="java_nio.html#type-CharBuffer">java_nio.CharBuffer</a>;
+                                                    p1 : BOOLEAN;
+                                                    p2 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                    p3 : <a href="java_util_function.html#type-BiConsumer">java_util_function.BiConsumer</a>;
+                                                    p4 : <a href="java_util_concurrent.html#type-CompletableFuture">java_util_concurrent.CompletableFuture</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-OpeningHandshake"></a>
+<b>PROCEDURE </b>(self:OpeningHandshake) <font color="#cc0033">send</font>*() : <a href="java_util_concurrent.html#type-CompletableFuture">java_util_concurrent.CompletableFuture</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-RawChannel"></a>
+<b>PROCEDURE </b>(self:RawChannel) <font color="#cc0033">close</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RawChannel) <font color="#cc0033">initialByteBuffer</font>*() : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RawChannel) <font color="#cc0033">read</font>*() : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RawChannel) <font color="#cc0033">registerEvent</font>*(p0 : <a href="#type-RawChannel$RawEvent">RawChannel$RawEvent</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RawChannel) <font color="#cc0033">shutdownInput</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RawChannel) <font color="#cc0033">shutdownOutput</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RawChannel) <font color="#cc0033">write</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>;
+                                       p1 : INTEGER;
+                                       p2 : INTEGER) : LONGINT<b>,NEW,ABSTRACT</b>;
+<a name="meths-RawChannel$Provider"></a>
+<b>PROCEDURE </b>(self:RawChannel$Provider) <font color="#cc0033">closeRawChannel</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RawChannel$Provider) <font color="#cc0033">rawChannel</font>*() : <a href="jdk_internal_net_http_websocket.html#type-RawChannel">jdk_internal_net_http_websocket.RawChannel</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-RawChannel$RawEvent"></a>
+<b>PROCEDURE </b>(self:RawChannel$RawEvent) <font color="#cc0033">handle</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RawChannel$RawEvent) <font color="#cc0033">interestOps</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+<a name="meths-Transport"></a>
+<b>PROCEDURE </b>(self:Transport) <font color="#cc0033">acknowledgeReception</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Transport) <font color="#cc0033">closeInput</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Transport) <font color="#cc0033">closeOutput</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Transport) <font color="#cc0033">request</font>*(p0 : LONGINT)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Transport) <font color="#cc0033">sendBinary</font>*(p0 : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>;
+                                       p1 : BOOLEAN;
+                                       p2 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                       p3 : <a href="java_util_function.html#type-BiConsumer">java_util_function.BiConsumer</a>) : <a href="java_util_concurrent.html#type-CompletableFuture">java_util_concurrent.CompletableFuture</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Transport) <font color="#cc0033">sendClose</font>*(p0 : INTEGER;
+                                      p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                      p2 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                      p3 : <a href="java_util_function.html#type-BiConsumer">java_util_function.BiConsumer</a>) : <a href="java_util_concurrent.html#type-CompletableFuture">java_util_concurrent.CompletableFuture</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Transport) <font color="#cc0033">sendPing</font>*(p0 : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>;
+                                     p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                     p2 : <a href="java_util_function.html#type-BiConsumer">java_util_function.BiConsumer</a>) : <a href="java_util_concurrent.html#type-CompletableFuture">java_util_concurrent.CompletableFuture</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Transport) <font color="#cc0033">sendPong</font>*(p0 : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>;
+                                     p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                     p2 : <a href="java_util_function.html#type-BiConsumer">java_util_function.BiConsumer</a>) : <a href="java_util_concurrent.html#type-CompletableFuture">java_util_concurrent.CompletableFuture</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Transport) <font color="#cc0033">sendPong</font>*(p0 : <a href="java_util_function.html#type-Supplier">java_util_function.Supplier</a>;
+                                     p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                     p2 : <a href="java_util_function.html#type-BiConsumer">java_util_function.BiConsumer</a>) : <a href="java_util_concurrent.html#type-CompletableFuture">java_util_concurrent.CompletableFuture</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Transport) <font color="#cc0033">sendText</font>*(p0 : <a href="java_lang.html#type-CharSequence">java_lang.CharSequence</a>;
+                                     p1 : BOOLEAN;
+                                     p2 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                     p3 : <a href="java_util_function.html#type-BiConsumer">java_util_function.BiConsumer</a>) : <a href="java_util_concurrent.html#type-CompletableFuture">java_util_concurrent.CompletableFuture</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-TransportFactory"></a>
+<b>PROCEDURE </b>(self:TransportFactory) <font color="#cc0033">createTransport</font>*(p0 : <a href="#type-MessageQueue">MessageQueue</a>;
+                                                   p1 : <a href="jdk_internal_net_http_websocket.html#type-MessageStreamConsumer">jdk_internal_net_http_websocket.MessageStreamConsumer</a>) : <a href="#type-Transport">Transport</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-TransportFactoryImpl"></a>
+<b>PROCEDURE </b>(self:TransportFactoryImpl) <font color="#cc0033">createTransport</font>*(p0 : <a href="jdk_internal_net_http_websocket.html#type-MessageQueue">jdk_internal_net_http_websocket.MessageQueue</a>;
+                                                       p1 : <a href="jdk_internal_net_http_websocket.html#type-MessageStreamConsumer">jdk_internal_net_http_websocket.MessageStreamConsumer</a>) : <a href="jdk_internal_net_http_websocket.html#type-Transport">jdk_internal_net_http_websocket.Transport</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-TransportImpl"></a>
+<b>PROCEDURE </b>(self:TransportImpl) <font color="#cc0033">acknowledgeReception</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TransportImpl) <font color="#cc0033">closeInput</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TransportImpl) <font color="#cc0033">closeOutput</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TransportImpl) <font color="#cc0033">request</font>*(p0 : LONGINT)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TransportImpl) <font color="#cc0033">sendBinary</font>*(p0 : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>;
+                                           p1 : BOOLEAN;
+                                           p2 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                           p3 : <a href="java_util_function.html#type-BiConsumer">java_util_function.BiConsumer</a>) : <a href="java_util_concurrent.html#type-CompletableFuture">java_util_concurrent.CompletableFuture</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TransportImpl) <font color="#cc0033">sendClose</font>*(p0 : INTEGER;
+                                          p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                          p2 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                          p3 : <a href="java_util_function.html#type-BiConsumer">java_util_function.BiConsumer</a>) : <a href="java_util_concurrent.html#type-CompletableFuture">java_util_concurrent.CompletableFuture</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TransportImpl) <font color="#cc0033">sendPing</font>*(p0 : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>;
+                                         p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                         p2 : <a href="java_util_function.html#type-BiConsumer">java_util_function.BiConsumer</a>) : <a href="java_util_concurrent.html#type-CompletableFuture">java_util_concurrent.CompletableFuture</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TransportImpl) <font color="#cc0033">sendPong</font>*(p0 : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>;
+                                         p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                         p2 : <a href="java_util_function.html#type-BiConsumer">java_util_function.BiConsumer</a>) : <a href="java_util_concurrent.html#type-CompletableFuture">java_util_concurrent.CompletableFuture</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TransportImpl) <font color="#cc0033">sendPong</font>*(p0 : <a href="java_util_function.html#type-Supplier">java_util_function.Supplier</a>;
+                                         p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                         p2 : <a href="java_util_function.html#type-BiConsumer">java_util_function.BiConsumer</a>) : <a href="java_util_concurrent.html#type-CompletableFuture">java_util_concurrent.CompletableFuture</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TransportImpl) <font color="#cc0033">sendText</font>*(p0 : <a href="java_lang.html#type-CharSequence">java_lang.CharSequence</a>;
+                                         p1 : BOOLEAN;
+                                         p2 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                         p3 : <a href="java_util_function.html#type-BiConsumer">java_util_function.BiConsumer</a>) : <a href="java_util_concurrent.html#type-CompletableFuture">java_util_concurrent.CompletableFuture</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-WebSocketImpl"></a>
+<b>PROCEDURE </b>(self:WebSocketImpl) <font color="#cc0033">abort</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WebSocketImpl) <font color="#cc0033">getSubprotocol</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WebSocketImpl) <font color="#cc0033">isInputClosed</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WebSocketImpl) <font color="#cc0033">isOutputClosed</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WebSocketImpl) <font color="#cc0033">request</font>*(p0 : LONGINT)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WebSocketImpl) <font color="#cc0033">sendBinary</font>*(p0 : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>;
+                                           p1 : BOOLEAN) : <a href="java_util_concurrent.html#type-CompletableFuture">java_util_concurrent.CompletableFuture</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WebSocketImpl) <font color="#cc0033">sendClose</font>*(p0 : INTEGER;
+                                          p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_util_concurrent.html#type-CompletableFuture">java_util_concurrent.CompletableFuture</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WebSocketImpl) <font color="#cc0033">sendPing</font>*(p0 : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>) : <a href="java_util_concurrent.html#type-CompletableFuture">java_util_concurrent.CompletableFuture</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WebSocketImpl) <font color="#cc0033">sendPong</font>*(p0 : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>) : <a href="java_util_concurrent.html#type-CompletableFuture">java_util_concurrent.CompletableFuture</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WebSocketImpl) <font color="#cc0033">sendText</font>*(p0 : <a href="java_lang.html#type-CharSequence">java_lang.CharSequence</a>;
+                                         p1 : BOOLEAN) : <a href="java_util_concurrent.html#type-CompletableFuture">java_util_concurrent.CompletableFuture</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WebSocketImpl) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WebSocketImpl) <font color="#cc0033">transport</font>!() : <a href="#type-Transport">Transport</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-WebSocketRequest"></a>
+<b>PROCEDURE </b>(self:WebSocketRequest) <font color="#cc0033">isWebSocket</font>*(p0 : BOOLEAN)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:WebSocketRequest) <font color="#cc0033">setProxy</font>*(p0 : <a href="java_net.html#type-Proxy">java_net.Proxy</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:WebSocketRequest) <font color="#cc0033">setSystemHeader</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                   p1 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>END </b><font color="#cc0033">jdk_internal_net_http_websocket</font>.
+</font></pre></hr>
+<!-- BEGIN JavaScript -->
+<script>
+function toggle(node) {
+    node.classList.toggle("show"); 
+  }
+
+function cls(node) {
+    var prnt = node.parentNode;
+    var next = prnt.previousSibling;
+    var text = next.lastChild;
+    text.innerHTML = 
+        "The <b>class</b> property asserts that this type will be<br>" +
+        "implemented as a reference class in the underlying framework.";
+    text.classList.toggle("show");
+  }
+
+function newOk(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>has noArg-ctor</b> property asserts that this reference<br>" +
+        "class has a no-arg constructor, and thus objects of this<br>" +
+        "type can be allocated with NEW(). Component Pascal types<br>" +
+        "derived from this type can also be allocated using NEW().";
+    popuptext.classList.toggle("show"); 
+  }
+
+function noNew(node) { 
+    var prnt = node.parentNode; 
+    var next = prnt.previousSibling; 
+    var text = next.lastChild; 
+    text.innerHTML =  
+        "The <b>no noArg-ctor</b> property asserts that this reference<br>" +
+        "class does not have a noArg constructor. Objects of this<br>" +
+        "type cannot be allocated using NEW(), and Component<br>" +
+        "Pascal types  derived from this type also cannot be<br>" +
+        "allocated using NEW().";
+    text.classList.toggle("show");
+  }
+
+function noCpy(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>no value-assign</b> property asserts that this reference<br>" + 
+        "class does not have a value copy method. Therefore, it<br>" +
+        "is not possible to perform value assignments using<br>" +
+        "statements like <i>dst^</i> := <i>src^</i>";
+    popuptext.classList.toggle("show");
+  }
+
+function valueclass(node) { 
+        var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>valueclass</b> property asserts that this RECORD type is<br>" + 
+        "implemented as a value class in the CLR. It follows that<br>" +  
+        "value assignments can be made of these types. They can<br>" + 
+        "also be passed by value. Even pointers to records of<br>" + 
+        "such types may be dereferenced and copied using syntax<br>" + 
+        "such as  <i>dst^</i> := <i>src^</i>"; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+function argCtor(node) { 
+    var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>has arg-ctor</b> property asserts that this reference<br>" +  
+        "class has one or more constructors that take arguments.<br>" + 
+        "These constructors can be called from Component Pascal<br>" + 
+        "by calling an <i>init</i>(...) method from the static list<br>" + 
+        "here. Component Pascal types derived from this type<br>" + 
+        "can define constructors with arguments which call the<br>" + 
+        "super-type constructor.<br>" + 
+        "See <i>'Interfacing to constructors'</i> in the Release Notes."; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+</script>
+<!-- END JavaScript --> 
+
+</body></html>

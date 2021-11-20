@@ -1,0 +1,1076 @@
+<html><head><title>javax_swing_tree</title>
+<style>
+<!-- BEGIN Inline CSS -->
+/* Popup container */
+.popup {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+/* The actual popup (appears on top) */
+.popup .popuptext {
+    visibility: hidden;
+    width: 430px;
+    background-color: white;
+    color: black;
+    text-align: left;
+    border-radius: 6px;
+    border-style: solid;
+    border-color: black;
+    padding: 8px 8px 8px 8px;
+    position: absolute;
+    z-index: 1;
+    margin-top: 30px;
+}
+
+/* Toggle this class when clicking on the popup container (hide and show the popup) */
+.popup .show {
+    visibility: visible;
+    opacity: 1;
+}
+
+</style>
+<!-- END Inline CSS -->
+</head><body bgcolor="white">
+<hr><pre>
+<font color="green">(*</font>
+<font color="green"> *  Creator PeToCps j2cps version 1.4.07 (March 2018)</font>
+<font color="green"> *  Compiled from jar-file /Library/Java/JavaVirtualMachines/zulu-11.jdk/Contents/Home/jmods/java.desktop.jmod</font>
+<font color="green"> *)</font>
+<b>FOREIGN MODULE </b><font color="#cc0033">javax_swing_tree</font>;
+
+<b>IMPORT</b>
+    <a href="javax_swing.html">javax_swing</a> := "javax.swing",
+    <a href="javax_swing_border.html">javax_swing_border</a> := "javax.swing.border",
+    <a href="javax_swing_event.html">javax_swing_event</a> := "javax.swing.event",
+    <a href="javax_swing_tree.html">javax_swing_tree</a> := "javax.swing.tree",
+    <a href="java_awt.html">java_awt</a> := "java.awt",
+    <a href="java_awt_event.html">java_awt_event</a> := "java.awt.event",
+    <a href="java_beans.html">java_beans</a> := "java.beans",
+    <a href="java_io.html">java_io</a> := "java.io",
+    <a href="java_lang.html">java_lang</a> := "java.lang",
+    <a href="java_util.html">java_util</a> := "java.util";
+
+<b>TYPE</b>
+
+  <a name="type-AbstractLayoutCache"></a><font color="#cc0033">AbstractLayoutCache</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="javax_swing_tree.html#type-RowMapper">javax_swing_tree.RowMapper</a>)
+                         <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                         <font color="green"><b> (* </b><a href="#meths-AbstractLayoutCache">Typebound Procedures</a><b> *)</b></font>
+                           <font color="#cc0033">nodeDimensions</font>!     : <a href="javax_swing_tree.html#type-AbstractLayoutCache$NodeDimensions">javax_swing_tree.AbstractLayoutCache$NodeDimensions</a>;
+                           <font color="#cc0033">treeModel</font>!          : <a href="javax_swing_tree.html#type-TreeModel">javax_swing_tree.TreeModel</a>;
+                           <font color="#cc0033">treeSelectionModel</font>! : <a href="javax_swing_tree.html#type-TreeSelectionModel">javax_swing_tree.TreeSelectionModel</a>;
+                           <font color="#cc0033">rootVisible</font>!        : BOOLEAN;
+                           <font color="#cc0033">rowHeight</font>!          : INTEGER;
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-AbstractLayoutCache">AbstractLayoutCache</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-AbstractLayoutCache$NodeDimensions"></a><font color="#cc0033">AbstractLayoutCache$NodeDimensions</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                                        <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                                        <font color="green"><b> (* </b><a href="#meths-AbstractLayoutCache$NodeDimensions">Typebound Procedures</a><b> *)</b></font>
+                                        <b>STATIC</b>
+                                          <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-AbstractLayoutCache$NodeDimensions">AbstractLayoutCache$NodeDimensions</a><b>,CONSTRUCTOR</b>;
+                                        <b>END</b>;
+
+  <a name="type-DefaultMutableTreeNode"></a><font color="#cc0033">DefaultMutableTreeNode</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_lang.html#type-Cloneable">java_lang.Cloneable</a> + <a href="#type-MutableTreeNode">MutableTreeNode</a> + <a href="java_io.html#type-Serializable">java_io.Serializable</a>)
+                            <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                            <font color="green"><b> (* </b><a href="#meths-DefaultMutableTreeNode">Typebound Procedures</a><b> *)</b></font>
+                              <font color="#cc0033">parent</font>!         : <a href="#type-MutableTreeNode">MutableTreeNode</a>;
+                              <font color="#cc0033">children</font>!       : <a href="java_util.html#type-Vector">java_util.Vector</a>;
+                              <font color="#cc0033">userObject</font>!     : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                              <font color="#cc0033">allowsChildren</font>! : BOOLEAN;
+                            <b>STATIC</b>
+                              <a name="type-EMPTY_ENUMERATION"></a><font color="#cc0033">EMPTY_ENUMERATION</font>* : <a href="java_util.html#type-Enumeration">java_util.Enumeration</a>;
+                              <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                              p1 : BOOLEAN) : <a href="#type-DefaultMutableTreeNode">DefaultMutableTreeNode</a><b>,CONSTRUCTOR</b>;
+                              <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="#type-DefaultMutableTreeNode">DefaultMutableTreeNode</a><b>,CONSTRUCTOR</b>;
+                              <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-DefaultMutableTreeNode">DefaultMutableTreeNode</a><b>,CONSTRUCTOR</b>;
+                            <b>END</b>;
+
+  <a name="type-DefaultTreeCellEditor"></a><font color="#cc0033">DefaultTreeCellEditor</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_awt_event.html#type-ActionListener">java_awt_event.ActionListener</a> + <a href="javax_swing_tree.html#type-TreeCellEditor">javax_swing_tree.TreeCellEditor</a> + <a href="javax_swing_event.html#type-TreeSelectionListener">javax_swing_event.TreeSelectionListener</a>)
+                           <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                           <font color="green"><b> (* </b><a href="#meths-DefaultTreeCellEditor">Typebound Procedures</a><b> *)</b></font>
+                             <font color="#cc0033">realEditor</font>!           : <a href="javax_swing_tree.html#type-TreeCellEditor">javax_swing_tree.TreeCellEditor</a>;
+                             <font color="#cc0033">renderer</font>!             : <a href="#type-DefaultTreeCellRenderer">DefaultTreeCellRenderer</a>;
+                             <font color="#cc0033">editingContainer</font>!     : <a href="java_awt.html#type-Container">java_awt.Container</a>;
+                             <font color="#cc0033">editingComponent</font>!     : <a href="java_awt.html#type-Component">java_awt.Component</a>;
+                             <font color="#cc0033">canEdit</font>!              : BOOLEAN;
+                             <font color="#cc0033">offset</font>!               : INTEGER;
+                             <font color="#cc0033">tree</font>!                 : <a href="javax_swing.html#type-JTree">javax_swing.JTree</a>;
+                             <font color="#cc0033">lastPath</font>!             : <a href="javax_swing_tree.html#type-TreePath">javax_swing_tree.TreePath</a>;
+                             <font color="#cc0033">timer</font>!                : <a href="javax_swing.html#type-Timer">javax_swing.Timer</a>;
+                             <font color="#cc0033">lastRow</font>!              : INTEGER;
+                             <font color="#cc0033">borderSelectionColor</font>! : <a href="java_awt.html#type-Color">java_awt.Color</a>;
+                             <font color="#cc0033">editingIcon</font>!          : <a href="javax_swing.html#type-Icon">javax_swing.Icon</a>;
+                             <font color="#cc0033">font</font>!                 : <a href="java_awt.html#type-Font">java_awt.Font</a>;
+                           <b>STATIC</b>
+                             <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="javax_swing.html#type-JTree">javax_swing.JTree</a>;
+                                             p1 : <a href="#type-DefaultTreeCellRenderer">DefaultTreeCellRenderer</a>;
+                                             p2 : <a href="javax_swing_tree.html#type-TreeCellEditor">javax_swing_tree.TreeCellEditor</a>) : <a href="#type-DefaultTreeCellEditor">DefaultTreeCellEditor</a><b>,CONSTRUCTOR</b>;
+                             <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="javax_swing.html#type-JTree">javax_swing.JTree</a>;
+                                             p1 : <a href="#type-DefaultTreeCellRenderer">DefaultTreeCellRenderer</a>) : <a href="#type-DefaultTreeCellEditor">DefaultTreeCellEditor</a><b>,CONSTRUCTOR</b>;
+                           <b>END</b>;
+
+  <a name="type-DefaultTreeCellEditor$DefaultTextField"></a><font color="#cc0033">DefaultTreeCellEditor$DefaultTextField</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="javax_swing.html#type-JTextField">javax_swing.JTextField</a>)
+                                            <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                                            <font color="green"><b> (* </b><a href="#meths-DefaultTreeCellEditor$DefaultTextField">Typebound Procedures</a><b> *)</b></font>
+                                              <font color="#cc0033">border</font>! : <a href="javax_swing_border.html#type-Border">javax_swing_border.Border</a>;
+                                            <b>STATIC</b>
+                                              <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="#type-DefaultTreeCellEditor">DefaultTreeCellEditor</a>;
+                                                              p1 : <a href="javax_swing_border.html#type-Border">javax_swing_border.Border</a>) : <a href="#type-DefaultTreeCellEditor$DefaultTextField">DefaultTreeCellEditor$DefaultTextField</a><b>,CONSTRUCTOR</b>;
+                                            <b>END</b>;
+
+  <a name="type-DefaultTreeCellEditor$EditorContainer"></a><font color="#cc0033">DefaultTreeCellEditor$EditorContainer</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_awt.html#type-Container">java_awt.Container</a>)
+                                           <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                                           <font color="green"><b> (* </b><a href="#meths-DefaultTreeCellEditor$EditorContainer">Typebound Procedures</a><b> *)</b></font>
+                                           <b>STATIC</b>
+                                             <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="javax_swing_tree.html#type-DefaultTreeCellEditor">javax_swing_tree.DefaultTreeCellEditor</a>) : <a href="#type-DefaultTreeCellEditor$EditorContainer">DefaultTreeCellEditor$EditorContainer</a><b>,CONSTRUCTOR</b>;
+                                           <b>END</b>;
+
+  <a name="type-DefaultTreeCellRenderer"></a><font color="#cc0033">DefaultTreeCellRenderer</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="javax_swing.html#type-JLabel">javax_swing.JLabel</a> + <a href="javax_swing_tree.html#type-TreeCellRenderer">javax_swing_tree.TreeCellRenderer</a>)
+                             <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                             <font color="green"><b> (* </b><a href="#meths-DefaultTreeCellRenderer">Typebound Procedures</a><b> *)</b></font>
+                               <font color="#cc0033">selected</font>!                    : BOOLEAN;
+                               <font color="#cc0033">hasFocus</font>!                    : BOOLEAN;
+                               <font color="#cc0033">closedIcon</font>!                  : <a href="javax_swing.html#type-Icon">javax_swing.Icon</a>;
+                               <font color="#cc0033">leafIcon</font>!                    : <a href="javax_swing.html#type-Icon">javax_swing.Icon</a>;
+                               <font color="#cc0033">openIcon</font>!                    : <a href="javax_swing.html#type-Icon">javax_swing.Icon</a>;
+                               <font color="#cc0033">textSelectionColor</font>!          : <a href="java_awt.html#type-Color">java_awt.Color</a>;
+                               <font color="#cc0033">textNonSelectionColor</font>!       : <a href="java_awt.html#type-Color">java_awt.Color</a>;
+                               <font color="#cc0033">backgroundSelectionColor</font>!    : <a href="java_awt.html#type-Color">java_awt.Color</a>;
+                               <font color="#cc0033">backgroundNonSelectionColor</font>! : <a href="java_awt.html#type-Color">java_awt.Color</a>;
+                               <font color="#cc0033">borderSelectionColor</font>!        : <a href="java_awt.html#type-Color">java_awt.Color</a>;
+                             <b>STATIC</b>
+                               <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-DefaultTreeCellRenderer">DefaultTreeCellRenderer</a><b>,CONSTRUCTOR</b>;
+                             <b>END</b>;
+
+  <a name="type-DefaultTreeModel"></a><font color="#cc0033">DefaultTreeModel</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_io.html#type-Serializable">java_io.Serializable</a> + <a href="#type-TreeModel">TreeModel</a>)
+                      <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                      <font color="green"><b> (* </b><a href="#meths-DefaultTreeModel">Typebound Procedures</a><b> *)</b></font>
+                        <font color="#cc0033">root</font>!               : <a href="#type-TreeNode">TreeNode</a>;
+                        <font color="#cc0033">listenerList</font>!       : <a href="javax_swing_event.html#type-EventListenerList">javax_swing_event.EventListenerList</a>;
+                        <font color="#cc0033">asksAllowsChildren</font>! : BOOLEAN;
+                      <b>STATIC</b>
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="#type-TreeNode">TreeNode</a>;
+                                        p1 : BOOLEAN) : <a href="#type-DefaultTreeModel">DefaultTreeModel</a><b>,CONSTRUCTOR</b>;
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="#type-TreeNode">TreeNode</a>) : <a href="#type-DefaultTreeModel">DefaultTreeModel</a><b>,CONSTRUCTOR</b>;
+                      <b>END</b>;
+
+  <a name="type-DefaultTreeSelectionModel"></a><font color="#cc0033">DefaultTreeSelectionModel</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_lang.html#type-Cloneable">java_lang.Cloneable</a> + <a href="java_io.html#type-Serializable">java_io.Serializable</a> + <a href="#type-TreeSelectionModel">TreeSelectionModel</a>)
+                               <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                               <font color="green"><b> (* </b><a href="#meths-DefaultTreeSelectionModel">Typebound Procedures</a><b> *)</b></font>
+                                 <font color="#cc0033">changeSupport</font>!      : <a href="javax_swing_event.html#type-SwingPropertyChangeSupport">javax_swing_event.SwingPropertyChangeSupport</a>;
+                                 <font color="#cc0033">selection</font>!          : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-TreePath">TreePath</a>;
+                                 <font color="#cc0033">listenerList</font>!       : <a href="javax_swing_event.html#type-EventListenerList">javax_swing_event.EventListenerList</a>;
+                                 <font color="#cc0033">rowMapper</font>!          : <a href="#type-RowMapper">RowMapper</a>;
+                                 <font color="#cc0033">listSelectionModel</font>! : <a href="javax_swing.html#type-DefaultListSelectionModel">javax_swing.DefaultListSelectionModel</a>;
+                                 <font color="#cc0033">selectionMode</font>!      : INTEGER;
+                                 <font color="#cc0033">leadPath</font>!           : <a href="#type-TreePath">TreePath</a>;
+                                 <font color="#cc0033">leadIndex</font>!          : INTEGER;
+                                 <font color="#cc0033">leadRow</font>!            : INTEGER;
+                               <b>STATIC</b>
+                                 <font color="#cc0033">SELECTION_MODE_PROPERTY</font>* = "selectionMode";
+                                 <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-DefaultTreeSelectionModel">DefaultTreeSelectionModel</a><b>,CONSTRUCTOR</b>;
+                               <b>END</b>;
+
+  <a name="type-ExpandVetoException"></a><font color="#cc0033">ExpandVetoException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Exception">java_lang.Exception</a>)
+                         <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                           <font color="#cc0033">event</font>! : <a href="javax_swing_event.html#type-TreeExpansionEvent">javax_swing_event.TreeExpansionEvent</a>;
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="javax_swing_event.html#type-TreeExpansionEvent">javax_swing_event.TreeExpansionEvent</a>;
+                                           p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-ExpandVetoException">ExpandVetoException</a><b>,CONSTRUCTOR</b>;
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="javax_swing_event.html#type-TreeExpansionEvent">javax_swing_event.TreeExpansionEvent</a>) : <a href="#type-ExpandVetoException">ExpandVetoException</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-FixedHeightLayoutCache"></a><font color="#cc0033">FixedHeightLayoutCache</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-AbstractLayoutCache">AbstractLayoutCache</a>)
+                            <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                            <font color="green"><b> (* </b><a href="#meths-FixedHeightLayoutCache">Typebound Procedures</a><b> *)</b></font>
+                            <b>STATIC</b>
+                              <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-FixedHeightLayoutCache">FixedHeightLayoutCache</a><b>,CONSTRUCTOR</b>;
+                            <b>END</b>;
+
+  <a name="type-MutableTreeNode"></a><font color="#cc0033">MutableTreeNode</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="javax_swing_tree.html#type-TreeNode">javax_swing_tree.TreeNode</a>)
+                     <font color="green"><b> (* </b><a href="#meths-MutableTreeNode">Typebound Procedures</a><b> *)</b></font>
+                     <b>END</b>;
+
+  <a name="type-RowMapper"></a><font color="#cc0033">RowMapper</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+               <font color="green"><b> (* </b><a href="#meths-RowMapper">Typebound Procedures</a><b> *)</b></font>
+               <b>END</b>;
+
+  <a name="type-TreeCellEditor"></a><font color="#cc0033">TreeCellEditor</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="javax_swing.html#type-CellEditor">javax_swing.CellEditor</a>)
+                    <font color="green"><b> (* </b><a href="#meths-TreeCellEditor">Typebound Procedures</a><b> *)</b></font>
+                    <b>END</b>;
+
+  <a name="type-TreeCellRenderer"></a><font color="#cc0033">TreeCellRenderer</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                      <font color="green"><b> (* </b><a href="#meths-TreeCellRenderer">Typebound Procedures</a><b> *)</b></font>
+                      <b>END</b>;
+
+  <a name="type-TreeModel"></a><font color="#cc0033">TreeModel</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+               <font color="green"><b> (* </b><a href="#meths-TreeModel">Typebound Procedures</a><b> *)</b></font>
+               <b>END</b>;
+
+  <a name="type-TreeNode"></a><font color="#cc0033">TreeNode</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+              <font color="green"><b> (* </b><a href="#meths-TreeNode">Typebound Procedures</a><b> *)</b></font>
+              <b>END</b>;
+
+  <a name="type-TreePath"></a><font color="#cc0033">TreePath</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_io.html#type-Serializable">java_io.Serializable</a>)
+              <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+              <font color="green"><b> (* </b><a href="#meths-TreePath">Typebound Procedures</a><b> *)</b></font>
+              <b>STATIC</b>
+                <b>PROCEDURE </b><font color="#cc0033">Init</font>!(IN  p0 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                    p1 : INTEGER) : <a href="#type-TreePath">TreePath</a><b>,CONSTRUCTOR</b>;
+                <b>PROCEDURE </b><font color="#cc0033">Init</font>!() : <a href="#type-TreePath">TreePath</a><b>,CONSTRUCTOR</b>;
+                <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : <a href="#type-TreePath">TreePath</a>;
+                                p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="#type-TreePath">TreePath</a><b>,CONSTRUCTOR</b>;
+                <b>PROCEDURE </b><font color="#cc0033">Init</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="#type-TreePath">TreePath</a><b>,CONSTRUCTOR</b>;
+                <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="#type-TreePath">TreePath</a><b>,CONSTRUCTOR</b>;
+              <b>END</b>;
+
+  <a name="type-TreeSelectionModel"></a><font color="#cc0033">TreeSelectionModel</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                        <font color="green"><b> (* </b><a href="#meths-TreeSelectionModel">Typebound Procedures</a><b> *)</b></font>
+                        <b>STATIC</b>
+                          <font color="#cc0033">CONTIGUOUS_TREE_SELECTION</font>*    = 2;
+                          <font color="#cc0033">DISCONTIGUOUS_TREE_SELECTION</font>* = 4;
+                          <font color="#cc0033">SINGLE_TREE_SELECTION</font>*        = 1;
+                        <b>END</b>;
+
+  <a name="type-VariableHeightLayoutCache"></a><font color="#cc0033">VariableHeightLayoutCache</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-AbstractLayoutCache">AbstractLayoutCache</a>)
+                               <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                               <font color="green"><b> (* </b><a href="#meths-VariableHeightLayoutCache">Typebound Procedures</a><b> *)</b></font>
+                               <b>STATIC</b>
+                                 <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-VariableHeightLayoutCache">VariableHeightLayoutCache</a><b>,CONSTRUCTOR</b>;
+                               <b>END</b>;
+
+
+
+<a name="meths-AbstractLayoutCache"></a>
+<b>PROCEDURE </b>(self:AbstractLayoutCache) <font color="#cc0033">getBounds</font>*(p0 : <a href="javax_swing_tree.html#type-TreePath">javax_swing_tree.TreePath</a>;
+                                                p1 : <a href="java_awt.html#type-Rectangle">java_awt.Rectangle</a>) : <a href="java_awt.html#type-Rectangle">java_awt.Rectangle</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AbstractLayoutCache) <font color="#cc0033">getExpandedState</font>*(p0 : <a href="javax_swing_tree.html#type-TreePath">javax_swing_tree.TreePath</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AbstractLayoutCache) <font color="#cc0033">getModel</font>*() : <a href="javax_swing_tree.html#type-TreeModel">javax_swing_tree.TreeModel</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AbstractLayoutCache) <font color="#cc0033">getNodeDimensions</font>*() : <a href="javax_swing_tree.html#type-AbstractLayoutCache$NodeDimensions">javax_swing_tree.AbstractLayoutCache$NodeDimensions</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AbstractLayoutCache) <font color="#cc0033">getNodeDimensions</font>!(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                        p1 : INTEGER;
+                                                        p2 : INTEGER;
+                                                        p3 : BOOLEAN;
+                                                        p4 : <a href="java_awt.html#type-Rectangle">java_awt.Rectangle</a>) : <a href="java_awt.html#type-Rectangle">java_awt.Rectangle</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AbstractLayoutCache) <font color="#cc0033">getPathClosestTo</font>*(p0 : INTEGER;
+                                                       p1 : INTEGER) : <a href="javax_swing_tree.html#type-TreePath">javax_swing_tree.TreePath</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AbstractLayoutCache) <font color="#cc0033">getPathForRow</font>*(p0 : INTEGER) : <a href="javax_swing_tree.html#type-TreePath">javax_swing_tree.TreePath</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AbstractLayoutCache) <font color="#cc0033">getPreferredHeight</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AbstractLayoutCache) <font color="#cc0033">getPreferredWidth</font>*(p0 : <a href="java_awt.html#type-Rectangle">java_awt.Rectangle</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AbstractLayoutCache) <font color="#cc0033">getRowCount</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AbstractLayoutCache) <font color="#cc0033">getRowForPath</font>*(p0 : <a href="javax_swing_tree.html#type-TreePath">javax_swing_tree.TreePath</a>) : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AbstractLayoutCache) <font color="#cc0033">getRowHeight</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AbstractLayoutCache) <font color="#cc0033">getRowsForPaths</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="javax_swing_tree.html#type-TreePath">javax_swing_tree.TreePath</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AbstractLayoutCache) <font color="#cc0033">getSelectionModel</font>*() : <a href="javax_swing_tree.html#type-TreeSelectionModel">javax_swing_tree.TreeSelectionModel</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AbstractLayoutCache) <font color="#cc0033">getVisibleChildCount</font>*(p0 : <a href="javax_swing_tree.html#type-TreePath">javax_swing_tree.TreePath</a>) : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AbstractLayoutCache) <font color="#cc0033">getVisiblePathsFrom</font>*(p0 : <a href="javax_swing_tree.html#type-TreePath">javax_swing_tree.TreePath</a>) : <a href="java_util.html#type-Enumeration">java_util.Enumeration</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AbstractLayoutCache) <font color="#cc0033">invalidatePathBounds</font>*(p0 : <a href="javax_swing_tree.html#type-TreePath">javax_swing_tree.TreePath</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AbstractLayoutCache) <font color="#cc0033">invalidateSizes</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AbstractLayoutCache) <font color="#cc0033">isExpanded</font>*(p0 : <a href="javax_swing_tree.html#type-TreePath">javax_swing_tree.TreePath</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AbstractLayoutCache) <font color="#cc0033">isFixedRowHeight</font>!() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AbstractLayoutCache) <font color="#cc0033">isRootVisible</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AbstractLayoutCache) <font color="#cc0033">setExpandedState</font>*(p0 : <a href="javax_swing_tree.html#type-TreePath">javax_swing_tree.TreePath</a>;
+                                                       p1 : BOOLEAN)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AbstractLayoutCache) <font color="#cc0033">setModel</font>*(p0 : <a href="javax_swing_tree.html#type-TreeModel">javax_swing_tree.TreeModel</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AbstractLayoutCache) <font color="#cc0033">setNodeDimensions</font>*(p0 : <a href="javax_swing_tree.html#type-AbstractLayoutCache$NodeDimensions">javax_swing_tree.AbstractLayoutCache$NodeDimensions</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AbstractLayoutCache) <font color="#cc0033">setRootVisible</font>*(p0 : BOOLEAN)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AbstractLayoutCache) <font color="#cc0033">setRowHeight</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AbstractLayoutCache) <font color="#cc0033">setSelectionModel</font>*(p0 : <a href="javax_swing_tree.html#type-TreeSelectionModel">javax_swing_tree.TreeSelectionModel</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AbstractLayoutCache) <font color="#cc0033">treeNodesChanged</font>*(p0 : <a href="javax_swing_event.html#type-TreeModelEvent">javax_swing_event.TreeModelEvent</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AbstractLayoutCache) <font color="#cc0033">treeNodesInserted</font>*(p0 : <a href="javax_swing_event.html#type-TreeModelEvent">javax_swing_event.TreeModelEvent</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AbstractLayoutCache) <font color="#cc0033">treeNodesRemoved</font>*(p0 : <a href="javax_swing_event.html#type-TreeModelEvent">javax_swing_event.TreeModelEvent</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AbstractLayoutCache) <font color="#cc0033">treeStructureChanged</font>*(p0 : <a href="javax_swing_event.html#type-TreeModelEvent">javax_swing_event.TreeModelEvent</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-AbstractLayoutCache$NodeDimensions"></a>
+<b>PROCEDURE </b>(self:AbstractLayoutCache$NodeDimensions) <font color="#cc0033">getNodeDimensions</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                                       p1 : INTEGER;
+                                                                       p2 : INTEGER;
+                                                                       p3 : BOOLEAN;
+                                                                       p4 : <a href="java_awt.html#type-Rectangle">java_awt.Rectangle</a>) : <a href="java_awt.html#type-Rectangle">java_awt.Rectangle</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-DefaultMutableTreeNode"></a>
+<b>PROCEDURE </b>(self:DefaultMutableTreeNode) <font color="#cc0033">add</font>*(p0 : <a href="#type-MutableTreeNode">MutableTreeNode</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultMutableTreeNode) <font color="#cc0033">breadthFirstEnumeration</font>*() : <a href="java_util.html#type-Enumeration">java_util.Enumeration</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultMutableTreeNode) <font color="#cc0033">children</font>*() : <a href="java_util.html#type-Enumeration">java_util.Enumeration</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultMutableTreeNode) <font color="#cc0033">clone</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultMutableTreeNode) <font color="#cc0033">depthFirstEnumeration</font>*() : <a href="java_util.html#type-Enumeration">java_util.Enumeration</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultMutableTreeNode) <font color="#cc0033">getAllowsChildren</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultMutableTreeNode) <font color="#cc0033">getChildAfter</font>*(p0 : <a href="#type-TreeNode">TreeNode</a>) : <a href="#type-TreeNode">TreeNode</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultMutableTreeNode) <font color="#cc0033">getChildAt</font>*(p0 : INTEGER) : <a href="#type-TreeNode">TreeNode</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultMutableTreeNode) <font color="#cc0033">getChildBefore</font>*(p0 : <a href="#type-TreeNode">TreeNode</a>) : <a href="#type-TreeNode">TreeNode</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultMutableTreeNode) <font color="#cc0033">getChildCount</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultMutableTreeNode) <font color="#cc0033">getDepth</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultMutableTreeNode) <font color="#cc0033">getFirstChild</font>*() : <a href="#type-TreeNode">TreeNode</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultMutableTreeNode) <font color="#cc0033">getFirstLeaf</font>*() : <a href="#type-DefaultMutableTreeNode">DefaultMutableTreeNode</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultMutableTreeNode) <font color="#cc0033">getIndex</font>*(p0 : <a href="#type-TreeNode">TreeNode</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultMutableTreeNode) <font color="#cc0033">getLastChild</font>*() : <a href="#type-TreeNode">TreeNode</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultMutableTreeNode) <font color="#cc0033">getLastLeaf</font>*() : <a href="#type-DefaultMutableTreeNode">DefaultMutableTreeNode</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultMutableTreeNode) <font color="#cc0033">getLeafCount</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultMutableTreeNode) <font color="#cc0033">getLevel</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultMutableTreeNode) <font color="#cc0033">getNextLeaf</font>*() : <a href="#type-DefaultMutableTreeNode">DefaultMutableTreeNode</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultMutableTreeNode) <font color="#cc0033">getNextNode</font>*() : <a href="#type-DefaultMutableTreeNode">DefaultMutableTreeNode</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultMutableTreeNode) <font color="#cc0033">getNextSibling</font>*() : <a href="#type-DefaultMutableTreeNode">DefaultMutableTreeNode</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultMutableTreeNode) <font color="#cc0033">getParent</font>*() : <a href="#type-TreeNode">TreeNode</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultMutableTreeNode) <font color="#cc0033">getPath</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-TreeNode">TreeNode</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultMutableTreeNode) <font color="#cc0033">getPathToRoot</font>!(p0 : <a href="#type-TreeNode">TreeNode</a>;
+                                                       p1 : INTEGER) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-TreeNode">TreeNode</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultMutableTreeNode) <font color="#cc0033">getPreviousLeaf</font>*() : <a href="#type-DefaultMutableTreeNode">DefaultMutableTreeNode</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultMutableTreeNode) <font color="#cc0033">getPreviousNode</font>*() : <a href="#type-DefaultMutableTreeNode">DefaultMutableTreeNode</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultMutableTreeNode) <font color="#cc0033">getPreviousSibling</font>*() : <a href="#type-DefaultMutableTreeNode">DefaultMutableTreeNode</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultMutableTreeNode) <font color="#cc0033">getRoot</font>*() : <a href="#type-TreeNode">TreeNode</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultMutableTreeNode) <font color="#cc0033">getSharedAncestor</font>*(p0 : <a href="#type-DefaultMutableTreeNode">DefaultMutableTreeNode</a>) : <a href="#type-TreeNode">TreeNode</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultMutableTreeNode) <font color="#cc0033">getSiblingCount</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultMutableTreeNode) <font color="#cc0033">getUserObject</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultMutableTreeNode) <font color="#cc0033">getUserObjectPath</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultMutableTreeNode) <font color="#cc0033">insert</font>*(p0 : <a href="#type-MutableTreeNode">MutableTreeNode</a>;
+                                                p1 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultMutableTreeNode) <font color="#cc0033">isLeaf</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultMutableTreeNode) <font color="#cc0033">isNodeAncestor</font>*(p0 : <a href="#type-TreeNode">TreeNode</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultMutableTreeNode) <font color="#cc0033">isNodeChild</font>*(p0 : <a href="#type-TreeNode">TreeNode</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultMutableTreeNode) <font color="#cc0033">isNodeDescendant</font>*(p0 : <a href="#type-DefaultMutableTreeNode">DefaultMutableTreeNode</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultMutableTreeNode) <font color="#cc0033">isNodeRelated</font>*(p0 : <a href="#type-DefaultMutableTreeNode">DefaultMutableTreeNode</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultMutableTreeNode) <font color="#cc0033">isNodeSibling</font>*(p0 : <a href="#type-TreeNode">TreeNode</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultMutableTreeNode) <font color="#cc0033">isRoot</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultMutableTreeNode) <font color="#cc0033">pathFromAncestorEnumeration</font>*(p0 : <a href="#type-TreeNode">TreeNode</a>) : <a href="java_util.html#type-Enumeration">java_util.Enumeration</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultMutableTreeNode) <font color="#cc0033">postorderEnumeration</font>*() : <a href="java_util.html#type-Enumeration">java_util.Enumeration</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultMutableTreeNode) <font color="#cc0033">preorderEnumeration</font>*() : <a href="java_util.html#type-Enumeration">java_util.Enumeration</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultMutableTreeNode) <font color="#cc0033">remove</font>*(p0 : <a href="#type-MutableTreeNode">MutableTreeNode</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultMutableTreeNode) <font color="#cc0033">remove</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultMutableTreeNode) <font color="#cc0033">removeAllChildren</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultMutableTreeNode) <font color="#cc0033">removeFromParent</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultMutableTreeNode) <font color="#cc0033">setAllowsChildren</font>*(p0 : BOOLEAN)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultMutableTreeNode) <font color="#cc0033">setParent</font>*(p0 : <a href="#type-MutableTreeNode">MutableTreeNode</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultMutableTreeNode) <font color="#cc0033">setUserObject</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultMutableTreeNode) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-DefaultTreeCellEditor"></a>
+<b>PROCEDURE </b>(self:DefaultTreeCellEditor) <font color="#cc0033">actionPerformed</font>*(p0 : <a href="java_awt_event.html#type-ActionEvent">java_awt_event.ActionEvent</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultTreeCellEditor) <font color="#cc0033">addCellEditorListener</font>*(p0 : <a href="javax_swing_event.html#type-CellEditorListener">javax_swing_event.CellEditorListener</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultTreeCellEditor) <font color="#cc0033">cancelCellEditing</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultTreeCellEditor) <font color="#cc0033">canEditImmediately</font>!(p0 : <a href="java_util.html#type-EventObject">java_util.EventObject</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultTreeCellEditor) <font color="#cc0033">createContainer</font>!() : <a href="java_awt.html#type-Container">java_awt.Container</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultTreeCellEditor) <font color="#cc0033">createTreeCellEditor</font>!() : <a href="javax_swing_tree.html#type-TreeCellEditor">javax_swing_tree.TreeCellEditor</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultTreeCellEditor) <font color="#cc0033">determineOffset</font>!(p0 : <a href="javax_swing.html#type-JTree">javax_swing.JTree</a>;
+                                                        p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                        p2 : BOOLEAN;
+                                                        p3 : BOOLEAN;
+                                                        p4 : BOOLEAN;
+                                                        p5 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultTreeCellEditor) <font color="#cc0033">getBorderSelectionColor</font>*() : <a href="java_awt.html#type-Color">java_awt.Color</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultTreeCellEditor) <font color="#cc0033">getCellEditorListeners</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="javax_swing_event.html#type-CellEditorListener">javax_swing_event.CellEditorListener</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultTreeCellEditor) <font color="#cc0033">getCellEditorValue</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultTreeCellEditor) <font color="#cc0033">getFont</font>*() : <a href="java_awt.html#type-Font">java_awt.Font</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultTreeCellEditor) <font color="#cc0033">getTreeCellEditorComponent</font>*(p0 : <a href="javax_swing.html#type-JTree">javax_swing.JTree</a>;
+                                                                   p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                                   p2 : BOOLEAN;
+                                                                   p3 : BOOLEAN;
+                                                                   p4 : BOOLEAN;
+                                                                   p5 : INTEGER) : <a href="java_awt.html#type-Component">java_awt.Component</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultTreeCellEditor) <font color="#cc0033">inHitRegion</font>!(p0 : INTEGER;
+                                                    p1 : INTEGER) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultTreeCellEditor) <font color="#cc0033">isCellEditable</font>*(p0 : <a href="java_util.html#type-EventObject">java_util.EventObject</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultTreeCellEditor) <font color="#cc0033">prepareForEditing</font>!()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultTreeCellEditor) <font color="#cc0033">removeCellEditorListener</font>*(p0 : <a href="javax_swing_event.html#type-CellEditorListener">javax_swing_event.CellEditorListener</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultTreeCellEditor) <font color="#cc0033">setBorderSelectionColor</font>*(p0 : <a href="java_awt.html#type-Color">java_awt.Color</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultTreeCellEditor) <font color="#cc0033">setFont</font>*(p0 : <a href="java_awt.html#type-Font">java_awt.Font</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultTreeCellEditor) <font color="#cc0033">setTree</font>!(p0 : <a href="javax_swing.html#type-JTree">javax_swing.JTree</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultTreeCellEditor) <font color="#cc0033">shouldSelectCell</font>*(p0 : <a href="java_util.html#type-EventObject">java_util.EventObject</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultTreeCellEditor) <font color="#cc0033">shouldStartEditingTimer</font>!(p0 : <a href="java_util.html#type-EventObject">java_util.EventObject</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultTreeCellEditor) <font color="#cc0033">startEditingTimer</font>!()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultTreeCellEditor) <font color="#cc0033">stopCellEditing</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultTreeCellEditor) <font color="#cc0033">valueChanged</font>*(p0 : <a href="javax_swing_event.html#type-TreeSelectionEvent">javax_swing_event.TreeSelectionEvent</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-DefaultTreeCellEditor$DefaultTextField"></a>
+<b>PROCEDURE </b>(self:DefaultTreeCellEditor$DefaultTextField) <font color="#cc0033">getBorder</font>*() : <a href="javax_swing_border.html#type-Border">javax_swing_border.Border</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultTreeCellEditor$DefaultTextField) <font color="#cc0033">getFont</font>*() : <a href="java_awt.html#type-Font">java_awt.Font</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultTreeCellEditor$DefaultTextField) <font color="#cc0033">getPreferredSize</font>*() : <a href="java_awt.html#type-Dimension">java_awt.Dimension</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultTreeCellEditor$DefaultTextField) <font color="#cc0033">setBorder</font>*(p0 : <a href="javax_swing_border.html#type-Border">javax_swing_border.Border</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-DefaultTreeCellEditor$EditorContainer"></a>
+<b>PROCEDURE </b>(self:DefaultTreeCellEditor$EditorContainer) <font color="#cc0033">doLayout</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultTreeCellEditor$EditorContainer) <font color="#cc0033">EditorContainer</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultTreeCellEditor$EditorContainer) <font color="#cc0033">getPreferredSize</font>*() : <a href="java_awt.html#type-Dimension">java_awt.Dimension</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultTreeCellEditor$EditorContainer) <font color="#cc0033">paint</font>*(p0 : <a href="java_awt.html#type-Graphics">java_awt.Graphics</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-DefaultTreeCellRenderer"></a>
+<b>PROCEDURE </b>(self:DefaultTreeCellRenderer) <font color="#cc0033">firePropertyChange</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                             p1 : INTEGER;
+                                                             p2 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultTreeCellRenderer) <font color="#cc0033">firePropertyChange</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                             p1 : LONGINT;
+                                                             p2 : LONGINT)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultTreeCellRenderer) <font color="#cc0033">firePropertyChange</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                             p1 : SHORTREAL;
+                                                             p2 : SHORTREAL)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultTreeCellRenderer) <font color="#cc0033">firePropertyChange</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                             p1 : CHAR;
+                                                             p2 : CHAR)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultTreeCellRenderer) <font color="#cc0033">firePropertyChange</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                             p1 : SHORTINT;
+                                                             p2 : SHORTINT)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultTreeCellRenderer) <font color="#cc0033">firePropertyChange</font>!(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                             p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                             p2 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultTreeCellRenderer) <font color="#cc0033">firePropertyChange</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                             p1 : BYTE;
+                                                             p2 : BYTE)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultTreeCellRenderer) <font color="#cc0033">firePropertyChange</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                             p1 : REAL;
+                                                             p2 : REAL)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultTreeCellRenderer) <font color="#cc0033">firePropertyChange</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                             p1 : BOOLEAN;
+                                                             p2 : BOOLEAN)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultTreeCellRenderer) <font color="#cc0033">getBackgroundNonSelectionColor</font>*() : <a href="java_awt.html#type-Color">java_awt.Color</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultTreeCellRenderer) <font color="#cc0033">getBackgroundSelectionColor</font>*() : <a href="java_awt.html#type-Color">java_awt.Color</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultTreeCellRenderer) <font color="#cc0033">getBorderSelectionColor</font>*() : <a href="java_awt.html#type-Color">java_awt.Color</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultTreeCellRenderer) <font color="#cc0033">getClosedIcon</font>*() : <a href="javax_swing.html#type-Icon">javax_swing.Icon</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultTreeCellRenderer) <font color="#cc0033">getDefaultClosedIcon</font>*() : <a href="javax_swing.html#type-Icon">javax_swing.Icon</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultTreeCellRenderer) <font color="#cc0033">getDefaultLeafIcon</font>*() : <a href="javax_swing.html#type-Icon">javax_swing.Icon</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultTreeCellRenderer) <font color="#cc0033">getDefaultOpenIcon</font>*() : <a href="javax_swing.html#type-Icon">javax_swing.Icon</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultTreeCellRenderer) <font color="#cc0033">getFont</font>*() : <a href="java_awt.html#type-Font">java_awt.Font</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultTreeCellRenderer) <font color="#cc0033">getLeafIcon</font>*() : <a href="javax_swing.html#type-Icon">javax_swing.Icon</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultTreeCellRenderer) <font color="#cc0033">getOpenIcon</font>*() : <a href="javax_swing.html#type-Icon">javax_swing.Icon</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultTreeCellRenderer) <font color="#cc0033">getPreferredSize</font>*() : <a href="java_awt.html#type-Dimension">java_awt.Dimension</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultTreeCellRenderer) <font color="#cc0033">getTextNonSelectionColor</font>*() : <a href="java_awt.html#type-Color">java_awt.Color</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultTreeCellRenderer) <font color="#cc0033">getTextSelectionColor</font>*() : <a href="java_awt.html#type-Color">java_awt.Color</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultTreeCellRenderer) <font color="#cc0033">getTreeCellRendererComponent</font>*(p0 : <a href="javax_swing.html#type-JTree">javax_swing.JTree</a>;
+                                                                       p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                                       p2 : BOOLEAN;
+                                                                       p3 : BOOLEAN;
+                                                                       p4 : BOOLEAN;
+                                                                       p5 : INTEGER;
+                                                                       p6 : BOOLEAN) : <a href="java_awt.html#type-Component">java_awt.Component</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultTreeCellRenderer) <font color="#cc0033">invalidate</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultTreeCellRenderer) <font color="#cc0033">paint</font>*(p0 : <a href="java_awt.html#type-Graphics">java_awt.Graphics</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultTreeCellRenderer) <font color="#cc0033">repaint</font>*(p0 : LONGINT;
+                                                  p1 : INTEGER;
+                                                  p2 : INTEGER;
+                                                  p3 : INTEGER;
+                                                  p4 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultTreeCellRenderer) <font color="#cc0033">repaint</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultTreeCellRenderer) <font color="#cc0033">repaint</font>*(p0 : <a href="java_awt.html#type-Rectangle">java_awt.Rectangle</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultTreeCellRenderer) <font color="#cc0033">revalidate</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultTreeCellRenderer) <font color="#cc0033">setBackground</font>*(p0 : <a href="java_awt.html#type-Color">java_awt.Color</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultTreeCellRenderer) <font color="#cc0033">setBackgroundNonSelectionColor</font>*(p0 : <a href="java_awt.html#type-Color">java_awt.Color</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultTreeCellRenderer) <font color="#cc0033">setBackgroundSelectionColor</font>*(p0 : <a href="java_awt.html#type-Color">java_awt.Color</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultTreeCellRenderer) <font color="#cc0033">setBorderSelectionColor</font>*(p0 : <a href="java_awt.html#type-Color">java_awt.Color</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultTreeCellRenderer) <font color="#cc0033">setClosedIcon</font>*(p0 : <a href="javax_swing.html#type-Icon">javax_swing.Icon</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultTreeCellRenderer) <font color="#cc0033">setFont</font>*(p0 : <a href="java_awt.html#type-Font">java_awt.Font</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultTreeCellRenderer) <font color="#cc0033">setLeafIcon</font>*(p0 : <a href="javax_swing.html#type-Icon">javax_swing.Icon</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultTreeCellRenderer) <font color="#cc0033">setOpenIcon</font>*(p0 : <a href="javax_swing.html#type-Icon">javax_swing.Icon</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultTreeCellRenderer) <font color="#cc0033">setTextNonSelectionColor</font>*(p0 : <a href="java_awt.html#type-Color">java_awt.Color</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultTreeCellRenderer) <font color="#cc0033">setTextSelectionColor</font>*(p0 : <a href="java_awt.html#type-Color">java_awt.Color</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultTreeCellRenderer) <font color="#cc0033">updateUI</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultTreeCellRenderer) <font color="#cc0033">validate</font>*()<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-DefaultTreeModel"></a>
+<b>PROCEDURE </b>(self:DefaultTreeModel) <font color="#cc0033">addTreeModelListener</font>*(p0 : <a href="javax_swing_event.html#type-TreeModelListener">javax_swing_event.TreeModelListener</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultTreeModel) <font color="#cc0033">asksAllowsChildren</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultTreeModel) <font color="#cc0033">fireTreeNodesChanged</font>!(    p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                        IN  p1 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                        IN  p2 : <b>ARRAY </b><b>OF </b>INTEGER;
+                                                        IN  p3 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultTreeModel) <font color="#cc0033">fireTreeNodesInserted</font>!(    p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                         IN  p1 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                         IN  p2 : <b>ARRAY </b><b>OF </b>INTEGER;
+                                                         IN  p3 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultTreeModel) <font color="#cc0033">fireTreeNodesRemoved</font>!(    p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                        IN  p1 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                        IN  p2 : <b>ARRAY </b><b>OF </b>INTEGER;
+                                                        IN  p3 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultTreeModel) <font color="#cc0033">fireTreeStructureChanged</font>!(    p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                            IN  p1 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                            IN  p2 : <b>ARRAY </b><b>OF </b>INTEGER;
+                                                            IN  p3 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultTreeModel) <font color="#cc0033">getChild</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                            p1 : INTEGER) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultTreeModel) <font color="#cc0033">getChildCount</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultTreeModel) <font color="#cc0033">getIndexOfChild</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                   p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultTreeModel) <font color="#cc0033">getListeners</font>*(p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_util.html#type-EventListener">java_util.EventListener</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultTreeModel) <font color="#cc0033">getPathToRoot</font>*(p0 : <a href="#type-TreeNode">TreeNode</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-TreeNode">TreeNode</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultTreeModel) <font color="#cc0033">getPathToRoot</font>!(p0 : <a href="#type-TreeNode">TreeNode</a>;
+                                                 p1 : INTEGER) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-TreeNode">TreeNode</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultTreeModel) <font color="#cc0033">getRoot</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultTreeModel) <font color="#cc0033">getTreeModelListeners</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="javax_swing_event.html#type-TreeModelListener">javax_swing_event.TreeModelListener</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultTreeModel) <font color="#cc0033">insertNodeInto</font>*(p0 : <a href="#type-MutableTreeNode">MutableTreeNode</a>;
+                                                  p1 : <a href="#type-MutableTreeNode">MutableTreeNode</a>;
+                                                  p2 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultTreeModel) <font color="#cc0033">isLeaf</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultTreeModel) <font color="#cc0033">nodeChanged</font>*(p0 : <a href="#type-TreeNode">TreeNode</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultTreeModel) <font color="#cc0033">nodesChanged</font>*(    p0 : <a href="#type-TreeNode">TreeNode</a>;
+                                                IN  p1 : <b>ARRAY </b><b>OF </b>INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultTreeModel) <font color="#cc0033">nodeStructureChanged</font>*(p0 : <a href="#type-TreeNode">TreeNode</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultTreeModel) <font color="#cc0033">nodesWereInserted</font>*(    p0 : <a href="#type-TreeNode">TreeNode</a>;
+                                                     IN  p1 : <b>ARRAY </b><b>OF </b>INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultTreeModel) <font color="#cc0033">nodesWereRemoved</font>*(    p0 : <a href="#type-TreeNode">TreeNode</a>;
+                                                    IN  p1 : <b>ARRAY </b><b>OF </b>INTEGER;
+                                                    IN  p2 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultTreeModel) <font color="#cc0033">reload</font>*(p0 : <a href="#type-TreeNode">TreeNode</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultTreeModel) <font color="#cc0033">reload</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultTreeModel) <font color="#cc0033">removeNodeFromParent</font>*(p0 : <a href="#type-MutableTreeNode">MutableTreeNode</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultTreeModel) <font color="#cc0033">removeTreeModelListener</font>*(p0 : <a href="javax_swing_event.html#type-TreeModelListener">javax_swing_event.TreeModelListener</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultTreeModel) <font color="#cc0033">setAsksAllowsChildren</font>*(p0 : BOOLEAN)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultTreeModel) <font color="#cc0033">setRoot</font>*(p0 : <a href="#type-TreeNode">TreeNode</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultTreeModel) <font color="#cc0033">valueForPathChanged</font>*(p0 : <a href="#type-TreePath">TreePath</a>;
+                                                       p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-DefaultTreeSelectionModel"></a>
+<b>PROCEDURE </b>(self:DefaultTreeSelectionModel) <font color="#cc0033">addPropertyChangeListener</font>*(p0 : <a href="java_beans.html#type-PropertyChangeListener">java_beans.PropertyChangeListener</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultTreeSelectionModel) <font color="#cc0033">addSelectionPath</font>*(p0 : <a href="#type-TreePath">TreePath</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultTreeSelectionModel) <font color="#cc0033">addSelectionPaths</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="#type-TreePath">TreePath</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultTreeSelectionModel) <font color="#cc0033">addTreeSelectionListener</font>*(p0 : <a href="javax_swing_event.html#type-TreeSelectionListener">javax_swing_event.TreeSelectionListener</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultTreeSelectionModel) <font color="#cc0033">arePathsContiguous</font>!(IN  p0 : <b>ARRAY </b><b>OF </b><a href="#type-TreePath">TreePath</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultTreeSelectionModel) <font color="#cc0033">canPathsBeAdded</font>!(IN  p0 : <b>ARRAY </b><b>OF </b><a href="#type-TreePath">TreePath</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultTreeSelectionModel) <font color="#cc0033">canPathsBeRemoved</font>!(IN  p0 : <b>ARRAY </b><b>OF </b><a href="#type-TreePath">TreePath</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultTreeSelectionModel) <font color="#cc0033">clearSelection</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultTreeSelectionModel) <font color="#cc0033">clone</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultTreeSelectionModel) <font color="#cc0033">fireValueChanged</font>!(p0 : <a href="javax_swing_event.html#type-TreeSelectionEvent">javax_swing_event.TreeSelectionEvent</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultTreeSelectionModel) <font color="#cc0033">getLeadSelectionPath</font>*() : <a href="#type-TreePath">TreePath</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultTreeSelectionModel) <font color="#cc0033">getLeadSelectionRow</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultTreeSelectionModel) <font color="#cc0033">getListeners</font>*(p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_util.html#type-EventListener">java_util.EventListener</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultTreeSelectionModel) <font color="#cc0033">getMaxSelectionRow</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultTreeSelectionModel) <font color="#cc0033">getMinSelectionRow</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultTreeSelectionModel) <font color="#cc0033">getPropertyChangeListeners</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_beans.html#type-PropertyChangeListener">java_beans.PropertyChangeListener</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultTreeSelectionModel) <font color="#cc0033">getRowMapper</font>*() : <a href="#type-RowMapper">RowMapper</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultTreeSelectionModel) <font color="#cc0033">getSelectionCount</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultTreeSelectionModel) <font color="#cc0033">getSelectionMode</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultTreeSelectionModel) <font color="#cc0033">getSelectionPath</font>*() : <a href="#type-TreePath">TreePath</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultTreeSelectionModel) <font color="#cc0033">getSelectionPaths</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-TreePath">TreePath</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultTreeSelectionModel) <font color="#cc0033">getSelectionRows</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultTreeSelectionModel) <font color="#cc0033">getTreeSelectionListeners</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="javax_swing_event.html#type-TreeSelectionListener">javax_swing_event.TreeSelectionListener</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultTreeSelectionModel) <font color="#cc0033">insureRowContinuity</font>!()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultTreeSelectionModel) <font color="#cc0033">insureUniqueness</font>!()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultTreeSelectionModel) <font color="#cc0033">isPathSelected</font>*(p0 : <a href="#type-TreePath">TreePath</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultTreeSelectionModel) <font color="#cc0033">isRowSelected</font>*(p0 : INTEGER) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultTreeSelectionModel) <font color="#cc0033">isSelectionEmpty</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultTreeSelectionModel) <font color="#cc0033">notifyPathChange</font>!(p0 : <a href="java_util.html#type-Vector">java_util.Vector</a>;
+                                                             p1 : <a href="#type-TreePath">TreePath</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultTreeSelectionModel) <font color="#cc0033">removePropertyChangeListener</font>*(p0 : <a href="java_beans.html#type-PropertyChangeListener">java_beans.PropertyChangeListener</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultTreeSelectionModel) <font color="#cc0033">removeSelectionPath</font>*(p0 : <a href="#type-TreePath">TreePath</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultTreeSelectionModel) <font color="#cc0033">removeSelectionPaths</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="#type-TreePath">TreePath</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultTreeSelectionModel) <font color="#cc0033">removeTreeSelectionListener</font>*(p0 : <a href="javax_swing_event.html#type-TreeSelectionListener">javax_swing_event.TreeSelectionListener</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultTreeSelectionModel) <font color="#cc0033">resetRowSelection</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultTreeSelectionModel) <font color="#cc0033">setRowMapper</font>*(p0 : <a href="#type-RowMapper">RowMapper</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultTreeSelectionModel) <font color="#cc0033">setSelectionMode</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultTreeSelectionModel) <font color="#cc0033">setSelectionPath</font>*(p0 : <a href="#type-TreePath">TreePath</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultTreeSelectionModel) <font color="#cc0033">setSelectionPaths</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="#type-TreePath">TreePath</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultTreeSelectionModel) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultTreeSelectionModel) <font color="#cc0033">updateLeadIndex</font>!()<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-FixedHeightLayoutCache"></a>
+<b>PROCEDURE </b>(self:FixedHeightLayoutCache) <font color="#cc0033">getBounds</font>*(p0 : <a href="javax_swing_tree.html#type-TreePath">javax_swing_tree.TreePath</a>;
+                                                   p1 : <a href="java_awt.html#type-Rectangle">java_awt.Rectangle</a>) : <a href="java_awt.html#type-Rectangle">java_awt.Rectangle</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FixedHeightLayoutCache) <font color="#cc0033">getExpandedState</font>*(p0 : <a href="javax_swing_tree.html#type-TreePath">javax_swing_tree.TreePath</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FixedHeightLayoutCache) <font color="#cc0033">getPathClosestTo</font>*(p0 : INTEGER;
+                                                          p1 : INTEGER) : <a href="javax_swing_tree.html#type-TreePath">javax_swing_tree.TreePath</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FixedHeightLayoutCache) <font color="#cc0033">getPathForRow</font>*(p0 : INTEGER) : <a href="javax_swing_tree.html#type-TreePath">javax_swing_tree.TreePath</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FixedHeightLayoutCache) <font color="#cc0033">getRowCount</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FixedHeightLayoutCache) <font color="#cc0033">getRowForPath</font>*(p0 : <a href="javax_swing_tree.html#type-TreePath">javax_swing_tree.TreePath</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FixedHeightLayoutCache) <font color="#cc0033">getVisibleChildCount</font>*(p0 : <a href="javax_swing_tree.html#type-TreePath">javax_swing_tree.TreePath</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FixedHeightLayoutCache) <font color="#cc0033">getVisiblePathsFrom</font>*(p0 : <a href="javax_swing_tree.html#type-TreePath">javax_swing_tree.TreePath</a>) : <a href="java_util.html#type-Enumeration">java_util.Enumeration</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FixedHeightLayoutCache) <font color="#cc0033">invalidatePathBounds</font>*(p0 : <a href="javax_swing_tree.html#type-TreePath">javax_swing_tree.TreePath</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FixedHeightLayoutCache) <font color="#cc0033">invalidateSizes</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FixedHeightLayoutCache) <font color="#cc0033">isExpanded</font>*(p0 : <a href="javax_swing_tree.html#type-TreePath">javax_swing_tree.TreePath</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FixedHeightLayoutCache) <font color="#cc0033">setExpandedState</font>*(p0 : <a href="javax_swing_tree.html#type-TreePath">javax_swing_tree.TreePath</a>;
+                                                          p1 : BOOLEAN)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FixedHeightLayoutCache) <font color="#cc0033">setModel</font>*(p0 : <a href="javax_swing_tree.html#type-TreeModel">javax_swing_tree.TreeModel</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FixedHeightLayoutCache) <font color="#cc0033">setRootVisible</font>*(p0 : BOOLEAN)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FixedHeightLayoutCache) <font color="#cc0033">setRowHeight</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FixedHeightLayoutCache) <font color="#cc0033">treeNodesChanged</font>*(p0 : <a href="javax_swing_event.html#type-TreeModelEvent">javax_swing_event.TreeModelEvent</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FixedHeightLayoutCache) <font color="#cc0033">treeNodesInserted</font>*(p0 : <a href="javax_swing_event.html#type-TreeModelEvent">javax_swing_event.TreeModelEvent</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FixedHeightLayoutCache) <font color="#cc0033">treeNodesRemoved</font>*(p0 : <a href="javax_swing_event.html#type-TreeModelEvent">javax_swing_event.TreeModelEvent</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FixedHeightLayoutCache) <font color="#cc0033">treeStructureChanged</font>*(p0 : <a href="javax_swing_event.html#type-TreeModelEvent">javax_swing_event.TreeModelEvent</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-MutableTreeNode"></a>
+<b>PROCEDURE </b>(self:MutableTreeNode) <font color="#cc0033">insert</font>*(p0 : <a href="#type-MutableTreeNode">MutableTreeNode</a>;
+                                         p1 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MutableTreeNode) <font color="#cc0033">remove</font>*(p0 : <a href="#type-MutableTreeNode">MutableTreeNode</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MutableTreeNode) <font color="#cc0033">remove</font>*(p0 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MutableTreeNode) <font color="#cc0033">removeFromParent</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MutableTreeNode) <font color="#cc0033">setParent</font>*(p0 : <a href="#type-MutableTreeNode">MutableTreeNode</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MutableTreeNode) <font color="#cc0033">setUserObject</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-RowMapper"></a>
+<b>PROCEDURE </b>(self:RowMapper) <font color="#cc0033">getRowsForPaths</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="javax_swing_tree.html#type-TreePath">javax_swing_tree.TreePath</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>INTEGER<b>,NEW,ABSTRACT</b>;
+<a name="meths-TreeCellEditor"></a>
+<b>PROCEDURE </b>(self:TreeCellEditor) <font color="#cc0033">getTreeCellEditorComponent</font>*(p0 : <a href="javax_swing.html#type-JTree">javax_swing.JTree</a>;
+                                                            p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                            p2 : BOOLEAN;
+                                                            p3 : BOOLEAN;
+                                                            p4 : BOOLEAN;
+                                                            p5 : INTEGER) : <a href="java_awt.html#type-Component">java_awt.Component</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-TreeCellRenderer"></a>
+<b>PROCEDURE </b>(self:TreeCellRenderer) <font color="#cc0033">getTreeCellRendererComponent</font>*(p0 : <a href="javax_swing.html#type-JTree">javax_swing.JTree</a>;
+                                                                p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                                p2 : BOOLEAN;
+                                                                p3 : BOOLEAN;
+                                                                p4 : BOOLEAN;
+                                                                p5 : INTEGER;
+                                                                p6 : BOOLEAN) : <a href="java_awt.html#type-Component">java_awt.Component</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-TreeModel"></a>
+<b>PROCEDURE </b>(self:TreeModel) <font color="#cc0033">addTreeModelListener</font>*(p0 : <a href="javax_swing_event.html#type-TreeModelListener">javax_swing_event.TreeModelListener</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TreeModel) <font color="#cc0033">getChild</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                     p1 : INTEGER) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TreeModel) <font color="#cc0033">getChildCount</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TreeModel) <font color="#cc0033">getIndexOfChild</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                            p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TreeModel) <font color="#cc0033">getRoot</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TreeModel) <font color="#cc0033">isLeaf</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TreeModel) <font color="#cc0033">removeTreeModelListener</font>*(p0 : <a href="javax_swing_event.html#type-TreeModelListener">javax_swing_event.TreeModelListener</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TreeModel) <font color="#cc0033">valueForPathChanged</font>*(p0 : <a href="#type-TreePath">TreePath</a>;
+                                                p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-TreeNode"></a>
+<b>PROCEDURE </b>(self:TreeNode) <font color="#cc0033">children</font>*() : <a href="java_util.html#type-Enumeration">java_util.Enumeration</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TreeNode) <font color="#cc0033">getAllowsChildren</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TreeNode) <font color="#cc0033">getChildAt</font>*(p0 : INTEGER) : <a href="#type-TreeNode">TreeNode</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TreeNode) <font color="#cc0033">getChildCount</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TreeNode) <font color="#cc0033">getIndex</font>*(p0 : <a href="#type-TreeNode">TreeNode</a>) : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TreeNode) <font color="#cc0033">getParent</font>*() : <a href="#type-TreeNode">TreeNode</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TreeNode) <font color="#cc0033">isLeaf</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+<a name="meths-TreePath"></a>
+<b>PROCEDURE </b>(self:TreePath) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TreePath) <font color="#cc0033">getLastPathComponent</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TreePath) <font color="#cc0033">getParentPath</font>*() : <a href="#type-TreePath">TreePath</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TreePath) <font color="#cc0033">getPath</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TreePath) <font color="#cc0033">getPathComponent</font>*(p0 : INTEGER) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TreePath) <font color="#cc0033">getPathCount</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TreePath) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TreePath) <font color="#cc0033">isDescendant</font>*(p0 : <a href="#type-TreePath">TreePath</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TreePath) <font color="#cc0033">pathByAddingChild</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="#type-TreePath">TreePath</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TreePath) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-TreeSelectionModel"></a>
+<b>PROCEDURE </b>(self:TreeSelectionModel) <font color="#cc0033">addPropertyChangeListener</font>*(p0 : <a href="java_beans.html#type-PropertyChangeListener">java_beans.PropertyChangeListener</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TreeSelectionModel) <font color="#cc0033">addSelectionPath</font>*(p0 : <a href="javax_swing_tree.html#type-TreePath">javax_swing_tree.TreePath</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TreeSelectionModel) <font color="#cc0033">addSelectionPaths</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="javax_swing_tree.html#type-TreePath">javax_swing_tree.TreePath</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TreeSelectionModel) <font color="#cc0033">addTreeSelectionListener</font>*(p0 : <a href="javax_swing_event.html#type-TreeSelectionListener">javax_swing_event.TreeSelectionListener</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TreeSelectionModel) <font color="#cc0033">clearSelection</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TreeSelectionModel) <font color="#cc0033">getLeadSelectionPath</font>*() : <a href="javax_swing_tree.html#type-TreePath">javax_swing_tree.TreePath</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TreeSelectionModel) <font color="#cc0033">getLeadSelectionRow</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TreeSelectionModel) <font color="#cc0033">getMaxSelectionRow</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TreeSelectionModel) <font color="#cc0033">getMinSelectionRow</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TreeSelectionModel) <font color="#cc0033">getRowMapper</font>*() : <a href="#type-RowMapper">RowMapper</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TreeSelectionModel) <font color="#cc0033">getSelectionCount</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TreeSelectionModel) <font color="#cc0033">getSelectionMode</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TreeSelectionModel) <font color="#cc0033">getSelectionPath</font>*() : <a href="javax_swing_tree.html#type-TreePath">javax_swing_tree.TreePath</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TreeSelectionModel) <font color="#cc0033">getSelectionPaths</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="javax_swing_tree.html#type-TreePath">javax_swing_tree.TreePath</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TreeSelectionModel) <font color="#cc0033">getSelectionRows</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TreeSelectionModel) <font color="#cc0033">isPathSelected</font>*(p0 : <a href="javax_swing_tree.html#type-TreePath">javax_swing_tree.TreePath</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TreeSelectionModel) <font color="#cc0033">isRowSelected</font>*(p0 : INTEGER) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TreeSelectionModel) <font color="#cc0033">isSelectionEmpty</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TreeSelectionModel) <font color="#cc0033">removePropertyChangeListener</font>*(p0 : <a href="java_beans.html#type-PropertyChangeListener">java_beans.PropertyChangeListener</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TreeSelectionModel) <font color="#cc0033">removeSelectionPath</font>*(p0 : <a href="javax_swing_tree.html#type-TreePath">javax_swing_tree.TreePath</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TreeSelectionModel) <font color="#cc0033">removeSelectionPaths</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="javax_swing_tree.html#type-TreePath">javax_swing_tree.TreePath</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TreeSelectionModel) <font color="#cc0033">removeTreeSelectionListener</font>*(p0 : <a href="javax_swing_event.html#type-TreeSelectionListener">javax_swing_event.TreeSelectionListener</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TreeSelectionModel) <font color="#cc0033">resetRowSelection</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TreeSelectionModel) <font color="#cc0033">setRowMapper</font>*(p0 : <a href="#type-RowMapper">RowMapper</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TreeSelectionModel) <font color="#cc0033">setSelectionMode</font>*(p0 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TreeSelectionModel) <font color="#cc0033">setSelectionPath</font>*(p0 : <a href="javax_swing_tree.html#type-TreePath">javax_swing_tree.TreePath</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TreeSelectionModel) <font color="#cc0033">setSelectionPaths</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="javax_swing_tree.html#type-TreePath">javax_swing_tree.TreePath</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-VariableHeightLayoutCache"></a>
+<b>PROCEDURE </b>(self:VariableHeightLayoutCache) <font color="#cc0033">getBounds</font>*(p0 : <a href="javax_swing_tree.html#type-TreePath">javax_swing_tree.TreePath</a>;
+                                                      p1 : <a href="java_awt.html#type-Rectangle">java_awt.Rectangle</a>) : <a href="java_awt.html#type-Rectangle">java_awt.Rectangle</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:VariableHeightLayoutCache) <font color="#cc0033">getExpandedState</font>*(p0 : <a href="javax_swing_tree.html#type-TreePath">javax_swing_tree.TreePath</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:VariableHeightLayoutCache) <font color="#cc0033">getPathClosestTo</font>*(p0 : INTEGER;
+                                                             p1 : INTEGER) : <a href="javax_swing_tree.html#type-TreePath">javax_swing_tree.TreePath</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:VariableHeightLayoutCache) <font color="#cc0033">getPathForRow</font>*(p0 : INTEGER) : <a href="javax_swing_tree.html#type-TreePath">javax_swing_tree.TreePath</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:VariableHeightLayoutCache) <font color="#cc0033">getPreferredHeight</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:VariableHeightLayoutCache) <font color="#cc0033">getPreferredWidth</font>*(p0 : <a href="java_awt.html#type-Rectangle">java_awt.Rectangle</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:VariableHeightLayoutCache) <font color="#cc0033">getRowCount</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:VariableHeightLayoutCache) <font color="#cc0033">getRowForPath</font>*(p0 : <a href="javax_swing_tree.html#type-TreePath">javax_swing_tree.TreePath</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:VariableHeightLayoutCache) <font color="#cc0033">getVisibleChildCount</font>*(p0 : <a href="javax_swing_tree.html#type-TreePath">javax_swing_tree.TreePath</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:VariableHeightLayoutCache) <font color="#cc0033">getVisiblePathsFrom</font>*(p0 : <a href="javax_swing_tree.html#type-TreePath">javax_swing_tree.TreePath</a>) : <a href="java_util.html#type-Enumeration">java_util.Enumeration</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:VariableHeightLayoutCache) <font color="#cc0033">invalidatePathBounds</font>*(p0 : <a href="javax_swing_tree.html#type-TreePath">javax_swing_tree.TreePath</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:VariableHeightLayoutCache) <font color="#cc0033">invalidateSizes</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:VariableHeightLayoutCache) <font color="#cc0033">isExpanded</font>*(p0 : <a href="javax_swing_tree.html#type-TreePath">javax_swing_tree.TreePath</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:VariableHeightLayoutCache) <font color="#cc0033">setExpandedState</font>*(p0 : <a href="javax_swing_tree.html#type-TreePath">javax_swing_tree.TreePath</a>;
+                                                             p1 : BOOLEAN)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:VariableHeightLayoutCache) <font color="#cc0033">setModel</font>*(p0 : <a href="javax_swing_tree.html#type-TreeModel">javax_swing_tree.TreeModel</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:VariableHeightLayoutCache) <font color="#cc0033">setNodeDimensions</font>*(p0 : <a href="javax_swing_tree.html#type-AbstractLayoutCache$NodeDimensions">javax_swing_tree.AbstractLayoutCache$NodeDimensions</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:VariableHeightLayoutCache) <font color="#cc0033">setRootVisible</font>*(p0 : BOOLEAN)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:VariableHeightLayoutCache) <font color="#cc0033">setRowHeight</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:VariableHeightLayoutCache) <font color="#cc0033">treeNodesChanged</font>*(p0 : <a href="javax_swing_event.html#type-TreeModelEvent">javax_swing_event.TreeModelEvent</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:VariableHeightLayoutCache) <font color="#cc0033">treeNodesInserted</font>*(p0 : <a href="javax_swing_event.html#type-TreeModelEvent">javax_swing_event.TreeModelEvent</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:VariableHeightLayoutCache) <font color="#cc0033">treeNodesRemoved</font>*(p0 : <a href="javax_swing_event.html#type-TreeModelEvent">javax_swing_event.TreeModelEvent</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:VariableHeightLayoutCache) <font color="#cc0033">treeStructureChanged</font>*(p0 : <a href="javax_swing_event.html#type-TreeModelEvent">javax_swing_event.TreeModelEvent</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>END </b><font color="#cc0033">javax_swing_tree</font>.
+</font></pre></hr>
+<!-- BEGIN JavaScript -->
+<script>
+function toggle(node) {
+    node.classList.toggle("show"); 
+  }
+
+function cls(node) {
+    var prnt = node.parentNode;
+    var next = prnt.previousSibling;
+    var text = next.lastChild;
+    text.innerHTML = 
+        "The <b>class</b> property asserts that this type will be<br>" +
+        "implemented as a reference class in the underlying framework.";
+    text.classList.toggle("show");
+  }
+
+function newOk(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>has noArg-ctor</b> property asserts that this reference<br>" +
+        "class has a no-arg constructor, and thus objects of this<br>" +
+        "type can be allocated with NEW(). Component Pascal types<br>" +
+        "derived from this type can also be allocated using NEW().";
+    popuptext.classList.toggle("show"); 
+  }
+
+function noNew(node) { 
+    var prnt = node.parentNode; 
+    var next = prnt.previousSibling; 
+    var text = next.lastChild; 
+    text.innerHTML =  
+        "The <b>no noArg-ctor</b> property asserts that this reference<br>" +
+        "class does not have a noArg constructor. Objects of this<br>" +
+        "type cannot be allocated using NEW(), and Component<br>" +
+        "Pascal types  derived from this type also cannot be<br>" +
+        "allocated using NEW().";
+    text.classList.toggle("show");
+  }
+
+function noCpy(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>no value-assign</b> property asserts that this reference<br>" + 
+        "class does not have a value copy method. Therefore, it<br>" +
+        "is not possible to perform value assignments using<br>" +
+        "statements like <i>dst^</i> := <i>src^</i>";
+    popuptext.classList.toggle("show");
+  }
+
+function valueclass(node) { 
+        var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>valueclass</b> property asserts that this RECORD type is<br>" + 
+        "implemented as a value class in the CLR. It follows that<br>" +  
+        "value assignments can be made of these types. They can<br>" + 
+        "also be passed by value. Even pointers to records of<br>" + 
+        "such types may be dereferenced and copied using syntax<br>" + 
+        "such as  <i>dst^</i> := <i>src^</i>"; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+function argCtor(node) { 
+    var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>has arg-ctor</b> property asserts that this reference<br>" +  
+        "class has one or more constructors that take arguments.<br>" + 
+        "These constructors can be called from Component Pascal<br>" + 
+        "by calling an <i>init</i>(...) method from the static list<br>" + 
+        "here. Component Pascal types derived from this type<br>" + 
+        "can define constructors with arguments which call the<br>" + 
+        "super-type constructor.<br>" + 
+        "See <i>'Interfacing to constructors'</i> in the Release Notes."; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+</script>
+<!-- END JavaScript --> 
+
+</body></html>

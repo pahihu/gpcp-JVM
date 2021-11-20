@@ -1,0 +1,635 @@
+<html><head><title>javax_naming_directory</title>
+<style>
+<!-- BEGIN Inline CSS -->
+/* Popup container */
+.popup {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+/* The actual popup (appears on top) */
+.popup .popuptext {
+    visibility: hidden;
+    width: 430px;
+    background-color: white;
+    color: black;
+    text-align: left;
+    border-radius: 6px;
+    border-style: solid;
+    border-color: black;
+    padding: 8px 8px 8px 8px;
+    position: absolute;
+    z-index: 1;
+    margin-top: 30px;
+}
+
+/* Toggle this class when clicking on the popup container (hide and show the popup) */
+.popup .show {
+    visibility: visible;
+    opacity: 1;
+}
+
+</style>
+<!-- END Inline CSS -->
+</head><body bgcolor="white">
+<hr><pre>
+<font color="green">(*</font>
+<font color="green"> *  Creator PeToCps j2cps version 1.4.07 (March 2018)</font>
+<font color="green"> *  Compiled from jar-file /Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home/jmods/java.naming.jmod</font>
+<font color="green"> *)</font>
+<b>FOREIGN MODULE </b><font color="#cc0033">javax_naming_directory</font>;
+
+<b>IMPORT</b>
+    <a href="javax_naming.html">javax_naming</a> := "javax.naming",
+    <a href="javax_naming.html">javax_naming</a> := "javax.naming",
+    <a href="javax_naming_directory.html">javax_naming_directory</a> := "javax.naming.directory",
+    <a href="java_io.html">java_io</a> := "java.io",
+    <a href="java_lang.html">java_lang</a> := "java.lang",
+    <a href="java_util.html">java_util</a> := "java.util";
+
+<b>TYPE</b>
+
+  <a name="type-Attribute"></a><font color="#cc0033">Attribute</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_lang.html#type-Cloneable">java_lang.Cloneable</a> + <a href="java_io.html#type-Serializable">java_io.Serializable</a>)
+               <font color="green"><b> (* </b><a href="#meths-Attribute">Typebound Procedures</a><b> *)</b></font>
+               <b>STATIC</b>
+                 <font color="#cc0033">serialVersionUID</font>* = 8707690322213556804;
+               <b>END</b>;
+
+  <a name="type-AttributeInUseException"></a><font color="#cc0033">AttributeInUseException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="javax_naming.html#type-NamingException">javax_naming.NamingException</a>)
+                             <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                             <b>STATIC</b>
+                               <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-AttributeInUseException">AttributeInUseException</a><b>,CONSTRUCTOR</b>;
+                               <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-AttributeInUseException">AttributeInUseException</a><b>,CONSTRUCTOR</b>;
+                             <b>END</b>;
+
+  <a name="type-AttributeModificationException"></a><font color="#cc0033">AttributeModificationException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="javax_naming.html#type-NamingException">javax_naming.NamingException</a>)
+                                    <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                                    <font color="green"><b> (* </b><a href="#meths-AttributeModificationException">Typebound Procedures</a><b> *)</b></font>
+                                    <b>STATIC</b>
+                                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-AttributeModificationException">AttributeModificationException</a><b>,CONSTRUCTOR</b>;
+                                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-AttributeModificationException">AttributeModificationException</a><b>,CONSTRUCTOR</b>;
+                                    <b>END</b>;
+
+  <a name="type-Attributes"></a><font color="#cc0033">Attributes</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_lang.html#type-Cloneable">java_lang.Cloneable</a> + <a href="java_io.html#type-Serializable">java_io.Serializable</a>)
+                <font color="green"><b> (* </b><a href="#meths-Attributes">Typebound Procedures</a><b> *)</b></font>
+                <b>END</b>;
+
+  <a name="type-BasicAttribute"></a><font color="#cc0033">BasicAttribute</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="javax_naming_directory.html#type-Attribute">javax_naming_directory.Attribute</a>)
+                    <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                    <font color="green"><b> (* </b><a href="#meths-BasicAttribute">Typebound Procedures</a><b> *)</b></font>
+                      <font color="#cc0033">attrID</font>!  : <a href="java_lang.html#type-String">java_lang.String</a>;
+                      <font color="#cc0033">values</font>!  : <a href="java_util.html#type-Vector">java_util.Vector</a>;
+                      <font color="#cc0033">ordered</font>! : BOOLEAN;
+                    <b>STATIC</b>
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                      p1 : BOOLEAN) : <a href="#type-BasicAttribute">BasicAttribute</a><b>,CONSTRUCTOR</b>;
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                      p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                      p2 : BOOLEAN) : <a href="#type-BasicAttribute">BasicAttribute</a><b>,CONSTRUCTOR</b>;
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-BasicAttribute">BasicAttribute</a><b>,CONSTRUCTOR</b>;
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                      p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="#type-BasicAttribute">BasicAttribute</a><b>,CONSTRUCTOR</b>;
+                    <b>END</b>;
+
+  <a name="type-BasicAttributes"></a><font color="#cc0033">BasicAttributes</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="javax_naming_directory.html#type-Attributes">javax_naming_directory.Attributes</a>)
+                     <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                     <font color="green"><b> (* </b><a href="#meths-BasicAttributes">Typebound Procedures</a><b> *)</b></font>
+                     <b>STATIC</b>
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                       p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="#type-BasicAttributes">BasicAttributes</a><b>,CONSTRUCTOR</b>;
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                       p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                       p2 : BOOLEAN) : <a href="#type-BasicAttributes">BasicAttributes</a><b>,CONSTRUCTOR</b>;
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-BasicAttributes">BasicAttributes</a><b>,CONSTRUCTOR</b>;
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : BOOLEAN) : <a href="#type-BasicAttributes">BasicAttributes</a><b>,CONSTRUCTOR</b>;
+                     <b>END</b>;
+
+  <a name="type-DirContext"></a><font color="#cc0033">DirContext</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="javax_naming.html#type-Context">javax_naming.Context</a>)
+                <font color="green"><b> (* </b><a href="#meths-DirContext">Typebound Procedures</a><b> *)</b></font>
+                <b>STATIC</b>
+                  <font color="#cc0033">ADD_ATTRIBUTE</font>*     = 1;
+                  <font color="#cc0033">REMOVE_ATTRIBUTE</font>*  = 3;
+                  <font color="#cc0033">REPLACE_ATTRIBUTE</font>* = 2;
+                <b>END</b>;
+
+  <a name="type-InitialDirContext"></a><font color="#cc0033">InitialDirContext</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="javax_naming.html#type-InitialContext">javax_naming.InitialContext</a> + <a href="javax_naming_directory.html#type-DirContext">javax_naming_directory.DirContext</a>)
+                       <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                       <font color="green"><b> (* </b><a href="#meths-InitialDirContext">Typebound Procedures</a><b> *)</b></font>
+                       <b>STATIC</b>
+                         <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_util.html#type-Hashtable">java_util.Hashtable</a>) : <a href="#type-InitialDirContext">InitialDirContext</a><b>,CONSTRUCTOR</b>;
+                         <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-InitialDirContext">InitialDirContext</a><b>,CONSTRUCTOR</b>;
+                         <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : BOOLEAN) : <a href="#type-InitialDirContext">InitialDirContext</a><b>,CONSTRUCTOR</b>;
+                       <b>END</b>;
+
+  <a name="type-InvalidAttributeIdentifierException"></a><font color="#cc0033">InvalidAttributeIdentifierException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="javax_naming.html#type-NamingException">javax_naming.NamingException</a>)
+                                         <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                                         <b>STATIC</b>
+                                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-InvalidAttributeIdentifierException">InvalidAttributeIdentifierException</a><b>,CONSTRUCTOR</b>;
+                                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-InvalidAttributeIdentifierException">InvalidAttributeIdentifierException</a><b>,CONSTRUCTOR</b>;
+                                         <b>END</b>;
+
+  <a name="type-InvalidAttributesException"></a><font color="#cc0033">InvalidAttributesException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="javax_naming.html#type-NamingException">javax_naming.NamingException</a>)
+                                <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                                <b>STATIC</b>
+                                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-InvalidAttributesException">InvalidAttributesException</a><b>,CONSTRUCTOR</b>;
+                                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-InvalidAttributesException">InvalidAttributesException</a><b>,CONSTRUCTOR</b>;
+                                <b>END</b>;
+
+  <a name="type-InvalidAttributeValueException"></a><font color="#cc0033">InvalidAttributeValueException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="javax_naming.html#type-NamingException">javax_naming.NamingException</a>)
+                                    <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                                    <b>STATIC</b>
+                                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-InvalidAttributeValueException">InvalidAttributeValueException</a><b>,CONSTRUCTOR</b>;
+                                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-InvalidAttributeValueException">InvalidAttributeValueException</a><b>,CONSTRUCTOR</b>;
+                                    <b>END</b>;
+
+  <a name="type-InvalidSearchControlsException"></a><font color="#cc0033">InvalidSearchControlsException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="javax_naming.html#type-NamingException">javax_naming.NamingException</a>)
+                                    <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                                    <b>STATIC</b>
+                                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-InvalidSearchControlsException">InvalidSearchControlsException</a><b>,CONSTRUCTOR</b>;
+                                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-InvalidSearchControlsException">InvalidSearchControlsException</a><b>,CONSTRUCTOR</b>;
+                                    <b>END</b>;
+
+  <a name="type-InvalidSearchFilterException"></a><font color="#cc0033">InvalidSearchFilterException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="javax_naming.html#type-NamingException">javax_naming.NamingException</a>)
+                                  <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                                  <b>STATIC</b>
+                                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-InvalidSearchFilterException">InvalidSearchFilterException</a><b>,CONSTRUCTOR</b>;
+                                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-InvalidSearchFilterException">InvalidSearchFilterException</a><b>,CONSTRUCTOR</b>;
+                                  <b>END</b>;
+
+  <a name="type-ModificationItem"></a><font color="#cc0033">ModificationItem</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_io.html#type-Serializable">java_io.Serializable</a>)
+                      <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                      <font color="green"><b> (* </b><a href="#meths-ModificationItem">Typebound Procedures</a><b> *)</b></font>
+                      <b>STATIC</b>
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER;
+                                        p1 : <a href="javax_naming_directory.html#type-Attribute">javax_naming_directory.Attribute</a>) : <a href="#type-ModificationItem">ModificationItem</a><b>,CONSTRUCTOR</b>;
+                      <b>END</b>;
+
+  <a name="type-NoSuchAttributeException"></a><font color="#cc0033">NoSuchAttributeException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="javax_naming.html#type-NamingException">javax_naming.NamingException</a>)
+                              <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                              <b>STATIC</b>
+                                <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-NoSuchAttributeException">NoSuchAttributeException</a><b>,CONSTRUCTOR</b>;
+                                <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-NoSuchAttributeException">NoSuchAttributeException</a><b>,CONSTRUCTOR</b>;
+                              <b>END</b>;
+
+  <a name="type-SchemaViolationException"></a><font color="#cc0033">SchemaViolationException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="javax_naming.html#type-NamingException">javax_naming.NamingException</a>)
+                              <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                              <b>STATIC</b>
+                                <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-SchemaViolationException">SchemaViolationException</a><b>,CONSTRUCTOR</b>;
+                                <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-SchemaViolationException">SchemaViolationException</a><b>,CONSTRUCTOR</b>;
+                              <b>END</b>;
+
+  <a name="type-SearchControls"></a><font color="#cc0033">SearchControls</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_io.html#type-Serializable">java_io.Serializable</a>)
+                    <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                    <font color="green"><b> (* </b><a href="#meths-SearchControls">Typebound Procedures</a><b> *)</b></font>
+                    <b>STATIC</b>
+                      <font color="#cc0033">OBJECT_SCOPE</font>*   = 0;
+                      <font color="#cc0033">ONELEVEL_SCOPE</font>* = 1;
+                      <font color="#cc0033">SUBTREE_SCOPE</font>*  = 2;
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*(    p0 : INTEGER;
+                                          p1 : LONGINT;
+                                          p2 : INTEGER;
+                                      IN  p3 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>;
+                                          p4 : BOOLEAN;
+                                          p5 : BOOLEAN) : <a href="#type-SearchControls">SearchControls</a><b>,CONSTRUCTOR</b>;
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-SearchControls">SearchControls</a><b>,CONSTRUCTOR</b>;
+                    <b>END</b>;
+
+  <a name="type-SearchResult"></a><font color="#cc0033">SearchResult</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="javax_naming.html#type-Binding">javax_naming.Binding</a>)
+                  <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                  <font color="green"><b> (* </b><a href="#meths-SearchResult">Typebound Procedures</a><b> *)</b></font>
+                  <b>STATIC</b>
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                    p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                    p2 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                    p3 : <a href="#type-Attributes">Attributes</a>) : <a href="#type-SearchResult">SearchResult</a><b>,CONSTRUCTOR</b>;
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                    p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                    p2 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                    p3 : <a href="#type-Attributes">Attributes</a>;
+                                    p4 : BOOLEAN) : <a href="#type-SearchResult">SearchResult</a><b>,CONSTRUCTOR</b>;
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                    p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                    p2 : <a href="#type-Attributes">Attributes</a>) : <a href="#type-SearchResult">SearchResult</a><b>,CONSTRUCTOR</b>;
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                    p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                    p2 : <a href="#type-Attributes">Attributes</a>;
+                                    p3 : BOOLEAN) : <a href="#type-SearchResult">SearchResult</a><b>,CONSTRUCTOR</b>;
+                  <b>END</b>;
+
+
+
+<a name="meths-Attribute"></a>
+<b>PROCEDURE </b>(self:Attribute) <font color="#cc0033">add</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Attribute) <font color="#cc0033">add</font>*(p0 : INTEGER;
+                                p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Attribute) <font color="#cc0033">clear</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Attribute) <font color="#cc0033">clone</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Attribute) <font color="#cc0033">contains</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Attribute) <font color="#cc0033">get</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Attribute) <font color="#cc0033">get</font>*(p0 : INTEGER) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Attribute) <font color="#cc0033">getAll</font>*() : <a href="javax_naming.html#type-NamingEnumeration">javax_naming.NamingEnumeration</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Attribute) <font color="#cc0033">getAttributeDefinition</font>*() : <a href="javax_naming_directory.html#type-DirContext">javax_naming_directory.DirContext</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Attribute) <font color="#cc0033">getAttributeSyntaxDefinition</font>*() : <a href="javax_naming_directory.html#type-DirContext">javax_naming_directory.DirContext</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Attribute) <font color="#cc0033">getID</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Attribute) <font color="#cc0033">isOrdered</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Attribute) <font color="#cc0033">remove</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Attribute) <font color="#cc0033">remove</font>*(p0 : INTEGER) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Attribute) <font color="#cc0033">set</font>*(p0 : INTEGER;
+                                p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Attribute) <font color="#cc0033">size</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+<a name="meths-AttributeModificationException"></a>
+<b>PROCEDURE </b>(self:AttributeModificationException) <font color="#cc0033">getUnexecutedModifications</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-ModificationItem">ModificationItem</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AttributeModificationException) <font color="#cc0033">setUnexecutedModifications</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="#type-ModificationItem">ModificationItem</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AttributeModificationException) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-Attributes"></a>
+<b>PROCEDURE </b>(self:Attributes) <font color="#cc0033">clone</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Attributes) <font color="#cc0033">get</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="javax_naming_directory.html#type-Attribute">javax_naming_directory.Attribute</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Attributes) <font color="#cc0033">getAll</font>*() : <a href="javax_naming.html#type-NamingEnumeration">javax_naming.NamingEnumeration</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Attributes) <font color="#cc0033">getIDs</font>*() : <a href="javax_naming.html#type-NamingEnumeration">javax_naming.NamingEnumeration</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Attributes) <font color="#cc0033">isCaseIgnored</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Attributes) <font color="#cc0033">put</font>*(p0 : <a href="javax_naming_directory.html#type-Attribute">javax_naming_directory.Attribute</a>) : <a href="javax_naming_directory.html#type-Attribute">javax_naming_directory.Attribute</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Attributes) <font color="#cc0033">put</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                 p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="javax_naming_directory.html#type-Attribute">javax_naming_directory.Attribute</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Attributes) <font color="#cc0033">remove</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="javax_naming_directory.html#type-Attribute">javax_naming_directory.Attribute</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Attributes) <font color="#cc0033">size</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+<a name="meths-BasicAttribute"></a>
+<b>PROCEDURE </b>(self:BasicAttribute) <font color="#cc0033">add</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BasicAttribute) <font color="#cc0033">add</font>*(p0 : INTEGER;
+                                     p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BasicAttribute) <font color="#cc0033">clear</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BasicAttribute) <font color="#cc0033">clone</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BasicAttribute) <font color="#cc0033">contains</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BasicAttribute) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BasicAttribute) <font color="#cc0033">get</font>*(p0 : INTEGER) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BasicAttribute) <font color="#cc0033">get</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BasicAttribute) <font color="#cc0033">getAll</font>*() : <a href="javax_naming.html#type-NamingEnumeration">javax_naming.NamingEnumeration</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BasicAttribute) <font color="#cc0033">getAttributeDefinition</font>*() : <a href="javax_naming_directory.html#type-DirContext">javax_naming_directory.DirContext</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BasicAttribute) <font color="#cc0033">getAttributeSyntaxDefinition</font>*() : <a href="javax_naming_directory.html#type-DirContext">javax_naming_directory.DirContext</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BasicAttribute) <font color="#cc0033">getID</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BasicAttribute) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BasicAttribute) <font color="#cc0033">isOrdered</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BasicAttribute) <font color="#cc0033">remove</font>*(p0 : INTEGER) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BasicAttribute) <font color="#cc0033">remove</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BasicAttribute) <font color="#cc0033">set</font>*(p0 : INTEGER;
+                                     p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BasicAttribute) <font color="#cc0033">size</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BasicAttribute) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-BasicAttributes"></a>
+<b>PROCEDURE </b>(self:BasicAttributes) <font color="#cc0033">clone</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BasicAttributes) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BasicAttributes) <font color="#cc0033">get</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="javax_naming_directory.html#type-Attribute">javax_naming_directory.Attribute</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BasicAttributes) <font color="#cc0033">getAll</font>*() : <a href="javax_naming.html#type-NamingEnumeration">javax_naming.NamingEnumeration</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BasicAttributes) <font color="#cc0033">getIDs</font>*() : <a href="javax_naming.html#type-NamingEnumeration">javax_naming.NamingEnumeration</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BasicAttributes) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BasicAttributes) <font color="#cc0033">isCaseIgnored</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BasicAttributes) <font color="#cc0033">put</font>*(p0 : <a href="javax_naming_directory.html#type-Attribute">javax_naming_directory.Attribute</a>) : <a href="javax_naming_directory.html#type-Attribute">javax_naming_directory.Attribute</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BasicAttributes) <font color="#cc0033">put</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                      p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="javax_naming_directory.html#type-Attribute">javax_naming_directory.Attribute</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BasicAttributes) <font color="#cc0033">remove</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="javax_naming_directory.html#type-Attribute">javax_naming_directory.Attribute</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BasicAttributes) <font color="#cc0033">size</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BasicAttributes) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-DirContext"></a>
+<b>PROCEDURE </b>(self:DirContext) <font color="#cc0033">bind</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                  p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                  p2 : <a href="#type-Attributes">Attributes</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DirContext) <font color="#cc0033">bind</font>*(p0 : <a href="javax_naming.html#type-Name">javax_naming.Name</a>;
+                                  p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                  p2 : <a href="#type-Attributes">Attributes</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DirContext) <font color="#cc0033">createSubcontext</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                              p1 : <a href="#type-Attributes">Attributes</a>) : <a href="#type-DirContext">DirContext</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DirContext) <font color="#cc0033">createSubcontext</font>*(p0 : <a href="javax_naming.html#type-Name">javax_naming.Name</a>;
+                                              p1 : <a href="#type-Attributes">Attributes</a>) : <a href="#type-DirContext">DirContext</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DirContext) <font color="#cc0033">getAttributes</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-Attributes">Attributes</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DirContext) <font color="#cc0033">getAttributes</font>*(    p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                           IN  p1 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-Attributes">Attributes</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DirContext) <font color="#cc0033">getAttributes</font>*(    p0 : <a href="javax_naming.html#type-Name">javax_naming.Name</a>;
+                                           IN  p1 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-Attributes">Attributes</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DirContext) <font color="#cc0033">getAttributes</font>*(p0 : <a href="javax_naming.html#type-Name">javax_naming.Name</a>) : <a href="#type-Attributes">Attributes</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DirContext) <font color="#cc0033">getSchema</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-DirContext">DirContext</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DirContext) <font color="#cc0033">getSchema</font>*(p0 : <a href="javax_naming.html#type-Name">javax_naming.Name</a>) : <a href="#type-DirContext">DirContext</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DirContext) <font color="#cc0033">getSchemaClassDefinition</font>*(p0 : <a href="javax_naming.html#type-Name">javax_naming.Name</a>) : <a href="#type-DirContext">DirContext</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DirContext) <font color="#cc0033">getSchemaClassDefinition</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-DirContext">DirContext</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DirContext) <font color="#cc0033">modifyAttributes</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                              p1 : INTEGER;
+                                              p2 : <a href="#type-Attributes">Attributes</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DirContext) <font color="#cc0033">modifyAttributes</font>*(p0 : <a href="javax_naming.html#type-Name">javax_naming.Name</a>;
+                                              p1 : INTEGER;
+                                              p2 : <a href="#type-Attributes">Attributes</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DirContext) <font color="#cc0033">modifyAttributes</font>*(    p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                              IN  p1 : <b>ARRAY </b><b>OF </b><a href="#type-ModificationItem">ModificationItem</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DirContext) <font color="#cc0033">modifyAttributes</font>*(    p0 : <a href="javax_naming.html#type-Name">javax_naming.Name</a>;
+                                              IN  p1 : <b>ARRAY </b><b>OF </b><a href="#type-ModificationItem">ModificationItem</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DirContext) <font color="#cc0033">rebind</font>*(p0 : <a href="javax_naming.html#type-Name">javax_naming.Name</a>;
+                                    p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                    p2 : <a href="#type-Attributes">Attributes</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DirContext) <font color="#cc0033">rebind</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                    p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                    p2 : <a href="#type-Attributes">Attributes</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DirContext) <font color="#cc0033">search</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                    p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                    p2 : <a href="#type-SearchControls">SearchControls</a>) : <a href="javax_naming.html#type-NamingEnumeration">javax_naming.NamingEnumeration</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DirContext) <font color="#cc0033">search</font>*(p0 : <a href="javax_naming.html#type-Name">javax_naming.Name</a>;
+                                    p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                    p2 : <a href="#type-SearchControls">SearchControls</a>) : <a href="javax_naming.html#type-NamingEnumeration">javax_naming.NamingEnumeration</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DirContext) <font color="#cc0033">search</font>*(    p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                        p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                    IN  p2 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                        p3 : <a href="#type-SearchControls">SearchControls</a>) : <a href="javax_naming.html#type-NamingEnumeration">javax_naming.NamingEnumeration</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DirContext) <font color="#cc0033">search</font>*(    p0 : <a href="javax_naming.html#type-Name">javax_naming.Name</a>;
+                                        p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                    IN  p2 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                        p3 : <a href="#type-SearchControls">SearchControls</a>) : <a href="javax_naming.html#type-NamingEnumeration">javax_naming.NamingEnumeration</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DirContext) <font color="#cc0033">search</font>*(    p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                        p1 : <a href="#type-Attributes">Attributes</a>;
+                                    IN  p2 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>) : <a href="javax_naming.html#type-NamingEnumeration">javax_naming.NamingEnumeration</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DirContext) <font color="#cc0033">search</font>*(    p0 : <a href="javax_naming.html#type-Name">javax_naming.Name</a>;
+                                        p1 : <a href="#type-Attributes">Attributes</a>;
+                                    IN  p2 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>) : <a href="javax_naming.html#type-NamingEnumeration">javax_naming.NamingEnumeration</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DirContext) <font color="#cc0033">search</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                    p1 : <a href="#type-Attributes">Attributes</a>) : <a href="javax_naming.html#type-NamingEnumeration">javax_naming.NamingEnumeration</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DirContext) <font color="#cc0033">search</font>*(p0 : <a href="javax_naming.html#type-Name">javax_naming.Name</a>;
+                                    p1 : <a href="#type-Attributes">Attributes</a>) : <a href="javax_naming.html#type-NamingEnumeration">javax_naming.NamingEnumeration</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-InitialDirContext"></a>
+<b>PROCEDURE </b>(self:InitialDirContext) <font color="#cc0033">bind</font>*(p0 : <a href="javax_naming.html#type-Name">javax_naming.Name</a>;
+                                         p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                         p2 : <a href="#type-Attributes">Attributes</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:InitialDirContext) <font color="#cc0033">bind</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                         p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                         p2 : <a href="#type-Attributes">Attributes</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:InitialDirContext) <font color="#cc0033">createSubcontext</font>*(p0 : <a href="javax_naming.html#type-Name">javax_naming.Name</a>;
+                                                     p1 : <a href="#type-Attributes">Attributes</a>) : <a href="javax_naming_directory.html#type-DirContext">javax_naming_directory.DirContext</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:InitialDirContext) <font color="#cc0033">createSubcontext</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                     p1 : <a href="#type-Attributes">Attributes</a>) : <a href="javax_naming_directory.html#type-DirContext">javax_naming_directory.DirContext</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:InitialDirContext) <font color="#cc0033">getAttributes</font>*(    p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                  IN  p1 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-Attributes">Attributes</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:InitialDirContext) <font color="#cc0033">getAttributes</font>*(    p0 : <a href="javax_naming.html#type-Name">javax_naming.Name</a>;
+                                                  IN  p1 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-Attributes">Attributes</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:InitialDirContext) <font color="#cc0033">getAttributes</font>*(p0 : <a href="javax_naming.html#type-Name">javax_naming.Name</a>) : <a href="#type-Attributes">Attributes</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:InitialDirContext) <font color="#cc0033">getAttributes</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-Attributes">Attributes</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:InitialDirContext) <font color="#cc0033">getSchema</font>*(p0 : <a href="javax_naming.html#type-Name">javax_naming.Name</a>) : <a href="javax_naming_directory.html#type-DirContext">javax_naming_directory.DirContext</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:InitialDirContext) <font color="#cc0033">getSchema</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="javax_naming_directory.html#type-DirContext">javax_naming_directory.DirContext</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:InitialDirContext) <font color="#cc0033">getSchemaClassDefinition</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="javax_naming_directory.html#type-DirContext">javax_naming_directory.DirContext</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:InitialDirContext) <font color="#cc0033">getSchemaClassDefinition</font>*(p0 : <a href="javax_naming.html#type-Name">javax_naming.Name</a>) : <a href="javax_naming_directory.html#type-DirContext">javax_naming_directory.DirContext</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:InitialDirContext) <font color="#cc0033">modifyAttributes</font>*(p0 : <a href="javax_naming.html#type-Name">javax_naming.Name</a>;
+                                                     p1 : INTEGER;
+                                                     p2 : <a href="#type-Attributes">Attributes</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:InitialDirContext) <font color="#cc0033">modifyAttributes</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                     p1 : INTEGER;
+                                                     p2 : <a href="#type-Attributes">Attributes</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:InitialDirContext) <font color="#cc0033">modifyAttributes</font>*(    p0 : <a href="javax_naming.html#type-Name">javax_naming.Name</a>;
+                                                     IN  p1 : <b>ARRAY </b><b>OF </b><a href="javax_naming_directory.html#type-ModificationItem">javax_naming_directory.ModificationItem</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:InitialDirContext) <font color="#cc0033">modifyAttributes</font>*(    p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                     IN  p1 : <b>ARRAY </b><b>OF </b><a href="javax_naming_directory.html#type-ModificationItem">javax_naming_directory.ModificationItem</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:InitialDirContext) <font color="#cc0033">rebind</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                           p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                           p2 : <a href="#type-Attributes">Attributes</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:InitialDirContext) <font color="#cc0033">rebind</font>*(p0 : <a href="javax_naming.html#type-Name">javax_naming.Name</a>;
+                                           p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                           p2 : <a href="#type-Attributes">Attributes</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:InitialDirContext) <font color="#cc0033">search</font>*(p0 : <a href="javax_naming.html#type-Name">javax_naming.Name</a>;
+                                           p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                           p2 : <a href="javax_naming_directory.html#type-SearchControls">javax_naming_directory.SearchControls</a>) : <a href="javax_naming.html#type-NamingEnumeration">javax_naming.NamingEnumeration</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:InitialDirContext) <font color="#cc0033">search</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                           p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                           p2 : <a href="javax_naming_directory.html#type-SearchControls">javax_naming_directory.SearchControls</a>) : <a href="javax_naming.html#type-NamingEnumeration">javax_naming.NamingEnumeration</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:InitialDirContext) <font color="#cc0033">search</font>*(    p0 : <a href="javax_naming.html#type-Name">javax_naming.Name</a>;
+                                               p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                           IN  p2 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                               p3 : <a href="javax_naming_directory.html#type-SearchControls">javax_naming_directory.SearchControls</a>) : <a href="javax_naming.html#type-NamingEnumeration">javax_naming.NamingEnumeration</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:InitialDirContext) <font color="#cc0033">search</font>*(    p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                               p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                           IN  p2 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                               p3 : <a href="javax_naming_directory.html#type-SearchControls">javax_naming_directory.SearchControls</a>) : <a href="javax_naming.html#type-NamingEnumeration">javax_naming.NamingEnumeration</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:InitialDirContext) <font color="#cc0033">search</font>*(p0 : <a href="javax_naming.html#type-Name">javax_naming.Name</a>;
+                                           p1 : <a href="#type-Attributes">Attributes</a>) : <a href="javax_naming.html#type-NamingEnumeration">javax_naming.NamingEnumeration</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:InitialDirContext) <font color="#cc0033">search</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                           p1 : <a href="#type-Attributes">Attributes</a>) : <a href="javax_naming.html#type-NamingEnumeration">javax_naming.NamingEnumeration</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:InitialDirContext) <font color="#cc0033">search</font>*(    p0 : <a href="javax_naming.html#type-Name">javax_naming.Name</a>;
+                                               p1 : <a href="#type-Attributes">Attributes</a>;
+                                           IN  p2 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>) : <a href="javax_naming.html#type-NamingEnumeration">javax_naming.NamingEnumeration</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:InitialDirContext) <font color="#cc0033">search</font>*(    p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                               p1 : <a href="#type-Attributes">Attributes</a>;
+                                           IN  p2 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>) : <a href="javax_naming.html#type-NamingEnumeration">javax_naming.NamingEnumeration</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-ModificationItem"></a>
+<b>PROCEDURE </b>(self:ModificationItem) <font color="#cc0033">getAttribute</font>*() : <a href="javax_naming_directory.html#type-Attribute">javax_naming_directory.Attribute</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ModificationItem) <font color="#cc0033">getModificationOp</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ModificationItem) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-SearchControls"></a>
+<b>PROCEDURE </b>(self:SearchControls) <font color="#cc0033">getCountLimit</font>*() : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SearchControls) <font color="#cc0033">getDerefLinkFlag</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SearchControls) <font color="#cc0033">getReturningAttributes</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SearchControls) <font color="#cc0033">getReturningObjFlag</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SearchControls) <font color="#cc0033">getSearchScope</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SearchControls) <font color="#cc0033">getTimeLimit</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SearchControls) <font color="#cc0033">setCountLimit</font>*(p0 : LONGINT)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SearchControls) <font color="#cc0033">setDerefLinkFlag</font>*(p0 : BOOLEAN)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SearchControls) <font color="#cc0033">setReturningAttributes</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SearchControls) <font color="#cc0033">setReturningObjFlag</font>*(p0 : BOOLEAN)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SearchControls) <font color="#cc0033">setSearchScope</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SearchControls) <font color="#cc0033">setTimeLimit</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-SearchResult"></a>
+<b>PROCEDURE </b>(self:SearchResult) <font color="#cc0033">getAttributes</font>*() : <a href="#type-Attributes">Attributes</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SearchResult) <font color="#cc0033">setAttributes</font>*(p0 : <a href="#type-Attributes">Attributes</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SearchResult) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>END </b><font color="#cc0033">javax_naming_directory</font>.
+</font></pre></hr>
+<!-- BEGIN JavaScript -->
+<script>
+function toggle(node) {
+    node.classList.toggle("show"); 
+  }
+
+function cls(node) {
+    var prnt = node.parentNode;
+    var next = prnt.previousSibling;
+    var text = next.lastChild;
+    text.innerHTML = 
+        "The <b>class</b> property asserts that this type will be<br>" +
+        "implemented as a reference class in the underlying framework.";
+    text.classList.toggle("show");
+  }
+
+function newOk(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>has noArg-ctor</b> property asserts that this reference<br>" +
+        "class has a no-arg constructor, and thus objects of this<br>" +
+        "type can be allocated with NEW(). Component Pascal types<br>" +
+        "derived from this type can also be allocated using NEW().";
+    popuptext.classList.toggle("show"); 
+  }
+
+function noNew(node) { 
+    var prnt = node.parentNode; 
+    var next = prnt.previousSibling; 
+    var text = next.lastChild; 
+    text.innerHTML =  
+        "The <b>no noArg-ctor</b> property asserts that this reference<br>" +
+        "class does not have a noArg constructor. Objects of this<br>" +
+        "type cannot be allocated using NEW(), and Component<br>" +
+        "Pascal types  derived from this type also cannot be<br>" +
+        "allocated using NEW().";
+    text.classList.toggle("show");
+  }
+
+function noCpy(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>no value-assign</b> property asserts that this reference<br>" + 
+        "class does not have a value copy method. Therefore, it<br>" +
+        "is not possible to perform value assignments using<br>" +
+        "statements like <i>dst^</i> := <i>src^</i>";
+    popuptext.classList.toggle("show");
+  }
+
+function valueclass(node) { 
+        var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>valueclass</b> property asserts that this RECORD type is<br>" + 
+        "implemented as a value class in the CLR. It follows that<br>" +  
+        "value assignments can be made of these types. They can<br>" + 
+        "also be passed by value. Even pointers to records of<br>" + 
+        "such types may be dereferenced and copied using syntax<br>" + 
+        "such as  <i>dst^</i> := <i>src^</i>"; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+function argCtor(node) { 
+    var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>has arg-ctor</b> property asserts that this reference<br>" +  
+        "class has one or more constructors that take arguments.<br>" + 
+        "These constructors can be called from Component Pascal<br>" + 
+        "by calling an <i>init</i>(...) method from the static list<br>" + 
+        "here. Component Pascal types derived from this type<br>" + 
+        "can define constructors with arguments which call the<br>" + 
+        "super-type constructor.<br>" + 
+        "See <i>'Interfacing to constructors'</i> in the Release Notes."; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+</script>
+<!-- END JavaScript --> 
+
+</body></html>

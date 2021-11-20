@@ -1,0 +1,542 @@
+<html><head><title>java_net_http</title>
+<style>
+<!-- BEGIN Inline CSS -->
+/* Popup container */
+.popup {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+/* The actual popup (appears on top) */
+.popup .popuptext {
+    visibility: hidden;
+    width: 430px;
+    background-color: white;
+    color: black;
+    text-align: left;
+    border-radius: 6px;
+    border-style: solid;
+    border-color: black;
+    padding: 8px 8px 8px 8px;
+    position: absolute;
+    z-index: 1;
+    margin-top: 30px;
+}
+
+/* Toggle this class when clicking on the popup container (hide and show the popup) */
+.popup .show {
+    visibility: visible;
+    opacity: 1;
+}
+
+</style>
+<!-- END Inline CSS -->
+</head><body bgcolor="white">
+<hr><pre>
+<font color="green">(*</font>
+<font color="green"> *  Creator PeToCps j2cps version 1.4.07 (March 2018)</font>
+<font color="green"> *  Compiled from jar-file /Library/Java/JavaVirtualMachines/zulu-11.jdk/Contents/Home/jmods/java.net.http.jmod</font>
+<font color="green"> *)</font>
+<b>FOREIGN MODULE </b><font color="#cc0033">java_net_http</font>;
+
+<b>IMPORT</b>
+    <a href="javax_net_ssl.html">javax_net_ssl</a> := "javax.net.ssl",
+    <a href="java_io.html">java_io</a> := "java.io",
+    <a href="java_lang.html">java_lang</a> := "java.lang",
+    <a href="java_net.html">java_net</a> := "java.net",
+    <a href="java_net_http.html">java_net_http</a> := "java.net.http",
+    <a href="java_nio.html">java_nio</a> := "java.nio",
+    <a href="java_nio_charset.html">java_nio_charset</a> := "java.nio.charset",
+    <a href="java_nio_file.html">java_nio_file</a> := "java.nio.file",
+    <a href="java_time.html">java_time</a> := "java.time",
+    <a href="java_util.html">java_util</a> := "java.util",
+    <a href="java_util_concurrent.html">java_util_concurrent</a> := "java.util.concurrent",
+    <a href="java_util_function.html">java_util_function</a> := "java.util.function";
+
+<b>TYPE</b>
+
+  <a name="type-HttpClient"></a><font color="#cc0033">HttpClient</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                <font color="green"><b> (* </b><a href="#meths-HttpClient">Typebound Procedures</a><b> *)</b></font>
+                <b>STATIC</b>
+                  <b>PROCEDURE </b><font color="#cc0033">Init</font>!() : <a href="#type-HttpClient">HttpClient</a><b>,CONSTRUCTOR</b>;
+                  <b>PROCEDURE </b><font color="#cc0033">newBuilder</font>*() : <a href="#type-HttpClient$Builder">HttpClient$Builder</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">newHttpClient</font>*() : <a href="#type-HttpClient">HttpClient</a>;
+                <b>END</b>;
+
+  <a name="type-HttpClient$Builder"></a><font color="#cc0033">HttpClient$Builder</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                        <font color="green"><b> (* </b><a href="#meths-HttpClient$Builder">Typebound Procedures</a><b> *)</b></font>
+                        <b>STATIC</b>
+                          <a name="type-NO_PROXY"></a><font color="#cc0033">NO_PROXY</font>* : <a href="java_net.html#type-ProxySelector">java_net.ProxySelector</a>;
+                        <b>END</b>;
+
+  <a name="type-HttpClient$Redirect"></a><font color="#cc0033">HttpClient$Redirect</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Enum">java_lang.Enum</a>)
+                         <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> *)</font>
+                         <b>STATIC</b>
+                           <a name="type-ALWAYS"></a><font color="#cc0033">ALWAYS</font>*  : <a href="#type-HttpClient$Redirect">HttpClient$Redirect</a>;
+                           <a name="type-NEVER"></a><font color="#cc0033">NEVER</font>*   : <a href="#type-HttpClient$Redirect">HttpClient$Redirect</a>;
+                           <a name="type-NORMAL"></a><font color="#cc0033">NORMAL</font>*  : <a href="#type-HttpClient$Redirect">HttpClient$Redirect</a>;
+                           <b>PROCEDURE </b><font color="#cc0033">valueOf</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-HttpClient$Redirect">HttpClient$Redirect</a>;
+                           <b>PROCEDURE </b><font color="#cc0033">values</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-HttpClient$Redirect">HttpClient$Redirect</a>;
+                         <b>END</b>;
+
+  <a name="type-HttpClient$Version"></a><font color="#cc0033">HttpClient$Version</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Enum">java_lang.Enum</a>)
+                        <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> *)</font>
+                        <b>STATIC</b>
+                          <a name="type-HTTP_1_1"></a><font color="#cc0033">HTTP_1_1</font>* : <a href="#type-HttpClient$Version">HttpClient$Version</a>;
+                          <a name="type-HTTP_2"></a><font color="#cc0033">HTTP_2</font>*   : <a href="#type-HttpClient$Version">HttpClient$Version</a>;
+                          <b>PROCEDURE </b><font color="#cc0033">valueOf</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-HttpClient$Version">HttpClient$Version</a>;
+                          <b>PROCEDURE </b><font color="#cc0033">values</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-HttpClient$Version">HttpClient$Version</a>;
+                        <b>END</b>;
+
+  <a name="type-HttpConnectTimeoutException"></a><font color="#cc0033">HttpConnectTimeoutException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_net_http.html#type-HttpTimeoutException">java_net_http.HttpTimeoutException</a>)
+                                 <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                                 <b>STATIC</b>
+                                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-HttpConnectTimeoutException">HttpConnectTimeoutException</a><b>,CONSTRUCTOR</b>;
+                                 <b>END</b>;
+
+  <a name="type-HttpHeaders"></a><font color="#cc0033">HttpHeaders</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                 <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> *)</font>
+                 <font color="green"><b> (* </b><a href="#meths-HttpHeaders">Typebound Procedures</a><b> *)</b></font>
+                 <b>STATIC</b>
+                   <b>PROCEDURE </b><font color="#cc0033">of</font>*(p0 : <a href="java_util.html#type-Map">java_util.Map</a>;
+                                 p1 : <a href="java_util_function.html#type-BiPredicate">java_util_function.BiPredicate</a>) : <a href="#type-HttpHeaders">HttpHeaders</a>;
+                 <b>END</b>;
+
+  <a name="type-HttpRequest"></a><font color="#cc0033">HttpRequest</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                 <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                 <font color="green"><b> (* </b><a href="#meths-HttpRequest">Typebound Procedures</a><b> *)</b></font>
+                 <b>STATIC</b>
+                   <b>PROCEDURE </b><font color="#cc0033">Init</font>!() : <a href="#type-HttpRequest">HttpRequest</a><b>,CONSTRUCTOR</b>;
+                   <b>PROCEDURE </b><font color="#cc0033">newBuilder</font>*() : <a href="#type-HttpRequest$Builder">HttpRequest$Builder</a>;
+                   <b>PROCEDURE </b><font color="#cc0033">newBuilder</font>*(p0 : <a href="java_net.html#type-URI">java_net.URI</a>) : <a href="#type-HttpRequest$Builder">HttpRequest$Builder</a>;
+                 <b>END</b>;
+
+  <a name="type-HttpRequest$BodyPublisher"></a><font color="#cc0033">HttpRequest$BodyPublisher</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_util_concurrent.html#type-Flow$Publisher">java_util_concurrent.Flow$Publisher</a>)
+                               <font color="green"><b> (* </b><a href="#meths-HttpRequest$BodyPublisher">Typebound Procedures</a><b> *)</b></font>
+                               <b>END</b>;
+
+  <a name="type-HttpRequest$BodyPublishers"></a><font color="#cc0033">HttpRequest$BodyPublishers</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                                <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> *)</font>
+                                <b>STATIC</b>
+                                  <b>PROCEDURE </b><font color="#cc0033">fromPublisher</font>*(p0 : <a href="java_util_concurrent.html#type-Flow$Publisher">java_util_concurrent.Flow$Publisher</a>;
+                                                           p1 : LONGINT) : <a href="java_net_http.html#type-HttpRequest$BodyPublisher">java_net_http.HttpRequest$BodyPublisher</a>;
+                                  <b>PROCEDURE </b><font color="#cc0033">fromPublisher</font>*(p0 : <a href="java_util_concurrent.html#type-Flow$Publisher">java_util_concurrent.Flow$Publisher</a>) : <a href="java_net_http.html#type-HttpRequest$BodyPublisher">java_net_http.HttpRequest$BodyPublisher</a>;
+                                  <b>PROCEDURE </b><font color="#cc0033">noBody</font>*() : <a href="java_net_http.html#type-HttpRequest$BodyPublisher">java_net_http.HttpRequest$BodyPublisher</a>;
+                                  <b>PROCEDURE </b><font color="#cc0033">ofByteArray</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE) : <a href="java_net_http.html#type-HttpRequest$BodyPublisher">java_net_http.HttpRequest$BodyPublisher</a>;
+                                  <b>PROCEDURE </b><font color="#cc0033">ofByteArray</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE;
+                                                             p1 : INTEGER;
+                                                             p2 : INTEGER) : <a href="java_net_http.html#type-HttpRequest$BodyPublisher">java_net_http.HttpRequest$BodyPublisher</a>;
+                                  <b>PROCEDURE </b><font color="#cc0033">ofByteArrays</font>*(p0 : <a href="java_lang.html#type-Iterable">java_lang.Iterable</a>) : <a href="java_net_http.html#type-HttpRequest$BodyPublisher">java_net_http.HttpRequest$BodyPublisher</a>;
+                                  <b>PROCEDURE </b><font color="#cc0033">ofFile</font>*(p0 : <a href="java_nio_file.html#type-Path">java_nio_file.Path</a>) : <a href="java_net_http.html#type-HttpRequest$BodyPublisher">java_net_http.HttpRequest$BodyPublisher</a>;
+                                  <b>PROCEDURE </b><font color="#cc0033">ofInputStream</font>*(p0 : <a href="java_util_function.html#type-Supplier">java_util_function.Supplier</a>) : <a href="java_net_http.html#type-HttpRequest$BodyPublisher">java_net_http.HttpRequest$BodyPublisher</a>;
+                                  <b>PROCEDURE </b><font color="#cc0033">ofString</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_net_http.html#type-HttpRequest$BodyPublisher">java_net_http.HttpRequest$BodyPublisher</a>;
+                                  <b>PROCEDURE </b><font color="#cc0033">ofString</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                      p1 : <a href="java_nio_charset.html#type-Charset">java_nio_charset.Charset</a>) : <a href="java_net_http.html#type-HttpRequest$BodyPublisher">java_net_http.HttpRequest$BodyPublisher</a>;
+                                <b>END</b>;
+
+  <a name="type-HttpRequest$Builder"></a><font color="#cc0033">HttpRequest$Builder</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                         <font color="green"><b> (* </b><a href="#meths-HttpRequest$Builder">Typebound Procedures</a><b> *)</b></font>
+                         <b>END</b>;
+
+  <a name="type-HttpResponse"></a><font color="#cc0033">HttpResponse</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                  <font color="green"><b> (* </b><a href="#meths-HttpResponse">Typebound Procedures</a><b> *)</b></font>
+                  <b>END</b>;
+
+  <a name="type-HttpResponse$BodyHandler"></a><font color="#cc0033">HttpResponse$BodyHandler</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                              <font color="green"><b> (* </b><a href="#meths-HttpResponse$BodyHandler">Typebound Procedures</a><b> *)</b></font>
+                              <b>END</b>;
+
+  <a name="type-HttpResponse$BodyHandlers"></a><font color="#cc0033">HttpResponse$BodyHandlers</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                               <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> *)</font>
+                               <b>STATIC</b>
+                                 <b>PROCEDURE </b><font color="#cc0033">buffering</font>*(p0 : <a href="#type-HttpResponse$BodyHandler">HttpResponse$BodyHandler</a>;
+                                                      p1 : INTEGER) : <a href="#type-HttpResponse$BodyHandler">HttpResponse$BodyHandler</a>;
+                                 <b>PROCEDURE </b><font color="#cc0033">discarding</font>*() : <a href="#type-HttpResponse$BodyHandler">HttpResponse$BodyHandler</a>;
+                                 <b>PROCEDURE </b><font color="#cc0033">fromLineSubscriber</font>*(p0 : <a href="java_util_concurrent.html#type-Flow$Subscriber">java_util_concurrent.Flow$Subscriber</a>;
+                                                               p1 : <a href="java_util_function.html#type-Function">java_util_function.Function</a>;
+                                                               p2 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-HttpResponse$BodyHandler">HttpResponse$BodyHandler</a>;
+                                 <b>PROCEDURE </b><font color="#cc0033">fromLineSubscriber</font>*(p0 : <a href="java_util_concurrent.html#type-Flow$Subscriber">java_util_concurrent.Flow$Subscriber</a>) : <a href="#type-HttpResponse$BodyHandler">HttpResponse$BodyHandler</a>;
+                                 <b>PROCEDURE </b><font color="#cc0033">fromSubscriber</font>*(p0 : <a href="java_util_concurrent.html#type-Flow$Subscriber">java_util_concurrent.Flow$Subscriber</a>) : <a href="#type-HttpResponse$BodyHandler">HttpResponse$BodyHandler</a>;
+                                 <b>PROCEDURE </b><font color="#cc0033">fromSubscriber</font>*(p0 : <a href="java_util_concurrent.html#type-Flow$Subscriber">java_util_concurrent.Flow$Subscriber</a>;
+                                                           p1 : <a href="java_util_function.html#type-Function">java_util_function.Function</a>) : <a href="#type-HttpResponse$BodyHandler">HttpResponse$BodyHandler</a>;
+                                 <b>PROCEDURE </b><font color="#cc0033">ofByteArray</font>*() : <a href="#type-HttpResponse$BodyHandler">HttpResponse$BodyHandler</a>;
+                                 <b>PROCEDURE </b><font color="#cc0033">ofByteArrayConsumer</font>*(p0 : <a href="java_util_function.html#type-Consumer">java_util_function.Consumer</a>) : <a href="#type-HttpResponse$BodyHandler">HttpResponse$BodyHandler</a>;
+                                 <b>PROCEDURE </b><font color="#cc0033">ofFile</font>*(p0 : <a href="java_nio_file.html#type-Path">java_nio_file.Path</a>) : <a href="#type-HttpResponse$BodyHandler">HttpResponse$BodyHandler</a>;
+                                 <b>PROCEDURE </b><font color="#cc0033">ofFile</font>*(    p0 : <a href="java_nio_file.html#type-Path">java_nio_file.Path</a>;
+                                                   IN  p1 : <b>ARRAY </b><b>OF </b><a href="java_nio_file.html#type-OpenOption">java_nio_file.OpenOption</a>) : <a href="#type-HttpResponse$BodyHandler">HttpResponse$BodyHandler</a>;
+                                 <b>PROCEDURE </b><font color="#cc0033">ofFileDownload</font>*(    p0 : <a href="java_nio_file.html#type-Path">java_nio_file.Path</a>;
+                                                           IN  p1 : <b>ARRAY </b><b>OF </b><a href="java_nio_file.html#type-OpenOption">java_nio_file.OpenOption</a>) : <a href="#type-HttpResponse$BodyHandler">HttpResponse$BodyHandler</a>;
+                                 <b>PROCEDURE </b><font color="#cc0033">ofInputStream</font>*() : <a href="#type-HttpResponse$BodyHandler">HttpResponse$BodyHandler</a>;
+                                 <b>PROCEDURE </b><font color="#cc0033">ofLines</font>*() : <a href="#type-HttpResponse$BodyHandler">HttpResponse$BodyHandler</a>;
+                                 <b>PROCEDURE </b><font color="#cc0033">ofPublisher</font>*() : <a href="#type-HttpResponse$BodyHandler">HttpResponse$BodyHandler</a>;
+                                 <b>PROCEDURE </b><font color="#cc0033">ofString</font>*() : <a href="#type-HttpResponse$BodyHandler">HttpResponse$BodyHandler</a>;
+                                 <b>PROCEDURE </b><font color="#cc0033">ofString</font>*(p0 : <a href="java_nio_charset.html#type-Charset">java_nio_charset.Charset</a>) : <a href="#type-HttpResponse$BodyHandler">HttpResponse$BodyHandler</a>;
+                                 <b>PROCEDURE </b><font color="#cc0033">replacing</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="#type-HttpResponse$BodyHandler">HttpResponse$BodyHandler</a>;
+                               <b>END</b>;
+
+  <a name="type-HttpResponse$BodySubscriber"></a><font color="#cc0033">HttpResponse$BodySubscriber</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_util_concurrent.html#type-Flow$Subscriber">java_util_concurrent.Flow$Subscriber</a>)
+                                 <font color="green"><b> (* </b><a href="#meths-HttpResponse$BodySubscriber">Typebound Procedures</a><b> *)</b></font>
+                                 <b>END</b>;
+
+  <a name="type-HttpResponse$BodySubscribers"></a><font color="#cc0033">HttpResponse$BodySubscribers</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                                  <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> *)</font>
+                                  <b>STATIC</b>
+                                    <b>PROCEDURE </b><font color="#cc0033">buffering</font>*(p0 : <a href="java_net_http.html#type-HttpResponse$BodySubscriber">java_net_http.HttpResponse$BodySubscriber</a>;
+                                                         p1 : INTEGER) : <a href="java_net_http.html#type-HttpResponse$BodySubscriber">java_net_http.HttpResponse$BodySubscriber</a>;
+                                    <b>PROCEDURE </b><font color="#cc0033">discarding</font>*() : <a href="java_net_http.html#type-HttpResponse$BodySubscriber">java_net_http.HttpResponse$BodySubscriber</a>;
+                                    <b>PROCEDURE </b><font color="#cc0033">fromLineSubscriber</font>*(p0 : <a href="java_util_concurrent.html#type-Flow$Subscriber">java_util_concurrent.Flow$Subscriber</a>;
+                                                                  p1 : <a href="java_util_function.html#type-Function">java_util_function.Function</a>;
+                                                                  p2 : <a href="java_nio_charset.html#type-Charset">java_nio_charset.Charset</a>;
+                                                                  p3 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_net_http.html#type-HttpResponse$BodySubscriber">java_net_http.HttpResponse$BodySubscriber</a>;
+                                    <b>PROCEDURE </b><font color="#cc0033">fromLineSubscriber</font>*(p0 : <a href="java_util_concurrent.html#type-Flow$Subscriber">java_util_concurrent.Flow$Subscriber</a>) : <a href="java_net_http.html#type-HttpResponse$BodySubscriber">java_net_http.HttpResponse$BodySubscriber</a>;
+                                    <b>PROCEDURE </b><font color="#cc0033">fromSubscriber</font>*(p0 : <a href="java_util_concurrent.html#type-Flow$Subscriber">java_util_concurrent.Flow$Subscriber</a>) : <a href="java_net_http.html#type-HttpResponse$BodySubscriber">java_net_http.HttpResponse$BodySubscriber</a>;
+                                    <b>PROCEDURE </b><font color="#cc0033">fromSubscriber</font>*(p0 : <a href="java_util_concurrent.html#type-Flow$Subscriber">java_util_concurrent.Flow$Subscriber</a>;
+                                                              p1 : <a href="java_util_function.html#type-Function">java_util_function.Function</a>) : <a href="java_net_http.html#type-HttpResponse$BodySubscriber">java_net_http.HttpResponse$BodySubscriber</a>;
+                                    <b>PROCEDURE </b><font color="#cc0033">mapping</font>*(p0 : <a href="java_net_http.html#type-HttpResponse$BodySubscriber">java_net_http.HttpResponse$BodySubscriber</a>;
+                                                       p1 : <a href="java_util_function.html#type-Function">java_util_function.Function</a>) : <a href="java_net_http.html#type-HttpResponse$BodySubscriber">java_net_http.HttpResponse$BodySubscriber</a>;
+                                    <b>PROCEDURE </b><font color="#cc0033">ofByteArray</font>*() : <a href="java_net_http.html#type-HttpResponse$BodySubscriber">java_net_http.HttpResponse$BodySubscriber</a>;
+                                    <b>PROCEDURE </b><font color="#cc0033">ofByteArrayConsumer</font>*(p0 : <a href="java_util_function.html#type-Consumer">java_util_function.Consumer</a>) : <a href="java_net_http.html#type-HttpResponse$BodySubscriber">java_net_http.HttpResponse$BodySubscriber</a>;
+                                    <b>PROCEDURE </b><font color="#cc0033">ofFile</font>*(    p0 : <a href="java_nio_file.html#type-Path">java_nio_file.Path</a>;
+                                                      IN  p1 : <b>ARRAY </b><b>OF </b><a href="java_nio_file.html#type-OpenOption">java_nio_file.OpenOption</a>) : <a href="java_net_http.html#type-HttpResponse$BodySubscriber">java_net_http.HttpResponse$BodySubscriber</a>;
+                                    <b>PROCEDURE </b><font color="#cc0033">ofFile</font>*(p0 : <a href="java_nio_file.html#type-Path">java_nio_file.Path</a>) : <a href="java_net_http.html#type-HttpResponse$BodySubscriber">java_net_http.HttpResponse$BodySubscriber</a>;
+                                    <b>PROCEDURE </b><font color="#cc0033">ofInputStream</font>*() : <a href="java_net_http.html#type-HttpResponse$BodySubscriber">java_net_http.HttpResponse$BodySubscriber</a>;
+                                    <b>PROCEDURE </b><font color="#cc0033">ofLines</font>*(p0 : <a href="java_nio_charset.html#type-Charset">java_nio_charset.Charset</a>) : <a href="java_net_http.html#type-HttpResponse$BodySubscriber">java_net_http.HttpResponse$BodySubscriber</a>;
+                                    <b>PROCEDURE </b><font color="#cc0033">ofPublisher</font>*() : <a href="java_net_http.html#type-HttpResponse$BodySubscriber">java_net_http.HttpResponse$BodySubscriber</a>;
+                                    <b>PROCEDURE </b><font color="#cc0033">ofString</font>*(p0 : <a href="java_nio_charset.html#type-Charset">java_nio_charset.Charset</a>) : <a href="java_net_http.html#type-HttpResponse$BodySubscriber">java_net_http.HttpResponse$BodySubscriber</a>;
+                                    <b>PROCEDURE </b><font color="#cc0033">replacing</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_net_http.html#type-HttpResponse$BodySubscriber">java_net_http.HttpResponse$BodySubscriber</a>;
+                                  <b>END</b>;
+
+  <a name="type-HttpResponse$PushPromiseHandler"></a><font color="#cc0033">HttpResponse$PushPromiseHandler</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                                     <font color="green"><b> (* </b><a href="#meths-HttpResponse$PushPromiseHandler">Typebound Procedures</a><b> *)</b></font>
+                                     <b>STATIC</b>
+                                       <b>PROCEDURE </b><font color="#cc0033">of</font>*(p0 : <a href="java_util_function.html#type-Function">java_util_function.Function</a>;
+                                                     p1 : <a href="java_util_concurrent.html#type-ConcurrentMap">java_util_concurrent.ConcurrentMap</a>) : <a href="#type-HttpResponse$PushPromiseHandler">HttpResponse$PushPromiseHandler</a>;
+                                     <b>END</b>;
+
+  <a name="type-HttpResponse$ResponseInfo"></a><font color="#cc0033">HttpResponse$ResponseInfo</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                               <font color="green"><b> (* </b><a href="#meths-HttpResponse$ResponseInfo">Typebound Procedures</a><b> *)</b></font>
+                               <b>END</b>;
+
+  <a name="type-HttpTimeoutException"></a><font color="#cc0033">HttpTimeoutException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_io.html#type-IOException">java_io.IOException</a>)
+                          <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                          <b>STATIC</b>
+                            <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-HttpTimeoutException">HttpTimeoutException</a><b>,CONSTRUCTOR</b>;
+                          <b>END</b>;
+
+  <a name="type-WebSocket"></a><font color="#cc0033">WebSocket</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+               <font color="green"><b> (* </b><a href="#meths-WebSocket">Typebound Procedures</a><b> *)</b></font>
+               <b>STATIC</b>
+                 <font color="#cc0033">NORMAL_CLOSURE</font>* = 1000;
+               <b>END</b>;
+
+  <a name="type-WebSocket$Builder"></a><font color="#cc0033">WebSocket$Builder</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                       <font color="green"><b> (* </b><a href="#meths-WebSocket$Builder">Typebound Procedures</a><b> *)</b></font>
+                       <b>END</b>;
+
+  <a name="type-WebSocket$Listener"></a><font color="#cc0033">WebSocket$Listener</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                        <font color="green"><b> (* </b><a href="#meths-WebSocket$Listener">Typebound Procedures</a><b> *)</b></font>
+                        <b>END</b>;
+
+  <a name="type-WebSocketHandshakeException"></a><font color="#cc0033">WebSocketHandshakeException</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_io.html#type-IOException">java_io.IOException</a>)
+                                 <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                                 <font color="green"><b> (* </b><a href="#meths-WebSocketHandshakeException">Typebound Procedures</a><b> *)</b></font>
+                                 <b>STATIC</b>
+                                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_net_http.html#type-HttpResponse">java_net_http.HttpResponse</a>) : <a href="#type-WebSocketHandshakeException">WebSocketHandshakeException</a><b>,CONSTRUCTOR</b>;
+                                 <b>END</b>;
+
+
+
+<a name="meths-HttpClient"></a>
+<b>PROCEDURE </b>(self:HttpClient) <font color="#cc0033">authenticator</font>*() : <a href="java_util.html#type-Optional">java_util.Optional</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:HttpClient) <font color="#cc0033">connectTimeout</font>*() : <a href="java_util.html#type-Optional">java_util.Optional</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:HttpClient) <font color="#cc0033">cookieHandler</font>*() : <a href="java_util.html#type-Optional">java_util.Optional</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:HttpClient) <font color="#cc0033">executor</font>*() : <a href="java_util.html#type-Optional">java_util.Optional</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:HttpClient) <font color="#cc0033">followRedirects</font>*() : <a href="#type-HttpClient$Redirect">HttpClient$Redirect</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:HttpClient) <font color="#cc0033">newWebSocketBuilder</font>*() : <a href="java_net_http.html#type-WebSocket$Builder">java_net_http.WebSocket$Builder</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HttpClient) <font color="#cc0033">proxy</font>*() : <a href="java_util.html#type-Optional">java_util.Optional</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:HttpClient) <font color="#cc0033">send</font>*(p0 : <a href="#type-HttpRequest">HttpRequest</a>;
+                                  p1 : <a href="#type-HttpResponse$BodyHandler">HttpResponse$BodyHandler</a>) : <a href="#type-HttpResponse">HttpResponse</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:HttpClient) <font color="#cc0033">sendAsync</font>*(p0 : <a href="#type-HttpRequest">HttpRequest</a>;
+                                       p1 : <a href="#type-HttpResponse$BodyHandler">HttpResponse$BodyHandler</a>) : <a href="java_util_concurrent.html#type-CompletableFuture">java_util_concurrent.CompletableFuture</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:HttpClient) <font color="#cc0033">sendAsync</font>*(p0 : <a href="#type-HttpRequest">HttpRequest</a>;
+                                       p1 : <a href="#type-HttpResponse$BodyHandler">HttpResponse$BodyHandler</a>;
+                                       p2 : <a href="java_net_http.html#type-HttpResponse$PushPromiseHandler">java_net_http.HttpResponse$PushPromiseHandler</a>) : <a href="java_util_concurrent.html#type-CompletableFuture">java_util_concurrent.CompletableFuture</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:HttpClient) <font color="#cc0033">sslContext</font>*() : <a href="javax_net_ssl.html#type-SSLContext">javax_net_ssl.SSLContext</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:HttpClient) <font color="#cc0033">sslParameters</font>*() : <a href="javax_net_ssl.html#type-SSLParameters">javax_net_ssl.SSLParameters</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:HttpClient) <font color="#cc0033">version</font>*() : <a href="#type-HttpClient$Version">HttpClient$Version</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-HttpClient$Builder"></a>
+<b>PROCEDURE </b>(self:HttpClient$Builder) <font color="#cc0033">authenticator</font>*(p0 : <a href="java_net.html#type-Authenticator">java_net.Authenticator</a>) : <a href="#type-HttpClient$Builder">HttpClient$Builder</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:HttpClient$Builder) <font color="#cc0033">build</font>*() : <a href="java_net_http.html#type-HttpClient">java_net_http.HttpClient</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:HttpClient$Builder) <font color="#cc0033">connectTimeout</font>*(p0 : <a href="java_time.html#type-Duration">java_time.Duration</a>) : <a href="#type-HttpClient$Builder">HttpClient$Builder</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:HttpClient$Builder) <font color="#cc0033">cookieHandler</font>*(p0 : <a href="java_net.html#type-CookieHandler">java_net.CookieHandler</a>) : <a href="#type-HttpClient$Builder">HttpClient$Builder</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:HttpClient$Builder) <font color="#cc0033">executor</font>*(p0 : <a href="java_util_concurrent.html#type-Executor">java_util_concurrent.Executor</a>) : <a href="#type-HttpClient$Builder">HttpClient$Builder</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:HttpClient$Builder) <font color="#cc0033">followRedirects</font>*(p0 : <a href="java_net_http.html#type-HttpClient$Redirect">java_net_http.HttpClient$Redirect</a>) : <a href="#type-HttpClient$Builder">HttpClient$Builder</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:HttpClient$Builder) <font color="#cc0033">priority</font>*(p0 : INTEGER) : <a href="#type-HttpClient$Builder">HttpClient$Builder</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:HttpClient$Builder) <font color="#cc0033">proxy</font>*(p0 : <a href="java_net.html#type-ProxySelector">java_net.ProxySelector</a>) : <a href="#type-HttpClient$Builder">HttpClient$Builder</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:HttpClient$Builder) <font color="#cc0033">sslContext</font>*(p0 : <a href="javax_net_ssl.html#type-SSLContext">javax_net_ssl.SSLContext</a>) : <a href="#type-HttpClient$Builder">HttpClient$Builder</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:HttpClient$Builder) <font color="#cc0033">sslParameters</font>*(p0 : <a href="javax_net_ssl.html#type-SSLParameters">javax_net_ssl.SSLParameters</a>) : <a href="#type-HttpClient$Builder">HttpClient$Builder</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:HttpClient$Builder) <font color="#cc0033">version</font>*(p0 : <a href="java_net_http.html#type-HttpClient$Version">java_net_http.HttpClient$Version</a>) : <a href="#type-HttpClient$Builder">HttpClient$Builder</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-HttpHeaders"></a>
+<b>PROCEDURE </b>(self:HttpHeaders) <font color="#cc0033">allValues</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_util.html#type-List">java_util.List</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HttpHeaders) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:HttpHeaders) <font color="#cc0033">firstValue</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_util.html#type-Optional">java_util.Optional</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HttpHeaders) <font color="#cc0033">firstValueAsLong</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_util.html#type-OptionalLong">java_util.OptionalLong</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HttpHeaders) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:HttpHeaders) <font color="#cc0033">map</font>*() : <a href="java_util.html#type-Map">java_util.Map</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HttpHeaders) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-HttpRequest"></a>
+<b>PROCEDURE </b>(self:HttpRequest) <font color="#cc0033">bodyPublisher</font>*() : <a href="java_util.html#type-Optional">java_util.Optional</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:HttpRequest) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:HttpRequest) <font color="#cc0033">expectContinue</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:HttpRequest) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:HttpRequest) <font color="#cc0033">headers</font>*() : <a href="java_net_http.html#type-HttpHeaders">java_net_http.HttpHeaders</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:HttpRequest) <font color="#cc0033">method</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:HttpRequest) <font color="#cc0033">timeout</font>*() : <a href="java_util.html#type-Optional">java_util.Optional</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:HttpRequest) <font color="#cc0033">uri</font>*() : <a href="java_net.html#type-URI">java_net.URI</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:HttpRequest) <font color="#cc0033">version</font>*() : <a href="java_util.html#type-Optional">java_util.Optional</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-HttpRequest$BodyPublisher"></a>
+<b>PROCEDURE </b>(self:HttpRequest$BodyPublisher) <font color="#cc0033">contentLength</font>*() : LONGINT<b>,NEW,ABSTRACT</b>;
+<a name="meths-HttpRequest$Builder"></a>
+<b>PROCEDURE </b>(self:HttpRequest$Builder) <font color="#cc0033">build</font>*() : <a href="java_net_http.html#type-HttpRequest">java_net_http.HttpRequest</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:HttpRequest$Builder) <font color="#cc0033">copy</font>*() : <a href="#type-HttpRequest$Builder">HttpRequest$Builder</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:HttpRequest$Builder) <font color="#cc0033">DELETE</font>*() : <a href="#type-HttpRequest$Builder">HttpRequest$Builder</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:HttpRequest$Builder) <font color="#cc0033">expectContinue</font>*(p0 : BOOLEAN) : <a href="#type-HttpRequest$Builder">HttpRequest$Builder</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:HttpRequest$Builder) <font color="#cc0033">GET</font>*() : <a href="#type-HttpRequest$Builder">HttpRequest$Builder</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:HttpRequest$Builder) <font color="#cc0033">header</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                             p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-HttpRequest$Builder">HttpRequest$Builder</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:HttpRequest$Builder) <font color="#cc0033">headers</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-HttpRequest$Builder">HttpRequest$Builder</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:HttpRequest$Builder) <font color="#cc0033">method</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                             p1 : <a href="java_net_http.html#type-HttpRequest$BodyPublisher">java_net_http.HttpRequest$BodyPublisher</a>) : <a href="#type-HttpRequest$Builder">HttpRequest$Builder</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:HttpRequest$Builder) <font color="#cc0033">POST</font>*(p0 : <a href="java_net_http.html#type-HttpRequest$BodyPublisher">java_net_http.HttpRequest$BodyPublisher</a>) : <a href="#type-HttpRequest$Builder">HttpRequest$Builder</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:HttpRequest$Builder) <font color="#cc0033">PUT</font>*(p0 : <a href="java_net_http.html#type-HttpRequest$BodyPublisher">java_net_http.HttpRequest$BodyPublisher</a>) : <a href="#type-HttpRequest$Builder">HttpRequest$Builder</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:HttpRequest$Builder) <font color="#cc0033">setHeader</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-HttpRequest$Builder">HttpRequest$Builder</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:HttpRequest$Builder) <font color="#cc0033">timeout</font>*(p0 : <a href="java_time.html#type-Duration">java_time.Duration</a>) : <a href="#type-HttpRequest$Builder">HttpRequest$Builder</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:HttpRequest$Builder) <font color="#cc0033">uri</font>*(p0 : <a href="java_net.html#type-URI">java_net.URI</a>) : <a href="#type-HttpRequest$Builder">HttpRequest$Builder</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:HttpRequest$Builder) <font color="#cc0033">version</font>*(p0 : <a href="java_net_http.html#type-HttpClient$Version">java_net_http.HttpClient$Version</a>) : <a href="#type-HttpRequest$Builder">HttpRequest$Builder</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-HttpResponse"></a>
+<b>PROCEDURE </b>(self:HttpResponse) <font color="#cc0033">body</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:HttpResponse) <font color="#cc0033">headers</font>*() : <a href="java_net_http.html#type-HttpHeaders">java_net_http.HttpHeaders</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:HttpResponse) <font color="#cc0033">previousResponse</font>*() : <a href="java_util.html#type-Optional">java_util.Optional</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:HttpResponse) <font color="#cc0033">request</font>*() : <a href="java_net_http.html#type-HttpRequest">java_net_http.HttpRequest</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:HttpResponse) <font color="#cc0033">sslSession</font>*() : <a href="java_util.html#type-Optional">java_util.Optional</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:HttpResponse) <font color="#cc0033">statusCode</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:HttpResponse) <font color="#cc0033">uri</font>*() : <a href="java_net.html#type-URI">java_net.URI</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:HttpResponse) <font color="#cc0033">version</font>*() : <a href="#type-HttpClient$Version">HttpClient$Version</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-HttpResponse$BodyHandler"></a>
+<b>PROCEDURE </b>(self:HttpResponse$BodyHandler) <font color="#cc0033">apply</font>*(p0 : <a href="java_net_http.html#type-HttpResponse$ResponseInfo">java_net_http.HttpResponse$ResponseInfo</a>) : <a href="java_net_http.html#type-HttpResponse$BodySubscriber">java_net_http.HttpResponse$BodySubscriber</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-HttpResponse$BodySubscriber"></a>
+<b>PROCEDURE </b>(self:HttpResponse$BodySubscriber) <font color="#cc0033">getBody</font>*() : <a href="java_util_concurrent.html#type-CompletionStage">java_util_concurrent.CompletionStage</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-HttpResponse$PushPromiseHandler"></a>
+<b>PROCEDURE </b>(self:HttpResponse$PushPromiseHandler) <font color="#cc0033">applyPushPromise</font>*(p0 : <a href="#type-HttpRequest">HttpRequest</a>;
+                                                                   p1 : <a href="#type-HttpRequest">HttpRequest</a>;
+                                                                   p2 : <a href="java_util_function.html#type-Function">java_util_function.Function</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-HttpResponse$ResponseInfo"></a>
+<b>PROCEDURE </b>(self:HttpResponse$ResponseInfo) <font color="#cc0033">headers</font>*() : <a href="java_net_http.html#type-HttpHeaders">java_net_http.HttpHeaders</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:HttpResponse$ResponseInfo) <font color="#cc0033">statusCode</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:HttpResponse$ResponseInfo) <font color="#cc0033">version</font>*() : <a href="#type-HttpClient$Version">HttpClient$Version</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-WebSocket"></a>
+<b>PROCEDURE </b>(self:WebSocket) <font color="#cc0033">abort</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:WebSocket) <font color="#cc0033">getSubprotocol</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:WebSocket) <font color="#cc0033">isInputClosed</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:WebSocket) <font color="#cc0033">isOutputClosed</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:WebSocket) <font color="#cc0033">request</font>*(p0 : LONGINT)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:WebSocket) <font color="#cc0033">sendBinary</font>*(p0 : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>;
+                                       p1 : BOOLEAN) : <a href="java_util_concurrent.html#type-CompletableFuture">java_util_concurrent.CompletableFuture</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:WebSocket) <font color="#cc0033">sendClose</font>*(p0 : INTEGER;
+                                      p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_util_concurrent.html#type-CompletableFuture">java_util_concurrent.CompletableFuture</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:WebSocket) <font color="#cc0033">sendPing</font>*(p0 : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>) : <a href="java_util_concurrent.html#type-CompletableFuture">java_util_concurrent.CompletableFuture</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:WebSocket) <font color="#cc0033">sendPong</font>*(p0 : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>) : <a href="java_util_concurrent.html#type-CompletableFuture">java_util_concurrent.CompletableFuture</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:WebSocket) <font color="#cc0033">sendText</font>*(p0 : <a href="java_lang.html#type-CharSequence">java_lang.CharSequence</a>;
+                                     p1 : BOOLEAN) : <a href="java_util_concurrent.html#type-CompletableFuture">java_util_concurrent.CompletableFuture</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-WebSocket$Builder"></a>
+<b>PROCEDURE </b>(self:WebSocket$Builder) <font color="#cc0033">buildAsync</font>*(p0 : <a href="java_net.html#type-URI">java_net.URI</a>;
+                                               p1 : <a href="#type-WebSocket$Listener">WebSocket$Listener</a>) : <a href="java_util_concurrent.html#type-CompletableFuture">java_util_concurrent.CompletableFuture</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:WebSocket$Builder) <font color="#cc0033">connectTimeout</font>*(p0 : <a href="java_time.html#type-Duration">java_time.Duration</a>) : <a href="#type-WebSocket$Builder">WebSocket$Builder</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:WebSocket$Builder) <font color="#cc0033">header</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                           p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-WebSocket$Builder">WebSocket$Builder</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:WebSocket$Builder) <font color="#cc0033">subprotocols</font>*(    p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                 IN  p1 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-WebSocket$Builder">WebSocket$Builder</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-WebSocket$Listener"></a>
+<b>PROCEDURE </b>(self:WebSocket$Listener) <font color="#cc0033">onBinary</font>*(p0 : <a href="#type-WebSocket">WebSocket</a>;
+                                              p1 : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>;
+                                              p2 : BOOLEAN) : <a href="java_util_concurrent.html#type-CompletionStage">java_util_concurrent.CompletionStage</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WebSocket$Listener) <font color="#cc0033">onClose</font>*(p0 : <a href="#type-WebSocket">WebSocket</a>;
+                                             p1 : INTEGER;
+                                             p2 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_util_concurrent.html#type-CompletionStage">java_util_concurrent.CompletionStage</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WebSocket$Listener) <font color="#cc0033">onError</font>*(p0 : <a href="#type-WebSocket">WebSocket</a>;
+                                             p1 : <a href="java_lang.html#type-Throwable">java_lang.Throwable</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WebSocket$Listener) <font color="#cc0033">onOpen</font>*(p0 : <a href="#type-WebSocket">WebSocket</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WebSocket$Listener) <font color="#cc0033">onPing</font>*(p0 : <a href="#type-WebSocket">WebSocket</a>;
+                                            p1 : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>) : <a href="java_util_concurrent.html#type-CompletionStage">java_util_concurrent.CompletionStage</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WebSocket$Listener) <font color="#cc0033">onPong</font>*(p0 : <a href="#type-WebSocket">WebSocket</a>;
+                                            p1 : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>) : <a href="java_util_concurrent.html#type-CompletionStage">java_util_concurrent.CompletionStage</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WebSocket$Listener) <font color="#cc0033">onText</font>*(p0 : <a href="#type-WebSocket">WebSocket</a>;
+                                            p1 : <a href="java_lang.html#type-CharSequence">java_lang.CharSequence</a>;
+                                            p2 : BOOLEAN) : <a href="java_util_concurrent.html#type-CompletionStage">java_util_concurrent.CompletionStage</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-WebSocketHandshakeException"></a>
+<b>PROCEDURE </b>(self:WebSocketHandshakeException) <font color="#cc0033">getResponse</font>*() : <a href="java_net_http.html#type-HttpResponse">java_net_http.HttpResponse</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WebSocketHandshakeException) <font color="#cc0033">initCause</font>*(p0 : <a href="java_lang.html#type-Throwable">java_lang.Throwable</a>) : <a href="java_lang.html#type-Throwable">java_lang.Throwable</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WebSocketHandshakeException) <font color="#cc0033">initCause</font>*(p0 : <a href="java_lang.html#type-Throwable">java_lang.Throwable</a>) : <a href="#type-WebSocketHandshakeException">WebSocketHandshakeException</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>END </b><font color="#cc0033">java_net_http</font>.
+</font></pre></hr>
+<!-- BEGIN JavaScript -->
+<script>
+function toggle(node) {
+    node.classList.toggle("show"); 
+  }
+
+function cls(node) {
+    var prnt = node.parentNode;
+    var next = prnt.previousSibling;
+    var text = next.lastChild;
+    text.innerHTML = 
+        "The <b>class</b> property asserts that this type will be<br>" +
+        "implemented as a reference class in the underlying framework.";
+    text.classList.toggle("show");
+  }
+
+function newOk(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>has noArg-ctor</b> property asserts that this reference<br>" +
+        "class has a no-arg constructor, and thus objects of this<br>" +
+        "type can be allocated with NEW(). Component Pascal types<br>" +
+        "derived from this type can also be allocated using NEW().";
+    popuptext.classList.toggle("show"); 
+  }
+
+function noNew(node) { 
+    var prnt = node.parentNode; 
+    var next = prnt.previousSibling; 
+    var text = next.lastChild; 
+    text.innerHTML =  
+        "The <b>no noArg-ctor</b> property asserts that this reference<br>" +
+        "class does not have a noArg constructor. Objects of this<br>" +
+        "type cannot be allocated using NEW(), and Component<br>" +
+        "Pascal types  derived from this type also cannot be<br>" +
+        "allocated using NEW().";
+    text.classList.toggle("show");
+  }
+
+function noCpy(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>no value-assign</b> property asserts that this reference<br>" + 
+        "class does not have a value copy method. Therefore, it<br>" +
+        "is not possible to perform value assignments using<br>" +
+        "statements like <i>dst^</i> := <i>src^</i>";
+    popuptext.classList.toggle("show");
+  }
+
+function valueclass(node) { 
+        var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>valueclass</b> property asserts that this RECORD type is<br>" + 
+        "implemented as a value class in the CLR. It follows that<br>" +  
+        "value assignments can be made of these types. They can<br>" + 
+        "also be passed by value. Even pointers to records of<br>" + 
+        "such types may be dereferenced and copied using syntax<br>" + 
+        "such as  <i>dst^</i> := <i>src^</i>"; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+function argCtor(node) { 
+    var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>has arg-ctor</b> property asserts that this reference<br>" +  
+        "class has one or more constructors that take arguments.<br>" + 
+        "These constructors can be called from Component Pascal<br>" + 
+        "by calling an <i>init</i>(...) method from the static list<br>" + 
+        "here. Component Pascal types derived from this type<br>" + 
+        "can define constructors with arguments which call the<br>" + 
+        "super-type constructor.<br>" + 
+        "See <i>'Interfacing to constructors'</i> in the Release Notes."; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+</script>
+<!-- END JavaScript --> 
+
+</body></html>

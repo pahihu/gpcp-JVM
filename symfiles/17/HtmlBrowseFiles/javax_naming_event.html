@@ -1,0 +1,248 @@
+<html><head><title>javax_naming_event</title>
+<style>
+<!-- BEGIN Inline CSS -->
+/* Popup container */
+.popup {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+/* The actual popup (appears on top) */
+.popup .popuptext {
+    visibility: hidden;
+    width: 430px;
+    background-color: white;
+    color: black;
+    text-align: left;
+    border-radius: 6px;
+    border-style: solid;
+    border-color: black;
+    padding: 8px 8px 8px 8px;
+    position: absolute;
+    z-index: 1;
+    margin-top: 30px;
+}
+
+/* Toggle this class when clicking on the popup container (hide and show the popup) */
+.popup .show {
+    visibility: visible;
+    opacity: 1;
+}
+
+</style>
+<!-- END Inline CSS -->
+</head><body bgcolor="white">
+<hr><pre>
+<font color="green">(*</font>
+<font color="green"> *  Creator PeToCps j2cps version 1.4.07 (March 2018)</font>
+<font color="green"> *  Compiled from jar-file /Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home/jmods/java.naming.jmod</font>
+<font color="green"> *)</font>
+<b>FOREIGN MODULE </b><font color="#cc0033">javax_naming_event</font>;
+
+<b>IMPORT</b>
+    <a href="javax_naming.html">javax_naming</a> := "javax.naming",
+    <a href="javax_naming_directory.html">javax_naming_directory</a> := "javax.naming.directory",
+    <a href="javax_naming_event.html">javax_naming_event</a> := "javax.naming.event",
+    <a href="java_lang.html">java_lang</a> := "java.lang",
+    <a href="java_util.html">java_util</a> := "java.util";
+
+<b>TYPE</b>
+
+  <a name="type-EventContext"></a><font color="#cc0033">EventContext</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="javax_naming.html#type-Context">javax_naming.Context</a>)
+                  <font color="green"><b> (* </b><a href="#meths-EventContext">Typebound Procedures</a><b> *)</b></font>
+                  <b>STATIC</b>
+                    <font color="#cc0033">OBJECT_SCOPE</font>*   = 0;
+                    <font color="#cc0033">ONELEVEL_SCOPE</font>* = 1;
+                    <font color="#cc0033">SUBTREE_SCOPE</font>*  = 2;
+                  <b>END</b>;
+
+  <a name="type-EventDirContext"></a><font color="#cc0033">EventDirContext</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="javax_naming_event.html#type-EventContext">javax_naming_event.EventContext</a> + <a href="javax_naming_directory.html#type-DirContext">javax_naming_directory.DirContext</a>)
+                     <font color="green"><b> (* </b><a href="#meths-EventDirContext">Typebound Procedures</a><b> *)</b></font>
+                     <b>END</b>;
+
+  <a name="type-NamespaceChangeListener"></a><font color="#cc0033">NamespaceChangeListener</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-NamingListener">NamingListener</a>)
+                             <font color="green"><b> (* </b><a href="#meths-NamespaceChangeListener">Typebound Procedures</a><b> *)</b></font>
+                             <b>END</b>;
+
+  <a name="type-NamingEvent"></a><font color="#cc0033">NamingEvent</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_util.html#type-EventObject">java_util.EventObject</a>)
+                 <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                 <font color="green"><b> (* </b><a href="#meths-NamingEvent">Typebound Procedures</a><b> *)</b></font>
+                   <font color="#cc0033">changeInfo</font>! : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                   <font color="#cc0033">type</font>!       : INTEGER;
+                   <font color="#cc0033">oldBinding</font>! : <a href="javax_naming.html#type-Binding">javax_naming.Binding</a>;
+                   <font color="#cc0033">newBinding</font>! : <a href="javax_naming.html#type-Binding">javax_naming.Binding</a>;
+                 <b>STATIC</b>
+                   <font color="#cc0033">OBJECT_ADDED</font>*   = 0;
+                   <font color="#cc0033">OBJECT_CHANGED</font>* = 3;
+                   <font color="#cc0033">OBJECT_REMOVED</font>* = 1;
+                   <font color="#cc0033">OBJECT_RENAMED</font>* = 2;
+                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="javax_naming_event.html#type-EventContext">javax_naming_event.EventContext</a>;
+                                   p1 : INTEGER;
+                                   p2 : <a href="javax_naming.html#type-Binding">javax_naming.Binding</a>;
+                                   p3 : <a href="javax_naming.html#type-Binding">javax_naming.Binding</a>;
+                                   p4 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="#type-NamingEvent">NamingEvent</a><b>,CONSTRUCTOR</b>;
+                 <b>END</b>;
+
+  <a name="type-NamingExceptionEvent"></a><font color="#cc0033">NamingExceptionEvent</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_util.html#type-EventObject">java_util.EventObject</a>)
+                          <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                          <font color="green"><b> (* </b><a href="#meths-NamingExceptionEvent">Typebound Procedures</a><b> *)</b></font>
+                          <b>STATIC</b>
+                            <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="javax_naming_event.html#type-EventContext">javax_naming_event.EventContext</a>;
+                                            p1 : <a href="javax_naming.html#type-NamingException">javax_naming.NamingException</a>) : <a href="#type-NamingExceptionEvent">NamingExceptionEvent</a><b>,CONSTRUCTOR</b>;
+                          <b>END</b>;
+
+  <a name="type-NamingListener"></a><font color="#cc0033">NamingListener</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_util.html#type-EventListener">java_util.EventListener</a>)
+                    <font color="green"><b> (* </b><a href="#meths-NamingListener">Typebound Procedures</a><b> *)</b></font>
+                    <b>END</b>;
+
+  <a name="type-ObjectChangeListener"></a><font color="#cc0033">ObjectChangeListener</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-NamingListener">NamingListener</a>)
+                          <font color="green"><b> (* </b><a href="#meths-ObjectChangeListener">Typebound Procedures</a><b> *)</b></font>
+                          <b>END</b>;
+
+
+
+<a name="meths-EventContext"></a>
+<b>PROCEDURE </b>(self:EventContext) <font color="#cc0033">addNamingListener</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                 p1 : INTEGER;
+                                                 p2 : <a href="#type-NamingListener">NamingListener</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:EventContext) <font color="#cc0033">addNamingListener</font>*(p0 : <a href="javax_naming.html#type-Name">javax_naming.Name</a>;
+                                                 p1 : INTEGER;
+                                                 p2 : <a href="#type-NamingListener">NamingListener</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:EventContext) <font color="#cc0033">removeNamingListener</font>*(p0 : <a href="#type-NamingListener">NamingListener</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:EventContext) <font color="#cc0033">targetMustExist</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+<a name="meths-EventDirContext"></a>
+<b>PROCEDURE </b>(self:EventDirContext) <font color="#cc0033">addNamingListener</font>*(    p0 : <a href="javax_naming.html#type-Name">javax_naming.Name</a>;
+                                                        p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                    IN  p2 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                        p3 : <a href="javax_naming_directory.html#type-SearchControls">javax_naming_directory.SearchControls</a>;
+                                                        p4 : <a href="#type-NamingListener">NamingListener</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:EventDirContext) <font color="#cc0033">addNamingListener</font>*(    p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                        p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                    IN  p2 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                        p3 : <a href="javax_naming_directory.html#type-SearchControls">javax_naming_directory.SearchControls</a>;
+                                                        p4 : <a href="#type-NamingListener">NamingListener</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:EventDirContext) <font color="#cc0033">addNamingListener</font>*(p0 : <a href="javax_naming.html#type-Name">javax_naming.Name</a>;
+                                                    p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                    p2 : <a href="javax_naming_directory.html#type-SearchControls">javax_naming_directory.SearchControls</a>;
+                                                    p3 : <a href="#type-NamingListener">NamingListener</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:EventDirContext) <font color="#cc0033">addNamingListener</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                    p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                    p2 : <a href="javax_naming_directory.html#type-SearchControls">javax_naming_directory.SearchControls</a>;
+                                                    p3 : <a href="#type-NamingListener">NamingListener</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-NamespaceChangeListener"></a>
+<b>PROCEDURE </b>(self:NamespaceChangeListener) <font color="#cc0033">objectAdded</font>*(p0 : <a href="javax_naming_event.html#type-NamingEvent">javax_naming_event.NamingEvent</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:NamespaceChangeListener) <font color="#cc0033">objectRemoved</font>*(p0 : <a href="javax_naming_event.html#type-NamingEvent">javax_naming_event.NamingEvent</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:NamespaceChangeListener) <font color="#cc0033">objectRenamed</font>*(p0 : <a href="javax_naming_event.html#type-NamingEvent">javax_naming_event.NamingEvent</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-NamingEvent"></a>
+<b>PROCEDURE </b>(self:NamingEvent) <font color="#cc0033">dispatch</font>*(p0 : <a href="#type-NamingListener">NamingListener</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:NamingEvent) <font color="#cc0033">getChangeInfo</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:NamingEvent) <font color="#cc0033">getEventContext</font>*() : <a href="javax_naming_event.html#type-EventContext">javax_naming_event.EventContext</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:NamingEvent) <font color="#cc0033">getNewBinding</font>*() : <a href="javax_naming.html#type-Binding">javax_naming.Binding</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:NamingEvent) <font color="#cc0033">getOldBinding</font>*() : <a href="javax_naming.html#type-Binding">javax_naming.Binding</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:NamingEvent) <font color="#cc0033">getType</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-NamingExceptionEvent"></a>
+<b>PROCEDURE </b>(self:NamingExceptionEvent) <font color="#cc0033">dispatch</font>*(p0 : <a href="#type-NamingListener">NamingListener</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:NamingExceptionEvent) <font color="#cc0033">getEventContext</font>*() : <a href="javax_naming_event.html#type-EventContext">javax_naming_event.EventContext</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:NamingExceptionEvent) <font color="#cc0033">getException</font>*() : <a href="javax_naming.html#type-NamingException">javax_naming.NamingException</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-NamingListener"></a>
+<b>PROCEDURE </b>(self:NamingListener) <font color="#cc0033">namingExceptionThrown</font>*(p0 : <a href="javax_naming_event.html#type-NamingExceptionEvent">javax_naming_event.NamingExceptionEvent</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-ObjectChangeListener"></a>
+<b>PROCEDURE </b>(self:ObjectChangeListener) <font color="#cc0033">objectChanged</font>*(p0 : <a href="#type-NamingEvent">NamingEvent</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>END </b><font color="#cc0033">javax_naming_event</font>.
+</font></pre></hr>
+<!-- BEGIN JavaScript -->
+<script>
+function toggle(node) {
+    node.classList.toggle("show"); 
+  }
+
+function cls(node) {
+    var prnt = node.parentNode;
+    var next = prnt.previousSibling;
+    var text = next.lastChild;
+    text.innerHTML = 
+        "The <b>class</b> property asserts that this type will be<br>" +
+        "implemented as a reference class in the underlying framework.";
+    text.classList.toggle("show");
+  }
+
+function newOk(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>has noArg-ctor</b> property asserts that this reference<br>" +
+        "class has a no-arg constructor, and thus objects of this<br>" +
+        "type can be allocated with NEW(). Component Pascal types<br>" +
+        "derived from this type can also be allocated using NEW().";
+    popuptext.classList.toggle("show"); 
+  }
+
+function noNew(node) { 
+    var prnt = node.parentNode; 
+    var next = prnt.previousSibling; 
+    var text = next.lastChild; 
+    text.innerHTML =  
+        "The <b>no noArg-ctor</b> property asserts that this reference<br>" +
+        "class does not have a noArg constructor. Objects of this<br>" +
+        "type cannot be allocated using NEW(), and Component<br>" +
+        "Pascal types  derived from this type also cannot be<br>" +
+        "allocated using NEW().";
+    text.classList.toggle("show");
+  }
+
+function noCpy(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>no value-assign</b> property asserts that this reference<br>" + 
+        "class does not have a value copy method. Therefore, it<br>" +
+        "is not possible to perform value assignments using<br>" +
+        "statements like <i>dst^</i> := <i>src^</i>";
+    popuptext.classList.toggle("show");
+  }
+
+function valueclass(node) { 
+        var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>valueclass</b> property asserts that this RECORD type is<br>" + 
+        "implemented as a value class in the CLR. It follows that<br>" +  
+        "value assignments can be made of these types. They can<br>" + 
+        "also be passed by value. Even pointers to records of<br>" + 
+        "such types may be dereferenced and copied using syntax<br>" + 
+        "such as  <i>dst^</i> := <i>src^</i>"; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+function argCtor(node) { 
+    var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>has arg-ctor</b> property asserts that this reference<br>" +  
+        "class has one or more constructors that take arguments.<br>" + 
+        "These constructors can be called from Component Pascal<br>" + 
+        "by calling an <i>init</i>(...) method from the static list<br>" + 
+        "here. Component Pascal types derived from this type<br>" + 
+        "can define constructors with arguments which call the<br>" + 
+        "super-type constructor.<br>" + 
+        "See <i>'Interfacing to constructors'</i> in the Release Notes."; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+</script>
+<!-- END JavaScript --> 
+
+</body></html>

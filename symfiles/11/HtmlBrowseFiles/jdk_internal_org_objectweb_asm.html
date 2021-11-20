@@ -1,0 +1,1087 @@
+<html><head><title>jdk_internal_org_objectweb_asm</title>
+<style>
+<!-- BEGIN Inline CSS -->
+/* Popup container */
+.popup {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+/* The actual popup (appears on top) */
+.popup .popuptext {
+    visibility: hidden;
+    width: 430px;
+    background-color: white;
+    color: black;
+    text-align: left;
+    border-radius: 6px;
+    border-style: solid;
+    border-color: black;
+    padding: 8px 8px 8px 8px;
+    position: absolute;
+    z-index: 1;
+    margin-top: 30px;
+}
+
+/* Toggle this class when clicking on the popup container (hide and show the popup) */
+.popup .show {
+    visibility: visible;
+    opacity: 1;
+}
+
+</style>
+<!-- END Inline CSS -->
+</head><body bgcolor="white">
+<hr><pre>
+<font color="green">(*</font>
+<font color="green"> *  Creator PeToCps j2cps version 1.4.07 (March 2018)</font>
+<font color="green"> *  Compiled from jar-file /Library/Java/JavaVirtualMachines/zulu-11.jdk/Contents/Home/jmods/java.base.jmod</font>
+<font color="green"> *)</font>
+<b>FOREIGN MODULE </b><font color="#cc0033">jdk_internal_org_objectweb_asm</font>;
+
+<b>IMPORT</b>
+    <a href="java_io.html">java_io</a> := "java.io",
+    <a href="java_lang.html">java_lang</a> := "java.lang",
+    <a href="java_lang_reflect.html">java_lang_reflect</a> := "java.lang.reflect",
+    <a href="jdk_internal_org_objectweb_asm.html">jdk_internal_org_objectweb_asm</a> := "jdk.internal.org.objectweb.asm";
+
+<b>TYPE</b>
+
+  <a name="type-AnnotationVisitor"></a><font color="#cc0033">AnnotationVisitor</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                       <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                       <font color="green"><b> (* </b><a href="#meths-AnnotationVisitor">Typebound Procedures</a><b> *)</b></font>
+                         <font color="#cc0033">api</font>! : INTEGER;
+                         <font color="#cc0033">av</font>!  : <a href="#type-AnnotationVisitor">AnnotationVisitor</a>;
+                       <b>STATIC</b>
+                         <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER;
+                                         p1 : <a href="#type-AnnotationVisitor">AnnotationVisitor</a>) : <a href="#type-AnnotationVisitor">AnnotationVisitor</a><b>,CONSTRUCTOR</b>;
+                         <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER) : <a href="#type-AnnotationVisitor">AnnotationVisitor</a><b>,CONSTRUCTOR</b>;
+                       <b>END</b>;
+
+  <a name="type-Attribute"></a><font color="#cc0033">Attribute</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+               <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+               <font color="green"><b> (* </b><a href="#meths-Attribute">Typebound Procedures</a><b> *)</b></font>
+                 <font color="#cc0033">type</font>* : <a href="java_lang.html#type-String">java_lang.String</a>;
+               <b>STATIC</b>
+                 <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-Attribute">Attribute</a><b>,CONSTRUCTOR</b>;
+               <b>END</b>;
+
+  <a name="type-Attribute$NestHost"></a><font color="#cc0033">Attribute$NestHost</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="jdk_internal_org_objectweb_asm.html#type-Attribute">jdk_internal_org_objectweb_asm.Attribute</a>)
+                        <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                        <font color="green"><b> (* </b><a href="#meths-Attribute$NestHost">Typebound Procedures</a><b> *)</b></font>
+                        <b>STATIC</b>
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-Attribute$NestHost">Attribute$NestHost</a><b>,CONSTRUCTOR</b>;
+                        <b>END</b>;
+
+  <a name="type-Attribute$NestMembers"></a><font color="#cc0033">Attribute$NestMembers</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="jdk_internal_org_objectweb_asm.html#type-Attribute">jdk_internal_org_objectweb_asm.Attribute</a>)
+                           <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                           <font color="green"><b> (* </b><a href="#meths-Attribute$NestMembers">Typebound Procedures</a><b> *)</b></font>
+                           <b>STATIC</b>
+                             <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-Attribute$NestMembers">Attribute$NestMembers</a><b>,CONSTRUCTOR</b>;
+                           <b>END</b>;
+
+  <a name="type-ByteVector"></a><font color="#cc0033">ByteVector</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                <font color="green"><b> (* </b><a href="#meths-ByteVector">Typebound Procedures</a><b> *)</b></font>
+                <b>STATIC</b>
+                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER) : <a href="#type-ByteVector">ByteVector</a><b>,CONSTRUCTOR</b>;
+                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-ByteVector">ByteVector</a><b>,CONSTRUCTOR</b>;
+                <b>END</b>;
+
+  <a name="type-ClassReader"></a><font color="#cc0033">ClassReader</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                 <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                 <font color="green"><b> (* </b><a href="#meths-ClassReader">Typebound Procedures</a><b> *)</b></font>
+                   <font color="#cc0033">b</font>*      : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE;
+                   <font color="#cc0033">header</font>* : INTEGER;
+                 <b>STATIC</b>
+                   <font color="#cc0033">EXPAND_FRAMES</font>* = 8;
+                   <font color="#cc0033">SKIP_CODE</font>*     = 1;
+                   <font color="#cc0033">SKIP_DEBUG</font>*    = 2;
+                   <font color="#cc0033">SKIP_FRAMES</font>*   = 4;
+                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_io.html#type-InputStream">java_io.InputStream</a>) : <a href="#type-ClassReader">ClassReader</a><b>,CONSTRUCTOR</b>;
+                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-ClassReader">ClassReader</a><b>,CONSTRUCTOR</b>;
+                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE) : <a href="#type-ClassReader">ClassReader</a><b>,CONSTRUCTOR</b>;
+                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE;
+                                       p1 : INTEGER;
+                                       p2 : INTEGER) : <a href="#type-ClassReader">ClassReader</a><b>,CONSTRUCTOR</b>;
+                 <b>END</b>;
+
+  <a name="type-ClassVisitor"></a><font color="#cc0033">ClassVisitor</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                  <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                  <font color="green"><b> (* </b><a href="#meths-ClassVisitor">Typebound Procedures</a><b> *)</b></font>
+                    <font color="#cc0033">api</font>! : INTEGER;
+                    <font color="#cc0033">cv</font>!  : <a href="#type-ClassVisitor">ClassVisitor</a>;
+                  <b>STATIC</b>
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER;
+                                    p1 : <a href="#type-ClassVisitor">ClassVisitor</a>) : <a href="#type-ClassVisitor">ClassVisitor</a><b>,CONSTRUCTOR</b>;
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER) : <a href="#type-ClassVisitor">ClassVisitor</a><b>,CONSTRUCTOR</b>;
+                  <b>END</b>;
+
+  <a name="type-ClassWriter"></a><font color="#cc0033">ClassWriter</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="jdk_internal_org_objectweb_asm.html#type-ClassVisitor">jdk_internal_org_objectweb_asm.ClassVisitor</a>)
+                 <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                 <font color="green"><b> (* </b><a href="#meths-ClassWriter">Typebound Procedures</a><b> *)</b></font>
+                 <b>STATIC</b>
+                   <font color="#cc0033">COMPUTE_FRAMES</font>* = 2;
+                   <font color="#cc0033">COMPUTE_MAXS</font>*   = 1;
+                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="jdk_internal_org_objectweb_asm.html#type-ClassReader">jdk_internal_org_objectweb_asm.ClassReader</a>;
+                                   p1 : INTEGER) : <a href="#type-ClassWriter">ClassWriter</a><b>,CONSTRUCTOR</b>;
+                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER) : <a href="#type-ClassWriter">ClassWriter</a><b>,CONSTRUCTOR</b>;
+                 <b>END</b>;
+
+  <a name="type-FieldVisitor"></a><font color="#cc0033">FieldVisitor</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                  <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                  <font color="green"><b> (* </b><a href="#meths-FieldVisitor">Typebound Procedures</a><b> *)</b></font>
+                    <font color="#cc0033">api</font>! : INTEGER;
+                    <font color="#cc0033">fv</font>!  : <a href="#type-FieldVisitor">FieldVisitor</a>;
+                  <b>STATIC</b>
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER;
+                                    p1 : <a href="#type-FieldVisitor">FieldVisitor</a>) : <a href="#type-FieldVisitor">FieldVisitor</a><b>,CONSTRUCTOR</b>;
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER) : <a href="#type-FieldVisitor">FieldVisitor</a><b>,CONSTRUCTOR</b>;
+                  <b>END</b>;
+
+  <a name="type-Handle"></a><font color="#cc0033">Handle</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+            <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+            <font color="green"><b> (* </b><a href="#meths-Handle">Typebound Procedures</a><b> *)</b></font>
+            <b>STATIC</b>
+              <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER;
+                              p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                              p2 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                              p3 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                              p4 : BOOLEAN) : <a href="#type-Handle">Handle</a><b>,CONSTRUCTOR</b>;
+              <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER;
+                              p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                              p2 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                              p3 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-Handle">Handle</a><b>,CONSTRUCTOR</b>;
+            <b>END</b>;
+
+  <a name="type-Label"></a><font color="#cc0033">Label</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+           <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+           <font color="green"><b> (* </b><a href="#meths-Label">Typebound Procedures</a><b> *)</b></font>
+             <font color="#cc0033">info</font>* : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+           <b>STATIC</b>
+             <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-Label">Label</a><b>,CONSTRUCTOR</b>;
+           <b>END</b>;
+
+  <a name="type-MethodVisitor"></a><font color="#cc0033">MethodVisitor</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                   <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                   <font color="green"><b> (* </b><a href="#meths-MethodVisitor">Typebound Procedures</a><b> *)</b></font>
+                     <font color="#cc0033">api</font>! : INTEGER;
+                     <font color="#cc0033">mv</font>!  : <a href="#type-MethodVisitor">MethodVisitor</a>;
+                   <b>STATIC</b>
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER;
+                                     p1 : <a href="#type-MethodVisitor">MethodVisitor</a>) : <a href="#type-MethodVisitor">MethodVisitor</a><b>,CONSTRUCTOR</b>;
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER) : <a href="#type-MethodVisitor">MethodVisitor</a><b>,CONSTRUCTOR</b>;
+                   <b>END</b>;
+
+  <a name="type-ModuleVisitor"></a><font color="#cc0033">ModuleVisitor</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                   <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                   <font color="green"><b> (* </b><a href="#meths-ModuleVisitor">Typebound Procedures</a><b> *)</b></font>
+                     <font color="#cc0033">api</font>! : INTEGER;
+                     <font color="#cc0033">mv</font>!  : <a href="#type-ModuleVisitor">ModuleVisitor</a>;
+                   <b>STATIC</b>
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER;
+                                     p1 : <a href="#type-ModuleVisitor">ModuleVisitor</a>) : <a href="#type-ModuleVisitor">ModuleVisitor</a><b>,CONSTRUCTOR</b>;
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER) : <a href="#type-ModuleVisitor">ModuleVisitor</a><b>,CONSTRUCTOR</b>;
+                   <b>END</b>;
+
+  <a name="type-Opcodes"></a><font color="#cc0033">Opcodes</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+             <b>STATIC</b>
+               <font color="#cc0033">AALOAD</font>*             = 50;
+               <font color="#cc0033">AASTORE</font>*            = 83;
+               <font color="#cc0033">ACC_ABSTRACT</font>*       = 1024;
+               <font color="#cc0033">ACC_ANNOTATION</font>*     = 8192;
+               <font color="#cc0033">ACC_BRIDGE</font>*         = 64;
+               <font color="#cc0033">ACC_DEPRECATED</font>*     = 131072;
+               <font color="#cc0033">ACC_ENUM</font>*           = 16384;
+               <font color="#cc0033">ACC_FINAL</font>*          = 16;
+               <font color="#cc0033">ACC_INTERFACE</font>*      = 512;
+               <font color="#cc0033">ACC_MANDATED</font>*       = 32768;
+               <font color="#cc0033">ACC_MODULE</font>*         = 32768;
+               <font color="#cc0033">ACC_NATIVE</font>*         = 256;
+               <font color="#cc0033">ACC_OPEN</font>*           = 32;
+               <font color="#cc0033">ACC_PRIVATE</font>*        = 2;
+               <font color="#cc0033">ACC_PROTECTED</font>*      = 4;
+               <font color="#cc0033">ACC_PUBLIC</font>*         = 1;
+               <font color="#cc0033">ACC_STATIC</font>*         = 8;
+               <font color="#cc0033">ACC_STATIC_PHASE</font>*   = 64;
+               <font color="#cc0033">ACC_STRICT</font>*         = 2048;
+               <font color="#cc0033">ACC_SUPER</font>*          = 32;
+               <font color="#cc0033">ACC_SYNCHRONIZED</font>*   = 32;
+               <font color="#cc0033">ACC_SYNTHETIC</font>*      = 4096;
+               <font color="#cc0033">ACC_TRANSIENT</font>*      = 128;
+               <font color="#cc0033">ACC_TRANSITIVE</font>*     = 32;
+               <font color="#cc0033">ACC_VARARGS</font>*        = 128;
+               <font color="#cc0033">ACC_VOLATILE</font>*       = 64;
+               <font color="#cc0033">ACONST_NULL</font>*        = 1;
+               <font color="#cc0033">ALOAD</font>*              = 25;
+               <font color="#cc0033">ANEWARRAY</font>*          = 189;
+               <font color="#cc0033">ARETURN</font>*            = 176;
+               <font color="#cc0033">ARRAYLENGTH</font>*        = 190;
+               <font color="#cc0033">ASM4</font>*               = 262144;
+               <font color="#cc0033">ASM5</font>*               = 327680;
+               <font color="#cc0033">ASM6</font>*               = 393216;
+               <font color="#cc0033">ASTORE</font>*             = 58;
+               <font color="#cc0033">ATHROW</font>*             = 191;
+               <font color="#cc0033">BALOAD</font>*             = 51;
+               <font color="#cc0033">BASTORE</font>*            = 84;
+               <font color="#cc0033">BIPUSH</font>*             = 16;
+               <font color="#cc0033">CALOAD</font>*             = 52;
+               <font color="#cc0033">CASTORE</font>*            = 85;
+               <font color="#cc0033">CHECKCAST</font>*          = 192;
+               <font color="#cc0033">D2F</font>*                = 144;
+               <font color="#cc0033">D2I</font>*                = 142;
+               <font color="#cc0033">D2L</font>*                = 143;
+               <font color="#cc0033">DADD</font>*               = 99;
+               <font color="#cc0033">DALOAD</font>*             = 49;
+               <font color="#cc0033">DASTORE</font>*            = 82;
+               <font color="#cc0033">DCMPG</font>*              = 152;
+               <font color="#cc0033">DCMPL</font>*              = 151;
+               <font color="#cc0033">DCONST_0</font>*           = 14;
+               <font color="#cc0033">DCONST_1</font>*           = 15;
+               <font color="#cc0033">DDIV</font>*               = 111;
+               <font color="#cc0033">DLOAD</font>*              = 24;
+               <font color="#cc0033">DMUL</font>*               = 107;
+               <font color="#cc0033">DNEG</font>*               = 119;
+               <a name="type-DOUBLE"></a><font color="#cc0033">DOUBLE</font>*             : <a href="java_lang.html#type-Integer">java_lang.Integer</a>;
+               <font color="#cc0033">DREM</font>*               = 115;
+               <font color="#cc0033">DRETURN</font>*            = 175;
+               <font color="#cc0033">DSTORE</font>*             = 57;
+               <font color="#cc0033">DSUB</font>*               = 103;
+               <font color="#cc0033">DUP</font>*                = 89;
+               <font color="#cc0033">DUP2</font>*               = 92;
+               <font color="#cc0033">DUP2_X1</font>*            = 93;
+               <font color="#cc0033">DUP2_X2</font>*            = 94;
+               <font color="#cc0033">DUP_X1</font>*             = 90;
+               <font color="#cc0033">DUP_X2</font>*             = 91;
+               <font color="#cc0033">F2D</font>*                = 141;
+               <font color="#cc0033">F2I</font>*                = 139;
+               <font color="#cc0033">F2L</font>*                = 140;
+               <font color="#cc0033">FADD</font>*               = 98;
+               <font color="#cc0033">FALOAD</font>*             = 48;
+               <font color="#cc0033">FASTORE</font>*            = 81;
+               <font color="#cc0033">FCMPG</font>*              = 150;
+               <font color="#cc0033">FCMPL</font>*              = 149;
+               <font color="#cc0033">FCONST_0</font>*           = 11;
+               <font color="#cc0033">FCONST_1</font>*           = 12;
+               <font color="#cc0033">FCONST_2</font>*           = 13;
+               <font color="#cc0033">FDIV</font>*               = 110;
+               <font color="#cc0033">FLOAD</font>*              = 23;
+               <a name="type-FLOAT"></a><font color="#cc0033">FLOAT</font>*              : <a href="java_lang.html#type-Integer">java_lang.Integer</a>;
+               <font color="#cc0033">FMUL</font>*               = 106;
+               <font color="#cc0033">FNEG</font>*               = 118;
+               <font color="#cc0033">FREM</font>*               = 114;
+               <font color="#cc0033">FRETURN</font>*            = 174;
+               <font color="#cc0033">FSTORE</font>*             = 56;
+               <font color="#cc0033">FSUB</font>*               = 102;
+               <font color="#cc0033">F_APPEND</font>*           = 1;
+               <font color="#cc0033">F_CHOP</font>*             = 2;
+               <font color="#cc0033">F_FULL</font>*             = 0;
+               <font color="#cc0033">F_NEW</font>*              = -1;
+               <font color="#cc0033">F_SAME</font>*             = 3;
+               <font color="#cc0033">F_SAME1</font>*            = 4;
+               <font color="#cc0033">GETFIELD</font>*           = 180;
+               <font color="#cc0033">GETSTATIC</font>*          = 178;
+               <font color="#cc0033">GOTO</font>*               = 167;
+               <font color="#cc0033">H_GETFIELD</font>*         = 1;
+               <font color="#cc0033">H_GETSTATIC</font>*        = 2;
+               <font color="#cc0033">H_INVOKEINTERFACE</font>*  = 9;
+               <font color="#cc0033">H_INVOKESPECIAL</font>*    = 7;
+               <font color="#cc0033">H_INVOKESTATIC</font>*     = 6;
+               <font color="#cc0033">H_INVOKEVIRTUAL</font>*    = 5;
+               <font color="#cc0033">H_NEWINVOKESPECIAL</font>* = 8;
+               <font color="#cc0033">H_PUTFIELD</font>*         = 3;
+               <font color="#cc0033">H_PUTSTATIC</font>*        = 4;
+               <font color="#cc0033">I2B</font>*                = 145;
+               <font color="#cc0033">I2C</font>*                = 146;
+               <font color="#cc0033">I2D</font>*                = 135;
+               <font color="#cc0033">I2F</font>*                = 134;
+               <font color="#cc0033">I2L</font>*                = 133;
+               <font color="#cc0033">I2S</font>*                = 147;
+               <font color="#cc0033">IADD</font>*               = 96;
+               <font color="#cc0033">IALOAD</font>*             = 46;
+               <font color="#cc0033">IAND</font>*               = 126;
+               <font color="#cc0033">IASTORE</font>*            = 79;
+               <font color="#cc0033">ICONST_0</font>*           = 3;
+               <font color="#cc0033">ICONST_1</font>*           = 4;
+               <font color="#cc0033">ICONST_2</font>*           = 5;
+               <font color="#cc0033">ICONST_3</font>*           = 6;
+               <font color="#cc0033">ICONST_4</font>*           = 7;
+               <font color="#cc0033">ICONST_5</font>*           = 8;
+               <font color="#cc0033">ICONST_M1</font>*          = 2;
+               <font color="#cc0033">IDIV</font>*               = 108;
+               <font color="#cc0033">IFEQ</font>*               = 153;
+               <font color="#cc0033">IFGE</font>*               = 156;
+               <font color="#cc0033">IFGT</font>*               = 157;
+               <font color="#cc0033">IFLE</font>*               = 158;
+               <font color="#cc0033">IFLT</font>*               = 155;
+               <font color="#cc0033">IFNE</font>*               = 154;
+               <font color="#cc0033">IFNONNULL</font>*          = 199;
+               <font color="#cc0033">IFNULL</font>*             = 198;
+               <font color="#cc0033">IF_ACMPEQ</font>*          = 165;
+               <font color="#cc0033">IF_ACMPNE</font>*          = 166;
+               <font color="#cc0033">IF_ICMPEQ</font>*          = 159;
+               <font color="#cc0033">IF_ICMPGE</font>*          = 162;
+               <font color="#cc0033">IF_ICMPGT</font>*          = 163;
+               <font color="#cc0033">IF_ICMPLE</font>*          = 164;
+               <font color="#cc0033">IF_ICMPLT</font>*          = 161;
+               <font color="#cc0033">IF_ICMPNE</font>*          = 160;
+               <font color="#cc0033">IINC</font>*               = 132;
+               <font color="#cc0033">ILOAD</font>*              = 21;
+               <font color="#cc0033">IMUL</font>*               = 104;
+               <font color="#cc0033">INEG</font>*               = 116;
+               <font color="#cc0033">INSTANCEOF</font>*         = 193;
+               <a name="type-INTEGER"></a><font color="#cc0033">INTEGER</font>*            : <a href="java_lang.html#type-Integer">java_lang.Integer</a>;
+               <font color="#cc0033">INVOKEDYNAMIC</font>*      = 186;
+               <font color="#cc0033">INVOKEINTERFACE</font>*    = 185;
+               <font color="#cc0033">INVOKESPECIAL</font>*      = 183;
+               <font color="#cc0033">INVOKESTATIC</font>*       = 184;
+               <font color="#cc0033">INVOKEVIRTUAL</font>*      = 182;
+               <font color="#cc0033">IOR</font>*                = 128;
+               <font color="#cc0033">IREM</font>*               = 112;
+               <font color="#cc0033">IRETURN</font>*            = 172;
+               <font color="#cc0033">ISHL</font>*               = 120;
+               <font color="#cc0033">ISHR</font>*               = 122;
+               <font color="#cc0033">ISTORE</font>*             = 54;
+               <font color="#cc0033">ISUB</font>*               = 100;
+               <font color="#cc0033">IUSHR</font>*              = 124;
+               <font color="#cc0033">IXOR</font>*               = 130;
+               <font color="#cc0033">JSR</font>*                = 168;
+               <font color="#cc0033">L2D</font>*                = 138;
+               <font color="#cc0033">L2F</font>*                = 137;
+               <font color="#cc0033">L2I</font>*                = 136;
+               <font color="#cc0033">LADD</font>*               = 97;
+               <font color="#cc0033">LALOAD</font>*             = 47;
+               <font color="#cc0033">LAND</font>*               = 127;
+               <font color="#cc0033">LASTORE</font>*            = 80;
+               <font color="#cc0033">LCMP</font>*               = 148;
+               <font color="#cc0033">LCONST_0</font>*           = 9;
+               <font color="#cc0033">LCONST_1</font>*           = 10;
+               <font color="#cc0033">LDC</font>*                = 18;
+               <font color="#cc0033">LDIV</font>*               = 109;
+               <font color="#cc0033">LLOAD</font>*              = 22;
+               <font color="#cc0033">LMUL</font>*               = 105;
+               <font color="#cc0033">LNEG</font>*               = 117;
+               <a name="type-LONG"></a><font color="#cc0033">LONG</font>*               : <a href="java_lang.html#type-Integer">java_lang.Integer</a>;
+               <font color="#cc0033">LOOKUPSWITCH</font>*       = 171;
+               <font color="#cc0033">LOR</font>*                = 129;
+               <font color="#cc0033">LREM</font>*               = 113;
+               <font color="#cc0033">LRETURN</font>*            = 173;
+               <font color="#cc0033">LSHL</font>*               = 121;
+               <font color="#cc0033">LSHR</font>*               = 123;
+               <font color="#cc0033">LSTORE</font>*             = 55;
+               <font color="#cc0033">LSUB</font>*               = 101;
+               <font color="#cc0033">LUSHR</font>*              = 125;
+               <font color="#cc0033">LXOR</font>*               = 131;
+               <font color="#cc0033">MONITORENTER</font>*       = 194;
+               <font color="#cc0033">MONITOREXIT</font>*        = 195;
+               <font color="#cc0033">MULTIANEWARRAY</font>*     = 197;
+               <font color="#cc0033">NEW</font>*                = 187;
+               <font color="#cc0033">NEWARRAY</font>*           = 188;
+               <font color="#cc0033">NOP</font>*                = 0;
+               <a name="type-NULL"></a><font color="#cc0033">NULL</font>*               : <a href="java_lang.html#type-Integer">java_lang.Integer</a>;
+               <font color="#cc0033">POP</font>*                = 87;
+               <font color="#cc0033">POP2</font>*               = 88;
+               <font color="#cc0033">PUTFIELD</font>*           = 181;
+               <font color="#cc0033">PUTSTATIC</font>*          = 179;
+               <font color="#cc0033">RET</font>*                = 169;
+               <font color="#cc0033">RETURN</font>*             = 177;
+               <font color="#cc0033">SALOAD</font>*             = 53;
+               <font color="#cc0033">SASTORE</font>*            = 86;
+               <font color="#cc0033">SIPUSH</font>*             = 17;
+               <font color="#cc0033">SWAP</font>*               = 95;
+               <font color="#cc0033">TABLESWITCH</font>*        = 170;
+               <a name="type-TOP"></a><font color="#cc0033">TOP</font>*                : <a href="java_lang.html#type-Integer">java_lang.Integer</a>;
+               <font color="#cc0033">T_BOOLEAN</font>*          = 4;
+               <font color="#cc0033">T_BYTE</font>*             = 8;
+               <font color="#cc0033">T_CHAR</font>*             = 5;
+               <font color="#cc0033">T_DOUBLE</font>*           = 7;
+               <font color="#cc0033">T_FLOAT</font>*            = 6;
+               <font color="#cc0033">T_INT</font>*              = 10;
+               <font color="#cc0033">T_LONG</font>*             = 11;
+               <font color="#cc0033">T_SHORT</font>*            = 9;
+               <a name="type-UNINITIALIZED_THIS"></a><font color="#cc0033">UNINITIALIZED_THIS</font>* : <a href="java_lang.html#type-Integer">java_lang.Integer</a>;
+               <font color="#cc0033">V10</font>*                = 54;
+               <font color="#cc0033">V11</font>*                = 55;
+               <font color="#cc0033">V1_1</font>*               = 196653;
+               <font color="#cc0033">V1_2</font>*               = 46;
+               <font color="#cc0033">V1_3</font>*               = 47;
+               <font color="#cc0033">V1_4</font>*               = 48;
+               <font color="#cc0033">V1_5</font>*               = 49;
+               <font color="#cc0033">V1_6</font>*               = 50;
+               <font color="#cc0033">V1_7</font>*               = 51;
+               <font color="#cc0033">V1_8</font>*               = 52;
+               <font color="#cc0033">V9</font>*                 = 53;
+             <b>END</b>;
+
+  <a name="type-Type"></a><font color="#cc0033">Type</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+          <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> *)</font>
+          <font color="green"><b> (* </b><a href="#meths-Type">Typebound Procedures</a><b> *)</b></font>
+          <b>STATIC</b>
+            <font color="#cc0033">ARRAY</font>*                      = 9;
+            <font color="#cc0033">BOOLEAN</font>*                    = 1;
+            <a name="type-BOOLEAN_TYPE"></a><font color="#cc0033">BOOLEAN_TYPE</font>*               : <a href="#type-Type">Type</a>;
+            <font color="#cc0033">BYTE</font>*                       = 3;
+            <a name="type-BYTE_TYPE"></a><font color="#cc0033">BYTE_TYPE</font>*                  : <a href="#type-Type">Type</a>;
+            <font color="#cc0033">CHAR</font>*                       = 2;
+            <a name="type-CHAR_TYPE"></a><font color="#cc0033">CHAR_TYPE</font>*                  : <a href="#type-Type">Type</a>;
+            <font color="#cc0033">DOUBLE</font>*                     = 8;
+            <a name="type-DOUBLE_TYPE"></a><font color="#cc0033">DOUBLE_TYPE</font>*                : <a href="#type-Type">Type</a>;
+            <font color="#cc0033">FLOAT</font>*                      = 6;
+            <a name="type-FLOAT_TYPE"></a><font color="#cc0033">FLOAT_TYPE</font>*                 : <a href="#type-Type">Type</a>;
+            <font color="#cc0033">INT</font>*                        = 5;
+            <a name="type-INT_TYPE"></a><font color="#cc0033">INT_TYPE</font>*                   : <a href="#type-Type">Type</a>;
+            <font color="#cc0033">LONG</font>*                       = 7;
+            <a name="type-LONG_TYPE"></a><font color="#cc0033">LONG_TYPE</font>*                  : <a href="#type-Type">Type</a>;
+            <font color="#cc0033">METHOD</font>*                     = 11;
+            <font color="#cc0033">OBJECT</font>*                     = 10;
+            <font color="#cc0033">SHORT</font>*                      = 4;
+            <a name="type-SHORT_TYPE"></a><font color="#cc0033">SHORT_TYPE</font>*                 : <a href="#type-Type">Type</a>;
+            <font color="#cc0033">VOID</font>*                       = 0;
+            <a name="type-VOID_TYPE"></a><font color="#cc0033">VOID_TYPE</font>*                  : <a href="#type-Type">Type</a>;
+            <b>PROCEDURE </b><font color="#cc0033">getArgumentsAndReturnSizes</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : INTEGER;
+            <b>PROCEDURE </b><font color="#cc0033">getArgumentTypes</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-Type">Type</a>;
+            <b>PROCEDURE </b><font color="#cc0033">getArgumentTypes</font>*(p0 : <a href="java_lang_reflect.html#type-Method">java_lang_reflect.Method</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-Type">Type</a>;
+            <b>PROCEDURE </b><font color="#cc0033">getConstructorDescriptor</font>*(p0 : <a href="java_lang_reflect.html#type-Constructor">java_lang_reflect.Constructor</a>) : <a href="java_lang.html#type-String">java_lang.String</a>;
+            <b>PROCEDURE </b><font color="#cc0033">getDescriptor</font>*(p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>) : <a href="java_lang.html#type-String">java_lang.String</a>;
+            <b>PROCEDURE </b><font color="#cc0033">getInternalName</font>*(p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>) : <a href="java_lang.html#type-String">java_lang.String</a>;
+            <b>PROCEDURE </b><font color="#cc0033">getMethodDescriptor</font>*(    p0 : <a href="#type-Type">Type</a>;
+                                           IN  p1 : <b>ARRAY </b><b>OF </b><a href="#type-Type">Type</a>) : <a href="java_lang.html#type-String">java_lang.String</a>;
+            <b>PROCEDURE </b><font color="#cc0033">getMethodDescriptor</font>*(p0 : <a href="java_lang_reflect.html#type-Method">java_lang_reflect.Method</a>) : <a href="java_lang.html#type-String">java_lang.String</a>;
+            <b>PROCEDURE </b><font color="#cc0033">getMethodType</font>*(    p0 : <a href="#type-Type">Type</a>;
+                                     IN  p1 : <b>ARRAY </b><b>OF </b><a href="#type-Type">Type</a>) : <a href="#type-Type">Type</a>;
+            <b>PROCEDURE </b><font color="#cc0033">getMethodType</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-Type">Type</a>;
+            <b>PROCEDURE </b><font color="#cc0033">getObjectType</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-Type">Type</a>;
+            <b>PROCEDURE </b><font color="#cc0033">getReturnType</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-Type">Type</a>;
+            <b>PROCEDURE </b><font color="#cc0033">getReturnType</font>*(p0 : <a href="java_lang_reflect.html#type-Method">java_lang_reflect.Method</a>) : <a href="#type-Type">Type</a>;
+            <b>PROCEDURE </b><font color="#cc0033">getType</font>*(p0 : <a href="java_lang_reflect.html#type-Constructor">java_lang_reflect.Constructor</a>) : <a href="#type-Type">Type</a>;
+            <b>PROCEDURE </b><font color="#cc0033">getType</font>*(p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>) : <a href="#type-Type">Type</a>;
+            <b>PROCEDURE </b><font color="#cc0033">getType</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-Type">Type</a>;
+            <b>PROCEDURE </b><font color="#cc0033">getType</font>*(p0 : <a href="java_lang_reflect.html#type-Method">java_lang_reflect.Method</a>) : <a href="#type-Type">Type</a>;
+          <b>END</b>;
+
+  <a name="type-TypePath"></a><font color="#cc0033">TypePath</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+              <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> *)</font>
+              <font color="green"><b> (* </b><a href="#meths-TypePath">Typebound Procedures</a><b> *)</b></font>
+              <b>STATIC</b>
+                <font color="#cc0033">ARRAY_ELEMENT</font>*  = 0;
+                <font color="#cc0033">INNER_TYPE</font>*     = 1;
+                <font color="#cc0033">TYPE_ARGUMENT</font>*  = 3;
+                <font color="#cc0033">WILDCARD_BOUND</font>* = 2;
+                <b>PROCEDURE </b><font color="#cc0033">fromString</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-TypePath">TypePath</a>;
+              <b>END</b>;
+
+  <a name="type-TypeReference"></a><font color="#cc0033">TypeReference</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                   <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                   <font color="green"><b> (* </b><a href="#meths-TypeReference">Typebound Procedures</a><b> *)</b></font>
+                   <b>STATIC</b>
+                     <font color="#cc0033">CAST</font>*                                 = 71;
+                     <font color="#cc0033">CLASS_EXTENDS</font>*                        = 16;
+                     <font color="#cc0033">CLASS_TYPE_PARAMETER</font>*                 = 0;
+                     <font color="#cc0033">CLASS_TYPE_PARAMETER_BOUND</font>*           = 17;
+                     <font color="#cc0033">CONSTRUCTOR_INVOCATION_TYPE_ARGUMENT</font>* = 72;
+                     <font color="#cc0033">CONSTRUCTOR_REFERENCE</font>*                = 69;
+                     <font color="#cc0033">CONSTRUCTOR_REFERENCE_TYPE_ARGUMENT</font>*  = 74;
+                     <font color="#cc0033">EXCEPTION_PARAMETER</font>*                  = 66;
+                     <font color="#cc0033">FIELD</font>*                                = 19;
+                     <font color="#cc0033">INSTANCEOF</font>*                           = 67;
+                     <font color="#cc0033">LOCAL_VARIABLE</font>*                       = 64;
+                     <font color="#cc0033">METHOD_FORMAL_PARAMETER</font>*              = 22;
+                     <font color="#cc0033">METHOD_INVOCATION_TYPE_ARGUMENT</font>*      = 73;
+                     <font color="#cc0033">METHOD_RECEIVER</font>*                      = 21;
+                     <font color="#cc0033">METHOD_REFERENCE</font>*                     = 70;
+                     <font color="#cc0033">METHOD_REFERENCE_TYPE_ARGUMENT</font>*       = 75;
+                     <font color="#cc0033">METHOD_RETURN</font>*                        = 20;
+                     <font color="#cc0033">METHOD_TYPE_PARAMETER</font>*                = 1;
+                     <font color="#cc0033">METHOD_TYPE_PARAMETER_BOUND</font>*          = 18;
+                     <font color="#cc0033">NEW</font>*                                  = 68;
+                     <font color="#cc0033">RESOURCE_VARIABLE</font>*                    = 65;
+                     <font color="#cc0033">THROWS</font>*                               = 23;
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER) : <a href="#type-TypeReference">TypeReference</a><b>,CONSTRUCTOR</b>;
+                     <b>PROCEDURE </b><font color="#cc0033">newExceptionReference</font>*(p0 : INTEGER) : <a href="#type-TypeReference">TypeReference</a>;
+                     <b>PROCEDURE </b><font color="#cc0033">newFormalParameterReference</font>*(p0 : INTEGER) : <a href="#type-TypeReference">TypeReference</a>;
+                     <b>PROCEDURE </b><font color="#cc0033">newSuperTypeReference</font>*(p0 : INTEGER) : <a href="#type-TypeReference">TypeReference</a>;
+                     <b>PROCEDURE </b><font color="#cc0033">newTryCatchReference</font>*(p0 : INTEGER) : <a href="#type-TypeReference">TypeReference</a>;
+                     <b>PROCEDURE </b><font color="#cc0033">newTypeArgumentReference</font>*(p0 : INTEGER;
+                                                         p1 : INTEGER) : <a href="#type-TypeReference">TypeReference</a>;
+                     <b>PROCEDURE </b><font color="#cc0033">newTypeParameterBoundReference</font>*(p0 : INTEGER;
+                                                               p1 : INTEGER;
+                                                               p2 : INTEGER) : <a href="#type-TypeReference">TypeReference</a>;
+                     <b>PROCEDURE </b><font color="#cc0033">newTypeParameterReference</font>*(p0 : INTEGER;
+                                                          p1 : INTEGER) : <a href="#type-TypeReference">TypeReference</a>;
+                     <b>PROCEDURE </b><font color="#cc0033">newTypeReference</font>*(p0 : INTEGER) : <a href="#type-TypeReference">TypeReference</a>;
+                   <b>END</b>;
+
+
+
+<a name="meths-AnnotationVisitor"></a>
+<b>PROCEDURE </b>(self:AnnotationVisitor) <font color="#cc0033">visit</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                          p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AnnotationVisitor) <font color="#cc0033">visitAnnotation</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                    p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-AnnotationVisitor">AnnotationVisitor</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AnnotationVisitor) <font color="#cc0033">visitArray</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-AnnotationVisitor">AnnotationVisitor</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AnnotationVisitor) <font color="#cc0033">visitEnd</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AnnotationVisitor) <font color="#cc0033">visitEnum</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                              p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                              p2 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-Attribute"></a>
+<b>PROCEDURE </b>(self:Attribute) <font color="#cc0033">getLabels</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-Label">Label</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Attribute) <font color="#cc0033">isCodeAttribute</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Attribute) <font color="#cc0033">isUnknown</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Attribute) <font color="#cc0033">read</font>!(    p0 : <a href="jdk_internal_org_objectweb_asm.html#type-ClassReader">jdk_internal_org_objectweb_asm.ClassReader</a>;
+                                     p1 : INTEGER;
+                                     p2 : INTEGER;
+                                 IN  p3 : <b>ARRAY </b><b>OF </b>CHAR;
+                                     p4 : INTEGER;
+                                 IN  p5 : <b>ARRAY </b><b>OF </b><a href="#type-Label">Label</a>) : <a href="#type-Attribute">Attribute</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Attribute) <font color="#cc0033">write</font>!(    p0 : <a href="#type-ClassWriter">ClassWriter</a>;
+                                  IN  p1 : <b>ARRAY </b><b>OF </b>BYTE;
+                                      p2 : INTEGER;
+                                      p3 : INTEGER;
+                                      p4 : INTEGER) : <a href="#type-ByteVector">ByteVector</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-Attribute$NestHost"></a>
+<b>PROCEDURE </b>(self:Attribute$NestHost) <font color="#cc0033">read</font>!(    p0 : <a href="jdk_internal_org_objectweb_asm.html#type-ClassReader">jdk_internal_org_objectweb_asm.ClassReader</a>;
+                                              p1 : INTEGER;
+                                              p2 : INTEGER;
+                                          IN  p3 : <b>ARRAY </b><b>OF </b>CHAR;
+                                              p4 : INTEGER;
+                                          IN  p5 : <b>ARRAY </b><b>OF </b><a href="#type-Label">Label</a>) : <a href="jdk_internal_org_objectweb_asm.html#type-Attribute">jdk_internal_org_objectweb_asm.Attribute</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Attribute$NestHost) <font color="#cc0033">write</font>!(    p0 : <a href="#type-ClassWriter">ClassWriter</a>;
+                                           IN  p1 : <b>ARRAY </b><b>OF </b>BYTE;
+                                               p2 : INTEGER;
+                                               p3 : INTEGER;
+                                               p4 : INTEGER) : <a href="jdk_internal_org_objectweb_asm.html#type-ByteVector">jdk_internal_org_objectweb_asm.ByteVector</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-Attribute$NestMembers"></a>
+<b>PROCEDURE </b>(self:Attribute$NestMembers) <font color="#cc0033">read</font>!(    p0 : <a href="jdk_internal_org_objectweb_asm.html#type-ClassReader">jdk_internal_org_objectweb_asm.ClassReader</a>;
+                                                 p1 : INTEGER;
+                                                 p2 : INTEGER;
+                                             IN  p3 : <b>ARRAY </b><b>OF </b>CHAR;
+                                                 p4 : INTEGER;
+                                             IN  p5 : <b>ARRAY </b><b>OF </b><a href="#type-Label">Label</a>) : <a href="jdk_internal_org_objectweb_asm.html#type-Attribute">jdk_internal_org_objectweb_asm.Attribute</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Attribute$NestMembers) <font color="#cc0033">write</font>!(    p0 : <a href="#type-ClassWriter">ClassWriter</a>;
+                                              IN  p1 : <b>ARRAY </b><b>OF </b>BYTE;
+                                                  p2 : INTEGER;
+                                                  p3 : INTEGER;
+                                                  p4 : INTEGER) : <a href="jdk_internal_org_objectweb_asm.html#type-ByteVector">jdk_internal_org_objectweb_asm.ByteVector</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-ByteVector"></a>
+<b>PROCEDURE </b>(self:ByteVector) <font color="#cc0033">putByte</font>*(p0 : INTEGER) : <a href="#type-ByteVector">ByteVector</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ByteVector) <font color="#cc0033">putByteArray</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE;
+                                              p1 : INTEGER;
+                                              p2 : INTEGER) : <a href="#type-ByteVector">ByteVector</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ByteVector) <font color="#cc0033">putInt</font>*(p0 : INTEGER) : <a href="#type-ByteVector">ByteVector</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ByteVector) <font color="#cc0033">putLong</font>*(p0 : LONGINT) : <a href="#type-ByteVector">ByteVector</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ByteVector) <font color="#cc0033">putShort</font>*(p0 : INTEGER) : <a href="#type-ByteVector">ByteVector</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ByteVector) <font color="#cc0033">putUTF8</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-ByteVector">ByteVector</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-ClassReader"></a>
+<b>PROCEDURE </b>(self:ClassReader) <font color="#cc0033">accept</font>*(    p0 : <a href="#type-ClassVisitor">ClassVisitor</a>;
+                                     IN  p1 : <b>ARRAY </b><b>OF </b><a href="#type-Attribute">Attribute</a>;
+                                         p2 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ClassReader) <font color="#cc0033">accept</font>*(p0 : <a href="#type-ClassVisitor">ClassVisitor</a>;
+                                     p1 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ClassReader) <font color="#cc0033">getAccess</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ClassReader) <font color="#cc0033">getClassName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ClassReader) <font color="#cc0033">getInterfaces</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ClassReader) <font color="#cc0033">getItem</font>*(p0 : INTEGER) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ClassReader) <font color="#cc0033">getItemCount</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ClassReader) <font color="#cc0033">getMaxStringLength</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ClassReader) <font color="#cc0033">getSuperName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ClassReader) <font color="#cc0033">readByte</font>*(p0 : INTEGER) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ClassReader) <font color="#cc0033">readClass</font>*(    p0 : INTEGER;
+                                        IN  p1 : <b>ARRAY </b><b>OF </b>CHAR) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ClassReader) <font color="#cc0033">readConst</font>*(    p0 : INTEGER;
+                                        IN  p1 : <b>ARRAY </b><b>OF </b>CHAR) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ClassReader) <font color="#cc0033">readInt</font>*(p0 : INTEGER) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ClassReader) <font color="#cc0033">readLabel</font>!(    p0 : INTEGER;
+                                        IN  p1 : <b>ARRAY </b><b>OF </b><a href="#type-Label">Label</a>) : <a href="#type-Label">Label</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ClassReader) <font color="#cc0033">readLong</font>*(p0 : INTEGER) : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ClassReader) <font color="#cc0033">readModule</font>*(    p0 : INTEGER;
+                                         IN  p1 : <b>ARRAY </b><b>OF </b>CHAR) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ClassReader) <font color="#cc0033">readPackage</font>*(    p0 : INTEGER;
+                                          IN  p1 : <b>ARRAY </b><b>OF </b>CHAR) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ClassReader) <font color="#cc0033">readShort</font>*(p0 : INTEGER) : SHORTINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ClassReader) <font color="#cc0033">readUnsignedShort</font>*(p0 : INTEGER) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ClassReader) <font color="#cc0033">readUTF8</font>*(    p0 : INTEGER;
+                                       IN  p1 : <b>ARRAY </b><b>OF </b>CHAR) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-ClassVisitor"></a>
+<b>PROCEDURE </b>(self:ClassVisitor) <font color="#cc0033">visit</font>*(    p0 : INTEGER;
+                                         p1 : INTEGER;
+                                         p2 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                         p3 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                         p4 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                     IN  p5 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ClassVisitor) <font color="#cc0033">visitAnnotation</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                               p1 : BOOLEAN) : <a href="jdk_internal_org_objectweb_asm.html#type-AnnotationVisitor">jdk_internal_org_objectweb_asm.AnnotationVisitor</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ClassVisitor) <font color="#cc0033">visitAttribute</font>*(p0 : <a href="jdk_internal_org_objectweb_asm.html#type-Attribute">jdk_internal_org_objectweb_asm.Attribute</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ClassVisitor) <font color="#cc0033">visitEnd</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ClassVisitor) <font color="#cc0033">visitField</font>*(p0 : INTEGER;
+                                          p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                          p2 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                          p3 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                          p4 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="jdk_internal_org_objectweb_asm.html#type-FieldVisitor">jdk_internal_org_objectweb_asm.FieldVisitor</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ClassVisitor) <font color="#cc0033">visitInnerClass</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                               p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                               p2 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                               p3 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ClassVisitor) <font color="#cc0033">visitMethod</font>*(    p0 : INTEGER;
+                                               p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                               p2 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                               p3 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                           IN  p4 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>) : <a href="jdk_internal_org_objectweb_asm.html#type-MethodVisitor">jdk_internal_org_objectweb_asm.MethodVisitor</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ClassVisitor) <font color="#cc0033">visitModule</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                           p1 : INTEGER;
+                                           p2 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="jdk_internal_org_objectweb_asm.html#type-ModuleVisitor">jdk_internal_org_objectweb_asm.ModuleVisitor</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ClassVisitor) <font color="#cc0033">visitOuterClass</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                               p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                               p2 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ClassVisitor) <font color="#cc0033">visitSource</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                           p1 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ClassVisitor) <font color="#cc0033">visitTypeAnnotation</font>*(p0 : INTEGER;
+                                                   p1 : <a href="jdk_internal_org_objectweb_asm.html#type-TypePath">jdk_internal_org_objectweb_asm.TypePath</a>;
+                                                   p2 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                   p3 : BOOLEAN) : <a href="jdk_internal_org_objectweb_asm.html#type-AnnotationVisitor">jdk_internal_org_objectweb_asm.AnnotationVisitor</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-ClassWriter"></a>
+<b>PROCEDURE </b>(self:ClassWriter) <font color="#cc0033">getCommonSuperClass</font>!(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                  p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ClassWriter) <font color="#cc0033">newClass</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ClassWriter) <font color="#cc0033">newConst</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ClassWriter) <font color="#cc0033">newField</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                       p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                       p2 : <a href="java_lang.html#type-String">java_lang.String</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ClassWriter) <font color="#cc0033">newHandle</font>*(p0 : INTEGER;
+                                        p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                        p2 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                        p3 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                        p4 : BOOLEAN) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ClassWriter) <font color="#cc0033">newHandle</font>*(p0 : INTEGER;
+                                        p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                        p2 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                        p3 : <a href="java_lang.html#type-String">java_lang.String</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ClassWriter) <font color="#cc0033">newInvokeDynamic</font>*(    p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                   p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                   p2 : <a href="jdk_internal_org_objectweb_asm.html#type-Handle">jdk_internal_org_objectweb_asm.Handle</a>;
+                                               IN  p3 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ClassWriter) <font color="#cc0033">newMethod</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                        p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                        p2 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                        p3 : BOOLEAN) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ClassWriter) <font color="#cc0033">newMethodType</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ClassWriter) <font color="#cc0033">newModule</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ClassWriter) <font color="#cc0033">newNameType</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                          p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ClassWriter) <font color="#cc0033">newPackage</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ClassWriter) <font color="#cc0033">newUTF8</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ClassWriter) <font color="#cc0033">toByteArray</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ClassWriter) <font color="#cc0033">visit</font>*(    p0 : INTEGER;
+                                        p1 : INTEGER;
+                                        p2 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                        p3 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                        p4 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                    IN  p5 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:ClassWriter) <font color="#cc0033">visitAnnotation</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                              p1 : BOOLEAN) : <a href="jdk_internal_org_objectweb_asm.html#type-AnnotationVisitor">jdk_internal_org_objectweb_asm.AnnotationVisitor</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:ClassWriter) <font color="#cc0033">visitAttribute</font>*(p0 : <a href="jdk_internal_org_objectweb_asm.html#type-Attribute">jdk_internal_org_objectweb_asm.Attribute</a>)<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:ClassWriter) <font color="#cc0033">visitEnd</font>*()<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:ClassWriter) <font color="#cc0033">visitField</font>*(p0 : INTEGER;
+                                         p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                         p2 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                         p3 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                         p4 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="jdk_internal_org_objectweb_asm.html#type-FieldVisitor">jdk_internal_org_objectweb_asm.FieldVisitor</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:ClassWriter) <font color="#cc0033">visitInnerClass</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                              p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                              p2 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                              p3 : INTEGER)<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:ClassWriter) <font color="#cc0033">visitMethod</font>*(    p0 : INTEGER;
+                                              p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                              p2 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                              p3 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                          IN  p4 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>) : <a href="jdk_internal_org_objectweb_asm.html#type-MethodVisitor">jdk_internal_org_objectweb_asm.MethodVisitor</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:ClassWriter) <font color="#cc0033">visitModule</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                          p1 : INTEGER;
+                                          p2 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="jdk_internal_org_objectweb_asm.html#type-ModuleVisitor">jdk_internal_org_objectweb_asm.ModuleVisitor</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:ClassWriter) <font color="#cc0033">visitOuterClass</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                              p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                              p2 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:ClassWriter) <font color="#cc0033">visitSource</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                          p1 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:ClassWriter) <font color="#cc0033">visitTypeAnnotation</font>*(p0 : INTEGER;
+                                                  p1 : <a href="jdk_internal_org_objectweb_asm.html#type-TypePath">jdk_internal_org_objectweb_asm.TypePath</a>;
+                                                  p2 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                  p3 : BOOLEAN) : <a href="jdk_internal_org_objectweb_asm.html#type-AnnotationVisitor">jdk_internal_org_objectweb_asm.AnnotationVisitor</a><b>,NEW</b>;
+<a name="meths-FieldVisitor"></a>
+<b>PROCEDURE </b>(self:FieldVisitor) <font color="#cc0033">visitAnnotation</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                               p1 : BOOLEAN) : <a href="jdk_internal_org_objectweb_asm.html#type-AnnotationVisitor">jdk_internal_org_objectweb_asm.AnnotationVisitor</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FieldVisitor) <font color="#cc0033">visitAttribute</font>*(p0 : <a href="jdk_internal_org_objectweb_asm.html#type-Attribute">jdk_internal_org_objectweb_asm.Attribute</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FieldVisitor) <font color="#cc0033">visitEnd</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FieldVisitor) <font color="#cc0033">visitTypeAnnotation</font>*(p0 : INTEGER;
+                                                   p1 : <a href="jdk_internal_org_objectweb_asm.html#type-TypePath">jdk_internal_org_objectweb_asm.TypePath</a>;
+                                                   p2 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                   p3 : BOOLEAN) : <a href="jdk_internal_org_objectweb_asm.html#type-AnnotationVisitor">jdk_internal_org_objectweb_asm.AnnotationVisitor</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-Handle"></a>
+<b>PROCEDURE </b>(self:Handle) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Handle) <font color="#cc0033">getDesc</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Handle) <font color="#cc0033">getName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Handle) <font color="#cc0033">getOwner</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Handle) <font color="#cc0033">getTag</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Handle) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Handle) <font color="#cc0033">isInterface</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Handle) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-Label"></a>
+<b>PROCEDURE </b>(self:Label) <font color="#cc0033">getOffset</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Label) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-MethodVisitor"></a>
+<b>PROCEDURE </b>(self:MethodVisitor) <font color="#cc0033">visitAnnotation</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                p1 : BOOLEAN) : <a href="jdk_internal_org_objectweb_asm.html#type-AnnotationVisitor">jdk_internal_org_objectweb_asm.AnnotationVisitor</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MethodVisitor) <font color="#cc0033">visitAnnotationDefault</font>*() : <a href="jdk_internal_org_objectweb_asm.html#type-AnnotationVisitor">jdk_internal_org_objectweb_asm.AnnotationVisitor</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MethodVisitor) <font color="#cc0033">visitAttribute</font>*(p0 : <a href="jdk_internal_org_objectweb_asm.html#type-Attribute">jdk_internal_org_objectweb_asm.Attribute</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MethodVisitor) <font color="#cc0033">visitCode</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MethodVisitor) <font color="#cc0033">visitEnd</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MethodVisitor) <font color="#cc0033">visitFieldInsn</font>*(p0 : INTEGER;
+                                               p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                               p2 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                               p3 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MethodVisitor) <font color="#cc0033">visitFrame</font>*(    p0 : INTEGER;
+                                               p1 : INTEGER;
+                                           IN  p2 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                               p3 : INTEGER;
+                                           IN  p4 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MethodVisitor) <font color="#cc0033">visitIincInsn</font>*(p0 : INTEGER;
+                                              p1 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MethodVisitor) <font color="#cc0033">visitInsn</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MethodVisitor) <font color="#cc0033">visitInsnAnnotation</font>*(p0 : INTEGER;
+                                                    p1 : <a href="jdk_internal_org_objectweb_asm.html#type-TypePath">jdk_internal_org_objectweb_asm.TypePath</a>;
+                                                    p2 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                    p3 : BOOLEAN) : <a href="jdk_internal_org_objectweb_asm.html#type-AnnotationVisitor">jdk_internal_org_objectweb_asm.AnnotationVisitor</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MethodVisitor) <font color="#cc0033">visitIntInsn</font>*(p0 : INTEGER;
+                                             p1 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MethodVisitor) <font color="#cc0033">visitInvokeDynamicInsn</font>*(    p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                           p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                           p2 : <a href="jdk_internal_org_objectweb_asm.html#type-Handle">jdk_internal_org_objectweb_asm.Handle</a>;
+                                                       IN  p3 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MethodVisitor) <font color="#cc0033">visitJumpInsn</font>*(p0 : INTEGER;
+                                              p1 : <a href="#type-Label">Label</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MethodVisitor) <font color="#cc0033">visitLabel</font>*(p0 : <a href="#type-Label">Label</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MethodVisitor) <font color="#cc0033">visitLdcInsn</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MethodVisitor) <font color="#cc0033">visitLineNumber</font>*(p0 : INTEGER;
+                                                p1 : <a href="#type-Label">Label</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MethodVisitor) <font color="#cc0033">visitLocalVariable</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                   p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                   p2 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                   p3 : <a href="#type-Label">Label</a>;
+                                                   p4 : <a href="#type-Label">Label</a>;
+                                                   p5 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MethodVisitor) <font color="#cc0033">visitLocalVariableAnnotation</font>*(    p0 : INTEGER;
+                                                                 p1 : <a href="jdk_internal_org_objectweb_asm.html#type-TypePath">jdk_internal_org_objectweb_asm.TypePath</a>;
+                                                             IN  p2 : <b>ARRAY </b><b>OF </b><a href="#type-Label">Label</a>;
+                                                             IN  p3 : <b>ARRAY </b><b>OF </b><a href="#type-Label">Label</a>;
+                                                             IN  p4 : <b>ARRAY </b><b>OF </b>INTEGER;
+                                                                 p5 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                                 p6 : BOOLEAN) : <a href="jdk_internal_org_objectweb_asm.html#type-AnnotationVisitor">jdk_internal_org_objectweb_asm.AnnotationVisitor</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MethodVisitor) <font color="#cc0033">visitLookupSwitchInsn</font>*(    p0 : <a href="#type-Label">Label</a>;
+                                                      IN  p1 : <b>ARRAY </b><b>OF </b>INTEGER;
+                                                      IN  p2 : <b>ARRAY </b><b>OF </b><a href="#type-Label">Label</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MethodVisitor) <font color="#cc0033">visitMaxs</font>*(p0 : INTEGER;
+                                          p1 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MethodVisitor) <font color="#cc0033">visitMethodInsn</font>*(p0 : INTEGER;
+                                                p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                p2 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                p3 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MethodVisitor) <font color="#cc0033">visitMethodInsn</font>*(p0 : INTEGER;
+                                                p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                p2 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                p3 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                p4 : BOOLEAN)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MethodVisitor) <font color="#cc0033">visitMultiANewArrayInsn</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                        p1 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MethodVisitor) <font color="#cc0033">visitParameter</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                               p1 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MethodVisitor) <font color="#cc0033">visitParameterAnnotation</font>*(p0 : INTEGER;
+                                                         p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                         p2 : BOOLEAN) : <a href="jdk_internal_org_objectweb_asm.html#type-AnnotationVisitor">jdk_internal_org_objectweb_asm.AnnotationVisitor</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MethodVisitor) <font color="#cc0033">visitTableSwitchInsn</font>*(    p0 : INTEGER;
+                                                         p1 : INTEGER;
+                                                         p2 : <a href="#type-Label">Label</a>;
+                                                     IN  p3 : <b>ARRAY </b><b>OF </b><a href="#type-Label">Label</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MethodVisitor) <font color="#cc0033">visitTryCatchAnnotation</font>*(p0 : INTEGER;
+                                                        p1 : <a href="jdk_internal_org_objectweb_asm.html#type-TypePath">jdk_internal_org_objectweb_asm.TypePath</a>;
+                                                        p2 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                        p3 : BOOLEAN) : <a href="jdk_internal_org_objectweb_asm.html#type-AnnotationVisitor">jdk_internal_org_objectweb_asm.AnnotationVisitor</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MethodVisitor) <font color="#cc0033">visitTryCatchBlock</font>*(p0 : <a href="#type-Label">Label</a>;
+                                                   p1 : <a href="#type-Label">Label</a>;
+                                                   p2 : <a href="#type-Label">Label</a>;
+                                                   p3 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MethodVisitor) <font color="#cc0033">visitTypeAnnotation</font>*(p0 : INTEGER;
+                                                    p1 : <a href="jdk_internal_org_objectweb_asm.html#type-TypePath">jdk_internal_org_objectweb_asm.TypePath</a>;
+                                                    p2 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                    p3 : BOOLEAN) : <a href="jdk_internal_org_objectweb_asm.html#type-AnnotationVisitor">jdk_internal_org_objectweb_asm.AnnotationVisitor</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MethodVisitor) <font color="#cc0033">visitTypeInsn</font>*(p0 : INTEGER;
+                                              p1 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MethodVisitor) <font color="#cc0033">visitVarInsn</font>*(p0 : INTEGER;
+                                             p1 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-ModuleVisitor"></a>
+<b>PROCEDURE </b>(self:ModuleVisitor) <font color="#cc0033">visitEnd</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ModuleVisitor) <font color="#cc0033">visitExport</font>*(    p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                p1 : INTEGER;
+                                            IN  p2 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ModuleVisitor) <font color="#cc0033">visitMainClass</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ModuleVisitor) <font color="#cc0033">visitOpen</font>*(    p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                              p1 : INTEGER;
+                                          IN  p2 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ModuleVisitor) <font color="#cc0033">visitPackage</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ModuleVisitor) <font color="#cc0033">visitProvide</font>*(    p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                             IN  p1 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ModuleVisitor) <font color="#cc0033">visitRequire</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                             p1 : INTEGER;
+                                             p2 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ModuleVisitor) <font color="#cc0033">visitUse</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-Type"></a>
+<b>PROCEDURE </b>(self:Type) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Type) <font color="#cc0033">getArgumentsAndReturnSizes</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Type) <font color="#cc0033">getArgumentTypes</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-Type">Type</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Type) <font color="#cc0033">getClassName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Type) <font color="#cc0033">getDescriptor</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Type) <font color="#cc0033">getDimensions</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Type) <font color="#cc0033">getElementType</font>*() : <a href="#type-Type">Type</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Type) <font color="#cc0033">getInternalName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Type) <font color="#cc0033">getOpcode</font>*(p0 : INTEGER) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Type) <font color="#cc0033">getReturnType</font>*() : <a href="#type-Type">Type</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Type) <font color="#cc0033">getSize</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Type) <font color="#cc0033">getSort</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Type) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Type) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-TypePath"></a>
+<b>PROCEDURE </b>(self:TypePath) <font color="#cc0033">getLength</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TypePath) <font color="#cc0033">getStep</font>*(p0 : INTEGER) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TypePath) <font color="#cc0033">getStepArgument</font>*(p0 : INTEGER) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TypePath) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-TypeReference"></a>
+<b>PROCEDURE </b>(self:TypeReference) <font color="#cc0033">getExceptionIndex</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TypeReference) <font color="#cc0033">getFormalParameterIndex</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TypeReference) <font color="#cc0033">getSort</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TypeReference) <font color="#cc0033">getSuperTypeIndex</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TypeReference) <font color="#cc0033">getTryCatchBlockIndex</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TypeReference) <font color="#cc0033">getTypeArgumentIndex</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TypeReference) <font color="#cc0033">getTypeParameterBoundIndex</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TypeReference) <font color="#cc0033">getTypeParameterIndex</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TypeReference) <font color="#cc0033">getValue</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>END </b><font color="#cc0033">jdk_internal_org_objectweb_asm</font>.
+</font></pre></hr>
+<!-- BEGIN JavaScript -->
+<script>
+function toggle(node) {
+    node.classList.toggle("show"); 
+  }
+
+function cls(node) {
+    var prnt = node.parentNode;
+    var next = prnt.previousSibling;
+    var text = next.lastChild;
+    text.innerHTML = 
+        "The <b>class</b> property asserts that this type will be<br>" +
+        "implemented as a reference class in the underlying framework.";
+    text.classList.toggle("show");
+  }
+
+function newOk(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>has noArg-ctor</b> property asserts that this reference<br>" +
+        "class has a no-arg constructor, and thus objects of this<br>" +
+        "type can be allocated with NEW(). Component Pascal types<br>" +
+        "derived from this type can also be allocated using NEW().";
+    popuptext.classList.toggle("show"); 
+  }
+
+function noNew(node) { 
+    var prnt = node.parentNode; 
+    var next = prnt.previousSibling; 
+    var text = next.lastChild; 
+    text.innerHTML =  
+        "The <b>no noArg-ctor</b> property asserts that this reference<br>" +
+        "class does not have a noArg constructor. Objects of this<br>" +
+        "type cannot be allocated using NEW(), and Component<br>" +
+        "Pascal types  derived from this type also cannot be<br>" +
+        "allocated using NEW().";
+    text.classList.toggle("show");
+  }
+
+function noCpy(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>no value-assign</b> property asserts that this reference<br>" + 
+        "class does not have a value copy method. Therefore, it<br>" +
+        "is not possible to perform value assignments using<br>" +
+        "statements like <i>dst^</i> := <i>src^</i>";
+    popuptext.classList.toggle("show");
+  }
+
+function valueclass(node) { 
+        var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>valueclass</b> property asserts that this RECORD type is<br>" + 
+        "implemented as a value class in the CLR. It follows that<br>" +  
+        "value assignments can be made of these types. They can<br>" + 
+        "also be passed by value. Even pointers to records of<br>" + 
+        "such types may be dereferenced and copied using syntax<br>" + 
+        "such as  <i>dst^</i> := <i>src^</i>"; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+function argCtor(node) { 
+    var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>has arg-ctor</b> property asserts that this reference<br>" +  
+        "class has one or more constructors that take arguments.<br>" + 
+        "These constructors can be called from Component Pascal<br>" + 
+        "by calling an <i>init</i>(...) method from the static list<br>" + 
+        "here. Component Pascal types derived from this type<br>" + 
+        "can define constructors with arguments which call the<br>" + 
+        "super-type constructor.<br>" + 
+        "See <i>'Interfacing to constructors'</i> in the Release Notes."; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+</script>
+<!-- END JavaScript --> 
+
+</body></html>

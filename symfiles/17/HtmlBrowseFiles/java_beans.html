@@ -1,0 +1,984 @@
+<html><head><title>java_beans</title>
+<style>
+<!-- BEGIN Inline CSS -->
+/* Popup container */
+.popup {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+/* The actual popup (appears on top) */
+.popup .popuptext {
+    visibility: hidden;
+    width: 430px;
+    background-color: white;
+    color: black;
+    text-align: left;
+    border-radius: 6px;
+    border-style: solid;
+    border-color: black;
+    padding: 8px 8px 8px 8px;
+    position: absolute;
+    z-index: 1;
+    margin-top: 30px;
+}
+
+/* Toggle this class when clicking on the popup container (hide and show the popup) */
+.popup .show {
+    visibility: visible;
+    opacity: 1;
+}
+
+</style>
+<!-- END Inline CSS -->
+</head><body bgcolor="white">
+<hr><pre>
+<font color="green">(*</font>
+<font color="green"> *  Creator PeToCps j2cps version 1.4.07 (March 2018)</font>
+<font color="green"> *  Compiled from jar-file /Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home/jmods/java.desktop.jmod</font>
+<font color="green"> *)</font>
+<b>FOREIGN MODULE </b><font color="#cc0033">java_beans</font>;
+
+<b>IMPORT</b>
+    <a href="java_applet.html">java_applet</a> := "java.applet",
+    <a href="java_awt.html">java_awt</a> := "java.awt",
+    <a href="java_beans.html">java_beans</a> := "java.beans",
+    <a href="java_beans_beancontext.html">java_beans_beancontext</a> := "java.beans.beancontext",
+    <a href="java_beans_beancontext.html">java_beans_beancontext</a> := "java.beans.beancontext",
+    <a href="java_io.html">java_io</a> := "java.io",
+    <a href="java_lang.html">java_lang</a> := "java.lang",
+    <a href="java_lang_annotation.html">java_lang_annotation</a> := "java.lang.annotation",
+    <a href="java_lang_reflect.html">java_lang_reflect</a> := "java.lang.reflect",
+    <a href="java_util.html">java_util</a> := "java.util",
+    <a href="org_xml_sax.html">org_xml_sax</a> := "org.xml.sax",
+    <a href="org_xml_sax_helpers.html">org_xml_sax_helpers</a> := "org.xml.sax.helpers";
+
+<b>TYPE</b>
+
+  <a name="type-AppletInitializer"></a><font color="#cc0033">AppletInitializer</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                       <font color="green"><b> (* </b><a href="#meths-AppletInitializer">Typebound Procedures</a><b> *)</b></font>
+                       <b>END</b>;
+
+  <a name="type-BeanDescriptor"></a><font color="#cc0033">BeanDescriptor</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_beans.html#type-FeatureDescriptor">java_beans.FeatureDescriptor</a>)
+                    <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                    <font color="green"><b> (* </b><a href="#meths-BeanDescriptor">Typebound Procedures</a><b> *)</b></font>
+                    <b>STATIC</b>
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                                      p1 : <a href="java_lang.html#type-Class">java_lang.Class</a>) : <a href="#type-BeanDescriptor">BeanDescriptor</a><b>,CONSTRUCTOR</b>;
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>) : <a href="#type-BeanDescriptor">BeanDescriptor</a><b>,CONSTRUCTOR</b>;
+                    <b>END</b>;
+
+  <a name="type-BeanInfo"></a><font color="#cc0033">BeanInfo</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+              <font color="green"><b> (* </b><a href="#meths-BeanInfo">Typebound Procedures</a><b> *)</b></font>
+              <b>STATIC</b>
+                <font color="#cc0033">ICON_COLOR_16x16</font>* = 1;
+                <font color="#cc0033">ICON_COLOR_32x32</font>* = 2;
+                <font color="#cc0033">ICON_MONO_16x16</font>*  = 3;
+                <font color="#cc0033">ICON_MONO_32x32</font>*  = 4;
+              <b>END</b>;
+
+  <a name="type-BeanProperty"></a><font color="#cc0033">BeanProperty</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_lang_annotation.html#type-Annotation">java_lang_annotation.Annotation</a>)
+                  <font color="green"><b> (* </b><a href="#meths-BeanProperty">Typebound Procedures</a><b> *)</b></font>
+                  <b>END</b>;
+
+  <a name="type-Beans"></a><font color="#cc0033">Beans</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+           <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+           <b>STATIC</b>
+             <b>PROCEDURE </b><font color="#cc0033">getInstanceOf</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                      p1 : <a href="java_lang.html#type-Class">java_lang.Class</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+             <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-Beans">Beans</a><b>,CONSTRUCTOR</b>;
+             <b>PROCEDURE </b><font color="#cc0033">instantiate</font>*(p0 : <a href="java_lang.html#type-ClassLoader">java_lang.ClassLoader</a>;
+                                    p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                    p2 : <a href="java_beans_beancontext.html#type-BeanContext">java_beans_beancontext.BeanContext</a>;
+                                    p3 : <a href="java_beans.html#type-AppletInitializer">java_beans.AppletInitializer</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+             <b>PROCEDURE </b><font color="#cc0033">instantiate</font>*(p0 : <a href="java_lang.html#type-ClassLoader">java_lang.ClassLoader</a>;
+                                    p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+             <b>PROCEDURE </b><font color="#cc0033">instantiate</font>*(p0 : <a href="java_lang.html#type-ClassLoader">java_lang.ClassLoader</a>;
+                                    p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                    p2 : <a href="java_beans_beancontext.html#type-BeanContext">java_beans_beancontext.BeanContext</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+             <b>PROCEDURE </b><font color="#cc0033">isDesignTime</font>*() : BOOLEAN;
+             <b>PROCEDURE </b><font color="#cc0033">isGuiAvailable</font>*() : BOOLEAN;
+             <b>PROCEDURE </b><font color="#cc0033">isInstanceOf</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                     p1 : <a href="java_lang.html#type-Class">java_lang.Class</a>) : BOOLEAN;
+             <b>PROCEDURE </b><font color="#cc0033">setDesignTime</font>*(p0 : BOOLEAN);
+             <b>PROCEDURE </b><font color="#cc0033">setGuiAvailable</font>*(p0 : BOOLEAN);
+           <b>END</b>;
+
+  <a name="type-ConstructorProperties"></a><font color="#cc0033">ConstructorProperties</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_lang_annotation.html#type-Annotation">java_lang_annotation.Annotation</a>)
+                           <font color="green"><b> (* </b><a href="#meths-ConstructorProperties">Typebound Procedures</a><b> *)</b></font>
+                           <b>END</b>;
+
+  <a name="type-Customizer"></a><font color="#cc0033">Customizer</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                <font color="green"><b> (* </b><a href="#meths-Customizer">Typebound Procedures</a><b> *)</b></font>
+                <b>END</b>;
+
+  <a name="type-DefaultPersistenceDelegate"></a><font color="#cc0033">DefaultPersistenceDelegate</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_beans.html#type-PersistenceDelegate">java_beans.PersistenceDelegate</a>)
+                                <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                                <font color="green"><b> (* </b><a href="#meths-DefaultPersistenceDelegate">Typebound Procedures</a><b> *)</b></font>
+                                <b>STATIC</b>
+                                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-DefaultPersistenceDelegate">DefaultPersistenceDelegate</a><b>,CONSTRUCTOR</b>;
+                                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-DefaultPersistenceDelegate">DefaultPersistenceDelegate</a><b>,CONSTRUCTOR</b>;
+                                <b>END</b>;
+
+  <a name="type-DesignMode"></a><font color="#cc0033">DesignMode</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                <font color="green"><b> (* </b><a href="#meths-DesignMode">Typebound Procedures</a><b> *)</b></font>
+                <b>STATIC</b>
+                  <font color="#cc0033">PROPERTYNAME</font>* = "designTime";
+                <b>END</b>;
+
+  <a name="type-Encoder"></a><font color="#cc0033">Encoder</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+             <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+             <font color="green"><b> (* </b><a href="#meths-Encoder">Typebound Procedures</a><b> *)</b></font>
+             <b>STATIC</b>
+               <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-Encoder">Encoder</a><b>,CONSTRUCTOR</b>;
+             <b>END</b>;
+
+  <a name="type-EventHandler"></a><font color="#cc0033">EventHandler</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_lang_reflect.html#type-InvocationHandler">java_lang_reflect.InvocationHandler</a>)
+                  <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                  <font color="green"><b> (* </b><a href="#meths-EventHandler">Typebound Procedures</a><b> *)</b></font>
+                  <b>STATIC</b>
+                    <b>PROCEDURE </b><font color="#cc0033">create</font>*(p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                                      p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                      p2 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                      p3 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                    <b>PROCEDURE </b><font color="#cc0033">create</font>*(p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                                      p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                      p2 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                      p3 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                      p4 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                    <b>PROCEDURE </b><font color="#cc0033">create</font>*(p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                                      p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                      p2 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                    p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                    p2 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                    p3 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-EventHandler">EventHandler</a><b>,CONSTRUCTOR</b>;
+                  <b>END</b>;
+
+  <a name="type-EventSetDescriptor"></a><font color="#cc0033">EventSetDescriptor</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-FeatureDescriptor">FeatureDescriptor</a>)
+                        <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                        <font color="green"><b> (* </b><a href="#meths-EventSetDescriptor">Typebound Procedures</a><b> *)</b></font>
+                        <b>STATIC</b>
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>*(    p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                              p1 : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                                          IN  p2 : <b>ARRAY </b><b>OF </b><a href="java_lang_reflect.html#type-Method">java_lang_reflect.Method</a>;
+                                              p3 : <a href="java_lang_reflect.html#type-Method">java_lang_reflect.Method</a>;
+                                              p4 : <a href="java_lang_reflect.html#type-Method">java_lang_reflect.Method</a>) : <a href="#type-EventSetDescriptor">EventSetDescriptor</a><b>,CONSTRUCTOR</b>;
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>*(    p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                              p1 : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                                          IN  p2 : <b>ARRAY </b><b>OF </b><a href="java_lang_reflect.html#type-Method">java_lang_reflect.Method</a>;
+                                              p3 : <a href="java_lang_reflect.html#type-Method">java_lang_reflect.Method</a>;
+                                              p4 : <a href="java_lang_reflect.html#type-Method">java_lang_reflect.Method</a>;
+                                              p5 : <a href="java_lang_reflect.html#type-Method">java_lang_reflect.Method</a>) : <a href="#type-EventSetDescriptor">EventSetDescriptor</a><b>,CONSTRUCTOR</b>;
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>*(    p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                              p1 : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                                          IN  p2 : <b>ARRAY </b><b>OF </b><a href="java_beans.html#type-MethodDescriptor">java_beans.MethodDescriptor</a>;
+                                              p3 : <a href="java_lang_reflect.html#type-Method">java_lang_reflect.Method</a>;
+                                              p4 : <a href="java_lang_reflect.html#type-Method">java_lang_reflect.Method</a>) : <a href="#type-EventSetDescriptor">EventSetDescriptor</a><b>,CONSTRUCTOR</b>;
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                                          p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                          p2 : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                                          p3 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-EventSetDescriptor">EventSetDescriptor</a><b>,CONSTRUCTOR</b>;
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>*(    p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                                              p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                              p2 : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                                          IN  p3 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>;
+                                              p4 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                              p5 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-EventSetDescriptor">EventSetDescriptor</a><b>,CONSTRUCTOR</b>;
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>*(    p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                                              p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                              p2 : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                                          IN  p3 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>;
+                                              p4 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                              p5 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                              p6 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-EventSetDescriptor">EventSetDescriptor</a><b>,CONSTRUCTOR</b>;
+                        <b>END</b>;
+
+  <a name="type-ExceptionListener"></a><font color="#cc0033">ExceptionListener</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                       <font color="green"><b> (* </b><a href="#meths-ExceptionListener">Typebound Procedures</a><b> *)</b></font>
+                       <b>END</b>;
+
+  <a name="type-Expression"></a><font color="#cc0033">Expression</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_beans.html#type-Statement">java_beans.Statement</a>)
+                <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                <font color="green"><b> (* </b><a href="#meths-Expression">Typebound Procedures</a><b> *)</b></font>
+                <b>STATIC</b>
+                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*(    p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                      p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                      p2 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                  IN  p3 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="#type-Expression">Expression</a><b>,CONSTRUCTOR</b>;
+                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*(    p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                      p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                  IN  p2 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="#type-Expression">Expression</a><b>,CONSTRUCTOR</b>;
+                <b>END</b>;
+
+  <a name="type-FeatureDescriptor"></a><font color="#cc0033">FeatureDescriptor</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                       <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                       <font color="green"><b> (* </b><a href="#meths-FeatureDescriptor">Typebound Procedures</a><b> *)</b></font>
+                       <b>STATIC</b>
+                         <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-FeatureDescriptor">FeatureDescriptor</a><b>,CONSTRUCTOR</b>;
+                       <b>END</b>;
+
+  <a name="type-IndexedPropertyChangeEvent"></a><font color="#cc0033">IndexedPropertyChangeEvent</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_beans.html#type-PropertyChangeEvent">java_beans.PropertyChangeEvent</a>)
+                                <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                                <font color="green"><b> (* </b><a href="#meths-IndexedPropertyChangeEvent">Typebound Procedures</a><b> *)</b></font>
+                                <b>STATIC</b>
+                                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                  p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                  p2 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                  p3 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                  p4 : INTEGER) : <a href="#type-IndexedPropertyChangeEvent">IndexedPropertyChangeEvent</a><b>,CONSTRUCTOR</b>;
+                                <b>END</b>;
+
+  <a name="type-IndexedPropertyDescriptor"></a><font color="#cc0033">IndexedPropertyDescriptor</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_beans.html#type-PropertyDescriptor">java_beans.PropertyDescriptor</a>)
+                               <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                               <font color="green"><b> (* </b><a href="#meths-IndexedPropertyDescriptor">Typebound Procedures</a><b> *)</b></font>
+                               <b>STATIC</b>
+                                 <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                 p1 : <a href="java_lang_reflect.html#type-Method">java_lang_reflect.Method</a>;
+                                                 p2 : <a href="java_lang_reflect.html#type-Method">java_lang_reflect.Method</a>;
+                                                 p3 : <a href="java_lang_reflect.html#type-Method">java_lang_reflect.Method</a>;
+                                                 p4 : <a href="java_lang_reflect.html#type-Method">java_lang_reflect.Method</a>) : <a href="#type-IndexedPropertyDescriptor">IndexedPropertyDescriptor</a><b>,CONSTRUCTOR</b>;
+                                 <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                 p1 : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                                                 p2 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                 p3 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                 p4 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                 p5 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-IndexedPropertyDescriptor">IndexedPropertyDescriptor</a><b>,CONSTRUCTOR</b>;
+                                 <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                 p1 : <a href="java_lang.html#type-Class">java_lang.Class</a>) : <a href="#type-IndexedPropertyDescriptor">IndexedPropertyDescriptor</a><b>,CONSTRUCTOR</b>;
+                               <b>END</b>;
+
+  <a name="type-IntrospectionException"></a><font color="#cc0033">IntrospectionException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Exception">java_lang.Exception</a>)
+                            <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                            <b>STATIC</b>
+                              <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-IntrospectionException">IntrospectionException</a><b>,CONSTRUCTOR</b>;
+                            <b>END</b>;
+
+  <a name="type-Introspector"></a><font color="#cc0033">Introspector</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                  <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> *)</font>
+                  <b>STATIC</b>
+                    <font color="#cc0033">IGNORE_ALL_BEANINFO</font>*       = 3;
+                    <font color="#cc0033">IGNORE_IMMEDIATE_BEANINFO</font>* = 2;
+                    <font color="#cc0033">USE_ALL_BEANINFO</font>*          = 1;
+                    <b>PROCEDURE </b><font color="#cc0033">decapitalize</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-String">java_lang.String</a>;
+                    <b>PROCEDURE </b><font color="#cc0033">flushCaches</font>*();
+                    <b>PROCEDURE </b><font color="#cc0033">flushFromCaches</font>*(p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>);
+                    <b>PROCEDURE </b><font color="#cc0033">getBeanInfo</font>*(p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>) : <a href="java_beans.html#type-BeanInfo">java_beans.BeanInfo</a>;
+                    <b>PROCEDURE </b><font color="#cc0033">getBeanInfo</font>*(p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                                           p1 : INTEGER) : <a href="java_beans.html#type-BeanInfo">java_beans.BeanInfo</a>;
+                    <b>PROCEDURE </b><font color="#cc0033">getBeanInfo</font>*(p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                                           p1 : <a href="java_lang.html#type-Class">java_lang.Class</a>) : <a href="java_beans.html#type-BeanInfo">java_beans.BeanInfo</a>;
+                    <b>PROCEDURE </b><font color="#cc0033">getBeanInfo</font>*(p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                                           p1 : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                                           p2 : INTEGER) : <a href="java_beans.html#type-BeanInfo">java_beans.BeanInfo</a>;
+                    <b>PROCEDURE </b><font color="#cc0033">getBeanInfoSearchPath</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>;
+                    <b>PROCEDURE </b><font color="#cc0033">setBeanInfoSearchPath</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>);
+                  <b>END</b>;
+
+  <a name="type-JavaBean"></a><font color="#cc0033">JavaBean</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_lang_annotation.html#type-Annotation">java_lang_annotation.Annotation</a>)
+              <font color="green"><b> (* </b><a href="#meths-JavaBean">Typebound Procedures</a><b> *)</b></font>
+              <b>END</b>;
+
+  <a name="type-MethodDescriptor"></a><font color="#cc0033">MethodDescriptor</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-FeatureDescriptor">FeatureDescriptor</a>)
+                      <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                      <font color="green"><b> (* </b><a href="#meths-MethodDescriptor">Typebound Procedures</a><b> *)</b></font>
+                      <b>STATIC</b>
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>*(    p0 : <a href="java_lang_reflect.html#type-Method">java_lang_reflect.Method</a>;
+                                        IN  p1 : <b>ARRAY </b><b>OF </b><a href="java_beans.html#type-ParameterDescriptor">java_beans.ParameterDescriptor</a>) : <a href="#type-MethodDescriptor">MethodDescriptor</a><b>,CONSTRUCTOR</b>;
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang_reflect.html#type-Method">java_lang_reflect.Method</a>) : <a href="#type-MethodDescriptor">MethodDescriptor</a><b>,CONSTRUCTOR</b>;
+                      <b>END</b>;
+
+  <a name="type-ParameterDescriptor"></a><font color="#cc0033">ParameterDescriptor</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-FeatureDescriptor">FeatureDescriptor</a>)
+                         <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-ParameterDescriptor">ParameterDescriptor</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-PersistenceDelegate"></a><font color="#cc0033">PersistenceDelegate</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                         <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                         <font color="green"><b> (* </b><a href="#meths-PersistenceDelegate">Typebound Procedures</a><b> *)</b></font>
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>!() : <a href="#type-PersistenceDelegate">PersistenceDelegate</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-PropertyChangeEvent"></a><font color="#cc0033">PropertyChangeEvent</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_util.html#type-EventObject">java_util.EventObject</a>)
+                         <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                         <font color="green"><b> (* </b><a href="#meths-PropertyChangeEvent">Typebound Procedures</a><b> *)</b></font>
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                           p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                           p2 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                           p3 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="#type-PropertyChangeEvent">PropertyChangeEvent</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-PropertyChangeListener"></a><font color="#cc0033">PropertyChangeListener</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_util.html#type-EventListener">java_util.EventListener</a>)
+                            <font color="green"><b> (* </b><a href="#meths-PropertyChangeListener">Typebound Procedures</a><b> *)</b></font>
+                            <b>END</b>;
+
+  <a name="type-PropertyChangeListenerProxy"></a><font color="#cc0033">PropertyChangeListenerProxy</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_util.html#type-EventListenerProxy">java_util.EventListenerProxy</a> + <a href="#type-PropertyChangeListener">PropertyChangeListener</a>)
+                                 <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                                 <font color="green"><b> (* </b><a href="#meths-PropertyChangeListenerProxy">Typebound Procedures</a><b> *)</b></font>
+                                 <b>STATIC</b>
+                                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                   p1 : <a href="#type-PropertyChangeListener">PropertyChangeListener</a>) : <a href="#type-PropertyChangeListenerProxy">PropertyChangeListenerProxy</a><b>,CONSTRUCTOR</b>;
+                                 <b>END</b>;
+
+  <a name="type-PropertyChangeSupport"></a><font color="#cc0033">PropertyChangeSupport</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_io.html#type-Serializable">java_io.Serializable</a>)
+                           <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                           <font color="green"><b> (* </b><a href="#meths-PropertyChangeSupport">Typebound Procedures</a><b> *)</b></font>
+                           <b>STATIC</b>
+                             <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="#type-PropertyChangeSupport">PropertyChangeSupport</a><b>,CONSTRUCTOR</b>;
+                           <b>END</b>;
+
+  <a name="type-PropertyDescriptor"></a><font color="#cc0033">PropertyDescriptor</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-FeatureDescriptor">FeatureDescriptor</a>)
+                        <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                        <font color="green"><b> (* </b><a href="#meths-PropertyDescriptor">Typebound Procedures</a><b> *)</b></font>
+                        <b>STATIC</b>
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                          p1 : <a href="java_lang_reflect.html#type-Method">java_lang_reflect.Method</a>;
+                                          p2 : <a href="java_lang_reflect.html#type-Method">java_lang_reflect.Method</a>) : <a href="#type-PropertyDescriptor">PropertyDescriptor</a><b>,CONSTRUCTOR</b>;
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                          p1 : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                                          p2 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                          p3 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-PropertyDescriptor">PropertyDescriptor</a><b>,CONSTRUCTOR</b>;
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                          p1 : <a href="java_lang.html#type-Class">java_lang.Class</a>) : <a href="#type-PropertyDescriptor">PropertyDescriptor</a><b>,CONSTRUCTOR</b>;
+                        <b>END</b>;
+
+  <a name="type-PropertyEditor"></a><font color="#cc0033">PropertyEditor</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                    <font color="green"><b> (* </b><a href="#meths-PropertyEditor">Typebound Procedures</a><b> *)</b></font>
+                    <b>END</b>;
+
+  <a name="type-PropertyEditorManager"></a><font color="#cc0033">PropertyEditorManager</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                           <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                           <b>STATIC</b>
+                             <b>PROCEDURE </b><font color="#cc0033">findEditor</font>*(p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>) : <a href="#type-PropertyEditor">PropertyEditor</a>;
+                             <b>PROCEDURE </b><font color="#cc0033">getEditorSearchPath</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>;
+                             <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-PropertyEditorManager">PropertyEditorManager</a><b>,CONSTRUCTOR</b>;
+                             <b>PROCEDURE </b><font color="#cc0033">registerEditor</font>*(p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                                                       p1 : <a href="java_lang.html#type-Class">java_lang.Class</a>);
+                             <b>PROCEDURE </b><font color="#cc0033">setEditorSearchPath</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>);
+                           <b>END</b>;
+
+  <a name="type-PropertyEditorSupport"></a><font color="#cc0033">PropertyEditorSupport</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-PropertyEditor">PropertyEditor</a>)
+                           <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                           <font color="green"><b> (* </b><a href="#meths-PropertyEditorSupport">Typebound Procedures</a><b> *)</b></font>
+                           <b>STATIC</b>
+                             <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="#type-PropertyEditorSupport">PropertyEditorSupport</a><b>,CONSTRUCTOR</b>;
+                             <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-PropertyEditorSupport">PropertyEditorSupport</a><b>,CONSTRUCTOR</b>;
+                           <b>END</b>;
+
+  <a name="type-PropertyVetoException"></a><font color="#cc0033">PropertyVetoException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Exception">java_lang.Exception</a>)
+                           <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                           <font color="green"><b> (* </b><a href="#meths-PropertyVetoException">Typebound Procedures</a><b> *)</b></font>
+                           <b>STATIC</b>
+                             <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                             p1 : <a href="java_beans.html#type-PropertyChangeEvent">java_beans.PropertyChangeEvent</a>) : <a href="#type-PropertyVetoException">PropertyVetoException</a><b>,CONSTRUCTOR</b>;
+                           <b>END</b>;
+
+  <a name="type-SimpleBeanInfo"></a><font color="#cc0033">SimpleBeanInfo</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_beans.html#type-BeanInfo">java_beans.BeanInfo</a>)
+                    <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                    <font color="green"><b> (* </b><a href="#meths-SimpleBeanInfo">Typebound Procedures</a><b> *)</b></font>
+                    <b>STATIC</b>
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-SimpleBeanInfo">SimpleBeanInfo</a><b>,CONSTRUCTOR</b>;
+                    <b>END</b>;
+
+  <a name="type-Statement"></a><font color="#cc0033">Statement</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+               <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+               <font color="green"><b> (* </b><a href="#meths-Statement">Typebound Procedures</a><b> *)</b></font>
+               <b>STATIC</b>
+                 <b>PROCEDURE </b><font color="#cc0033">Init</font>*(    p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                     p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                 IN  p2 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="#type-Statement">Statement</a><b>,CONSTRUCTOR</b>;
+               <b>END</b>;
+
+  <a name="type-Transient"></a><font color="#cc0033">Transient</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_lang_annotation.html#type-Annotation">java_lang_annotation.Annotation</a>)
+               <font color="green"><b> (* </b><a href="#meths-Transient">Typebound Procedures</a><b> *)</b></font>
+               <b>END</b>;
+
+  <a name="type-VetoableChangeListener"></a><font color="#cc0033">VetoableChangeListener</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_util.html#type-EventListener">java_util.EventListener</a>)
+                            <font color="green"><b> (* </b><a href="#meths-VetoableChangeListener">Typebound Procedures</a><b> *)</b></font>
+                            <b>END</b>;
+
+  <a name="type-VetoableChangeListenerProxy"></a><font color="#cc0033">VetoableChangeListenerProxy</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_util.html#type-EventListenerProxy">java_util.EventListenerProxy</a> + <a href="java_beans.html#type-VetoableChangeListener">java_beans.VetoableChangeListener</a>)
+                                 <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                                 <font color="green"><b> (* </b><a href="#meths-VetoableChangeListenerProxy">Typebound Procedures</a><b> *)</b></font>
+                                 <b>STATIC</b>
+                                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                   p1 : <a href="java_beans.html#type-VetoableChangeListener">java_beans.VetoableChangeListener</a>) : <a href="#type-VetoableChangeListenerProxy">VetoableChangeListenerProxy</a><b>,CONSTRUCTOR</b>;
+                                 <b>END</b>;
+
+  <a name="type-VetoableChangeSupport"></a><font color="#cc0033">VetoableChangeSupport</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_io.html#type-Serializable">java_io.Serializable</a>)
+                           <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                           <font color="green"><b> (* </b><a href="#meths-VetoableChangeSupport">Typebound Procedures</a><b> *)</b></font>
+                           <b>STATIC</b>
+                             <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="#type-VetoableChangeSupport">VetoableChangeSupport</a><b>,CONSTRUCTOR</b>;
+                           <b>END</b>;
+
+  <a name="type-Visibility"></a><font color="#cc0033">Visibility</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                <font color="green"><b> (* </b><a href="#meths-Visibility">Typebound Procedures</a><b> *)</b></font>
+                <b>END</b>;
+
+  <a name="type-XMLDecoder"></a><font color="#cc0033">XMLDecoder</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_lang.html#type-AutoCloseable">java_lang.AutoCloseable</a>)
+                <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                <font color="green"><b> (* </b><a href="#meths-XMLDecoder">Typebound Procedures</a><b> *)</b></font>
+                <b>STATIC</b>
+                  <b>PROCEDURE </b><font color="#cc0033">createHandler</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                           p1 : <a href="java_beans.html#type-ExceptionListener">java_beans.ExceptionListener</a>;
+                                           p2 : <a href="java_lang.html#type-ClassLoader">java_lang.ClassLoader</a>) : <a href="org_xml_sax_helpers.html#type-DefaultHandler">org_xml_sax_helpers.DefaultHandler</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_io.html#type-InputStream">java_io.InputStream</a>;
+                                  p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                  p2 : <a href="java_beans.html#type-ExceptionListener">java_beans.ExceptionListener</a>;
+                                  p3 : <a href="java_lang.html#type-ClassLoader">java_lang.ClassLoader</a>) : <a href="#type-XMLDecoder">XMLDecoder</a><b>,CONSTRUCTOR</b>;
+                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="org_xml_sax.html#type-InputSource">org_xml_sax.InputSource</a>) : <a href="#type-XMLDecoder">XMLDecoder</a><b>,CONSTRUCTOR</b>;
+                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_io.html#type-InputStream">java_io.InputStream</a>) : <a href="#type-XMLDecoder">XMLDecoder</a><b>,CONSTRUCTOR</b>;
+                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_io.html#type-InputStream">java_io.InputStream</a>;
+                                  p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="#type-XMLDecoder">XMLDecoder</a><b>,CONSTRUCTOR</b>;
+                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_io.html#type-InputStream">java_io.InputStream</a>;
+                                  p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                  p2 : <a href="java_beans.html#type-ExceptionListener">java_beans.ExceptionListener</a>) : <a href="#type-XMLDecoder">XMLDecoder</a><b>,CONSTRUCTOR</b>;
+                <b>END</b>;
+
+  <a name="type-XMLEncoder"></a><font color="#cc0033">XMLEncoder</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-Encoder">Encoder</a> + <a href="java_lang.html#type-AutoCloseable">java_lang.AutoCloseable</a>)
+                <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                <font color="green"><b> (* </b><a href="#meths-XMLEncoder">Typebound Procedures</a><b> *)</b></font>
+                <b>STATIC</b>
+                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_io.html#type-OutputStream">java_io.OutputStream</a>;
+                                  p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                  p2 : BOOLEAN;
+                                  p3 : INTEGER) : <a href="#type-XMLEncoder">XMLEncoder</a><b>,CONSTRUCTOR</b>;
+                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_io.html#type-OutputStream">java_io.OutputStream</a>) : <a href="#type-XMLEncoder">XMLEncoder</a><b>,CONSTRUCTOR</b>;
+                <b>END</b>;
+
+
+
+<a name="meths-AppletInitializer"></a>
+<b>PROCEDURE </b>(self:AppletInitializer) <font color="#cc0033">activate</font>*(p0 : <a href="java_applet.html#type-Applet">java_applet.Applet</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AppletInitializer) <font color="#cc0033">initialize</font>*(p0 : <a href="java_applet.html#type-Applet">java_applet.Applet</a>;
+                                               p1 : <a href="java_beans_beancontext.html#type-BeanContext">java_beans_beancontext.BeanContext</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-BeanDescriptor"></a>
+<b>PROCEDURE </b>(self:BeanDescriptor) <font color="#cc0033">getBeanClass</font>*() : <a href="java_lang.html#type-Class">java_lang.Class</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BeanDescriptor) <font color="#cc0033">getCustomizerClass</font>*() : <a href="java_lang.html#type-Class">java_lang.Class</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-BeanInfo"></a>
+<b>PROCEDURE </b>(self:BeanInfo) <font color="#cc0033">getAdditionalBeanInfo</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-BeanInfo">BeanInfo</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:BeanInfo) <font color="#cc0033">getBeanDescriptor</font>*() : <a href="#type-BeanDescriptor">BeanDescriptor</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:BeanInfo) <font color="#cc0033">getDefaultEventIndex</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:BeanInfo) <font color="#cc0033">getDefaultPropertyIndex</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:BeanInfo) <font color="#cc0033">getEventSetDescriptors</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_beans.html#type-EventSetDescriptor">java_beans.EventSetDescriptor</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:BeanInfo) <font color="#cc0033">getIcon</font>*(p0 : INTEGER) : <a href="java_awt.html#type-Image">java_awt.Image</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:BeanInfo) <font color="#cc0033">getMethodDescriptors</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_beans.html#type-MethodDescriptor">java_beans.MethodDescriptor</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:BeanInfo) <font color="#cc0033">getPropertyDescriptors</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_beans.html#type-PropertyDescriptor">java_beans.PropertyDescriptor</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-BeanProperty"></a>
+<b>PROCEDURE </b>(self:BeanProperty) <font color="#cc0033">bound</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:BeanProperty) <font color="#cc0033">description</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:BeanProperty) <font color="#cc0033">enumerationValues</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:BeanProperty) <font color="#cc0033">expert</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:BeanProperty) <font color="#cc0033">hidden</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:BeanProperty) <font color="#cc0033">preferred</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:BeanProperty) <font color="#cc0033">required</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:BeanProperty) <font color="#cc0033">visualUpdate</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+<a name="meths-ConstructorProperties"></a>
+<b>PROCEDURE </b>(self:ConstructorProperties) <font color="#cc0033">value</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-Customizer"></a>
+<b>PROCEDURE </b>(self:Customizer) <font color="#cc0033">addPropertyChangeListener</font>*(p0 : <a href="#type-PropertyChangeListener">PropertyChangeListener</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Customizer) <font color="#cc0033">removePropertyChangeListener</font>*(p0 : <a href="#type-PropertyChangeListener">PropertyChangeListener</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Customizer) <font color="#cc0033">setObject</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-DefaultPersistenceDelegate"></a>
+<b>PROCEDURE </b>(self:DefaultPersistenceDelegate) <font color="#cc0033">initialize</font>!(p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                                                        p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                        p2 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                        p3 : <a href="java_beans.html#type-Encoder">java_beans.Encoder</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultPersistenceDelegate) <font color="#cc0033">instantiate</font>!(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                         p1 : <a href="java_beans.html#type-Encoder">java_beans.Encoder</a>) : <a href="java_beans.html#type-Expression">java_beans.Expression</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultPersistenceDelegate) <font color="#cc0033">mutatesTo</font>!(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                       p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-DesignMode"></a>
+<b>PROCEDURE </b>(self:DesignMode) <font color="#cc0033">isDesignTime</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DesignMode) <font color="#cc0033">setDesignTime</font>*(p0 : BOOLEAN)<b>,NEW,ABSTRACT</b>;
+<a name="meths-Encoder"></a>
+<b>PROCEDURE </b>(self:Encoder) <font color="#cc0033">get</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Encoder) <font color="#cc0033">getExceptionListener</font>*() : <a href="java_beans.html#type-ExceptionListener">java_beans.ExceptionListener</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Encoder) <font color="#cc0033">getPersistenceDelegate</font>*(p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>) : <a href="java_beans.html#type-PersistenceDelegate">java_beans.PersistenceDelegate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Encoder) <font color="#cc0033">remove</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Encoder) <font color="#cc0033">setExceptionListener</font>*(p0 : <a href="java_beans.html#type-ExceptionListener">java_beans.ExceptionListener</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Encoder) <font color="#cc0033">setPersistenceDelegate</font>*(p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                                                 p1 : <a href="java_beans.html#type-PersistenceDelegate">java_beans.PersistenceDelegate</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Encoder) <font color="#cc0033">writeExpression</font>*(p0 : <a href="#type-Expression">Expression</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Encoder) <font color="#cc0033">writeObject</font>!(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Encoder) <font color="#cc0033">writeStatement</font>*(p0 : <a href="java_beans.html#type-Statement">java_beans.Statement</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-EventHandler"></a>
+<b>PROCEDURE </b>(self:EventHandler) <font color="#cc0033">getAction</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:EventHandler) <font color="#cc0033">getEventPropertyName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:EventHandler) <font color="#cc0033">getListenerMethodName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:EventHandler) <font color="#cc0033">getTarget</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:EventHandler) <font color="#cc0033">invoke</font>*(    p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                          p1 : <a href="java_lang_reflect.html#type-Method">java_lang_reflect.Method</a>;
+                                      IN  p2 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-EventSetDescriptor"></a>
+<b>PROCEDURE </b>(self:EventSetDescriptor) <font color="#cc0033">getAddListenerMethod</font>*() : <a href="java_lang_reflect.html#type-Method">java_lang_reflect.Method</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:EventSetDescriptor) <font color="#cc0033">getGetListenerMethod</font>*() : <a href="java_lang_reflect.html#type-Method">java_lang_reflect.Method</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:EventSetDescriptor) <font color="#cc0033">getListenerMethodDescriptors</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_beans.html#type-MethodDescriptor">java_beans.MethodDescriptor</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:EventSetDescriptor) <font color="#cc0033">getListenerMethods</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang_reflect.html#type-Method">java_lang_reflect.Method</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:EventSetDescriptor) <font color="#cc0033">getListenerType</font>*() : <a href="java_lang.html#type-Class">java_lang.Class</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:EventSetDescriptor) <font color="#cc0033">getRemoveListenerMethod</font>*() : <a href="java_lang_reflect.html#type-Method">java_lang_reflect.Method</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:EventSetDescriptor) <font color="#cc0033">isInDefaultEventSet</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:EventSetDescriptor) <font color="#cc0033">isUnicast</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:EventSetDescriptor) <font color="#cc0033">setInDefaultEventSet</font>*(p0 : BOOLEAN)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:EventSetDescriptor) <font color="#cc0033">setUnicast</font>*(p0 : BOOLEAN)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-ExceptionListener"></a>
+<b>PROCEDURE </b>(self:ExceptionListener) <font color="#cc0033">exceptionThrown</font>*(p0 : <a href="java_lang.html#type-Exception">java_lang.Exception</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-Expression"></a>
+<b>PROCEDURE </b>(self:Expression) <font color="#cc0033">execute</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Expression) <font color="#cc0033">getValue</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Expression) <font color="#cc0033">setValue</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Expression) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-FeatureDescriptor"></a>
+<b>PROCEDURE </b>(self:FeatureDescriptor) <font color="#cc0033">attributeNames</font>*() : <a href="java_util.html#type-Enumeration">java_util.Enumeration</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FeatureDescriptor) <font color="#cc0033">getDisplayName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FeatureDescriptor) <font color="#cc0033">getName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FeatureDescriptor) <font color="#cc0033">getShortDescription</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FeatureDescriptor) <font color="#cc0033">getValue</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FeatureDescriptor) <font color="#cc0033">isExpert</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FeatureDescriptor) <font color="#cc0033">isHidden</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FeatureDescriptor) <font color="#cc0033">isPreferred</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FeatureDescriptor) <font color="#cc0033">setDisplayName</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FeatureDescriptor) <font color="#cc0033">setExpert</font>*(p0 : BOOLEAN)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FeatureDescriptor) <font color="#cc0033">setHidden</font>*(p0 : BOOLEAN)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FeatureDescriptor) <font color="#cc0033">setName</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FeatureDescriptor) <font color="#cc0033">setPreferred</font>*(p0 : BOOLEAN)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FeatureDescriptor) <font color="#cc0033">setShortDescription</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FeatureDescriptor) <font color="#cc0033">setValue</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                             p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FeatureDescriptor) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-IndexedPropertyChangeEvent"></a>
+<b>PROCEDURE </b>(self:IndexedPropertyChangeEvent) <font color="#cc0033">getIndex</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-IndexedPropertyDescriptor"></a>
+<b>PROCEDURE </b>(self:IndexedPropertyDescriptor) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IndexedPropertyDescriptor) <font color="#cc0033">getIndexedPropertyType</font>*() : <a href="java_lang.html#type-Class">java_lang.Class</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IndexedPropertyDescriptor) <font color="#cc0033">getIndexedReadMethod</font>*() : <a href="java_lang_reflect.html#type-Method">java_lang_reflect.Method</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IndexedPropertyDescriptor) <font color="#cc0033">getIndexedWriteMethod</font>*() : <a href="java_lang_reflect.html#type-Method">java_lang_reflect.Method</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IndexedPropertyDescriptor) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IndexedPropertyDescriptor) <font color="#cc0033">setIndexedReadMethod</font>*(p0 : <a href="java_lang_reflect.html#type-Method">java_lang_reflect.Method</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IndexedPropertyDescriptor) <font color="#cc0033">setIndexedWriteMethod</font>*(p0 : <a href="java_lang_reflect.html#type-Method">java_lang_reflect.Method</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-JavaBean"></a>
+<b>PROCEDURE </b>(self:JavaBean) <font color="#cc0033">defaultEventSet</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:JavaBean) <font color="#cc0033">defaultProperty</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:JavaBean) <font color="#cc0033">description</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-MethodDescriptor"></a>
+<b>PROCEDURE </b>(self:MethodDescriptor) <font color="#cc0033">getMethod</font>*() : <a href="java_lang_reflect.html#type-Method">java_lang_reflect.Method</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MethodDescriptor) <font color="#cc0033">getParameterDescriptors</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_beans.html#type-ParameterDescriptor">java_beans.ParameterDescriptor</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-PersistenceDelegate"></a>
+<b>PROCEDURE </b>(self:PersistenceDelegate) <font color="#cc0033">initialize</font>!(p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                                                 p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                 p2 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                 p3 : <a href="#type-Encoder">Encoder</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PersistenceDelegate) <font color="#cc0033">instantiate</font>!(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                  p1 : <a href="#type-Encoder">Encoder</a>) : <a href="#type-Expression">Expression</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:PersistenceDelegate) <font color="#cc0033">mutatesTo</font>!(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PersistenceDelegate) <font color="#cc0033">writeObject</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                  p1 : <a href="#type-Encoder">Encoder</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-PropertyChangeEvent"></a>
+<b>PROCEDURE </b>(self:PropertyChangeEvent) <font color="#cc0033">getNewValue</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PropertyChangeEvent) <font color="#cc0033">getOldValue</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PropertyChangeEvent) <font color="#cc0033">getPropagationId</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PropertyChangeEvent) <font color="#cc0033">getPropertyName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PropertyChangeEvent) <font color="#cc0033">setPropagationId</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PropertyChangeEvent) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-PropertyChangeListener"></a>
+<b>PROCEDURE </b>(self:PropertyChangeListener) <font color="#cc0033">propertyChange</font>*(p0 : <a href="java_beans.html#type-PropertyChangeEvent">java_beans.PropertyChangeEvent</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-PropertyChangeListenerProxy"></a>
+<b>PROCEDURE </b>(self:PropertyChangeListenerProxy) <font color="#cc0033">getPropertyName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PropertyChangeListenerProxy) <font color="#cc0033">propertyChange</font>*(p0 : <a href="#type-PropertyChangeEvent">PropertyChangeEvent</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-PropertyChangeSupport"></a>
+<b>PROCEDURE </b>(self:PropertyChangeSupport) <font color="#cc0033">addPropertyChangeListener</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                                  p1 : <a href="java_beans.html#type-PropertyChangeListener">java_beans.PropertyChangeListener</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PropertyChangeSupport) <font color="#cc0033">addPropertyChangeListener</font>*(p0 : <a href="java_beans.html#type-PropertyChangeListener">java_beans.PropertyChangeListener</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PropertyChangeSupport) <font color="#cc0033">fireIndexedPropertyChange</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                                  p1 : INTEGER;
+                                                                  p2 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                                  p3 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PropertyChangeSupport) <font color="#cc0033">fireIndexedPropertyChange</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                                  p1 : INTEGER;
+                                                                  p2 : BOOLEAN;
+                                                                  p3 : BOOLEAN)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PropertyChangeSupport) <font color="#cc0033">fireIndexedPropertyChange</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                                  p1 : INTEGER;
+                                                                  p2 : INTEGER;
+                                                                  p3 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PropertyChangeSupport) <font color="#cc0033">firePropertyChange</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                           p1 : BOOLEAN;
+                                                           p2 : BOOLEAN)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PropertyChangeSupport) <font color="#cc0033">firePropertyChange</font>*(p0 : <a href="java_beans.html#type-PropertyChangeEvent">java_beans.PropertyChangeEvent</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PropertyChangeSupport) <font color="#cc0033">firePropertyChange</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                           p1 : INTEGER;
+                                                           p2 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PropertyChangeSupport) <font color="#cc0033">firePropertyChange</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                           p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                           p2 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PropertyChangeSupport) <font color="#cc0033">getPropertyChangeListeners</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_beans.html#type-PropertyChangeListener">java_beans.PropertyChangeListener</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PropertyChangeSupport) <font color="#cc0033">getPropertyChangeListeners</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_beans.html#type-PropertyChangeListener">java_beans.PropertyChangeListener</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PropertyChangeSupport) <font color="#cc0033">hasListeners</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PropertyChangeSupport) <font color="#cc0033">removePropertyChangeListener</font>*(p0 : <a href="java_beans.html#type-PropertyChangeListener">java_beans.PropertyChangeListener</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PropertyChangeSupport) <font color="#cc0033">removePropertyChangeListener</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                                     p1 : <a href="java_beans.html#type-PropertyChangeListener">java_beans.PropertyChangeListener</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-PropertyDescriptor"></a>
+<b>PROCEDURE </b>(self:PropertyDescriptor) <font color="#cc0033">createPropertyEditor</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="#type-PropertyEditor">PropertyEditor</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PropertyDescriptor) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PropertyDescriptor) <font color="#cc0033">getPropertyEditorClass</font>*() : <a href="java_lang.html#type-Class">java_lang.Class</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PropertyDescriptor) <font color="#cc0033">getPropertyType</font>*() : <a href="java_lang.html#type-Class">java_lang.Class</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PropertyDescriptor) <font color="#cc0033">getReadMethod</font>*() : <a href="java_lang_reflect.html#type-Method">java_lang_reflect.Method</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PropertyDescriptor) <font color="#cc0033">getWriteMethod</font>*() : <a href="java_lang_reflect.html#type-Method">java_lang_reflect.Method</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PropertyDescriptor) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PropertyDescriptor) <font color="#cc0033">isBound</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PropertyDescriptor) <font color="#cc0033">isConstrained</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PropertyDescriptor) <font color="#cc0033">setBound</font>*(p0 : BOOLEAN)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PropertyDescriptor) <font color="#cc0033">setConstrained</font>*(p0 : BOOLEAN)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PropertyDescriptor) <font color="#cc0033">setPropertyEditorClass</font>*(p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PropertyDescriptor) <font color="#cc0033">setReadMethod</font>*(p0 : <a href="java_lang_reflect.html#type-Method">java_lang_reflect.Method</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PropertyDescriptor) <font color="#cc0033">setWriteMethod</font>*(p0 : <a href="java_lang_reflect.html#type-Method">java_lang_reflect.Method</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-PropertyEditor"></a>
+<b>PROCEDURE </b>(self:PropertyEditor) <font color="#cc0033">addPropertyChangeListener</font>*(p0 : <a href="java_beans.html#type-PropertyChangeListener">java_beans.PropertyChangeListener</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:PropertyEditor) <font color="#cc0033">getAsText</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:PropertyEditor) <font color="#cc0033">getCustomEditor</font>*() : <a href="java_awt.html#type-Component">java_awt.Component</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:PropertyEditor) <font color="#cc0033">getJavaInitializationString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:PropertyEditor) <font color="#cc0033">getTags</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:PropertyEditor) <font color="#cc0033">getValue</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:PropertyEditor) <font color="#cc0033">isPaintable</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:PropertyEditor) <font color="#cc0033">paintValue</font>*(p0 : <a href="java_awt.html#type-Graphics">java_awt.Graphics</a>;
+                                            p1 : <a href="java_awt.html#type-Rectangle">java_awt.Rectangle</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:PropertyEditor) <font color="#cc0033">removePropertyChangeListener</font>*(p0 : <a href="java_beans.html#type-PropertyChangeListener">java_beans.PropertyChangeListener</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:PropertyEditor) <font color="#cc0033">setAsText</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:PropertyEditor) <font color="#cc0033">setValue</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:PropertyEditor) <font color="#cc0033">supportsCustomEditor</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+<a name="meths-PropertyEditorSupport"></a>
+<b>PROCEDURE </b>(self:PropertyEditorSupport) <font color="#cc0033">addPropertyChangeListener</font>*(p0 : <a href="java_beans.html#type-PropertyChangeListener">java_beans.PropertyChangeListener</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PropertyEditorSupport) <font color="#cc0033">firePropertyChange</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PropertyEditorSupport) <font color="#cc0033">getAsText</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PropertyEditorSupport) <font color="#cc0033">getCustomEditor</font>*() : <a href="java_awt.html#type-Component">java_awt.Component</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PropertyEditorSupport) <font color="#cc0033">getJavaInitializationString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PropertyEditorSupport) <font color="#cc0033">getSource</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PropertyEditorSupport) <font color="#cc0033">getTags</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PropertyEditorSupport) <font color="#cc0033">getValue</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PropertyEditorSupport) <font color="#cc0033">isPaintable</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PropertyEditorSupport) <font color="#cc0033">paintValue</font>*(p0 : <a href="java_awt.html#type-Graphics">java_awt.Graphics</a>;
+                                                   p1 : <a href="java_awt.html#type-Rectangle">java_awt.Rectangle</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PropertyEditorSupport) <font color="#cc0033">removePropertyChangeListener</font>*(p0 : <a href="java_beans.html#type-PropertyChangeListener">java_beans.PropertyChangeListener</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PropertyEditorSupport) <font color="#cc0033">setAsText</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PropertyEditorSupport) <font color="#cc0033">setSource</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PropertyEditorSupport) <font color="#cc0033">setValue</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PropertyEditorSupport) <font color="#cc0033">supportsCustomEditor</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-PropertyVetoException"></a>
+<b>PROCEDURE </b>(self:PropertyVetoException) <font color="#cc0033">getPropertyChangeEvent</font>*() : <a href="java_beans.html#type-PropertyChangeEvent">java_beans.PropertyChangeEvent</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-SimpleBeanInfo"></a>
+<b>PROCEDURE </b>(self:SimpleBeanInfo) <font color="#cc0033">getAdditionalBeanInfo</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_beans.html#type-BeanInfo">java_beans.BeanInfo</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SimpleBeanInfo) <font color="#cc0033">getBeanDescriptor</font>*() : <a href="java_beans.html#type-BeanDescriptor">java_beans.BeanDescriptor</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SimpleBeanInfo) <font color="#cc0033">getDefaultEventIndex</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SimpleBeanInfo) <font color="#cc0033">getDefaultPropertyIndex</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SimpleBeanInfo) <font color="#cc0033">getEventSetDescriptors</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_beans.html#type-EventSetDescriptor">java_beans.EventSetDescriptor</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SimpleBeanInfo) <font color="#cc0033">getIcon</font>*(p0 : INTEGER) : <a href="java_awt.html#type-Image">java_awt.Image</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SimpleBeanInfo) <font color="#cc0033">getMethodDescriptors</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_beans.html#type-MethodDescriptor">java_beans.MethodDescriptor</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SimpleBeanInfo) <font color="#cc0033">getPropertyDescriptors</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_beans.html#type-PropertyDescriptor">java_beans.PropertyDescriptor</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SimpleBeanInfo) <font color="#cc0033">loadImage</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_awt.html#type-Image">java_awt.Image</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-Statement"></a>
+<b>PROCEDURE </b>(self:Statement) <font color="#cc0033">execute</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Statement) <font color="#cc0033">getArguments</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Statement) <font color="#cc0033">getMethodName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Statement) <font color="#cc0033">getTarget</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Statement) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-Transient"></a>
+<b>PROCEDURE </b>(self:Transient) <font color="#cc0033">value</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+<a name="meths-VetoableChangeListener"></a>
+<b>PROCEDURE </b>(self:VetoableChangeListener) <font color="#cc0033">vetoableChange</font>*(p0 : <a href="java_beans.html#type-PropertyChangeEvent">java_beans.PropertyChangeEvent</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-VetoableChangeListenerProxy"></a>
+<b>PROCEDURE </b>(self:VetoableChangeListenerProxy) <font color="#cc0033">getPropertyName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:VetoableChangeListenerProxy) <font color="#cc0033">vetoableChange</font>*(p0 : <a href="java_beans.html#type-PropertyChangeEvent">java_beans.PropertyChangeEvent</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-VetoableChangeSupport"></a>
+<b>PROCEDURE </b>(self:VetoableChangeSupport) <font color="#cc0033">addVetoableChangeListener</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                                  p1 : <a href="#type-VetoableChangeListener">VetoableChangeListener</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:VetoableChangeSupport) <font color="#cc0033">addVetoableChangeListener</font>*(p0 : <a href="#type-VetoableChangeListener">VetoableChangeListener</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:VetoableChangeSupport) <font color="#cc0033">fireVetoableChange</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                           p1 : INTEGER;
+                                                           p2 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:VetoableChangeSupport) <font color="#cc0033">fireVetoableChange</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                           p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                           p2 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:VetoableChangeSupport) <font color="#cc0033">fireVetoableChange</font>*(p0 : <a href="java_beans.html#type-PropertyChangeEvent">java_beans.PropertyChangeEvent</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:VetoableChangeSupport) <font color="#cc0033">fireVetoableChange</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                           p1 : BOOLEAN;
+                                                           p2 : BOOLEAN)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:VetoableChangeSupport) <font color="#cc0033">getVetoableChangeListeners</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-VetoableChangeListener">VetoableChangeListener</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:VetoableChangeSupport) <font color="#cc0033">getVetoableChangeListeners</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-VetoableChangeListener">VetoableChangeListener</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:VetoableChangeSupport) <font color="#cc0033">hasListeners</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:VetoableChangeSupport) <font color="#cc0033">removeVetoableChangeListener</font>*(p0 : <a href="#type-VetoableChangeListener">VetoableChangeListener</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:VetoableChangeSupport) <font color="#cc0033">removeVetoableChangeListener</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                                     p1 : <a href="#type-VetoableChangeListener">VetoableChangeListener</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-Visibility"></a>
+<b>PROCEDURE </b>(self:Visibility) <font color="#cc0033">avoidingGui</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Visibility) <font color="#cc0033">dontUseGui</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Visibility) <font color="#cc0033">needsGui</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Visibility) <font color="#cc0033">okToUseGui</font>*()<b>,NEW,ABSTRACT</b>;
+<a name="meths-XMLDecoder"></a>
+<b>PROCEDURE </b>(self:XMLDecoder) <font color="#cc0033">close</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:XMLDecoder) <font color="#cc0033">getExceptionListener</font>*() : <a href="java_beans.html#type-ExceptionListener">java_beans.ExceptionListener</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:XMLDecoder) <font color="#cc0033">getOwner</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:XMLDecoder) <font color="#cc0033">readObject</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:XMLDecoder) <font color="#cc0033">setExceptionListener</font>*(p0 : <a href="java_beans.html#type-ExceptionListener">java_beans.ExceptionListener</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:XMLDecoder) <font color="#cc0033">setOwner</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-XMLEncoder"></a>
+<b>PROCEDURE </b>(self:XMLEncoder) <font color="#cc0033">close</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:XMLEncoder) <font color="#cc0033">flush</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:XMLEncoder) <font color="#cc0033">getOwner</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:XMLEncoder) <font color="#cc0033">setOwner</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:XMLEncoder) <font color="#cc0033">writeExpression</font>*(p0 : <a href="#type-Expression">Expression</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:XMLEncoder) <font color="#cc0033">writeObject</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:XMLEncoder) <font color="#cc0033">writeStatement</font>*(p0 : <a href="java_beans.html#type-Statement">java_beans.Statement</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>END </b><font color="#cc0033">java_beans</font>.
+</font></pre></hr>
+<!-- BEGIN JavaScript -->
+<script>
+function toggle(node) {
+    node.classList.toggle("show"); 
+  }
+
+function cls(node) {
+    var prnt = node.parentNode;
+    var next = prnt.previousSibling;
+    var text = next.lastChild;
+    text.innerHTML = 
+        "The <b>class</b> property asserts that this type will be<br>" +
+        "implemented as a reference class in the underlying framework.";
+    text.classList.toggle("show");
+  }
+
+function newOk(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>has noArg-ctor</b> property asserts that this reference<br>" +
+        "class has a no-arg constructor, and thus objects of this<br>" +
+        "type can be allocated with NEW(). Component Pascal types<br>" +
+        "derived from this type can also be allocated using NEW().";
+    popuptext.classList.toggle("show"); 
+  }
+
+function noNew(node) { 
+    var prnt = node.parentNode; 
+    var next = prnt.previousSibling; 
+    var text = next.lastChild; 
+    text.innerHTML =  
+        "The <b>no noArg-ctor</b> property asserts that this reference<br>" +
+        "class does not have a noArg constructor. Objects of this<br>" +
+        "type cannot be allocated using NEW(), and Component<br>" +
+        "Pascal types  derived from this type also cannot be<br>" +
+        "allocated using NEW().";
+    text.classList.toggle("show");
+  }
+
+function noCpy(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>no value-assign</b> property asserts that this reference<br>" + 
+        "class does not have a value copy method. Therefore, it<br>" +
+        "is not possible to perform value assignments using<br>" +
+        "statements like <i>dst^</i> := <i>src^</i>";
+    popuptext.classList.toggle("show");
+  }
+
+function valueclass(node) { 
+        var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>valueclass</b> property asserts that this RECORD type is<br>" + 
+        "implemented as a value class in the CLR. It follows that<br>" +  
+        "value assignments can be made of these types. They can<br>" + 
+        "also be passed by value. Even pointers to records of<br>" + 
+        "such types may be dereferenced and copied using syntax<br>" + 
+        "such as  <i>dst^</i> := <i>src^</i>"; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+function argCtor(node) { 
+    var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>has arg-ctor</b> property asserts that this reference<br>" +  
+        "class has one or more constructors that take arguments.<br>" + 
+        "These constructors can be called from Component Pascal<br>" + 
+        "by calling an <i>init</i>(...) method from the static list<br>" + 
+        "here. Component Pascal types derived from this type<br>" + 
+        "can define constructors with arguments which call the<br>" + 
+        "super-type constructor.<br>" + 
+        "See <i>'Interfacing to constructors'</i> in the Release Notes."; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+</script>
+<!-- END JavaScript --> 
+
+</body></html>

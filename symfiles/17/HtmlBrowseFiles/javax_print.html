@@ -1,0 +1,517 @@
+<html><head><title>javax_print</title>
+<style>
+<!-- BEGIN Inline CSS -->
+/* Popup container */
+.popup {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+/* The actual popup (appears on top) */
+.popup .popuptext {
+    visibility: hidden;
+    width: 430px;
+    background-color: white;
+    color: black;
+    text-align: left;
+    border-radius: 6px;
+    border-style: solid;
+    border-color: black;
+    padding: 8px 8px 8px 8px;
+    position: absolute;
+    z-index: 1;
+    margin-top: 30px;
+}
+
+/* Toggle this class when clicking on the popup container (hide and show the popup) */
+.popup .show {
+    visibility: visible;
+    opacity: 1;
+}
+
+</style>
+<!-- END Inline CSS -->
+</head><body bgcolor="white">
+<hr><pre>
+<font color="green">(*</font>
+<font color="green"> *  Creator PeToCps j2cps version 1.4.07 (March 2018)</font>
+<font color="green"> *  Compiled from jar-file /Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home/jmods/java.desktop.jmod</font>
+<font color="green"> *)</font>
+<b>FOREIGN MODULE </b><font color="#cc0033">javax_print</font>;
+
+<b>IMPORT</b>
+    <a href="javax_print.html">javax_print</a> := "javax.print",
+    <a href="javax_print_attribute.html">javax_print_attribute</a> := "javax.print.attribute",
+    <a href="javax_print_attribute.html">javax_print_attribute</a> := "javax.print.attribute",
+    <a href="javax_print_event.html">javax_print_event</a> := "javax.print.event",
+    <a href="java_awt.html">java_awt</a> := "java.awt",
+    <a href="java_io.html">java_io</a> := "java.io",
+    <a href="java_lang.html">java_lang</a> := "java.lang",
+    <a href="java_net.html">java_net</a> := "java.net";
+
+<b>TYPE</b>
+
+  <a name="type-AttributeException"></a><font color="#cc0033">AttributeException</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                        <font color="green"><b> (* </b><a href="#meths-AttributeException">Typebound Procedures</a><b> *)</b></font>
+                        <b>END</b>;
+
+  <a name="type-CancelablePrintJob"></a><font color="#cc0033">CancelablePrintJob</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-DocPrintJob">DocPrintJob</a>)
+                        <font color="green"><b> (* </b><a href="#meths-CancelablePrintJob">Typebound Procedures</a><b> *)</b></font>
+                        <b>END</b>;
+
+  <a name="type-Doc"></a><font color="#cc0033">Doc</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+         <font color="green"><b> (* </b><a href="#meths-Doc">Typebound Procedures</a><b> *)</b></font>
+         <b>END</b>;
+
+  <a name="type-DocFlavor"></a><font color="#cc0033">DocFlavor</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_io.html#type-Serializable">java_io.Serializable</a> + <a href="java_lang.html#type-Cloneable">java_lang.Cloneable</a>)
+               <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+               <font color="green"><b> (* </b><a href="#meths-DocFlavor">Typebound Procedures</a><b> *)</b></font>
+               <b>STATIC</b>
+                 <a name="type-hostEncoding"></a><font color="#cc0033">hostEncoding</font>* : <a href="java_lang.html#type-String">java_lang.String</a>;
+                 <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                 p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-DocFlavor">DocFlavor</a><b>,CONSTRUCTOR</b>;
+               <b>END</b>;
+
+  <a name="type-DocFlavor$BYTE_ARRAY"></a><font color="#cc0033">DocFlavor$BYTE_ARRAY</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="javax_print.html#type-DocFlavor">javax_print.DocFlavor</a>)
+                          <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                          <b>STATIC</b>
+                            <a name="type-AUTOSENSE"></a><font color="#cc0033">AUTOSENSE</font>*           : <a href="#type-DocFlavor$BYTE_ARRAY">DocFlavor$BYTE_ARRAY</a>;
+                            <a name="type-GIF"></a><font color="#cc0033">GIF</font>*                 : <a href="#type-DocFlavor$BYTE_ARRAY">DocFlavor$BYTE_ARRAY</a>;
+                            <a name="type-JPEG"></a><font color="#cc0033">JPEG</font>*                : <a href="#type-DocFlavor$BYTE_ARRAY">DocFlavor$BYTE_ARRAY</a>;
+                            <a name="type-PCL"></a><font color="#cc0033">PCL</font>*                 : <a href="#type-DocFlavor$BYTE_ARRAY">DocFlavor$BYTE_ARRAY</a>;
+                            <a name="type-PDF"></a><font color="#cc0033">PDF</font>*                 : <a href="#type-DocFlavor$BYTE_ARRAY">DocFlavor$BYTE_ARRAY</a>;
+                            <a name="type-PNG"></a><font color="#cc0033">PNG</font>*                 : <a href="#type-DocFlavor$BYTE_ARRAY">DocFlavor$BYTE_ARRAY</a>;
+                            <a name="type-POSTSCRIPT"></a><font color="#cc0033">POSTSCRIPT</font>*          : <a href="#type-DocFlavor$BYTE_ARRAY">DocFlavor$BYTE_ARRAY</a>;
+                            <a name="type-TEXT_HTML_HOST"></a><font color="#cc0033">TEXT_HTML_HOST</font>*      : <a href="#type-DocFlavor$BYTE_ARRAY">DocFlavor$BYTE_ARRAY</a>;
+                            <a name="type-TEXT_HTML_US_ASCII"></a><font color="#cc0033">TEXT_HTML_US_ASCII</font>*  : <a href="#type-DocFlavor$BYTE_ARRAY">DocFlavor$BYTE_ARRAY</a>;
+                            <a name="type-TEXT_HTML_UTF_16"></a><font color="#cc0033">TEXT_HTML_UTF_16</font>*    : <a href="#type-DocFlavor$BYTE_ARRAY">DocFlavor$BYTE_ARRAY</a>;
+                            <a name="type-TEXT_HTML_UTF_16BE"></a><font color="#cc0033">TEXT_HTML_UTF_16BE</font>*  : <a href="#type-DocFlavor$BYTE_ARRAY">DocFlavor$BYTE_ARRAY</a>;
+                            <a name="type-TEXT_HTML_UTF_16LE"></a><font color="#cc0033">TEXT_HTML_UTF_16LE</font>*  : <a href="#type-DocFlavor$BYTE_ARRAY">DocFlavor$BYTE_ARRAY</a>;
+                            <a name="type-TEXT_HTML_UTF_8"></a><font color="#cc0033">TEXT_HTML_UTF_8</font>*     : <a href="#type-DocFlavor$BYTE_ARRAY">DocFlavor$BYTE_ARRAY</a>;
+                            <a name="type-TEXT_PLAIN_HOST"></a><font color="#cc0033">TEXT_PLAIN_HOST</font>*     : <a href="#type-DocFlavor$BYTE_ARRAY">DocFlavor$BYTE_ARRAY</a>;
+                            <a name="type-TEXT_PLAIN_US_ASCII"></a><font color="#cc0033">TEXT_PLAIN_US_ASCII</font>* : <a href="#type-DocFlavor$BYTE_ARRAY">DocFlavor$BYTE_ARRAY</a>;
+                            <a name="type-TEXT_PLAIN_UTF_16"></a><font color="#cc0033">TEXT_PLAIN_UTF_16</font>*   : <a href="#type-DocFlavor$BYTE_ARRAY">DocFlavor$BYTE_ARRAY</a>;
+                            <a name="type-TEXT_PLAIN_UTF_16BE"></a><font color="#cc0033">TEXT_PLAIN_UTF_16BE</font>* : <a href="#type-DocFlavor$BYTE_ARRAY">DocFlavor$BYTE_ARRAY</a>;
+                            <a name="type-TEXT_PLAIN_UTF_16LE"></a><font color="#cc0033">TEXT_PLAIN_UTF_16LE</font>* : <a href="#type-DocFlavor$BYTE_ARRAY">DocFlavor$BYTE_ARRAY</a>;
+                            <a name="type-TEXT_PLAIN_UTF_8"></a><font color="#cc0033">TEXT_PLAIN_UTF_8</font>*    : <a href="#type-DocFlavor$BYTE_ARRAY">DocFlavor$BYTE_ARRAY</a>;
+                            <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-DocFlavor$BYTE_ARRAY">DocFlavor$BYTE_ARRAY</a><b>,CONSTRUCTOR</b>;
+                          <b>END</b>;
+
+  <a name="type-DocFlavor$CHAR_ARRAY"></a><font color="#cc0033">DocFlavor$CHAR_ARRAY</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-DocFlavor">DocFlavor</a>)
+                          <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                          <b>STATIC</b>
+                            <a name="type-TEXT_HTML"></a><font color="#cc0033">TEXT_HTML</font>*  : <a href="#type-DocFlavor$CHAR_ARRAY">DocFlavor$CHAR_ARRAY</a>;
+                            <a name="type-TEXT_PLAIN"></a><font color="#cc0033">TEXT_PLAIN</font>* : <a href="#type-DocFlavor$CHAR_ARRAY">DocFlavor$CHAR_ARRAY</a>;
+                            <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-DocFlavor$CHAR_ARRAY">DocFlavor$CHAR_ARRAY</a><b>,CONSTRUCTOR</b>;
+                          <b>END</b>;
+
+  <a name="type-DocFlavor$INPUT_STREAM"></a><font color="#cc0033">DocFlavor$INPUT_STREAM</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="javax_print.html#type-DocFlavor">javax_print.DocFlavor</a>)
+                            <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                            <b>STATIC</b>
+                              <a name="type-AUTOSENSE"></a><font color="#cc0033">AUTOSENSE</font>*           : <a href="#type-DocFlavor$INPUT_STREAM">DocFlavor$INPUT_STREAM</a>;
+                              <a name="type-GIF"></a><font color="#cc0033">GIF</font>*                 : <a href="#type-DocFlavor$INPUT_STREAM">DocFlavor$INPUT_STREAM</a>;
+                              <a name="type-JPEG"></a><font color="#cc0033">JPEG</font>*                : <a href="#type-DocFlavor$INPUT_STREAM">DocFlavor$INPUT_STREAM</a>;
+                              <a name="type-PCL"></a><font color="#cc0033">PCL</font>*                 : <a href="#type-DocFlavor$INPUT_STREAM">DocFlavor$INPUT_STREAM</a>;
+                              <a name="type-PDF"></a><font color="#cc0033">PDF</font>*                 : <a href="#type-DocFlavor$INPUT_STREAM">DocFlavor$INPUT_STREAM</a>;
+                              <a name="type-PNG"></a><font color="#cc0033">PNG</font>*                 : <a href="#type-DocFlavor$INPUT_STREAM">DocFlavor$INPUT_STREAM</a>;
+                              <a name="type-POSTSCRIPT"></a><font color="#cc0033">POSTSCRIPT</font>*          : <a href="#type-DocFlavor$INPUT_STREAM">DocFlavor$INPUT_STREAM</a>;
+                              <a name="type-TEXT_HTML_HOST"></a><font color="#cc0033">TEXT_HTML_HOST</font>*      : <a href="#type-DocFlavor$INPUT_STREAM">DocFlavor$INPUT_STREAM</a>;
+                              <a name="type-TEXT_HTML_US_ASCII"></a><font color="#cc0033">TEXT_HTML_US_ASCII</font>*  : <a href="#type-DocFlavor$INPUT_STREAM">DocFlavor$INPUT_STREAM</a>;
+                              <a name="type-TEXT_HTML_UTF_16"></a><font color="#cc0033">TEXT_HTML_UTF_16</font>*    : <a href="#type-DocFlavor$INPUT_STREAM">DocFlavor$INPUT_STREAM</a>;
+                              <a name="type-TEXT_HTML_UTF_16BE"></a><font color="#cc0033">TEXT_HTML_UTF_16BE</font>*  : <a href="#type-DocFlavor$INPUT_STREAM">DocFlavor$INPUT_STREAM</a>;
+                              <a name="type-TEXT_HTML_UTF_16LE"></a><font color="#cc0033">TEXT_HTML_UTF_16LE</font>*  : <a href="#type-DocFlavor$INPUT_STREAM">DocFlavor$INPUT_STREAM</a>;
+                              <a name="type-TEXT_HTML_UTF_8"></a><font color="#cc0033">TEXT_HTML_UTF_8</font>*     : <a href="#type-DocFlavor$INPUT_STREAM">DocFlavor$INPUT_STREAM</a>;
+                              <a name="type-TEXT_PLAIN_HOST"></a><font color="#cc0033">TEXT_PLAIN_HOST</font>*     : <a href="#type-DocFlavor$INPUT_STREAM">DocFlavor$INPUT_STREAM</a>;
+                              <a name="type-TEXT_PLAIN_US_ASCII"></a><font color="#cc0033">TEXT_PLAIN_US_ASCII</font>* : <a href="#type-DocFlavor$INPUT_STREAM">DocFlavor$INPUT_STREAM</a>;
+                              <a name="type-TEXT_PLAIN_UTF_16"></a><font color="#cc0033">TEXT_PLAIN_UTF_16</font>*   : <a href="#type-DocFlavor$INPUT_STREAM">DocFlavor$INPUT_STREAM</a>;
+                              <a name="type-TEXT_PLAIN_UTF_16BE"></a><font color="#cc0033">TEXT_PLAIN_UTF_16BE</font>* : <a href="#type-DocFlavor$INPUT_STREAM">DocFlavor$INPUT_STREAM</a>;
+                              <a name="type-TEXT_PLAIN_UTF_16LE"></a><font color="#cc0033">TEXT_PLAIN_UTF_16LE</font>* : <a href="#type-DocFlavor$INPUT_STREAM">DocFlavor$INPUT_STREAM</a>;
+                              <a name="type-TEXT_PLAIN_UTF_8"></a><font color="#cc0033">TEXT_PLAIN_UTF_8</font>*    : <a href="#type-DocFlavor$INPUT_STREAM">DocFlavor$INPUT_STREAM</a>;
+                              <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-DocFlavor$INPUT_STREAM">DocFlavor$INPUT_STREAM</a><b>,CONSTRUCTOR</b>;
+                            <b>END</b>;
+
+  <a name="type-DocFlavor$READER"></a><font color="#cc0033">DocFlavor$READER</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-DocFlavor">DocFlavor</a>)
+                      <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                      <b>STATIC</b>
+                        <a name="type-TEXT_HTML"></a><font color="#cc0033">TEXT_HTML</font>*  : <a href="#type-DocFlavor$READER">DocFlavor$READER</a>;
+                        <a name="type-TEXT_PLAIN"></a><font color="#cc0033">TEXT_PLAIN</font>* : <a href="#type-DocFlavor$READER">DocFlavor$READER</a>;
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-DocFlavor$READER">DocFlavor$READER</a><b>,CONSTRUCTOR</b>;
+                      <b>END</b>;
+
+  <a name="type-DocFlavor$SERVICE_FORMATTED"></a><font color="#cc0033">DocFlavor$SERVICE_FORMATTED</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="javax_print.html#type-DocFlavor">javax_print.DocFlavor</a>)
+                                 <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                                 <b>STATIC</b>
+                                   <a name="type-PAGEABLE"></a><font color="#cc0033">PAGEABLE</font>*         : <a href="#type-DocFlavor$SERVICE_FORMATTED">DocFlavor$SERVICE_FORMATTED</a>;
+                                   <a name="type-PRINTABLE"></a><font color="#cc0033">PRINTABLE</font>*        : <a href="#type-DocFlavor$SERVICE_FORMATTED">DocFlavor$SERVICE_FORMATTED</a>;
+                                   <a name="type-RENDERABLE_IMAGE"></a><font color="#cc0033">RENDERABLE_IMAGE</font>* : <a href="#type-DocFlavor$SERVICE_FORMATTED">DocFlavor$SERVICE_FORMATTED</a>;
+                                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-DocFlavor$SERVICE_FORMATTED">DocFlavor$SERVICE_FORMATTED</a><b>,CONSTRUCTOR</b>;
+                                 <b>END</b>;
+
+  <a name="type-DocFlavor$STRING"></a><font color="#cc0033">DocFlavor$STRING</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-DocFlavor">DocFlavor</a>)
+                      <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                      <b>STATIC</b>
+                        <a name="type-TEXT_HTML"></a><font color="#cc0033">TEXT_HTML</font>*  : <a href="#type-DocFlavor$STRING">DocFlavor$STRING</a>;
+                        <a name="type-TEXT_PLAIN"></a><font color="#cc0033">TEXT_PLAIN</font>* : <a href="#type-DocFlavor$STRING">DocFlavor$STRING</a>;
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-DocFlavor$STRING">DocFlavor$STRING</a><b>,CONSTRUCTOR</b>;
+                      <b>END</b>;
+
+  <a name="type-DocFlavor$URL"></a><font color="#cc0033">DocFlavor$URL</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="javax_print.html#type-DocFlavor">javax_print.DocFlavor</a>)
+                   <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                   <b>STATIC</b>
+                     <a name="type-AUTOSENSE"></a><font color="#cc0033">AUTOSENSE</font>*           : <a href="#type-DocFlavor$URL">DocFlavor$URL</a>;
+                     <a name="type-GIF"></a><font color="#cc0033">GIF</font>*                 : <a href="#type-DocFlavor$URL">DocFlavor$URL</a>;
+                     <a name="type-JPEG"></a><font color="#cc0033">JPEG</font>*                : <a href="#type-DocFlavor$URL">DocFlavor$URL</a>;
+                     <a name="type-PCL"></a><font color="#cc0033">PCL</font>*                 : <a href="#type-DocFlavor$URL">DocFlavor$URL</a>;
+                     <a name="type-PDF"></a><font color="#cc0033">PDF</font>*                 : <a href="#type-DocFlavor$URL">DocFlavor$URL</a>;
+                     <a name="type-PNG"></a><font color="#cc0033">PNG</font>*                 : <a href="#type-DocFlavor$URL">DocFlavor$URL</a>;
+                     <a name="type-POSTSCRIPT"></a><font color="#cc0033">POSTSCRIPT</font>*          : <a href="#type-DocFlavor$URL">DocFlavor$URL</a>;
+                     <a name="type-TEXT_HTML_HOST"></a><font color="#cc0033">TEXT_HTML_HOST</font>*      : <a href="#type-DocFlavor$URL">DocFlavor$URL</a>;
+                     <a name="type-TEXT_HTML_US_ASCII"></a><font color="#cc0033">TEXT_HTML_US_ASCII</font>*  : <a href="#type-DocFlavor$URL">DocFlavor$URL</a>;
+                     <a name="type-TEXT_HTML_UTF_16"></a><font color="#cc0033">TEXT_HTML_UTF_16</font>*    : <a href="#type-DocFlavor$URL">DocFlavor$URL</a>;
+                     <a name="type-TEXT_HTML_UTF_16BE"></a><font color="#cc0033">TEXT_HTML_UTF_16BE</font>*  : <a href="#type-DocFlavor$URL">DocFlavor$URL</a>;
+                     <a name="type-TEXT_HTML_UTF_16LE"></a><font color="#cc0033">TEXT_HTML_UTF_16LE</font>*  : <a href="#type-DocFlavor$URL">DocFlavor$URL</a>;
+                     <a name="type-TEXT_HTML_UTF_8"></a><font color="#cc0033">TEXT_HTML_UTF_8</font>*     : <a href="#type-DocFlavor$URL">DocFlavor$URL</a>;
+                     <a name="type-TEXT_PLAIN_HOST"></a><font color="#cc0033">TEXT_PLAIN_HOST</font>*     : <a href="#type-DocFlavor$URL">DocFlavor$URL</a>;
+                     <a name="type-TEXT_PLAIN_US_ASCII"></a><font color="#cc0033">TEXT_PLAIN_US_ASCII</font>* : <a href="#type-DocFlavor$URL">DocFlavor$URL</a>;
+                     <a name="type-TEXT_PLAIN_UTF_16"></a><font color="#cc0033">TEXT_PLAIN_UTF_16</font>*   : <a href="#type-DocFlavor$URL">DocFlavor$URL</a>;
+                     <a name="type-TEXT_PLAIN_UTF_16BE"></a><font color="#cc0033">TEXT_PLAIN_UTF_16BE</font>* : <a href="#type-DocFlavor$URL">DocFlavor$URL</a>;
+                     <a name="type-TEXT_PLAIN_UTF_16LE"></a><font color="#cc0033">TEXT_PLAIN_UTF_16LE</font>* : <a href="#type-DocFlavor$URL">DocFlavor$URL</a>;
+                     <a name="type-TEXT_PLAIN_UTF_8"></a><font color="#cc0033">TEXT_PLAIN_UTF_8</font>*    : <a href="#type-DocFlavor$URL">DocFlavor$URL</a>;
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-DocFlavor$URL">DocFlavor$URL</a><b>,CONSTRUCTOR</b>;
+                   <b>END</b>;
+
+  <a name="type-DocPrintJob"></a><font color="#cc0033">DocPrintJob</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                 <font color="green"><b> (* </b><a href="#meths-DocPrintJob">Typebound Procedures</a><b> *)</b></font>
+                 <b>END</b>;
+
+  <a name="type-FlavorException"></a><font color="#cc0033">FlavorException</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                     <font color="green"><b> (* </b><a href="#meths-FlavorException">Typebound Procedures</a><b> *)</b></font>
+                     <b>END</b>;
+
+  <a name="type-MultiDoc"></a><font color="#cc0033">MultiDoc</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+              <font color="green"><b> (* </b><a href="#meths-MultiDoc">Typebound Procedures</a><b> *)</b></font>
+              <b>END</b>;
+
+  <a name="type-MultiDocPrintJob"></a><font color="#cc0033">MultiDocPrintJob</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="javax_print.html#type-DocPrintJob">javax_print.DocPrintJob</a>)
+                      <font color="green"><b> (* </b><a href="#meths-MultiDocPrintJob">Typebound Procedures</a><b> *)</b></font>
+                      <b>END</b>;
+
+  <a name="type-MultiDocPrintService"></a><font color="#cc0033">MultiDocPrintService</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="javax_print.html#type-PrintService">javax_print.PrintService</a>)
+                          <font color="green"><b> (* </b><a href="#meths-MultiDocPrintService">Typebound Procedures</a><b> *)</b></font>
+                          <b>END</b>;
+
+  <a name="type-PrintException"></a><font color="#cc0033">PrintException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Exception">java_lang.Exception</a>)
+                    <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                    <b>STATIC</b>
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-Exception">java_lang.Exception</a>) : <a href="#type-PrintException">PrintException</a><b>,CONSTRUCTOR</b>;
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                      p1 : <a href="java_lang.html#type-Exception">java_lang.Exception</a>) : <a href="#type-PrintException">PrintException</a><b>,CONSTRUCTOR</b>;
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-PrintException">PrintException</a><b>,CONSTRUCTOR</b>;
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-PrintException">PrintException</a><b>,CONSTRUCTOR</b>;
+                    <b>END</b>;
+
+  <a name="type-PrintService"></a><font color="#cc0033">PrintService</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                  <font color="green"><b> (* </b><a href="#meths-PrintService">Typebound Procedures</a><b> *)</b></font>
+                  <b>END</b>;
+
+  <a name="type-PrintServiceLookup"></a><font color="#cc0033">PrintServiceLookup</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                        <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                        <font color="green"><b> (* </b><a href="#meths-PrintServiceLookup">Typebound Procedures</a><b> *)</b></font>
+                        <b>STATIC</b>
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>!() : <a href="#type-PrintServiceLookup">PrintServiceLookup</a><b>,CONSTRUCTOR</b>;
+                          <b>PROCEDURE </b><font color="#cc0033">lookupDefaultPrintService</font>*() : <a href="javax_print.html#type-PrintService">javax_print.PrintService</a>;
+                          <b>PROCEDURE </b><font color="#cc0033">lookupMultiDocPrintServices</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="javax_print.html#type-DocFlavor">javax_print.DocFlavor</a>;
+                                                                     p1 : <a href="javax_print_attribute.html#type-AttributeSet">javax_print_attribute.AttributeSet</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-MultiDocPrintService">MultiDocPrintService</a>;
+                          <b>PROCEDURE </b><font color="#cc0033">lookupPrintServices</font>*(p0 : <a href="javax_print.html#type-DocFlavor">javax_print.DocFlavor</a>;
+                                                         p1 : <a href="javax_print_attribute.html#type-AttributeSet">javax_print_attribute.AttributeSet</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="javax_print.html#type-PrintService">javax_print.PrintService</a>;
+                          <b>PROCEDURE </b><font color="#cc0033">registerService</font>*(p0 : <a href="javax_print.html#type-PrintService">javax_print.PrintService</a>) : BOOLEAN;
+                          <b>PROCEDURE </b><font color="#cc0033">registerServiceProvider</font>*(p0 : <a href="#type-PrintServiceLookup">PrintServiceLookup</a>) : BOOLEAN;
+                        <b>END</b>;
+
+  <a name="type-ServiceUI"></a><font color="#cc0033">ServiceUI</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+               <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+               <b>STATIC</b>
+                 <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-ServiceUI">ServiceUI</a><b>,CONSTRUCTOR</b>;
+                 <b>PROCEDURE </b><font color="#cc0033">printDialog</font>*(    p0 : <a href="java_awt.html#type-GraphicsConfiguration">java_awt.GraphicsConfiguration</a>;
+                                            p1 : INTEGER;
+                                            p2 : INTEGER;
+                                        IN  p3 : <b>ARRAY </b><b>OF </b><a href="javax_print.html#type-PrintService">javax_print.PrintService</a>;
+                                            p4 : <a href="javax_print.html#type-PrintService">javax_print.PrintService</a>;
+                                            p5 : <a href="javax_print.html#type-DocFlavor">javax_print.DocFlavor</a>;
+                                            p6 : <a href="javax_print_attribute.html#type-PrintRequestAttributeSet">javax_print_attribute.PrintRequestAttributeSet</a>) : <a href="javax_print.html#type-PrintService">javax_print.PrintService</a>;
+               <b>END</b>;
+
+  <a name="type-ServiceUIFactory"></a><font color="#cc0033">ServiceUIFactory</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                      <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                      <font color="green"><b> (* </b><a href="#meths-ServiceUIFactory">Typebound Procedures</a><b> *)</b></font>
+                      <b>STATIC</b>
+                        <font color="#cc0033">ABOUT_UIROLE</font>*    = 1;
+                        <font color="#cc0033">ADMIN_UIROLE</font>*    = 2;
+                        <font color="#cc0033">DIALOG_UI</font>*       = "java.awt.Dialog";
+                        <font color="#cc0033">JCOMPONENT_UI</font>*   = "javax.swing.JComponent";
+                        <font color="#cc0033">JDIALOG_UI</font>*      = "javax.swing.JDialog";
+                        <font color="#cc0033">MAIN_UIROLE</font>*     = 3;
+                        <font color="#cc0033">PANEL_UI</font>*        = "java.awt.Panel";
+                        <font color="#cc0033">RESERVED_UIROLE</font>* = 99;
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>!() : <a href="#type-ServiceUIFactory">ServiceUIFactory</a><b>,CONSTRUCTOR</b>;
+                      <b>END</b>;
+
+  <a name="type-SimpleDoc"></a><font color="#cc0033">SimpleDoc</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-Doc">Doc</a>)
+               <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+               <font color="green"><b> (* </b><a href="#meths-SimpleDoc">Typebound Procedures</a><b> *)</b></font>
+               <b>STATIC</b>
+                 <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                 p1 : <a href="#type-DocFlavor">DocFlavor</a>;
+                                 p2 : <a href="javax_print_attribute.html#type-DocAttributeSet">javax_print_attribute.DocAttributeSet</a>) : <a href="#type-SimpleDoc">SimpleDoc</a><b>,CONSTRUCTOR</b>;
+               <b>END</b>;
+
+  <a name="type-StreamPrintService"></a><font color="#cc0033">StreamPrintService</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="javax_print.html#type-PrintService">javax_print.PrintService</a>)
+                        <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                        <font color="green"><b> (* </b><a href="#meths-StreamPrintService">Typebound Procedures</a><b> *)</b></font>
+                        <b>STATIC</b>
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : <a href="java_io.html#type-OutputStream">java_io.OutputStream</a>) : <a href="#type-StreamPrintService">StreamPrintService</a><b>,CONSTRUCTOR</b>;
+                        <b>END</b>;
+
+  <a name="type-StreamPrintServiceFactory"></a><font color="#cc0033">StreamPrintServiceFactory</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                               <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                               <font color="green"><b> (* </b><a href="#meths-StreamPrintServiceFactory">Typebound Procedures</a><b> *)</b></font>
+                               <b>STATIC</b>
+                                 <b>PROCEDURE </b><font color="#cc0033">Init</font>!() : <a href="#type-StreamPrintServiceFactory">StreamPrintServiceFactory</a><b>,CONSTRUCTOR</b>;
+                                 <b>PROCEDURE </b><font color="#cc0033">lookupStreamPrintServiceFactories</font>*(p0 : <a href="#type-DocFlavor">DocFlavor</a>;
+                                                                              p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-StreamPrintServiceFactory">StreamPrintServiceFactory</a>;
+                               <b>END</b>;
+
+  <a name="type-URIException"></a><font color="#cc0033">URIException</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                  <font color="green"><b> (* </b><a href="#meths-URIException">Typebound Procedures</a><b> *)</b></font>
+                  <b>STATIC</b>
+                    <font color="#cc0033">URIInaccessible</font>*       = 1;
+                    <font color="#cc0033">URIOtherProblem</font>*       = -1;
+                    <font color="#cc0033">URISchemeNotSupported</font>* = 2;
+                  <b>END</b>;
+
+
+
+<a name="meths-AttributeException"></a>
+<b>PROCEDURE </b>(self:AttributeException) <font color="#cc0033">getUnsupportedAttributes</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Class">java_lang.Class</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AttributeException) <font color="#cc0033">getUnsupportedValues</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="javax_print_attribute.html#type-Attribute">javax_print_attribute.Attribute</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-CancelablePrintJob"></a>
+<b>PROCEDURE </b>(self:CancelablePrintJob) <font color="#cc0033">cancel</font>*()<b>,NEW,ABSTRACT</b>;
+<a name="meths-Doc"></a>
+<b>PROCEDURE </b>(self:Doc) <font color="#cc0033">getAttributes</font>*() : <a href="javax_print_attribute.html#type-DocAttributeSet">javax_print_attribute.DocAttributeSet</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Doc) <font color="#cc0033">getDocFlavor</font>*() : <a href="javax_print.html#type-DocFlavor">javax_print.DocFlavor</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Doc) <font color="#cc0033">getPrintData</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Doc) <font color="#cc0033">getReaderForText</font>*() : <a href="java_io.html#type-Reader">java_io.Reader</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Doc) <font color="#cc0033">getStreamForBytes</font>*() : <a href="java_io.html#type-InputStream">java_io.InputStream</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-DocFlavor"></a>
+<b>PROCEDURE </b>(self:DocFlavor) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DocFlavor) <font color="#cc0033">getMediaSubtype</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DocFlavor) <font color="#cc0033">getMediaType</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DocFlavor) <font color="#cc0033">getMimeType</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DocFlavor) <font color="#cc0033">getParameter</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DocFlavor) <font color="#cc0033">getRepresentationClassName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DocFlavor) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DocFlavor) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-DocPrintJob"></a>
+<b>PROCEDURE </b>(self:DocPrintJob) <font color="#cc0033">addPrintJobAttributeListener</font>*(p0 : <a href="javax_print_event.html#type-PrintJobAttributeListener">javax_print_event.PrintJobAttributeListener</a>;
+                                                           p1 : <a href="javax_print_attribute.html#type-PrintJobAttributeSet">javax_print_attribute.PrintJobAttributeSet</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DocPrintJob) <font color="#cc0033">addPrintJobListener</font>*(p0 : <a href="javax_print_event.html#type-PrintJobListener">javax_print_event.PrintJobListener</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DocPrintJob) <font color="#cc0033">getAttributes</font>*() : <a href="javax_print_attribute.html#type-PrintJobAttributeSet">javax_print_attribute.PrintJobAttributeSet</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DocPrintJob) <font color="#cc0033">getPrintService</font>*() : <a href="javax_print.html#type-PrintService">javax_print.PrintService</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DocPrintJob) <font color="#cc0033">print</font>*(p0 : <a href="#type-Doc">Doc</a>;
+                                    p1 : <a href="javax_print_attribute.html#type-PrintRequestAttributeSet">javax_print_attribute.PrintRequestAttributeSet</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DocPrintJob) <font color="#cc0033">removePrintJobAttributeListener</font>*(p0 : <a href="javax_print_event.html#type-PrintJobAttributeListener">javax_print_event.PrintJobAttributeListener</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DocPrintJob) <font color="#cc0033">removePrintJobListener</font>*(p0 : <a href="javax_print_event.html#type-PrintJobListener">javax_print_event.PrintJobListener</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-FlavorException"></a>
+<b>PROCEDURE </b>(self:FlavorException) <font color="#cc0033">getUnsupportedFlavors</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-DocFlavor">DocFlavor</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-MultiDoc"></a>
+<b>PROCEDURE </b>(self:MultiDoc) <font color="#cc0033">getDoc</font>*() : <a href="#type-Doc">Doc</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MultiDoc) <font color="#cc0033">next</font>*() : <a href="#type-MultiDoc">MultiDoc</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-MultiDocPrintJob"></a>
+<b>PROCEDURE </b>(self:MultiDocPrintJob) <font color="#cc0033">print</font>*(p0 : <a href="javax_print.html#type-MultiDoc">javax_print.MultiDoc</a>;
+                                         p1 : <a href="javax_print_attribute.html#type-PrintRequestAttributeSet">javax_print_attribute.PrintRequestAttributeSet</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-MultiDocPrintService"></a>
+<b>PROCEDURE </b>(self:MultiDocPrintService) <font color="#cc0033">createMultiDocPrintJob</font>*() : <a href="#type-MultiDocPrintJob">MultiDocPrintJob</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-PrintService"></a>
+<b>PROCEDURE </b>(self:PrintService) <font color="#cc0033">addPrintServiceAttributeListener</font>*(p0 : <a href="javax_print_event.html#type-PrintServiceAttributeListener">javax_print_event.PrintServiceAttributeListener</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:PrintService) <font color="#cc0033">createPrintJob</font>*() : <a href="#type-DocPrintJob">DocPrintJob</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:PrintService) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:PrintService) <font color="#cc0033">getAttribute</font>*(p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>) : <a href="javax_print_attribute.html#type-PrintServiceAttribute">javax_print_attribute.PrintServiceAttribute</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:PrintService) <font color="#cc0033">getAttributes</font>*() : <a href="javax_print_attribute.html#type-PrintServiceAttributeSet">javax_print_attribute.PrintServiceAttributeSet</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:PrintService) <font color="#cc0033">getDefaultAttributeValue</font>*(p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:PrintService) <font color="#cc0033">getName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:PrintService) <font color="#cc0033">getServiceUIFactory</font>*() : <a href="#type-ServiceUIFactory">ServiceUIFactory</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:PrintService) <font color="#cc0033">getSupportedAttributeCategories</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Class">java_lang.Class</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:PrintService) <font color="#cc0033">getSupportedAttributeValues</font>*(p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                                                           p1 : <a href="#type-DocFlavor">DocFlavor</a>;
+                                                           p2 : <a href="javax_print_attribute.html#type-AttributeSet">javax_print_attribute.AttributeSet</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:PrintService) <font color="#cc0033">getSupportedDocFlavors</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-DocFlavor">DocFlavor</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:PrintService) <font color="#cc0033">getUnsupportedAttributes</font>*(p0 : <a href="#type-DocFlavor">DocFlavor</a>;
+                                                        p1 : <a href="javax_print_attribute.html#type-AttributeSet">javax_print_attribute.AttributeSet</a>) : <a href="javax_print_attribute.html#type-AttributeSet">javax_print_attribute.AttributeSet</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:PrintService) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:PrintService) <font color="#cc0033">isAttributeCategorySupported</font>*(p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:PrintService) <font color="#cc0033">isAttributeValueSupported</font>*(p0 : <a href="javax_print_attribute.html#type-Attribute">javax_print_attribute.Attribute</a>;
+                                                         p1 : <a href="#type-DocFlavor">DocFlavor</a>;
+                                                         p2 : <a href="javax_print_attribute.html#type-AttributeSet">javax_print_attribute.AttributeSet</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:PrintService) <font color="#cc0033">isDocFlavorSupported</font>*(p0 : <a href="#type-DocFlavor">DocFlavor</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:PrintService) <font color="#cc0033">removePrintServiceAttributeListener</font>*(p0 : <a href="javax_print_event.html#type-PrintServiceAttributeListener">javax_print_event.PrintServiceAttributeListener</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-PrintServiceLookup"></a>
+<b>PROCEDURE </b>(self:PrintServiceLookup) <font color="#cc0033">getDefaultPrintService</font>*() : <a href="javax_print.html#type-PrintService">javax_print.PrintService</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:PrintServiceLookup) <font color="#cc0033">getMultiDocPrintServices</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="javax_print.html#type-DocFlavor">javax_print.DocFlavor</a>;
+                                                                  p1 : <a href="javax_print_attribute.html#type-AttributeSet">javax_print_attribute.AttributeSet</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-MultiDocPrintService">MultiDocPrintService</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:PrintServiceLookup) <font color="#cc0033">getPrintServices</font>*(p0 : <a href="javax_print.html#type-DocFlavor">javax_print.DocFlavor</a>;
+                                                      p1 : <a href="javax_print_attribute.html#type-AttributeSet">javax_print_attribute.AttributeSet</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="javax_print.html#type-PrintService">javax_print.PrintService</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:PrintServiceLookup) <font color="#cc0033">getPrintServices</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="javax_print.html#type-PrintService">javax_print.PrintService</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-ServiceUIFactory"></a>
+<b>PROCEDURE </b>(self:ServiceUIFactory) <font color="#cc0033">getUI</font>*(p0 : INTEGER;
+                                         p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ServiceUIFactory) <font color="#cc0033">getUIClassNamesForRole</font>*(p0 : INTEGER) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-SimpleDoc"></a>
+<b>PROCEDURE </b>(self:SimpleDoc) <font color="#cc0033">getAttributes</font>*() : <a href="javax_print_attribute.html#type-DocAttributeSet">javax_print_attribute.DocAttributeSet</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SimpleDoc) <font color="#cc0033">getDocFlavor</font>*() : <a href="#type-DocFlavor">DocFlavor</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SimpleDoc) <font color="#cc0033">getPrintData</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SimpleDoc) <font color="#cc0033">getReaderForText</font>*() : <a href="java_io.html#type-Reader">java_io.Reader</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SimpleDoc) <font color="#cc0033">getStreamForBytes</font>*() : <a href="java_io.html#type-InputStream">java_io.InputStream</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-StreamPrintService"></a>
+<b>PROCEDURE </b>(self:StreamPrintService) <font color="#cc0033">dispose</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:StreamPrintService) <font color="#cc0033">getOutputFormat</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:StreamPrintService) <font color="#cc0033">getOutputStream</font>*() : <a href="java_io.html#type-OutputStream">java_io.OutputStream</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:StreamPrintService) <font color="#cc0033">isDisposed</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-StreamPrintServiceFactory"></a>
+<b>PROCEDURE </b>(self:StreamPrintServiceFactory) <font color="#cc0033">getOutputFormat</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:StreamPrintServiceFactory) <font color="#cc0033">getPrintService</font>*(p0 : <a href="java_io.html#type-OutputStream">java_io.OutputStream</a>) : <a href="#type-StreamPrintService">StreamPrintService</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:StreamPrintServiceFactory) <font color="#cc0033">getSupportedDocFlavors</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-DocFlavor">DocFlavor</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-URIException"></a>
+<b>PROCEDURE </b>(self:URIException) <font color="#cc0033">getReason</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:URIException) <font color="#cc0033">getUnsupportedURI</font>*() : <a href="java_net.html#type-URI">java_net.URI</a><b>,NEW,ABSTRACT</b>;
+
+<b>END </b><font color="#cc0033">javax_print</font>.
+</font></pre></hr>
+<!-- BEGIN JavaScript -->
+<script>
+function toggle(node) {
+    node.classList.toggle("show"); 
+  }
+
+function cls(node) {
+    var prnt = node.parentNode;
+    var next = prnt.previousSibling;
+    var text = next.lastChild;
+    text.innerHTML = 
+        "The <b>class</b> property asserts that this type will be<br>" +
+        "implemented as a reference class in the underlying framework.";
+    text.classList.toggle("show");
+  }
+
+function newOk(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>has noArg-ctor</b> property asserts that this reference<br>" +
+        "class has a no-arg constructor, and thus objects of this<br>" +
+        "type can be allocated with NEW(). Component Pascal types<br>" +
+        "derived from this type can also be allocated using NEW().";
+    popuptext.classList.toggle("show"); 
+  }
+
+function noNew(node) { 
+    var prnt = node.parentNode; 
+    var next = prnt.previousSibling; 
+    var text = next.lastChild; 
+    text.innerHTML =  
+        "The <b>no noArg-ctor</b> property asserts that this reference<br>" +
+        "class does not have a noArg constructor. Objects of this<br>" +
+        "type cannot be allocated using NEW(), and Component<br>" +
+        "Pascal types  derived from this type also cannot be<br>" +
+        "allocated using NEW().";
+    text.classList.toggle("show");
+  }
+
+function noCpy(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>no value-assign</b> property asserts that this reference<br>" + 
+        "class does not have a value copy method. Therefore, it<br>" +
+        "is not possible to perform value assignments using<br>" +
+        "statements like <i>dst^</i> := <i>src^</i>";
+    popuptext.classList.toggle("show");
+  }
+
+function valueclass(node) { 
+        var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>valueclass</b> property asserts that this RECORD type is<br>" + 
+        "implemented as a value class in the CLR. It follows that<br>" +  
+        "value assignments can be made of these types. They can<br>" + 
+        "also be passed by value. Even pointers to records of<br>" + 
+        "such types may be dereferenced and copied using syntax<br>" + 
+        "such as  <i>dst^</i> := <i>src^</i>"; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+function argCtor(node) { 
+    var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>has arg-ctor</b> property asserts that this reference<br>" +  
+        "class has one or more constructors that take arguments.<br>" + 
+        "These constructors can be called from Component Pascal<br>" + 
+        "by calling an <i>init</i>(...) method from the static list<br>" + 
+        "here. Component Pascal types derived from this type<br>" + 
+        "can define constructors with arguments which call the<br>" + 
+        "super-type constructor.<br>" + 
+        "See <i>'Interfacing to constructors'</i> in the Release Notes."; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+</script>
+<!-- END JavaScript --> 
+
+</body></html>

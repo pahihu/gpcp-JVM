@@ -1,0 +1,233 @@
+<html><head><title>javax_print_event</title>
+<style>
+<!-- BEGIN Inline CSS -->
+/* Popup container */
+.popup {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+/* The actual popup (appears on top) */
+.popup .popuptext {
+    visibility: hidden;
+    width: 430px;
+    background-color: white;
+    color: black;
+    text-align: left;
+    border-radius: 6px;
+    border-style: solid;
+    border-color: black;
+    padding: 8px 8px 8px 8px;
+    position: absolute;
+    z-index: 1;
+    margin-top: 30px;
+}
+
+/* Toggle this class when clicking on the popup container (hide and show the popup) */
+.popup .show {
+    visibility: visible;
+    opacity: 1;
+}
+
+</style>
+<!-- END Inline CSS -->
+</head><body bgcolor="white">
+<hr><pre>
+<font color="green">(*</font>
+<font color="green"> *  Creator PeToCps j2cps version 1.4.07 (March 2018)</font>
+<font color="green"> *  Compiled from jar-file /Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home/jmods/java.desktop.jmod</font>
+<font color="green"> *)</font>
+<b>FOREIGN MODULE </b><font color="#cc0033">javax_print_event</font>;
+
+<b>IMPORT</b>
+    <a href="javax_print.html">javax_print</a> := "javax.print",
+    <a href="javax_print_attribute.html">javax_print_attribute</a> := "javax.print.attribute",
+    <a href="javax_print_event.html">javax_print_event</a> := "javax.print.event",
+    <a href="java_lang.html">java_lang</a> := "java.lang",
+    <a href="java_util.html">java_util</a> := "java.util";
+
+<b>TYPE</b>
+
+  <a name="type-PrintEvent"></a><font color="#cc0033">PrintEvent</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_util.html#type-EventObject">java_util.EventObject</a>)
+                <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                <font color="green"><b> (* </b><a href="#meths-PrintEvent">Typebound Procedures</a><b> *)</b></font>
+                <b>STATIC</b>
+                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="#type-PrintEvent">PrintEvent</a><b>,CONSTRUCTOR</b>;
+                <b>END</b>;
+
+  <a name="type-PrintJobAdapter"></a><font color="#cc0033">PrintJobAdapter</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-PrintJobListener">PrintJobListener</a>)
+                     <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                     <font color="green"><b> (* </b><a href="#meths-PrintJobAdapter">Typebound Procedures</a><b> *)</b></font>
+                     <b>STATIC</b>
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>!() : <a href="#type-PrintJobAdapter">PrintJobAdapter</a><b>,CONSTRUCTOR</b>;
+                     <b>END</b>;
+
+  <a name="type-PrintJobAttributeEvent"></a><font color="#cc0033">PrintJobAttributeEvent</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="javax_print_event.html#type-PrintEvent">javax_print_event.PrintEvent</a>)
+                            <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                            <font color="green"><b> (* </b><a href="#meths-PrintJobAttributeEvent">Typebound Procedures</a><b> *)</b></font>
+                            <b>STATIC</b>
+                              <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="javax_print.html#type-DocPrintJob">javax_print.DocPrintJob</a>;
+                                              p1 : <a href="javax_print_attribute.html#type-PrintJobAttributeSet">javax_print_attribute.PrintJobAttributeSet</a>) : <a href="#type-PrintJobAttributeEvent">PrintJobAttributeEvent</a><b>,CONSTRUCTOR</b>;
+                            <b>END</b>;
+
+  <a name="type-PrintJobAttributeListener"></a><font color="#cc0033">PrintJobAttributeListener</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                               <font color="green"><b> (* </b><a href="#meths-PrintJobAttributeListener">Typebound Procedures</a><b> *)</b></font>
+                               <b>END</b>;
+
+  <a name="type-PrintJobEvent"></a><font color="#cc0033">PrintJobEvent</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="javax_print_event.html#type-PrintEvent">javax_print_event.PrintEvent</a>)
+                   <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                   <font color="green"><b> (* </b><a href="#meths-PrintJobEvent">Typebound Procedures</a><b> *)</b></font>
+                   <b>STATIC</b>
+                     <font color="#cc0033">DATA_TRANSFER_COMPLETE</font>* = 106;
+                     <font color="#cc0033">JOB_CANCELED</font>*           = 101;
+                     <font color="#cc0033">JOB_COMPLETE</font>*           = 102;
+                     <font color="#cc0033">JOB_FAILED</font>*             = 103;
+                     <font color="#cc0033">NO_MORE_EVENTS</font>*         = 105;
+                     <font color="#cc0033">REQUIRES_ATTENTION</font>*     = 104;
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="javax_print.html#type-DocPrintJob">javax_print.DocPrintJob</a>;
+                                     p1 : INTEGER) : <a href="#type-PrintJobEvent">PrintJobEvent</a><b>,CONSTRUCTOR</b>;
+                   <b>END</b>;
+
+  <a name="type-PrintJobListener"></a><font color="#cc0033">PrintJobListener</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                      <font color="green"><b> (* </b><a href="#meths-PrintJobListener">Typebound Procedures</a><b> *)</b></font>
+                      <b>END</b>;
+
+  <a name="type-PrintServiceAttributeEvent"></a><font color="#cc0033">PrintServiceAttributeEvent</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="javax_print_event.html#type-PrintEvent">javax_print_event.PrintEvent</a>)
+                                <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                                <font color="green"><b> (* </b><a href="#meths-PrintServiceAttributeEvent">Typebound Procedures</a><b> *)</b></font>
+                                <b>STATIC</b>
+                                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="javax_print.html#type-PrintService">javax_print.PrintService</a>;
+                                                  p1 : <a href="javax_print_attribute.html#type-PrintServiceAttributeSet">javax_print_attribute.PrintServiceAttributeSet</a>) : <a href="#type-PrintServiceAttributeEvent">PrintServiceAttributeEvent</a><b>,CONSTRUCTOR</b>;
+                                <b>END</b>;
+
+  <a name="type-PrintServiceAttributeListener"></a><font color="#cc0033">PrintServiceAttributeListener</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                                   <font color="green"><b> (* </b><a href="#meths-PrintServiceAttributeListener">Typebound Procedures</a><b> *)</b></font>
+                                   <b>END</b>;
+
+
+
+<a name="meths-PrintEvent"></a>
+<b>PROCEDURE </b>(self:PrintEvent) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-PrintJobAdapter"></a>
+<b>PROCEDURE </b>(self:PrintJobAdapter) <font color="#cc0033">printDataTransferCompleted</font>*(p0 : <a href="javax_print_event.html#type-PrintJobEvent">javax_print_event.PrintJobEvent</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PrintJobAdapter) <font color="#cc0033">printJobCanceled</font>*(p0 : <a href="javax_print_event.html#type-PrintJobEvent">javax_print_event.PrintJobEvent</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PrintJobAdapter) <font color="#cc0033">printJobCompleted</font>*(p0 : <a href="javax_print_event.html#type-PrintJobEvent">javax_print_event.PrintJobEvent</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PrintJobAdapter) <font color="#cc0033">printJobFailed</font>*(p0 : <a href="javax_print_event.html#type-PrintJobEvent">javax_print_event.PrintJobEvent</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PrintJobAdapter) <font color="#cc0033">printJobNoMoreEvents</font>*(p0 : <a href="javax_print_event.html#type-PrintJobEvent">javax_print_event.PrintJobEvent</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PrintJobAdapter) <font color="#cc0033">printJobRequiresAttention</font>*(p0 : <a href="javax_print_event.html#type-PrintJobEvent">javax_print_event.PrintJobEvent</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-PrintJobAttributeEvent"></a>
+<b>PROCEDURE </b>(self:PrintJobAttributeEvent) <font color="#cc0033">getAttributes</font>*() : <a href="javax_print_attribute.html#type-PrintJobAttributeSet">javax_print_attribute.PrintJobAttributeSet</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PrintJobAttributeEvent) <font color="#cc0033">getPrintJob</font>*() : <a href="javax_print.html#type-DocPrintJob">javax_print.DocPrintJob</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-PrintJobAttributeListener"></a>
+<b>PROCEDURE </b>(self:PrintJobAttributeListener) <font color="#cc0033">attributeUpdate</font>*(p0 : <a href="#type-PrintJobAttributeEvent">PrintJobAttributeEvent</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-PrintJobEvent"></a>
+<b>PROCEDURE </b>(self:PrintJobEvent) <font color="#cc0033">getPrintEventType</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PrintJobEvent) <font color="#cc0033">getPrintJob</font>*() : <a href="javax_print.html#type-DocPrintJob">javax_print.DocPrintJob</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-PrintJobListener"></a>
+<b>PROCEDURE </b>(self:PrintJobListener) <font color="#cc0033">printDataTransferCompleted</font>*(p0 : <a href="javax_print_event.html#type-PrintJobEvent">javax_print_event.PrintJobEvent</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:PrintJobListener) <font color="#cc0033">printJobCanceled</font>*(p0 : <a href="javax_print_event.html#type-PrintJobEvent">javax_print_event.PrintJobEvent</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:PrintJobListener) <font color="#cc0033">printJobCompleted</font>*(p0 : <a href="javax_print_event.html#type-PrintJobEvent">javax_print_event.PrintJobEvent</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:PrintJobListener) <font color="#cc0033">printJobFailed</font>*(p0 : <a href="javax_print_event.html#type-PrintJobEvent">javax_print_event.PrintJobEvent</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:PrintJobListener) <font color="#cc0033">printJobNoMoreEvents</font>*(p0 : <a href="javax_print_event.html#type-PrintJobEvent">javax_print_event.PrintJobEvent</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:PrintJobListener) <font color="#cc0033">printJobRequiresAttention</font>*(p0 : <a href="javax_print_event.html#type-PrintJobEvent">javax_print_event.PrintJobEvent</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-PrintServiceAttributeEvent"></a>
+<b>PROCEDURE </b>(self:PrintServiceAttributeEvent) <font color="#cc0033">getAttributes</font>*() : <a href="javax_print_attribute.html#type-PrintServiceAttributeSet">javax_print_attribute.PrintServiceAttributeSet</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PrintServiceAttributeEvent) <font color="#cc0033">getPrintService</font>*() : <a href="javax_print.html#type-PrintService">javax_print.PrintService</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-PrintServiceAttributeListener"></a>
+<b>PROCEDURE </b>(self:PrintServiceAttributeListener) <font color="#cc0033">attributeUpdate</font>*(p0 : <a href="#type-PrintServiceAttributeEvent">PrintServiceAttributeEvent</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>END </b><font color="#cc0033">javax_print_event</font>.
+</font></pre></hr>
+<!-- BEGIN JavaScript -->
+<script>
+function toggle(node) {
+    node.classList.toggle("show"); 
+  }
+
+function cls(node) {
+    var prnt = node.parentNode;
+    var next = prnt.previousSibling;
+    var text = next.lastChild;
+    text.innerHTML = 
+        "The <b>class</b> property asserts that this type will be<br>" +
+        "implemented as a reference class in the underlying framework.";
+    text.classList.toggle("show");
+  }
+
+function newOk(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>has noArg-ctor</b> property asserts that this reference<br>" +
+        "class has a no-arg constructor, and thus objects of this<br>" +
+        "type can be allocated with NEW(). Component Pascal types<br>" +
+        "derived from this type can also be allocated using NEW().";
+    popuptext.classList.toggle("show"); 
+  }
+
+function noNew(node) { 
+    var prnt = node.parentNode; 
+    var next = prnt.previousSibling; 
+    var text = next.lastChild; 
+    text.innerHTML =  
+        "The <b>no noArg-ctor</b> property asserts that this reference<br>" +
+        "class does not have a noArg constructor. Objects of this<br>" +
+        "type cannot be allocated using NEW(), and Component<br>" +
+        "Pascal types  derived from this type also cannot be<br>" +
+        "allocated using NEW().";
+    text.classList.toggle("show");
+  }
+
+function noCpy(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>no value-assign</b> property asserts that this reference<br>" + 
+        "class does not have a value copy method. Therefore, it<br>" +
+        "is not possible to perform value assignments using<br>" +
+        "statements like <i>dst^</i> := <i>src^</i>";
+    popuptext.classList.toggle("show");
+  }
+
+function valueclass(node) { 
+        var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>valueclass</b> property asserts that this RECORD type is<br>" + 
+        "implemented as a value class in the CLR. It follows that<br>" +  
+        "value assignments can be made of these types. They can<br>" + 
+        "also be passed by value. Even pointers to records of<br>" + 
+        "such types may be dereferenced and copied using syntax<br>" + 
+        "such as  <i>dst^</i> := <i>src^</i>"; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+function argCtor(node) { 
+    var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>has arg-ctor</b> property asserts that this reference<br>" +  
+        "class has one or more constructors that take arguments.<br>" + 
+        "These constructors can be called from Component Pascal<br>" + 
+        "by calling an <i>init</i>(...) method from the static list<br>" + 
+        "here. Component Pascal types derived from this type<br>" + 
+        "can define constructors with arguments which call the<br>" + 
+        "super-type constructor.<br>" + 
+        "See <i>'Interfacing to constructors'</i> in the Release Notes."; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+</script>
+<!-- END JavaScript --> 
+
+</body></html>

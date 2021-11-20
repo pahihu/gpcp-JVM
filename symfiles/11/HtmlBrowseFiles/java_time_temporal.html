@@ -1,0 +1,493 @@
+<html><head><title>java_time_temporal</title>
+<style>
+<!-- BEGIN Inline CSS -->
+/* Popup container */
+.popup {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+/* The actual popup (appears on top) */
+.popup .popuptext {
+    visibility: hidden;
+    width: 430px;
+    background-color: white;
+    color: black;
+    text-align: left;
+    border-radius: 6px;
+    border-style: solid;
+    border-color: black;
+    padding: 8px 8px 8px 8px;
+    position: absolute;
+    z-index: 1;
+    margin-top: 30px;
+}
+
+/* Toggle this class when clicking on the popup container (hide and show the popup) */
+.popup .show {
+    visibility: visible;
+    opacity: 1;
+}
+
+</style>
+<!-- END Inline CSS -->
+</head><body bgcolor="white">
+<hr><pre>
+<font color="green">(*</font>
+<font color="green"> *  Creator PeToCps j2cps version 1.4.07 (March 2018)</font>
+<font color="green"> *  Compiled from jar-file /Library/Java/JavaVirtualMachines/zulu-11.jdk/Contents/Home/jmods/java.base.jmod</font>
+<font color="green"> *)</font>
+<b>FOREIGN MODULE </b><font color="#cc0033">java_time_temporal</font>;
+
+<b>IMPORT</b>
+    <a href="java_io.html">java_io</a> := "java.io",
+    <a href="java_lang.html">java_lang</a> := "java.lang",
+    <a href="java_time.html">java_time</a> := "java.time",
+    <a href="java_time_format.html">java_time_format</a> := "java.time.format",
+    <a href="java_time_temporal.html">java_time_temporal</a> := "java.time.temporal",
+    <a href="java_util.html">java_util</a> := "java.util",
+    <a href="java_util_function.html">java_util_function</a> := "java.util.function";
+
+<b>TYPE</b>
+
+  <a name="type-ChronoField"></a><font color="#cc0033">ChronoField</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Enum">java_lang.Enum</a> + <a href="#type-TemporalField">TemporalField</a>)
+                 <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> *)</font>
+                 <font color="green"><b> (* </b><a href="#meths-ChronoField">Typebound Procedures</a><b> *)</b></font>
+                 <b>STATIC</b>
+                   <a name="type-ALIGNED_DAY_OF_WEEK_IN_MONTH"></a><font color="#cc0033">ALIGNED_DAY_OF_WEEK_IN_MONTH</font>* : <a href="#type-ChronoField">ChronoField</a>;
+                   <a name="type-ALIGNED_DAY_OF_WEEK_IN_YEAR"></a><font color="#cc0033">ALIGNED_DAY_OF_WEEK_IN_YEAR</font>*  : <a href="#type-ChronoField">ChronoField</a>;
+                   <a name="type-ALIGNED_WEEK_OF_MONTH"></a><font color="#cc0033">ALIGNED_WEEK_OF_MONTH</font>*        : <a href="#type-ChronoField">ChronoField</a>;
+                   <a name="type-ALIGNED_WEEK_OF_YEAR"></a><font color="#cc0033">ALIGNED_WEEK_OF_YEAR</font>*         : <a href="#type-ChronoField">ChronoField</a>;
+                   <a name="type-AMPM_OF_DAY"></a><font color="#cc0033">AMPM_OF_DAY</font>*                  : <a href="#type-ChronoField">ChronoField</a>;
+                   <a name="type-CLOCK_HOUR_OF_AMPM"></a><font color="#cc0033">CLOCK_HOUR_OF_AMPM</font>*           : <a href="#type-ChronoField">ChronoField</a>;
+                   <a name="type-CLOCK_HOUR_OF_DAY"></a><font color="#cc0033">CLOCK_HOUR_OF_DAY</font>*            : <a href="#type-ChronoField">ChronoField</a>;
+                   <a name="type-DAY_OF_MONTH"></a><font color="#cc0033">DAY_OF_MONTH</font>*                 : <a href="#type-ChronoField">ChronoField</a>;
+                   <a name="type-DAY_OF_WEEK"></a><font color="#cc0033">DAY_OF_WEEK</font>*                  : <a href="#type-ChronoField">ChronoField</a>;
+                   <a name="type-DAY_OF_YEAR"></a><font color="#cc0033">DAY_OF_YEAR</font>*                  : <a href="#type-ChronoField">ChronoField</a>;
+                   <a name="type-EPOCH_DAY"></a><font color="#cc0033">EPOCH_DAY</font>*                    : <a href="#type-ChronoField">ChronoField</a>;
+                   <a name="type-ERA"></a><font color="#cc0033">ERA</font>*                          : <a href="#type-ChronoField">ChronoField</a>;
+                   <a name="type-HOUR_OF_AMPM"></a><font color="#cc0033">HOUR_OF_AMPM</font>*                 : <a href="#type-ChronoField">ChronoField</a>;
+                   <a name="type-HOUR_OF_DAY"></a><font color="#cc0033">HOUR_OF_DAY</font>*                  : <a href="#type-ChronoField">ChronoField</a>;
+                   <a name="type-INSTANT_SECONDS"></a><font color="#cc0033">INSTANT_SECONDS</font>*              : <a href="#type-ChronoField">ChronoField</a>;
+                   <a name="type-MICRO_OF_DAY"></a><font color="#cc0033">MICRO_OF_DAY</font>*                 : <a href="#type-ChronoField">ChronoField</a>;
+                   <a name="type-MICRO_OF_SECOND"></a><font color="#cc0033">MICRO_OF_SECOND</font>*              : <a href="#type-ChronoField">ChronoField</a>;
+                   <a name="type-MILLI_OF_DAY"></a><font color="#cc0033">MILLI_OF_DAY</font>*                 : <a href="#type-ChronoField">ChronoField</a>;
+                   <a name="type-MILLI_OF_SECOND"></a><font color="#cc0033">MILLI_OF_SECOND</font>*              : <a href="#type-ChronoField">ChronoField</a>;
+                   <a name="type-MINUTE_OF_DAY"></a><font color="#cc0033">MINUTE_OF_DAY</font>*                : <a href="#type-ChronoField">ChronoField</a>;
+                   <a name="type-MINUTE_OF_HOUR"></a><font color="#cc0033">MINUTE_OF_HOUR</font>*               : <a href="#type-ChronoField">ChronoField</a>;
+                   <a name="type-MONTH_OF_YEAR"></a><font color="#cc0033">MONTH_OF_YEAR</font>*                : <a href="#type-ChronoField">ChronoField</a>;
+                   <a name="type-NANO_OF_DAY"></a><font color="#cc0033">NANO_OF_DAY</font>*                  : <a href="#type-ChronoField">ChronoField</a>;
+                   <a name="type-NANO_OF_SECOND"></a><font color="#cc0033">NANO_OF_SECOND</font>*               : <a href="#type-ChronoField">ChronoField</a>;
+                   <a name="type-OFFSET_SECONDS"></a><font color="#cc0033">OFFSET_SECONDS</font>*               : <a href="#type-ChronoField">ChronoField</a>;
+                   <a name="type-PROLEPTIC_MONTH"></a><font color="#cc0033">PROLEPTIC_MONTH</font>*              : <a href="#type-ChronoField">ChronoField</a>;
+                   <a name="type-SECOND_OF_DAY"></a><font color="#cc0033">SECOND_OF_DAY</font>*                : <a href="#type-ChronoField">ChronoField</a>;
+                   <a name="type-SECOND_OF_MINUTE"></a><font color="#cc0033">SECOND_OF_MINUTE</font>*             : <a href="#type-ChronoField">ChronoField</a>;
+                   <a name="type-YEAR"></a><font color="#cc0033">YEAR</font>*                         : <a href="#type-ChronoField">ChronoField</a>;
+                   <a name="type-YEAR_OF_ERA"></a><font color="#cc0033">YEAR_OF_ERA</font>*                  : <a href="#type-ChronoField">ChronoField</a>;
+                   <b>PROCEDURE </b><font color="#cc0033">valueOf</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-ChronoField">ChronoField</a>;
+                   <b>PROCEDURE </b><font color="#cc0033">values</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-ChronoField">ChronoField</a>;
+                 <b>END</b>;
+
+  <a name="type-ChronoUnit"></a><font color="#cc0033">ChronoUnit</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Enum">java_lang.Enum</a> + <a href="java_time_temporal.html#type-TemporalUnit">java_time_temporal.TemporalUnit</a>)
+                <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> *)</font>
+                <font color="green"><b> (* </b><a href="#meths-ChronoUnit">Typebound Procedures</a><b> *)</b></font>
+                <b>STATIC</b>
+                  <a name="type-CENTURIES"></a><font color="#cc0033">CENTURIES</font>* : <a href="#type-ChronoUnit">ChronoUnit</a>;
+                  <a name="type-DAYS"></a><font color="#cc0033">DAYS</font>*      : <a href="#type-ChronoUnit">ChronoUnit</a>;
+                  <a name="type-DECADES"></a><font color="#cc0033">DECADES</font>*   : <a href="#type-ChronoUnit">ChronoUnit</a>;
+                  <a name="type-ERAS"></a><font color="#cc0033">ERAS</font>*      : <a href="#type-ChronoUnit">ChronoUnit</a>;
+                  <a name="type-FOREVER"></a><font color="#cc0033">FOREVER</font>*   : <a href="#type-ChronoUnit">ChronoUnit</a>;
+                  <a name="type-HALF_DAYS"></a><font color="#cc0033">HALF_DAYS</font>* : <a href="#type-ChronoUnit">ChronoUnit</a>;
+                  <a name="type-HOURS"></a><font color="#cc0033">HOURS</font>*     : <a href="#type-ChronoUnit">ChronoUnit</a>;
+                  <a name="type-MICROS"></a><font color="#cc0033">MICROS</font>*    : <a href="#type-ChronoUnit">ChronoUnit</a>;
+                  <a name="type-MILLENNIA"></a><font color="#cc0033">MILLENNIA</font>* : <a href="#type-ChronoUnit">ChronoUnit</a>;
+                  <a name="type-MILLIS"></a><font color="#cc0033">MILLIS</font>*    : <a href="#type-ChronoUnit">ChronoUnit</a>;
+                  <a name="type-MINUTES"></a><font color="#cc0033">MINUTES</font>*   : <a href="#type-ChronoUnit">ChronoUnit</a>;
+                  <a name="type-MONTHS"></a><font color="#cc0033">MONTHS</font>*    : <a href="#type-ChronoUnit">ChronoUnit</a>;
+                  <a name="type-NANOS"></a><font color="#cc0033">NANOS</font>*     : <a href="#type-ChronoUnit">ChronoUnit</a>;
+                  <a name="type-SECONDS"></a><font color="#cc0033">SECONDS</font>*   : <a href="#type-ChronoUnit">ChronoUnit</a>;
+                  <a name="type-WEEKS"></a><font color="#cc0033">WEEKS</font>*     : <a href="#type-ChronoUnit">ChronoUnit</a>;
+                  <a name="type-YEARS"></a><font color="#cc0033">YEARS</font>*     : <a href="#type-ChronoUnit">ChronoUnit</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">valueOf</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-ChronoUnit">ChronoUnit</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">values</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-ChronoUnit">ChronoUnit</a>;
+                <b>END</b>;
+
+  <a name="type-IsoFields"></a><font color="#cc0033">IsoFields</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+               <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> *)</font>
+               <b>STATIC</b>
+                 <a name="type-DAY_OF_QUARTER"></a><font color="#cc0033">DAY_OF_QUARTER</font>*          : <a href="#type-TemporalField">TemporalField</a>;
+                 <a name="type-QUARTER_OF_YEAR"></a><font color="#cc0033">QUARTER_OF_YEAR</font>*         : <a href="#type-TemporalField">TemporalField</a>;
+                 <a name="type-QUARTER_YEARS"></a><font color="#cc0033">QUARTER_YEARS</font>*           : <a href="#type-TemporalUnit">TemporalUnit</a>;
+                 <a name="type-WEEK_BASED_YEAR"></a><font color="#cc0033">WEEK_BASED_YEAR</font>*         : <a href="#type-TemporalField">TemporalField</a>;
+                 <a name="type-WEEK_BASED_YEARS"></a><font color="#cc0033">WEEK_BASED_YEARS</font>*        : <a href="#type-TemporalUnit">TemporalUnit</a>;
+                 <a name="type-WEEK_OF_WEEK_BASED_YEAR"></a><font color="#cc0033">WEEK_OF_WEEK_BASED_YEAR</font>* : <a href="#type-TemporalField">TemporalField</a>;
+               <b>END</b>;
+
+  <a name="type-JulianFields"></a><font color="#cc0033">JulianFields</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                  <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> *)</font>
+                  <b>STATIC</b>
+                    <a name="type-JULIAN_DAY"></a><font color="#cc0033">JULIAN_DAY</font>*          : <a href="#type-TemporalField">TemporalField</a>;
+                    <a name="type-MODIFIED_JULIAN_DAY"></a><font color="#cc0033">MODIFIED_JULIAN_DAY</font>* : <a href="#type-TemporalField">TemporalField</a>;
+                    <a name="type-RATA_DIE"></a><font color="#cc0033">RATA_DIE</font>*            : <a href="#type-TemporalField">TemporalField</a>;
+                  <b>END</b>;
+
+  <a name="type-Temporal"></a><font color="#cc0033">Temporal</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_time_temporal.html#type-TemporalAccessor">java_time_temporal.TemporalAccessor</a>)
+              <font color="green"><b> (* </b><a href="#meths-Temporal">Typebound Procedures</a><b> *)</b></font>
+              <b>END</b>;
+
+  <a name="type-TemporalAccessor"></a><font color="#cc0033">TemporalAccessor</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                      <font color="green"><b> (* </b><a href="#meths-TemporalAccessor">Typebound Procedures</a><b> *)</b></font>
+                      <b>END</b>;
+
+  <a name="type-TemporalAdjuster"></a><font color="#cc0033">TemporalAdjuster</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                      <font color="green"><b> (* </b><a href="#meths-TemporalAdjuster">Typebound Procedures</a><b> *)</b></font>
+                      <b>END</b>;
+
+  <a name="type-TemporalAdjusters"></a><font color="#cc0033">TemporalAdjusters</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                       <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> *)</font>
+                       <b>STATIC</b>
+                         <b>PROCEDURE </b><font color="#cc0033">dayOfWeekInMonth</font>*(p0 : INTEGER;
+                                                     p1 : <a href="java_time.html#type-DayOfWeek">java_time.DayOfWeek</a>) : <a href="#type-TemporalAdjuster">TemporalAdjuster</a>;
+                         <b>PROCEDURE </b><font color="#cc0033">firstDayOfMonth</font>*() : <a href="#type-TemporalAdjuster">TemporalAdjuster</a>;
+                         <b>PROCEDURE </b><font color="#cc0033">firstDayOfNextMonth</font>*() : <a href="#type-TemporalAdjuster">TemporalAdjuster</a>;
+                         <b>PROCEDURE </b><font color="#cc0033">firstDayOfNextYear</font>*() : <a href="#type-TemporalAdjuster">TemporalAdjuster</a>;
+                         <b>PROCEDURE </b><font color="#cc0033">firstDayOfYear</font>*() : <a href="#type-TemporalAdjuster">TemporalAdjuster</a>;
+                         <b>PROCEDURE </b><font color="#cc0033">firstInMonth</font>*(p0 : <a href="java_time.html#type-DayOfWeek">java_time.DayOfWeek</a>) : <a href="#type-TemporalAdjuster">TemporalAdjuster</a>;
+                         <b>PROCEDURE </b><font color="#cc0033">lastDayOfMonth</font>*() : <a href="#type-TemporalAdjuster">TemporalAdjuster</a>;
+                         <b>PROCEDURE </b><font color="#cc0033">lastDayOfYear</font>*() : <a href="#type-TemporalAdjuster">TemporalAdjuster</a>;
+                         <b>PROCEDURE </b><font color="#cc0033">lastInMonth</font>*(p0 : <a href="java_time.html#type-DayOfWeek">java_time.DayOfWeek</a>) : <a href="#type-TemporalAdjuster">TemporalAdjuster</a>;
+                         <b>PROCEDURE </b><font color="#cc0033">next</font>*(p0 : <a href="java_time.html#type-DayOfWeek">java_time.DayOfWeek</a>) : <a href="#type-TemporalAdjuster">TemporalAdjuster</a>;
+                         <b>PROCEDURE </b><font color="#cc0033">nextOrSame</font>*(p0 : <a href="java_time.html#type-DayOfWeek">java_time.DayOfWeek</a>) : <a href="#type-TemporalAdjuster">TemporalAdjuster</a>;
+                         <b>PROCEDURE </b><font color="#cc0033">ofDateAdjuster</font>*(p0 : <a href="java_util_function.html#type-UnaryOperator">java_util_function.UnaryOperator</a>) : <a href="#type-TemporalAdjuster">TemporalAdjuster</a>;
+                         <b>PROCEDURE </b><font color="#cc0033">previous</font>*(p0 : <a href="java_time.html#type-DayOfWeek">java_time.DayOfWeek</a>) : <a href="#type-TemporalAdjuster">TemporalAdjuster</a>;
+                         <b>PROCEDURE </b><font color="#cc0033">previousOrSame</font>*(p0 : <a href="java_time.html#type-DayOfWeek">java_time.DayOfWeek</a>) : <a href="#type-TemporalAdjuster">TemporalAdjuster</a>;
+                       <b>END</b>;
+
+  <a name="type-TemporalAmount"></a><font color="#cc0033">TemporalAmount</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                    <font color="green"><b> (* </b><a href="#meths-TemporalAmount">Typebound Procedures</a><b> *)</b></font>
+                    <b>END</b>;
+
+  <a name="type-TemporalField"></a><font color="#cc0033">TemporalField</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                   <font color="green"><b> (* </b><a href="#meths-TemporalField">Typebound Procedures</a><b> *)</b></font>
+                   <b>END</b>;
+
+  <a name="type-TemporalQueries"></a><font color="#cc0033">TemporalQueries</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                     <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> *)</font>
+                     <b>STATIC</b>
+                       <b>PROCEDURE </b><font color="#cc0033">chronology</font>*() : <a href="#type-TemporalQuery">TemporalQuery</a>;
+                       <b>PROCEDURE </b><font color="#cc0033">localDate</font>*() : <a href="#type-TemporalQuery">TemporalQuery</a>;
+                       <b>PROCEDURE </b><font color="#cc0033">localTime</font>*() : <a href="#type-TemporalQuery">TemporalQuery</a>;
+                       <b>PROCEDURE </b><font color="#cc0033">offset</font>*() : <a href="#type-TemporalQuery">TemporalQuery</a>;
+                       <b>PROCEDURE </b><font color="#cc0033">precision</font>*() : <a href="#type-TemporalQuery">TemporalQuery</a>;
+                       <b>PROCEDURE </b><font color="#cc0033">zone</font>*() : <a href="#type-TemporalQuery">TemporalQuery</a>;
+                       <b>PROCEDURE </b><font color="#cc0033">zoneId</font>*() : <a href="#type-TemporalQuery">TemporalQuery</a>;
+                     <b>END</b>;
+
+  <a name="type-TemporalQuery"></a><font color="#cc0033">TemporalQuery</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                   <font color="green"><b> (* </b><a href="#meths-TemporalQuery">Typebound Procedures</a><b> *)</b></font>
+                   <b>END</b>;
+
+  <a name="type-TemporalUnit"></a><font color="#cc0033">TemporalUnit</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                  <font color="green"><b> (* </b><a href="#meths-TemporalUnit">Typebound Procedures</a><b> *)</b></font>
+                  <b>END</b>;
+
+  <a name="type-UnsupportedTemporalTypeException"></a><font color="#cc0033">UnsupportedTemporalTypeException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_time.html#type-DateTimeException">java_time.DateTimeException</a>)
+                                      <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                                      <b>STATIC</b>
+                                        <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                        p1 : <a href="java_lang.html#type-Throwable">java_lang.Throwable</a>) : <a href="#type-UnsupportedTemporalTypeException">UnsupportedTemporalTypeException</a><b>,CONSTRUCTOR</b>;
+                                        <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-UnsupportedTemporalTypeException">UnsupportedTemporalTypeException</a><b>,CONSTRUCTOR</b>;
+                                      <b>END</b>;
+
+  <a name="type-ValueRange"></a><font color="#cc0033">ValueRange</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_io.html#type-Serializable">java_io.Serializable</a>)
+                <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> *)</font>
+                <font color="green"><b> (* </b><a href="#meths-ValueRange">Typebound Procedures</a><b> *)</b></font>
+                <b>STATIC</b>
+                  <b>PROCEDURE </b><font color="#cc0033">of</font>*(p0 : LONGINT;
+                                p1 : LONGINT;
+                                p2 : LONGINT;
+                                p3 : LONGINT) : <a href="#type-ValueRange">ValueRange</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">of</font>*(p0 : LONGINT;
+                                p1 : LONGINT;
+                                p2 : LONGINT) : <a href="#type-ValueRange">ValueRange</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">of</font>*(p0 : LONGINT;
+                                p1 : LONGINT) : <a href="#type-ValueRange">ValueRange</a>;
+                <b>END</b>;
+
+  <a name="type-WeekFields"></a><font color="#cc0033">WeekFields</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_io.html#type-Serializable">java_io.Serializable</a>)
+                <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> *)</font>
+                <font color="green"><b> (* </b><a href="#meths-WeekFields">Typebound Procedures</a><b> *)</b></font>
+                <b>STATIC</b>
+                  <a name="type-ISO"></a><font color="#cc0033">ISO</font>*              : <a href="#type-WeekFields">WeekFields</a>;
+                  <a name="type-SUNDAY_START"></a><font color="#cc0033">SUNDAY_START</font>*     : <a href="#type-WeekFields">WeekFields</a>;
+                  <a name="type-WEEK_BASED_YEARS"></a><font color="#cc0033">WEEK_BASED_YEARS</font>* : <a href="java_time_temporal.html#type-TemporalUnit">java_time_temporal.TemporalUnit</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">of</font>*(p0 : <a href="java_time.html#type-DayOfWeek">java_time.DayOfWeek</a>;
+                                p1 : INTEGER) : <a href="#type-WeekFields">WeekFields</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">of</font>*(p0 : <a href="java_util.html#type-Locale">java_util.Locale</a>) : <a href="#type-WeekFields">WeekFields</a>;
+                <b>END</b>;
+
+
+
+<a name="meths-ChronoField"></a>
+<b>PROCEDURE </b>(self:ChronoField) <font color="#cc0033">adjustInto</font>*(p0 : <a href="#type-Temporal">Temporal</a>;
+                                         p1 : LONGINT) : <a href="#type-Temporal">Temporal</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ChronoField) <font color="#cc0033">checkValidIntValue</font>*(p0 : LONGINT) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ChronoField) <font color="#cc0033">checkValidValue</font>*(p0 : LONGINT) : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ChronoField) <font color="#cc0033">getBaseUnit</font>*() : <a href="java_time_temporal.html#type-TemporalUnit">java_time_temporal.TemporalUnit</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ChronoField) <font color="#cc0033">getDisplayName</font>*(p0 : <a href="java_util.html#type-Locale">java_util.Locale</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ChronoField) <font color="#cc0033">getFrom</font>*(p0 : <a href="java_time_temporal.html#type-TemporalAccessor">java_time_temporal.TemporalAccessor</a>) : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ChronoField) <font color="#cc0033">getRangeUnit</font>*() : <a href="java_time_temporal.html#type-TemporalUnit">java_time_temporal.TemporalUnit</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ChronoField) <font color="#cc0033">isDateBased</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ChronoField) <font color="#cc0033">isSupportedBy</font>*(p0 : <a href="java_time_temporal.html#type-TemporalAccessor">java_time_temporal.TemporalAccessor</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ChronoField) <font color="#cc0033">isTimeBased</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ChronoField) <font color="#cc0033">range</font>*() : <a href="#type-ValueRange">ValueRange</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ChronoField) <font color="#cc0033">rangeRefinedBy</font>*(p0 : <a href="java_time_temporal.html#type-TemporalAccessor">java_time_temporal.TemporalAccessor</a>) : <a href="#type-ValueRange">ValueRange</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ChronoField) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-ChronoUnit"></a>
+<b>PROCEDURE </b>(self:ChronoUnit) <font color="#cc0033">addTo</font>*(p0 : <a href="java_time_temporal.html#type-Temporal">java_time_temporal.Temporal</a>;
+                                   p1 : LONGINT) : <a href="java_time_temporal.html#type-Temporal">java_time_temporal.Temporal</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ChronoUnit) <font color="#cc0033">between</font>*(p0 : <a href="java_time_temporal.html#type-Temporal">java_time_temporal.Temporal</a>;
+                                     p1 : <a href="java_time_temporal.html#type-Temporal">java_time_temporal.Temporal</a>) : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ChronoUnit) <font color="#cc0033">getDuration</font>*() : <a href="java_time.html#type-Duration">java_time.Duration</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ChronoUnit) <font color="#cc0033">isDateBased</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ChronoUnit) <font color="#cc0033">isDurationEstimated</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ChronoUnit) <font color="#cc0033">isSupportedBy</font>*(p0 : <a href="java_time_temporal.html#type-Temporal">java_time_temporal.Temporal</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ChronoUnit) <font color="#cc0033">isTimeBased</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ChronoUnit) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-Temporal"></a>
+<b>PROCEDURE </b>(self:Temporal) <font color="#cc0033">isSupported</font>*(p0 : <a href="java_time_temporal.html#type-TemporalUnit">java_time_temporal.TemporalUnit</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Temporal) <font color="#cc0033">minus</font>*(p0 : <a href="java_time_temporal.html#type-TemporalAmount">java_time_temporal.TemporalAmount</a>) : <a href="#type-Temporal">Temporal</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Temporal) <font color="#cc0033">minus</font>*(p0 : LONGINT;
+                                 p1 : <a href="java_time_temporal.html#type-TemporalUnit">java_time_temporal.TemporalUnit</a>) : <a href="#type-Temporal">Temporal</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Temporal) <font color="#cc0033">plus</font>*(p0 : LONGINT;
+                                p1 : <a href="java_time_temporal.html#type-TemporalUnit">java_time_temporal.TemporalUnit</a>) : <a href="#type-Temporal">Temporal</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Temporal) <font color="#cc0033">plus</font>*(p0 : <a href="java_time_temporal.html#type-TemporalAmount">java_time_temporal.TemporalAmount</a>) : <a href="#type-Temporal">Temporal</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Temporal) <font color="#cc0033">until</font>*(p0 : <a href="#type-Temporal">Temporal</a>;
+                                 p1 : <a href="java_time_temporal.html#type-TemporalUnit">java_time_temporal.TemporalUnit</a>) : LONGINT<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Temporal) <font color="#cc0033">with</font>*(p0 : <a href="java_time_temporal.html#type-TemporalAdjuster">java_time_temporal.TemporalAdjuster</a>) : <a href="#type-Temporal">Temporal</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Temporal) <font color="#cc0033">with</font>*(p0 : <a href="java_time_temporal.html#type-TemporalField">java_time_temporal.TemporalField</a>;
+                                p1 : LONGINT) : <a href="#type-Temporal">Temporal</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-TemporalAccessor"></a>
+<b>PROCEDURE </b>(self:TemporalAccessor) <font color="#cc0033">get</font>*(p0 : <a href="#type-TemporalField">TemporalField</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TemporalAccessor) <font color="#cc0033">getLong</font>*(p0 : <a href="#type-TemporalField">TemporalField</a>) : LONGINT<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TemporalAccessor) <font color="#cc0033">isSupported</font>*(p0 : <a href="#type-TemporalField">TemporalField</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TemporalAccessor) <font color="#cc0033">query</font>*(p0 : <a href="#type-TemporalQuery">TemporalQuery</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TemporalAccessor) <font color="#cc0033">range</font>*(p0 : <a href="#type-TemporalField">TemporalField</a>) : <a href="#type-ValueRange">ValueRange</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-TemporalAdjuster"></a>
+<b>PROCEDURE </b>(self:TemporalAdjuster) <font color="#cc0033">adjustInto</font>*(p0 : <a href="#type-Temporal">Temporal</a>) : <a href="#type-Temporal">Temporal</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-TemporalAmount"></a>
+<b>PROCEDURE </b>(self:TemporalAmount) <font color="#cc0033">addTo</font>*(p0 : <a href="#type-Temporal">Temporal</a>) : <a href="#type-Temporal">Temporal</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TemporalAmount) <font color="#cc0033">get</font>*(p0 : <a href="java_time_temporal.html#type-TemporalUnit">java_time_temporal.TemporalUnit</a>) : LONGINT<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TemporalAmount) <font color="#cc0033">getUnits</font>*() : <a href="java_util.html#type-List">java_util.List</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TemporalAmount) <font color="#cc0033">subtractFrom</font>*(p0 : <a href="#type-Temporal">Temporal</a>) : <a href="#type-Temporal">Temporal</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-TemporalField"></a>
+<b>PROCEDURE </b>(self:TemporalField) <font color="#cc0033">adjustInto</font>*(p0 : <a href="#type-Temporal">Temporal</a>;
+                                           p1 : LONGINT) : <a href="#type-Temporal">Temporal</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TemporalField) <font color="#cc0033">getBaseUnit</font>*() : <a href="java_time_temporal.html#type-TemporalUnit">java_time_temporal.TemporalUnit</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TemporalField) <font color="#cc0033">getDisplayName</font>*(p0 : <a href="java_util.html#type-Locale">java_util.Locale</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TemporalField) <font color="#cc0033">getFrom</font>*(p0 : <a href="java_time_temporal.html#type-TemporalAccessor">java_time_temporal.TemporalAccessor</a>) : LONGINT<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TemporalField) <font color="#cc0033">getRangeUnit</font>*() : <a href="java_time_temporal.html#type-TemporalUnit">java_time_temporal.TemporalUnit</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TemporalField) <font color="#cc0033">isDateBased</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TemporalField) <font color="#cc0033">isSupportedBy</font>*(p0 : <a href="java_time_temporal.html#type-TemporalAccessor">java_time_temporal.TemporalAccessor</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TemporalField) <font color="#cc0033">isTimeBased</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TemporalField) <font color="#cc0033">range</font>*() : <a href="#type-ValueRange">ValueRange</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TemporalField) <font color="#cc0033">rangeRefinedBy</font>*(p0 : <a href="java_time_temporal.html#type-TemporalAccessor">java_time_temporal.TemporalAccessor</a>) : <a href="#type-ValueRange">ValueRange</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TemporalField) <font color="#cc0033">resolve</font>*(p0 : <a href="java_util.html#type-Map">java_util.Map</a>;
+                                        p1 : <a href="java_time_temporal.html#type-TemporalAccessor">java_time_temporal.TemporalAccessor</a>;
+                                        p2 : <a href="java_time_format.html#type-ResolverStyle">java_time_format.ResolverStyle</a>) : <a href="java_time_temporal.html#type-TemporalAccessor">java_time_temporal.TemporalAccessor</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TemporalField) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-TemporalQuery"></a>
+<b>PROCEDURE </b>(self:TemporalQuery) <font color="#cc0033">queryFrom</font>*(p0 : <a href="java_time_temporal.html#type-TemporalAccessor">java_time_temporal.TemporalAccessor</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-TemporalUnit"></a>
+<b>PROCEDURE </b>(self:TemporalUnit) <font color="#cc0033">addTo</font>*(p0 : <a href="#type-Temporal">Temporal</a>;
+                                     p1 : LONGINT) : <a href="#type-Temporal">Temporal</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TemporalUnit) <font color="#cc0033">between</font>*(p0 : <a href="#type-Temporal">Temporal</a>;
+                                       p1 : <a href="#type-Temporal">Temporal</a>) : LONGINT<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TemporalUnit) <font color="#cc0033">getDuration</font>*() : <a href="java_time.html#type-Duration">java_time.Duration</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TemporalUnit) <font color="#cc0033">isDateBased</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TemporalUnit) <font color="#cc0033">isDurationEstimated</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TemporalUnit) <font color="#cc0033">isSupportedBy</font>*(p0 : <a href="#type-Temporal">Temporal</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TemporalUnit) <font color="#cc0033">isTimeBased</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TemporalUnit) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-ValueRange"></a>
+<b>PROCEDURE </b>(self:ValueRange) <font color="#cc0033">checkValidIntValue</font>*(p0 : LONGINT;
+                                                p1 : <a href="java_time_temporal.html#type-TemporalField">java_time_temporal.TemporalField</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ValueRange) <font color="#cc0033">checkValidValue</font>*(p0 : LONGINT;
+                                             p1 : <a href="java_time_temporal.html#type-TemporalField">java_time_temporal.TemporalField</a>) : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ValueRange) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ValueRange) <font color="#cc0033">getLargestMinimum</font>*() : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ValueRange) <font color="#cc0033">getMaximum</font>*() : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ValueRange) <font color="#cc0033">getMinimum</font>*() : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ValueRange) <font color="#cc0033">getSmallestMaximum</font>*() : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ValueRange) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ValueRange) <font color="#cc0033">isFixed</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ValueRange) <font color="#cc0033">isIntValue</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ValueRange) <font color="#cc0033">isValidIntValue</font>*(p0 : LONGINT) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ValueRange) <font color="#cc0033">isValidValue</font>*(p0 : LONGINT) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ValueRange) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-WeekFields"></a>
+<b>PROCEDURE </b>(self:WeekFields) <font color="#cc0033">dayOfWeek</font>*() : <a href="#type-TemporalField">TemporalField</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WeekFields) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WeekFields) <font color="#cc0033">getFirstDayOfWeek</font>*() : <a href="java_time.html#type-DayOfWeek">java_time.DayOfWeek</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WeekFields) <font color="#cc0033">getMinimalDaysInFirstWeek</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WeekFields) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WeekFields) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WeekFields) <font color="#cc0033">weekBasedYear</font>*() : <a href="#type-TemporalField">TemporalField</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WeekFields) <font color="#cc0033">weekOfMonth</font>*() : <a href="#type-TemporalField">TemporalField</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WeekFields) <font color="#cc0033">weekOfWeekBasedYear</font>*() : <a href="#type-TemporalField">TemporalField</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WeekFields) <font color="#cc0033">weekOfYear</font>*() : <a href="#type-TemporalField">TemporalField</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>END </b><font color="#cc0033">java_time_temporal</font>.
+</font></pre></hr>
+<!-- BEGIN JavaScript -->
+<script>
+function toggle(node) {
+    node.classList.toggle("show"); 
+  }
+
+function cls(node) {
+    var prnt = node.parentNode;
+    var next = prnt.previousSibling;
+    var text = next.lastChild;
+    text.innerHTML = 
+        "The <b>class</b> property asserts that this type will be<br>" +
+        "implemented as a reference class in the underlying framework.";
+    text.classList.toggle("show");
+  }
+
+function newOk(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>has noArg-ctor</b> property asserts that this reference<br>" +
+        "class has a no-arg constructor, and thus objects of this<br>" +
+        "type can be allocated with NEW(). Component Pascal types<br>" +
+        "derived from this type can also be allocated using NEW().";
+    popuptext.classList.toggle("show"); 
+  }
+
+function noNew(node) { 
+    var prnt = node.parentNode; 
+    var next = prnt.previousSibling; 
+    var text = next.lastChild; 
+    text.innerHTML =  
+        "The <b>no noArg-ctor</b> property asserts that this reference<br>" +
+        "class does not have a noArg constructor. Objects of this<br>" +
+        "type cannot be allocated using NEW(), and Component<br>" +
+        "Pascal types  derived from this type also cannot be<br>" +
+        "allocated using NEW().";
+    text.classList.toggle("show");
+  }
+
+function noCpy(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>no value-assign</b> property asserts that this reference<br>" + 
+        "class does not have a value copy method. Therefore, it<br>" +
+        "is not possible to perform value assignments using<br>" +
+        "statements like <i>dst^</i> := <i>src^</i>";
+    popuptext.classList.toggle("show");
+  }
+
+function valueclass(node) { 
+        var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>valueclass</b> property asserts that this RECORD type is<br>" + 
+        "implemented as a value class in the CLR. It follows that<br>" +  
+        "value assignments can be made of these types. They can<br>" + 
+        "also be passed by value. Even pointers to records of<br>" + 
+        "such types may be dereferenced and copied using syntax<br>" + 
+        "such as  <i>dst^</i> := <i>src^</i>"; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+function argCtor(node) { 
+    var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>has arg-ctor</b> property asserts that this reference<br>" +  
+        "class has one or more constructors that take arguments.<br>" + 
+        "These constructors can be called from Component Pascal<br>" + 
+        "by calling an <i>init</i>(...) method from the static list<br>" + 
+        "here. Component Pascal types derived from this type<br>" + 
+        "can define constructors with arguments which call the<br>" + 
+        "super-type constructor.<br>" + 
+        "See <i>'Interfacing to constructors'</i> in the Release Notes."; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+</script>
+<!-- END JavaScript --> 
+
+</body></html>

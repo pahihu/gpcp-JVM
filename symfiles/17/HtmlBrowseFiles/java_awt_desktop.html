@@ -1,0 +1,341 @@
+<html><head><title>java_awt_desktop</title>
+<style>
+<!-- BEGIN Inline CSS -->
+/* Popup container */
+.popup {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+/* The actual popup (appears on top) */
+.popup .popuptext {
+    visibility: hidden;
+    width: 430px;
+    background-color: white;
+    color: black;
+    text-align: left;
+    border-radius: 6px;
+    border-style: solid;
+    border-color: black;
+    padding: 8px 8px 8px 8px;
+    position: absolute;
+    z-index: 1;
+    margin-top: 30px;
+}
+
+/* Toggle this class when clicking on the popup container (hide and show the popup) */
+.popup .show {
+    visibility: visible;
+    opacity: 1;
+}
+
+</style>
+<!-- END Inline CSS -->
+</head><body bgcolor="white">
+<hr><pre>
+<font color="green">(*</font>
+<font color="green"> *  Creator PeToCps j2cps version 1.4.07 (March 2018)</font>
+<font color="green"> *  Compiled from jar-file /Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home/jmods/java.desktop.jmod</font>
+<font color="green"> *)</font>
+<b>FOREIGN MODULE </b><font color="#cc0033">java_awt_desktop</font>;
+
+<b>IMPORT</b>
+    <a href="java_awt_desktop.html">java_awt_desktop</a> := "java.awt.desktop",
+    <a href="java_lang.html">java_lang</a> := "java.lang",
+    <a href="java_net.html">java_net</a> := "java.net",
+    <a href="java_util.html">java_util</a> := "java.util";
+
+<b>TYPE</b>
+
+  <a name="type-AboutEvent"></a><font color="#cc0033">AboutEvent</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-AppEvent">AppEvent</a>)
+                <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                <b>STATIC</b>
+                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-AboutEvent">AboutEvent</a><b>,CONSTRUCTOR</b>;
+                <b>END</b>;
+
+  <a name="type-AboutHandler"></a><font color="#cc0033">AboutHandler</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                  <font color="green"><b> (* </b><a href="#meths-AboutHandler">Typebound Procedures</a><b> *)</b></font>
+                  <b>END</b>;
+
+  <a name="type-AppEvent"></a><font color="#cc0033">AppEvent</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_util.html#type-EventObject">java_util.EventObject</a>)
+              <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> *)</font>
+              <b>END</b>;
+
+  <a name="type-AppForegroundEvent"></a><font color="#cc0033">AppForegroundEvent</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_awt_desktop.html#type-AppEvent">java_awt_desktop.AppEvent</a>)
+                        <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                        <b>STATIC</b>
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-AppForegroundEvent">AppForegroundEvent</a><b>,CONSTRUCTOR</b>;
+                        <b>END</b>;
+
+  <a name="type-AppForegroundListener"></a><font color="#cc0033">AppForegroundListener</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_awt_desktop.html#type-SystemEventListener">java_awt_desktop.SystemEventListener</a>)
+                           <font color="green"><b> (* </b><a href="#meths-AppForegroundListener">Typebound Procedures</a><b> *)</b></font>
+                           <b>END</b>;
+
+  <a name="type-AppHiddenEvent"></a><font color="#cc0033">AppHiddenEvent</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-AppEvent">AppEvent</a>)
+                    <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                    <b>STATIC</b>
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-AppHiddenEvent">AppHiddenEvent</a><b>,CONSTRUCTOR</b>;
+                    <b>END</b>;
+
+  <a name="type-AppHiddenListener"></a><font color="#cc0033">AppHiddenListener</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-SystemEventListener">SystemEventListener</a>)
+                       <font color="green"><b> (* </b><a href="#meths-AppHiddenListener">Typebound Procedures</a><b> *)</b></font>
+                       <b>END</b>;
+
+  <a name="type-AppReopenedEvent"></a><font color="#cc0033">AppReopenedEvent</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-AppEvent">AppEvent</a>)
+                      <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                      <b>STATIC</b>
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-AppReopenedEvent">AppReopenedEvent</a><b>,CONSTRUCTOR</b>;
+                      <b>END</b>;
+
+  <a name="type-AppReopenedListener"></a><font color="#cc0033">AppReopenedListener</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_awt_desktop.html#type-SystemEventListener">java_awt_desktop.SystemEventListener</a>)
+                         <font color="green"><b> (* </b><a href="#meths-AppReopenedListener">Typebound Procedures</a><b> *)</b></font>
+                         <b>END</b>;
+
+  <a name="type-FilesEvent"></a><font color="#cc0033">FilesEvent</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_awt_desktop.html#type-AppEvent">java_awt_desktop.AppEvent</a>)
+                <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> *)</font>
+                <font color="green"><b> (* </b><a href="#meths-FilesEvent">Typebound Procedures</a><b> *)</b></font>
+                <b>END</b>;
+
+  <a name="type-OpenFilesEvent"></a><font color="#cc0033">OpenFilesEvent</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-FilesEvent">FilesEvent</a>)
+                    <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                    <font color="green"><b> (* </b><a href="#meths-OpenFilesEvent">Typebound Procedures</a><b> *)</b></font>
+                    <b>STATIC</b>
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_util.html#type-List">java_util.List</a>;
+                                      p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-OpenFilesEvent">OpenFilesEvent</a><b>,CONSTRUCTOR</b>;
+                    <b>END</b>;
+
+  <a name="type-OpenFilesHandler"></a><font color="#cc0033">OpenFilesHandler</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                      <font color="green"><b> (* </b><a href="#meths-OpenFilesHandler">Typebound Procedures</a><b> *)</b></font>
+                      <b>END</b>;
+
+  <a name="type-OpenURIEvent"></a><font color="#cc0033">OpenURIEvent</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_awt_desktop.html#type-AppEvent">java_awt_desktop.AppEvent</a>)
+                  <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                  <font color="green"><b> (* </b><a href="#meths-OpenURIEvent">Typebound Procedures</a><b> *)</b></font>
+                  <b>STATIC</b>
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_net.html#type-URI">java_net.URI</a>) : <a href="#type-OpenURIEvent">OpenURIEvent</a><b>,CONSTRUCTOR</b>;
+                  <b>END</b>;
+
+  <a name="type-OpenURIHandler"></a><font color="#cc0033">OpenURIHandler</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                    <font color="green"><b> (* </b><a href="#meths-OpenURIHandler">Typebound Procedures</a><b> *)</b></font>
+                    <b>END</b>;
+
+  <a name="type-PreferencesEvent"></a><font color="#cc0033">PreferencesEvent</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-AppEvent">AppEvent</a>)
+                      <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                      <b>STATIC</b>
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-PreferencesEvent">PreferencesEvent</a><b>,CONSTRUCTOR</b>;
+                      <b>END</b>;
+
+  <a name="type-PreferencesHandler"></a><font color="#cc0033">PreferencesHandler</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                        <font color="green"><b> (* </b><a href="#meths-PreferencesHandler">Typebound Procedures</a><b> *)</b></font>
+                        <b>END</b>;
+
+  <a name="type-PrintFilesEvent"></a><font color="#cc0033">PrintFilesEvent</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-FilesEvent">FilesEvent</a>)
+                     <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                     <b>STATIC</b>
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_util.html#type-List">java_util.List</a>) : <a href="#type-PrintFilesEvent">PrintFilesEvent</a><b>,CONSTRUCTOR</b>;
+                     <b>END</b>;
+
+  <a name="type-PrintFilesHandler"></a><font color="#cc0033">PrintFilesHandler</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                       <font color="green"><b> (* </b><a href="#meths-PrintFilesHandler">Typebound Procedures</a><b> *)</b></font>
+                       <b>END</b>;
+
+  <a name="type-QuitEvent"></a><font color="#cc0033">QuitEvent</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_awt_desktop.html#type-AppEvent">java_awt_desktop.AppEvent</a>)
+               <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+               <b>STATIC</b>
+                 <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-QuitEvent">QuitEvent</a><b>,CONSTRUCTOR</b>;
+               <b>END</b>;
+
+  <a name="type-QuitHandler"></a><font color="#cc0033">QuitHandler</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                 <font color="green"><b> (* </b><a href="#meths-QuitHandler">Typebound Procedures</a><b> *)</b></font>
+                 <b>END</b>;
+
+  <a name="type-QuitResponse"></a><font color="#cc0033">QuitResponse</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                  <font color="green"><b> (* </b><a href="#meths-QuitResponse">Typebound Procedures</a><b> *)</b></font>
+                  <b>END</b>;
+
+  <a name="type-QuitStrategy"></a><font color="#cc0033">QuitStrategy</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Enum">java_lang.Enum</a>)
+                  <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> *)</font>
+                  <b>STATIC</b>
+                    <a name="type-CLOSE_ALL_WINDOWS"></a><font color="#cc0033">CLOSE_ALL_WINDOWS</font>* : <a href="#type-QuitStrategy">QuitStrategy</a>;
+                    <a name="type-NORMAL_EXIT"></a><font color="#cc0033">NORMAL_EXIT</font>*       : <a href="#type-QuitStrategy">QuitStrategy</a>;
+                    <b>PROCEDURE </b><font color="#cc0033">valueOf</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-QuitStrategy">QuitStrategy</a>;
+                    <b>PROCEDURE </b><font color="#cc0033">values</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-QuitStrategy">QuitStrategy</a>;
+                  <b>END</b>;
+
+  <a name="type-ScreenSleepEvent"></a><font color="#cc0033">ScreenSleepEvent</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-AppEvent">AppEvent</a>)
+                      <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                      <b>STATIC</b>
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-ScreenSleepEvent">ScreenSleepEvent</a><b>,CONSTRUCTOR</b>;
+                      <b>END</b>;
+
+  <a name="type-ScreenSleepListener"></a><font color="#cc0033">ScreenSleepListener</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_awt_desktop.html#type-SystemEventListener">java_awt_desktop.SystemEventListener</a>)
+                         <font color="green"><b> (* </b><a href="#meths-ScreenSleepListener">Typebound Procedures</a><b> *)</b></font>
+                         <b>END</b>;
+
+  <a name="type-SystemEventListener"></a><font color="#cc0033">SystemEventListener</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_util.html#type-EventListener">java_util.EventListener</a>)
+                         <b>END</b>;
+
+  <a name="type-SystemSleepEvent"></a><font color="#cc0033">SystemSleepEvent</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-AppEvent">AppEvent</a>)
+                      <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                      <b>STATIC</b>
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-SystemSleepEvent">SystemSleepEvent</a><b>,CONSTRUCTOR</b>;
+                      <b>END</b>;
+
+  <a name="type-SystemSleepListener"></a><font color="#cc0033">SystemSleepListener</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_awt_desktop.html#type-SystemEventListener">java_awt_desktop.SystemEventListener</a>)
+                         <font color="green"><b> (* </b><a href="#meths-SystemSleepListener">Typebound Procedures</a><b> *)</b></font>
+                         <b>END</b>;
+
+  <a name="type-UserSessionEvent"></a><font color="#cc0033">UserSessionEvent</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-AppEvent">AppEvent</a>)
+                      <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                      <font color="green"><b> (* </b><a href="#meths-UserSessionEvent">Typebound Procedures</a><b> *)</b></font>
+                      <b>STATIC</b>
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_awt_desktop.html#type-UserSessionEvent$Reason">java_awt_desktop.UserSessionEvent$Reason</a>) : <a href="#type-UserSessionEvent">UserSessionEvent</a><b>,CONSTRUCTOR</b>;
+                      <b>END</b>;
+
+  <a name="type-UserSessionEvent$Reason"></a><font color="#cc0033">UserSessionEvent$Reason</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Enum">java_lang.Enum</a>)
+                             <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> *)</font>
+                             <b>STATIC</b>
+                               <a name="type-CONSOLE"></a><font color="#cc0033">CONSOLE</font>*     : <a href="#type-UserSessionEvent$Reason">UserSessionEvent$Reason</a>;
+                               <a name="type-LOCK"></a><font color="#cc0033">LOCK</font>*        : <a href="#type-UserSessionEvent$Reason">UserSessionEvent$Reason</a>;
+                               <a name="type-REMOTE"></a><font color="#cc0033">REMOTE</font>*      : <a href="#type-UserSessionEvent$Reason">UserSessionEvent$Reason</a>;
+                               <a name="type-UNSPECIFIED"></a><font color="#cc0033">UNSPECIFIED</font>* : <a href="#type-UserSessionEvent$Reason">UserSessionEvent$Reason</a>;
+                               <b>PROCEDURE </b><font color="#cc0033">valueOf</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-UserSessionEvent$Reason">UserSessionEvent$Reason</a>;
+                               <b>PROCEDURE </b><font color="#cc0033">values</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-UserSessionEvent$Reason">UserSessionEvent$Reason</a>;
+                             <b>END</b>;
+
+  <a name="type-UserSessionListener"></a><font color="#cc0033">UserSessionListener</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-SystemEventListener">SystemEventListener</a>)
+                         <font color="green"><b> (* </b><a href="#meths-UserSessionListener">Typebound Procedures</a><b> *)</b></font>
+                         <b>END</b>;
+
+
+
+<a name="meths-AboutHandler"></a>
+<b>PROCEDURE </b>(self:AboutHandler) <font color="#cc0033">handleAbout</font>*(p0 : <a href="#type-AboutEvent">AboutEvent</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-AppForegroundListener"></a>
+<b>PROCEDURE </b>(self:AppForegroundListener) <font color="#cc0033">appMovedToBackground</font>*(p0 : <a href="#type-AppForegroundEvent">AppForegroundEvent</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AppForegroundListener) <font color="#cc0033">appRaisedToForeground</font>*(p0 : <a href="#type-AppForegroundEvent">AppForegroundEvent</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-AppHiddenListener"></a>
+<b>PROCEDURE </b>(self:AppHiddenListener) <font color="#cc0033">appHidden</font>*(p0 : <a href="#type-AppHiddenEvent">AppHiddenEvent</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AppHiddenListener) <font color="#cc0033">appUnhidden</font>*(p0 : <a href="#type-AppHiddenEvent">AppHiddenEvent</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-AppReopenedListener"></a>
+<b>PROCEDURE </b>(self:AppReopenedListener) <font color="#cc0033">appReopened</font>*(p0 : <a href="java_awt_desktop.html#type-AppReopenedEvent">java_awt_desktop.AppReopenedEvent</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-FilesEvent"></a>
+<b>PROCEDURE </b>(self:FilesEvent) <font color="#cc0033">getFiles</font>*() : <a href="java_util.html#type-List">java_util.List</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-OpenFilesEvent"></a>
+<b>PROCEDURE </b>(self:OpenFilesEvent) <font color="#cc0033">getSearchTerm</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-OpenFilesHandler"></a>
+<b>PROCEDURE </b>(self:OpenFilesHandler) <font color="#cc0033">openFiles</font>*(p0 : <a href="java_awt_desktop.html#type-OpenFilesEvent">java_awt_desktop.OpenFilesEvent</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-OpenURIEvent"></a>
+<b>PROCEDURE </b>(self:OpenURIEvent) <font color="#cc0033">getURI</font>*() : <a href="java_net.html#type-URI">java_net.URI</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-OpenURIHandler"></a>
+<b>PROCEDURE </b>(self:OpenURIHandler) <font color="#cc0033">openURI</font>*(p0 : <a href="#type-OpenURIEvent">OpenURIEvent</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-PreferencesHandler"></a>
+<b>PROCEDURE </b>(self:PreferencesHandler) <font color="#cc0033">handlePreferences</font>*(p0 : <a href="java_awt_desktop.html#type-PreferencesEvent">java_awt_desktop.PreferencesEvent</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-PrintFilesHandler"></a>
+<b>PROCEDURE </b>(self:PrintFilesHandler) <font color="#cc0033">printFiles</font>*(p0 : <a href="java_awt_desktop.html#type-PrintFilesEvent">java_awt_desktop.PrintFilesEvent</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-QuitHandler"></a>
+<b>PROCEDURE </b>(self:QuitHandler) <font color="#cc0033">handleQuitRequestWith</font>*(p0 : <a href="#type-QuitEvent">QuitEvent</a>;
+                                                    p1 : <a href="#type-QuitResponse">QuitResponse</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-QuitResponse"></a>
+<b>PROCEDURE </b>(self:QuitResponse) <font color="#cc0033">cancelQuit</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:QuitResponse) <font color="#cc0033">performQuit</font>*()<b>,NEW,ABSTRACT</b>;
+<a name="meths-ScreenSleepListener"></a>
+<b>PROCEDURE </b>(self:ScreenSleepListener) <font color="#cc0033">screenAboutToSleep</font>*(p0 : <a href="java_awt_desktop.html#type-ScreenSleepEvent">java_awt_desktop.ScreenSleepEvent</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ScreenSleepListener) <font color="#cc0033">screenAwoke</font>*(p0 : <a href="java_awt_desktop.html#type-ScreenSleepEvent">java_awt_desktop.ScreenSleepEvent</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-SystemSleepListener"></a>
+<b>PROCEDURE </b>(self:SystemSleepListener) <font color="#cc0033">systemAboutToSleep</font>*(p0 : <a href="#type-SystemSleepEvent">SystemSleepEvent</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SystemSleepListener) <font color="#cc0033">systemAwoke</font>*(p0 : <a href="#type-SystemSleepEvent">SystemSleepEvent</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-UserSessionEvent"></a>
+<b>PROCEDURE </b>(self:UserSessionEvent) <font color="#cc0033">getReason</font>*() : <a href="java_awt_desktop.html#type-UserSessionEvent$Reason">java_awt_desktop.UserSessionEvent$Reason</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-UserSessionListener"></a>
+<b>PROCEDURE </b>(self:UserSessionListener) <font color="#cc0033">userSessionActivated</font>*(p0 : <a href="java_awt_desktop.html#type-UserSessionEvent">java_awt_desktop.UserSessionEvent</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:UserSessionListener) <font color="#cc0033">userSessionDeactivated</font>*(p0 : <a href="java_awt_desktop.html#type-UserSessionEvent">java_awt_desktop.UserSessionEvent</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>END </b><font color="#cc0033">java_awt_desktop</font>.
+</font></pre></hr>
+<!-- BEGIN JavaScript -->
+<script>
+function toggle(node) {
+    node.classList.toggle("show"); 
+  }
+
+function cls(node) {
+    var prnt = node.parentNode;
+    var next = prnt.previousSibling;
+    var text = next.lastChild;
+    text.innerHTML = 
+        "The <b>class</b> property asserts that this type will be<br>" +
+        "implemented as a reference class in the underlying framework.";
+    text.classList.toggle("show");
+  }
+
+function newOk(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>has noArg-ctor</b> property asserts that this reference<br>" +
+        "class has a no-arg constructor, and thus objects of this<br>" +
+        "type can be allocated with NEW(). Component Pascal types<br>" +
+        "derived from this type can also be allocated using NEW().";
+    popuptext.classList.toggle("show"); 
+  }
+
+function noNew(node) { 
+    var prnt = node.parentNode; 
+    var next = prnt.previousSibling; 
+    var text = next.lastChild; 
+    text.innerHTML =  
+        "The <b>no noArg-ctor</b> property asserts that this reference<br>" +
+        "class does not have a noArg constructor. Objects of this<br>" +
+        "type cannot be allocated using NEW(), and Component<br>" +
+        "Pascal types  derived from this type also cannot be<br>" +
+        "allocated using NEW().";
+    text.classList.toggle("show");
+  }
+
+function noCpy(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>no value-assign</b> property asserts that this reference<br>" + 
+        "class does not have a value copy method. Therefore, it<br>" +
+        "is not possible to perform value assignments using<br>" +
+        "statements like <i>dst^</i> := <i>src^</i>";
+    popuptext.classList.toggle("show");
+  }
+
+function valueclass(node) { 
+        var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>valueclass</b> property asserts that this RECORD type is<br>" + 
+        "implemented as a value class in the CLR. It follows that<br>" +  
+        "value assignments can be made of these types. They can<br>" + 
+        "also be passed by value. Even pointers to records of<br>" + 
+        "such types may be dereferenced and copied using syntax<br>" + 
+        "such as  <i>dst^</i> := <i>src^</i>"; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+function argCtor(node) { 
+    var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>has arg-ctor</b> property asserts that this reference<br>" +  
+        "class has one or more constructors that take arguments.<br>" + 
+        "These constructors can be called from Component Pascal<br>" + 
+        "by calling an <i>init</i>(...) method from the static list<br>" + 
+        "here. Component Pascal types derived from this type<br>" + 
+        "can define constructors with arguments which call the<br>" + 
+        "super-type constructor.<br>" + 
+        "See <i>'Interfacing to constructors'</i> in the Release Notes."; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+</script>
+<!-- END JavaScript --> 
+
+</body></html>

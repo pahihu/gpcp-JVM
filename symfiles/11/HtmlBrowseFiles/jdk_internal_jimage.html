@@ -1,0 +1,500 @@
+<html><head><title>jdk_internal_jimage</title>
+<style>
+<!-- BEGIN Inline CSS -->
+/* Popup container */
+.popup {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+/* The actual popup (appears on top) */
+.popup .popuptext {
+    visibility: hidden;
+    width: 430px;
+    background-color: white;
+    color: black;
+    text-align: left;
+    border-radius: 6px;
+    border-style: solid;
+    border-color: black;
+    padding: 8px 8px 8px 8px;
+    position: absolute;
+    z-index: 1;
+    margin-top: 30px;
+}
+
+/* Toggle this class when clicking on the popup container (hide and show the popup) */
+.popup .show {
+    visibility: visible;
+    opacity: 1;
+}
+
+</style>
+<!-- END Inline CSS -->
+</head><body bgcolor="white">
+<hr><pre>
+<font color="green">(*</font>
+<font color="green"> *  Creator PeToCps j2cps version 1.4.07 (March 2018)</font>
+<font color="green"> *  Compiled from jar-file /Library/Java/JavaVirtualMachines/zulu-11.jdk/Contents/Home/jmods/java.base.jmod</font>
+<font color="green"> *)</font>
+<b>FOREIGN MODULE </b><font color="#cc0033">jdk_internal_jimage</font>;
+
+<b>IMPORT</b>
+    <a href="java_io.html">java_io</a> := "java.io",
+    <a href="java_lang.html">java_lang</a> := "java.lang",
+    <a href="java_nio.html">java_nio</a> := "java.nio",
+    <a href="java_nio_file.html">java_nio_file</a> := "java.nio.file",
+    <a href="java_nio_file_attribute.html">java_nio_file_attribute</a> := "java.nio.file.attribute",
+    <a href="java_util.html">java_util</a> := "java.util",
+    <a href="jdk_internal_jimage.html">jdk_internal_jimage</a> := "jdk.internal.jimage";
+
+<b>TYPE</b>
+
+  <a name="type-BasicImageReader"></a><font color="#cc0033">BasicImageReader</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_lang.html#type-AutoCloseable">java_lang.AutoCloseable</a>)
+                      <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                      <font color="green"><b> (* </b><a href="#meths-BasicImageReader">Typebound Procedures</a><b> *)</b></font>
+                      <b>STATIC</b>
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : <a href="java_nio_file.html#type-Path">java_nio_file.Path</a>) : <a href="#type-BasicImageReader">BasicImageReader</a><b>,CONSTRUCTOR</b>;
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : <a href="java_nio_file.html#type-Path">java_nio_file.Path</a>;
+                                        p1 : <a href="java_nio.html#type-ByteOrder">java_nio.ByteOrder</a>) : <a href="#type-BasicImageReader">BasicImageReader</a><b>,CONSTRUCTOR</b>;
+                        <b>PROCEDURE </b><font color="#cc0033">open</font>*(p0 : <a href="java_nio_file.html#type-Path">java_nio_file.Path</a>) : <a href="#type-BasicImageReader">BasicImageReader</a>;
+                        <b>PROCEDURE </b><font color="#cc0033">releaseByteBuffer</font>*(p0 : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>);
+                      <b>END</b>;
+
+  <a name="type-ImageHeader"></a><font color="#cc0033">ImageHeader</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                 <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                 <font color="green"><b> (* </b><a href="#meths-ImageHeader">Typebound Procedures</a><b> *)</b></font>
+                 <b>STATIC</b>
+                   <font color="#cc0033">MAGIC</font>*         = -889267494;
+                   <font color="#cc0033">MAJOR_VERSION</font>* = 1;
+                   <font color="#cc0033">MINOR_VERSION</font>* = 0;
+                   <b>PROCEDURE </b><font color="#cc0033">getHeaderSize</font>*() : INTEGER;
+                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER;
+                                   p1 : INTEGER;
+                                   p2 : INTEGER;
+                                   p3 : INTEGER;
+                                   p4 : INTEGER;
+                                   p5 : INTEGER;
+                                   p6 : INTEGER;
+                                   p7 : INTEGER) : <a href="#type-ImageHeader">ImageHeader</a><b>,CONSTRUCTOR</b>;
+                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER;
+                                   p1 : INTEGER;
+                                   p2 : INTEGER;
+                                   p3 : INTEGER) : <a href="#type-ImageHeader">ImageHeader</a><b>,CONSTRUCTOR</b>;
+                 <b>END</b>;
+
+  <a name="type-ImageLocation"></a><font color="#cc0033">ImageLocation</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                   <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                   <font color="green"><b> (* </b><a href="#meths-ImageLocation">Typebound Procedures</a><b> *)</b></font>
+                     <font color="#cc0033">attributes</font>! : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>LONGINT;
+                     <font color="#cc0033">strings</font>!    : <a href="#type-ImageStrings">ImageStrings</a>;
+                   <b>STATIC</b>
+                     <font color="#cc0033">ATTRIBUTE_BASE</font>*         = 3;
+                     <font color="#cc0033">ATTRIBUTE_COMPRESSED</font>*   = 6;
+                     <font color="#cc0033">ATTRIBUTE_COUNT</font>*        = 8;
+                     <font color="#cc0033">ATTRIBUTE_END</font>*          = 0;
+                     <font color="#cc0033">ATTRIBUTE_EXTENSION</font>*    = 4;
+                     <font color="#cc0033">ATTRIBUTE_MODULE</font>*       = 1;
+                     <font color="#cc0033">ATTRIBUTE_OFFSET</font>*       = 5;
+                     <font color="#cc0033">ATTRIBUTE_PARENT</font>*       = 2;
+                     <font color="#cc0033">ATTRIBUTE_UNCOMPRESSED</font>* = 7;
+                     <b>PROCEDURE </b><font color="#cc0033">compress</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>LONGINT) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE;
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>LONGINT;
+                                         p1 : <a href="#type-ImageStrings">ImageStrings</a>) : <a href="#type-ImageLocation">ImageLocation</a><b>,CONSTRUCTOR</b>;
+                   <b>END</b>;
+
+  <a name="type-ImageReader"></a><font color="#cc0033">ImageReader</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_lang.html#type-AutoCloseable">java_lang.AutoCloseable</a>)
+                 <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> *)</font>
+                 <font color="green"><b> (* </b><a href="#meths-ImageReader">Typebound Procedures</a><b> *)</b></font>
+                 <b>STATIC</b>
+                   <b>PROCEDURE </b><font color="#cc0033">open</font>*(p0 : <a href="java_nio_file.html#type-Path">java_nio_file.Path</a>) : <a href="#type-ImageReader">ImageReader</a>;
+                   <b>PROCEDURE </b><font color="#cc0033">open</font>*(p0 : <a href="java_nio_file.html#type-Path">java_nio_file.Path</a>;
+                                   p1 : <a href="java_nio.html#type-ByteOrder">java_nio.ByteOrder</a>) : <a href="#type-ImageReader">ImageReader</a>;
+                   <b>PROCEDURE </b><font color="#cc0033">releaseByteBuffer</font>*(p0 : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>);
+                 <b>END</b>;
+
+  <a name="type-ImageReader$Node"></a><font color="#cc0033">ImageReader$Node</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                      <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                      <font color="green"><b> (* </b><a href="#meths-ImageReader$Node">Typebound Procedures</a><b> *)</b></font>
+                      <b>STATIC</b>
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                        p1 : <a href="java_nio_file_attribute.html#type-BasicFileAttributes">java_nio_file_attribute.BasicFileAttributes</a>) : <a href="#type-ImageReader$Node">ImageReader$Node</a><b>,CONSTRUCTOR</b>;
+                      <b>END</b>;
+
+  <a name="type-ImageReaderFactory"></a><font color="#cc0033">ImageReaderFactory</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                        <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> *)</font>
+                        <b>STATIC</b>
+                          <b>PROCEDURE </b><font color="#cc0033">get</font>*(p0 : <a href="java_nio_file.html#type-Path">java_nio_file.Path</a>) : <a href="#type-ImageReader">ImageReader</a>;
+                          <b>PROCEDURE </b><font color="#cc0033">getImageReader</font>*() : <a href="#type-ImageReader">ImageReader</a>;
+                        <b>END</b>;
+
+  <a name="type-ImageStream"></a><font color="#cc0033">ImageStream</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                 <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                 <font color="green"><b> (* </b><a href="#meths-ImageStream">Typebound Procedures</a><b> *)</b></font>
+                 <b>STATIC</b>
+                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER;
+                                   p1 : <a href="java_nio.html#type-ByteOrder">java_nio.ByteOrder</a>) : <a href="#type-ImageStream">ImageStream</a><b>,CONSTRUCTOR</b>;
+                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE;
+                                       p1 : <a href="java_nio.html#type-ByteOrder">java_nio.ByteOrder</a>) : <a href="#type-ImageStream">ImageStream</a><b>,CONSTRUCTOR</b>;
+                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>) : <a href="#type-ImageStream">ImageStream</a><b>,CONSTRUCTOR</b>;
+                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_nio.html#type-ByteOrder">java_nio.ByteOrder</a>) : <a href="#type-ImageStream">ImageStream</a><b>,CONSTRUCTOR</b>;
+                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-ImageStream">ImageStream</a><b>,CONSTRUCTOR</b>;
+                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER) : <a href="#type-ImageStream">ImageStream</a><b>,CONSTRUCTOR</b>;
+                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE) : <a href="#type-ImageStream">ImageStream</a><b>,CONSTRUCTOR</b>;
+                 <b>END</b>;
+
+  <a name="type-ImageStrings"></a><font color="#cc0033">ImageStrings</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                  <font color="green"><b> (* </b><a href="#meths-ImageStrings">Typebound Procedures</a><b> *)</b></font>
+                  <b>END</b>;
+
+  <a name="type-ImageStringsReader"></a><font color="#cc0033">ImageStringsReader</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="jdk_internal_jimage.html#type-ImageStrings">jdk_internal_jimage.ImageStrings</a>)
+                        <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> *)</font>
+                        <font color="green"><b> (* </b><a href="#meths-ImageStringsReader">Typebound Procedures</a><b> *)</b></font>
+                        <b>STATIC</b>
+                          <font color="#cc0033">HASH_MULTIPLIER</font>*      = 16777619;
+                          <font color="#cc0033">POSITIVE_MASK</font>*        = 2147483647;
+                          <b>PROCEDURE </b><font color="#cc0033">hashCode</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                              p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : INTEGER;
+                          <b>PROCEDURE </b><font color="#cc0033">hashCode</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                              p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                              p2 : INTEGER) : INTEGER;
+                          <b>PROCEDURE </b><font color="#cc0033">hashCode</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : INTEGER;
+                          <b>PROCEDURE </b><font color="#cc0033">hashCode</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                              p1 : INTEGER) : INTEGER;
+                          <b>PROCEDURE </b><font color="#cc0033">mutf8FromString</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE;
+                          <b>PROCEDURE </b><font color="#cc0033">stringFromByteBuffer</font>*(p0 : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>) : <a href="java_lang.html#type-String">java_lang.String</a>;
+                          <b>PROCEDURE </b><font color="#cc0033">stringFromMUTF8</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE) : <a href="java_lang.html#type-String">java_lang.String</a>;
+                          <b>PROCEDURE </b><font color="#cc0033">stringFromMUTF8</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE;
+                                                         p1 : INTEGER;
+                                                         p2 : INTEGER) : <a href="java_lang.html#type-String">java_lang.String</a>;
+                          <b>PROCEDURE </b><font color="#cc0033">unmaskedHashCode</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                      p1 : INTEGER) : INTEGER;
+                        <b>END</b>;
+
+
+
+<a name="meths-BasicImageReader"></a>
+<b>PROCEDURE </b>(self:BasicImageReader) <font color="#cc0033">close</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BasicImageReader) <font color="#cc0033">findLocation</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-ImageLocation">ImageLocation</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BasicImageReader) <font color="#cc0033">findLocation</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-ImageLocation">ImageLocation</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BasicImageReader) <font color="#cc0033">getAttributes</font>*(p0 : INTEGER) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BasicImageReader) <font color="#cc0033">getByteOrder</font>*() : <a href="java_nio.html#type-ByteOrder">java_nio.ByteOrder</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BasicImageReader) <font color="#cc0033">getEntryNames</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BasicImageReader) <font color="#cc0033">getHeader</font>*() : <a href="jdk_internal_jimage.html#type-ImageHeader">jdk_internal_jimage.ImageHeader</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BasicImageReader) <font color="#cc0033">getImagePath</font>*() : <a href="java_nio_file.html#type-Path">java_nio_file.Path</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BasicImageReader) <font color="#cc0033">getName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BasicImageReader) <font color="#cc0033">getResource</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BasicImageReader) <font color="#cc0033">getResource</font>*(p0 : <a href="#type-ImageLocation">ImageLocation</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BasicImageReader) <font color="#cc0033">getResourceBuffer</font>*(p0 : <a href="#type-ImageLocation">ImageLocation</a>) : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BasicImageReader) <font color="#cc0033">getResourceStream</font>*(p0 : <a href="#type-ImageLocation">ImageLocation</a>) : <a href="java_io.html#type-InputStream">java_io.InputStream</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BasicImageReader) <font color="#cc0033">getString</font>*(p0 : INTEGER) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BasicImageReader) <font color="#cc0033">getStrings</font>*() : <a href="#type-ImageStringsReader">ImageStringsReader</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-ImageHeader"></a>
+<b>PROCEDURE </b>(self:ImageHeader) <font color="#cc0033">getFlags</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageHeader) <font color="#cc0033">getIndexSize</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageHeader) <font color="#cc0033">getLocationsSize</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageHeader) <font color="#cc0033">getMagic</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageHeader) <font color="#cc0033">getMajorVersion</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageHeader) <font color="#cc0033">getMinorVersion</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageHeader) <font color="#cc0033">getOffsetsSize</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageHeader) <font color="#cc0033">getRedirectSize</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageHeader) <font color="#cc0033">getResourceCount</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageHeader) <font color="#cc0033">getStringsSize</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageHeader) <font color="#cc0033">getTableLength</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageHeader) <font color="#cc0033">writeTo</font>*(p0 : <a href="#type-ImageStream">ImageStream</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageHeader) <font color="#cc0033">writeTo</font>*(p0 : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-ImageLocation"></a>
+<b>PROCEDURE </b>(self:ImageLocation) <font color="#cc0033">getBase</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageLocation) <font color="#cc0033">getBaseOffset</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageLocation) <font color="#cc0033">getCompressedSize</font>*() : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageLocation) <font color="#cc0033">getContentOffset</font>*() : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageLocation) <font color="#cc0033">getExtension</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageLocation) <font color="#cc0033">getExtensionOffset</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageLocation) <font color="#cc0033">getFullName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageLocation) <font color="#cc0033">getFullName</font>*(p0 : BOOLEAN) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageLocation) <font color="#cc0033">getModule</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageLocation) <font color="#cc0033">getModuleOffset</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageLocation) <font color="#cc0033">getParent</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageLocation) <font color="#cc0033">getParentOffset</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageLocation) <font color="#cc0033">getUncompressedSize</font>*() : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageLocation) <font color="#cc0033">verify</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-ImageReader"></a>
+<b>PROCEDURE </b>(self:ImageReader) <font color="#cc0033">close</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageReader) <font color="#cc0033">findLocation</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-ImageLocation">ImageLocation</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageReader) <font color="#cc0033">findLocation</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                           p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-ImageLocation">ImageLocation</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageReader) <font color="#cc0033">findNode</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="jdk_internal_jimage.html#type-ImageReader$Node">jdk_internal_jimage.ImageReader$Node</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageReader) <font color="#cc0033">getAttributes</font>*(p0 : INTEGER) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageReader) <font color="#cc0033">getByteOrder</font>*() : <a href="java_nio.html#type-ByteOrder">java_nio.ByteOrder</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageReader) <font color="#cc0033">getEntryNames</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageReader) <font color="#cc0033">getHeader</font>*() : <a href="jdk_internal_jimage.html#type-ImageHeader">jdk_internal_jimage.ImageHeader</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageReader) <font color="#cc0033">getImagePath</font>*() : <a href="java_nio_file.html#type-Path">java_nio_file.Path</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageReader) <font color="#cc0033">getModuleNames</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageReader) <font color="#cc0033">getName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageReader) <font color="#cc0033">getResource</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageReader) <font color="#cc0033">getResource</font>*(p0 : <a href="#type-ImageLocation">ImageLocation</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageReader) <font color="#cc0033">getResource</font>*(p0 : <a href="jdk_internal_jimage.html#type-ImageReader$Resource">jdk_internal_jimage.ImageReader$Resource</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageReader) <font color="#cc0033">getResource</font>*(p0 : <a href="jdk_internal_jimage.html#type-ImageReader$Node">jdk_internal_jimage.ImageReader$Node</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageReader) <font color="#cc0033">getResourceBuffer</font>*(p0 : <a href="#type-ImageLocation">ImageLocation</a>) : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageReader) <font color="#cc0033">getResourceStream</font>*(p0 : <a href="#type-ImageLocation">ImageLocation</a>) : <a href="java_io.html#type-InputStream">java_io.InputStream</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageReader) <font color="#cc0033">getRootDirectory</font>*() : <a href="jdk_internal_jimage.html#type-ImageReader$Directory">jdk_internal_jimage.ImageReader$Directory</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageReader) <font color="#cc0033">getString</font>*(p0 : INTEGER) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageReader) <font color="#cc0033">getStrings</font>*() : <a href="#type-ImageStringsReader">ImageStringsReader</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-ImageReader$Node"></a>
+<b>PROCEDURE </b>(self:ImageReader$Node) <font color="#cc0033">compressedSize</font>*() : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageReader$Node) <font color="#cc0033">contentOffset</font>*() : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageReader$Node) <font color="#cc0033">creationTime</font>*() : <a href="java_nio_file_attribute.html#type-FileTime">java_nio_file_attribute.FileTime</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:ImageReader$Node) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:ImageReader$Node) <font color="#cc0033">extension</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageReader$Node) <font color="#cc0033">getChildren</font>*() : <a href="java_util.html#type-List">java_util.List</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageReader$Node) <font color="#cc0033">getFileAttributes</font>*() : <a href="java_nio_file_attribute.html#type-BasicFileAttributes">java_nio_file_attribute.BasicFileAttributes</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:ImageReader$Node) <font color="#cc0033">getLocation</font>*() : <a href="#type-ImageLocation">ImageLocation</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageReader$Node) <font color="#cc0033">getName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:ImageReader$Node) <font color="#cc0033">getNameString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:ImageReader$Node) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:ImageReader$Node) <font color="#cc0033">isCompleted</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageReader$Node) <font color="#cc0033">isDirectory</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageReader$Node) <font color="#cc0033">isLink</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageReader$Node) <font color="#cc0033">isModulesDir</font>*() : BOOLEAN<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:ImageReader$Node) <font color="#cc0033">isPackagesDir</font>*() : BOOLEAN<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:ImageReader$Node) <font color="#cc0033">isResource</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageReader$Node) <font color="#cc0033">isRootDir</font>*() : BOOLEAN<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:ImageReader$Node) <font color="#cc0033">lastAccessTime</font>*() : <a href="java_nio_file_attribute.html#type-FileTime">java_nio_file_attribute.FileTime</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:ImageReader$Node) <font color="#cc0033">lastModifiedTime</font>*() : <a href="java_nio_file_attribute.html#type-FileTime">java_nio_file_attribute.FileTime</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:ImageReader$Node) <font color="#cc0033">resolveLink</font>*() : <a href="#type-ImageReader$Node">ImageReader$Node</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:ImageReader$Node) <font color="#cc0033">resolveLink</font>*(p0 : BOOLEAN) : <a href="#type-ImageReader$Node">ImageReader$Node</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageReader$Node) <font color="#cc0033">setCompleted</font>*(p0 : BOOLEAN)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageReader$Node) <font color="#cc0033">setIsModulesDir</font>*()<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:ImageReader$Node) <font color="#cc0033">setIsPackagesDir</font>*()<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:ImageReader$Node) <font color="#cc0033">setIsRootDir</font>*()<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:ImageReader$Node) <font color="#cc0033">size</font>*() : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageReader$Node) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW</b>;
+<a name="meths-ImageStream"></a>
+<b>PROCEDURE </b>(self:ImageStream) <font color="#cc0033">align</font>*(p0 : INTEGER) : <a href="#type-ImageStream">ImageStream</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageStream) <font color="#cc0033">ensure</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageStream) <font color="#cc0033">get</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageStream) <font color="#cc0033">get</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE;
+                                      p1 : INTEGER;
+                                      p2 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageStream) <font color="#cc0033">getBuffer</font>*() : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageStream) <font color="#cc0033">getBytes</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageStream) <font color="#cc0033">getInt</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageStream) <font color="#cc0033">getLong</font>*() : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageStream) <font color="#cc0033">getPosition</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageStream) <font color="#cc0033">getShort</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageStream) <font color="#cc0033">getSize</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageStream) <font color="#cc0033">hasByte</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageStream) <font color="#cc0033">hasBytes</font>*(p0 : INTEGER) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageStream) <font color="#cc0033">put</font>*(p0 : <a href="#type-ImageStream">ImageStream</a>) : <a href="#type-ImageStream">ImageStream</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageStream) <font color="#cc0033">put</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE;
+                                      p1 : INTEGER;
+                                      p2 : INTEGER) : <a href="#type-ImageStream">ImageStream</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageStream) <font color="#cc0033">put</font>*(p0 : INTEGER) : <a href="#type-ImageStream">ImageStream</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageStream) <font color="#cc0033">put</font>*(p0 : BYTE) : <a href="#type-ImageStream">ImageStream</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageStream) <font color="#cc0033">putInt</font>*(p0 : INTEGER) : <a href="#type-ImageStream">ImageStream</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageStream) <font color="#cc0033">putLong</font>*(p0 : LONGINT) : <a href="#type-ImageStream">ImageStream</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageStream) <font color="#cc0033">putShort</font>*(p0 : SHORTINT) : <a href="#type-ImageStream">ImageStream</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageStream) <font color="#cc0033">putShort</font>*(p0 : INTEGER) : <a href="#type-ImageStream">ImageStream</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageStream) <font color="#cc0033">setPosition</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageStream) <font color="#cc0033">skip</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageStream) <font color="#cc0033">toArray</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-ImageStrings"></a>
+<b>PROCEDURE </b>(self:ImageStrings) <font color="#cc0033">add</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ImageStrings) <font color="#cc0033">get</font>*(p0 : INTEGER) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-ImageStringsReader"></a>
+<b>PROCEDURE </b>(self:ImageStringsReader) <font color="#cc0033">add</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageStringsReader) <font color="#cc0033">get</font>*(p0 : INTEGER) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>END </b><font color="#cc0033">jdk_internal_jimage</font>.
+</font></pre></hr>
+<!-- BEGIN JavaScript -->
+<script>
+function toggle(node) {
+    node.classList.toggle("show"); 
+  }
+
+function cls(node) {
+    var prnt = node.parentNode;
+    var next = prnt.previousSibling;
+    var text = next.lastChild;
+    text.innerHTML = 
+        "The <b>class</b> property asserts that this type will be<br>" +
+        "implemented as a reference class in the underlying framework.";
+    text.classList.toggle("show");
+  }
+
+function newOk(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>has noArg-ctor</b> property asserts that this reference<br>" +
+        "class has a no-arg constructor, and thus objects of this<br>" +
+        "type can be allocated with NEW(). Component Pascal types<br>" +
+        "derived from this type can also be allocated using NEW().";
+    popuptext.classList.toggle("show"); 
+  }
+
+function noNew(node) { 
+    var prnt = node.parentNode; 
+    var next = prnt.previousSibling; 
+    var text = next.lastChild; 
+    text.innerHTML =  
+        "The <b>no noArg-ctor</b> property asserts that this reference<br>" +
+        "class does not have a noArg constructor. Objects of this<br>" +
+        "type cannot be allocated using NEW(), and Component<br>" +
+        "Pascal types  derived from this type also cannot be<br>" +
+        "allocated using NEW().";
+    text.classList.toggle("show");
+  }
+
+function noCpy(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>no value-assign</b> property asserts that this reference<br>" + 
+        "class does not have a value copy method. Therefore, it<br>" +
+        "is not possible to perform value assignments using<br>" +
+        "statements like <i>dst^</i> := <i>src^</i>";
+    popuptext.classList.toggle("show");
+  }
+
+function valueclass(node) { 
+        var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>valueclass</b> property asserts that this RECORD type is<br>" + 
+        "implemented as a value class in the CLR. It follows that<br>" +  
+        "value assignments can be made of these types. They can<br>" + 
+        "also be passed by value. Even pointers to records of<br>" + 
+        "such types may be dereferenced and copied using syntax<br>" + 
+        "such as  <i>dst^</i> := <i>src^</i>"; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+function argCtor(node) { 
+    var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>has arg-ctor</b> property asserts that this reference<br>" +  
+        "class has one or more constructors that take arguments.<br>" + 
+        "These constructors can be called from Component Pascal<br>" + 
+        "by calling an <i>init</i>(...) method from the static list<br>" + 
+        "here. Component Pascal types derived from this type<br>" + 
+        "can define constructors with arguments which call the<br>" + 
+        "super-type constructor.<br>" + 
+        "See <i>'Interfacing to constructors'</i> in the Release Notes."; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+</script>
+<!-- END JavaScript --> 
+
+</body></html>

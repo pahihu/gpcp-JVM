@@ -1,0 +1,1626 @@
+<html><head><title>javax_management</title>
+<style>
+<!-- BEGIN Inline CSS -->
+/* Popup container */
+.popup {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+/* The actual popup (appears on top) */
+.popup .popuptext {
+    visibility: hidden;
+    width: 430px;
+    background-color: white;
+    color: black;
+    text-align: left;
+    border-radius: 6px;
+    border-style: solid;
+    border-color: black;
+    padding: 8px 8px 8px 8px;
+    position: absolute;
+    z-index: 1;
+    margin-top: 30px;
+}
+
+/* Toggle this class when clicking on the popup container (hide and show the popup) */
+.popup .show {
+    visibility: visible;
+    opacity: 1;
+}
+
+</style>
+<!-- END Inline CSS -->
+</head><body bgcolor="white">
+<hr><pre>
+<font color="green">(*</font>
+<font color="green"> *  Creator PeToCps j2cps version 1.4.07 (March 2018)</font>
+<font color="green"> *  Compiled from jar-file /Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home/jmods/java.management.jmod</font>
+<font color="green"> *)</font>
+<b>FOREIGN MODULE </b><font color="#cc0033">javax_management</font>;
+
+<b>IMPORT</b>
+    <a href="javax_management.html">javax_management</a> := "javax.management",
+    <a href="javax_management_loading.html">javax_management_loading</a> := "javax.management.loading",
+    <a href="java_io.html">java_io</a> := "java.io",
+    <a href="java_lang.html">java_lang</a> := "java.lang",
+    <a href="java_lang_annotation.html">java_lang_annotation</a> := "java.lang.annotation",
+    <a href="java_lang_reflect.html">java_lang_reflect</a> := "java.lang.reflect",
+    <a href="java_security.html">java_security</a> := "java.security",
+    <a href="java_util.html">java_util</a> := "java.util",
+    <a href="java_util_concurrent.html">java_util_concurrent</a> := "java.util.concurrent";
+
+<b>TYPE</b>
+
+  <a name="type-Attribute"></a><font color="#cc0033">Attribute</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_io.html#type-Serializable">java_io.Serializable</a>)
+               <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+               <font color="green"><b> (* </b><a href="#meths-Attribute">Typebound Procedures</a><b> *)</b></font>
+               <b>STATIC</b>
+                 <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                 p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="#type-Attribute">Attribute</a><b>,CONSTRUCTOR</b>;
+               <b>END</b>;
+
+  <a name="type-AttributeChangeNotification"></a><font color="#cc0033">AttributeChangeNotification</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="javax_management.html#type-Notification">javax_management.Notification</a>)
+                                 <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                                 <font color="green"><b> (* </b><a href="#meths-AttributeChangeNotification">Typebound Procedures</a><b> *)</b></font>
+                                 <b>STATIC</b>
+                                   <font color="#cc0033">ATTRIBUTE_CHANGE</font>* = "jmx.attribute.change";
+                                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                   p1 : LONGINT;
+                                                   p2 : LONGINT;
+                                                   p3 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                   p4 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                   p5 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                   p6 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                   p7 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="#type-AttributeChangeNotification">AttributeChangeNotification</a><b>,CONSTRUCTOR</b>;
+                                 <b>END</b>;
+
+  <a name="type-AttributeChangeNotificationFilter"></a><font color="#cc0033">AttributeChangeNotificationFilter</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-NotificationFilter">NotificationFilter</a>)
+                                       <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                                       <font color="green"><b> (* </b><a href="#meths-AttributeChangeNotificationFilter">Typebound Procedures</a><b> *)</b></font>
+                                       <b>STATIC</b>
+                                         <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-AttributeChangeNotificationFilter">AttributeChangeNotificationFilter</a><b>,CONSTRUCTOR</b>;
+                                       <b>END</b>;
+
+  <a name="type-AttributeList"></a><font color="#cc0033">AttributeList</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_util.html#type-ArrayList">java_util.ArrayList</a>)
+                   <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                   <font color="green"><b> (* </b><a href="#meths-AttributeList">Typebound Procedures</a><b> *)</b></font>
+                   <b>STATIC</b>
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="#type-AttributeList">AttributeList</a>) : <a href="#type-AttributeList">AttributeList</a><b>,CONSTRUCTOR</b>;
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_util.html#type-List">java_util.List</a>) : <a href="#type-AttributeList">AttributeList</a><b>,CONSTRUCTOR</b>;
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-AttributeList">AttributeList</a><b>,CONSTRUCTOR</b>;
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER) : <a href="#type-AttributeList">AttributeList</a><b>,CONSTRUCTOR</b>;
+                   <b>END</b>;
+
+  <a name="type-AttributeNotFoundException"></a><font color="#cc0033">AttributeNotFoundException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="javax_management.html#type-OperationsException">javax_management.OperationsException</a>)
+                                <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                                <b>STATIC</b>
+                                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-AttributeNotFoundException">AttributeNotFoundException</a><b>,CONSTRUCTOR</b>;
+                                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-AttributeNotFoundException">AttributeNotFoundException</a><b>,CONSTRUCTOR</b>;
+                                <b>END</b>;
+
+  <a name="type-AttributeValueExp"></a><font color="#cc0033">AttributeValueExp</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="javax_management.html#type-ValueExp">javax_management.ValueExp</a>)
+                       <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                       <font color="green"><b> (* </b><a href="#meths-AttributeValueExp">Typebound Procedures</a><b> *)</b></font>
+                       <b>STATIC</b>
+                         <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-AttributeValueExp">AttributeValueExp</a><b>,CONSTRUCTOR</b>;
+                         <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-AttributeValueExp">AttributeValueExp</a><b>,CONSTRUCTOR</b>;
+                       <b>END</b>;
+
+  <a name="type-BadAttributeValueExpException"></a><font color="#cc0033">BadAttributeValueExpException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Exception">java_lang.Exception</a>)
+                                   <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                                   <font color="green"><b> (* </b><a href="#meths-BadAttributeValueExpException">Typebound Procedures</a><b> *)</b></font>
+                                   <b>STATIC</b>
+                                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="#type-BadAttributeValueExpException">BadAttributeValueExpException</a><b>,CONSTRUCTOR</b>;
+                                   <b>END</b>;
+
+  <a name="type-BadBinaryOpValueExpException"></a><font color="#cc0033">BadBinaryOpValueExpException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Exception">java_lang.Exception</a>)
+                                  <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                                  <font color="green"><b> (* </b><a href="#meths-BadBinaryOpValueExpException">Typebound Procedures</a><b> *)</b></font>
+                                  <b>STATIC</b>
+                                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="#type-ValueExp">ValueExp</a>) : <a href="#type-BadBinaryOpValueExpException">BadBinaryOpValueExpException</a><b>,CONSTRUCTOR</b>;
+                                  <b>END</b>;
+
+  <a name="type-BadStringOperationException"></a><font color="#cc0033">BadStringOperationException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Exception">java_lang.Exception</a>)
+                                 <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                                 <font color="green"><b> (* </b><a href="#meths-BadStringOperationException">Typebound Procedures</a><b> *)</b></font>
+                                 <b>STATIC</b>
+                                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-BadStringOperationException">BadStringOperationException</a><b>,CONSTRUCTOR</b>;
+                                 <b>END</b>;
+
+  <a name="type-ConstructorParameters"></a><font color="#cc0033">ConstructorParameters</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_lang_annotation.html#type-Annotation">java_lang_annotation.Annotation</a>)
+                           <font color="green"><b> (* </b><a href="#meths-ConstructorParameters">Typebound Procedures</a><b> *)</b></font>
+                           <b>END</b>;
+
+  <a name="type-DefaultLoaderRepository"></a><font color="#cc0033">DefaultLoaderRepository</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                             <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                             <b>STATIC</b>
+                               <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-DefaultLoaderRepository">DefaultLoaderRepository</a><b>,CONSTRUCTOR</b>;
+                               <b>PROCEDURE </b><font color="#cc0033">loadClass</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                               <b>PROCEDURE </b><font color="#cc0033">loadClassWithout</font>*(p0 : <a href="java_lang.html#type-ClassLoader">java_lang.ClassLoader</a>;
+                                                           p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                             <b>END</b>;
+
+  <a name="type-Descriptor"></a><font color="#cc0033">Descriptor</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_io.html#type-Serializable">java_io.Serializable</a> + <a href="java_lang.html#type-Cloneable">java_lang.Cloneable</a>)
+                <font color="green"><b> (* </b><a href="#meths-Descriptor">Typebound Procedures</a><b> *)</b></font>
+                <b>END</b>;
+
+  <a name="type-DescriptorAccess"></a><font color="#cc0033">DescriptorAccess</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="javax_management.html#type-DescriptorRead">javax_management.DescriptorRead</a>)
+                      <font color="green"><b> (* </b><a href="#meths-DescriptorAccess">Typebound Procedures</a><b> *)</b></font>
+                      <b>END</b>;
+
+  <a name="type-DescriptorKey"></a><font color="#cc0033">DescriptorKey</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_lang_annotation.html#type-Annotation">java_lang_annotation.Annotation</a>)
+                   <font color="green"><b> (* </b><a href="#meths-DescriptorKey">Typebound Procedures</a><b> *)</b></font>
+                   <b>END</b>;
+
+  <a name="type-DescriptorRead"></a><font color="#cc0033">DescriptorRead</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                    <font color="green"><b> (* </b><a href="#meths-DescriptorRead">Typebound Procedures</a><b> *)</b></font>
+                    <b>END</b>;
+
+  <a name="type-DynamicMBean"></a><font color="#cc0033">DynamicMBean</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                  <font color="green"><b> (* </b><a href="#meths-DynamicMBean">Typebound Procedures</a><b> *)</b></font>
+                  <b>END</b>;
+
+  <a name="type-ImmutableDescriptor"></a><font color="#cc0033">ImmutableDescriptor</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-Descriptor">Descriptor</a>)
+                         <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                         <font color="green"><b> (* </b><a href="#meths-ImmutableDescriptor">Typebound Procedures</a><b> *)</b></font>
+                         <b>STATIC</b>
+                           <a name="type-EMPTY_DESCRIPTOR"></a><font color="#cc0033">EMPTY_DESCRIPTOR</font>* : <a href="#type-ImmutableDescriptor">ImmutableDescriptor</a>;
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_util.html#type-Map">java_util.Map</a>) : <a href="#type-ImmutableDescriptor">ImmutableDescriptor</a><b>,CONSTRUCTOR</b>;
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-ImmutableDescriptor">ImmutableDescriptor</a><b>,CONSTRUCTOR</b>;
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>;
+                                           IN  p1 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="#type-ImmutableDescriptor">ImmutableDescriptor</a><b>,CONSTRUCTOR</b>;
+                           <b>PROCEDURE </b><font color="#cc0033">union</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="#type-Descriptor">Descriptor</a>) : <a href="#type-ImmutableDescriptor">ImmutableDescriptor</a>;
+                         <b>END</b>;
+
+  <a name="type-InstanceAlreadyExistsException"></a><font color="#cc0033">InstanceAlreadyExistsException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-OperationsException">OperationsException</a>)
+                                    <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                                    <b>STATIC</b>
+                                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-InstanceAlreadyExistsException">InstanceAlreadyExistsException</a><b>,CONSTRUCTOR</b>;
+                                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-InstanceAlreadyExistsException">InstanceAlreadyExistsException</a><b>,CONSTRUCTOR</b>;
+                                    <b>END</b>;
+
+  <a name="type-InstanceNotFoundException"></a><font color="#cc0033">InstanceNotFoundException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-OperationsException">OperationsException</a>)
+                               <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                               <b>STATIC</b>
+                                 <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-InstanceNotFoundException">InstanceNotFoundException</a><b>,CONSTRUCTOR</b>;
+                                 <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-InstanceNotFoundException">InstanceNotFoundException</a><b>,CONSTRUCTOR</b>;
+                               <b>END</b>;
+
+  <a name="type-IntrospectionException"></a><font color="#cc0033">IntrospectionException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-OperationsException">OperationsException</a>)
+                            <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                            <b>STATIC</b>
+                              <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-IntrospectionException">IntrospectionException</a><b>,CONSTRUCTOR</b>;
+                              <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-IntrospectionException">IntrospectionException</a><b>,CONSTRUCTOR</b>;
+                            <b>END</b>;
+
+  <a name="type-InvalidApplicationException"></a><font color="#cc0033">InvalidApplicationException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Exception">java_lang.Exception</a>)
+                                 <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                                 <b>STATIC</b>
+                                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="#type-InvalidApplicationException">InvalidApplicationException</a><b>,CONSTRUCTOR</b>;
+                                 <b>END</b>;
+
+  <a name="type-InvalidAttributeValueException"></a><font color="#cc0033">InvalidAttributeValueException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="javax_management.html#type-OperationsException">javax_management.OperationsException</a>)
+                                    <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                                    <b>STATIC</b>
+                                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-InvalidAttributeValueException">InvalidAttributeValueException</a><b>,CONSTRUCTOR</b>;
+                                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-InvalidAttributeValueException">InvalidAttributeValueException</a><b>,CONSTRUCTOR</b>;
+                                    <b>END</b>;
+
+  <a name="type-JMException"></a><font color="#cc0033">JMException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Exception">java_lang.Exception</a>)
+                 <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                 <b>STATIC</b>
+                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-JMException">JMException</a><b>,CONSTRUCTOR</b>;
+                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-JMException">JMException</a><b>,CONSTRUCTOR</b>;
+                 <b>END</b>;
+
+  <a name="type-JMRuntimeException"></a><font color="#cc0033">JMRuntimeException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-RuntimeException">java_lang.RuntimeException</a>)
+                        <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                        <b>STATIC</b>
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-JMRuntimeException">JMRuntimeException</a><b>,CONSTRUCTOR</b>;
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-JMRuntimeException">JMRuntimeException</a><b>,CONSTRUCTOR</b>;
+                        <b>END</b>;
+
+  <a name="type-JMX"></a><font color="#cc0033">JMX</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+         <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> *)</font>
+         <b>STATIC</b>
+           <font color="#cc0033">DEFAULT_VALUE_FIELD</font>*        = "defaultValue";
+           <font color="#cc0033">IMMUTABLE_INFO_FIELD</font>*       = "immutableInfo";
+           <font color="#cc0033">INTERFACE_CLASS_NAME_FIELD</font>* = "interfaceClassName";
+           <font color="#cc0033">LEGAL_VALUES_FIELD</font>*         = "legalValues";
+           <font color="#cc0033">MAX_VALUE_FIELD</font>*            = "maxValue";
+           <font color="#cc0033">MIN_VALUE_FIELD</font>*            = "minValue";
+           <font color="#cc0033">MXBEAN_FIELD</font>*               = "mxbean";
+           <font color="#cc0033">OPEN_TYPE_FIELD</font>*            = "openType";
+           <font color="#cc0033">ORIGINAL_TYPE_FIELD</font>*        = "originalType";
+           <b>PROCEDURE </b><font color="#cc0033">isMXBeanInterface</font>*(p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>) : BOOLEAN;
+           <b>PROCEDURE </b><font color="#cc0033">newMBeanProxy</font>*(p0 : <a href="#type-MBeanServerConnection">MBeanServerConnection</a>;
+                                    p1 : <a href="#type-ObjectName">ObjectName</a>;
+                                    p2 : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                                    p3 : BOOLEAN) : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+           <b>PROCEDURE </b><font color="#cc0033">newMBeanProxy</font>*(p0 : <a href="#type-MBeanServerConnection">MBeanServerConnection</a>;
+                                    p1 : <a href="#type-ObjectName">ObjectName</a>;
+                                    p2 : <a href="java_lang.html#type-Class">java_lang.Class</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+           <b>PROCEDURE </b><font color="#cc0033">newMXBeanProxy</font>*(p0 : <a href="#type-MBeanServerConnection">MBeanServerConnection</a>;
+                                     p1 : <a href="#type-ObjectName">ObjectName</a>;
+                                     p2 : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                                     p3 : BOOLEAN) : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+           <b>PROCEDURE </b><font color="#cc0033">newMXBeanProxy</font>*(p0 : <a href="#type-MBeanServerConnection">MBeanServerConnection</a>;
+                                     p1 : <a href="#type-ObjectName">ObjectName</a>;
+                                     p2 : <a href="java_lang.html#type-Class">java_lang.Class</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+         <b>END</b>;
+
+  <a name="type-ListenerNotFoundException"></a><font color="#cc0033">ListenerNotFoundException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="javax_management.html#type-OperationsException">javax_management.OperationsException</a>)
+                               <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                               <b>STATIC</b>
+                                 <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-ListenerNotFoundException">ListenerNotFoundException</a><b>,CONSTRUCTOR</b>;
+                                 <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-ListenerNotFoundException">ListenerNotFoundException</a><b>,CONSTRUCTOR</b>;
+                               <b>END</b>;
+
+  <a name="type-MalformedObjectNameException"></a><font color="#cc0033">MalformedObjectNameException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-OperationsException">OperationsException</a>)
+                                  <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                                  <b>STATIC</b>
+                                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-MalformedObjectNameException">MalformedObjectNameException</a><b>,CONSTRUCTOR</b>;
+                                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-MalformedObjectNameException">MalformedObjectNameException</a><b>,CONSTRUCTOR</b>;
+                                  <b>END</b>;
+
+  <a name="type-MBeanAttributeInfo"></a><font color="#cc0033">MBeanAttributeInfo</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-MBeanFeatureInfo">MBeanFeatureInfo</a> + <a href="java_lang.html#type-Cloneable">java_lang.Cloneable</a>)
+                        <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                        <font color="green"><b> (* </b><a href="#meths-MBeanAttributeInfo">Typebound Procedures</a><b> *)</b></font>
+                        <b>STATIC</b>
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                          p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                          p2 : <a href="java_lang_reflect.html#type-Method">java_lang_reflect.Method</a>;
+                                          p3 : <a href="java_lang_reflect.html#type-Method">java_lang_reflect.Method</a>) : <a href="#type-MBeanAttributeInfo">MBeanAttributeInfo</a><b>,CONSTRUCTOR</b>;
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                          p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                          p2 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                          p3 : BOOLEAN;
+                                          p4 : BOOLEAN;
+                                          p5 : BOOLEAN;
+                                          p6 : <a href="#type-Descriptor">Descriptor</a>) : <a href="#type-MBeanAttributeInfo">MBeanAttributeInfo</a><b>,CONSTRUCTOR</b>;
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                          p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                          p2 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                          p3 : BOOLEAN;
+                                          p4 : BOOLEAN;
+                                          p5 : BOOLEAN) : <a href="#type-MBeanAttributeInfo">MBeanAttributeInfo</a><b>,CONSTRUCTOR</b>;
+                        <b>END</b>;
+
+  <a name="type-MBeanConstructorInfo"></a><font color="#cc0033">MBeanConstructorInfo</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="javax_management.html#type-MBeanFeatureInfo">javax_management.MBeanFeatureInfo</a> + <a href="java_lang.html#type-Cloneable">java_lang.Cloneable</a>)
+                          <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                          <font color="green"><b> (* </b><a href="#meths-MBeanConstructorInfo">Typebound Procedures</a><b> *)</b></font>
+                          <b>STATIC</b>
+                            <b>PROCEDURE </b><font color="#cc0033">Init</font>*(    p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                            IN  p2 : <b>ARRAY </b><b>OF </b><a href="javax_management.html#type-MBeanParameterInfo">javax_management.MBeanParameterInfo</a>;
+                                                p3 : <a href="javax_management.html#type-Descriptor">javax_management.Descriptor</a>) : <a href="#type-MBeanConstructorInfo">MBeanConstructorInfo</a><b>,CONSTRUCTOR</b>;
+                            <b>PROCEDURE </b><font color="#cc0033">Init</font>*(    p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                            IN  p2 : <b>ARRAY </b><b>OF </b><a href="javax_management.html#type-MBeanParameterInfo">javax_management.MBeanParameterInfo</a>) : <a href="#type-MBeanConstructorInfo">MBeanConstructorInfo</a><b>,CONSTRUCTOR</b>;
+                            <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                            p1 : <a href="java_lang_reflect.html#type-Constructor">java_lang_reflect.Constructor</a>) : <a href="#type-MBeanConstructorInfo">MBeanConstructorInfo</a><b>,CONSTRUCTOR</b>;
+                          <b>END</b>;
+
+  <a name="type-MBeanException"></a><font color="#cc0033">MBeanException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="javax_management.html#type-JMException">javax_management.JMException</a>)
+                    <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                    <font color="green"><b> (* </b><a href="#meths-MBeanException">Typebound Procedures</a><b> *)</b></font>
+                    <b>STATIC</b>
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-Exception">java_lang.Exception</a>;
+                                      p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-MBeanException">MBeanException</a><b>,CONSTRUCTOR</b>;
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-Exception">java_lang.Exception</a>) : <a href="#type-MBeanException">MBeanException</a><b>,CONSTRUCTOR</b>;
+                    <b>END</b>;
+
+  <a name="type-MBeanFeatureInfo"></a><font color="#cc0033">MBeanFeatureInfo</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_io.html#type-Serializable">java_io.Serializable</a> + <a href="javax_management.html#type-DescriptorRead">javax_management.DescriptorRead</a>)
+                      <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                      <font color="green"><b> (* </b><a href="#meths-MBeanFeatureInfo">Typebound Procedures</a><b> *)</b></font>
+                        <font color="#cc0033">name</font>!        : <a href="java_lang.html#type-String">java_lang.String</a>;
+                        <font color="#cc0033">description</font>! : <a href="java_lang.html#type-String">java_lang.String</a>;
+                      <b>STATIC</b>
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                        p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                        p2 : <a href="#type-Descriptor">Descriptor</a>) : <a href="#type-MBeanFeatureInfo">MBeanFeatureInfo</a><b>,CONSTRUCTOR</b>;
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                        p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-MBeanFeatureInfo">MBeanFeatureInfo</a><b>,CONSTRUCTOR</b>;
+                      <b>END</b>;
+
+  <a name="type-MBeanInfo"></a><font color="#cc0033">MBeanInfo</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_lang.html#type-Cloneable">java_lang.Cloneable</a> + <a href="java_io.html#type-Serializable">java_io.Serializable</a> + <a href="javax_management.html#type-DescriptorRead">javax_management.DescriptorRead</a>)
+               <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+               <font color="green"><b> (* </b><a href="#meths-MBeanInfo">Typebound Procedures</a><b> *)</b></font>
+               <b>STATIC</b>
+                 <b>PROCEDURE </b><font color="#cc0033">Init</font>*(    p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                     p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                 IN  p2 : <b>ARRAY </b><b>OF </b><a href="javax_management.html#type-MBeanAttributeInfo">javax_management.MBeanAttributeInfo</a>;
+                                 IN  p3 : <b>ARRAY </b><b>OF </b><a href="#type-MBeanConstructorInfo">MBeanConstructorInfo</a>;
+                                 IN  p4 : <b>ARRAY </b><b>OF </b><a href="javax_management.html#type-MBeanOperationInfo">javax_management.MBeanOperationInfo</a>;
+                                 IN  p5 : <b>ARRAY </b><b>OF </b><a href="javax_management.html#type-MBeanNotificationInfo">javax_management.MBeanNotificationInfo</a>;
+                                     p6 : <a href="javax_management.html#type-Descriptor">javax_management.Descriptor</a>) : <a href="#type-MBeanInfo">MBeanInfo</a><b>,CONSTRUCTOR</b>;
+                 <b>PROCEDURE </b><font color="#cc0033">Init</font>*(    p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                     p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                 IN  p2 : <b>ARRAY </b><b>OF </b><a href="javax_management.html#type-MBeanAttributeInfo">javax_management.MBeanAttributeInfo</a>;
+                                 IN  p3 : <b>ARRAY </b><b>OF </b><a href="#type-MBeanConstructorInfo">MBeanConstructorInfo</a>;
+                                 IN  p4 : <b>ARRAY </b><b>OF </b><a href="javax_management.html#type-MBeanOperationInfo">javax_management.MBeanOperationInfo</a>;
+                                 IN  p5 : <b>ARRAY </b><b>OF </b><a href="javax_management.html#type-MBeanNotificationInfo">javax_management.MBeanNotificationInfo</a>) : <a href="#type-MBeanInfo">MBeanInfo</a><b>,CONSTRUCTOR</b>;
+               <b>END</b>;
+
+  <a name="type-MBeanNotificationInfo"></a><font color="#cc0033">MBeanNotificationInfo</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-MBeanFeatureInfo">MBeanFeatureInfo</a> + <a href="java_lang.html#type-Cloneable">java_lang.Cloneable</a>)
+                           <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                           <font color="green"><b> (* </b><a href="#meths-MBeanNotificationInfo">Typebound Procedures</a><b> *)</b></font>
+                           <b>STATIC</b>
+                             <b>PROCEDURE </b><font color="#cc0033">Init</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>;
+                                                 p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                 p2 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                 p3 : <a href="#type-Descriptor">Descriptor</a>) : <a href="#type-MBeanNotificationInfo">MBeanNotificationInfo</a><b>,CONSTRUCTOR</b>;
+                             <b>PROCEDURE </b><font color="#cc0033">Init</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>;
+                                                 p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                 p2 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-MBeanNotificationInfo">MBeanNotificationInfo</a><b>,CONSTRUCTOR</b>;
+                           <b>END</b>;
+
+  <a name="type-MBeanOperationInfo"></a><font color="#cc0033">MBeanOperationInfo</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-MBeanFeatureInfo">MBeanFeatureInfo</a> + <a href="java_lang.html#type-Cloneable">java_lang.Cloneable</a>)
+                        <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                        <font color="green"><b> (* </b><a href="#meths-MBeanOperationInfo">Typebound Procedures</a><b> *)</b></font>
+                        <b>STATIC</b>
+                          <font color="#cc0033">ACTION</font>*      = 1;
+                          <font color="#cc0033">ACTION_INFO</font>* = 2;
+                          <font color="#cc0033">INFO</font>*        = 0;
+                          <font color="#cc0033">UNKNOWN</font>*     = 3;
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>*(    p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                              p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                          IN  p2 : <b>ARRAY </b><b>OF </b><a href="#type-MBeanParameterInfo">MBeanParameterInfo</a>;
+                                              p3 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                              p4 : INTEGER;
+                                              p5 : <a href="#type-Descriptor">Descriptor</a>) : <a href="#type-MBeanOperationInfo">MBeanOperationInfo</a><b>,CONSTRUCTOR</b>;
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>*(    p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                              p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                          IN  p2 : <b>ARRAY </b><b>OF </b><a href="#type-MBeanParameterInfo">MBeanParameterInfo</a>;
+                                              p3 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                              p4 : INTEGER) : <a href="#type-MBeanOperationInfo">MBeanOperationInfo</a><b>,CONSTRUCTOR</b>;
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                          p1 : <a href="java_lang_reflect.html#type-Method">java_lang_reflect.Method</a>) : <a href="#type-MBeanOperationInfo">MBeanOperationInfo</a><b>,CONSTRUCTOR</b>;
+                        <b>END</b>;
+
+  <a name="type-MBeanParameterInfo"></a><font color="#cc0033">MBeanParameterInfo</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="javax_management.html#type-MBeanFeatureInfo">javax_management.MBeanFeatureInfo</a> + <a href="java_lang.html#type-Cloneable">java_lang.Cloneable</a>)
+                        <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                        <font color="green"><b> (* </b><a href="#meths-MBeanParameterInfo">Typebound Procedures</a><b> *)</b></font>
+                        <b>STATIC</b>
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                          p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                          p2 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                          p3 : <a href="#type-Descriptor">Descriptor</a>) : <a href="#type-MBeanParameterInfo">MBeanParameterInfo</a><b>,CONSTRUCTOR</b>;
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                          p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                          p2 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-MBeanParameterInfo">MBeanParameterInfo</a><b>,CONSTRUCTOR</b>;
+                        <b>END</b>;
+
+  <a name="type-MBeanPermission"></a><font color="#cc0033">MBeanPermission</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_security.html#type-Permission">java_security.Permission</a>)
+                     <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                     <font color="green"><b> (* </b><a href="#meths-MBeanPermission">Typebound Procedures</a><b> *)</b></font>
+                     <b>STATIC</b>
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                       p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                       p2 : <a href="#type-ObjectName">ObjectName</a>;
+                                       p3 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-MBeanPermission">MBeanPermission</a><b>,CONSTRUCTOR</b>;
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                       p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-MBeanPermission">MBeanPermission</a><b>,CONSTRUCTOR</b>;
+                     <b>END</b>;
+
+  <a name="type-MBeanRegistration"></a><font color="#cc0033">MBeanRegistration</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                       <font color="green"><b> (* </b><a href="#meths-MBeanRegistration">Typebound Procedures</a><b> *)</b></font>
+                       <b>END</b>;
+
+  <a name="type-MBeanRegistrationException"></a><font color="#cc0033">MBeanRegistrationException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-MBeanException">MBeanException</a>)
+                                <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                                <b>STATIC</b>
+                                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-Exception">java_lang.Exception</a>;
+                                                  p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-MBeanRegistrationException">MBeanRegistrationException</a><b>,CONSTRUCTOR</b>;
+                                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-Exception">java_lang.Exception</a>) : <a href="#type-MBeanRegistrationException">MBeanRegistrationException</a><b>,CONSTRUCTOR</b>;
+                                <b>END</b>;
+
+  <a name="type-MBeanServer"></a><font color="#cc0033">MBeanServer</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-MBeanServerConnection">MBeanServerConnection</a>)
+                 <font color="green"><b> (* </b><a href="#meths-MBeanServer">Typebound Procedures</a><b> *)</b></font>
+                 <b>END</b>;
+
+  <a name="type-MBeanServerBuilder"></a><font color="#cc0033">MBeanServerBuilder</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                        <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                        <font color="green"><b> (* </b><a href="#meths-MBeanServerBuilder">Typebound Procedures</a><b> *)</b></font>
+                        <b>STATIC</b>
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-MBeanServerBuilder">MBeanServerBuilder</a><b>,CONSTRUCTOR</b>;
+                        <b>END</b>;
+
+  <a name="type-MBeanServerConnection"></a><font color="#cc0033">MBeanServerConnection</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                           <font color="green"><b> (* </b><a href="#meths-MBeanServerConnection">Typebound Procedures</a><b> *)</b></font>
+                           <b>END</b>;
+
+  <a name="type-MBeanServerDelegate"></a><font color="#cc0033">MBeanServerDelegate</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-MBeanServerDelegateMBean">MBeanServerDelegateMBean</a> + <a href="javax_management.html#type-NotificationEmitter">javax_management.NotificationEmitter</a>)
+                         <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                         <font color="green"><b> (* </b><a href="#meths-MBeanServerDelegate">Typebound Procedures</a><b> *)</b></font>
+                         <b>STATIC</b>
+                           <a name="type-DELEGATE_NAME"></a><font color="#cc0033">DELEGATE_NAME</font>* : <a href="#type-ObjectName">ObjectName</a>;
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-MBeanServerDelegate">MBeanServerDelegate</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-MBeanServerDelegateMBean"></a><font color="#cc0033">MBeanServerDelegateMBean</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                              <font color="green"><b> (* </b><a href="#meths-MBeanServerDelegateMBean">Typebound Procedures</a><b> *)</b></font>
+                              <b>END</b>;
+
+  <a name="type-MBeanServerFactory"></a><font color="#cc0033">MBeanServerFactory</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                        <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> *)</font>
+                        <b>STATIC</b>
+                          <b>PROCEDURE </b><font color="#cc0033">createMBeanServer</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-MBeanServer">MBeanServer</a>;
+                          <b>PROCEDURE </b><font color="#cc0033">createMBeanServer</font>*() : <a href="#type-MBeanServer">MBeanServer</a>;
+                          <b>PROCEDURE </b><font color="#cc0033">findMBeanServer</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_util.html#type-ArrayList">java_util.ArrayList</a>;
+                          <b>PROCEDURE </b><font color="#cc0033">getClassLoaderRepository</font>*(p0 : <a href="#type-MBeanServer">MBeanServer</a>) : <a href="javax_management_loading.html#type-ClassLoaderRepository">javax_management_loading.ClassLoaderRepository</a>;
+                          <b>PROCEDURE </b><font color="#cc0033">newMBeanServer</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-MBeanServer">MBeanServer</a>;
+                          <b>PROCEDURE </b><font color="#cc0033">newMBeanServer</font>*() : <a href="#type-MBeanServer">MBeanServer</a>;
+                          <b>PROCEDURE </b><font color="#cc0033">releaseMBeanServer</font>*(p0 : <a href="#type-MBeanServer">MBeanServer</a>);
+                        <b>END</b>;
+
+  <a name="type-MBeanServerInvocationHandler"></a><font color="#cc0033">MBeanServerInvocationHandler</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_lang_reflect.html#type-InvocationHandler">java_lang_reflect.InvocationHandler</a>)
+                                  <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                                  <font color="green"><b> (* </b><a href="#meths-MBeanServerInvocationHandler">Typebound Procedures</a><b> *)</b></font>
+                                  <b>STATIC</b>
+                                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="#type-MBeanServerConnection">MBeanServerConnection</a>;
+                                                    p1 : <a href="#type-ObjectName">ObjectName</a>;
+                                                    p2 : BOOLEAN) : <a href="#type-MBeanServerInvocationHandler">MBeanServerInvocationHandler</a><b>,CONSTRUCTOR</b>;
+                                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="#type-MBeanServerConnection">MBeanServerConnection</a>;
+                                                    p1 : <a href="#type-ObjectName">ObjectName</a>) : <a href="#type-MBeanServerInvocationHandler">MBeanServerInvocationHandler</a><b>,CONSTRUCTOR</b>;
+                                    <b>PROCEDURE </b><font color="#cc0033">newProxyInstance</font>*(p0 : <a href="#type-MBeanServerConnection">MBeanServerConnection</a>;
+                                                                p1 : <a href="#type-ObjectName">ObjectName</a>;
+                                                                p2 : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                                                                p3 : BOOLEAN) : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                  <b>END</b>;
+
+  <a name="type-MBeanServerNotification"></a><font color="#cc0033">MBeanServerNotification</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-Notification">Notification</a>)
+                             <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                             <font color="green"><b> (* </b><a href="#meths-MBeanServerNotification">Typebound Procedures</a><b> *)</b></font>
+                             <b>STATIC</b>
+                               <font color="#cc0033">REGISTRATION_NOTIFICATION</font>*   = "JMX.mbean.registered";
+                               <font color="#cc0033">UNREGISTRATION_NOTIFICATION</font>* = "JMX.mbean.unregistered";
+                               <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                               p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                               p2 : LONGINT;
+                                               p3 : <a href="#type-ObjectName">ObjectName</a>) : <a href="#type-MBeanServerNotification">MBeanServerNotification</a><b>,CONSTRUCTOR</b>;
+                             <b>END</b>;
+
+  <a name="type-MBeanServerPermission"></a><font color="#cc0033">MBeanServerPermission</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_security.html#type-BasicPermission">java_security.BasicPermission</a>)
+                           <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                           <font color="green"><b> (* </b><a href="#meths-MBeanServerPermission">Typebound Procedures</a><b> *)</b></font>
+                           <b>STATIC</b>
+                             <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                             p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-MBeanServerPermission">MBeanServerPermission</a><b>,CONSTRUCTOR</b>;
+                             <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-MBeanServerPermission">MBeanServerPermission</a><b>,CONSTRUCTOR</b>;
+                           <b>END</b>;
+
+  <a name="type-MBeanTrustPermission"></a><font color="#cc0033">MBeanTrustPermission</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_security.html#type-BasicPermission">java_security.BasicPermission</a>)
+                          <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                          <b>STATIC</b>
+                            <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                            p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-MBeanTrustPermission">MBeanTrustPermission</a><b>,CONSTRUCTOR</b>;
+                            <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-MBeanTrustPermission">MBeanTrustPermission</a><b>,CONSTRUCTOR</b>;
+                          <b>END</b>;
+
+  <a name="type-MXBean"></a><font color="#cc0033">MXBean</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_lang_annotation.html#type-Annotation">java_lang_annotation.Annotation</a>)
+            <font color="green"><b> (* </b><a href="#meths-MXBean">Typebound Procedures</a><b> *)</b></font>
+            <b>END</b>;
+
+  <a name="type-NotCompliantMBeanException"></a><font color="#cc0033">NotCompliantMBeanException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-OperationsException">OperationsException</a>)
+                                <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                                <b>STATIC</b>
+                                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-NotCompliantMBeanException">NotCompliantMBeanException</a><b>,CONSTRUCTOR</b>;
+                                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-NotCompliantMBeanException">NotCompliantMBeanException</a><b>,CONSTRUCTOR</b>;
+                                <b>END</b>;
+
+  <a name="type-Notification"></a><font color="#cc0033">Notification</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_util.html#type-EventObject">java_util.EventObject</a>)
+                  <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                  <font color="green"><b> (* </b><a href="#meths-Notification">Typebound Procedures</a><b> *)</b></font>
+                    <font color="#cc0033">source</font>! : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                  <b>STATIC</b>
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                    p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                    p2 : LONGINT;
+                                    p3 : LONGINT) : <a href="#type-Notification">Notification</a><b>,CONSTRUCTOR</b>;
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                    p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                    p2 : LONGINT;
+                                    p3 : LONGINT;
+                                    p4 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-Notification">Notification</a><b>,CONSTRUCTOR</b>;
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                    p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                    p2 : LONGINT) : <a href="#type-Notification">Notification</a><b>,CONSTRUCTOR</b>;
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                    p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                    p2 : LONGINT;
+                                    p3 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-Notification">Notification</a><b>,CONSTRUCTOR</b>;
+                  <b>END</b>;
+
+  <a name="type-NotificationBroadcaster"></a><font color="#cc0033">NotificationBroadcaster</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                             <font color="green"><b> (* </b><a href="#meths-NotificationBroadcaster">Typebound Procedures</a><b> *)</b></font>
+                             <b>END</b>;
+
+  <a name="type-NotificationBroadcasterSupport"></a><font color="#cc0033">NotificationBroadcasterSupport</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="javax_management.html#type-NotificationEmitter">javax_management.NotificationEmitter</a>)
+                                    <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                                    <font color="green"><b> (* </b><a href="#meths-NotificationBroadcasterSupport">Typebound Procedures</a><b> *)</b></font>
+                                    <b>STATIC</b>
+                                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="javax_management.html#type-MBeanNotificationInfo">javax_management.MBeanNotificationInfo</a>) : <a href="#type-NotificationBroadcasterSupport">NotificationBroadcasterSupport</a><b>,CONSTRUCTOR</b>;
+                                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*(    p0 : <a href="java_util_concurrent.html#type-Executor">java_util_concurrent.Executor</a>;
+                                                      IN  p1 : <b>ARRAY </b><b>OF </b><a href="javax_management.html#type-MBeanNotificationInfo">javax_management.MBeanNotificationInfo</a>) : <a href="#type-NotificationBroadcasterSupport">NotificationBroadcasterSupport</a><b>,CONSTRUCTOR</b>;
+                                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-NotificationBroadcasterSupport">NotificationBroadcasterSupport</a><b>,CONSTRUCTOR</b>;
+                                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_util_concurrent.html#type-Executor">java_util_concurrent.Executor</a>) : <a href="#type-NotificationBroadcasterSupport">NotificationBroadcasterSupport</a><b>,CONSTRUCTOR</b>;
+                                    <b>END</b>;
+
+  <a name="type-NotificationEmitter"></a><font color="#cc0033">NotificationEmitter</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-NotificationBroadcaster">NotificationBroadcaster</a>)
+                         <font color="green"><b> (* </b><a href="#meths-NotificationEmitter">Typebound Procedures</a><b> *)</b></font>
+                         <b>END</b>;
+
+  <a name="type-NotificationFilter"></a><font color="#cc0033">NotificationFilter</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_io.html#type-Serializable">java_io.Serializable</a>)
+                        <font color="green"><b> (* </b><a href="#meths-NotificationFilter">Typebound Procedures</a><b> *)</b></font>
+                        <b>END</b>;
+
+  <a name="type-NotificationFilterSupport"></a><font color="#cc0033">NotificationFilterSupport</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="javax_management.html#type-NotificationFilter">javax_management.NotificationFilter</a>)
+                               <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                               <font color="green"><b> (* </b><a href="#meths-NotificationFilterSupport">Typebound Procedures</a><b> *)</b></font>
+                               <b>STATIC</b>
+                                 <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-NotificationFilterSupport">NotificationFilterSupport</a><b>,CONSTRUCTOR</b>;
+                               <b>END</b>;
+
+  <a name="type-NotificationListener"></a><font color="#cc0033">NotificationListener</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_util.html#type-EventListener">java_util.EventListener</a>)
+                          <font color="green"><b> (* </b><a href="#meths-NotificationListener">Typebound Procedures</a><b> *)</b></font>
+                          <b>END</b>;
+
+  <a name="type-ObjectInstance"></a><font color="#cc0033">ObjectInstance</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_io.html#type-Serializable">java_io.Serializable</a>)
+                    <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                    <font color="green"><b> (* </b><a href="#meths-ObjectInstance">Typebound Procedures</a><b> *)</b></font>
+                    <b>STATIC</b>
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a>;
+                                      p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-ObjectInstance">ObjectInstance</a><b>,CONSTRUCTOR</b>;
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                      p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-ObjectInstance">ObjectInstance</a><b>,CONSTRUCTOR</b>;
+                    <b>END</b>;
+
+  <a name="type-ObjectName"></a><font color="#cc0033">ObjectName</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_lang.html#type-Comparable">java_lang.Comparable</a> + <a href="javax_management.html#type-QueryExp">javax_management.QueryExp</a>)
+                <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                <font color="green"><b> (* </b><a href="#meths-ObjectName">Typebound Procedures</a><b> *)</b></font>
+                <b>STATIC</b>
+                  <a name="type-WILDCARD"></a><font color="#cc0033">WILDCARD</font>*    : <a href="#type-ObjectName">ObjectName</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">getInstance</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                         p1 : <a href="java_util.html#type-Hashtable">java_util.Hashtable</a>) : <a href="#type-ObjectName">ObjectName</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">getInstance</font>*(p0 : <a href="#type-ObjectName">ObjectName</a>) : <a href="#type-ObjectName">ObjectName</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">getInstance</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-ObjectName">ObjectName</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">getInstance</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                         p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                         p2 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-ObjectName">ObjectName</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                  p1 : <a href="java_util.html#type-Hashtable">java_util.Hashtable</a>) : <a href="#type-ObjectName">ObjectName</a><b>,CONSTRUCTOR</b>;
+                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                  p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                  p2 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-ObjectName">ObjectName</a><b>,CONSTRUCTOR</b>;
+                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-ObjectName">ObjectName</a><b>,CONSTRUCTOR</b>;
+                  <b>PROCEDURE </b><font color="#cc0033">quote</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-String">java_lang.String</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">unquote</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-String">java_lang.String</a>;
+                <b>END</b>;
+
+  <a name="type-OperationsException"></a><font color="#cc0033">OperationsException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="javax_management.html#type-JMException">javax_management.JMException</a>)
+                         <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-OperationsException">OperationsException</a><b>,CONSTRUCTOR</b>;
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-OperationsException">OperationsException</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-PersistentMBean"></a><font color="#cc0033">PersistentMBean</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                     <font color="green"><b> (* </b><a href="#meths-PersistentMBean">Typebound Procedures</a><b> *)</b></font>
+                     <b>END</b>;
+
+  <a name="type-Query"></a><font color="#cc0033">Query</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+           <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+           <b>STATIC</b>
+             <font color="#cc0033">DIV</font>*              = 3;
+             <font color="#cc0033">EQ</font>*               = 4;
+             <font color="#cc0033">GE</font>*               = 2;
+             <font color="#cc0033">GT</font>*               = 0;
+             <font color="#cc0033">LE</font>*               = 3;
+             <font color="#cc0033">LT</font>*               = 1;
+             <font color="#cc0033">MINUS</font>*            = 1;
+             <font color="#cc0033">PLUS</font>*             = 0;
+             <font color="#cc0033">TIMES</font>*            = 2;
+             <b>PROCEDURE </b><font color="#cc0033">and</font>*(p0 : <a href="javax_management.html#type-QueryExp">javax_management.QueryExp</a>;
+                            p1 : <a href="javax_management.html#type-QueryExp">javax_management.QueryExp</a>) : <a href="javax_management.html#type-QueryExp">javax_management.QueryExp</a>;
+             <b>PROCEDURE </b><font color="#cc0033">anySubString</font>*(p0 : <a href="javax_management.html#type-AttributeValueExp">javax_management.AttributeValueExp</a>;
+                                     p1 : <a href="javax_management.html#type-StringValueExp">javax_management.StringValueExp</a>) : <a href="javax_management.html#type-QueryExp">javax_management.QueryExp</a>;
+             <b>PROCEDURE </b><font color="#cc0033">attr</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="javax_management.html#type-AttributeValueExp">javax_management.AttributeValueExp</a>;
+             <b>PROCEDURE </b><font color="#cc0033">attr</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                             p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="javax_management.html#type-AttributeValueExp">javax_management.AttributeValueExp</a>;
+             <b>PROCEDURE </b><font color="#cc0033">between</font>*(p0 : <a href="javax_management.html#type-ValueExp">javax_management.ValueExp</a>;
+                                p1 : <a href="javax_management.html#type-ValueExp">javax_management.ValueExp</a>;
+                                p2 : <a href="javax_management.html#type-ValueExp">javax_management.ValueExp</a>) : <a href="javax_management.html#type-QueryExp">javax_management.QueryExp</a>;
+             <b>PROCEDURE </b><font color="#cc0033">classattr</font>*() : <a href="javax_management.html#type-AttributeValueExp">javax_management.AttributeValueExp</a>;
+             <b>PROCEDURE </b><font color="#cc0033">div</font>*(p0 : <a href="javax_management.html#type-ValueExp">javax_management.ValueExp</a>;
+                            p1 : <a href="javax_management.html#type-ValueExp">javax_management.ValueExp</a>) : <a href="javax_management.html#type-ValueExp">javax_management.ValueExp</a>;
+             <b>PROCEDURE </b><font color="#cc0033">eq</font>*(p0 : <a href="javax_management.html#type-ValueExp">javax_management.ValueExp</a>;
+                           p1 : <a href="javax_management.html#type-ValueExp">javax_management.ValueExp</a>) : <a href="javax_management.html#type-QueryExp">javax_management.QueryExp</a>;
+             <b>PROCEDURE </b><font color="#cc0033">finalSubString</font>*(p0 : <a href="javax_management.html#type-AttributeValueExp">javax_management.AttributeValueExp</a>;
+                                       p1 : <a href="javax_management.html#type-StringValueExp">javax_management.StringValueExp</a>) : <a href="javax_management.html#type-QueryExp">javax_management.QueryExp</a>;
+             <b>PROCEDURE </b><font color="#cc0033">geq</font>*(p0 : <a href="javax_management.html#type-ValueExp">javax_management.ValueExp</a>;
+                            p1 : <a href="javax_management.html#type-ValueExp">javax_management.ValueExp</a>) : <a href="javax_management.html#type-QueryExp">javax_management.QueryExp</a>;
+             <b>PROCEDURE </b><font color="#cc0033">gt</font>*(p0 : <a href="javax_management.html#type-ValueExp">javax_management.ValueExp</a>;
+                           p1 : <a href="javax_management.html#type-ValueExp">javax_management.ValueExp</a>) : <a href="javax_management.html#type-QueryExp">javax_management.QueryExp</a>;
+             <b>PROCEDURE </b><font color="#cc0033">in</font>*(    p0 : <a href="javax_management.html#type-ValueExp">javax_management.ValueExp</a>;
+                           IN  p1 : <b>ARRAY </b><b>OF </b><a href="javax_management.html#type-ValueExp">javax_management.ValueExp</a>) : <a href="javax_management.html#type-QueryExp">javax_management.QueryExp</a>;
+             <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-Query">Query</a><b>,CONSTRUCTOR</b>;
+             <b>PROCEDURE </b><font color="#cc0033">initialSubString</font>*(p0 : <a href="javax_management.html#type-AttributeValueExp">javax_management.AttributeValueExp</a>;
+                                         p1 : <a href="javax_management.html#type-StringValueExp">javax_management.StringValueExp</a>) : <a href="javax_management.html#type-QueryExp">javax_management.QueryExp</a>;
+             <b>PROCEDURE </b><font color="#cc0033">isInstanceOf</font>*(p0 : <a href="javax_management.html#type-StringValueExp">javax_management.StringValueExp</a>) : <a href="javax_management.html#type-QueryExp">javax_management.QueryExp</a>;
+             <b>PROCEDURE </b><font color="#cc0033">leq</font>*(p0 : <a href="javax_management.html#type-ValueExp">javax_management.ValueExp</a>;
+                            p1 : <a href="javax_management.html#type-ValueExp">javax_management.ValueExp</a>) : <a href="javax_management.html#type-QueryExp">javax_management.QueryExp</a>;
+             <b>PROCEDURE </b><font color="#cc0033">lt</font>*(p0 : <a href="javax_management.html#type-ValueExp">javax_management.ValueExp</a>;
+                           p1 : <a href="javax_management.html#type-ValueExp">javax_management.ValueExp</a>) : <a href="javax_management.html#type-QueryExp">javax_management.QueryExp</a>;
+             <b>PROCEDURE </b><font color="#cc0033">match</font>*(p0 : <a href="javax_management.html#type-AttributeValueExp">javax_management.AttributeValueExp</a>;
+                              p1 : <a href="javax_management.html#type-StringValueExp">javax_management.StringValueExp</a>) : <a href="javax_management.html#type-QueryExp">javax_management.QueryExp</a>;
+             <b>PROCEDURE </b><font color="#cc0033">minus</font>*(p0 : <a href="javax_management.html#type-ValueExp">javax_management.ValueExp</a>;
+                              p1 : <a href="javax_management.html#type-ValueExp">javax_management.ValueExp</a>) : <a href="javax_management.html#type-ValueExp">javax_management.ValueExp</a>;
+             <b>PROCEDURE </b><font color="#cc0033">not</font>*(p0 : <a href="javax_management.html#type-QueryExp">javax_management.QueryExp</a>) : <a href="javax_management.html#type-QueryExp">javax_management.QueryExp</a>;
+             <b>PROCEDURE </b><font color="#cc0033">or</font>*(p0 : <a href="javax_management.html#type-QueryExp">javax_management.QueryExp</a>;
+                           p1 : <a href="javax_management.html#type-QueryExp">javax_management.QueryExp</a>) : <a href="javax_management.html#type-QueryExp">javax_management.QueryExp</a>;
+             <b>PROCEDURE </b><font color="#cc0033">plus</font>*(p0 : <a href="javax_management.html#type-ValueExp">javax_management.ValueExp</a>;
+                             p1 : <a href="javax_management.html#type-ValueExp">javax_management.ValueExp</a>) : <a href="javax_management.html#type-ValueExp">javax_management.ValueExp</a>;
+             <b>PROCEDURE </b><font color="#cc0033">times</font>*(p0 : <a href="javax_management.html#type-ValueExp">javax_management.ValueExp</a>;
+                              p1 : <a href="javax_management.html#type-ValueExp">javax_management.ValueExp</a>) : <a href="javax_management.html#type-ValueExp">javax_management.ValueExp</a>;
+             <b>PROCEDURE </b><font color="#cc0033">value</font>*(p0 : INTEGER) : <a href="javax_management.html#type-ValueExp">javax_management.ValueExp</a>;
+             <b>PROCEDURE </b><font color="#cc0033">value</font>*(p0 : <a href="java_lang.html#type-Number">java_lang.Number</a>) : <a href="javax_management.html#type-ValueExp">javax_management.ValueExp</a>;
+             <b>PROCEDURE </b><font color="#cc0033">value</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="javax_management.html#type-StringValueExp">javax_management.StringValueExp</a>;
+             <b>PROCEDURE </b><font color="#cc0033">value</font>*(p0 : LONGINT) : <a href="javax_management.html#type-ValueExp">javax_management.ValueExp</a>;
+             <b>PROCEDURE </b><font color="#cc0033">value</font>*(p0 : BOOLEAN) : <a href="javax_management.html#type-ValueExp">javax_management.ValueExp</a>;
+             <b>PROCEDURE </b><font color="#cc0033">value</font>*(p0 : REAL) : <a href="javax_management.html#type-ValueExp">javax_management.ValueExp</a>;
+             <b>PROCEDURE </b><font color="#cc0033">value</font>*(p0 : SHORTREAL) : <a href="javax_management.html#type-ValueExp">javax_management.ValueExp</a>;
+           <b>END</b>;
+
+  <a name="type-QueryEval"></a><font color="#cc0033">QueryEval</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_io.html#type-Serializable">java_io.Serializable</a>)
+               <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+               <font color="green"><b> (* </b><a href="#meths-QueryEval">Typebound Procedures</a><b> *)</b></font>
+               <b>STATIC</b>
+                 <b>PROCEDURE </b><font color="#cc0033">getMBeanServer</font>*() : <a href="javax_management.html#type-MBeanServer">javax_management.MBeanServer</a>;
+                 <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-QueryEval">QueryEval</a><b>,CONSTRUCTOR</b>;
+               <b>END</b>;
+
+  <a name="type-QueryExp"></a><font color="#cc0033">QueryExp</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_io.html#type-Serializable">java_io.Serializable</a>)
+              <font color="green"><b> (* </b><a href="#meths-QueryExp">Typebound Procedures</a><b> *)</b></font>
+              <b>END</b>;
+
+  <a name="type-ReflectionException"></a><font color="#cc0033">ReflectionException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-JMException">JMException</a>)
+                         <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                         <font color="green"><b> (* </b><a href="#meths-ReflectionException">Typebound Procedures</a><b> *)</b></font>
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-Exception">java_lang.Exception</a>;
+                                           p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-ReflectionException">ReflectionException</a><b>,CONSTRUCTOR</b>;
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-Exception">java_lang.Exception</a>) : <a href="#type-ReflectionException">ReflectionException</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-RuntimeErrorException"></a><font color="#cc0033">RuntimeErrorException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-JMRuntimeException">JMRuntimeException</a>)
+                           <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                           <font color="green"><b> (* </b><a href="#meths-RuntimeErrorException">Typebound Procedures</a><b> *)</b></font>
+                           <b>STATIC</b>
+                             <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-Error">java_lang.Error</a>;
+                                             p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-RuntimeErrorException">RuntimeErrorException</a><b>,CONSTRUCTOR</b>;
+                             <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-Error">java_lang.Error</a>) : <a href="#type-RuntimeErrorException">RuntimeErrorException</a><b>,CONSTRUCTOR</b>;
+                           <b>END</b>;
+
+  <a name="type-RuntimeMBeanException"></a><font color="#cc0033">RuntimeMBeanException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-JMRuntimeException">JMRuntimeException</a>)
+                           <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                           <font color="green"><b> (* </b><a href="#meths-RuntimeMBeanException">Typebound Procedures</a><b> *)</b></font>
+                           <b>STATIC</b>
+                             <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-RuntimeException">java_lang.RuntimeException</a>;
+                                             p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-RuntimeMBeanException">RuntimeMBeanException</a><b>,CONSTRUCTOR</b>;
+                             <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-RuntimeException">java_lang.RuntimeException</a>) : <a href="#type-RuntimeMBeanException">RuntimeMBeanException</a><b>,CONSTRUCTOR</b>;
+                           <b>END</b>;
+
+  <a name="type-RuntimeOperationsException"></a><font color="#cc0033">RuntimeOperationsException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-JMRuntimeException">JMRuntimeException</a>)
+                                <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                                <font color="green"><b> (* </b><a href="#meths-RuntimeOperationsException">Typebound Procedures</a><b> *)</b></font>
+                                <b>STATIC</b>
+                                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-RuntimeException">java_lang.RuntimeException</a>;
+                                                  p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-RuntimeOperationsException">RuntimeOperationsException</a><b>,CONSTRUCTOR</b>;
+                                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-RuntimeException">java_lang.RuntimeException</a>) : <a href="#type-RuntimeOperationsException">RuntimeOperationsException</a><b>,CONSTRUCTOR</b>;
+                                <b>END</b>;
+
+  <a name="type-ServiceNotFoundException"></a><font color="#cc0033">ServiceNotFoundException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="javax_management.html#type-OperationsException">javax_management.OperationsException</a>)
+                              <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                              <b>STATIC</b>
+                                <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-ServiceNotFoundException">ServiceNotFoundException</a><b>,CONSTRUCTOR</b>;
+                                <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-ServiceNotFoundException">ServiceNotFoundException</a><b>,CONSTRUCTOR</b>;
+                              <b>END</b>;
+
+  <a name="type-StandardEmitterMBean"></a><font color="#cc0033">StandardEmitterMBean</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="javax_management.html#type-StandardMBean">javax_management.StandardMBean</a> + <a href="javax_management.html#type-NotificationEmitter">javax_management.NotificationEmitter</a>)
+                          <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                          <font color="green"><b> (* </b><a href="#meths-StandardEmitterMBean">Typebound Procedures</a><b> *)</b></font>
+                          <b>STATIC</b>
+                            <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                                            p1 : <a href="javax_management.html#type-NotificationEmitter">javax_management.NotificationEmitter</a>) : <a href="#type-StandardEmitterMBean">StandardEmitterMBean</a><b>,CONSTRUCTOR</b>;
+                            <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                                            p1 : BOOLEAN;
+                                            p2 : <a href="javax_management.html#type-NotificationEmitter">javax_management.NotificationEmitter</a>) : <a href="#type-StandardEmitterMBean">StandardEmitterMBean</a><b>,CONSTRUCTOR</b>;
+                            <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                            p1 : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                                            p2 : <a href="javax_management.html#type-NotificationEmitter">javax_management.NotificationEmitter</a>) : <a href="#type-StandardEmitterMBean">StandardEmitterMBean</a><b>,CONSTRUCTOR</b>;
+                            <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                            p1 : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                                            p2 : BOOLEAN;
+                                            p3 : <a href="javax_management.html#type-NotificationEmitter">javax_management.NotificationEmitter</a>) : <a href="#type-StandardEmitterMBean">StandardEmitterMBean</a><b>,CONSTRUCTOR</b>;
+                          <b>END</b>;
+
+  <a name="type-StandardMBean"></a><font color="#cc0033">StandardMBean</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-DynamicMBean">DynamicMBean</a> + <a href="#type-MBeanRegistration">MBeanRegistration</a>)
+                   <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                   <font color="green"><b> (* </b><a href="#meths-StandardMBean">Typebound Procedures</a><b> *)</b></font>
+                   <b>STATIC</b>
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                     p1 : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                                     p2 : BOOLEAN) : <a href="#type-StandardMBean">StandardMBean</a><b>,CONSTRUCTOR</b>;
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                                     p1 : BOOLEAN) : <a href="#type-StandardMBean">StandardMBean</a><b>,CONSTRUCTOR</b>;
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                     p1 : <a href="java_lang.html#type-Class">java_lang.Class</a>) : <a href="#type-StandardMBean">StandardMBean</a><b>,CONSTRUCTOR</b>;
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>) : <a href="#type-StandardMBean">StandardMBean</a><b>,CONSTRUCTOR</b>;
+                   <b>END</b>;
+
+  <a name="type-StringValueExp"></a><font color="#cc0033">StringValueExp</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="javax_management.html#type-ValueExp">javax_management.ValueExp</a>)
+                    <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                    <font color="green"><b> (* </b><a href="#meths-StringValueExp">Typebound Procedures</a><b> *)</b></font>
+                    <b>STATIC</b>
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-StringValueExp">StringValueExp</a><b>,CONSTRUCTOR</b>;
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-StringValueExp">StringValueExp</a><b>,CONSTRUCTOR</b>;
+                    <b>END</b>;
+
+  <a name="type-ValueExp"></a><font color="#cc0033">ValueExp</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_io.html#type-Serializable">java_io.Serializable</a>)
+              <font color="green"><b> (* </b><a href="#meths-ValueExp">Typebound Procedures</a><b> *)</b></font>
+              <b>END</b>;
+
+
+
+<a name="meths-Attribute"></a>
+<b>PROCEDURE </b>(self:Attribute) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Attribute) <font color="#cc0033">getName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Attribute) <font color="#cc0033">getValue</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Attribute) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Attribute) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-AttributeChangeNotification"></a>
+<b>PROCEDURE </b>(self:AttributeChangeNotification) <font color="#cc0033">getAttributeName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AttributeChangeNotification) <font color="#cc0033">getAttributeType</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AttributeChangeNotification) <font color="#cc0033">getNewValue</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AttributeChangeNotification) <font color="#cc0033">getOldValue</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-AttributeChangeNotificationFilter"></a>
+<b>PROCEDURE </b>(self:AttributeChangeNotificationFilter) <font color="#cc0033">disableAllAttributes</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AttributeChangeNotificationFilter) <font color="#cc0033">disableAttribute</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AttributeChangeNotificationFilter) <font color="#cc0033">enableAttribute</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AttributeChangeNotificationFilter) <font color="#cc0033">getEnabledAttributes</font>*() : <a href="java_util.html#type-Vector">java_util.Vector</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AttributeChangeNotificationFilter) <font color="#cc0033">isNotificationEnabled</font>*(p0 : <a href="javax_management.html#type-Notification">javax_management.Notification</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-AttributeList"></a>
+<b>PROCEDURE </b>(self:AttributeList) <font color="#cc0033">add</font>*(p0 : INTEGER;
+                                    p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AttributeList) <font color="#cc0033">add</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AttributeList) <font color="#cc0033">add</font>*(p0 : INTEGER;
+                                    p1 : <a href="javax_management.html#type-Attribute">javax_management.Attribute</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AttributeList) <font color="#cc0033">add</font>*(p0 : <a href="javax_management.html#type-Attribute">javax_management.Attribute</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AttributeList) <font color="#cc0033">addAll</font>*(p0 : INTEGER;
+                                       p1 : <a href="java_util.html#type-Collection">java_util.Collection</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AttributeList) <font color="#cc0033">addAll</font>*(p0 : <a href="java_util.html#type-Collection">java_util.Collection</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AttributeList) <font color="#cc0033">addAll</font>*(p0 : <a href="#type-AttributeList">AttributeList</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AttributeList) <font color="#cc0033">addAll</font>*(p0 : INTEGER;
+                                       p1 : <a href="#type-AttributeList">AttributeList</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AttributeList) <font color="#cc0033">asList</font>*() : <a href="java_util.html#type-List">java_util.List</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AttributeList) <font color="#cc0033">set</font>*(p0 : INTEGER;
+                                    p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AttributeList) <font color="#cc0033">set</font>*(p0 : INTEGER;
+                                    p1 : <a href="javax_management.html#type-Attribute">javax_management.Attribute</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-AttributeValueExp"></a>
+<b>PROCEDURE </b>(self:AttributeValueExp) <font color="#cc0033">apply</font>*(p0 : <a href="#type-ObjectName">ObjectName</a>) : <a href="javax_management.html#type-ValueExp">javax_management.ValueExp</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AttributeValueExp) <font color="#cc0033">getAttribute</font>!(p0 : <a href="#type-ObjectName">ObjectName</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AttributeValueExp) <font color="#cc0033">getAttributeName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AttributeValueExp) <font color="#cc0033">setMBeanServer</font>*(p0 : <a href="#type-MBeanServer">MBeanServer</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AttributeValueExp) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-BadAttributeValueExpException"></a>
+<b>PROCEDURE </b>(self:BadAttributeValueExpException) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-BadBinaryOpValueExpException"></a>
+<b>PROCEDURE </b>(self:BadBinaryOpValueExpException) <font color="#cc0033">getExp</font>*() : <a href="#type-ValueExp">ValueExp</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BadBinaryOpValueExpException) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-BadStringOperationException"></a>
+<b>PROCEDURE </b>(self:BadStringOperationException) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-ConstructorParameters"></a>
+<b>PROCEDURE </b>(self:ConstructorParameters) <font color="#cc0033">value</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-Descriptor"></a>
+<b>PROCEDURE </b>(self:Descriptor) <font color="#cc0033">clone</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Descriptor) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Descriptor) <font color="#cc0033">getFieldNames</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Descriptor) <font color="#cc0033">getFields</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Descriptor) <font color="#cc0033">getFieldValue</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Descriptor) <font color="#cc0033">getFieldValues</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Descriptor) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Descriptor) <font color="#cc0033">isValid</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Descriptor) <font color="#cc0033">removeField</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Descriptor) <font color="#cc0033">setField</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                      p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Descriptor) <font color="#cc0033">setFields</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>;
+                                       IN  p1 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-DescriptorAccess"></a>
+<b>PROCEDURE </b>(self:DescriptorAccess) <font color="#cc0033">setDescriptor</font>*(p0 : <a href="javax_management.html#type-Descriptor">javax_management.Descriptor</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-DescriptorKey"></a>
+<b>PROCEDURE </b>(self:DescriptorKey) <font color="#cc0033">value</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-DescriptorRead"></a>
+<b>PROCEDURE </b>(self:DescriptorRead) <font color="#cc0033">getDescriptor</font>*() : <a href="#type-Descriptor">Descriptor</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-DynamicMBean"></a>
+<b>PROCEDURE </b>(self:DynamicMBean) <font color="#cc0033">getAttribute</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DynamicMBean) <font color="#cc0033">getAttributes</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>) : <a href="javax_management.html#type-AttributeList">javax_management.AttributeList</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DynamicMBean) <font color="#cc0033">getMBeanInfo</font>*() : <a href="#type-MBeanInfo">MBeanInfo</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DynamicMBean) <font color="#cc0033">invoke</font>*(    p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                      IN  p1 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                      IN  p2 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DynamicMBean) <font color="#cc0033">setAttribute</font>*(p0 : <a href="javax_management.html#type-Attribute">javax_management.Attribute</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DynamicMBean) <font color="#cc0033">setAttributes</font>*(p0 : <a href="javax_management.html#type-AttributeList">javax_management.AttributeList</a>) : <a href="javax_management.html#type-AttributeList">javax_management.AttributeList</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-ImmutableDescriptor"></a>
+<b>PROCEDURE </b>(self:ImmutableDescriptor) <font color="#cc0033">clone</font>*() : <a href="#type-Descriptor">Descriptor</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImmutableDescriptor) <font color="#cc0033">clone</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImmutableDescriptor) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImmutableDescriptor) <font color="#cc0033">getFieldNames</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:ImmutableDescriptor) <font color="#cc0033">getFields</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:ImmutableDescriptor) <font color="#cc0033">getFieldValue</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:ImmutableDescriptor) <font color="#cc0033">getFieldValues</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:ImmutableDescriptor) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImmutableDescriptor) <font color="#cc0033">isValid</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImmutableDescriptor) <font color="#cc0033">removeField</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:ImmutableDescriptor) <font color="#cc0033">setField</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                               p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:ImmutableDescriptor) <font color="#cc0033">setFields</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>;
+                                                IN  p1 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:ImmutableDescriptor) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-MBeanAttributeInfo"></a>
+<b>PROCEDURE </b>(self:MBeanAttributeInfo) <font color="#cc0033">clone</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MBeanAttributeInfo) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MBeanAttributeInfo) <font color="#cc0033">getType</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MBeanAttributeInfo) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MBeanAttributeInfo) <font color="#cc0033">isIs</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MBeanAttributeInfo) <font color="#cc0033">isReadable</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MBeanAttributeInfo) <font color="#cc0033">isWritable</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MBeanAttributeInfo) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-MBeanConstructorInfo"></a>
+<b>PROCEDURE </b>(self:MBeanConstructorInfo) <font color="#cc0033">clone</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MBeanConstructorInfo) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MBeanConstructorInfo) <font color="#cc0033">getSignature</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="javax_management.html#type-MBeanParameterInfo">javax_management.MBeanParameterInfo</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MBeanConstructorInfo) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MBeanConstructorInfo) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-MBeanException"></a>
+<b>PROCEDURE </b>(self:MBeanException) <font color="#cc0033">getCause</font>*() : <a href="java_lang.html#type-Throwable">java_lang.Throwable</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MBeanException) <font color="#cc0033">getTargetException</font>*() : <a href="java_lang.html#type-Exception">java_lang.Exception</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-MBeanFeatureInfo"></a>
+<b>PROCEDURE </b>(self:MBeanFeatureInfo) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MBeanFeatureInfo) <font color="#cc0033">getDescription</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MBeanFeatureInfo) <font color="#cc0033">getDescriptor</font>*() : <a href="#type-Descriptor">Descriptor</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MBeanFeatureInfo) <font color="#cc0033">getName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MBeanFeatureInfo) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-MBeanInfo"></a>
+<b>PROCEDURE </b>(self:MBeanInfo) <font color="#cc0033">clone</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MBeanInfo) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MBeanInfo) <font color="#cc0033">getAttributes</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="javax_management.html#type-MBeanAttributeInfo">javax_management.MBeanAttributeInfo</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MBeanInfo) <font color="#cc0033">getClassName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MBeanInfo) <font color="#cc0033">getConstructors</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-MBeanConstructorInfo">MBeanConstructorInfo</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MBeanInfo) <font color="#cc0033">getDescription</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MBeanInfo) <font color="#cc0033">getDescriptor</font>*() : <a href="javax_management.html#type-Descriptor">javax_management.Descriptor</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MBeanInfo) <font color="#cc0033">getNotifications</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="javax_management.html#type-MBeanNotificationInfo">javax_management.MBeanNotificationInfo</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MBeanInfo) <font color="#cc0033">getOperations</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="javax_management.html#type-MBeanOperationInfo">javax_management.MBeanOperationInfo</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MBeanInfo) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MBeanInfo) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-MBeanNotificationInfo"></a>
+<b>PROCEDURE </b>(self:MBeanNotificationInfo) <font color="#cc0033">clone</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MBeanNotificationInfo) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MBeanNotificationInfo) <font color="#cc0033">getNotifTypes</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MBeanNotificationInfo) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MBeanNotificationInfo) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-MBeanOperationInfo"></a>
+<b>PROCEDURE </b>(self:MBeanOperationInfo) <font color="#cc0033">clone</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MBeanOperationInfo) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MBeanOperationInfo) <font color="#cc0033">getImpact</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MBeanOperationInfo) <font color="#cc0033">getReturnType</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MBeanOperationInfo) <font color="#cc0033">getSignature</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-MBeanParameterInfo">MBeanParameterInfo</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MBeanOperationInfo) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MBeanOperationInfo) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-MBeanParameterInfo"></a>
+<b>PROCEDURE </b>(self:MBeanParameterInfo) <font color="#cc0033">clone</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MBeanParameterInfo) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MBeanParameterInfo) <font color="#cc0033">getType</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MBeanParameterInfo) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MBeanParameterInfo) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-MBeanPermission"></a>
+<b>PROCEDURE </b>(self:MBeanPermission) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MBeanPermission) <font color="#cc0033">getActions</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MBeanPermission) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MBeanPermission) <font color="#cc0033">implies</font>*(p0 : <a href="java_security.html#type-Permission">java_security.Permission</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-MBeanRegistration"></a>
+<b>PROCEDURE </b>(self:MBeanRegistration) <font color="#cc0033">postDeregister</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MBeanRegistration) <font color="#cc0033">postRegister</font>*(p0 : <a href="java_lang.html#type-Boolean">java_lang.Boolean</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MBeanRegistration) <font color="#cc0033">preDeregister</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MBeanRegistration) <font color="#cc0033">preRegister</font>*(p0 : <a href="javax_management.html#type-MBeanServer">javax_management.MBeanServer</a>;
+                                                p1 : <a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a>) : <a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-MBeanServer"></a>
+<b>PROCEDURE </b>(self:MBeanServer) <font color="#cc0033">addNotificationListener</font>*(p0 : <a href="#type-ObjectName">ObjectName</a>;
+                                                      p1 : <a href="javax_management.html#type-NotificationListener">javax_management.NotificationListener</a>;
+                                                      p2 : <a href="javax_management.html#type-NotificationFilter">javax_management.NotificationFilter</a>;
+                                                      p3 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MBeanServer) <font color="#cc0033">addNotificationListener</font>*(p0 : <a href="#type-ObjectName">ObjectName</a>;
+                                                      p1 : <a href="#type-ObjectName">ObjectName</a>;
+                                                      p2 : <a href="javax_management.html#type-NotificationFilter">javax_management.NotificationFilter</a>;
+                                                      p3 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MBeanServer) <font color="#cc0033">createMBean</font>*(    p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                              p1 : <a href="#type-ObjectName">ObjectName</a>;
+                                              p2 : <a href="#type-ObjectName">ObjectName</a>;
+                                          IN  p3 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                          IN  p4 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-ObjectInstance">ObjectInstance</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MBeanServer) <font color="#cc0033">createMBean</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                          p1 : <a href="#type-ObjectName">ObjectName</a>) : <a href="#type-ObjectInstance">ObjectInstance</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MBeanServer) <font color="#cc0033">createMBean</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                          p1 : <a href="#type-ObjectName">ObjectName</a>;
+                                          p2 : <a href="#type-ObjectName">ObjectName</a>) : <a href="#type-ObjectInstance">ObjectInstance</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MBeanServer) <font color="#cc0033">createMBean</font>*(    p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                              p1 : <a href="#type-ObjectName">ObjectName</a>;
+                                          IN  p2 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                          IN  p3 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-ObjectInstance">ObjectInstance</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MBeanServer) <font color="#cc0033">deserialize</font>*(    p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                          IN  p1 : <b>ARRAY </b><b>OF </b>BYTE) : <a href="java_io.html#type-ObjectInputStream">java_io.ObjectInputStream</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MBeanServer) <font color="#cc0033">deserialize</font>*(    p0 : <a href="#type-ObjectName">ObjectName</a>;
+                                          IN  p1 : <b>ARRAY </b><b>OF </b>BYTE) : <a href="java_io.html#type-ObjectInputStream">java_io.ObjectInputStream</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MBeanServer) <font color="#cc0033">deserialize</font>*(    p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                              p1 : <a href="#type-ObjectName">ObjectName</a>;
+                                          IN  p2 : <b>ARRAY </b><b>OF </b>BYTE) : <a href="java_io.html#type-ObjectInputStream">java_io.ObjectInputStream</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MBeanServer) <font color="#cc0033">getAttribute</font>*(p0 : <a href="#type-ObjectName">ObjectName</a>;
+                                           p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MBeanServer) <font color="#cc0033">getAttributes</font>*(    p0 : <a href="#type-ObjectName">ObjectName</a>;
+                                            IN  p1 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>) : <a href="javax_management.html#type-AttributeList">javax_management.AttributeList</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MBeanServer) <font color="#cc0033">getClassLoader</font>*(p0 : <a href="#type-ObjectName">ObjectName</a>) : <a href="java_lang.html#type-ClassLoader">java_lang.ClassLoader</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MBeanServer) <font color="#cc0033">getClassLoaderFor</font>*(p0 : <a href="#type-ObjectName">ObjectName</a>) : <a href="java_lang.html#type-ClassLoader">java_lang.ClassLoader</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MBeanServer) <font color="#cc0033">getClassLoaderRepository</font>*() : <a href="javax_management_loading.html#type-ClassLoaderRepository">javax_management_loading.ClassLoaderRepository</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MBeanServer) <font color="#cc0033">getDefaultDomain</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MBeanServer) <font color="#cc0033">getDomains</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MBeanServer) <font color="#cc0033">getMBeanCount</font>*() : <a href="java_lang.html#type-Integer">java_lang.Integer</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MBeanServer) <font color="#cc0033">getMBeanInfo</font>*(p0 : <a href="#type-ObjectName">ObjectName</a>) : <a href="#type-MBeanInfo">MBeanInfo</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MBeanServer) <font color="#cc0033">getObjectInstance</font>*(p0 : <a href="#type-ObjectName">ObjectName</a>) : <a href="#type-ObjectInstance">ObjectInstance</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MBeanServer) <font color="#cc0033">instantiate</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                          p1 : <a href="#type-ObjectName">ObjectName</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MBeanServer) <font color="#cc0033">instantiate</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MBeanServer) <font color="#cc0033">instantiate</font>*(    p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                              p1 : <a href="#type-ObjectName">ObjectName</a>;
+                                          IN  p2 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                          IN  p3 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MBeanServer) <font color="#cc0033">instantiate</font>*(    p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                          IN  p1 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                          IN  p2 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MBeanServer) <font color="#cc0033">invoke</font>*(    p0 : <a href="#type-ObjectName">ObjectName</a>;
+                                         p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                     IN  p2 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                     IN  p3 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MBeanServer) <font color="#cc0033">isInstanceOf</font>*(p0 : <a href="#type-ObjectName">ObjectName</a>;
+                                           p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MBeanServer) <font color="#cc0033">isRegistered</font>*(p0 : <a href="#type-ObjectName">ObjectName</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MBeanServer) <font color="#cc0033">queryMBeans</font>*(p0 : <a href="#type-ObjectName">ObjectName</a>;
+                                          p1 : <a href="#type-QueryExp">QueryExp</a>) : <a href="java_util.html#type-Set">java_util.Set</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MBeanServer) <font color="#cc0033">queryNames</font>*(p0 : <a href="#type-ObjectName">ObjectName</a>;
+                                         p1 : <a href="#type-QueryExp">QueryExp</a>) : <a href="java_util.html#type-Set">java_util.Set</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MBeanServer) <font color="#cc0033">registerMBean</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                            p1 : <a href="#type-ObjectName">ObjectName</a>) : <a href="#type-ObjectInstance">ObjectInstance</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MBeanServer) <font color="#cc0033">removeNotificationListener</font>*(p0 : <a href="#type-ObjectName">ObjectName</a>;
+                                                         p1 : <a href="javax_management.html#type-NotificationListener">javax_management.NotificationListener</a>;
+                                                         p2 : <a href="javax_management.html#type-NotificationFilter">javax_management.NotificationFilter</a>;
+                                                         p3 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MBeanServer) <font color="#cc0033">removeNotificationListener</font>*(p0 : <a href="#type-ObjectName">ObjectName</a>;
+                                                         p1 : <a href="#type-ObjectName">ObjectName</a>;
+                                                         p2 : <a href="javax_management.html#type-NotificationFilter">javax_management.NotificationFilter</a>;
+                                                         p3 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MBeanServer) <font color="#cc0033">removeNotificationListener</font>*(p0 : <a href="#type-ObjectName">ObjectName</a>;
+                                                         p1 : <a href="javax_management.html#type-NotificationListener">javax_management.NotificationListener</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MBeanServer) <font color="#cc0033">removeNotificationListener</font>*(p0 : <a href="#type-ObjectName">ObjectName</a>;
+                                                         p1 : <a href="#type-ObjectName">ObjectName</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MBeanServer) <font color="#cc0033">setAttribute</font>*(p0 : <a href="#type-ObjectName">ObjectName</a>;
+                                           p1 : <a href="javax_management.html#type-Attribute">javax_management.Attribute</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MBeanServer) <font color="#cc0033">setAttributes</font>*(p0 : <a href="#type-ObjectName">ObjectName</a>;
+                                            p1 : <a href="javax_management.html#type-AttributeList">javax_management.AttributeList</a>) : <a href="javax_management.html#type-AttributeList">javax_management.AttributeList</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MBeanServer) <font color="#cc0033">unregisterMBean</font>*(p0 : <a href="#type-ObjectName">ObjectName</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-MBeanServerBuilder"></a>
+<b>PROCEDURE </b>(self:MBeanServerBuilder) <font color="#cc0033">newMBeanServer</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                    p1 : <a href="javax_management.html#type-MBeanServer">javax_management.MBeanServer</a>;
+                                                    p2 : <a href="#type-MBeanServerDelegate">MBeanServerDelegate</a>) : <a href="javax_management.html#type-MBeanServer">javax_management.MBeanServer</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MBeanServerBuilder) <font color="#cc0033">newMBeanServerDelegate</font>*() : <a href="#type-MBeanServerDelegate">MBeanServerDelegate</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-MBeanServerConnection"></a>
+<b>PROCEDURE </b>(self:MBeanServerConnection) <font color="#cc0033">addNotificationListener</font>*(p0 : <a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a>;
+                                                                p1 : <a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a>;
+                                                                p2 : <a href="javax_management.html#type-NotificationFilter">javax_management.NotificationFilter</a>;
+                                                                p3 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MBeanServerConnection) <font color="#cc0033">addNotificationListener</font>*(p0 : <a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a>;
+                                                                p1 : <a href="javax_management.html#type-NotificationListener">javax_management.NotificationListener</a>;
+                                                                p2 : <a href="javax_management.html#type-NotificationFilter">javax_management.NotificationFilter</a>;
+                                                                p3 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MBeanServerConnection) <font color="#cc0033">createMBean</font>*(    p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                        p1 : <a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a>;
+                                                        p2 : <a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a>;
+                                                    IN  p3 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                    IN  p4 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-ObjectInstance">ObjectInstance</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MBeanServerConnection) <font color="#cc0033">createMBean</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                    p1 : <a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a>) : <a href="#type-ObjectInstance">ObjectInstance</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MBeanServerConnection) <font color="#cc0033">createMBean</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                    p1 : <a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a>;
+                                                    p2 : <a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a>) : <a href="#type-ObjectInstance">ObjectInstance</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MBeanServerConnection) <font color="#cc0033">createMBean</font>*(    p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                        p1 : <a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a>;
+                                                    IN  p2 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                    IN  p3 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-ObjectInstance">ObjectInstance</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MBeanServerConnection) <font color="#cc0033">getAttribute</font>*(p0 : <a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a>;
+                                                     p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MBeanServerConnection) <font color="#cc0033">getAttributes</font>*(    p0 : <a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a>;
+                                                      IN  p1 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>) : <a href="javax_management.html#type-AttributeList">javax_management.AttributeList</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MBeanServerConnection) <font color="#cc0033">getDefaultDomain</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MBeanServerConnection) <font color="#cc0033">getDomains</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MBeanServerConnection) <font color="#cc0033">getMBeanCount</font>*() : <a href="java_lang.html#type-Integer">java_lang.Integer</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MBeanServerConnection) <font color="#cc0033">getMBeanInfo</font>*(p0 : <a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a>) : <a href="javax_management.html#type-MBeanInfo">javax_management.MBeanInfo</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MBeanServerConnection) <font color="#cc0033">getObjectInstance</font>*(p0 : <a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a>) : <a href="#type-ObjectInstance">ObjectInstance</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MBeanServerConnection) <font color="#cc0033">invoke</font>*(    p0 : <a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a>;
+                                                   p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                               IN  p2 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                               IN  p3 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MBeanServerConnection) <font color="#cc0033">isInstanceOf</font>*(p0 : <a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a>;
+                                                     p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MBeanServerConnection) <font color="#cc0033">isRegistered</font>*(p0 : <a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MBeanServerConnection) <font color="#cc0033">queryMBeans</font>*(p0 : <a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a>;
+                                                    p1 : <a href="javax_management.html#type-QueryExp">javax_management.QueryExp</a>) : <a href="java_util.html#type-Set">java_util.Set</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MBeanServerConnection) <font color="#cc0033">queryNames</font>*(p0 : <a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a>;
+                                                   p1 : <a href="javax_management.html#type-QueryExp">javax_management.QueryExp</a>) : <a href="java_util.html#type-Set">java_util.Set</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MBeanServerConnection) <font color="#cc0033">removeNotificationListener</font>*(p0 : <a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a>;
+                                                                   p1 : <a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a>;
+                                                                   p2 : <a href="javax_management.html#type-NotificationFilter">javax_management.NotificationFilter</a>;
+                                                                   p3 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MBeanServerConnection) <font color="#cc0033">removeNotificationListener</font>*(p0 : <a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a>;
+                                                                   p1 : <a href="javax_management.html#type-NotificationListener">javax_management.NotificationListener</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MBeanServerConnection) <font color="#cc0033">removeNotificationListener</font>*(p0 : <a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a>;
+                                                                   p1 : <a href="javax_management.html#type-NotificationListener">javax_management.NotificationListener</a>;
+                                                                   p2 : <a href="javax_management.html#type-NotificationFilter">javax_management.NotificationFilter</a>;
+                                                                   p3 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MBeanServerConnection) <font color="#cc0033">removeNotificationListener</font>*(p0 : <a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a>;
+                                                                   p1 : <a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MBeanServerConnection) <font color="#cc0033">setAttribute</font>*(p0 : <a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a>;
+                                                     p1 : <a href="javax_management.html#type-Attribute">javax_management.Attribute</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MBeanServerConnection) <font color="#cc0033">setAttributes</font>*(p0 : <a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a>;
+                                                      p1 : <a href="javax_management.html#type-AttributeList">javax_management.AttributeList</a>) : <a href="javax_management.html#type-AttributeList">javax_management.AttributeList</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MBeanServerConnection) <font color="#cc0033">unregisterMBean</font>*(p0 : <a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-MBeanServerDelegate"></a>
+<b>PROCEDURE </b>(self:MBeanServerDelegate) <font color="#cc0033">addNotificationListener</font>*(p0 : <a href="javax_management.html#type-NotificationListener">javax_management.NotificationListener</a>;
+                                                              p1 : <a href="javax_management.html#type-NotificationFilter">javax_management.NotificationFilter</a>;
+                                                              p2 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MBeanServerDelegate) <font color="#cc0033">getImplementationName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MBeanServerDelegate) <font color="#cc0033">getImplementationVendor</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MBeanServerDelegate) <font color="#cc0033">getImplementationVersion</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MBeanServerDelegate) <font color="#cc0033">getMBeanServerId</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MBeanServerDelegate) <font color="#cc0033">getNotificationInfo</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="javax_management.html#type-MBeanNotificationInfo">javax_management.MBeanNotificationInfo</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MBeanServerDelegate) <font color="#cc0033">getSpecificationName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MBeanServerDelegate) <font color="#cc0033">getSpecificationVendor</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MBeanServerDelegate) <font color="#cc0033">getSpecificationVersion</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MBeanServerDelegate) <font color="#cc0033">removeNotificationListener</font>*(p0 : <a href="javax_management.html#type-NotificationListener">javax_management.NotificationListener</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MBeanServerDelegate) <font color="#cc0033">removeNotificationListener</font>*(p0 : <a href="javax_management.html#type-NotificationListener">javax_management.NotificationListener</a>;
+                                                                 p1 : <a href="javax_management.html#type-NotificationFilter">javax_management.NotificationFilter</a>;
+                                                                 p2 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MBeanServerDelegate) <font color="#cc0033">sendNotification</font>*(p0 : <a href="javax_management.html#type-Notification">javax_management.Notification</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-MBeanServerDelegateMBean"></a>
+<b>PROCEDURE </b>(self:MBeanServerDelegateMBean) <font color="#cc0033">getImplementationName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MBeanServerDelegateMBean) <font color="#cc0033">getImplementationVendor</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MBeanServerDelegateMBean) <font color="#cc0033">getImplementationVersion</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MBeanServerDelegateMBean) <font color="#cc0033">getMBeanServerId</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MBeanServerDelegateMBean) <font color="#cc0033">getSpecificationName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MBeanServerDelegateMBean) <font color="#cc0033">getSpecificationVendor</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MBeanServerDelegateMBean) <font color="#cc0033">getSpecificationVersion</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-MBeanServerInvocationHandler"></a>
+<b>PROCEDURE </b>(self:MBeanServerInvocationHandler) <font color="#cc0033">getMBeanServerConnection</font>*() : <a href="#type-MBeanServerConnection">MBeanServerConnection</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MBeanServerInvocationHandler) <font color="#cc0033">getObjectName</font>*() : <a href="#type-ObjectName">ObjectName</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MBeanServerInvocationHandler) <font color="#cc0033">invoke</font>*(    p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                          p1 : <a href="java_lang_reflect.html#type-Method">java_lang_reflect.Method</a>;
+                                                      IN  p2 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MBeanServerInvocationHandler) <font color="#cc0033">isMXBean</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-MBeanServerNotification"></a>
+<b>PROCEDURE </b>(self:MBeanServerNotification) <font color="#cc0033">getMBeanName</font>*() : <a href="#type-ObjectName">ObjectName</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MBeanServerNotification) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-MBeanServerPermission"></a>
+<b>PROCEDURE </b>(self:MBeanServerPermission) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MBeanServerPermission) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MBeanServerPermission) <font color="#cc0033">implies</font>*(p0 : <a href="java_security.html#type-Permission">java_security.Permission</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MBeanServerPermission) <font color="#cc0033">newPermissionCollection</font>*() : <a href="java_security.html#type-PermissionCollection">java_security.PermissionCollection</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-MXBean"></a>
+<b>PROCEDURE </b>(self:MXBean) <font color="#cc0033">value</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+<a name="meths-Notification"></a>
+<b>PROCEDURE </b>(self:Notification) <font color="#cc0033">getMessage</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Notification) <font color="#cc0033">getSequenceNumber</font>*() : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Notification) <font color="#cc0033">getTimeStamp</font>*() : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Notification) <font color="#cc0033">getType</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Notification) <font color="#cc0033">getUserData</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Notification) <font color="#cc0033">setSequenceNumber</font>*(p0 : LONGINT)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Notification) <font color="#cc0033">setSource</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Notification) <font color="#cc0033">setTimeStamp</font>*(p0 : LONGINT)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Notification) <font color="#cc0033">setUserData</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Notification) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-NotificationBroadcaster"></a>
+<b>PROCEDURE </b>(self:NotificationBroadcaster) <font color="#cc0033">addNotificationListener</font>*(p0 : <a href="javax_management.html#type-NotificationListener">javax_management.NotificationListener</a>;
+                                                                  p1 : <a href="javax_management.html#type-NotificationFilter">javax_management.NotificationFilter</a>;
+                                                                  p2 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:NotificationBroadcaster) <font color="#cc0033">getNotificationInfo</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="javax_management.html#type-MBeanNotificationInfo">javax_management.MBeanNotificationInfo</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:NotificationBroadcaster) <font color="#cc0033">removeNotificationListener</font>*(p0 : <a href="javax_management.html#type-NotificationListener">javax_management.NotificationListener</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-NotificationBroadcasterSupport"></a>
+<b>PROCEDURE </b>(self:NotificationBroadcasterSupport) <font color="#cc0033">addNotificationListener</font>*(p0 : <a href="javax_management.html#type-NotificationListener">javax_management.NotificationListener</a>;
+                                                                         p1 : <a href="javax_management.html#type-NotificationFilter">javax_management.NotificationFilter</a>;
+                                                                         p2 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:NotificationBroadcasterSupport) <font color="#cc0033">getNotificationInfo</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="javax_management.html#type-MBeanNotificationInfo">javax_management.MBeanNotificationInfo</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:NotificationBroadcasterSupport) <font color="#cc0033">handleNotification</font>!(p0 : <a href="javax_management.html#type-NotificationListener">javax_management.NotificationListener</a>;
+                                                                    p1 : <a href="javax_management.html#type-Notification">javax_management.Notification</a>;
+                                                                    p2 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:NotificationBroadcasterSupport) <font color="#cc0033">removeNotificationListener</font>*(p0 : <a href="javax_management.html#type-NotificationListener">javax_management.NotificationListener</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:NotificationBroadcasterSupport) <font color="#cc0033">removeNotificationListener</font>*(p0 : <a href="javax_management.html#type-NotificationListener">javax_management.NotificationListener</a>;
+                                                                            p1 : <a href="javax_management.html#type-NotificationFilter">javax_management.NotificationFilter</a>;
+                                                                            p2 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:NotificationBroadcasterSupport) <font color="#cc0033">sendNotification</font>*(p0 : <a href="javax_management.html#type-Notification">javax_management.Notification</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-NotificationEmitter"></a>
+<b>PROCEDURE </b>(self:NotificationEmitter) <font color="#cc0033">removeNotificationListener</font>*(p0 : <a href="javax_management.html#type-NotificationListener">javax_management.NotificationListener</a>;
+                                                                 p1 : <a href="#type-NotificationFilter">NotificationFilter</a>;
+                                                                 p2 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-NotificationFilter"></a>
+<b>PROCEDURE </b>(self:NotificationFilter) <font color="#cc0033">isNotificationEnabled</font>*(p0 : <a href="javax_management.html#type-Notification">javax_management.Notification</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+<a name="meths-NotificationFilterSupport"></a>
+<b>PROCEDURE </b>(self:NotificationFilterSupport) <font color="#cc0033">disableAllTypes</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:NotificationFilterSupport) <font color="#cc0033">disableType</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:NotificationFilterSupport) <font color="#cc0033">enableType</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:NotificationFilterSupport) <font color="#cc0033">getEnabledTypes</font>*() : <a href="java_util.html#type-Vector">java_util.Vector</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:NotificationFilterSupport) <font color="#cc0033">isNotificationEnabled</font>*(p0 : <a href="javax_management.html#type-Notification">javax_management.Notification</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-NotificationListener"></a>
+<b>PROCEDURE </b>(self:NotificationListener) <font color="#cc0033">handleNotification</font>*(p0 : <a href="#type-Notification">Notification</a>;
+                                                          p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-ObjectInstance"></a>
+<b>PROCEDURE </b>(self:ObjectInstance) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ObjectInstance) <font color="#cc0033">getClassName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ObjectInstance) <font color="#cc0033">getObjectName</font>*() : <a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ObjectInstance) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ObjectInstance) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-ObjectName"></a>
+<b>PROCEDURE </b>(self:ObjectName) <font color="#cc0033">apply</font>*(p0 : <a href="#type-ObjectName">ObjectName</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ObjectName) <font color="#cc0033">compareTo</font>*(p0 : <a href="#type-ObjectName">ObjectName</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ObjectName) <font color="#cc0033">compareTo</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ObjectName) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ObjectName) <font color="#cc0033">getCanonicalKeyPropertyListString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ObjectName) <font color="#cc0033">getCanonicalName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ObjectName) <font color="#cc0033">getDomain</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ObjectName) <font color="#cc0033">getKeyProperty</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ObjectName) <font color="#cc0033">getKeyPropertyList</font>*() : <a href="java_util.html#type-Hashtable">java_util.Hashtable</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ObjectName) <font color="#cc0033">getKeyPropertyListString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ObjectName) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ObjectName) <font color="#cc0033">isDomainPattern</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ObjectName) <font color="#cc0033">isPattern</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ObjectName) <font color="#cc0033">isPropertyListPattern</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ObjectName) <font color="#cc0033">isPropertyPattern</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ObjectName) <font color="#cc0033">isPropertyValuePattern</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ObjectName) <font color="#cc0033">isPropertyValuePattern</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ObjectName) <font color="#cc0033">setMBeanServer</font>*(p0 : <a href="javax_management.html#type-MBeanServer">javax_management.MBeanServer</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ObjectName) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-PersistentMBean"></a>
+<b>PROCEDURE </b>(self:PersistentMBean) <font color="#cc0033">load</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:PersistentMBean) <font color="#cc0033">store</font>*()<b>,NEW,ABSTRACT</b>;
+<a name="meths-QueryEval"></a>
+<b>PROCEDURE </b>(self:QueryEval) <font color="#cc0033">setMBeanServer</font>*(p0 : <a href="javax_management.html#type-MBeanServer">javax_management.MBeanServer</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-QueryExp"></a>
+<b>PROCEDURE </b>(self:QueryExp) <font color="#cc0033">apply</font>*(p0 : <a href="#type-ObjectName">ObjectName</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:QueryExp) <font color="#cc0033">setMBeanServer</font>*(p0 : <a href="javax_management.html#type-MBeanServer">javax_management.MBeanServer</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-ReflectionException"></a>
+<b>PROCEDURE </b>(self:ReflectionException) <font color="#cc0033">getCause</font>*() : <a href="java_lang.html#type-Throwable">java_lang.Throwable</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ReflectionException) <font color="#cc0033">getTargetException</font>*() : <a href="java_lang.html#type-Exception">java_lang.Exception</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-RuntimeErrorException"></a>
+<b>PROCEDURE </b>(self:RuntimeErrorException) <font color="#cc0033">getCause</font>*() : <a href="java_lang.html#type-Throwable">java_lang.Throwable</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RuntimeErrorException) <font color="#cc0033">getTargetError</font>*() : <a href="java_lang.html#type-Error">java_lang.Error</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-RuntimeMBeanException"></a>
+<b>PROCEDURE </b>(self:RuntimeMBeanException) <font color="#cc0033">getCause</font>*() : <a href="java_lang.html#type-Throwable">java_lang.Throwable</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RuntimeMBeanException) <font color="#cc0033">getTargetException</font>*() : <a href="java_lang.html#type-RuntimeException">java_lang.RuntimeException</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-RuntimeOperationsException"></a>
+<b>PROCEDURE </b>(self:RuntimeOperationsException) <font color="#cc0033">getCause</font>*() : <a href="java_lang.html#type-Throwable">java_lang.Throwable</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RuntimeOperationsException) <font color="#cc0033">getTargetException</font>*() : <a href="java_lang.html#type-RuntimeException">java_lang.RuntimeException</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-StandardEmitterMBean"></a>
+<b>PROCEDURE </b>(self:StandardEmitterMBean) <font color="#cc0033">addNotificationListener</font>*(p0 : <a href="javax_management.html#type-NotificationListener">javax_management.NotificationListener</a>;
+                                                               p1 : <a href="javax_management.html#type-NotificationFilter">javax_management.NotificationFilter</a>;
+                                                               p2 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:StandardEmitterMBean) <font color="#cc0033">getNotificationInfo</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="javax_management.html#type-MBeanNotificationInfo">javax_management.MBeanNotificationInfo</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:StandardEmitterMBean) <font color="#cc0033">removeNotificationListener</font>*(p0 : <a href="javax_management.html#type-NotificationListener">javax_management.NotificationListener</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:StandardEmitterMBean) <font color="#cc0033">removeNotificationListener</font>*(p0 : <a href="javax_management.html#type-NotificationListener">javax_management.NotificationListener</a>;
+                                                                  p1 : <a href="javax_management.html#type-NotificationFilter">javax_management.NotificationFilter</a>;
+                                                                  p2 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:StandardEmitterMBean) <font color="#cc0033">sendNotification</font>*(p0 : <a href="javax_management.html#type-Notification">javax_management.Notification</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-StandardMBean"></a>
+<b>PROCEDURE </b>(self:StandardMBean) <font color="#cc0033">cacheMBeanInfo</font>!(p0 : <a href="#type-MBeanInfo">MBeanInfo</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:StandardMBean) <font color="#cc0033">getAttribute</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:StandardMBean) <font color="#cc0033">getAttributes</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-AttributeList">AttributeList</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:StandardMBean) <font color="#cc0033">getCachedMBeanInfo</font>!() : <a href="#type-MBeanInfo">MBeanInfo</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:StandardMBean) <font color="#cc0033">getClassName</font>!(p0 : <a href="#type-MBeanInfo">MBeanInfo</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:StandardMBean) <font color="#cc0033">getConstructors</font>!(IN  p0 : <b>ARRAY </b><b>OF </b><a href="#type-MBeanConstructorInfo">MBeanConstructorInfo</a>;
+                                                    p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-MBeanConstructorInfo">MBeanConstructorInfo</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:StandardMBean) <font color="#cc0033">getDescription</font>!(p0 : <a href="#type-MBeanAttributeInfo">MBeanAttributeInfo</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:StandardMBean) <font color="#cc0033">getDescription</font>!(p0 : <a href="#type-MBeanFeatureInfo">MBeanFeatureInfo</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:StandardMBean) <font color="#cc0033">getDescription</font>!(p0 : <a href="#type-MBeanConstructorInfo">MBeanConstructorInfo</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:StandardMBean) <font color="#cc0033">getDescription</font>!(p0 : <a href="javax_management.html#type-MBeanOperationInfo">javax_management.MBeanOperationInfo</a>;
+                                               p1 : <a href="#type-MBeanParameterInfo">MBeanParameterInfo</a>;
+                                               p2 : INTEGER) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:StandardMBean) <font color="#cc0033">getDescription</font>!(p0 : <a href="javax_management.html#type-MBeanOperationInfo">javax_management.MBeanOperationInfo</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:StandardMBean) <font color="#cc0033">getDescription</font>!(p0 : <a href="#type-MBeanConstructorInfo">MBeanConstructorInfo</a>;
+                                               p1 : <a href="#type-MBeanParameterInfo">MBeanParameterInfo</a>;
+                                               p2 : INTEGER) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:StandardMBean) <font color="#cc0033">getDescription</font>!(p0 : <a href="#type-MBeanInfo">MBeanInfo</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:StandardMBean) <font color="#cc0033">getImpact</font>!(p0 : <a href="javax_management.html#type-MBeanOperationInfo">javax_management.MBeanOperationInfo</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:StandardMBean) <font color="#cc0033">getImplementation</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:StandardMBean) <font color="#cc0033">getImplementationClass</font>*() : <a href="java_lang.html#type-Class">java_lang.Class</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:StandardMBean) <font color="#cc0033">getMBeanInfo</font>*() : <a href="#type-MBeanInfo">MBeanInfo</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:StandardMBean) <font color="#cc0033">getMBeanInterface</font>*() : <a href="java_lang.html#type-Class">java_lang.Class</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:StandardMBean) <font color="#cc0033">getParameterName</font>!(p0 : <a href="javax_management.html#type-MBeanOperationInfo">javax_management.MBeanOperationInfo</a>;
+                                                 p1 : <a href="#type-MBeanParameterInfo">MBeanParameterInfo</a>;
+                                                 p2 : INTEGER) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:StandardMBean) <font color="#cc0033">getParameterName</font>!(p0 : <a href="#type-MBeanConstructorInfo">MBeanConstructorInfo</a>;
+                                                 p1 : <a href="#type-MBeanParameterInfo">MBeanParameterInfo</a>;
+                                                 p2 : INTEGER) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:StandardMBean) <font color="#cc0033">invoke</font>*(    p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                       IN  p1 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                       IN  p2 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:StandardMBean) <font color="#cc0033">postDeregister</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:StandardMBean) <font color="#cc0033">postRegister</font>*(p0 : <a href="java_lang.html#type-Boolean">java_lang.Boolean</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:StandardMBean) <font color="#cc0033">preDeregister</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:StandardMBean) <font color="#cc0033">preRegister</font>*(p0 : <a href="#type-MBeanServer">MBeanServer</a>;
+                                            p1 : <a href="#type-ObjectName">ObjectName</a>) : <a href="#type-ObjectName">ObjectName</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:StandardMBean) <font color="#cc0033">setAttribute</font>*(p0 : <a href="javax_management.html#type-Attribute">javax_management.Attribute</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:StandardMBean) <font color="#cc0033">setAttributes</font>*(p0 : <a href="#type-AttributeList">AttributeList</a>) : <a href="#type-AttributeList">AttributeList</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:StandardMBean) <font color="#cc0033">setImplementation</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-StringValueExp"></a>
+<b>PROCEDURE </b>(self:StringValueExp) <font color="#cc0033">apply</font>*(p0 : <a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a>) : <a href="javax_management.html#type-ValueExp">javax_management.ValueExp</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:StringValueExp) <font color="#cc0033">getValue</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:StringValueExp) <font color="#cc0033">setMBeanServer</font>*(p0 : <a href="javax_management.html#type-MBeanServer">javax_management.MBeanServer</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:StringValueExp) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-ValueExp"></a>
+<b>PROCEDURE </b>(self:ValueExp) <font color="#cc0033">apply</font>*(p0 : <a href="#type-ObjectName">ObjectName</a>) : <a href="#type-ValueExp">ValueExp</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ValueExp) <font color="#cc0033">setMBeanServer</font>*(p0 : <a href="#type-MBeanServer">MBeanServer</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>END </b><font color="#cc0033">javax_management</font>.
+</font></pre></hr>
+<!-- BEGIN JavaScript -->
+<script>
+function toggle(node) {
+    node.classList.toggle("show"); 
+  }
+
+function cls(node) {
+    var prnt = node.parentNode;
+    var next = prnt.previousSibling;
+    var text = next.lastChild;
+    text.innerHTML = 
+        "The <b>class</b> property asserts that this type will be<br>" +
+        "implemented as a reference class in the underlying framework.";
+    text.classList.toggle("show");
+  }
+
+function newOk(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>has noArg-ctor</b> property asserts that this reference<br>" +
+        "class has a no-arg constructor, and thus objects of this<br>" +
+        "type can be allocated with NEW(). Component Pascal types<br>" +
+        "derived from this type can also be allocated using NEW().";
+    popuptext.classList.toggle("show"); 
+  }
+
+function noNew(node) { 
+    var prnt = node.parentNode; 
+    var next = prnt.previousSibling; 
+    var text = next.lastChild; 
+    text.innerHTML =  
+        "The <b>no noArg-ctor</b> property asserts that this reference<br>" +
+        "class does not have a noArg constructor. Objects of this<br>" +
+        "type cannot be allocated using NEW(), and Component<br>" +
+        "Pascal types  derived from this type also cannot be<br>" +
+        "allocated using NEW().";
+    text.classList.toggle("show");
+  }
+
+function noCpy(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>no value-assign</b> property asserts that this reference<br>" + 
+        "class does not have a value copy method. Therefore, it<br>" +
+        "is not possible to perform value assignments using<br>" +
+        "statements like <i>dst^</i> := <i>src^</i>";
+    popuptext.classList.toggle("show");
+  }
+
+function valueclass(node) { 
+        var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>valueclass</b> property asserts that this RECORD type is<br>" + 
+        "implemented as a value class in the CLR. It follows that<br>" +  
+        "value assignments can be made of these types. They can<br>" + 
+        "also be passed by value. Even pointers to records of<br>" + 
+        "such types may be dereferenced and copied using syntax<br>" + 
+        "such as  <i>dst^</i> := <i>src^</i>"; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+function argCtor(node) { 
+    var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>has arg-ctor</b> property asserts that this reference<br>" +  
+        "class has one or more constructors that take arguments.<br>" + 
+        "These constructors can be called from Component Pascal<br>" + 
+        "by calling an <i>init</i>(...) method from the static list<br>" + 
+        "here. Component Pascal types derived from this type<br>" + 
+        "can define constructors with arguments which call the<br>" + 
+        "super-type constructor.<br>" + 
+        "See <i>'Interfacing to constructors'</i> in the Release Notes."; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+</script>
+<!-- END JavaScript --> 
+
+</body></html>

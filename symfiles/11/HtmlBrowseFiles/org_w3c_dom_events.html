@@ -1,0 +1,280 @@
+<html><head><title>org_w3c_dom_events</title>
+<style>
+<!-- BEGIN Inline CSS -->
+/* Popup container */
+.popup {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+/* The actual popup (appears on top) */
+.popup .popuptext {
+    visibility: hidden;
+    width: 430px;
+    background-color: white;
+    color: black;
+    text-align: left;
+    border-radius: 6px;
+    border-style: solid;
+    border-color: black;
+    padding: 8px 8px 8px 8px;
+    position: absolute;
+    z-index: 1;
+    margin-top: 30px;
+}
+
+/* Toggle this class when clicking on the popup container (hide and show the popup) */
+.popup .show {
+    visibility: visible;
+    opacity: 1;
+}
+
+</style>
+<!-- END Inline CSS -->
+</head><body bgcolor="white">
+<hr><pre>
+<font color="green">(*</font>
+<font color="green"> *  Creator PeToCps j2cps version 1.4.07 (March 2018)</font>
+<font color="green"> *  Compiled from jar-file /Library/Java/JavaVirtualMachines/zulu-11.jdk/Contents/Home/jmods/java.xml.jmod</font>
+<font color="green"> *)</font>
+<b>FOREIGN MODULE </b><font color="#cc0033">org_w3c_dom_events</font>;
+
+<b>IMPORT</b>
+    <a href="java_lang.html">java_lang</a> := "java.lang",
+    <a href="org_w3c_dom.html">org_w3c_dom</a> := "org.w3c.dom",
+    <a href="org_w3c_dom_events.html">org_w3c_dom_events</a> := "org.w3c.dom.events",
+    <a href="org_w3c_dom_views.html">org_w3c_dom_views</a> := "org.w3c.dom.views";
+
+<b>TYPE</b>
+
+  <a name="type-DocumentEvent"></a><font color="#cc0033">DocumentEvent</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                   <font color="green"><b> (* </b><a href="#meths-DocumentEvent">Typebound Procedures</a><b> *)</b></font>
+                   <b>END</b>;
+
+  <a name="type-Event"></a><font color="#cc0033">Event</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+           <font color="green"><b> (* </b><a href="#meths-Event">Typebound Procedures</a><b> *)</b></font>
+           <b>STATIC</b>
+             <font color="#cc0033">AT_TARGET</font>*       = 2;
+             <font color="#cc0033">BUBBLING_PHASE</font>*  = 3;
+             <font color="#cc0033">CAPTURING_PHASE</font>* = 1;
+           <b>END</b>;
+
+  <a name="type-EventException"></a><font color="#cc0033">EventException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-RuntimeException">java_lang.RuntimeException</a>)
+                    <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                      <font color="#cc0033">code</font>* : SHORTINT;
+                    <b>STATIC</b>
+                      <font color="#cc0033">UNSPECIFIED_EVENT_TYPE_ERR</font>* = 0;
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : SHORTINT;
+                                      p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-EventException">EventException</a><b>,CONSTRUCTOR</b>;
+                    <b>END</b>;
+
+  <a name="type-EventListener"></a><font color="#cc0033">EventListener</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                   <font color="green"><b> (* </b><a href="#meths-EventListener">Typebound Procedures</a><b> *)</b></font>
+                   <b>END</b>;
+
+  <a name="type-EventTarget"></a><font color="#cc0033">EventTarget</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                 <font color="green"><b> (* </b><a href="#meths-EventTarget">Typebound Procedures</a><b> *)</b></font>
+                 <b>END</b>;
+
+  <a name="type-MouseEvent"></a><font color="#cc0033">MouseEvent</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="org_w3c_dom_events.html#type-UIEvent">org_w3c_dom_events.UIEvent</a>)
+                <font color="green"><b> (* </b><a href="#meths-MouseEvent">Typebound Procedures</a><b> *)</b></font>
+                <b>END</b>;
+
+  <a name="type-MutationEvent"></a><font color="#cc0033">MutationEvent</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-Event">Event</a>)
+                   <font color="green"><b> (* </b><a href="#meths-MutationEvent">Typebound Procedures</a><b> *)</b></font>
+                   <b>STATIC</b>
+                     <font color="#cc0033">ADDITION</font>*     = 2;
+                     <font color="#cc0033">MODIFICATION</font>* = 1;
+                     <font color="#cc0033">REMOVAL</font>*      = 3;
+                   <b>END</b>;
+
+  <a name="type-UIEvent"></a><font color="#cc0033">UIEvent</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-Event">Event</a>)
+             <font color="green"><b> (* </b><a href="#meths-UIEvent">Typebound Procedures</a><b> *)</b></font>
+             <b>END</b>;
+
+
+
+<a name="meths-DocumentEvent"></a>
+<b>PROCEDURE </b>(self:DocumentEvent) <font color="#cc0033">createEvent</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="org_w3c_dom_events.html#type-Event">org_w3c_dom_events.Event</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-Event"></a>
+<b>PROCEDURE </b>(self:Event) <font color="#cc0033">getBubbles</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Event) <font color="#cc0033">getCancelable</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Event) <font color="#cc0033">getCurrentTarget</font>*() : <a href="org_w3c_dom_events.html#type-EventTarget">org_w3c_dom_events.EventTarget</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Event) <font color="#cc0033">getEventPhase</font>*() : SHORTINT<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Event) <font color="#cc0033">getTarget</font>*() : <a href="org_w3c_dom_events.html#type-EventTarget">org_w3c_dom_events.EventTarget</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Event) <font color="#cc0033">getTimeStamp</font>*() : LONGINT<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Event) <font color="#cc0033">getType</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Event) <font color="#cc0033">initEvent</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                  p1 : BOOLEAN;
+                                  p2 : BOOLEAN)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Event) <font color="#cc0033">preventDefault</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Event) <font color="#cc0033">stopPropagation</font>*()<b>,NEW,ABSTRACT</b>;
+<a name="meths-EventListener"></a>
+<b>PROCEDURE </b>(self:EventListener) <font color="#cc0033">handleEvent</font>*(p0 : <a href="#type-Event">Event</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-EventTarget"></a>
+<b>PROCEDURE </b>(self:EventTarget) <font color="#cc0033">addEventListener</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                               p1 : <a href="org_w3c_dom_events.html#type-EventListener">org_w3c_dom_events.EventListener</a>;
+                                               p2 : BOOLEAN)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:EventTarget) <font color="#cc0033">dispatchEvent</font>*(p0 : <a href="#type-Event">Event</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:EventTarget) <font color="#cc0033">removeEventListener</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                  p1 : <a href="org_w3c_dom_events.html#type-EventListener">org_w3c_dom_events.EventListener</a>;
+                                                  p2 : BOOLEAN)<b>,NEW,ABSTRACT</b>;
+<a name="meths-MouseEvent"></a>
+<b>PROCEDURE </b>(self:MouseEvent) <font color="#cc0033">getAltKey</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MouseEvent) <font color="#cc0033">getButton</font>*() : SHORTINT<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MouseEvent) <font color="#cc0033">getClientX</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MouseEvent) <font color="#cc0033">getClientY</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MouseEvent) <font color="#cc0033">getCtrlKey</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MouseEvent) <font color="#cc0033">getMetaKey</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MouseEvent) <font color="#cc0033">getRelatedTarget</font>*() : <a href="#type-EventTarget">EventTarget</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MouseEvent) <font color="#cc0033">getScreenX</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MouseEvent) <font color="#cc0033">getScreenY</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MouseEvent) <font color="#cc0033">getShiftKey</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MouseEvent) <font color="#cc0033">initMouseEvent</font>*(p0  : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                            p1  : BOOLEAN;
+                                            p2  : BOOLEAN;
+                                            p3  : <a href="org_w3c_dom_views.html#type-AbstractView">org_w3c_dom_views.AbstractView</a>;
+                                            p4  : INTEGER;
+                                            p5  : INTEGER;
+                                            p6  : INTEGER;
+                                            p7  : INTEGER;
+                                            p8  : INTEGER;
+                                            p9  : BOOLEAN;
+                                            p10 : BOOLEAN;
+                                            p11 : BOOLEAN;
+                                            p12 : BOOLEAN;
+                                            p13 : SHORTINT;
+                                            p14 : <a href="#type-EventTarget">EventTarget</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-MutationEvent"></a>
+<b>PROCEDURE </b>(self:MutationEvent) <font color="#cc0033">getAttrChange</font>*() : SHORTINT<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MutationEvent) <font color="#cc0033">getAttrName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MutationEvent) <font color="#cc0033">getNewValue</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MutationEvent) <font color="#cc0033">getPrevValue</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MutationEvent) <font color="#cc0033">getRelatedNode</font>*() : <a href="org_w3c_dom.html#type-Node">org_w3c_dom.Node</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MutationEvent) <font color="#cc0033">initMutationEvent</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                  p1 : BOOLEAN;
+                                                  p2 : BOOLEAN;
+                                                  p3 : <a href="org_w3c_dom.html#type-Node">org_w3c_dom.Node</a>;
+                                                  p4 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                  p5 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                  p6 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                  p7 : SHORTINT)<b>,NEW,ABSTRACT</b>;
+<a name="meths-UIEvent"></a>
+<b>PROCEDURE </b>(self:UIEvent) <font color="#cc0033">getDetail</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:UIEvent) <font color="#cc0033">getView</font>*() : <a href="org_w3c_dom_views.html#type-AbstractView">org_w3c_dom_views.AbstractView</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:UIEvent) <font color="#cc0033">initUIEvent</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                      p1 : BOOLEAN;
+                                      p2 : BOOLEAN;
+                                      p3 : <a href="org_w3c_dom_views.html#type-AbstractView">org_w3c_dom_views.AbstractView</a>;
+                                      p4 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>END </b><font color="#cc0033">org_w3c_dom_events</font>.
+</font></pre></hr>
+<!-- BEGIN JavaScript -->
+<script>
+function toggle(node) {
+    node.classList.toggle("show"); 
+  }
+
+function cls(node) {
+    var prnt = node.parentNode;
+    var next = prnt.previousSibling;
+    var text = next.lastChild;
+    text.innerHTML = 
+        "The <b>class</b> property asserts that this type will be<br>" +
+        "implemented as a reference class in the underlying framework.";
+    text.classList.toggle("show");
+  }
+
+function newOk(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>has noArg-ctor</b> property asserts that this reference<br>" +
+        "class has a no-arg constructor, and thus objects of this<br>" +
+        "type can be allocated with NEW(). Component Pascal types<br>" +
+        "derived from this type can also be allocated using NEW().";
+    popuptext.classList.toggle("show"); 
+  }
+
+function noNew(node) { 
+    var prnt = node.parentNode; 
+    var next = prnt.previousSibling; 
+    var text = next.lastChild; 
+    text.innerHTML =  
+        "The <b>no noArg-ctor</b> property asserts that this reference<br>" +
+        "class does not have a noArg constructor. Objects of this<br>" +
+        "type cannot be allocated using NEW(), and Component<br>" +
+        "Pascal types  derived from this type also cannot be<br>" +
+        "allocated using NEW().";
+    text.classList.toggle("show");
+  }
+
+function noCpy(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>no value-assign</b> property asserts that this reference<br>" + 
+        "class does not have a value copy method. Therefore, it<br>" +
+        "is not possible to perform value assignments using<br>" +
+        "statements like <i>dst^</i> := <i>src^</i>";
+    popuptext.classList.toggle("show");
+  }
+
+function valueclass(node) { 
+        var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>valueclass</b> property asserts that this RECORD type is<br>" + 
+        "implemented as a value class in the CLR. It follows that<br>" +  
+        "value assignments can be made of these types. They can<br>" + 
+        "also be passed by value. Even pointers to records of<br>" + 
+        "such types may be dereferenced and copied using syntax<br>" + 
+        "such as  <i>dst^</i> := <i>src^</i>"; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+function argCtor(node) { 
+    var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>has arg-ctor</b> property asserts that this reference<br>" +  
+        "class has one or more constructors that take arguments.<br>" + 
+        "These constructors can be called from Component Pascal<br>" + 
+        "by calling an <i>init</i>(...) method from the static list<br>" + 
+        "here. Component Pascal types derived from this type<br>" + 
+        "can define constructors with arguments which call the<br>" + 
+        "super-type constructor.<br>" + 
+        "See <i>'Interfacing to constructors'</i> in the Release Notes."; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+</script>
+<!-- END JavaScript --> 
+
+</body></html>

@@ -1,0 +1,234 @@
+<html><head><title>java_lang_annotation</title>
+<style>
+<!-- BEGIN Inline CSS -->
+/* Popup container */
+.popup {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+/* The actual popup (appears on top) */
+.popup .popuptext {
+    visibility: hidden;
+    width: 430px;
+    background-color: white;
+    color: black;
+    text-align: left;
+    border-radius: 6px;
+    border-style: solid;
+    border-color: black;
+    padding: 8px 8px 8px 8px;
+    position: absolute;
+    z-index: 1;
+    margin-top: 30px;
+}
+
+/* Toggle this class when clicking on the popup container (hide and show the popup) */
+.popup .show {
+    visibility: visible;
+    opacity: 1;
+}
+
+</style>
+<!-- END Inline CSS -->
+</head><body bgcolor="white">
+<hr><pre>
+<font color="green">(*</font>
+<font color="green"> *  Creator PeToCps j2cps version 1.4.07 (March 2018)</font>
+<font color="green"> *  Compiled from jar-file /Library/Java/JavaVirtualMachines/zulu-11.jdk/Contents/Home/jmods/java.base.jmod</font>
+<font color="green"> *)</font>
+<b>FOREIGN MODULE </b><font color="#cc0033">java_lang_annotation</font>;
+
+<b>IMPORT</b>
+    <a href="java_lang.html">java_lang</a> := "java.lang",
+    <a href="java_lang.html">java_lang</a> := "java.lang",
+    <a href="java_lang_annotation.html">java_lang_annotation</a> := "java.lang.annotation",
+    <a href="java_lang_reflect.html">java_lang_reflect</a> := "java.lang.reflect";
+
+<b>TYPE</b>
+
+  <a name="type-Annotation"></a><font color="#cc0033">Annotation</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                <font color="green"><b> (* </b><a href="#meths-Annotation">Typebound Procedures</a><b> *)</b></font>
+                <b>END</b>;
+
+  <a name="type-AnnotationFormatError"></a><font color="#cc0033">AnnotationFormatError</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Error">java_lang.Error</a>)
+                           <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                           <b>STATIC</b>
+                             <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-Throwable">java_lang.Throwable</a>) : <a href="#type-AnnotationFormatError">AnnotationFormatError</a><b>,CONSTRUCTOR</b>;
+                             <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                             p1 : <a href="java_lang.html#type-Throwable">java_lang.Throwable</a>) : <a href="#type-AnnotationFormatError">AnnotationFormatError</a><b>,CONSTRUCTOR</b>;
+                             <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-AnnotationFormatError">AnnotationFormatError</a><b>,CONSTRUCTOR</b>;
+                           <b>END</b>;
+
+  <a name="type-AnnotationTypeMismatchException"></a><font color="#cc0033">AnnotationTypeMismatchException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-RuntimeException">java_lang.RuntimeException</a>)
+                                     <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                                     <font color="green"><b> (* </b><a href="#meths-AnnotationTypeMismatchException">Typebound Procedures</a><b> *)</b></font>
+                                     <b>STATIC</b>
+                                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang_reflect.html#type-Method">java_lang_reflect.Method</a>;
+                                                       p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-AnnotationTypeMismatchException">AnnotationTypeMismatchException</a><b>,CONSTRUCTOR</b>;
+                                     <b>END</b>;
+
+  <a name="type-Documented"></a><font color="#cc0033">Documented</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_lang_annotation.html#type-Annotation">java_lang_annotation.Annotation</a>)
+                <b>END</b>;
+
+  <a name="type-ElementType"></a><font color="#cc0033">ElementType</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Enum">java_lang.Enum</a>)
+                 <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> *)</font>
+                 <b>STATIC</b>
+                   <a name="type-ANNOTATION_TYPE"></a><font color="#cc0033">ANNOTATION_TYPE</font>* : <a href="#type-ElementType">ElementType</a>;
+                   <a name="type-CONSTRUCTOR"></a><font color="#cc0033">CONSTRUCTOR</font>*     : <a href="#type-ElementType">ElementType</a>;
+                   <a name="type-FIELD"></a><font color="#cc0033">FIELD</font>*           : <a href="#type-ElementType">ElementType</a>;
+                   <a name="type-LOCAL_VARIABLE"></a><font color="#cc0033">LOCAL_VARIABLE</font>*  : <a href="#type-ElementType">ElementType</a>;
+                   <a name="type-METHOD"></a><font color="#cc0033">METHOD</font>*          : <a href="#type-ElementType">ElementType</a>;
+                   <a name="type-MODULE"></a><font color="#cc0033">MODULE</font>*          : <a href="#type-ElementType">ElementType</a>;
+                   <a name="type-PACKAGE"></a><font color="#cc0033">PACKAGE</font>*         : <a href="#type-ElementType">ElementType</a>;
+                   <a name="type-PARAMETER"></a><font color="#cc0033">PARAMETER</font>*       : <a href="#type-ElementType">ElementType</a>;
+                   <a name="type-TYPE"></a><font color="#cc0033">TYPE</font>*            : <a href="#type-ElementType">ElementType</a>;
+                   <a name="type-TYPE_PARAMETER"></a><font color="#cc0033">TYPE_PARAMETER</font>*  : <a href="#type-ElementType">ElementType</a>;
+                   <a name="type-TYPE_USE"></a><font color="#cc0033">TYPE_USE</font>*        : <a href="#type-ElementType">ElementType</a>;
+                   <b>PROCEDURE </b><font color="#cc0033">valueOf</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-ElementType">ElementType</a>;
+                   <b>PROCEDURE </b><font color="#cc0033">values</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-ElementType">ElementType</a>;
+                 <b>END</b>;
+
+  <a name="type-IncompleteAnnotationException"></a><font color="#cc0033">IncompleteAnnotationException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-RuntimeException">java_lang.RuntimeException</a>)
+                                   <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                                   <font color="green"><b> (* </b><a href="#meths-IncompleteAnnotationException">Typebound Procedures</a><b> *)</b></font>
+                                   <b>STATIC</b>
+                                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                                                     p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-IncompleteAnnotationException">IncompleteAnnotationException</a><b>,CONSTRUCTOR</b>;
+                                   <b>END</b>;
+
+  <a name="type-Inherited"></a><font color="#cc0033">Inherited</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_lang_annotation.html#type-Annotation">java_lang_annotation.Annotation</a>)
+               <b>END</b>;
+
+  <a name="type-Native"></a><font color="#cc0033">Native</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_lang_annotation.html#type-Annotation">java_lang_annotation.Annotation</a>)
+            <b>END</b>;
+
+  <a name="type-Repeatable"></a><font color="#cc0033">Repeatable</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_lang_annotation.html#type-Annotation">java_lang_annotation.Annotation</a>)
+                <font color="green"><b> (* </b><a href="#meths-Repeatable">Typebound Procedures</a><b> *)</b></font>
+                <b>END</b>;
+
+  <a name="type-Retention"></a><font color="#cc0033">Retention</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_lang_annotation.html#type-Annotation">java_lang_annotation.Annotation</a>)
+               <font color="green"><b> (* </b><a href="#meths-Retention">Typebound Procedures</a><b> *)</b></font>
+               <b>END</b>;
+
+  <a name="type-RetentionPolicy"></a><font color="#cc0033">RetentionPolicy</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Enum">java_lang.Enum</a>)
+                     <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> *)</font>
+                     <b>STATIC</b>
+                       <a name="type-CLASS"></a><font color="#cc0033">CLASS</font>*   : <a href="#type-RetentionPolicy">RetentionPolicy</a>;
+                       <a name="type-RUNTIME"></a><font color="#cc0033">RUNTIME</font>* : <a href="#type-RetentionPolicy">RetentionPolicy</a>;
+                       <a name="type-SOURCE"></a><font color="#cc0033">SOURCE</font>*  : <a href="#type-RetentionPolicy">RetentionPolicy</a>;
+                       <b>PROCEDURE </b><font color="#cc0033">valueOf</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-RetentionPolicy">RetentionPolicy</a>;
+                       <b>PROCEDURE </b><font color="#cc0033">values</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-RetentionPolicy">RetentionPolicy</a>;
+                     <b>END</b>;
+
+  <a name="type-Target"></a><font color="#cc0033">Target</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_lang_annotation.html#type-Annotation">java_lang_annotation.Annotation</a>)
+            <font color="green"><b> (* </b><a href="#meths-Target">Typebound Procedures</a><b> *)</b></font>
+            <b>END</b>;
+
+
+
+<a name="meths-Annotation"></a>
+<b>PROCEDURE </b>(self:Annotation) <font color="#cc0033">annotationType</font>*() : <a href="java_lang.html#type-Class">java_lang.Class</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Annotation) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Annotation) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Annotation) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-AnnotationTypeMismatchException"></a>
+<b>PROCEDURE </b>(self:AnnotationTypeMismatchException) <font color="#cc0033">element</font>*() : <a href="java_lang_reflect.html#type-Method">java_lang_reflect.Method</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AnnotationTypeMismatchException) <font color="#cc0033">foundType</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-IncompleteAnnotationException"></a>
+<b>PROCEDURE </b>(self:IncompleteAnnotationException) <font color="#cc0033">annotationType</font>*() : <a href="java_lang.html#type-Class">java_lang.Class</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IncompleteAnnotationException) <font color="#cc0033">elementName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-Repeatable"></a>
+<b>PROCEDURE </b>(self:Repeatable) <font color="#cc0033">value</font>*() : <a href="java_lang.html#type-Class">java_lang.Class</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-Retention"></a>
+<b>PROCEDURE </b>(self:Retention) <font color="#cc0033">value</font>*() : <a href="#type-RetentionPolicy">RetentionPolicy</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-Target"></a>
+<b>PROCEDURE </b>(self:Target) <font color="#cc0033">value</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-ElementType">ElementType</a><b>,NEW,ABSTRACT</b>;
+
+<b>END </b><font color="#cc0033">java_lang_annotation</font>.
+</font></pre></hr>
+<!-- BEGIN JavaScript -->
+<script>
+function toggle(node) {
+    node.classList.toggle("show"); 
+  }
+
+function cls(node) {
+    var prnt = node.parentNode;
+    var next = prnt.previousSibling;
+    var text = next.lastChild;
+    text.innerHTML = 
+        "The <b>class</b> property asserts that this type will be<br>" +
+        "implemented as a reference class in the underlying framework.";
+    text.classList.toggle("show");
+  }
+
+function newOk(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>has noArg-ctor</b> property asserts that this reference<br>" +
+        "class has a no-arg constructor, and thus objects of this<br>" +
+        "type can be allocated with NEW(). Component Pascal types<br>" +
+        "derived from this type can also be allocated using NEW().";
+    popuptext.classList.toggle("show"); 
+  }
+
+function noNew(node) { 
+    var prnt = node.parentNode; 
+    var next = prnt.previousSibling; 
+    var text = next.lastChild; 
+    text.innerHTML =  
+        "The <b>no noArg-ctor</b> property asserts that this reference<br>" +
+        "class does not have a noArg constructor. Objects of this<br>" +
+        "type cannot be allocated using NEW(), and Component<br>" +
+        "Pascal types  derived from this type also cannot be<br>" +
+        "allocated using NEW().";
+    text.classList.toggle("show");
+  }
+
+function noCpy(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>no value-assign</b> property asserts that this reference<br>" + 
+        "class does not have a value copy method. Therefore, it<br>" +
+        "is not possible to perform value assignments using<br>" +
+        "statements like <i>dst^</i> := <i>src^</i>";
+    popuptext.classList.toggle("show");
+  }
+
+function valueclass(node) { 
+        var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>valueclass</b> property asserts that this RECORD type is<br>" + 
+        "implemented as a value class in the CLR. It follows that<br>" +  
+        "value assignments can be made of these types. They can<br>" + 
+        "also be passed by value. Even pointers to records of<br>" + 
+        "such types may be dereferenced and copied using syntax<br>" + 
+        "such as  <i>dst^</i> := <i>src^</i>"; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+function argCtor(node) { 
+    var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>has arg-ctor</b> property asserts that this reference<br>" +  
+        "class has one or more constructors that take arguments.<br>" + 
+        "These constructors can be called from Component Pascal<br>" + 
+        "by calling an <i>init</i>(...) method from the static list<br>" + 
+        "here. Component Pascal types derived from this type<br>" + 
+        "can define constructors with arguments which call the<br>" + 
+        "super-type constructor.<br>" + 
+        "See <i>'Interfacing to constructors'</i> in the Release Notes."; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+</script>
+<!-- END JavaScript --> 
+
+</body></html>

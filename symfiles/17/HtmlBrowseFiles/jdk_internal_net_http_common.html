@@ -1,0 +1,846 @@
+<html><head><title>jdk_internal_net_http_common</title>
+<style>
+<!-- BEGIN Inline CSS -->
+/* Popup container */
+.popup {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+/* The actual popup (appears on top) */
+.popup .popuptext {
+    visibility: hidden;
+    width: 430px;
+    background-color: white;
+    color: black;
+    text-align: left;
+    border-radius: 6px;
+    border-style: solid;
+    border-color: black;
+    padding: 8px 8px 8px 8px;
+    position: absolute;
+    z-index: 1;
+    margin-top: 30px;
+}
+
+/* Toggle this class when clicking on the popup container (hide and show the popup) */
+.popup .show {
+    visibility: visible;
+    opacity: 1;
+}
+
+</style>
+<!-- END Inline CSS -->
+</head><body bgcolor="white">
+<hr><pre>
+<font color="green">(*</font>
+<font color="green"> *  Creator PeToCps j2cps version 1.4.07 (March 2018)</font>
+<font color="green"> *  Compiled from jar-file /Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home/jmods/java.net.http.jmod</font>
+<font color="green"> *)</font>
+<b>FOREIGN MODULE </b><font color="#cc0033">jdk_internal_net_http_common</font>;
+
+<b>IMPORT</b>
+    <a href="javax_net_ssl.html">javax_net_ssl</a> := "javax.net.ssl",
+    <a href="java_io.html">java_io</a> := "java.io",
+    <a href="java_lang.html">java_lang</a> := "java.lang",
+    <a href="java_net.html">java_net</a> := "java.net",
+    <a href="java_net_http.html">java_net_http</a> := "java.net.http",
+    <a href="java_nio.html">java_nio</a> := "java.nio",
+    <a href="java_nio_charset.html">java_nio_charset</a> := "java.nio.charset",
+    <a href="java_security.html">java_security</a> := "java.security",
+    <a href="java_security_cert.html">java_security_cert</a> := "java.security.cert",
+    <a href="java_util.html">java_util</a> := "java.util",
+    <a href="java_util_concurrent.html">java_util_concurrent</a> := "java.util.concurrent",
+    <a href="java_util_function.html">java_util_function</a> := "java.util.function",
+    <a href="java_util_stream.html">java_util_stream</a> := "java.util.stream",
+    <a href="jdk_internal_net_http.html">jdk_internal_net_http</a> := "jdk.internal.net.http",
+    <a href="jdk_internal_net_http_common.html">jdk_internal_net_http_common</a> := "jdk.internal.net.http.common",
+    <a href="jdk_internal_net_http_frame.html">jdk_internal_net_http_frame</a> := "jdk.internal.net.http.frame";
+
+<b>TYPE</b>
+
+  <a name="type-BufferSupplier"></a><font color="#cc0033">BufferSupplier</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_util_function.html#type-Supplier">java_util_function.Supplier</a>)
+                    <font color="green"><b> (* </b><a href="#meths-BufferSupplier">Typebound Procedures</a><b> *)</b></font>
+                    <b>END</b>;
+
+  <a name="type-Cancelable"></a><font color="#cc0033">Cancelable</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                <font color="green"><b> (* </b><a href="#meths-Cancelable">Typebound Procedures</a><b> *)</b></font>
+                <b>END</b>;
+
+  <a name="type-ConnectionExpiredException"></a><font color="#cc0033">ConnectionExpiredException</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_io.html#type-IOException">java_io.IOException</a>)
+                                <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                                <b>STATIC</b>
+                                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-Throwable">java_lang.Throwable</a>) : <a href="#type-ConnectionExpiredException">ConnectionExpiredException</a><b>,CONSTRUCTOR</b>;
+                                <b>END</b>;
+
+  <a name="type-Demand"></a><font color="#cc0033">Demand</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+            <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+            <font color="green"><b> (* </b><a href="#meths-Demand">Typebound Procedures</a><b> *)</b></font>
+            <b>STATIC</b>
+              <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-Demand">Demand</a><b>,CONSTRUCTOR</b>;
+            <b>END</b>;
+
+  <a name="type-FlowTube"></a><font color="#cc0033">FlowTube</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_util_concurrent.html#type-Flow$Publisher">java_util_concurrent.Flow$Publisher</a> + <a href="java_util_concurrent.html#type-Flow$Subscriber">java_util_concurrent.Flow$Subscriber</a>)
+              <font color="green"><b> (* </b><a href="#meths-FlowTube">Typebound Procedures</a><b> *)</b></font>
+              <b>STATIC</b>
+                <b>PROCEDURE </b><font color="#cc0033">asTubePublisher</font>*(p0 : <a href="java_util_concurrent.html#type-Flow$Publisher">java_util_concurrent.Flow$Publisher</a>) : <a href="jdk_internal_net_http_common.html#type-FlowTube$TubePublisher">jdk_internal_net_http_common.FlowTube$TubePublisher</a>;
+                <b>PROCEDURE </b><font color="#cc0033">asTubeSubscriber</font>*(p0 : <a href="java_util_concurrent.html#type-Flow$Subscriber">java_util_concurrent.Flow$Subscriber</a>) : <a href="#type-FlowTube$TubeSubscriber">FlowTube$TubeSubscriber</a>;
+              <b>END</b>;
+
+  <a name="type-FlowTube$AbstractTubePublisher"></a><font color="#cc0033">FlowTube$AbstractTubePublisher</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="jdk_internal_net_http_common.html#type-FlowTube$TubePublisher">jdk_internal_net_http_common.FlowTube$TubePublisher</a>)
+                                    <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                                    <b>STATIC</b>
+                                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-FlowTube$AbstractTubePublisher">FlowTube$AbstractTubePublisher</a><b>,CONSTRUCTOR</b>;
+                                    <b>END</b>;
+
+  <a name="type-FlowTube$AbstractTubeSubscriber"></a><font color="#cc0033">FlowTube$AbstractTubeSubscriber</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="jdk_internal_net_http_common.html#type-FlowTube$TubeSubscriber">jdk_internal_net_http_common.FlowTube$TubeSubscriber</a>)
+                                     <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                                     <b>STATIC</b>
+                                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-FlowTube$AbstractTubeSubscriber">FlowTube$AbstractTubeSubscriber</a><b>,CONSTRUCTOR</b>;
+                                     <b>END</b>;
+
+  <a name="type-FlowTube$TubePublisher"></a><font color="#cc0033">FlowTube$TubePublisher</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_util_concurrent.html#type-Flow$Publisher">java_util_concurrent.Flow$Publisher</a>)
+                            <b>END</b>;
+
+  <a name="type-FlowTube$TubeSubscriber"></a><font color="#cc0033">FlowTube$TubeSubscriber</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_util_concurrent.html#type-Flow$Subscriber">java_util_concurrent.Flow$Subscriber</a>)
+                             <font color="green"><b> (* </b><a href="#meths-FlowTube$TubeSubscriber">Typebound Procedures</a><b> *)</b></font>
+                             <b>END</b>;
+
+  <a name="type-HttpHeadersBuilder"></a><font color="#cc0033">HttpHeadersBuilder</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                        <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                        <font color="green"><b> (* </b><a href="#meths-HttpHeadersBuilder">Typebound Procedures</a><b> *)</b></font>
+                        <b>STATIC</b>
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-HttpHeadersBuilder">HttpHeadersBuilder</a><b>,CONSTRUCTOR</b>;
+                        <b>END</b>;
+
+  <a name="type-ImmutableExtendedSSLSession"></a><font color="#cc0033">ImmutableExtendedSSLSession</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="javax_net_ssl.html#type-ExtendedSSLSession">javax_net_ssl.ExtendedSSLSession</a>)
+                                 <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> *)</font>
+                                 <font color="green"><b> (* </b><a href="#meths-ImmutableExtendedSSLSession">Typebound Procedures</a><b> *)</b></font>
+                                 <b>END</b>;
+
+  <a name="type-ImmutableSSLSession"></a><font color="#cc0033">ImmutableSSLSession</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="javax_net_ssl.html#type-SSLSession">javax_net_ssl.SSLSession</a>)
+                         <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> *)</font>
+                         <font color="green"><b> (* </b><a href="#meths-ImmutableSSLSession">Typebound Procedures</a><b> *)</b></font>
+                         <b>END</b>;
+
+  <a name="type-Log"></a><font color="#cc0033">Log</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_lang.html#type-System$Logger">java_lang.System$Logger</a>)
+         <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> *)</font>
+         <b>STATIC</b>
+           <font color="#cc0033">ALL</font>*            = 7;
+           <font color="#cc0033">CHANNEL</font>*        = 128;
+           <font color="#cc0033">CONTENT</font>*        = 8;
+           <font color="#cc0033">CONTROL</font>*        = 1;
+           <font color="#cc0033">DATA</font>*           = 2;
+           <font color="#cc0033">ERRORS</font>*         = 1;
+           <font color="#cc0033">FRAMES</font>*         = 16;
+           <font color="#cc0033">HEADERS</font>*        = 4;
+           <font color="#cc0033">OFF</font>*            = 0;
+           <font color="#cc0033">REQUESTS</font>*       = 2;
+           <font color="#cc0033">SSL</font>*            = 32;
+           <font color="#cc0033">TRACE</font>*          = 64;
+           <font color="#cc0033">WINDOW_UPDATES</font>* = 4;
+           <b>PROCEDURE </b><font color="#cc0033">channel</font>*() : BOOLEAN;
+           <b>PROCEDURE </b><font color="#cc0033">dumpHeaders</font>*(p0 : <a href="java_lang.html#type-StringBuilder">java_lang.StringBuilder</a>;
+                                  p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                  p2 : <a href="java_net_http.html#type-HttpHeaders">java_net_http.HttpHeaders</a>);
+           <b>PROCEDURE </b><font color="#cc0033">errors</font>*() : BOOLEAN;
+           <b>PROCEDURE </b><font color="#cc0033">frames</font>*() : BOOLEAN;
+           <b>PROCEDURE </b><font color="#cc0033">headers</font>*() : BOOLEAN;
+           <b>PROCEDURE </b><font color="#cc0033">logChannel</font>*(p0 : <a href="java_util_function.html#type-Supplier">java_util_function.Supplier</a>);
+           <b>PROCEDURE </b><font color="#cc0033">logChannel</font>*(    p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                 IN  p1 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>);
+           <b>PROCEDURE </b><font color="#cc0033">logError</font>*(p0 : <a href="java_lang.html#type-Throwable">java_lang.Throwable</a>);
+           <b>PROCEDURE </b><font color="#cc0033">logError</font>*(    p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                               IN  p1 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>);
+           <b>PROCEDURE </b><font color="#cc0033">logFrames</font>*(p0 : <a href="jdk_internal_net_http_frame.html#type-Http2Frame">jdk_internal_net_http_frame.Http2Frame</a>;
+                                p1 : <a href="java_lang.html#type-String">java_lang.String</a>);
+           <b>PROCEDURE </b><font color="#cc0033">loggingFrame</font>*(p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>) : BOOLEAN;
+           <b>PROCEDURE </b><font color="#cc0033">logHeaders</font>*(    p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                 IN  p1 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>);
+           <b>PROCEDURE </b><font color="#cc0033">logParams</font>*(p0 : <a href="javax_net_ssl.html#type-SSLParameters">javax_net_ssl.SSLParameters</a>);
+           <b>PROCEDURE </b><font color="#cc0033">logRequest</font>*(    p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                 IN  p1 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>);
+           <b>PROCEDURE </b><font color="#cc0033">logResponse</font>*(p0 : <a href="java_util_function.html#type-Supplier">java_util_function.Supplier</a>);
+           <b>PROCEDURE </b><font color="#cc0033">logSSL</font>*(    p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                             IN  p1 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>);
+           <b>PROCEDURE </b><font color="#cc0033">logSSL</font>*(p0 : <a href="java_util_function.html#type-Supplier">java_util_function.Supplier</a>);
+           <b>PROCEDURE </b><font color="#cc0033">logTrace</font>*(    p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                               IN  p1 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>);
+           <b>PROCEDURE </b><font color="#cc0033">requests</font>*() : BOOLEAN;
+           <b>PROCEDURE </b><font color="#cc0033">ssl</font>*() : BOOLEAN;
+           <b>PROCEDURE </b><font color="#cc0033">trace</font>*() : BOOLEAN;
+         <b>END</b>;
+
+  <a name="type-Logger"></a><font color="#cc0033">Logger</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_lang.html#type-System$Logger">java_lang.System$Logger</a>)
+            <font color="green"><b> (* </b><a href="#meths-Logger">Typebound Procedures</a><b> *)</b></font>
+            <b>END</b>;
+
+  <a name="type-MinimalFuture"></a><font color="#cc0033">MinimalFuture</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_util_concurrent.html#type-CompletableFuture">java_util_concurrent.CompletableFuture</a>)
+                   <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                   <font color="green"><b> (* </b><a href="#meths-MinimalFuture">Typebound Procedures</a><b> *)</b></font>
+                   <b>STATIC</b>
+                     <b>PROCEDURE </b><font color="#cc0033">completedFuture</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="#type-MinimalFuture">MinimalFuture</a>;
+                     <b>PROCEDURE </b><font color="#cc0033">failedFuture</font>*(p0 : <a href="java_lang.html#type-Throwable">java_lang.Throwable</a>) : <a href="java_util_concurrent.html#type-CompletableFuture">java_util_concurrent.CompletableFuture</a>;
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-MinimalFuture">MinimalFuture</a><b>,CONSTRUCTOR</b>;
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="#type-Cancelable">Cancelable</a>) : <a href="#type-MinimalFuture">MinimalFuture</a><b>,CONSTRUCTOR</b>;
+                     <b>PROCEDURE </b><font color="#cc0033">of</font>*(p0 : <a href="java_util_concurrent.html#type-CompletionStage">java_util_concurrent.CompletionStage</a>) : <a href="#type-MinimalFuture">MinimalFuture</a>;
+                     <b>PROCEDURE </b><font color="#cc0033">supply</font>*(p0 : <a href="#type-MinimalFuture$ExceptionalSupplier">MinimalFuture$ExceptionalSupplier</a>) : <a href="java_util_concurrent.html#type-CompletableFuture">java_util_concurrent.CompletableFuture</a>;
+                   <b>END</b>;
+
+  <a name="type-MinimalFuture$ExceptionalSupplier"></a><font color="#cc0033">MinimalFuture$ExceptionalSupplier</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                                       <font color="green"><b> (* </b><a href="#meths-MinimalFuture$ExceptionalSupplier">Typebound Procedures</a><b> *)</b></font>
+                                       <b>END</b>;
+
+  <a name="type-OperationTrackers"></a><font color="#cc0033">OperationTrackers</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                       <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> *)</font>
+                       <b>STATIC</b>
+                         <b>PROCEDURE </b><font color="#cc0033">getTracker</font>*(p0 : <a href="java_net_http.html#type-HttpClient">java_net_http.HttpClient</a>) : <a href="jdk_internal_net_http_common.html#type-OperationTrackers$Tracker">jdk_internal_net_http_common.OperationTrackers$Tracker</a>;
+                       <b>END</b>;
+
+  <a name="type-OperationTrackers$Trackable"></a><font color="#cc0033">OperationTrackers$Trackable</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                                 <font color="green"><b> (* </b><a href="#meths-OperationTrackers$Trackable">Typebound Procedures</a><b> *)</b></font>
+                                 <b>END</b>;
+
+  <a name="type-OperationTrackers$Tracker"></a><font color="#cc0033">OperationTrackers$Tracker</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                               <font color="green"><b> (* </b><a href="#meths-OperationTrackers$Tracker">Typebound Procedures</a><b> *)</b></font>
+                               <b>END</b>;
+
+  <a name="type-Pair"></a><font color="#cc0033">Pair</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+          <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+          <font color="green"><b> (* </b><a href="#meths-Pair">Typebound Procedures</a><b> *)</b></font>
+            <font color="#cc0033">first</font>*  : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+            <font color="#cc0033">second</font>* : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+          <b>STATIC</b>
+            <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                            p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="#type-Pair">Pair</a><b>,CONSTRUCTOR</b>;
+            <b>PROCEDURE </b><font color="#cc0033">pair</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                            p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="#type-Pair">Pair</a>;
+          <b>END</b>;
+
+  <a name="type-SequentialScheduler"></a><font color="#cc0033">SequentialScheduler</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                         <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                         <font color="green"><b> (* </b><a href="#meths-SequentialScheduler">Typebound Procedures</a><b> *)</b></font>
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="jdk_internal_net_http_common.html#type-SequentialScheduler$RestartableTask">jdk_internal_net_http_common.SequentialScheduler$RestartableTask</a>) : <a href="#type-SequentialScheduler">SequentialScheduler</a><b>,CONSTRUCTOR</b>;
+                           <b>PROCEDURE </b><font color="#cc0033">lockingScheduler</font>*(p0 : <a href="java_lang.html#type-Runnable">java_lang.Runnable</a>) : <a href="#type-SequentialScheduler">SequentialScheduler</a>;
+                           <b>PROCEDURE </b><font color="#cc0033">synchronizedScheduler</font>*(p0 : <a href="java_lang.html#type-Runnable">java_lang.Runnable</a>) : <a href="#type-SequentialScheduler">SequentialScheduler</a>;
+                         <b>END</b>;
+
+  <a name="type-SequentialScheduler$CompleteRestartableTask"></a><font color="#cc0033">SequentialScheduler$CompleteRestartableTask</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="jdk_internal_net_http_common.html#type-SequentialScheduler$RestartableTask">jdk_internal_net_http_common.SequentialScheduler$RestartableTask</a>)
+                                                 <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                                                 <font color="green"><b> (* </b><a href="#meths-SequentialScheduler$CompleteRestartableTask">Typebound Procedures</a><b> *)</b></font>
+                                                 <b>STATIC</b>
+                                                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-SequentialScheduler$CompleteRestartableTask">SequentialScheduler$CompleteRestartableTask</a><b>,CONSTRUCTOR</b>;
+                                                 <b>END</b>;
+
+  <a name="type-SequentialScheduler$DeferredCompleter"></a><font color="#cc0033">SequentialScheduler$DeferredCompleter</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                                           <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> *)</font>
+                                           <font color="green"><b> (* </b><a href="#meths-SequentialScheduler$DeferredCompleter">Typebound Procedures</a><b> *)</b></font>
+                                           <b>END</b>;
+
+  <a name="type-SequentialScheduler$LockingRestartableTask"></a><font color="#cc0033">SequentialScheduler$LockingRestartableTask</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="jdk_internal_net_http_common.html#type-SequentialScheduler$CompleteRestartableTask">jdk_internal_net_http_common.SequentialScheduler$CompleteRestartableTask</a>)
+                                                <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                                                <font color="green"><b> (* </b><a href="#meths-SequentialScheduler$LockingRestartableTask">Typebound Procedures</a><b> *)</b></font>
+                                                <b>STATIC</b>
+                                                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-Runnable">java_lang.Runnable</a>) : <a href="#type-SequentialScheduler$LockingRestartableTask">SequentialScheduler$LockingRestartableTask</a><b>,CONSTRUCTOR</b>;
+                                                <b>END</b>;
+
+  <a name="type-SequentialScheduler$RestartableTask"></a><font color="#cc0033">SequentialScheduler$RestartableTask</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                                         <font color="green"><b> (* </b><a href="#meths-SequentialScheduler$RestartableTask">Typebound Procedures</a><b> *)</b></font>
+                                         <b>END</b>;
+
+  <a name="type-SequentialScheduler$SynchronizedRestartableTask"></a><font color="#cc0033">SequentialScheduler$SynchronizedRestartableTask</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="jdk_internal_net_http_common.html#type-SequentialScheduler$CompleteRestartableTask">jdk_internal_net_http_common.SequentialScheduler$CompleteRestartableTask</a>)
+                                                     <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                                                     <font color="green"><b> (* </b><a href="#meths-SequentialScheduler$SynchronizedRestartableTask">Typebound Procedures</a><b> *)</b></font>
+                                                     <b>STATIC</b>
+                                                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-Runnable">java_lang.Runnable</a>) : <a href="#type-SequentialScheduler$SynchronizedRestartableTask">SequentialScheduler$SynchronizedRestartableTask</a><b>,CONSTRUCTOR</b>;
+                                                     <b>END</b>;
+
+  <a name="type-SSLFlowDelegate"></a><font color="#cc0033">SSLFlowDelegate</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                     <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                     <font color="green"><b> (* </b><a href="#meths-SSLFlowDelegate">Typebound Procedures</a><b> *)</b></font>
+                     <b>STATIC</b>
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="javax_net_ssl.html#type-SSLEngine">javax_net_ssl.SSLEngine</a>;
+                                       p1 : <a href="java_util_concurrent.html#type-Executor">java_util_concurrent.Executor</a>;
+                                       p2 : <a href="java_util_function.html#type-Consumer">java_util_function.Consumer</a>;
+                                       p3 : <a href="java_util_concurrent.html#type-Flow$Subscriber">java_util_concurrent.Flow$Subscriber</a>;
+                                       p4 : <a href="java_util_concurrent.html#type-Flow$Subscriber">java_util_concurrent.Flow$Subscriber</a>) : <a href="#type-SSLFlowDelegate">SSLFlowDelegate</a><b>,CONSTRUCTOR</b>;
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="javax_net_ssl.html#type-SSLEngine">javax_net_ssl.SSLEngine</a>;
+                                       p1 : <a href="java_util_concurrent.html#type-Executor">java_util_concurrent.Executor</a>;
+                                       p2 : <a href="java_util_concurrent.html#type-Flow$Subscriber">java_util_concurrent.Flow$Subscriber</a>;
+                                       p3 : <a href="java_util_concurrent.html#type-Flow$Subscriber">java_util_concurrent.Flow$Subscriber</a>) : <a href="#type-SSLFlowDelegate">SSLFlowDelegate</a><b>,CONSTRUCTOR</b>;
+                     <b>END</b>;
+
+  <a name="type-SSLFlowDelegate$Monitor"></a><font color="#cc0033">SSLFlowDelegate$Monitor</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Thread">java_lang.Thread</a>)
+                             <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> *)</font>
+                             <font color="green"><b> (* </b><a href="#meths-SSLFlowDelegate$Monitor">Typebound Procedures</a><b> *)</b></font>
+                             <b>STATIC</b>
+                               <b>PROCEDURE </b><font color="#cc0033">add</font>*(p0 : <a href="jdk_internal_net_http_common.html#type-SSLFlowDelegate$Monitorable">jdk_internal_net_http_common.SSLFlowDelegate$Monitorable</a>);
+                               <b>PROCEDURE </b><font color="#cc0033">remove</font>*(p0 : <a href="jdk_internal_net_http_common.html#type-SSLFlowDelegate$Monitorable">jdk_internal_net_http_common.SSLFlowDelegate$Monitorable</a>);
+                             <b>END</b>;
+
+  <a name="type-SSLFlowDelegate$Monitorable"></a><font color="#cc0033">SSLFlowDelegate$Monitorable</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                                 <font color="green"><b> (* </b><a href="#meths-SSLFlowDelegate$Monitorable">Typebound Procedures</a><b> *)</b></font>
+                                 <b>END</b>;
+
+  <a name="type-SSLTube"></a><font color="#cc0033">SSLTube</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="jdk_internal_net_http_common.html#type-FlowTube">jdk_internal_net_http_common.FlowTube</a>)
+             <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+             <font color="green"><b> (* </b><a href="#meths-SSLTube">Typebound Procedures</a><b> *)</b></font>
+             <b>STATIC</b>
+               <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="javax_net_ssl.html#type-SSLEngine">javax_net_ssl.SSLEngine</a>;
+                               p1 : <a href="java_util_concurrent.html#type-Executor">java_util_concurrent.Executor</a>;
+                               p2 : <a href="java_util_function.html#type-Consumer">java_util_function.Consumer</a>;
+                               p3 : <a href="jdk_internal_net_http_common.html#type-FlowTube">jdk_internal_net_http_common.FlowTube</a>) : <a href="#type-SSLTube">SSLTube</a><b>,CONSTRUCTOR</b>;
+               <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="javax_net_ssl.html#type-SSLEngine">javax_net_ssl.SSLEngine</a>;
+                               p1 : <a href="java_util_concurrent.html#type-Executor">java_util_concurrent.Executor</a>;
+                               p2 : <a href="jdk_internal_net_http_common.html#type-FlowTube">jdk_internal_net_http_common.FlowTube</a>) : <a href="#type-SSLTube">SSLTube</a><b>,CONSTRUCTOR</b>;
+             <b>END</b>;
+
+  <a name="type-SubscriberWrapper"></a><font color="#cc0033">SubscriberWrapper</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-FlowTube$TubeSubscriber">FlowTube$TubeSubscriber</a> + <a href="java_io.html#type-Closeable">java_io.Closeable</a> + <a href="java_util_concurrent.html#type-Flow$Processor">java_util_concurrent.Flow$Processor</a>)
+                       <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                       <font color="green"><b> (* </b><a href="#meths-SubscriberWrapper">Typebound Procedures</a><b> *)</b></font>
+                       <b>STATIC</b>
+                         <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_util_concurrent.html#type-Flow$Subscriber">java_util_concurrent.Flow$Subscriber</a>) : <a href="#type-SubscriberWrapper">SubscriberWrapper</a><b>,CONSTRUCTOR</b>;
+                         <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-SubscriberWrapper">SubscriberWrapper</a><b>,CONSTRUCTOR</b>;
+                       <b>END</b>;
+
+  <a name="type-SubscriberWrapper$SchedulingAction"></a><font color="#cc0033">SubscriberWrapper$SchedulingAction</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Enum">java_lang.Enum</a>)
+                                        <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> *)</font>
+                                        <b>STATIC</b>
+                                          <a name="type-CONTINUE"></a><font color="#cc0033">CONTINUE</font>*   : <a href="#type-SubscriberWrapper$SchedulingAction">SubscriberWrapper$SchedulingAction</a>;
+                                          <a name="type-RESCHEDULE"></a><font color="#cc0033">RESCHEDULE</font>* : <a href="#type-SubscriberWrapper$SchedulingAction">SubscriberWrapper$SchedulingAction</a>;
+                                          <a name="type-RETURN"></a><font color="#cc0033">RETURN</font>*     : <a href="#type-SubscriberWrapper$SchedulingAction">SubscriberWrapper$SchedulingAction</a>;
+                                          <b>PROCEDURE </b><font color="#cc0033">valueOf</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-SubscriberWrapper$SchedulingAction">SubscriberWrapper$SchedulingAction</a>;
+                                          <b>PROCEDURE </b><font color="#cc0033">values</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-SubscriberWrapper$SchedulingAction">SubscriberWrapper$SchedulingAction</a>;
+                                        <b>END</b>;
+
+  <a name="type-SubscriptionBase"></a><font color="#cc0033">SubscriptionBase</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_util_concurrent.html#type-Flow$Subscription">java_util_concurrent.Flow$Subscription</a>)
+                      <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                      <font color="green"><b> (* </b><a href="#meths-SubscriptionBase">Typebound Procedures</a><b> *)</b></font>
+                      <b>STATIC</b>
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="#type-SequentialScheduler">SequentialScheduler</a>;
+                                        p1 : <a href="java_lang.html#type-Runnable">java_lang.Runnable</a>;
+                                        p2 : <a href="java_util_function.html#type-Consumer">java_util_function.Consumer</a>) : <a href="#type-SubscriptionBase">SubscriptionBase</a><b>,CONSTRUCTOR</b>;
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="#type-SequentialScheduler">SequentialScheduler</a>;
+                                        p1 : <a href="java_lang.html#type-Runnable">java_lang.Runnable</a>) : <a href="#type-SubscriptionBase">SubscriptionBase</a><b>,CONSTRUCTOR</b>;
+                      <b>END</b>;
+
+  <a name="type-Utils"></a><font color="#cc0033">Utils</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+           <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> *)</font>
+           <b>STATIC</b>
+             <a name="type-ACCEPT_ALL"></a><font color="#cc0033">ACCEPT_ALL</font>*                     : <a href="java_util_function.html#type-BiPredicate">java_util_function.BiPredicate</a>;
+             <a name="type-ALLOWED_HEADERS"></a><font color="#cc0033">ALLOWED_HEADERS</font>*                : <a href="java_util_function.html#type-BiPredicate">java_util_function.BiPredicate</a>;
+             <a name="type-ASSERTIONSENABLED"></a><font color="#cc0033">ASSERTIONSENABLED</font>*              : BOOLEAN;
+             <a name="type-BUFSIZE"></a><font color="#cc0033">BUFSIZE</font>*                        : INTEGER;
+             <a name="type-DEBUG"></a><font color="#cc0033">DEBUG</font>*                          : BOOLEAN;
+             <a name="type-DEBUG_HPACK"></a><font color="#cc0033">DEBUG_HPACK</font>*                    : BOOLEAN;
+             <a name="type-DEBUG_WS"></a><font color="#cc0033">DEBUG_WS</font>*                       : BOOLEAN;
+             <a name="type-EMPTY_BB_ARRAY"></a><font color="#cc0033">EMPTY_BB_ARRAY</font>*                 : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>;
+             <a name="type-EMPTY_BB_LIST"></a><font color="#cc0033">EMPTY_BB_LIST</font>*                  : <a href="java_util.html#type-List">java_util.List</a>;
+             <a name="type-EMPTY_BYTEBUFFER"></a><font color="#cc0033">EMPTY_BYTEBUFFER</font>*               : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>;
+             <a name="type-isHostnameVerificationDisabled"></a><font color="#cc0033">isHostnameVerificationDisabled</font>* : BOOLEAN;
+             <a name="type-NO_PROXY_HEADERS_FILTER"></a><font color="#cc0033">NO_PROXY_HEADERS_FILTER</font>*        : <a href="java_util_function.html#type-BiPredicate">java_util_function.BiPredicate</a>;
+             <a name="type-PROXY_FILTER"></a><font color="#cc0033">PROXY_FILTER</font>*                   : <a href="java_util_function.html#type-BiPredicate">java_util_function.BiPredicate</a>;
+             <a name="type-PROXY_TUNNEL_FILTER"></a><font color="#cc0033">PROXY_TUNNEL_FILTER</font>*            : <a href="java_util_function.html#type-BiPredicate">java_util_function.BiPredicate</a>;
+             <a name="type-TESTING"></a><font color="#cc0033">TESTING</font>*                        : BOOLEAN;
+             <a name="type-VALIDATE_USER_HEADER"></a><font color="#cc0033">VALIDATE_USER_HEADER</font>*           : <a href="java_util_function.html#type-BiPredicate">java_util_function.BiPredicate</a>;
+             <b>PROCEDURE </b><font color="#cc0033">accumulateBuffers</font>*(p0 : <a href="java_util.html#type-List">java_util.List</a>;
+                                          p1 : <a href="java_util.html#type-List">java_util.List</a>) : LONGINT;
+             <b>PROCEDURE </b><font color="#cc0033">charsetFrom</font>*(p0 : <a href="java_net_http.html#type-HttpHeaders">java_net_http.HttpHeaders</a>) : <a href="java_nio_charset.html#type-Charset">java_nio_charset.Charset</a>;
+             <b>PROCEDURE </b><font color="#cc0033">close</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="java_io.html#type-Closeable">java_io.Closeable</a>);
+             <b>PROCEDURE </b><font color="#cc0033">CONTEXT_RESTRICTED</font>*(p0 : <a href="java_net_http.html#type-HttpClient">java_net_http.HttpClient</a>) : <a href="java_util_function.html#type-BiPredicate">java_util_function.BiPredicate</a>;
+             <b>PROCEDURE </b><font color="#cc0033">copy</font>*(p0 : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>;
+                             p1 : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>) : INTEGER;
+             <b>PROCEDURE </b><font color="#cc0033">copy</font>*(p0 : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>) : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>;
+             <b>PROCEDURE </b><font color="#cc0033">copyAligned</font>*(p0 : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>) : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>;
+             <b>PROCEDURE </b><font color="#cc0033">copySSLParameters</font>*(p0 : <a href="javax_net_ssl.html#type-SSLParameters">javax_net_ssl.SSLParameters</a>) : <a href="javax_net_ssl.html#type-SSLParameters">javax_net_ssl.SSLParameters</a>;
+             <b>PROCEDURE </b><font color="#cc0033">dump</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_lang.html#type-String">java_lang.String</a>;
+             <b>PROCEDURE </b><font color="#cc0033">encode</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-String">java_lang.String</a>;
+             <b>PROCEDURE </b><font color="#cc0033">flipToMark</font>*(p0 : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>;
+                                   p1 : INTEGER);
+             <b>PROCEDURE </b><font color="#cc0033">getBooleanProperty</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                           p1 : BOOLEAN) : BOOLEAN;
+             <b>PROCEDURE </b><font color="#cc0033">getBuffer</font>*() : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>;
+             <b>PROCEDURE </b><font color="#cc0033">getCancelCause</font>*(p0 : <a href="java_lang.html#type-Throwable">java_lang.Throwable</a>) : <a href="java_lang.html#type-Throwable">java_lang.Throwable</a>;
+             <b>PROCEDURE </b><font color="#cc0033">getCompletionCause</font>*(p0 : <a href="java_lang.html#type-Throwable">java_lang.Throwable</a>) : <a href="java_lang.html#type-Throwable">java_lang.Throwable</a>;
+             <b>PROCEDURE </b><font color="#cc0033">getDebugLogger</font>*(p0 : <a href="java_util_function.html#type-Supplier">java_util_function.Supplier</a>) : <a href="#type-Logger">Logger</a>;
+             <b>PROCEDURE </b><font color="#cc0033">getDebugLogger</font>*(p0 : <a href="java_util_function.html#type-Supplier">java_util_function.Supplier</a>;
+                                       p1 : BOOLEAN) : <a href="#type-Logger">Logger</a>;
+             <b>PROCEDURE </b><font color="#cc0033">getHpackLogger</font>*(p0 : <a href="java_util_function.html#type-Supplier">java_util_function.Supplier</a>;
+                                       p1 : <a href="java_lang.html#type-System$Logger$Level">java_lang.System$Logger$Level</a>) : <a href="#type-Logger">Logger</a>;
+             <b>PROCEDURE </b><font color="#cc0033">getHpackLogger</font>*(p0 : <a href="java_util_function.html#type-Supplier">java_util_function.Supplier</a>;
+                                       p1 : BOOLEAN) : <a href="#type-Logger">Logger</a>;
+             <b>PROCEDURE </b><font color="#cc0033">getIntegerNetProperty</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                              p1 : INTEGER) : INTEGER;
+             <b>PROCEDURE </b><font color="#cc0033">getIntegerProperty</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                           p1 : INTEGER) : INTEGER;
+             <b>PROCEDURE </b><font color="#cc0033">getIOException</font>*(p0 : <a href="java_lang.html#type-Throwable">java_lang.Throwable</a>) : <a href="java_io.html#type-IOException">java_io.IOException</a>;
+             <b>PROCEDURE </b><font color="#cc0033">getNetProperty</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-String">java_lang.String</a>;
+             <b>PROCEDURE </b><font color="#cc0033">getProperty</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-String">java_lang.String</a>;
+             <b>PROCEDURE </b><font color="#cc0033">getServerName</font>*(p0 : <a href="java_net.html#type-InetSocketAddress">java_net.InetSocketAddress</a>) : <a href="#type-Utils$ServerName">Utils$ServerName</a>;
+             <b>PROCEDURE </b><font color="#cc0033">getWebSocketLogger</font>*(p0 : <a href="java_util_function.html#type-Supplier">java_util_function.Supplier</a>;
+                                           p1 : <a href="java_lang.html#type-System$Logger$Level">java_lang.System$Logger$Level</a>) : <a href="#type-Logger">Logger</a>;
+             <b>PROCEDURE </b><font color="#cc0033">getWebSocketLogger</font>*(p0 : <a href="java_util_function.html#type-Supplier">java_util_function.Supplier</a>;
+                                           p1 : BOOLEAN) : <a href="#type-Logger">Logger</a>;
+             <b>PROCEDURE </b><font color="#cc0033">hasRemaining</font>*(p0 : <a href="java_util.html#type-List">java_util.List</a>) : BOOLEAN;
+             <b>PROCEDURE </b><font color="#cc0033">hostString</font>*(p0 : <a href="jdk_internal_net_http.html#type-HttpRequestImpl">jdk_internal_net_http.HttpRequestImpl</a>) : <a href="java_lang.html#type-String">java_lang.String</a>;
+             <b>PROCEDURE </b><font color="#cc0033">immutableSession</font>*(p0 : <a href="javax_net_ssl.html#type-SSLSession">javax_net_ssl.SSLSession</a>) : <a href="javax_net_ssl.html#type-SSLSession">javax_net_ssl.SSLSession</a>;
+             <b>PROCEDURE </b><font color="#cc0033">isHostnameVerificationDisabled</font>*() : BOOLEAN;
+             <b>PROCEDURE </b><font color="#cc0033">isValidName</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : BOOLEAN;
+             <b>PROCEDURE </b><font color="#cc0033">isValidValue</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : BOOLEAN;
+             <b>PROCEDURE </b><font color="#cc0033">newIAE</font>*(    p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                               IN  p1 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_lang.html#type-IllegalArgumentException">java_lang.IllegalArgumentException</a>;
+             <b>PROCEDURE </b><font color="#cc0033">permissionForProxy</font>*(p0 : <a href="java_net.html#type-InetSocketAddress">java_net.InetSocketAddress</a>) : <a href="java_net.html#type-URLPermission">java_net.URLPermission</a>;
+             <b>PROCEDURE </b><font color="#cc0033">permissionForServer</font>*(p0 : <a href="java_net.html#type-URI">java_net.URI</a>;
+                                            p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                            p2 : <a href="java_util_stream.html#type-Stream">java_util_stream.Stream</a>) : <a href="java_net.html#type-URLPermission">java_net.URLPermission</a>;
+             <b>PROCEDURE </b><font color="#cc0033">pow2Size</font>*(p0 : INTEGER) : INTEGER;
+             <b>PROCEDURE </b><font color="#cc0033">proxyHasDisabledSchemes</font>*(p0 : BOOLEAN) : BOOLEAN;
+             <b>PROCEDURE </b><font color="#cc0033">PROXY_TUNNEL_RESTRICTED</font>*(p0 : <a href="java_net_http.html#type-HttpClient">java_net_http.HttpClient</a>) : <a href="java_util_function.html#type-BiPredicate">java_util_function.BiPredicate</a>;
+             <b>PROCEDURE </b><font color="#cc0033">remaining</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>) : LONGINT;
+             <b>PROCEDURE </b><font color="#cc0033">remaining</font>*(p0 : <a href="java_util.html#type-List">java_util.List</a>) : LONGINT;
+             <b>PROCEDURE </b><font color="#cc0033">remaining</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>;
+                                      p1 : INTEGER) : INTEGER;
+             <b>PROCEDURE </b><font color="#cc0033">remaining</font>*(p0 : <a href="java_util.html#type-List">java_util.List</a>;
+                                  p1 : INTEGER) : INTEGER;
+             <b>PROCEDURE </b><font color="#cc0033">resolveAddress</font>*(p0 : <a href="java_net.html#type-InetSocketAddress">java_net.InetSocketAddress</a>) : <a href="java_net.html#type-InetSocketAddress">java_net.InetSocketAddress</a>;
+             <b>PROCEDURE </b><font color="#cc0033">setWebSocketUpgradeHeaders</font>*(p0 : <a href="jdk_internal_net_http.html#type-HttpRequestImpl">jdk_internal_net_http.HttpRequestImpl</a>);
+             <b>PROCEDURE </b><font color="#cc0033">sliceWithLimitedCapacity</font>*(p0 : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>;
+                                                 p1 : INTEGER) : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>;
+             <b>PROCEDURE </b><font color="#cc0033">stackTrace</font>*(p0 : <a href="java_lang.html#type-Throwable">java_lang.Throwable</a>) : <a href="java_lang.html#type-String">java_lang.String</a>;
+             <b>PROCEDURE </b><font color="#cc0033">stringOf</font>*(p0 : <a href="java_util.html#type-Collection">java_util.Collection</a>) : <a href="java_lang.html#type-String">java_lang.String</a>;
+             <b>PROCEDURE </b><font color="#cc0033">synchronizedRemaining</font>*(p0 : <a href="java_util.html#type-List">java_util.List</a>) : LONGINT;
+             <b>PROCEDURE </b><font color="#cc0033">toConnectException</font>*(p0 : <a href="java_lang.html#type-Throwable">java_lang.Throwable</a>) : <a href="java_lang.html#type-Throwable">java_lang.Throwable</a>;
+             <b>PROCEDURE </b><font color="#cc0033">unchecked</font>*(p0 : <a href="java_io.html#type-IOException">java_io.IOException</a>) : <a href="java_io.html#type-UncheckedIOException">java_io.UncheckedIOException</a>;
+             <b>PROCEDURE </b><font color="#cc0033">wrapForDebug</font>*(p0 : <a href="#type-Logger">Logger</a>;
+                                     p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                     p2 : <a href="java_util_concurrent.html#type-CompletableFuture">java_util_concurrent.CompletableFuture</a>) : <a href="java_util_concurrent.html#type-CompletableFuture">java_util_concurrent.CompletableFuture</a>;
+             <b>PROCEDURE </b><font color="#cc0033">wrapWithExtraDetail</font>*(p0 : <a href="java_lang.html#type-Throwable">java_lang.Throwable</a>;
+                                            p1 : <a href="java_util_function.html#type-Supplier">java_util_function.Supplier</a>) : <a href="java_lang.html#type-Throwable">java_lang.Throwable</a>;
+           <b>END</b>;
+
+  <a name="type-Utils$ProxyHeaders"></a><font color="#cc0033">Utils$ProxyHeaders</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Record">java_lang.Record</a>)
+                        <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                        <font color="green"><b> (* </b><a href="#meths-Utils$ProxyHeaders">Typebound Procedures</a><b> *)</b></font>
+                        <b>STATIC</b>
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_net_http.html#type-HttpHeaders">java_net_http.HttpHeaders</a>;
+                                          p1 : <a href="java_net_http.html#type-HttpHeaders">java_net_http.HttpHeaders</a>) : <a href="#type-Utils$ProxyHeaders">Utils$ProxyHeaders</a><b>,CONSTRUCTOR</b>;
+                        <b>END</b>;
+
+  <a name="type-Utils$ServerName"></a><font color="#cc0033">Utils$ServerName</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                      <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> *)</font>
+                      <font color="green"><b> (* </b><a href="#meths-Utils$ServerName">Typebound Procedures</a><b> *)</b></font>
+                      <b>END</b>;
+
+
+
+<a name="meths-BufferSupplier"></a>
+<b>PROCEDURE </b>(self:BufferSupplier) <font color="#cc0033">get</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BufferSupplier) <font color="#cc0033">get</font>*() : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:BufferSupplier) <font color="#cc0033">recycle</font>*(p0 : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-Cancelable"></a>
+<b>PROCEDURE </b>(self:Cancelable) <font color="#cc0033">cancel</font>*(p0 : BOOLEAN) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+<a name="meths-Demand"></a>
+<b>PROCEDURE </b>(self:Demand) <font color="#cc0033">decreaseAndGet</font>*(p0 : LONGINT) : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Demand) <font color="#cc0033">get</font>*() : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Demand) <font color="#cc0033">increase</font>*(p0 : LONGINT) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Demand) <font color="#cc0033">increaseIfFulfilled</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Demand) <font color="#cc0033">isFulfilled</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Demand) <font color="#cc0033">reset</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Demand) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Demand) <font color="#cc0033">tryDecrement</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-FlowTube"></a>
+<b>PROCEDURE </b>(self:FlowTube) <font color="#cc0033">connectFlows</font>*(p0 : <a href="jdk_internal_net_http_common.html#type-FlowTube$TubePublisher">jdk_internal_net_http_common.FlowTube$TubePublisher</a>;
+                                        p1 : <a href="#type-FlowTube$TubeSubscriber">FlowTube$TubeSubscriber</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FlowTube) <font color="#cc0033">isFinished</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+<a name="meths-FlowTube$TubeSubscriber"></a>
+<b>PROCEDURE </b>(self:FlowTube$TubeSubscriber) <font color="#cc0033">dropSubscription</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FlowTube$TubeSubscriber) <font color="#cc0033">supportsRecycling</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-HttpHeadersBuilder"></a>
+<b>PROCEDURE </b>(self:HttpHeadersBuilder) <font color="#cc0033">addHeader</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                               p1 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HttpHeadersBuilder) <font color="#cc0033">build</font>*() : <a href="java_net_http.html#type-HttpHeaders">java_net_http.HttpHeaders</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HttpHeadersBuilder) <font color="#cc0033">clear</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HttpHeadersBuilder) <font color="#cc0033">map</font>*() : <a href="java_util.html#type-Map">java_util.Map</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HttpHeadersBuilder) <font color="#cc0033">setHeader</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                               p1 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HttpHeadersBuilder) <font color="#cc0033">structuralCopy</font>*() : <a href="#type-HttpHeadersBuilder">HttpHeadersBuilder</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HttpHeadersBuilder) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-ImmutableExtendedSSLSession"></a>
+<b>PROCEDURE </b>(self:ImmutableExtendedSSLSession) <font color="#cc0033">getApplicationBufferSize</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImmutableExtendedSSLSession) <font color="#cc0033">getCipherSuite</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImmutableExtendedSSLSession) <font color="#cc0033">getCreationTime</font>*() : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImmutableExtendedSSLSession) <font color="#cc0033">getId</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImmutableExtendedSSLSession) <font color="#cc0033">getLastAccessedTime</font>*() : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImmutableExtendedSSLSession) <font color="#cc0033">getLocalCertificates</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_security_cert.html#type-Certificate">java_security_cert.Certificate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImmutableExtendedSSLSession) <font color="#cc0033">getLocalPrincipal</font>*() : <a href="java_security.html#type-Principal">java_security.Principal</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImmutableExtendedSSLSession) <font color="#cc0033">getLocalSupportedSignatureAlgorithms</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImmutableExtendedSSLSession) <font color="#cc0033">getPacketBufferSize</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImmutableExtendedSSLSession) <font color="#cc0033">getPeerCertificates</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_security_cert.html#type-Certificate">java_security_cert.Certificate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImmutableExtendedSSLSession) <font color="#cc0033">getPeerHost</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImmutableExtendedSSLSession) <font color="#cc0033">getPeerPort</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImmutableExtendedSSLSession) <font color="#cc0033">getPeerPrincipal</font>*() : <a href="java_security.html#type-Principal">java_security.Principal</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImmutableExtendedSSLSession) <font color="#cc0033">getPeerSupportedSignatureAlgorithms</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImmutableExtendedSSLSession) <font color="#cc0033">getProtocol</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImmutableExtendedSSLSession) <font color="#cc0033">getRequestedServerNames</font>*() : <a href="java_util.html#type-List">java_util.List</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImmutableExtendedSSLSession) <font color="#cc0033">getSessionContext</font>*() : <a href="javax_net_ssl.html#type-SSLSessionContext">javax_net_ssl.SSLSessionContext</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImmutableExtendedSSLSession) <font color="#cc0033">getStatusResponses</font>*() : <a href="java_util.html#type-List">java_util.List</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImmutableExtendedSSLSession) <font color="#cc0033">getValue</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImmutableExtendedSSLSession) <font color="#cc0033">getValueNames</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImmutableExtendedSSLSession) <font color="#cc0033">invalidate</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImmutableExtendedSSLSession) <font color="#cc0033">isValid</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImmutableExtendedSSLSession) <font color="#cc0033">putValue</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                       p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImmutableExtendedSSLSession) <font color="#cc0033">removeValue</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-ImmutableSSLSession"></a>
+<b>PROCEDURE </b>(self:ImmutableSSLSession) <font color="#cc0033">getApplicationBufferSize</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImmutableSSLSession) <font color="#cc0033">getCipherSuite</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImmutableSSLSession) <font color="#cc0033">getCreationTime</font>*() : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImmutableSSLSession) <font color="#cc0033">getId</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImmutableSSLSession) <font color="#cc0033">getLastAccessedTime</font>*() : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImmutableSSLSession) <font color="#cc0033">getLocalCertificates</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_security_cert.html#type-Certificate">java_security_cert.Certificate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImmutableSSLSession) <font color="#cc0033">getLocalPrincipal</font>*() : <a href="java_security.html#type-Principal">java_security.Principal</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImmutableSSLSession) <font color="#cc0033">getPacketBufferSize</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImmutableSSLSession) <font color="#cc0033">getPeerCertificates</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_security_cert.html#type-Certificate">java_security_cert.Certificate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImmutableSSLSession) <font color="#cc0033">getPeerHost</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImmutableSSLSession) <font color="#cc0033">getPeerPort</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImmutableSSLSession) <font color="#cc0033">getPeerPrincipal</font>*() : <a href="java_security.html#type-Principal">java_security.Principal</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImmutableSSLSession) <font color="#cc0033">getProtocol</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImmutableSSLSession) <font color="#cc0033">getSessionContext</font>*() : <a href="javax_net_ssl.html#type-SSLSessionContext">javax_net_ssl.SSLSessionContext</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImmutableSSLSession) <font color="#cc0033">getValue</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImmutableSSLSession) <font color="#cc0033">getValueNames</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImmutableSSLSession) <font color="#cc0033">invalidate</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImmutableSSLSession) <font color="#cc0033">isValid</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImmutableSSLSession) <font color="#cc0033">putValue</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                               p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImmutableSSLSession) <font color="#cc0033">removeValue</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-Logger"></a>
+<b>PROCEDURE </b>(self:Logger) <font color="#cc0033">log</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                             p1 : <a href="java_lang.html#type-Throwable">java_lang.Throwable</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Logger) <font color="#cc0033">log</font>*(p0 : <a href="java_util_function.html#type-Supplier">java_util_function.Supplier</a>;
+                             p1 : <a href="java_lang.html#type-Throwable">java_lang.Throwable</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Logger) <font color="#cc0033">log</font>*(    p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                             IN  p1 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Logger) <font color="#cc0033">log</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Logger) <font color="#cc0033">log</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Logger) <font color="#cc0033">log</font>*(p0 : <a href="java_util_function.html#type-Supplier">java_util_function.Supplier</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Logger) <font color="#cc0033">on</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-MinimalFuture"></a>
+<b>PROCEDURE </b>(self:MinimalFuture) <font color="#cc0033">cancel</font>*(p0 : BOOLEAN) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MinimalFuture) <font color="#cc0033">newIncompleteFuture</font>*() : <a href="java_util_concurrent.html#type-CompletableFuture">java_util_concurrent.CompletableFuture</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MinimalFuture) <font color="#cc0033">newIncompleteFuture</font>*() : <a href="#type-MinimalFuture">MinimalFuture</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MinimalFuture) <font color="#cc0033">obtrudeException</font>*(p0 : <a href="java_lang.html#type-Throwable">java_lang.Throwable</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MinimalFuture) <font color="#cc0033">obtrudeValue</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MinimalFuture) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-MinimalFuture$ExceptionalSupplier"></a>
+<b>PROCEDURE </b>(self:MinimalFuture$ExceptionalSupplier) <font color="#cc0033">get</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-OperationTrackers$Trackable"></a>
+<b>PROCEDURE </b>(self:OperationTrackers$Trackable) <font color="#cc0033">getOperationsTracker</font>*() : <a href="#type-OperationTrackers$Tracker">OperationTrackers$Tracker</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-OperationTrackers$Tracker"></a>
+<b>PROCEDURE </b>(self:OperationTrackers$Tracker) <font color="#cc0033">getName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:OperationTrackers$Tracker) <font color="#cc0033">getOutstandingHttp2Streams</font>*() : LONGINT<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:OperationTrackers$Tracker) <font color="#cc0033">getOutstandingHttpOperations</font>*() : LONGINT<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:OperationTrackers$Tracker) <font color="#cc0033">getOutstandingOperations</font>*() : LONGINT<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:OperationTrackers$Tracker) <font color="#cc0033">getOutstandingWebSocketOperations</font>*() : LONGINT<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:OperationTrackers$Tracker) <font color="#cc0033">isFacadeReferenced</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+<a name="meths-Pair"></a>
+<b>PROCEDURE </b>(self:Pair) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-SequentialScheduler"></a>
+<b>PROCEDURE </b>(self:SequentialScheduler) <font color="#cc0033">isStopped</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SequentialScheduler) <font color="#cc0033">runOrSchedule</font>*(p0 : <a href="java_util_concurrent.html#type-Executor">java_util_concurrent.Executor</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SequentialScheduler) <font color="#cc0033">runOrSchedule</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SequentialScheduler) <font color="#cc0033">stop</font>*()<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-SequentialScheduler$CompleteRestartableTask"></a>
+<b>PROCEDURE </b>(self:SequentialScheduler$CompleteRestartableTask) <font color="#cc0033">run</font>!()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SequentialScheduler$CompleteRestartableTask) <font color="#cc0033">run</font>*(p0 : <a href="#type-SequentialScheduler$DeferredCompleter">SequentialScheduler$DeferredCompleter</a>)<b>,NEW</b>;
+<a name="meths-SequentialScheduler$DeferredCompleter"></a>
+<b>PROCEDURE </b>(self:SequentialScheduler$DeferredCompleter) <font color="#cc0033">complete</font>*()<b>,NEW,ABSTRACT</b>;
+<a name="meths-SequentialScheduler$LockingRestartableTask"></a>
+<b>PROCEDURE </b>(self:SequentialScheduler$LockingRestartableTask) <font color="#cc0033">run</font>!()<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-SequentialScheduler$RestartableTask"></a>
+<b>PROCEDURE </b>(self:SequentialScheduler$RestartableTask) <font color="#cc0033">run</font>*(p0 : <a href="#type-SequentialScheduler$DeferredCompleter">SequentialScheduler$DeferredCompleter</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-SequentialScheduler$SynchronizedRestartableTask"></a>
+<b>PROCEDURE </b>(self:SequentialScheduler$SynchronizedRestartableTask) <font color="#cc0033">run</font>!()<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-SSLFlowDelegate"></a>
+<b>PROCEDURE </b>(self:SSLFlowDelegate) <font color="#cc0033">alpn</font>*() : <a href="java_util_concurrent.html#type-CompletableFuture">java_util_concurrent.CompletableFuture</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SSLFlowDelegate) <font color="#cc0033">checkForHandshake</font>!(p0 : <a href="java_lang.html#type-Throwable">java_lang.Throwable</a>) : <a href="java_lang.html#type-Throwable">java_lang.Throwable</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SSLFlowDelegate) <font color="#cc0033">closeNotifyReceived</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SSLFlowDelegate) <font color="#cc0033">enterReadScheduling</font>!() : <a href="jdk_internal_net_http_common.html#type-SubscriberWrapper$SchedulingAction">jdk_internal_net_http_common.SubscriberWrapper$SchedulingAction</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SSLFlowDelegate) <font color="#cc0033">monitor</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SSLFlowDelegate) <font color="#cc0033">resetReaderDemand</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SSLFlowDelegate) <font color="#cc0033">resumeReader</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SSLFlowDelegate) <font color="#cc0033">upstreamReader</font>*() : <a href="java_util_concurrent.html#type-Flow$Subscriber">java_util_concurrent.Flow$Subscriber</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SSLFlowDelegate) <font color="#cc0033">upstreamWriter</font>*() : <a href="java_util_concurrent.html#type-Flow$Subscriber">java_util_concurrent.Flow$Subscriber</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-SSLFlowDelegate$Monitor"></a>
+<b>PROCEDURE </b>(self:SSLFlowDelegate$Monitor) <font color="#cc0033">run</font>*()<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-SSLFlowDelegate$Monitorable"></a>
+<b>PROCEDURE </b>(self:SSLFlowDelegate$Monitorable) <font color="#cc0033">getInfo</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-SSLTube"></a>
+<b>PROCEDURE </b>(self:SSLTube) <font color="#cc0033">connectFlows</font>*(p0 : <a href="jdk_internal_net_http_common.html#type-FlowTube$TubePublisher">jdk_internal_net_http_common.FlowTube$TubePublisher</a>;
+                                       p1 : <a href="jdk_internal_net_http_common.html#type-FlowTube$TubeSubscriber">jdk_internal_net_http_common.FlowTube$TubeSubscriber</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SSLTube) <font color="#cc0033">getALPN</font>*() : <a href="java_util_concurrent.html#type-CompletableFuture">java_util_concurrent.CompletableFuture</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SSLTube) <font color="#cc0033">isFinished</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SSLTube) <font color="#cc0033">onComplete</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SSLTube) <font color="#cc0033">onError</font>*(p0 : <a href="java_lang.html#type-Throwable">java_lang.Throwable</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SSLTube) <font color="#cc0033">onNext</font>*(p0 : <a href="java_util.html#type-List">java_util.List</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SSLTube) <font color="#cc0033">onNext</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SSLTube) <font color="#cc0033">onSubscribe</font>*(p0 : <a href="java_util_concurrent.html#type-Flow$Subscription">java_util_concurrent.Flow$Subscription</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SSLTube) <font color="#cc0033">subscribe</font>*(p0 : <a href="java_util_concurrent.html#type-Flow$Subscriber">java_util_concurrent.Flow$Subscriber</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SSLTube) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-SubscriberWrapper"></a>
+<b>PROCEDURE </b>(self:SubscriberWrapper) <font color="#cc0033">addData</font>*(p0 : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SubscriberWrapper) <font color="#cc0033">close</font>*(p0 : <a href="java_lang.html#type-Throwable">java_lang.Throwable</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SubscriberWrapper) <font color="#cc0033">close</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SubscriberWrapper) <font color="#cc0033">closing</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SubscriberWrapper) <font color="#cc0033">completion</font>*() : <a href="java_util_concurrent.html#type-CompletableFuture">java_util_concurrent.CompletableFuture</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SubscriberWrapper) <font color="#cc0033">dbgString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SubscriberWrapper) <font color="#cc0033">enterScheduling</font>!() : <a href="jdk_internal_net_http_common.html#type-SubscriberWrapper$SchedulingAction">jdk_internal_net_http_common.SubscriberWrapper$SchedulingAction</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SubscriberWrapper) <font color="#cc0033">errorCommon</font>!(p0 : <a href="java_lang.html#type-Throwable">java_lang.Throwable</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SubscriberWrapper) <font color="#cc0033">incoming</font>!(p0 : <a href="java_util.html#type-List">java_util.List</a>;
+                                             p1 : BOOLEAN)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SubscriberWrapper) <font color="#cc0033">initialUpstreamDemand</font>!() : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SubscriberWrapper) <font color="#cc0033">onComplete</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SubscriberWrapper) <font color="#cc0033">onError</font>*(p0 : <a href="java_lang.html#type-Throwable">java_lang.Throwable</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SubscriberWrapper) <font color="#cc0033">onNext</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SubscriberWrapper) <font color="#cc0033">onNext</font>*(p0 : <a href="java_util.html#type-List">java_util.List</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SubscriberWrapper) <font color="#cc0033">onSubscribe</font>!()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SubscriberWrapper) <font color="#cc0033">onSubscribe</font>*(p0 : <a href="java_util_concurrent.html#type-Flow$Subscription">java_util_concurrent.Flow$Subscription</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SubscriberWrapper) <font color="#cc0033">outgoing</font>*(p0 : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>;
+                                             p1 : BOOLEAN)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SubscriberWrapper) <font color="#cc0033">outgoing</font>*(p0 : <a href="java_util.html#type-List">java_util.List</a>;
+                                             p1 : BOOLEAN)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SubscriberWrapper) <font color="#cc0033">requestMore</font>!()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SubscriberWrapper) <font color="#cc0033">resetDownstreamDemand</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SubscriberWrapper) <font color="#cc0033">signalScheduling</font>!() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SubscriberWrapper) <font color="#cc0033">subscribe</font>*(p0 : <a href="java_util_concurrent.html#type-Flow$Subscriber">java_util_concurrent.Flow$Subscriber</a>)<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:SubscriberWrapper) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SubscriberWrapper) <font color="#cc0033">upstreamWindow</font>*() : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SubscriberWrapper) <font color="#cc0033">upstreamWindowUpdate</font>!(p0 : LONGINT;
+                                                         p1 : LONGINT) : LONGINT<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-SubscriptionBase"></a>
+<b>PROCEDURE </b>(self:SubscriptionBase) <font color="#cc0033">cancel</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SubscriptionBase) <font color="#cc0033">request</font>*(p0 : LONGINT)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SubscriptionBase) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SubscriptionBase) <font color="#cc0033">tryDecrement</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SubscriptionBase) <font color="#cc0033">window</font>*() : LONGINT<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-Utils$ProxyHeaders"></a>
+<b>PROCEDURE </b>(self:Utils$ProxyHeaders) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:Utils$ProxyHeaders) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:Utils$ProxyHeaders) <font color="#cc0033">systemHeaders</font>*() : <a href="java_net_http.html#type-HttpHeaders">java_net_http.HttpHeaders</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Utils$ProxyHeaders) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:Utils$ProxyHeaders) <font color="#cc0033">userHeaders</font>*() : <a href="java_net_http.html#type-HttpHeaders">java_net_http.HttpHeaders</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-Utils$ServerName"></a>
+<b>PROCEDURE </b>(self:Utils$ServerName) <font color="#cc0033">getName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Utils$ServerName) <font color="#cc0033">isLiteral</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>END </b><font color="#cc0033">jdk_internal_net_http_common</font>.
+</font></pre></hr>
+<!-- BEGIN JavaScript -->
+<script>
+function toggle(node) {
+    node.classList.toggle("show"); 
+  }
+
+function cls(node) {
+    var prnt = node.parentNode;
+    var next = prnt.previousSibling;
+    var text = next.lastChild;
+    text.innerHTML = 
+        "The <b>class</b> property asserts that this type will be<br>" +
+        "implemented as a reference class in the underlying framework.";
+    text.classList.toggle("show");
+  }
+
+function newOk(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>has noArg-ctor</b> property asserts that this reference<br>" +
+        "class has a no-arg constructor, and thus objects of this<br>" +
+        "type can be allocated with NEW(). Component Pascal types<br>" +
+        "derived from this type can also be allocated using NEW().";
+    popuptext.classList.toggle("show"); 
+  }
+
+function noNew(node) { 
+    var prnt = node.parentNode; 
+    var next = prnt.previousSibling; 
+    var text = next.lastChild; 
+    text.innerHTML =  
+        "The <b>no noArg-ctor</b> property asserts that this reference<br>" +
+        "class does not have a noArg constructor. Objects of this<br>" +
+        "type cannot be allocated using NEW(), and Component<br>" +
+        "Pascal types  derived from this type also cannot be<br>" +
+        "allocated using NEW().";
+    text.classList.toggle("show");
+  }
+
+function noCpy(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>no value-assign</b> property asserts that this reference<br>" + 
+        "class does not have a value copy method. Therefore, it<br>" +
+        "is not possible to perform value assignments using<br>" +
+        "statements like <i>dst^</i> := <i>src^</i>";
+    popuptext.classList.toggle("show");
+  }
+
+function valueclass(node) { 
+        var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>valueclass</b> property asserts that this RECORD type is<br>" + 
+        "implemented as a value class in the CLR. It follows that<br>" +  
+        "value assignments can be made of these types. They can<br>" + 
+        "also be passed by value. Even pointers to records of<br>" + 
+        "such types may be dereferenced and copied using syntax<br>" + 
+        "such as  <i>dst^</i> := <i>src^</i>"; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+function argCtor(node) { 
+    var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>has arg-ctor</b> property asserts that this reference<br>" +  
+        "class has one or more constructors that take arguments.<br>" + 
+        "These constructors can be called from Component Pascal<br>" + 
+        "by calling an <i>init</i>(...) method from the static list<br>" + 
+        "here. Component Pascal types derived from this type<br>" + 
+        "can define constructors with arguments which call the<br>" + 
+        "super-type constructor.<br>" + 
+        "See <i>'Interfacing to constructors'</i> in the Release Notes."; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+</script>
+<!-- END JavaScript --> 
+
+</body></html>

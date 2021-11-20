@@ -1,0 +1,480 @@
+<html><head><title>javax_script</title>
+<style>
+<!-- BEGIN Inline CSS -->
+/* Popup container */
+.popup {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+/* The actual popup (appears on top) */
+.popup .popuptext {
+    visibility: hidden;
+    width: 430px;
+    background-color: white;
+    color: black;
+    text-align: left;
+    border-radius: 6px;
+    border-style: solid;
+    border-color: black;
+    padding: 8px 8px 8px 8px;
+    position: absolute;
+    z-index: 1;
+    margin-top: 30px;
+}
+
+/* Toggle this class when clicking on the popup container (hide and show the popup) */
+.popup .show {
+    visibility: visible;
+    opacity: 1;
+}
+
+</style>
+<!-- END Inline CSS -->
+</head><body bgcolor="white">
+<hr><pre>
+<font color="green">(*</font>
+<font color="green"> *  Creator PeToCps j2cps version 1.4.07 (March 2018)</font>
+<font color="green"> *  Compiled from jar-file /Library/Java/JavaVirtualMachines/zulu-11.jdk/Contents/Home/jmods/java.scripting.jmod</font>
+<font color="green"> *)</font>
+<b>FOREIGN MODULE </b><font color="#cc0033">javax_script</font>;
+
+<b>IMPORT</b>
+    <a href="javax_script.html">javax_script</a> := "javax.script",
+    <a href="java_io.html">java_io</a> := "java.io",
+    <a href="java_lang.html">java_lang</a> := "java.lang",
+    <a href="java_util.html">java_util</a> := "java.util";
+
+<b>TYPE</b>
+
+  <a name="type-AbstractScriptEngine"></a><font color="#cc0033">AbstractScriptEngine</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="javax_script.html#type-ScriptEngine">javax_script.ScriptEngine</a>)
+                          <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                          <font color="green"><b> (* </b><a href="#meths-AbstractScriptEngine">Typebound Procedures</a><b> *)</b></font>
+                            <font color="#cc0033">context</font>! : <a href="javax_script.html#type-ScriptContext">javax_script.ScriptContext</a>;
+                          <b>STATIC</b>
+                            <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="#type-Bindings">Bindings</a>) : <a href="#type-AbstractScriptEngine">AbstractScriptEngine</a><b>,CONSTRUCTOR</b>;
+                            <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-AbstractScriptEngine">AbstractScriptEngine</a><b>,CONSTRUCTOR</b>;
+                          <b>END</b>;
+
+  <a name="type-Bindings"></a><font color="#cc0033">Bindings</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_util.html#type-Map">java_util.Map</a>)
+              <font color="green"><b> (* </b><a href="#meths-Bindings">Typebound Procedures</a><b> *)</b></font>
+              <b>END</b>;
+
+  <a name="type-Compilable"></a><font color="#cc0033">Compilable</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                <font color="green"><b> (* </b><a href="#meths-Compilable">Typebound Procedures</a><b> *)</b></font>
+                <b>END</b>;
+
+  <a name="type-CompiledScript"></a><font color="#cc0033">CompiledScript</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                    <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                    <font color="green"><b> (* </b><a href="#meths-CompiledScript">Typebound Procedures</a><b> *)</b></font>
+                    <b>STATIC</b>
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CompiledScript">CompiledScript</a><b>,CONSTRUCTOR</b>;
+                    <b>END</b>;
+
+  <a name="type-Invocable"></a><font color="#cc0033">Invocable</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+               <font color="green"><b> (* </b><a href="#meths-Invocable">Typebound Procedures</a><b> *)</b></font>
+               <b>END</b>;
+
+  <a name="type-ScriptContext"></a><font color="#cc0033">ScriptContext</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                   <font color="green"><b> (* </b><a href="#meths-ScriptContext">Typebound Procedures</a><b> *)</b></font>
+                   <b>STATIC</b>
+                     <font color="#cc0033">ENGINE_SCOPE</font>* = 100;
+                     <font color="#cc0033">GLOBAL_SCOPE</font>* = 200;
+                   <b>END</b>;
+
+  <a name="type-ScriptEngine"></a><font color="#cc0033">ScriptEngine</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                  <font color="green"><b> (* </b><a href="#meths-ScriptEngine">Typebound Procedures</a><b> *)</b></font>
+                  <b>STATIC</b>
+                    <font color="#cc0033">ARGV</font>*             = "javax.script.argv";
+                    <font color="#cc0033">ENGINE</font>*           = "javax.script.engine";
+                    <font color="#cc0033">ENGINE_VERSION</font>*   = "javax.script.engine_version";
+                    <font color="#cc0033">FILENAME</font>*         = "javax.script.filename";
+                    <font color="#cc0033">LANGUAGE</font>*         = "javax.script.language";
+                    <font color="#cc0033">LANGUAGE_VERSION</font>* = "javax.script.language_version";
+                    <font color="#cc0033">NAME</font>*             = "javax.script.name";
+                  <b>END</b>;
+
+  <a name="type-ScriptEngineFactory"></a><font color="#cc0033">ScriptEngineFactory</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                         <font color="green"><b> (* </b><a href="#meths-ScriptEngineFactory">Typebound Procedures</a><b> *)</b></font>
+                         <b>END</b>;
+
+  <a name="type-ScriptEngineManager"></a><font color="#cc0033">ScriptEngineManager</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                         <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                         <font color="green"><b> (* </b><a href="#meths-ScriptEngineManager">Typebound Procedures</a><b> *)</b></font>
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-ClassLoader">java_lang.ClassLoader</a>) : <a href="#type-ScriptEngineManager">ScriptEngineManager</a><b>,CONSTRUCTOR</b>;
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-ScriptEngineManager">ScriptEngineManager</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-ScriptException"></a><font color="#cc0033">ScriptException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Exception">java_lang.Exception</a>)
+                     <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                     <font color="green"><b> (* </b><a href="#meths-ScriptException">Typebound Procedures</a><b> *)</b></font>
+                     <b>STATIC</b>
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                       p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                       p2 : INTEGER) : <a href="#type-ScriptException">ScriptException</a><b>,CONSTRUCTOR</b>;
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                       p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                       p2 : INTEGER;
+                                       p3 : INTEGER) : <a href="#type-ScriptException">ScriptException</a><b>,CONSTRUCTOR</b>;
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-ScriptException">ScriptException</a><b>,CONSTRUCTOR</b>;
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-Exception">java_lang.Exception</a>) : <a href="#type-ScriptException">ScriptException</a><b>,CONSTRUCTOR</b>;
+                     <b>END</b>;
+
+  <a name="type-SimpleBindings"></a><font color="#cc0033">SimpleBindings</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-Bindings">Bindings</a>)
+                    <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                    <font color="green"><b> (* </b><a href="#meths-SimpleBindings">Typebound Procedures</a><b> *)</b></font>
+                    <b>STATIC</b>
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-SimpleBindings">SimpleBindings</a><b>,CONSTRUCTOR</b>;
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_util.html#type-Map">java_util.Map</a>) : <a href="#type-SimpleBindings">SimpleBindings</a><b>,CONSTRUCTOR</b>;
+                    <b>END</b>;
+
+  <a name="type-SimpleScriptContext"></a><font color="#cc0033">SimpleScriptContext</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="javax_script.html#type-ScriptContext">javax_script.ScriptContext</a>)
+                         <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                         <font color="green"><b> (* </b><a href="#meths-SimpleScriptContext">Typebound Procedures</a><b> *)</b></font>
+                           <font color="#cc0033">writer</font>!      : <a href="java_io.html#type-Writer">java_io.Writer</a>;
+                           <font color="#cc0033">errorWriter</font>! : <a href="java_io.html#type-Writer">java_io.Writer</a>;
+                           <font color="#cc0033">reader</font>!      : <a href="java_io.html#type-Reader">java_io.Reader</a>;
+                           <font color="#cc0033">engineScope</font>! : <a href="javax_script.html#type-Bindings">javax_script.Bindings</a>;
+                           <font color="#cc0033">globalScope</font>! : <a href="javax_script.html#type-Bindings">javax_script.Bindings</a>;
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-SimpleScriptContext">SimpleScriptContext</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+
+
+<a name="meths-AbstractScriptEngine"></a>
+<b>PROCEDURE </b>(self:AbstractScriptEngine) <font color="#cc0033">eval</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                            p1 : <a href="#type-Bindings">Bindings</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AbstractScriptEngine) <font color="#cc0033">eval</font>*(p0 : <a href="java_io.html#type-Reader">java_io.Reader</a>;
+                                            p1 : <a href="#type-Bindings">Bindings</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AbstractScriptEngine) <font color="#cc0033">eval</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AbstractScriptEngine) <font color="#cc0033">eval</font>*(p0 : <a href="java_io.html#type-Reader">java_io.Reader</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AbstractScriptEngine) <font color="#cc0033">get</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AbstractScriptEngine) <font color="#cc0033">getBindings</font>*(p0 : INTEGER) : <a href="#type-Bindings">Bindings</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AbstractScriptEngine) <font color="#cc0033">getContext</font>*() : <a href="javax_script.html#type-ScriptContext">javax_script.ScriptContext</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AbstractScriptEngine) <font color="#cc0033">getScriptContext</font>!(p0 : <a href="#type-Bindings">Bindings</a>) : <a href="javax_script.html#type-ScriptContext">javax_script.ScriptContext</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AbstractScriptEngine) <font color="#cc0033">put</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                           p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AbstractScriptEngine) <font color="#cc0033">setBindings</font>*(p0 : <a href="#type-Bindings">Bindings</a>;
+                                                   p1 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AbstractScriptEngine) <font color="#cc0033">setContext</font>*(p0 : <a href="javax_script.html#type-ScriptContext">javax_script.ScriptContext</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-Bindings"></a>
+<b>PROCEDURE </b>(self:Bindings) <font color="#cc0033">containsKey</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Bindings) <font color="#cc0033">get</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Bindings) <font color="#cc0033">put</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                               p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Bindings) <font color="#cc0033">put</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                               p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Bindings) <font color="#cc0033">putAll</font>*(p0 : <a href="java_util.html#type-Map">java_util.Map</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Bindings) <font color="#cc0033">remove</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-Compilable"></a>
+<b>PROCEDURE </b>(self:Compilable) <font color="#cc0033">compile</font>*(p0 : <a href="java_io.html#type-Reader">java_io.Reader</a>) : <a href="javax_script.html#type-CompiledScript">javax_script.CompiledScript</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Compilable) <font color="#cc0033">compile</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="javax_script.html#type-CompiledScript">javax_script.CompiledScript</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-CompiledScript"></a>
+<b>PROCEDURE </b>(self:CompiledScript) <font color="#cc0033">eval</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CompiledScript) <font color="#cc0033">eval</font>*(p0 : <a href="#type-Bindings">Bindings</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CompiledScript) <font color="#cc0033">eval</font>*(p0 : <a href="#type-ScriptContext">ScriptContext</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CompiledScript) <font color="#cc0033">getEngine</font>*() : <a href="javax_script.html#type-ScriptEngine">javax_script.ScriptEngine</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-Invocable"></a>
+<b>PROCEDURE </b>(self:Invocable) <font color="#cc0033">getInterface</font>*(p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Invocable) <font color="#cc0033">getInterface</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                         p1 : <a href="java_lang.html#type-Class">java_lang.Class</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Invocable) <font color="#cc0033">invokeFunction</font>*(    p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                           IN  p1 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Invocable) <font color="#cc0033">invokeMethod</font>*(    p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                             p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                         IN  p2 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-ScriptContext"></a>
+<b>PROCEDURE </b>(self:ScriptContext) <font color="#cc0033">getAttribute</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                             p1 : INTEGER) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ScriptContext) <font color="#cc0033">getAttribute</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ScriptContext) <font color="#cc0033">getAttributesScope</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ScriptContext) <font color="#cc0033">getBindings</font>*(p0 : INTEGER) : <a href="#type-Bindings">Bindings</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ScriptContext) <font color="#cc0033">getErrorWriter</font>*() : <a href="java_io.html#type-Writer">java_io.Writer</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ScriptContext) <font color="#cc0033">getReader</font>*() : <a href="java_io.html#type-Reader">java_io.Reader</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ScriptContext) <font color="#cc0033">getScopes</font>*() : <a href="java_util.html#type-List">java_util.List</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ScriptContext) <font color="#cc0033">getWriter</font>*() : <a href="java_io.html#type-Writer">java_io.Writer</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ScriptContext) <font color="#cc0033">removeAttribute</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                p1 : INTEGER) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ScriptContext) <font color="#cc0033">setAttribute</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                             p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                             p2 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ScriptContext) <font color="#cc0033">setBindings</font>*(p0 : <a href="#type-Bindings">Bindings</a>;
+                                            p1 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ScriptContext) <font color="#cc0033">setErrorWriter</font>*(p0 : <a href="java_io.html#type-Writer">java_io.Writer</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ScriptContext) <font color="#cc0033">setReader</font>*(p0 : <a href="java_io.html#type-Reader">java_io.Reader</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ScriptContext) <font color="#cc0033">setWriter</font>*(p0 : <a href="java_io.html#type-Writer">java_io.Writer</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-ScriptEngine"></a>
+<b>PROCEDURE </b>(self:ScriptEngine) <font color="#cc0033">createBindings</font>*() : <a href="#type-Bindings">Bindings</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ScriptEngine) <font color="#cc0033">eval</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                    p1 : <a href="#type-Bindings">Bindings</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ScriptEngine) <font color="#cc0033">eval</font>*(p0 : <a href="java_io.html#type-Reader">java_io.Reader</a>;
+                                    p1 : <a href="#type-Bindings">Bindings</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ScriptEngine) <font color="#cc0033">eval</font>*(p0 : <a href="java_io.html#type-Reader">java_io.Reader</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ScriptEngine) <font color="#cc0033">eval</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                    p1 : <a href="#type-ScriptContext">ScriptContext</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ScriptEngine) <font color="#cc0033">eval</font>*(p0 : <a href="java_io.html#type-Reader">java_io.Reader</a>;
+                                    p1 : <a href="#type-ScriptContext">ScriptContext</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ScriptEngine) <font color="#cc0033">eval</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ScriptEngine) <font color="#cc0033">get</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ScriptEngine) <font color="#cc0033">getBindings</font>*(p0 : INTEGER) : <a href="#type-Bindings">Bindings</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ScriptEngine) <font color="#cc0033">getContext</font>*() : <a href="#type-ScriptContext">ScriptContext</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ScriptEngine) <font color="#cc0033">getFactory</font>*() : <a href="#type-ScriptEngineFactory">ScriptEngineFactory</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ScriptEngine) <font color="#cc0033">put</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                   p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ScriptEngine) <font color="#cc0033">setBindings</font>*(p0 : <a href="#type-Bindings">Bindings</a>;
+                                           p1 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ScriptEngine) <font color="#cc0033">setContext</font>*(p0 : <a href="#type-ScriptContext">ScriptContext</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-ScriptEngineFactory"></a>
+<b>PROCEDURE </b>(self:ScriptEngineFactory) <font color="#cc0033">getEngineName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ScriptEngineFactory) <font color="#cc0033">getEngineVersion</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ScriptEngineFactory) <font color="#cc0033">getExtensions</font>*() : <a href="java_util.html#type-List">java_util.List</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ScriptEngineFactory) <font color="#cc0033">getLanguageName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ScriptEngineFactory) <font color="#cc0033">getLanguageVersion</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ScriptEngineFactory) <font color="#cc0033">getMethodCallSyntax</font>*(    p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                              p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                          IN  p2 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ScriptEngineFactory) <font color="#cc0033">getMimeTypes</font>*() : <a href="java_util.html#type-List">java_util.List</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ScriptEngineFactory) <font color="#cc0033">getNames</font>*() : <a href="java_util.html#type-List">java_util.List</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ScriptEngineFactory) <font color="#cc0033">getOutputStatement</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ScriptEngineFactory) <font color="#cc0033">getParameter</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ScriptEngineFactory) <font color="#cc0033">getProgram</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ScriptEngineFactory) <font color="#cc0033">getScriptEngine</font>*() : <a href="javax_script.html#type-ScriptEngine">javax_script.ScriptEngine</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-ScriptEngineManager"></a>
+<b>PROCEDURE </b>(self:ScriptEngineManager) <font color="#cc0033">get</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ScriptEngineManager) <font color="#cc0033">getBindings</font>*() : <a href="javax_script.html#type-Bindings">javax_script.Bindings</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ScriptEngineManager) <font color="#cc0033">getEngineByExtension</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="javax_script.html#type-ScriptEngine">javax_script.ScriptEngine</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ScriptEngineManager) <font color="#cc0033">getEngineByMimeType</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="javax_script.html#type-ScriptEngine">javax_script.ScriptEngine</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ScriptEngineManager) <font color="#cc0033">getEngineByName</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="javax_script.html#type-ScriptEngine">javax_script.ScriptEngine</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ScriptEngineManager) <font color="#cc0033">getEngineFactories</font>*() : <a href="java_util.html#type-List">java_util.List</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ScriptEngineManager) <font color="#cc0033">put</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                          p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ScriptEngineManager) <font color="#cc0033">registerEngineExtension</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                              p1 : <a href="javax_script.html#type-ScriptEngineFactory">javax_script.ScriptEngineFactory</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ScriptEngineManager) <font color="#cc0033">registerEngineMimeType</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                             p1 : <a href="javax_script.html#type-ScriptEngineFactory">javax_script.ScriptEngineFactory</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ScriptEngineManager) <font color="#cc0033">registerEngineName</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                         p1 : <a href="javax_script.html#type-ScriptEngineFactory">javax_script.ScriptEngineFactory</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ScriptEngineManager) <font color="#cc0033">setBindings</font>*(p0 : <a href="javax_script.html#type-Bindings">javax_script.Bindings</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-ScriptException"></a>
+<b>PROCEDURE </b>(self:ScriptException) <font color="#cc0033">getColumnNumber</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ScriptException) <font color="#cc0033">getFileName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ScriptException) <font color="#cc0033">getLineNumber</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ScriptException) <font color="#cc0033">getMessage</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-SimpleBindings"></a>
+<b>PROCEDURE </b>(self:SimpleBindings) <font color="#cc0033">clear</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SimpleBindings) <font color="#cc0033">containsKey</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SimpleBindings) <font color="#cc0033">containsValue</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SimpleBindings) <font color="#cc0033">entrySet</font>*() : <a href="java_util.html#type-Set">java_util.Set</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SimpleBindings) <font color="#cc0033">get</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SimpleBindings) <font color="#cc0033">isEmpty</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SimpleBindings) <font color="#cc0033">keySet</font>*() : <a href="java_util.html#type-Set">java_util.Set</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SimpleBindings) <font color="#cc0033">put</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                     p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SimpleBindings) <font color="#cc0033">put</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                     p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SimpleBindings) <font color="#cc0033">putAll</font>*(p0 : <a href="java_util.html#type-Map">java_util.Map</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SimpleBindings) <font color="#cc0033">remove</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SimpleBindings) <font color="#cc0033">size</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SimpleBindings) <font color="#cc0033">values</font>*() : <a href="java_util.html#type-Collection">java_util.Collection</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-SimpleScriptContext"></a>
+<b>PROCEDURE </b>(self:SimpleScriptContext) <font color="#cc0033">getAttribute</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                   p1 : INTEGER) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SimpleScriptContext) <font color="#cc0033">getAttribute</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SimpleScriptContext) <font color="#cc0033">getAttributesScope</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SimpleScriptContext) <font color="#cc0033">getBindings</font>*(p0 : INTEGER) : <a href="javax_script.html#type-Bindings">javax_script.Bindings</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SimpleScriptContext) <font color="#cc0033">getErrorWriter</font>*() : <a href="java_io.html#type-Writer">java_io.Writer</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SimpleScriptContext) <font color="#cc0033">getReader</font>*() : <a href="java_io.html#type-Reader">java_io.Reader</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SimpleScriptContext) <font color="#cc0033">getScopes</font>*() : <a href="java_util.html#type-List">java_util.List</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SimpleScriptContext) <font color="#cc0033">getWriter</font>*() : <a href="java_io.html#type-Writer">java_io.Writer</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SimpleScriptContext) <font color="#cc0033">removeAttribute</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                      p1 : INTEGER) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SimpleScriptContext) <font color="#cc0033">setAttribute</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                   p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                   p2 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SimpleScriptContext) <font color="#cc0033">setBindings</font>*(p0 : <a href="javax_script.html#type-Bindings">javax_script.Bindings</a>;
+                                                  p1 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SimpleScriptContext) <font color="#cc0033">setErrorWriter</font>*(p0 : <a href="java_io.html#type-Writer">java_io.Writer</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SimpleScriptContext) <font color="#cc0033">setReader</font>*(p0 : <a href="java_io.html#type-Reader">java_io.Reader</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SimpleScriptContext) <font color="#cc0033">setWriter</font>*(p0 : <a href="java_io.html#type-Writer">java_io.Writer</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>END </b><font color="#cc0033">javax_script</font>.
+</font></pre></hr>
+<!-- BEGIN JavaScript -->
+<script>
+function toggle(node) {
+    node.classList.toggle("show"); 
+  }
+
+function cls(node) {
+    var prnt = node.parentNode;
+    var next = prnt.previousSibling;
+    var text = next.lastChild;
+    text.innerHTML = 
+        "The <b>class</b> property asserts that this type will be<br>" +
+        "implemented as a reference class in the underlying framework.";
+    text.classList.toggle("show");
+  }
+
+function newOk(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>has noArg-ctor</b> property asserts that this reference<br>" +
+        "class has a no-arg constructor, and thus objects of this<br>" +
+        "type can be allocated with NEW(). Component Pascal types<br>" +
+        "derived from this type can also be allocated using NEW().";
+    popuptext.classList.toggle("show"); 
+  }
+
+function noNew(node) { 
+    var prnt = node.parentNode; 
+    var next = prnt.previousSibling; 
+    var text = next.lastChild; 
+    text.innerHTML =  
+        "The <b>no noArg-ctor</b> property asserts that this reference<br>" +
+        "class does not have a noArg constructor. Objects of this<br>" +
+        "type cannot be allocated using NEW(), and Component<br>" +
+        "Pascal types  derived from this type also cannot be<br>" +
+        "allocated using NEW().";
+    text.classList.toggle("show");
+  }
+
+function noCpy(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>no value-assign</b> property asserts that this reference<br>" + 
+        "class does not have a value copy method. Therefore, it<br>" +
+        "is not possible to perform value assignments using<br>" +
+        "statements like <i>dst^</i> := <i>src^</i>";
+    popuptext.classList.toggle("show");
+  }
+
+function valueclass(node) { 
+        var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>valueclass</b> property asserts that this RECORD type is<br>" + 
+        "implemented as a value class in the CLR. It follows that<br>" +  
+        "value assignments can be made of these types. They can<br>" + 
+        "also be passed by value. Even pointers to records of<br>" + 
+        "such types may be dereferenced and copied using syntax<br>" + 
+        "such as  <i>dst^</i> := <i>src^</i>"; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+function argCtor(node) { 
+    var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>has arg-ctor</b> property asserts that this reference<br>" +  
+        "class has one or more constructors that take arguments.<br>" + 
+        "These constructors can be called from Component Pascal<br>" + 
+        "by calling an <i>init</i>(...) method from the static list<br>" + 
+        "here. Component Pascal types derived from this type<br>" + 
+        "can define constructors with arguments which call the<br>" + 
+        "super-type constructor.<br>" + 
+        "See <i>'Interfacing to constructors'</i> in the Release Notes."; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+</script>
+<!-- END JavaScript --> 
+
+</body></html>

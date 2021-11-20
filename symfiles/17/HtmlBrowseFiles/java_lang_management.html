@@ -1,0 +1,557 @@
+<html><head><title>java_lang_management</title>
+<style>
+<!-- BEGIN Inline CSS -->
+/* Popup container */
+.popup {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+/* The actual popup (appears on top) */
+.popup .popuptext {
+    visibility: hidden;
+    width: 430px;
+    background-color: white;
+    color: black;
+    text-align: left;
+    border-radius: 6px;
+    border-style: solid;
+    border-color: black;
+    padding: 8px 8px 8px 8px;
+    position: absolute;
+    z-index: 1;
+    margin-top: 30px;
+}
+
+/* Toggle this class when clicking on the popup container (hide and show the popup) */
+.popup .show {
+    visibility: visible;
+    opacity: 1;
+}
+
+</style>
+<!-- END Inline CSS -->
+</head><body bgcolor="white">
+<hr><pre>
+<font color="green">(*</font>
+<font color="green"> *  Creator PeToCps j2cps version 1.4.07 (March 2018)</font>
+<font color="green"> *  Compiled from jar-file /Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home/jmods/java.management.jmod</font>
+<font color="green"> *)</font>
+<b>FOREIGN MODULE </b><font color="#cc0033">java_lang_management</font>;
+
+<b>IMPORT</b>
+    <a href="javax_management.html">javax_management</a> := "javax.management",
+    <a href="javax_management_openmbean.html">javax_management_openmbean</a> := "javax.management.openmbean",
+    <a href="java_lang.html">java_lang</a> := "java.lang",
+    <a href="java_lang_management.html">java_lang_management</a> := "java.lang.management",
+    <a href="java_security.html">java_security</a> := "java.security",
+    <a href="java_util.html">java_util</a> := "java.util";
+
+<b>TYPE</b>
+
+  <a name="type-BufferPoolMXBean"></a><font color="#cc0033">BufferPoolMXBean</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-PlatformManagedObject">PlatformManagedObject</a>)
+                      <font color="green"><b> (* </b><a href="#meths-BufferPoolMXBean">Typebound Procedures</a><b> *)</b></font>
+                      <b>END</b>;
+
+  <a name="type-ClassLoadingMXBean"></a><font color="#cc0033">ClassLoadingMXBean</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-PlatformManagedObject">PlatformManagedObject</a>)
+                        <font color="green"><b> (* </b><a href="#meths-ClassLoadingMXBean">Typebound Procedures</a><b> *)</b></font>
+                        <b>END</b>;
+
+  <a name="type-CompilationMXBean"></a><font color="#cc0033">CompilationMXBean</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-PlatformManagedObject">PlatformManagedObject</a>)
+                       <font color="green"><b> (* </b><a href="#meths-CompilationMXBean">Typebound Procedures</a><b> *)</b></font>
+                       <b>END</b>;
+
+  <a name="type-GarbageCollectorMXBean"></a><font color="#cc0033">GarbageCollectorMXBean</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_lang_management.html#type-MemoryManagerMXBean">java_lang_management.MemoryManagerMXBean</a>)
+                            <font color="green"><b> (* </b><a href="#meths-GarbageCollectorMXBean">Typebound Procedures</a><b> *)</b></font>
+                            <b>END</b>;
+
+  <a name="type-LockInfo"></a><font color="#cc0033">LockInfo</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+              <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+              <font color="green"><b> (* </b><a href="#meths-LockInfo">Typebound Procedures</a><b> *)</b></font>
+              <b>STATIC</b>
+                <b>PROCEDURE </b><font color="#cc0033">from</font>*(p0 : <a href="javax_management_openmbean.html#type-CompositeData">javax_management_openmbean.CompositeData</a>) : <a href="#type-LockInfo">LockInfo</a>;
+                <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                p1 : INTEGER) : <a href="#type-LockInfo">LockInfo</a><b>,CONSTRUCTOR</b>;
+              <b>END</b>;
+
+  <a name="type-ManagementFactory"></a><font color="#cc0033">ManagementFactory</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                       <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> *)</font>
+                       <b>STATIC</b>
+                         <font color="#cc0033">CLASS_LOADING_MXBEAN_NAME</font>*            = "java.lang:type=ClassLoading";
+                         <font color="#cc0033">COMPILATION_MXBEAN_NAME</font>*              = "java.lang:type=Compilation";
+                         <font color="#cc0033">GARBAGE_COLLECTOR_MXBEAN_DOMAIN_TYPE</font>* = "java.lang:type=GarbageCollector";
+                         <font color="#cc0033">MEMORY_MANAGER_MXBEAN_DOMAIN_TYPE</font>*    = "java.lang:type=MemoryManager";
+                         <font color="#cc0033">MEMORY_MXBEAN_NAME</font>*                   = "java.lang:type=Memory";
+                         <font color="#cc0033">MEMORY_POOL_MXBEAN_DOMAIN_TYPE</font>*       = "java.lang:type=MemoryPool";
+                         <font color="#cc0033">OPERATING_SYSTEM_MXBEAN_NAME</font>*         = "java.lang:type=OperatingSystem";
+                         <font color="#cc0033">RUNTIME_MXBEAN_NAME</font>*                  = "java.lang:type=Runtime";
+                         <font color="#cc0033">THREAD_MXBEAN_NAME</font>*                   = "java.lang:type=Threading";
+                         <b>PROCEDURE </b><font color="#cc0033">getClassLoadingMXBean</font>*() : <a href="java_lang_management.html#type-ClassLoadingMXBean">java_lang_management.ClassLoadingMXBean</a>;
+                         <b>PROCEDURE </b><font color="#cc0033">getCompilationMXBean</font>*() : <a href="java_lang_management.html#type-CompilationMXBean">java_lang_management.CompilationMXBean</a>;
+                         <b>PROCEDURE </b><font color="#cc0033">getGarbageCollectorMXBeans</font>*() : <a href="java_util.html#type-List">java_util.List</a>;
+                         <b>PROCEDURE </b><font color="#cc0033">getMemoryManagerMXBeans</font>*() : <a href="java_util.html#type-List">java_util.List</a>;
+                         <b>PROCEDURE </b><font color="#cc0033">getMemoryMXBean</font>*() : <a href="#type-MemoryMXBean">MemoryMXBean</a>;
+                         <b>PROCEDURE </b><font color="#cc0033">getMemoryPoolMXBeans</font>*() : <a href="java_util.html#type-List">java_util.List</a>;
+                         <b>PROCEDURE </b><font color="#cc0033">getOperatingSystemMXBean</font>*() : <a href="java_lang_management.html#type-OperatingSystemMXBean">java_lang_management.OperatingSystemMXBean</a>;
+                         <b>PROCEDURE </b><font color="#cc0033">getPlatformManagementInterfaces</font>*() : <a href="java_util.html#type-Set">java_util.Set</a>;
+                         <b>PROCEDURE </b><font color="#cc0033">getPlatformMBeanServer</font>*() : <a href="javax_management.html#type-MBeanServer">javax_management.MBeanServer</a>;
+                         <b>PROCEDURE </b><font color="#cc0033">getPlatformMXBean</font>*(p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>) : <a href="#type-PlatformManagedObject">PlatformManagedObject</a>;
+                         <b>PROCEDURE </b><font color="#cc0033">getPlatformMXBean</font>*(p0 : <a href="javax_management.html#type-MBeanServerConnection">javax_management.MBeanServerConnection</a>;
+                                                      p1 : <a href="java_lang.html#type-Class">java_lang.Class</a>) : <a href="#type-PlatformManagedObject">PlatformManagedObject</a>;
+                         <b>PROCEDURE </b><font color="#cc0033">getPlatformMXBeans</font>*(p0 : <a href="javax_management.html#type-MBeanServerConnection">javax_management.MBeanServerConnection</a>;
+                                                       p1 : <a href="java_lang.html#type-Class">java_lang.Class</a>) : <a href="java_util.html#type-List">java_util.List</a>;
+                         <b>PROCEDURE </b><font color="#cc0033">getPlatformMXBeans</font>*(p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>) : <a href="java_util.html#type-List">java_util.List</a>;
+                         <b>PROCEDURE </b><font color="#cc0033">getRuntimeMXBean</font>*() : <a href="#type-RuntimeMXBean">RuntimeMXBean</a>;
+                         <b>PROCEDURE </b><font color="#cc0033">getThreadMXBean</font>*() : <a href="#type-ThreadMXBean">ThreadMXBean</a>;
+                         <b>PROCEDURE </b><font color="#cc0033">newPlatformMXBeanProxy</font>*(p0 : <a href="javax_management.html#type-MBeanServerConnection">javax_management.MBeanServerConnection</a>;
+                                                           p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                           p2 : <a href="java_lang.html#type-Class">java_lang.Class</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                       <b>END</b>;
+
+  <a name="type-ManagementPermission"></a><font color="#cc0033">ManagementPermission</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_security.html#type-BasicPermission">java_security.BasicPermission</a>)
+                          <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                          <b>STATIC</b>
+                            <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                            p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-ManagementPermission">ManagementPermission</a><b>,CONSTRUCTOR</b>;
+                            <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-ManagementPermission">ManagementPermission</a><b>,CONSTRUCTOR</b>;
+                          <b>END</b>;
+
+  <a name="type-MemoryManagerMXBean"></a><font color="#cc0033">MemoryManagerMXBean</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-PlatformManagedObject">PlatformManagedObject</a>)
+                         <font color="green"><b> (* </b><a href="#meths-MemoryManagerMXBean">Typebound Procedures</a><b> *)</b></font>
+                         <b>END</b>;
+
+  <a name="type-MemoryMXBean"></a><font color="#cc0033">MemoryMXBean</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-PlatformManagedObject">PlatformManagedObject</a>)
+                  <font color="green"><b> (* </b><a href="#meths-MemoryMXBean">Typebound Procedures</a><b> *)</b></font>
+                  <b>END</b>;
+
+  <a name="type-MemoryNotificationInfo"></a><font color="#cc0033">MemoryNotificationInfo</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                            <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                            <font color="green"><b> (* </b><a href="#meths-MemoryNotificationInfo">Typebound Procedures</a><b> *)</b></font>
+                            <b>STATIC</b>
+                              <font color="#cc0033">MEMORY_COLLECTION_THRESHOLD_EXCEEDED</font>* = "java.management.memory.collection.threshold.exceeded";
+                              <font color="#cc0033">MEMORY_THRESHOLD_EXCEEDED</font>*            = "java.management.memory.threshold.exceeded";
+                              <b>PROCEDURE </b><font color="#cc0033">from</font>*(p0 : <a href="javax_management_openmbean.html#type-CompositeData">javax_management_openmbean.CompositeData</a>) : <a href="#type-MemoryNotificationInfo">MemoryNotificationInfo</a>;
+                              <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                              p1 : <a href="#type-MemoryUsage">MemoryUsage</a>;
+                                              p2 : LONGINT) : <a href="#type-MemoryNotificationInfo">MemoryNotificationInfo</a><b>,CONSTRUCTOR</b>;
+                            <b>END</b>;
+
+  <a name="type-MemoryPoolMXBean"></a><font color="#cc0033">MemoryPoolMXBean</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-PlatformManagedObject">PlatformManagedObject</a>)
+                      <font color="green"><b> (* </b><a href="#meths-MemoryPoolMXBean">Typebound Procedures</a><b> *)</b></font>
+                      <b>END</b>;
+
+  <a name="type-MemoryType"></a><font color="#cc0033">MemoryType</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Enum">java_lang.Enum</a>)
+                <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> *)</font>
+                <font color="green"><b> (* </b><a href="#meths-MemoryType">Typebound Procedures</a><b> *)</b></font>
+                <b>STATIC</b>
+                  <a name="type-HEAP"></a><font color="#cc0033">HEAP</font>*     : <a href="#type-MemoryType">MemoryType</a>;
+                  <a name="type-NON_HEAP"></a><font color="#cc0033">NON_HEAP</font>* : <a href="#type-MemoryType">MemoryType</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">valueOf</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-MemoryType">MemoryType</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">values</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-MemoryType">MemoryType</a>;
+                <b>END</b>;
+
+  <a name="type-MemoryUsage"></a><font color="#cc0033">MemoryUsage</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                 <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                 <font color="green"><b> (* </b><a href="#meths-MemoryUsage">Typebound Procedures</a><b> *)</b></font>
+                 <b>STATIC</b>
+                   <b>PROCEDURE </b><font color="#cc0033">from</font>*(p0 : <a href="javax_management_openmbean.html#type-CompositeData">javax_management_openmbean.CompositeData</a>) : <a href="#type-MemoryUsage">MemoryUsage</a>;
+                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : LONGINT;
+                                   p1 : LONGINT;
+                                   p2 : LONGINT;
+                                   p3 : LONGINT) : <a href="#type-MemoryUsage">MemoryUsage</a><b>,CONSTRUCTOR</b>;
+                 <b>END</b>;
+
+  <a name="type-MonitorInfo"></a><font color="#cc0033">MonitorInfo</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang_management.html#type-LockInfo">java_lang_management.LockInfo</a>)
+                 <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                 <font color="green"><b> (* </b><a href="#meths-MonitorInfo">Typebound Procedures</a><b> *)</b></font>
+                 <b>STATIC</b>
+                   <b>PROCEDURE </b><font color="#cc0033">from</font>*(p0 : <a href="javax_management_openmbean.html#type-CompositeData">javax_management_openmbean.CompositeData</a>) : <a href="#type-MonitorInfo">MonitorInfo</a>;
+                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                   p1 : INTEGER;
+                                   p2 : INTEGER;
+                                   p3 : <a href="java_lang.html#type-StackTraceElement">java_lang.StackTraceElement</a>) : <a href="#type-MonitorInfo">MonitorInfo</a><b>,CONSTRUCTOR</b>;
+                 <b>END</b>;
+
+  <a name="type-OperatingSystemMXBean"></a><font color="#cc0033">OperatingSystemMXBean</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-PlatformManagedObject">PlatformManagedObject</a>)
+                           <font color="green"><b> (* </b><a href="#meths-OperatingSystemMXBean">Typebound Procedures</a><b> *)</b></font>
+                           <b>END</b>;
+
+  <a name="type-PlatformLoggingMXBean"></a><font color="#cc0033">PlatformLoggingMXBean</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-PlatformManagedObject">PlatformManagedObject</a>)
+                           <font color="green"><b> (* </b><a href="#meths-PlatformLoggingMXBean">Typebound Procedures</a><b> *)</b></font>
+                           <b>END</b>;
+
+  <a name="type-PlatformManagedObject"></a><font color="#cc0033">PlatformManagedObject</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                           <font color="green"><b> (* </b><a href="#meths-PlatformManagedObject">Typebound Procedures</a><b> *)</b></font>
+                           <b>END</b>;
+
+  <a name="type-RuntimeMXBean"></a><font color="#cc0033">RuntimeMXBean</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-PlatformManagedObject">PlatformManagedObject</a>)
+                   <font color="green"><b> (* </b><a href="#meths-RuntimeMXBean">Typebound Procedures</a><b> *)</b></font>
+                   <b>END</b>;
+
+  <a name="type-ThreadInfo"></a><font color="#cc0033">ThreadInfo</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> *)</font>
+                <font color="green"><b> (* </b><a href="#meths-ThreadInfo">Typebound Procedures</a><b> *)</b></font>
+                <b>STATIC</b>
+                  <b>PROCEDURE </b><font color="#cc0033">from</font>*(p0 : <a href="javax_management_openmbean.html#type-CompositeData">javax_management_openmbean.CompositeData</a>) : <a href="#type-ThreadInfo">ThreadInfo</a>;
+                <b>END</b>;
+
+  <a name="type-ThreadMXBean"></a><font color="#cc0033">ThreadMXBean</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_lang_management.html#type-PlatformManagedObject">java_lang_management.PlatformManagedObject</a>)
+                  <font color="green"><b> (* </b><a href="#meths-ThreadMXBean">Typebound Procedures</a><b> *)</b></font>
+                  <b>END</b>;
+
+
+
+<a name="meths-BufferPoolMXBean"></a>
+<b>PROCEDURE </b>(self:BufferPoolMXBean) <font color="#cc0033">getCount</font>*() : LONGINT<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:BufferPoolMXBean) <font color="#cc0033">getMemoryUsed</font>*() : LONGINT<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:BufferPoolMXBean) <font color="#cc0033">getName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:BufferPoolMXBean) <font color="#cc0033">getTotalCapacity</font>*() : LONGINT<b>,NEW,ABSTRACT</b>;
+<a name="meths-ClassLoadingMXBean"></a>
+<b>PROCEDURE </b>(self:ClassLoadingMXBean) <font color="#cc0033">getLoadedClassCount</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ClassLoadingMXBean) <font color="#cc0033">getTotalLoadedClassCount</font>*() : LONGINT<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ClassLoadingMXBean) <font color="#cc0033">getUnloadedClassCount</font>*() : LONGINT<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ClassLoadingMXBean) <font color="#cc0033">isVerbose</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ClassLoadingMXBean) <font color="#cc0033">setVerbose</font>*(p0 : BOOLEAN)<b>,NEW,ABSTRACT</b>;
+<a name="meths-CompilationMXBean"></a>
+<b>PROCEDURE </b>(self:CompilationMXBean) <font color="#cc0033">getName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CompilationMXBean) <font color="#cc0033">getTotalCompilationTime</font>*() : LONGINT<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CompilationMXBean) <font color="#cc0033">isCompilationTimeMonitoringSupported</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+<a name="meths-GarbageCollectorMXBean"></a>
+<b>PROCEDURE </b>(self:GarbageCollectorMXBean) <font color="#cc0033">getCollectionCount</font>*() : LONGINT<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:GarbageCollectorMXBean) <font color="#cc0033">getCollectionTime</font>*() : LONGINT<b>,NEW,ABSTRACT</b>;
+<a name="meths-LockInfo"></a>
+<b>PROCEDURE </b>(self:LockInfo) <font color="#cc0033">getClassName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LockInfo) <font color="#cc0033">getIdentityHashCode</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LockInfo) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-MemoryManagerMXBean"></a>
+<b>PROCEDURE </b>(self:MemoryManagerMXBean) <font color="#cc0033">getMemoryPoolNames</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MemoryManagerMXBean) <font color="#cc0033">getName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MemoryManagerMXBean) <font color="#cc0033">isValid</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+<a name="meths-MemoryMXBean"></a>
+<b>PROCEDURE </b>(self:MemoryMXBean) <font color="#cc0033">gc</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MemoryMXBean) <font color="#cc0033">getHeapMemoryUsage</font>*() : <a href="#type-MemoryUsage">MemoryUsage</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MemoryMXBean) <font color="#cc0033">getNonHeapMemoryUsage</font>*() : <a href="#type-MemoryUsage">MemoryUsage</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MemoryMXBean) <font color="#cc0033">getObjectPendingFinalizationCount</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MemoryMXBean) <font color="#cc0033">isVerbose</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MemoryMXBean) <font color="#cc0033">setVerbose</font>*(p0 : BOOLEAN)<b>,NEW,ABSTRACT</b>;
+<a name="meths-MemoryNotificationInfo"></a>
+<b>PROCEDURE </b>(self:MemoryNotificationInfo) <font color="#cc0033">getCount</font>*() : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MemoryNotificationInfo) <font color="#cc0033">getPoolName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MemoryNotificationInfo) <font color="#cc0033">getUsage</font>*() : <a href="#type-MemoryUsage">MemoryUsage</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-MemoryPoolMXBean"></a>
+<b>PROCEDURE </b>(self:MemoryPoolMXBean) <font color="#cc0033">getCollectionUsage</font>*() : <a href="#type-MemoryUsage">MemoryUsage</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MemoryPoolMXBean) <font color="#cc0033">getCollectionUsageThreshold</font>*() : LONGINT<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MemoryPoolMXBean) <font color="#cc0033">getCollectionUsageThresholdCount</font>*() : LONGINT<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MemoryPoolMXBean) <font color="#cc0033">getMemoryManagerNames</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MemoryPoolMXBean) <font color="#cc0033">getName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MemoryPoolMXBean) <font color="#cc0033">getPeakUsage</font>*() : <a href="#type-MemoryUsage">MemoryUsage</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MemoryPoolMXBean) <font color="#cc0033">getType</font>*() : <a href="#type-MemoryType">MemoryType</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MemoryPoolMXBean) <font color="#cc0033">getUsage</font>*() : <a href="#type-MemoryUsage">MemoryUsage</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MemoryPoolMXBean) <font color="#cc0033">getUsageThreshold</font>*() : LONGINT<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MemoryPoolMXBean) <font color="#cc0033">getUsageThresholdCount</font>*() : LONGINT<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MemoryPoolMXBean) <font color="#cc0033">isCollectionUsageThresholdExceeded</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MemoryPoolMXBean) <font color="#cc0033">isCollectionUsageThresholdSupported</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MemoryPoolMXBean) <font color="#cc0033">isUsageThresholdExceeded</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MemoryPoolMXBean) <font color="#cc0033">isUsageThresholdSupported</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MemoryPoolMXBean) <font color="#cc0033">isValid</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MemoryPoolMXBean) <font color="#cc0033">resetPeakUsage</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MemoryPoolMXBean) <font color="#cc0033">setCollectionUsageThreshold</font>*(p0 : LONGINT)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MemoryPoolMXBean) <font color="#cc0033">setUsageThreshold</font>*(p0 : LONGINT)<b>,NEW,ABSTRACT</b>;
+<a name="meths-MemoryType"></a>
+<b>PROCEDURE </b>(self:MemoryType) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-MemoryUsage"></a>
+<b>PROCEDURE </b>(self:MemoryUsage) <font color="#cc0033">getCommitted</font>*() : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MemoryUsage) <font color="#cc0033">getInit</font>*() : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MemoryUsage) <font color="#cc0033">getMax</font>*() : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MemoryUsage) <font color="#cc0033">getUsed</font>*() : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MemoryUsage) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-MonitorInfo"></a>
+<b>PROCEDURE </b>(self:MonitorInfo) <font color="#cc0033">getLockedStackDepth</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MonitorInfo) <font color="#cc0033">getLockedStackFrame</font>*() : <a href="java_lang.html#type-StackTraceElement">java_lang.StackTraceElement</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-OperatingSystemMXBean"></a>
+<b>PROCEDURE </b>(self:OperatingSystemMXBean) <font color="#cc0033">getArch</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:OperatingSystemMXBean) <font color="#cc0033">getAvailableProcessors</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:OperatingSystemMXBean) <font color="#cc0033">getName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:OperatingSystemMXBean) <font color="#cc0033">getSystemLoadAverage</font>*() : REAL<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:OperatingSystemMXBean) <font color="#cc0033">getVersion</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-PlatformLoggingMXBean"></a>
+<b>PROCEDURE </b>(self:PlatformLoggingMXBean) <font color="#cc0033">getLoggerLevel</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:PlatformLoggingMXBean) <font color="#cc0033">getLoggerNames</font>*() : <a href="java_util.html#type-List">java_util.List</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:PlatformLoggingMXBean) <font color="#cc0033">getParentLoggerName</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:PlatformLoggingMXBean) <font color="#cc0033">setLoggerLevel</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                       p1 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-PlatformManagedObject"></a>
+<b>PROCEDURE </b>(self:PlatformManagedObject) <font color="#cc0033">getObjectName</font>*() : <a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-RuntimeMXBean"></a>
+<b>PROCEDURE </b>(self:RuntimeMXBean) <font color="#cc0033">getBootClassPath</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RuntimeMXBean) <font color="#cc0033">getClassPath</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RuntimeMXBean) <font color="#cc0033">getInputArguments</font>*() : <a href="java_util.html#type-List">java_util.List</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RuntimeMXBean) <font color="#cc0033">getLibraryPath</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RuntimeMXBean) <font color="#cc0033">getManagementSpecVersion</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RuntimeMXBean) <font color="#cc0033">getName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RuntimeMXBean) <font color="#cc0033">getPid</font>*() : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RuntimeMXBean) <font color="#cc0033">getSpecName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RuntimeMXBean) <font color="#cc0033">getSpecVendor</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RuntimeMXBean) <font color="#cc0033">getSpecVersion</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RuntimeMXBean) <font color="#cc0033">getStartTime</font>*() : LONGINT<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RuntimeMXBean) <font color="#cc0033">getSystemProperties</font>*() : <a href="java_util.html#type-Map">java_util.Map</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RuntimeMXBean) <font color="#cc0033">getUptime</font>*() : LONGINT<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RuntimeMXBean) <font color="#cc0033">getVmName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RuntimeMXBean) <font color="#cc0033">getVmVendor</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RuntimeMXBean) <font color="#cc0033">getVmVersion</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RuntimeMXBean) <font color="#cc0033">isBootClassPathSupported</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+<a name="meths-ThreadInfo"></a>
+<b>PROCEDURE </b>(self:ThreadInfo) <font color="#cc0033">getBlockedCount</font>*() : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ThreadInfo) <font color="#cc0033">getBlockedTime</font>*() : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ThreadInfo) <font color="#cc0033">getLockedMonitors</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-MonitorInfo">MonitorInfo</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ThreadInfo) <font color="#cc0033">getLockedSynchronizers</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang_management.html#type-LockInfo">java_lang_management.LockInfo</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ThreadInfo) <font color="#cc0033">getLockInfo</font>*() : <a href="java_lang_management.html#type-LockInfo">java_lang_management.LockInfo</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ThreadInfo) <font color="#cc0033">getLockName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ThreadInfo) <font color="#cc0033">getLockOwnerId</font>*() : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ThreadInfo) <font color="#cc0033">getLockOwnerName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ThreadInfo) <font color="#cc0033">getPriority</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ThreadInfo) <font color="#cc0033">getStackTrace</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-StackTraceElement">java_lang.StackTraceElement</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ThreadInfo) <font color="#cc0033">getThreadId</font>*() : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ThreadInfo) <font color="#cc0033">getThreadName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ThreadInfo) <font color="#cc0033">getThreadState</font>*() : <a href="java_lang.html#type-Thread$State">java_lang.Thread$State</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ThreadInfo) <font color="#cc0033">getWaitedCount</font>*() : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ThreadInfo) <font color="#cc0033">getWaitedTime</font>*() : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ThreadInfo) <font color="#cc0033">isDaemon</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ThreadInfo) <font color="#cc0033">isInNative</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ThreadInfo) <font color="#cc0033">isSuspended</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ThreadInfo) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-ThreadMXBean"></a>
+<b>PROCEDURE </b>(self:ThreadMXBean) <font color="#cc0033">dumpAllThreads</font>*(p0 : BOOLEAN;
+                                              p1 : BOOLEAN;
+                                              p2 : INTEGER) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang_management.html#type-ThreadInfo">java_lang_management.ThreadInfo</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ThreadMXBean) <font color="#cc0033">dumpAllThreads</font>*(p0 : BOOLEAN;
+                                              p1 : BOOLEAN) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang_management.html#type-ThreadInfo">java_lang_management.ThreadInfo</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ThreadMXBean) <font color="#cc0033">findDeadlockedThreads</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>LONGINT<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ThreadMXBean) <font color="#cc0033">findMonitorDeadlockedThreads</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>LONGINT<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ThreadMXBean) <font color="#cc0033">getAllThreadIds</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>LONGINT<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ThreadMXBean) <font color="#cc0033">getCurrentThreadCpuTime</font>*() : LONGINT<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ThreadMXBean) <font color="#cc0033">getCurrentThreadUserTime</font>*() : LONGINT<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ThreadMXBean) <font color="#cc0033">getDaemonThreadCount</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ThreadMXBean) <font color="#cc0033">getPeakThreadCount</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ThreadMXBean) <font color="#cc0033">getThreadCount</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ThreadMXBean) <font color="#cc0033">getThreadCpuTime</font>*(p0 : LONGINT) : LONGINT<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ThreadMXBean) <font color="#cc0033">getThreadInfo</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>LONGINT;
+                                                 p1 : INTEGER) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang_management.html#type-ThreadInfo">java_lang_management.ThreadInfo</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ThreadMXBean) <font color="#cc0033">getThreadInfo</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>LONGINT) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang_management.html#type-ThreadInfo">java_lang_management.ThreadInfo</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ThreadMXBean) <font color="#cc0033">getThreadInfo</font>*(p0 : LONGINT;
+                                             p1 : INTEGER) : <a href="java_lang_management.html#type-ThreadInfo">java_lang_management.ThreadInfo</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ThreadMXBean) <font color="#cc0033">getThreadInfo</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>LONGINT;
+                                                 p1 : BOOLEAN;
+                                                 p2 : BOOLEAN;
+                                                 p3 : INTEGER) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang_management.html#type-ThreadInfo">java_lang_management.ThreadInfo</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ThreadMXBean) <font color="#cc0033">getThreadInfo</font>*(p0 : LONGINT) : <a href="java_lang_management.html#type-ThreadInfo">java_lang_management.ThreadInfo</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ThreadMXBean) <font color="#cc0033">getThreadInfo</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>LONGINT;
+                                                 p1 : BOOLEAN;
+                                                 p2 : BOOLEAN) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang_management.html#type-ThreadInfo">java_lang_management.ThreadInfo</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ThreadMXBean) <font color="#cc0033">getThreadUserTime</font>*(p0 : LONGINT) : LONGINT<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ThreadMXBean) <font color="#cc0033">getTotalStartedThreadCount</font>*() : LONGINT<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ThreadMXBean) <font color="#cc0033">isCurrentThreadCpuTimeSupported</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ThreadMXBean) <font color="#cc0033">isObjectMonitorUsageSupported</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ThreadMXBean) <font color="#cc0033">isSynchronizerUsageSupported</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ThreadMXBean) <font color="#cc0033">isThreadContentionMonitoringEnabled</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ThreadMXBean) <font color="#cc0033">isThreadContentionMonitoringSupported</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ThreadMXBean) <font color="#cc0033">isThreadCpuTimeEnabled</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ThreadMXBean) <font color="#cc0033">isThreadCpuTimeSupported</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ThreadMXBean) <font color="#cc0033">resetPeakThreadCount</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ThreadMXBean) <font color="#cc0033">setThreadContentionMonitoringEnabled</font>*(p0 : BOOLEAN)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ThreadMXBean) <font color="#cc0033">setThreadCpuTimeEnabled</font>*(p0 : BOOLEAN)<b>,NEW,ABSTRACT</b>;
+
+<b>END </b><font color="#cc0033">java_lang_management</font>.
+</font></pre></hr>
+<!-- BEGIN JavaScript -->
+<script>
+function toggle(node) {
+    node.classList.toggle("show"); 
+  }
+
+function cls(node) {
+    var prnt = node.parentNode;
+    var next = prnt.previousSibling;
+    var text = next.lastChild;
+    text.innerHTML = 
+        "The <b>class</b> property asserts that this type will be<br>" +
+        "implemented as a reference class in the underlying framework.";
+    text.classList.toggle("show");
+  }
+
+function newOk(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>has noArg-ctor</b> property asserts that this reference<br>" +
+        "class has a no-arg constructor, and thus objects of this<br>" +
+        "type can be allocated with NEW(). Component Pascal types<br>" +
+        "derived from this type can also be allocated using NEW().";
+    popuptext.classList.toggle("show"); 
+  }
+
+function noNew(node) { 
+    var prnt = node.parentNode; 
+    var next = prnt.previousSibling; 
+    var text = next.lastChild; 
+    text.innerHTML =  
+        "The <b>no noArg-ctor</b> property asserts that this reference<br>" +
+        "class does not have a noArg constructor. Objects of this<br>" +
+        "type cannot be allocated using NEW(), and Component<br>" +
+        "Pascal types  derived from this type also cannot be<br>" +
+        "allocated using NEW().";
+    text.classList.toggle("show");
+  }
+
+function noCpy(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>no value-assign</b> property asserts that this reference<br>" + 
+        "class does not have a value copy method. Therefore, it<br>" +
+        "is not possible to perform value assignments using<br>" +
+        "statements like <i>dst^</i> := <i>src^</i>";
+    popuptext.classList.toggle("show");
+  }
+
+function valueclass(node) { 
+        var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>valueclass</b> property asserts that this RECORD type is<br>" + 
+        "implemented as a value class in the CLR. It follows that<br>" +  
+        "value assignments can be made of these types. They can<br>" + 
+        "also be passed by value. Even pointers to records of<br>" + 
+        "such types may be dereferenced and copied using syntax<br>" + 
+        "such as  <i>dst^</i> := <i>src^</i>"; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+function argCtor(node) { 
+    var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>has arg-ctor</b> property asserts that this reference<br>" +  
+        "class has one or more constructors that take arguments.<br>" + 
+        "These constructors can be called from Component Pascal<br>" + 
+        "by calling an <i>init</i>(...) method from the static list<br>" + 
+        "here. Component Pascal types derived from this type<br>" + 
+        "can define constructors with arguments which call the<br>" + 
+        "super-type constructor.<br>" + 
+        "See <i>'Interfacing to constructors'</i> in the Release Notes."; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+</script>
+<!-- END JavaScript --> 
+
+</body></html>

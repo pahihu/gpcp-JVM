@@ -1,0 +1,463 @@
+<html><head><title>jdk_internal_reflect</title>
+<style>
+<!-- BEGIN Inline CSS -->
+/* Popup container */
+.popup {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+/* The actual popup (appears on top) */
+.popup .popuptext {
+    visibility: hidden;
+    width: 430px;
+    background-color: white;
+    color: black;
+    text-align: left;
+    border-radius: 6px;
+    border-style: solid;
+    border-color: black;
+    padding: 8px 8px 8px 8px;
+    position: absolute;
+    z-index: 1;
+    margin-top: 30px;
+}
+
+/* Toggle this class when clicking on the popup container (hide and show the popup) */
+.popup .show {
+    visibility: visible;
+    opacity: 1;
+}
+
+</style>
+<!-- END Inline CSS -->
+</head><body bgcolor="white">
+<hr><pre>
+<font color="green">(*</font>
+<font color="green"> *  Creator PeToCps j2cps version 1.4.07 (March 2018)</font>
+<font color="green"> *  Compiled from jar-file /Library/Java/JavaVirtualMachines/zulu-11.jdk/Contents/Home/jmods/java.base.jmod</font>
+<font color="green"> *)</font>
+<b>FOREIGN MODULE </b><font color="#cc0033">jdk_internal_reflect</font>;
+
+<b>IMPORT</b>
+    <a href="java_lang.html">java_lang</a> := "java.lang",
+    <a href="java_lang_annotation.html">java_lang_annotation</a> := "java.lang.annotation",
+    <a href="java_lang_invoke.html">java_lang_invoke</a> := "java.lang.invoke",
+    <a href="java_lang_reflect.html">java_lang_reflect</a> := "java.lang.reflect",
+    <a href="java_security.html">java_security</a> := "java.security",
+    <a href="jdk_internal_reflect.html">jdk_internal_reflect</a> := "jdk.internal.reflect";
+
+<b>TYPE</b>
+
+  <a name="type-CallerSensitive"></a><font color="#cc0033">CallerSensitive</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_lang_annotation.html#type-Annotation">java_lang_annotation.Annotation</a>)
+                     <b>END</b>;
+
+  <a name="type-ConstantPool"></a><font color="#cc0033">ConstantPool</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                  <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                  <font color="green"><b> (* </b><a href="#meths-ConstantPool">Typebound Procedures</a><b> *)</b></font>
+                  <b>STATIC</b>
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-ConstantPool">ConstantPool</a><b>,CONSTRUCTOR</b>;
+                  <b>END</b>;
+
+  <a name="type-ConstantPool$Tag"></a><font color="#cc0033">ConstantPool$Tag</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Enum">java_lang.Enum</a>)
+                      <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> *)</font>
+                      <b>STATIC</b>
+                        <a name="type-CLASS"></a><font color="#cc0033">CLASS</font>*              : <a href="#type-ConstantPool$Tag">ConstantPool$Tag</a>;
+                        <a name="type-DOUBLE"></a><font color="#cc0033">DOUBLE</font>*             : <a href="#type-ConstantPool$Tag">ConstantPool$Tag</a>;
+                        <a name="type-FIELDREF"></a><font color="#cc0033">FIELDREF</font>*           : <a href="#type-ConstantPool$Tag">ConstantPool$Tag</a>;
+                        <a name="type-FLOAT"></a><font color="#cc0033">FLOAT</font>*              : <a href="#type-ConstantPool$Tag">ConstantPool$Tag</a>;
+                        <a name="type-INTEGER"></a><font color="#cc0033">INTEGER</font>*            : <a href="#type-ConstantPool$Tag">ConstantPool$Tag</a>;
+                        <a name="type-INTERFACEMETHODREF"></a><font color="#cc0033">INTERFACEMETHODREF</font>* : <a href="#type-ConstantPool$Tag">ConstantPool$Tag</a>;
+                        <a name="type-INVALID"></a><font color="#cc0033">INVALID</font>*            : <a href="#type-ConstantPool$Tag">ConstantPool$Tag</a>;
+                        <a name="type-INVOKEDYNAMIC"></a><font color="#cc0033">INVOKEDYNAMIC</font>*      : <a href="#type-ConstantPool$Tag">ConstantPool$Tag</a>;
+                        <a name="type-LONG"></a><font color="#cc0033">LONG</font>*               : <a href="#type-ConstantPool$Tag">ConstantPool$Tag</a>;
+                        <a name="type-METHODHANDLE"></a><font color="#cc0033">METHODHANDLE</font>*       : <a href="#type-ConstantPool$Tag">ConstantPool$Tag</a>;
+                        <a name="type-METHODREF"></a><font color="#cc0033">METHODREF</font>*          : <a href="#type-ConstantPool$Tag">ConstantPool$Tag</a>;
+                        <a name="type-METHODTYPE"></a><font color="#cc0033">METHODTYPE</font>*         : <a href="#type-ConstantPool$Tag">ConstantPool$Tag</a>;
+                        <a name="type-NAMEANDTYPE"></a><font color="#cc0033">NAMEANDTYPE</font>*        : <a href="#type-ConstantPool$Tag">ConstantPool$Tag</a>;
+                        <a name="type-STRING"></a><font color="#cc0033">STRING</font>*             : <a href="#type-ConstantPool$Tag">ConstantPool$Tag</a>;
+                        <a name="type-UTF8"></a><font color="#cc0033">UTF8</font>*               : <a href="#type-ConstantPool$Tag">ConstantPool$Tag</a>;
+                        <b>PROCEDURE </b><font color="#cc0033">valueOf</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-ConstantPool$Tag">ConstantPool$Tag</a>;
+                        <b>PROCEDURE </b><font color="#cc0033">values</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-ConstantPool$Tag">ConstantPool$Tag</a>;
+                      <b>END</b>;
+
+  <a name="type-ConstructorAccessor"></a><font color="#cc0033">ConstructorAccessor</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                         <font color="green"><b> (* </b><a href="#meths-ConstructorAccessor">Typebound Procedures</a><b> *)</b></font>
+                         <b>END</b>;
+
+  <a name="type-FieldAccessor"></a><font color="#cc0033">FieldAccessor</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                   <font color="green"><b> (* </b><a href="#meths-FieldAccessor">Typebound Procedures</a><b> *)</b></font>
+                   <b>END</b>;
+
+  <a name="type-LangReflectAccess"></a><font color="#cc0033">LangReflectAccess</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                       <font color="green"><b> (* </b><a href="#meths-LangReflectAccess">Typebound Procedures</a><b> *)</b></font>
+                       <b>END</b>;
+
+  <a name="type-MethodAccessor"></a><font color="#cc0033">MethodAccessor</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                    <font color="green"><b> (* </b><a href="#meths-MethodAccessor">Typebound Procedures</a><b> *)</b></font>
+                    <b>END</b>;
+
+  <a name="type-Reflection"></a><font color="#cc0033">Reflection</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                <b>STATIC</b>
+                  <b>PROCEDURE </b><font color="#cc0033">areNestMates</font>*(p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                                          p1 : <a href="java_lang.html#type-Class">java_lang.Class</a>) : BOOLEAN;
+                  <b>PROCEDURE </b><font color="#cc0033">ensureMemberAccess</font>*(p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                                                p1 : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                                                p2 : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                                                p3 : INTEGER);
+                  <b>PROCEDURE </b><font color="#cc0033">filterFields</font>*(    p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                                          IN  p1 : <b>ARRAY </b><b>OF </b><a href="java_lang_reflect.html#type-Field">java_lang_reflect.Field</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang_reflect.html#type-Field">java_lang_reflect.Field</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">filterMethods</font>*(    p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                                           IN  p1 : <b>ARRAY </b><b>OF </b><a href="java_lang_reflect.html#type-Method">java_lang_reflect.Method</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang_reflect.html#type-Method">java_lang_reflect.Method</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">getCallerClass</font>*() : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">getClassAccessFlags</font>*(p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>) : INTEGER;
+                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-Reflection">Reflection</a><b>,CONSTRUCTOR</b>;
+                  <b>PROCEDURE </b><font color="#cc0033">isCallerSensitive</font>*(p0 : <a href="java_lang_reflect.html#type-Method">java_lang_reflect.Method</a>) : BOOLEAN;
+                  <b>PROCEDURE </b><font color="#cc0033">newIllegalAccessException</font>*(p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                                                       p1 : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                                                       p2 : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                                                       p3 : INTEGER) : <a href="java_lang.html#type-IllegalAccessException">java_lang.IllegalAccessException</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">registerFieldsToFilter</font>*(    p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                                                    IN  p1 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>);
+                  <b>PROCEDURE </b><font color="#cc0033">registerMethodsToFilter</font>*(    p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                                                     IN  p1 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>);
+                  <b>PROCEDURE </b><font color="#cc0033">verifyMemberAccess</font>*(p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                                                p1 : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                                                p2 : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                                                p3 : INTEGER) : BOOLEAN;
+                  <b>PROCEDURE </b><font color="#cc0033">verifyModuleAccess</font>*(p0 : <a href="java_lang.html#type-Module">java_lang.Module</a>;
+                                                p1 : <a href="java_lang.html#type-Class">java_lang.Class</a>) : BOOLEAN;
+                <b>END</b>;
+
+  <a name="type-ReflectionFactory"></a><font color="#cc0033">ReflectionFactory</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                       <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> *)</font>
+                       <font color="green"><b> (* </b><a href="#meths-ReflectionFactory">Typebound Procedures</a><b> *)</b></font>
+                       <b>STATIC</b>
+                         <b>PROCEDURE </b><font color="#cc0033">getReflectionFactory</font>*() : <a href="#type-ReflectionFactory">ReflectionFactory</a>;
+                       <b>END</b>;
+
+  <a name="type-ReflectionFactory$GetReflectionFactoryAction"></a><font color="#cc0033">ReflectionFactory$GetReflectionFactoryAction</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_security.html#type-PrivilegedAction">java_security.PrivilegedAction</a>)
+                                                  <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                                                  <font color="green"><b> (* </b><a href="#meths-ReflectionFactory$GetReflectionFactoryAction">Typebound Procedures</a><b> *)</b></font>
+                                                  <b>STATIC</b>
+                                                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-ReflectionFactory$GetReflectionFactoryAction">ReflectionFactory$GetReflectionFactoryAction</a><b>,CONSTRUCTOR</b>;
+                                                  <b>END</b>;
+
+
+
+<a name="meths-ConstantPool"></a>
+<b>PROCEDURE </b>(self:ConstantPool) <font color="#cc0033">getClassAt</font>*(p0 : INTEGER) : <a href="java_lang.html#type-Class">java_lang.Class</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConstantPool) <font color="#cc0033">getClassAtIfLoaded</font>*(p0 : INTEGER) : <a href="java_lang.html#type-Class">java_lang.Class</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConstantPool) <font color="#cc0033">getClassRefIndexAt</font>*(p0 : INTEGER) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConstantPool) <font color="#cc0033">getDoubleAt</font>*(p0 : INTEGER) : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConstantPool) <font color="#cc0033">getFieldAt</font>*(p0 : INTEGER) : <a href="java_lang_reflect.html#type-Field">java_lang_reflect.Field</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConstantPool) <font color="#cc0033">getFieldAtIfLoaded</font>*(p0 : INTEGER) : <a href="java_lang_reflect.html#type-Field">java_lang_reflect.Field</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConstantPool) <font color="#cc0033">getFloatAt</font>*(p0 : INTEGER) : SHORTREAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConstantPool) <font color="#cc0033">getIntAt</font>*(p0 : INTEGER) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConstantPool) <font color="#cc0033">getLongAt</font>*(p0 : INTEGER) : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConstantPool) <font color="#cc0033">getMemberRefInfoAt</font>*(p0 : INTEGER) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConstantPool) <font color="#cc0033">getMethodAt</font>*(p0 : INTEGER) : <a href="java_lang_reflect.html#type-Member">java_lang_reflect.Member</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConstantPool) <font color="#cc0033">getMethodAtIfLoaded</font>*(p0 : INTEGER) : <a href="java_lang_reflect.html#type-Member">java_lang_reflect.Member</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConstantPool) <font color="#cc0033">getNameAndTypeRefIndexAt</font>*(p0 : INTEGER) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConstantPool) <font color="#cc0033">getNameAndTypeRefInfoAt</font>*(p0 : INTEGER) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConstantPool) <font color="#cc0033">getSize</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConstantPool) <font color="#cc0033">getStringAt</font>*(p0 : INTEGER) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConstantPool) <font color="#cc0033">getTagAt</font>*(p0 : INTEGER) : <a href="#type-ConstantPool$Tag">ConstantPool$Tag</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConstantPool) <font color="#cc0033">getUTF8At</font>*(p0 : INTEGER) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-ConstructorAccessor"></a>
+<b>PROCEDURE </b>(self:ConstructorAccessor) <font color="#cc0033">newInstance</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-FieldAccessor"></a>
+<b>PROCEDURE </b>(self:FieldAccessor) <font color="#cc0033">get</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:FieldAccessor) <font color="#cc0033">getBoolean</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:FieldAccessor) <font color="#cc0033">getByte</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BYTE<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:FieldAccessor) <font color="#cc0033">getChar</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : CHAR<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:FieldAccessor) <font color="#cc0033">getDouble</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : REAL<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:FieldAccessor) <font color="#cc0033">getFloat</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : SHORTREAL<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:FieldAccessor) <font color="#cc0033">getInt</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:FieldAccessor) <font color="#cc0033">getLong</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : LONGINT<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:FieldAccessor) <font color="#cc0033">getShort</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : SHORTINT<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:FieldAccessor) <font color="#cc0033">set</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                    p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:FieldAccessor) <font color="#cc0033">setBoolean</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                           p1 : BOOLEAN)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:FieldAccessor) <font color="#cc0033">setByte</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                        p1 : BYTE)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:FieldAccessor) <font color="#cc0033">setChar</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                        p1 : CHAR)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:FieldAccessor) <font color="#cc0033">setDouble</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                          p1 : REAL)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:FieldAccessor) <font color="#cc0033">setFloat</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                         p1 : SHORTREAL)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:FieldAccessor) <font color="#cc0033">setInt</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                       p1 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:FieldAccessor) <font color="#cc0033">setLong</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                        p1 : LONGINT)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:FieldAccessor) <font color="#cc0033">setShort</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                         p1 : SHORTINT)<b>,NEW,ABSTRACT</b>;
+<a name="meths-LangReflectAccess"></a>
+<b>PROCEDURE </b>(self:LangReflectAccess) <font color="#cc0033">copyConstructor</font>*(p0 : <a href="java_lang_reflect.html#type-Constructor">java_lang_reflect.Constructor</a>) : <a href="java_lang_reflect.html#type-Constructor">java_lang_reflect.Constructor</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:LangReflectAccess) <font color="#cc0033">copyField</font>*(p0 : <a href="java_lang_reflect.html#type-Field">java_lang_reflect.Field</a>) : <a href="java_lang_reflect.html#type-Field">java_lang_reflect.Field</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:LangReflectAccess) <font color="#cc0033">copyMethod</font>*(p0 : <a href="java_lang_reflect.html#type-Method">java_lang_reflect.Method</a>) : <a href="java_lang_reflect.html#type-Method">java_lang_reflect.Method</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:LangReflectAccess) <font color="#cc0033">getConstructorAccessor</font>*(p0 : <a href="java_lang_reflect.html#type-Constructor">java_lang_reflect.Constructor</a>) : <a href="#type-ConstructorAccessor">ConstructorAccessor</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:LangReflectAccess) <font color="#cc0033">getConstructorAnnotations</font>*(p0 : <a href="java_lang_reflect.html#type-Constructor">java_lang_reflect.Constructor</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:LangReflectAccess) <font color="#cc0033">getConstructorParameterAnnotations</font>*(p0 : <a href="java_lang_reflect.html#type-Constructor">java_lang_reflect.Constructor</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:LangReflectAccess) <font color="#cc0033">getConstructorSignature</font>*(p0 : <a href="java_lang_reflect.html#type-Constructor">java_lang_reflect.Constructor</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:LangReflectAccess) <font color="#cc0033">getConstructorSlot</font>*(p0 : <a href="java_lang_reflect.html#type-Constructor">java_lang_reflect.Constructor</a>) : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:LangReflectAccess) <font color="#cc0033">getExecutableSharedParameterTypes</font>*(p0 : <a href="java_lang_reflect.html#type-Executable">java_lang_reflect.Executable</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Class">java_lang.Class</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:LangReflectAccess) <font color="#cc0033">getExecutableTypeAnnotationBytes</font>*(p0 : <a href="java_lang_reflect.html#type-Executable">java_lang_reflect.Executable</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:LangReflectAccess) <font color="#cc0033">getMethodAccessor</font>*(p0 : <a href="java_lang_reflect.html#type-Method">java_lang_reflect.Method</a>) : <a href="#type-MethodAccessor">MethodAccessor</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:LangReflectAccess) <font color="#cc0033">getRoot</font>*(p0 : <a href="java_lang_reflect.html#type-AccessibleObject">java_lang_reflect.AccessibleObject</a>) : <a href="java_lang_reflect.html#type-AccessibleObject">java_lang_reflect.AccessibleObject</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:LangReflectAccess) <font color="#cc0033">leafCopyMethod</font>*(p0 : <a href="java_lang_reflect.html#type-Method">java_lang_reflect.Method</a>) : <a href="java_lang_reflect.html#type-Method">java_lang_reflect.Method</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:LangReflectAccess) <font color="#cc0033">newConstructor</font>*(    p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                                                   IN  p1 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Class">java_lang.Class</a>;
+                                                   IN  p2 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Class">java_lang.Class</a>;
+                                                       p3 : INTEGER;
+                                                       p4 : INTEGER;
+                                                       p5 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                   IN  p6 : <b>ARRAY </b><b>OF </b>BYTE;
+                                                   IN  p7 : <b>ARRAY </b><b>OF </b>BYTE) : <a href="java_lang_reflect.html#type-Constructor">java_lang_reflect.Constructor</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:LangReflectAccess) <font color="#cc0033">newField</font>*(    p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                                                 p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                 p2 : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                                                 p3 : INTEGER;
+                                                 p4 : INTEGER;
+                                                 p5 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                             IN  p6 : <b>ARRAY </b><b>OF </b>BYTE) : <a href="java_lang_reflect.html#type-Field">java_lang_reflect.Field</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:LangReflectAccess) <font color="#cc0033">newMethod</font>*(    p0  : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                                                  p1  : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                              IN  p2  : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Class">java_lang.Class</a>;
+                                                  p3  : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                                              IN  p4  : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Class">java_lang.Class</a>;
+                                                  p5  : INTEGER;
+                                                  p6  : INTEGER;
+                                                  p7  : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                              IN  p8  : <b>ARRAY </b><b>OF </b>BYTE;
+                                              IN  p9  : <b>ARRAY </b><b>OF </b>BYTE;
+                                              IN  p10 : <b>ARRAY </b><b>OF </b>BYTE) : <a href="java_lang_reflect.html#type-Method">java_lang_reflect.Method</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:LangReflectAccess) <font color="#cc0033">setConstructorAccessor</font>*(p0 : <a href="java_lang_reflect.html#type-Constructor">java_lang_reflect.Constructor</a>;
+                                                           p1 : <a href="#type-ConstructorAccessor">ConstructorAccessor</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:LangReflectAccess) <font color="#cc0033">setMethodAccessor</font>*(p0 : <a href="java_lang_reflect.html#type-Method">java_lang_reflect.Method</a>;
+                                                      p1 : <a href="#type-MethodAccessor">MethodAccessor</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-MethodAccessor"></a>
+<b>PROCEDURE </b>(self:MethodAccessor) <font color="#cc0033">invoke</font>*(    p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                        IN  p1 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-ReflectionFactory"></a>
+<b>PROCEDURE </b>(self:ReflectionFactory) <font color="#cc0033">copyConstructor</font>*(p0 : <a href="java_lang_reflect.html#type-Constructor">java_lang_reflect.Constructor</a>) : <a href="java_lang_reflect.html#type-Constructor">java_lang_reflect.Constructor</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ReflectionFactory) <font color="#cc0033">copyField</font>*(p0 : <a href="java_lang_reflect.html#type-Field">java_lang_reflect.Field</a>) : <a href="java_lang_reflect.html#type-Field">java_lang_reflect.Field</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ReflectionFactory) <font color="#cc0033">copyMethod</font>*(p0 : <a href="java_lang_reflect.html#type-Method">java_lang_reflect.Method</a>) : <a href="java_lang_reflect.html#type-Method">java_lang_reflect.Method</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ReflectionFactory) <font color="#cc0033">getConstructorAccessor</font>*(p0 : <a href="java_lang_reflect.html#type-Constructor">java_lang_reflect.Constructor</a>) : <a href="jdk_internal_reflect.html#type-ConstructorAccessor">jdk_internal_reflect.ConstructorAccessor</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ReflectionFactory) <font color="#cc0033">getExecutableSharedParameterTypes</font>*(p0 : <a href="java_lang_reflect.html#type-Executable">java_lang_reflect.Executable</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Class">java_lang.Class</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ReflectionFactory) <font color="#cc0033">getExecutableTypeAnnotationBytes</font>*(p0 : <a href="java_lang_reflect.html#type-Executable">java_lang_reflect.Executable</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ReflectionFactory) <font color="#cc0033">getMethodAccessor</font>*(p0 : <a href="java_lang_reflect.html#type-Method">java_lang_reflect.Method</a>) : <a href="jdk_internal_reflect.html#type-MethodAccessor">jdk_internal_reflect.MethodAccessor</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ReflectionFactory) <font color="#cc0033">hasStaticInitializerForSerialization</font>*(p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>) : BOOLEAN<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:ReflectionFactory) <font color="#cc0033">leafCopyMethod</font>*(p0 : <a href="java_lang_reflect.html#type-Method">java_lang_reflect.Method</a>) : <a href="java_lang_reflect.html#type-Method">java_lang_reflect.Method</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ReflectionFactory) <font color="#cc0033">newConstructor</font>*(    p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                                                   IN  p1 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Class">java_lang.Class</a>;
+                                                   IN  p2 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Class">java_lang.Class</a>;
+                                                       p3 : INTEGER;
+                                                       p4 : INTEGER;
+                                                       p5 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                   IN  p6 : <b>ARRAY </b><b>OF </b>BYTE;
+                                                   IN  p7 : <b>ARRAY </b><b>OF </b>BYTE) : <a href="java_lang_reflect.html#type-Constructor">java_lang_reflect.Constructor</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ReflectionFactory) <font color="#cc0033">newConstructorAccessor</font>*(p0 : <a href="java_lang_reflect.html#type-Constructor">java_lang_reflect.Constructor</a>) : <a href="jdk_internal_reflect.html#type-ConstructorAccessor">jdk_internal_reflect.ConstructorAccessor</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ReflectionFactory) <font color="#cc0033">newConstructorForExternalization</font>*(p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>) : <a href="java_lang_reflect.html#type-Constructor">java_lang_reflect.Constructor</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:ReflectionFactory) <font color="#cc0033">newConstructorForSerialization</font>*(p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                                                                   p1 : <a href="java_lang_reflect.html#type-Constructor">java_lang_reflect.Constructor</a>) : <a href="java_lang_reflect.html#type-Constructor">java_lang_reflect.Constructor</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:ReflectionFactory) <font color="#cc0033">newConstructorForSerialization</font>*(p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>) : <a href="java_lang_reflect.html#type-Constructor">java_lang_reflect.Constructor</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:ReflectionFactory) <font color="#cc0033">newField</font>*(    p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                                                 p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                 p2 : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                                                 p3 : INTEGER;
+                                                 p4 : INTEGER;
+                                                 p5 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                             IN  p6 : <b>ARRAY </b><b>OF </b>BYTE) : <a href="java_lang_reflect.html#type-Field">java_lang_reflect.Field</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ReflectionFactory) <font color="#cc0033">newFieldAccessor</font>*(p0 : <a href="java_lang_reflect.html#type-Field">java_lang_reflect.Field</a>;
+                                                     p1 : BOOLEAN) : <a href="jdk_internal_reflect.html#type-FieldAccessor">jdk_internal_reflect.FieldAccessor</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ReflectionFactory) <font color="#cc0033">newMethod</font>*(    p0  : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                                                  p1  : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                              IN  p2  : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Class">java_lang.Class</a>;
+                                                  p3  : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                                              IN  p4  : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Class">java_lang.Class</a>;
+                                                  p5  : INTEGER;
+                                                  p6  : INTEGER;
+                                                  p7  : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                              IN  p8  : <b>ARRAY </b><b>OF </b>BYTE;
+                                              IN  p9  : <b>ARRAY </b><b>OF </b>BYTE;
+                                              IN  p10 : <b>ARRAY </b><b>OF </b>BYTE) : <a href="java_lang_reflect.html#type-Method">java_lang_reflect.Method</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ReflectionFactory) <font color="#cc0033">newMethodAccessor</font>*(p0 : <a href="java_lang_reflect.html#type-Method">java_lang_reflect.Method</a>) : <a href="jdk_internal_reflect.html#type-MethodAccessor">jdk_internal_reflect.MethodAccessor</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ReflectionFactory) <font color="#cc0033">newOptionalDataExceptionForSerialization</font>*() : <a href="java_lang_reflect.html#type-Constructor">java_lang_reflect.Constructor</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:ReflectionFactory) <font color="#cc0033">readObjectForSerialization</font>*(p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>) : <a href="java_lang_invoke.html#type-MethodHandle">java_lang_invoke.MethodHandle</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:ReflectionFactory) <font color="#cc0033">readObjectNoDataForSerialization</font>*(p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>) : <a href="java_lang_invoke.html#type-MethodHandle">java_lang_invoke.MethodHandle</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:ReflectionFactory) <font color="#cc0033">readResolveForSerialization</font>*(p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>) : <a href="java_lang_invoke.html#type-MethodHandle">java_lang_invoke.MethodHandle</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:ReflectionFactory) <font color="#cc0033">setConstructorAccessor</font>*(p0 : <a href="java_lang_reflect.html#type-Constructor">java_lang_reflect.Constructor</a>;
+                                                           p1 : <a href="jdk_internal_reflect.html#type-ConstructorAccessor">jdk_internal_reflect.ConstructorAccessor</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ReflectionFactory) <font color="#cc0033">setLangReflectAccess</font>*(p0 : <a href="jdk_internal_reflect.html#type-LangReflectAccess">jdk_internal_reflect.LangReflectAccess</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ReflectionFactory) <font color="#cc0033">setMethodAccessor</font>*(p0 : <a href="java_lang_reflect.html#type-Method">java_lang_reflect.Method</a>;
+                                                      p1 : <a href="jdk_internal_reflect.html#type-MethodAccessor">jdk_internal_reflect.MethodAccessor</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ReflectionFactory) <font color="#cc0033">writeObjectForSerialization</font>*(p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>) : <a href="java_lang_invoke.html#type-MethodHandle">java_lang_invoke.MethodHandle</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:ReflectionFactory) <font color="#cc0033">writeReplaceForSerialization</font>*(p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>) : <a href="java_lang_invoke.html#type-MethodHandle">java_lang_invoke.MethodHandle</a><b>,NEW</b>;
+<a name="meths-ReflectionFactory$GetReflectionFactoryAction"></a>
+<b>PROCEDURE </b>(self:ReflectionFactory$GetReflectionFactoryAction) <font color="#cc0033">run</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ReflectionFactory$GetReflectionFactoryAction) <font color="#cc0033">run</font>*() : <a href="#type-ReflectionFactory">ReflectionFactory</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>END </b><font color="#cc0033">jdk_internal_reflect</font>.
+</font></pre></hr>
+<!-- BEGIN JavaScript -->
+<script>
+function toggle(node) {
+    node.classList.toggle("show"); 
+  }
+
+function cls(node) {
+    var prnt = node.parentNode;
+    var next = prnt.previousSibling;
+    var text = next.lastChild;
+    text.innerHTML = 
+        "The <b>class</b> property asserts that this type will be<br>" +
+        "implemented as a reference class in the underlying framework.";
+    text.classList.toggle("show");
+  }
+
+function newOk(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>has noArg-ctor</b> property asserts that this reference<br>" +
+        "class has a no-arg constructor, and thus objects of this<br>" +
+        "type can be allocated with NEW(). Component Pascal types<br>" +
+        "derived from this type can also be allocated using NEW().";
+    popuptext.classList.toggle("show"); 
+  }
+
+function noNew(node) { 
+    var prnt = node.parentNode; 
+    var next = prnt.previousSibling; 
+    var text = next.lastChild; 
+    text.innerHTML =  
+        "The <b>no noArg-ctor</b> property asserts that this reference<br>" +
+        "class does not have a noArg constructor. Objects of this<br>" +
+        "type cannot be allocated using NEW(), and Component<br>" +
+        "Pascal types  derived from this type also cannot be<br>" +
+        "allocated using NEW().";
+    text.classList.toggle("show");
+  }
+
+function noCpy(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>no value-assign</b> property asserts that this reference<br>" + 
+        "class does not have a value copy method. Therefore, it<br>" +
+        "is not possible to perform value assignments using<br>" +
+        "statements like <i>dst^</i> := <i>src^</i>";
+    popuptext.classList.toggle("show");
+  }
+
+function valueclass(node) { 
+        var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>valueclass</b> property asserts that this RECORD type is<br>" + 
+        "implemented as a value class in the CLR. It follows that<br>" +  
+        "value assignments can be made of these types. They can<br>" + 
+        "also be passed by value. Even pointers to records of<br>" + 
+        "such types may be dereferenced and copied using syntax<br>" + 
+        "such as  <i>dst^</i> := <i>src^</i>"; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+function argCtor(node) { 
+    var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>has arg-ctor</b> property asserts that this reference<br>" +  
+        "class has one or more constructors that take arguments.<br>" + 
+        "These constructors can be called from Component Pascal<br>" + 
+        "by calling an <i>init</i>(...) method from the static list<br>" + 
+        "here. Component Pascal types derived from this type<br>" + 
+        "can define constructors with arguments which call the<br>" + 
+        "super-type constructor.<br>" + 
+        "See <i>'Interfacing to constructors'</i> in the Release Notes."; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+</script>
+<!-- END JavaScript --> 
+
+</body></html>

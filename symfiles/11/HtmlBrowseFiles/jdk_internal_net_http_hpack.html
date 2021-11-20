@@ -1,0 +1,394 @@
+<html><head><title>jdk_internal_net_http_hpack</title>
+<style>
+<!-- BEGIN Inline CSS -->
+/* Popup container */
+.popup {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+/* The actual popup (appears on top) */
+.popup .popuptext {
+    visibility: hidden;
+    width: 430px;
+    background-color: white;
+    color: black;
+    text-align: left;
+    border-radius: 6px;
+    border-style: solid;
+    border-color: black;
+    padding: 8px 8px 8px 8px;
+    position: absolute;
+    z-index: 1;
+    margin-top: 30px;
+}
+
+/* Toggle this class when clicking on the popup container (hide and show the popup) */
+.popup .show {
+    visibility: visible;
+    opacity: 1;
+}
+
+</style>
+<!-- END Inline CSS -->
+</head><body bgcolor="white">
+<hr><pre>
+<font color="green">(*</font>
+<font color="green"> *  Creator PeToCps j2cps version 1.4.07 (March 2018)</font>
+<font color="green"> *  Compiled from jar-file /Library/Java/JavaVirtualMachines/zulu-11.jdk/Contents/Home/jmods/java.net.http.jmod</font>
+<font color="green"> *)</font>
+<b>FOREIGN MODULE </b><font color="#cc0033">jdk_internal_net_http_hpack</font>;
+
+<b>IMPORT</b>
+    <a href="java_lang.html">java_lang</a> := "java.lang",
+    <a href="java_nio.html">java_nio</a> := "java.nio",
+    <a href="java_util.html">java_util</a> := "java.util",
+    <a href="java_util_function.html">java_util_function</a> := "java.util.function",
+    <a href="jdk_internal_net_http_hpack.html">jdk_internal_net_http_hpack</a> := "jdk.internal.net.http.hpack";
+
+<b>TYPE</b>
+
+  <a name="type-Decoder"></a><font color="#cc0033">Decoder</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+             <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+             <font color="green"><b> (* </b><a href="#meths-Decoder">Typebound Procedures</a><b> *)</b></font>
+             <b>STATIC</b>
+               <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER) : <a href="#type-Decoder">Decoder</a><b>,CONSTRUCTOR</b>;
+             <b>END</b>;
+
+  <a name="type-DecodingCallback"></a><font color="#cc0033">DecodingCallback</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                      <font color="green"><b> (* </b><a href="#meths-DecodingCallback">Typebound Procedures</a><b> *)</b></font>
+                      <b>END</b>;
+
+  <a name="type-Encoder"></a><font color="#cc0033">Encoder</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+             <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+             <font color="green"><b> (* </b><a href="#meths-Encoder">Typebound Procedures</a><b> *)</b></font>
+             <b>STATIC</b>
+               <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER) : <a href="#type-Encoder">Encoder</a><b>,CONSTRUCTOR</b>;
+             <b>END</b>;
+
+  <a name="type-HPACK"></a><font color="#cc0033">HPACK</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+           <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> *)</font>
+           <b>STATIC</b>
+             <b>PROCEDURE </b><font color="#cc0033">getLogger</font>*() : <a href="#type-HPACK$Logger">HPACK$Logger</a>;
+             <b>PROCEDURE </b><font color="#cc0033">read</font>*(p0 : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>;
+                             p1 : LONGINT;
+                             p2 : INTEGER;
+                             p3 : <a href="jdk_internal_net_http_hpack.html#type-HPACK$BufferUpdateConsumer">jdk_internal_net_http_hpack.HPACK$BufferUpdateConsumer</a>) : INTEGER;
+             <b>PROCEDURE </b><font color="#cc0033">write</font>*(p0 : LONGINT;
+                              p1 : INTEGER;
+                              p2 : <a href="jdk_internal_net_http_hpack.html#type-HPACK$BufferUpdateConsumer">jdk_internal_net_http_hpack.HPACK$BufferUpdateConsumer</a>;
+                              p3 : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>) : INTEGER;
+           <b>END</b>;
+
+  <a name="type-HPACK$Logger"></a><font color="#cc0033">HPACK$Logger</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_lang.html#type-System$Logger">java_lang.System$Logger</a>)
+                  <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> *)</font>
+                  <font color="green"><b> (* </b><a href="#meths-HPACK$Logger">Typebound Procedures</a><b> *)</b></font>
+                  <b>END</b>;
+
+  <a name="type-HPACK$Logger$Level"></a><font color="#cc0033">HPACK$Logger$Level</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Enum">java_lang.Enum</a>)
+                        <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> *)</font>
+                        <font color="green"><b> (* </b><a href="#meths-HPACK$Logger$Level">Typebound Procedures</a><b> *)</b></font>
+                        <b>STATIC</b>
+                          <a name="type-EXTRA"></a><font color="#cc0033">EXTRA</font>*   : <a href="#type-HPACK$Logger$Level">HPACK$Logger$Level</a>;
+                          <a name="type-NONE"></a><font color="#cc0033">NONE</font>*    : <a href="#type-HPACK$Logger$Level">HPACK$Logger$Level</a>;
+                          <a name="type-NORMAL"></a><font color="#cc0033">NORMAL</font>*  : <a href="#type-HPACK$Logger$Level">HPACK$Logger$Level</a>;
+                          <b>PROCEDURE </b><font color="#cc0033">valueOf</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-HPACK$Logger$Level">HPACK$Logger$Level</a>;
+                          <b>PROCEDURE </b><font color="#cc0033">values</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-HPACK$Logger$Level">HPACK$Logger$Level</a>;
+                        <b>END</b>;
+
+  <a name="type-Huffman"></a><font color="#cc0033">Huffman</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+             <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+             <b>STATIC</b>
+               <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-Huffman">Huffman</a><b>,CONSTRUCTOR</b>;
+             <b>END</b>;
+
+  <a name="type-Huffman$Reader"></a><font color="#cc0033">Huffman$Reader</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                    <font color="green"><b> (* </b><a href="#meths-Huffman$Reader">Typebound Procedures</a><b> *)</b></font>
+                    <b>END</b>;
+
+  <a name="type-Huffman$Writer"></a><font color="#cc0033">Huffman$Writer</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                    <font color="green"><b> (* </b><a href="#meths-Huffman$Writer">Typebound Procedures</a><b> *)</b></font>
+                    <b>END</b>;
+
+  <a name="type-ISO_8859_1$Reader"></a><font color="#cc0033">ISO_8859_1$Reader</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                       <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                       <font color="green"><b> (* </b><a href="#meths-ISO_8859_1$Reader">Typebound Procedures</a><b> *)</b></font>
+                       <b>STATIC</b>
+                         <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-ISO_8859_1$Reader">ISO_8859_1$Reader</a><b>,CONSTRUCTOR</b>;
+                       <b>END</b>;
+
+  <a name="type-ISO_8859_1$Writer"></a><font color="#cc0033">ISO_8859_1$Writer</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                       <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                       <font color="green"><b> (* </b><a href="#meths-ISO_8859_1$Writer">Typebound Procedures</a><b> *)</b></font>
+                       <b>STATIC</b>
+                         <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-ISO_8859_1$Writer">ISO_8859_1$Writer</a><b>,CONSTRUCTOR</b>;
+                       <b>END</b>;
+
+  <a name="type-NaiveHuffman"></a><font color="#cc0033">NaiveHuffman</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                  <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> *)</font>
+                  <font color="green"><b> (* </b><a href="#meths-NaiveHuffman">Typebound Procedures</a><b> *)</b></font>
+                  <b>STATIC</b>
+                    <a name="type-INSTANCE"></a><font color="#cc0033">INSTANCE</font>* : <a href="#type-NaiveHuffman">NaiveHuffman</a>;
+                  <b>END</b>;
+
+  <a name="type-QuickHuffman"></a><font color="#cc0033">QuickHuffman</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                  <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> *)</font>
+                  <b>END</b>;
+
+  <a name="type-SimpleHeaderTable$HeaderField"></a><font color="#cc0033">SimpleHeaderTable$HeaderField</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                                   <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                                   <font color="green"><b> (* </b><a href="#meths-SimpleHeaderTable$HeaderField">Typebound Procedures</a><b> *)</b></font>
+                                   <b>STATIC</b>
+                                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                     p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-SimpleHeaderTable$HeaderField">SimpleHeaderTable$HeaderField</a><b>,CONSTRUCTOR</b>;
+                                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-SimpleHeaderTable$HeaderField">SimpleHeaderTable$HeaderField</a><b>,CONSTRUCTOR</b>;
+                                   <b>END</b>;
+
+
+
+<a name="meths-Decoder"></a>
+<b>PROCEDURE </b>(self:Decoder) <font color="#cc0033">decode</font>*(p0 : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>;
+                                 p1 : BOOLEAN;
+                                 p2 : <a href="jdk_internal_net_http_hpack.html#type-DecodingCallback">jdk_internal_net_http_hpack.DecodingCallback</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Decoder) <font color="#cc0033">setMaxCapacity</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-DecodingCallback"></a>
+<b>PROCEDURE </b>(self:DecodingCallback) <font color="#cc0033">onDecoded</font>*(p0 : <a href="java_lang.html#type-CharSequence">java_lang.CharSequence</a>;
+                                             p1 : <a href="java_lang.html#type-CharSequence">java_lang.CharSequence</a>;
+                                             p2 : BOOLEAN)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DecodingCallback) <font color="#cc0033">onDecoded</font>*(p0 : <a href="java_lang.html#type-CharSequence">java_lang.CharSequence</a>;
+                                             p1 : <a href="java_lang.html#type-CharSequence">java_lang.CharSequence</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DecodingCallback) <font color="#cc0033">onIndexed</font>*(p0 : INTEGER;
+                                             p1 : <a href="java_lang.html#type-CharSequence">java_lang.CharSequence</a>;
+                                             p2 : <a href="java_lang.html#type-CharSequence">java_lang.CharSequence</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DecodingCallback) <font color="#cc0033">onLiteral</font>*(p0 : <a href="java_lang.html#type-CharSequence">java_lang.CharSequence</a>;
+                                             p1 : BOOLEAN;
+                                             p2 : <a href="java_lang.html#type-CharSequence">java_lang.CharSequence</a>;
+                                             p3 : BOOLEAN)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DecodingCallback) <font color="#cc0033">onLiteral</font>*(p0 : INTEGER;
+                                             p1 : <a href="java_lang.html#type-CharSequence">java_lang.CharSequence</a>;
+                                             p2 : <a href="java_lang.html#type-CharSequence">java_lang.CharSequence</a>;
+                                             p3 : BOOLEAN)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DecodingCallback) <font color="#cc0033">onLiteralNeverIndexed</font>*(p0 : <a href="java_lang.html#type-CharSequence">java_lang.CharSequence</a>;
+                                                         p1 : BOOLEAN;
+                                                         p2 : <a href="java_lang.html#type-CharSequence">java_lang.CharSequence</a>;
+                                                         p3 : BOOLEAN)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DecodingCallback) <font color="#cc0033">onLiteralNeverIndexed</font>*(p0 : INTEGER;
+                                                         p1 : <a href="java_lang.html#type-CharSequence">java_lang.CharSequence</a>;
+                                                         p2 : <a href="java_lang.html#type-CharSequence">java_lang.CharSequence</a>;
+                                                         p3 : BOOLEAN)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DecodingCallback) <font color="#cc0033">onLiteralWithIndexing</font>*(p0 : <a href="java_lang.html#type-CharSequence">java_lang.CharSequence</a>;
+                                                         p1 : BOOLEAN;
+                                                         p2 : <a href="java_lang.html#type-CharSequence">java_lang.CharSequence</a>;
+                                                         p3 : BOOLEAN)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DecodingCallback) <font color="#cc0033">onLiteralWithIndexing</font>*(p0 : INTEGER;
+                                                         p1 : <a href="java_lang.html#type-CharSequence">java_lang.CharSequence</a>;
+                                                         p2 : <a href="java_lang.html#type-CharSequence">java_lang.CharSequence</a>;
+                                                         p3 : BOOLEAN)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DecodingCallback) <font color="#cc0033">onSizeUpdate</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-Encoder"></a>
+<b>PROCEDURE </b>(self:Encoder) <font color="#cc0033">calculateCapacity</font>!(p0 : INTEGER) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Encoder) <font color="#cc0033">checkEncoding</font>!()<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:Encoder) <font color="#cc0033">encode</font>*(p0 : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>) : BOOLEAN<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:Encoder) <font color="#cc0033">getHeaderTable</font>!() : <a href="jdk_internal_net_http_hpack.html#type-HeaderTable">jdk_internal_net_http_hpack.HeaderTable</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:Encoder) <font color="#cc0033">getMaxCapacity</font>!() : INTEGER<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:Encoder) <font color="#cc0033">header</font>*(p0 : <a href="java_lang.html#type-CharSequence">java_lang.CharSequence</a>;
+                                 p1 : <a href="java_lang.html#type-CharSequence">java_lang.CharSequence</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Encoder) <font color="#cc0033">header</font>*(p0 : <a href="java_lang.html#type-CharSequence">java_lang.CharSequence</a>;
+                                 p1 : <a href="java_lang.html#type-CharSequence">java_lang.CharSequence</a>;
+                                 p2 : BOOLEAN)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Encoder) <font color="#cc0033">indexed</font>!(p0 : INTEGER)<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:Encoder) <font color="#cc0033">literal</font>!(p0 : INTEGER;
+                                  p1 : <a href="java_lang.html#type-CharSequence">java_lang.CharSequence</a>;
+                                  p2 : BOOLEAN)<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:Encoder) <font color="#cc0033">literal</font>!(p0 : <a href="java_lang.html#type-CharSequence">java_lang.CharSequence</a>;
+                                  p1 : BOOLEAN;
+                                  p2 : <a href="java_lang.html#type-CharSequence">java_lang.CharSequence</a>;
+                                  p3 : BOOLEAN)<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:Encoder) <font color="#cc0033">literalNeverIndexed</font>!(p0 : INTEGER;
+                                              p1 : <a href="java_lang.html#type-CharSequence">java_lang.CharSequence</a>;
+                                              p2 : BOOLEAN)<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:Encoder) <font color="#cc0033">literalNeverIndexed</font>!(p0 : <a href="java_lang.html#type-CharSequence">java_lang.CharSequence</a>;
+                                              p1 : BOOLEAN;
+                                              p2 : <a href="java_lang.html#type-CharSequence">java_lang.CharSequence</a>;
+                                              p3 : BOOLEAN)<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:Encoder) <font color="#cc0033">literalWithIndexing</font>!(p0 : INTEGER;
+                                              p1 : <a href="java_lang.html#type-CharSequence">java_lang.CharSequence</a>;
+                                              p2 : BOOLEAN)<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:Encoder) <font color="#cc0033">literalWithIndexing</font>!(p0 : <a href="java_lang.html#type-CharSequence">java_lang.CharSequence</a>;
+                                              p1 : BOOLEAN;
+                                              p2 : <a href="java_lang.html#type-CharSequence">java_lang.CharSequence</a>;
+                                              p3 : BOOLEAN)<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:Encoder) <font color="#cc0033">setMaxCapacity</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Encoder) <font color="#cc0033">sizeUpdate</font>!(p0 : INTEGER)<b>,NEW</b>;
+<a name="meths-HPACK$Logger"></a>
+<b>PROCEDURE </b>(self:HPACK$Logger) <font color="#cc0033">getName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:HPACK$Logger) <font color="#cc0033">isLoggable</font>*(p0 : <a href="jdk_internal_net_http_hpack.html#type-HPACK$Logger$Level">jdk_internal_net_http_hpack.HPACK$Logger$Level</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HPACK$Logger) <font color="#cc0033">isLoggable</font>*(p0 : <a href="java_lang.html#type-System$Logger$Level">java_lang.System$Logger$Level</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HPACK$Logger) <font color="#cc0033">log</font>*(p0 : <a href="jdk_internal_net_http_hpack.html#type-HPACK$Logger$Level">jdk_internal_net_http_hpack.HPACK$Logger$Level</a>;
+                                   p1 : <a href="java_util_function.html#type-Supplier">java_util_function.Supplier</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HPACK$Logger) <font color="#cc0033">log</font>*(p0 : <a href="java_lang.html#type-System$Logger$Level">java_lang.System$Logger$Level</a>;
+                                   p1 : <a href="java_util.html#type-ResourceBundle">java_util.ResourceBundle</a>;
+                                   p2 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                   p3 : <a href="java_lang.html#type-Throwable">java_lang.Throwable</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HPACK$Logger) <font color="#cc0033">log</font>*(    p0 : <a href="java_lang.html#type-System$Logger$Level">java_lang.System$Logger$Level</a>;
+                                       p1 : <a href="java_util.html#type-ResourceBundle">java_util.ResourceBundle</a>;
+                                       p2 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                   IN  p3 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HPACK$Logger) <font color="#cc0033">subLogger</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-HPACK$Logger">HPACK$Logger</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-HPACK$Logger$Level"></a>
+<b>PROCEDURE </b>(self:HPACK$Logger$Level) <font color="#cc0033">implies</font>*(p0 : <a href="#type-HPACK$Logger$Level">HPACK$Logger$Level</a>) : BOOLEAN<b>,NEW</b>;
+<a name="meths-Huffman$Reader"></a>
+<b>PROCEDURE </b>(self:Huffman$Reader) <font color="#cc0033">read</font>*(p0 : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>;
+                                      p1 : <a href="java_lang.html#type-Appendable">java_lang.Appendable</a>;
+                                      p2 : BOOLEAN)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Huffman$Reader) <font color="#cc0033">reset</font>*()<b>,NEW,ABSTRACT</b>;
+<a name="meths-Huffman$Writer"></a>
+<b>PROCEDURE </b>(self:Huffman$Writer) <font color="#cc0033">from</font>*(p0 : <a href="java_lang.html#type-CharSequence">java_lang.CharSequence</a>;
+                                      p1 : INTEGER;
+                                      p2 : INTEGER) : <a href="#type-Huffman$Writer">Huffman$Writer</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Huffman$Writer) <font color="#cc0033">lengthOf</font>*(p0 : <a href="java_lang.html#type-CharSequence">java_lang.CharSequence</a>;
+                                          p1 : INTEGER;
+                                          p2 : INTEGER) : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Huffman$Writer) <font color="#cc0033">lengthOf</font>*(p0 : <a href="java_lang.html#type-CharSequence">java_lang.CharSequence</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Huffman$Writer) <font color="#cc0033">reset</font>*() : <a href="#type-Huffman$Writer">Huffman$Writer</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Huffman$Writer) <font color="#cc0033">write</font>*(p0 : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+<a name="meths-ISO_8859_1$Reader"></a>
+<b>PROCEDURE </b>(self:ISO_8859_1$Reader) <font color="#cc0033">read</font>*(p0 : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>;
+                                         p1 : <a href="java_lang.html#type-Appendable">java_lang.Appendable</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ISO_8859_1$Reader) <font color="#cc0033">reset</font>*() : <a href="#type-ISO_8859_1$Reader">ISO_8859_1$Reader</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-ISO_8859_1$Writer"></a>
+<b>PROCEDURE </b>(self:ISO_8859_1$Writer) <font color="#cc0033">configure</font>*(p0 : <a href="java_lang.html#type-CharSequence">java_lang.CharSequence</a>;
+                                              p1 : INTEGER;
+                                              p2 : INTEGER) : <a href="#type-ISO_8859_1$Writer">ISO_8859_1$Writer</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ISO_8859_1$Writer) <font color="#cc0033">reset</font>*() : <a href="#type-ISO_8859_1$Writer">ISO_8859_1$Writer</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ISO_8859_1$Writer) <font color="#cc0033">write</font>*(p0 : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-NaiveHuffman"></a>
+<b>PROCEDURE </b>(self:NaiveHuffman) <font color="#cc0033">lengthOf</font>*(p0 : <a href="java_lang.html#type-CharSequence">java_lang.CharSequence</a>;
+                                        p1 : INTEGER;
+                                        p2 : INTEGER) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:NaiveHuffman) <font color="#cc0033">lengthOf</font>*(p0 : <a href="java_lang.html#type-CharSequence">java_lang.CharSequence</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-SimpleHeaderTable$HeaderField"></a>
+<b>PROCEDURE </b>(self:SimpleHeaderTable$HeaderField) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>END </b><font color="#cc0033">jdk_internal_net_http_hpack</font>.
+</font></pre></hr>
+<!-- BEGIN JavaScript -->
+<script>
+function toggle(node) {
+    node.classList.toggle("show"); 
+  }
+
+function cls(node) {
+    var prnt = node.parentNode;
+    var next = prnt.previousSibling;
+    var text = next.lastChild;
+    text.innerHTML = 
+        "The <b>class</b> property asserts that this type will be<br>" +
+        "implemented as a reference class in the underlying framework.";
+    text.classList.toggle("show");
+  }
+
+function newOk(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>has noArg-ctor</b> property asserts that this reference<br>" +
+        "class has a no-arg constructor, and thus objects of this<br>" +
+        "type can be allocated with NEW(). Component Pascal types<br>" +
+        "derived from this type can also be allocated using NEW().";
+    popuptext.classList.toggle("show"); 
+  }
+
+function noNew(node) { 
+    var prnt = node.parentNode; 
+    var next = prnt.previousSibling; 
+    var text = next.lastChild; 
+    text.innerHTML =  
+        "The <b>no noArg-ctor</b> property asserts that this reference<br>" +
+        "class does not have a noArg constructor. Objects of this<br>" +
+        "type cannot be allocated using NEW(), and Component<br>" +
+        "Pascal types  derived from this type also cannot be<br>" +
+        "allocated using NEW().";
+    text.classList.toggle("show");
+  }
+
+function noCpy(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>no value-assign</b> property asserts that this reference<br>" + 
+        "class does not have a value copy method. Therefore, it<br>" +
+        "is not possible to perform value assignments using<br>" +
+        "statements like <i>dst^</i> := <i>src^</i>";
+    popuptext.classList.toggle("show");
+  }
+
+function valueclass(node) { 
+        var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>valueclass</b> property asserts that this RECORD type is<br>" + 
+        "implemented as a value class in the CLR. It follows that<br>" +  
+        "value assignments can be made of these types. They can<br>" + 
+        "also be passed by value. Even pointers to records of<br>" + 
+        "such types may be dereferenced and copied using syntax<br>" + 
+        "such as  <i>dst^</i> := <i>src^</i>"; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+function argCtor(node) { 
+    var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>has arg-ctor</b> property asserts that this reference<br>" +  
+        "class has one or more constructors that take arguments.<br>" + 
+        "These constructors can be called from Component Pascal<br>" + 
+        "by calling an <i>init</i>(...) method from the static list<br>" + 
+        "here. Component Pascal types derived from this type<br>" + 
+        "can define constructors with arguments which call the<br>" + 
+        "super-type constructor.<br>" + 
+        "See <i>'Interfacing to constructors'</i> in the Release Notes."; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+</script>
+<!-- END JavaScript --> 
+
+</body></html>

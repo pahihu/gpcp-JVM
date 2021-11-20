@@ -1,0 +1,467 @@
+<html><head><title>javax_management_monitor</title>
+<style>
+<!-- BEGIN Inline CSS -->
+/* Popup container */
+.popup {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+/* The actual popup (appears on top) */
+.popup .popuptext {
+    visibility: hidden;
+    width: 430px;
+    background-color: white;
+    color: black;
+    text-align: left;
+    border-radius: 6px;
+    border-style: solid;
+    border-color: black;
+    padding: 8px 8px 8px 8px;
+    position: absolute;
+    z-index: 1;
+    margin-top: 30px;
+}
+
+/* Toggle this class when clicking on the popup container (hide and show the popup) */
+.popup .show {
+    visibility: visible;
+    opacity: 1;
+}
+
+</style>
+<!-- END Inline CSS -->
+</head><body bgcolor="white">
+<hr><pre>
+<font color="green">(*</font>
+<font color="green"> *  Creator PeToCps j2cps version 1.4.07 (March 2018)</font>
+<font color="green"> *  Compiled from jar-file /Library/Java/JavaVirtualMachines/zulu-11.jdk/Contents/Home/jmods/java.management.jmod</font>
+<font color="green"> *)</font>
+<b>FOREIGN MODULE </b><font color="#cc0033">javax_management_monitor</font>;
+
+<b>IMPORT</b>
+    <a href="javax_management.html">javax_management</a> := "javax.management",
+    <a href="javax_management.html">javax_management</a> := "javax.management",
+    <a href="javax_management_monitor.html">javax_management_monitor</a> := "javax.management.monitor",
+    <a href="java_lang.html">java_lang</a> := "java.lang";
+
+<b>TYPE</b>
+
+  <a name="type-CounterMonitor"></a><font color="#cc0033">CounterMonitor</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="javax_management_monitor.html#type-Monitor">javax_management_monitor.Monitor</a> + <a href="javax_management_monitor.html#type-CounterMonitorMBean">javax_management_monitor.CounterMonitorMBean</a>)
+                    <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                    <font color="green"><b> (* </b><a href="#meths-CounterMonitor">Typebound Procedures</a><b> *)</b></font>
+                    <b>STATIC</b>
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CounterMonitor">CounterMonitor</a><b>,CONSTRUCTOR</b>;
+                    <b>END</b>;
+
+  <a name="type-CounterMonitorMBean"></a><font color="#cc0033">CounterMonitorMBean</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="javax_management_monitor.html#type-MonitorMBean">javax_management_monitor.MonitorMBean</a>)
+                         <font color="green"><b> (* </b><a href="#meths-CounterMonitorMBean">Typebound Procedures</a><b> *)</b></font>
+                         <b>END</b>;
+
+  <a name="type-GaugeMonitor"></a><font color="#cc0033">GaugeMonitor</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-Monitor">Monitor</a> + <a href="#type-GaugeMonitorMBean">GaugeMonitorMBean</a>)
+                  <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                  <font color="green"><b> (* </b><a href="#meths-GaugeMonitor">Typebound Procedures</a><b> *)</b></font>
+                  <b>STATIC</b>
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-GaugeMonitor">GaugeMonitor</a><b>,CONSTRUCTOR</b>;
+                  <b>END</b>;
+
+  <a name="type-GaugeMonitorMBean"></a><font color="#cc0033">GaugeMonitorMBean</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="javax_management_monitor.html#type-MonitorMBean">javax_management_monitor.MonitorMBean</a>)
+                       <font color="green"><b> (* </b><a href="#meths-GaugeMonitorMBean">Typebound Procedures</a><b> *)</b></font>
+                       <b>END</b>;
+
+  <a name="type-Monitor"></a><font color="#cc0033">Monitor</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="javax_management.html#type-NotificationBroadcasterSupport">javax_management.NotificationBroadcasterSupport</a> + <a href="javax_management_monitor.html#type-MonitorMBean">javax_management_monitor.MonitorMBean</a> + <a href="javax_management.html#type-MBeanRegistration">javax_management.MBeanRegistration</a>)
+             <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+             <font color="green"><b> (* </b><a href="#meths-Monitor">Typebound Procedures</a><b> *)</b></font>
+               <font color="#cc0033">elementCount</font>!     : INTEGER;
+               <font color="#cc0033">alreadyNotified</font>!  : INTEGER;
+               <font color="#cc0033">alreadyNotifieds</font>! : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>INTEGER;
+               <font color="#cc0033">server</font>!           : <a href="javax_management.html#type-MBeanServer">javax_management.MBeanServer</a>;
+               <font color="#cc0033">dbgTag</font>!           : <a href="java_lang.html#type-String">java_lang.String</a>;
+             <b>STATIC</b>
+               <font color="#cc0033">capacityIncrement</font>!                      = 16;
+               <font color="#cc0033">OBSERVED_ATTRIBUTE_ERROR_NOTIFIED</font>!      = 2;
+               <font color="#cc0033">OBSERVED_ATTRIBUTE_TYPE_ERROR_NOTIFIED</font>! = 4;
+               <font color="#cc0033">OBSERVED_OBJECT_ERROR_NOTIFIED</font>!         = 1;
+               <font color="#cc0033">RESET_FLAGS_ALREADY_NOTIFIED</font>!           = 0;
+               <font color="#cc0033">RUNTIME_ERROR_NOTIFIED</font>!                 = 8;
+               <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-Monitor">Monitor</a><b>,CONSTRUCTOR</b>;
+             <b>END</b>;
+
+  <a name="type-MonitorMBean"></a><font color="#cc0033">MonitorMBean</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                  <font color="green"><b> (* </b><a href="#meths-MonitorMBean">Typebound Procedures</a><b> *)</b></font>
+                  <b>END</b>;
+
+  <a name="type-MonitorNotification"></a><font color="#cc0033">MonitorNotification</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="javax_management.html#type-Notification">javax_management.Notification</a>)
+                         <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> *)</font>
+                         <font color="green"><b> (* </b><a href="#meths-MonitorNotification">Typebound Procedures</a><b> *)</b></font>
+                         <b>STATIC</b>
+                           <font color="#cc0033">OBSERVED_ATTRIBUTE_ERROR</font>*         = "jmx.monitor.error.attribute";
+                           <font color="#cc0033">OBSERVED_ATTRIBUTE_TYPE_ERROR</font>*    = "jmx.monitor.error.type";
+                           <font color="#cc0033">OBSERVED_OBJECT_ERROR</font>*            = "jmx.monitor.error.mbean";
+                           <font color="#cc0033">RUNTIME_ERROR</font>*                    = "jmx.monitor.error.runtime";
+                           <font color="#cc0033">STRING_TO_COMPARE_VALUE_DIFFERED</font>* = "jmx.monitor.string.differs";
+                           <font color="#cc0033">STRING_TO_COMPARE_VALUE_MATCHED</font>*  = "jmx.monitor.string.matches";
+                           <font color="#cc0033">THRESHOLD_ERROR</font>*                  = "jmx.monitor.error.threshold";
+                           <font color="#cc0033">THRESHOLD_HIGH_VALUE_EXCEEDED</font>*    = "jmx.monitor.gauge.high";
+                           <font color="#cc0033">THRESHOLD_LOW_VALUE_EXCEEDED</font>*     = "jmx.monitor.gauge.low";
+                           <font color="#cc0033">THRESHOLD_VALUE_EXCEEDED</font>*         = "jmx.monitor.counter.threshold";
+                         <b>END</b>;
+
+  <a name="type-MonitorSettingException"></a><font color="#cc0033">MonitorSettingException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="javax_management.html#type-JMRuntimeException">javax_management.JMRuntimeException</a>)
+                             <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                             <b>STATIC</b>
+                               <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-MonitorSettingException">MonitorSettingException</a><b>,CONSTRUCTOR</b>;
+                               <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-MonitorSettingException">MonitorSettingException</a><b>,CONSTRUCTOR</b>;
+                             <b>END</b>;
+
+  <a name="type-StringMonitor"></a><font color="#cc0033">StringMonitor</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="javax_management_monitor.html#type-Monitor">javax_management_monitor.Monitor</a> + <a href="#type-StringMonitorMBean">StringMonitorMBean</a>)
+                   <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                   <font color="green"><b> (* </b><a href="#meths-StringMonitor">Typebound Procedures</a><b> *)</b></font>
+                   <b>STATIC</b>
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-StringMonitor">StringMonitor</a><b>,CONSTRUCTOR</b>;
+                   <b>END</b>;
+
+  <a name="type-StringMonitorMBean"></a><font color="#cc0033">StringMonitorMBean</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="javax_management_monitor.html#type-MonitorMBean">javax_management_monitor.MonitorMBean</a>)
+                        <font color="green"><b> (* </b><a href="#meths-StringMonitorMBean">Typebound Procedures</a><b> *)</b></font>
+                        <b>END</b>;
+
+
+
+<a name="meths-CounterMonitor"></a>
+<b>PROCEDURE </b>(self:CounterMonitor) <font color="#cc0033">getDerivedGauge</font>*(p0 : <a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a>) : <a href="java_lang.html#type-Number">java_lang.Number</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CounterMonitor) <font color="#cc0033">getDerivedGauge</font>*() : <a href="java_lang.html#type-Number">java_lang.Number</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CounterMonitor) <font color="#cc0033">getDerivedGauge</font>*(p0 : <a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CounterMonitor) <font color="#cc0033">getDerivedGaugeTimeStamp</font>*() : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CounterMonitor) <font color="#cc0033">getDerivedGaugeTimeStamp</font>*(p0 : <a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a>) : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CounterMonitor) <font color="#cc0033">getDifferenceMode</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CounterMonitor) <font color="#cc0033">getInitThreshold</font>*() : <a href="java_lang.html#type-Number">java_lang.Number</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CounterMonitor) <font color="#cc0033">getModulus</font>*() : <a href="java_lang.html#type-Number">java_lang.Number</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CounterMonitor) <font color="#cc0033">getNotificationInfo</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="javax_management.html#type-MBeanNotificationInfo">javax_management.MBeanNotificationInfo</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CounterMonitor) <font color="#cc0033">getNotify</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CounterMonitor) <font color="#cc0033">getOffset</font>*() : <a href="java_lang.html#type-Number">java_lang.Number</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CounterMonitor) <font color="#cc0033">getThreshold</font>*(p0 : <a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a>) : <a href="java_lang.html#type-Number">java_lang.Number</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CounterMonitor) <font color="#cc0033">getThreshold</font>*() : <a href="java_lang.html#type-Number">java_lang.Number</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CounterMonitor) <font color="#cc0033">setDifferenceMode</font>*(p0 : BOOLEAN)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CounterMonitor) <font color="#cc0033">setInitThreshold</font>*(p0 : <a href="java_lang.html#type-Number">java_lang.Number</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CounterMonitor) <font color="#cc0033">setModulus</font>*(p0 : <a href="java_lang.html#type-Number">java_lang.Number</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CounterMonitor) <font color="#cc0033">setNotify</font>*(p0 : BOOLEAN)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CounterMonitor) <font color="#cc0033">setOffset</font>*(p0 : <a href="java_lang.html#type-Number">java_lang.Number</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CounterMonitor) <font color="#cc0033">setThreshold</font>*(p0 : <a href="java_lang.html#type-Number">java_lang.Number</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CounterMonitor) <font color="#cc0033">start</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CounterMonitor) <font color="#cc0033">stop</font>*()<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-CounterMonitorMBean"></a>
+<b>PROCEDURE </b>(self:CounterMonitorMBean) <font color="#cc0033">getDerivedGauge</font>*(p0 : <a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a>) : <a href="java_lang.html#type-Number">java_lang.Number</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CounterMonitorMBean) <font color="#cc0033">getDerivedGauge</font>*() : <a href="java_lang.html#type-Number">java_lang.Number</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CounterMonitorMBean) <font color="#cc0033">getDerivedGaugeTimeStamp</font>*(p0 : <a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a>) : LONGINT<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CounterMonitorMBean) <font color="#cc0033">getDerivedGaugeTimeStamp</font>*() : LONGINT<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CounterMonitorMBean) <font color="#cc0033">getDifferenceMode</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CounterMonitorMBean) <font color="#cc0033">getInitThreshold</font>*() : <a href="java_lang.html#type-Number">java_lang.Number</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CounterMonitorMBean) <font color="#cc0033">getModulus</font>*() : <a href="java_lang.html#type-Number">java_lang.Number</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CounterMonitorMBean) <font color="#cc0033">getNotify</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CounterMonitorMBean) <font color="#cc0033">getOffset</font>*() : <a href="java_lang.html#type-Number">java_lang.Number</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CounterMonitorMBean) <font color="#cc0033">getThreshold</font>*() : <a href="java_lang.html#type-Number">java_lang.Number</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CounterMonitorMBean) <font color="#cc0033">getThreshold</font>*(p0 : <a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a>) : <a href="java_lang.html#type-Number">java_lang.Number</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CounterMonitorMBean) <font color="#cc0033">setDifferenceMode</font>*(p0 : BOOLEAN)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CounterMonitorMBean) <font color="#cc0033">setInitThreshold</font>*(p0 : <a href="java_lang.html#type-Number">java_lang.Number</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CounterMonitorMBean) <font color="#cc0033">setModulus</font>*(p0 : <a href="java_lang.html#type-Number">java_lang.Number</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CounterMonitorMBean) <font color="#cc0033">setNotify</font>*(p0 : BOOLEAN)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CounterMonitorMBean) <font color="#cc0033">setOffset</font>*(p0 : <a href="java_lang.html#type-Number">java_lang.Number</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CounterMonitorMBean) <font color="#cc0033">setThreshold</font>*(p0 : <a href="java_lang.html#type-Number">java_lang.Number</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-GaugeMonitor"></a>
+<b>PROCEDURE </b>(self:GaugeMonitor) <font color="#cc0033">getDerivedGauge</font>*(p0 : <a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a>) : <a href="java_lang.html#type-Number">java_lang.Number</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:GaugeMonitor) <font color="#cc0033">getDerivedGauge</font>*() : <a href="java_lang.html#type-Number">java_lang.Number</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:GaugeMonitor) <font color="#cc0033">getDerivedGauge</font>*(p0 : <a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:GaugeMonitor) <font color="#cc0033">getDerivedGaugeTimeStamp</font>*() : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:GaugeMonitor) <font color="#cc0033">getDerivedGaugeTimeStamp</font>*(p0 : <a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a>) : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:GaugeMonitor) <font color="#cc0033">getDifferenceMode</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:GaugeMonitor) <font color="#cc0033">getHighThreshold</font>*() : <a href="java_lang.html#type-Number">java_lang.Number</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:GaugeMonitor) <font color="#cc0033">getLowThreshold</font>*() : <a href="java_lang.html#type-Number">java_lang.Number</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:GaugeMonitor) <font color="#cc0033">getNotificationInfo</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="javax_management.html#type-MBeanNotificationInfo">javax_management.MBeanNotificationInfo</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:GaugeMonitor) <font color="#cc0033">getNotifyHigh</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:GaugeMonitor) <font color="#cc0033">getNotifyLow</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:GaugeMonitor) <font color="#cc0033">setDifferenceMode</font>*(p0 : BOOLEAN)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:GaugeMonitor) <font color="#cc0033">setNotifyHigh</font>*(p0 : BOOLEAN)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:GaugeMonitor) <font color="#cc0033">setNotifyLow</font>*(p0 : BOOLEAN)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:GaugeMonitor) <font color="#cc0033">setThresholds</font>*(p0 : <a href="java_lang.html#type-Number">java_lang.Number</a>;
+                                             p1 : <a href="java_lang.html#type-Number">java_lang.Number</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:GaugeMonitor) <font color="#cc0033">start</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:GaugeMonitor) <font color="#cc0033">stop</font>*()<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-GaugeMonitorMBean"></a>
+<b>PROCEDURE </b>(self:GaugeMonitorMBean) <font color="#cc0033">getDerivedGauge</font>*(p0 : <a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a>) : <a href="java_lang.html#type-Number">java_lang.Number</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:GaugeMonitorMBean) <font color="#cc0033">getDerivedGauge</font>*() : <a href="java_lang.html#type-Number">java_lang.Number</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:GaugeMonitorMBean) <font color="#cc0033">getDerivedGaugeTimeStamp</font>*(p0 : <a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a>) : LONGINT<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:GaugeMonitorMBean) <font color="#cc0033">getDerivedGaugeTimeStamp</font>*() : LONGINT<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:GaugeMonitorMBean) <font color="#cc0033">getDifferenceMode</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:GaugeMonitorMBean) <font color="#cc0033">getHighThreshold</font>*() : <a href="java_lang.html#type-Number">java_lang.Number</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:GaugeMonitorMBean) <font color="#cc0033">getLowThreshold</font>*() : <a href="java_lang.html#type-Number">java_lang.Number</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:GaugeMonitorMBean) <font color="#cc0033">getNotifyHigh</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:GaugeMonitorMBean) <font color="#cc0033">getNotifyLow</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:GaugeMonitorMBean) <font color="#cc0033">setDifferenceMode</font>*(p0 : BOOLEAN)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:GaugeMonitorMBean) <font color="#cc0033">setNotifyHigh</font>*(p0 : BOOLEAN)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:GaugeMonitorMBean) <font color="#cc0033">setNotifyLow</font>*(p0 : BOOLEAN)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:GaugeMonitorMBean) <font color="#cc0033">setThresholds</font>*(p0 : <a href="java_lang.html#type-Number">java_lang.Number</a>;
+                                                  p1 : <a href="java_lang.html#type-Number">java_lang.Number</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-Monitor"></a>
+<b>PROCEDURE </b>(self:Monitor) <font color="#cc0033">addObservedObject</font>*(p0 : <a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Monitor) <font color="#cc0033">containsObservedObject</font>*(p0 : <a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Monitor) <font color="#cc0033">getGranularityPeriod</font>*() : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Monitor) <font color="#cc0033">getObservedAttribute</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Monitor) <font color="#cc0033">getObservedObject</font>*() : <a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Monitor) <font color="#cc0033">getObservedObjects</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Monitor) <font color="#cc0033">isActive</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Monitor) <font color="#cc0033">postDeregister</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Monitor) <font color="#cc0033">postRegister</font>*(p0 : <a href="java_lang.html#type-Boolean">java_lang.Boolean</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Monitor) <font color="#cc0033">preDeregister</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Monitor) <font color="#cc0033">preRegister</font>*(p0 : <a href="javax_management.html#type-MBeanServer">javax_management.MBeanServer</a>;
+                                      p1 : <a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a>) : <a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Monitor) <font color="#cc0033">removeObservedObject</font>*(p0 : <a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Monitor) <font color="#cc0033">setGranularityPeriod</font>*(p0 : LONGINT)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Monitor) <font color="#cc0033">setObservedAttribute</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Monitor) <font color="#cc0033">setObservedObject</font>*(p0 : <a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Monitor) <font color="#cc0033">start</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Monitor) <font color="#cc0033">stop</font>*()<b>,NEW,ABSTRACT</b>;
+<a name="meths-MonitorMBean"></a>
+<b>PROCEDURE </b>(self:MonitorMBean) <font color="#cc0033">addObservedObject</font>*(p0 : <a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MonitorMBean) <font color="#cc0033">containsObservedObject</font>*(p0 : <a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MonitorMBean) <font color="#cc0033">getGranularityPeriod</font>*() : LONGINT<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MonitorMBean) <font color="#cc0033">getObservedAttribute</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MonitorMBean) <font color="#cc0033">getObservedObject</font>*() : <a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MonitorMBean) <font color="#cc0033">getObservedObjects</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MonitorMBean) <font color="#cc0033">isActive</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MonitorMBean) <font color="#cc0033">removeObservedObject</font>*(p0 : <a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MonitorMBean) <font color="#cc0033">setGranularityPeriod</font>*(p0 : LONGINT)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MonitorMBean) <font color="#cc0033">setObservedAttribute</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MonitorMBean) <font color="#cc0033">setObservedObject</font>*(p0 : <a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MonitorMBean) <font color="#cc0033">start</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MonitorMBean) <font color="#cc0033">stop</font>*()<b>,NEW,ABSTRACT</b>;
+<a name="meths-MonitorNotification"></a>
+<b>PROCEDURE </b>(self:MonitorNotification) <font color="#cc0033">getDerivedGauge</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MonitorNotification) <font color="#cc0033">getObservedAttribute</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MonitorNotification) <font color="#cc0033">getObservedObject</font>*() : <a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MonitorNotification) <font color="#cc0033">getTrigger</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-StringMonitor"></a>
+<b>PROCEDURE </b>(self:StringMonitor) <font color="#cc0033">getDerivedGauge</font>*(p0 : <a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:StringMonitor) <font color="#cc0033">getDerivedGauge</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:StringMonitor) <font color="#cc0033">getDerivedGauge</font>*(p0 : <a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:StringMonitor) <font color="#cc0033">getDerivedGaugeTimeStamp</font>*() : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:StringMonitor) <font color="#cc0033">getDerivedGaugeTimeStamp</font>*(p0 : <a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a>) : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:StringMonitor) <font color="#cc0033">getNotificationInfo</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="javax_management.html#type-MBeanNotificationInfo">javax_management.MBeanNotificationInfo</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:StringMonitor) <font color="#cc0033">getNotifyDiffer</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:StringMonitor) <font color="#cc0033">getNotifyMatch</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:StringMonitor) <font color="#cc0033">getStringToCompare</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:StringMonitor) <font color="#cc0033">setNotifyDiffer</font>*(p0 : BOOLEAN)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:StringMonitor) <font color="#cc0033">setNotifyMatch</font>*(p0 : BOOLEAN)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:StringMonitor) <font color="#cc0033">setStringToCompare</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:StringMonitor) <font color="#cc0033">start</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:StringMonitor) <font color="#cc0033">stop</font>*()<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-StringMonitorMBean"></a>
+<b>PROCEDURE </b>(self:StringMonitorMBean) <font color="#cc0033">getDerivedGauge</font>*(p0 : <a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:StringMonitorMBean) <font color="#cc0033">getDerivedGauge</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:StringMonitorMBean) <font color="#cc0033">getDerivedGaugeTimeStamp</font>*(p0 : <a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a>) : LONGINT<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:StringMonitorMBean) <font color="#cc0033">getDerivedGaugeTimeStamp</font>*() : LONGINT<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:StringMonitorMBean) <font color="#cc0033">getNotifyDiffer</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:StringMonitorMBean) <font color="#cc0033">getNotifyMatch</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:StringMonitorMBean) <font color="#cc0033">getStringToCompare</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:StringMonitorMBean) <font color="#cc0033">setNotifyDiffer</font>*(p0 : BOOLEAN)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:StringMonitorMBean) <font color="#cc0033">setNotifyMatch</font>*(p0 : BOOLEAN)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:StringMonitorMBean) <font color="#cc0033">setStringToCompare</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>END </b><font color="#cc0033">javax_management_monitor</font>.
+</font></pre></hr>
+<!-- BEGIN JavaScript -->
+<script>
+function toggle(node) {
+    node.classList.toggle("show"); 
+  }
+
+function cls(node) {
+    var prnt = node.parentNode;
+    var next = prnt.previousSibling;
+    var text = next.lastChild;
+    text.innerHTML = 
+        "The <b>class</b> property asserts that this type will be<br>" +
+        "implemented as a reference class in the underlying framework.";
+    text.classList.toggle("show");
+  }
+
+function newOk(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>has noArg-ctor</b> property asserts that this reference<br>" +
+        "class has a no-arg constructor, and thus objects of this<br>" +
+        "type can be allocated with NEW(). Component Pascal types<br>" +
+        "derived from this type can also be allocated using NEW().";
+    popuptext.classList.toggle("show"); 
+  }
+
+function noNew(node) { 
+    var prnt = node.parentNode; 
+    var next = prnt.previousSibling; 
+    var text = next.lastChild; 
+    text.innerHTML =  
+        "The <b>no noArg-ctor</b> property asserts that this reference<br>" +
+        "class does not have a noArg constructor. Objects of this<br>" +
+        "type cannot be allocated using NEW(), and Component<br>" +
+        "Pascal types  derived from this type also cannot be<br>" +
+        "allocated using NEW().";
+    text.classList.toggle("show");
+  }
+
+function noCpy(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>no value-assign</b> property asserts that this reference<br>" + 
+        "class does not have a value copy method. Therefore, it<br>" +
+        "is not possible to perform value assignments using<br>" +
+        "statements like <i>dst^</i> := <i>src^</i>";
+    popuptext.classList.toggle("show");
+  }
+
+function valueclass(node) { 
+        var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>valueclass</b> property asserts that this RECORD type is<br>" + 
+        "implemented as a value class in the CLR. It follows that<br>" +  
+        "value assignments can be made of these types. They can<br>" + 
+        "also be passed by value. Even pointers to records of<br>" + 
+        "such types may be dereferenced and copied using syntax<br>" + 
+        "such as  <i>dst^</i> := <i>src^</i>"; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+function argCtor(node) { 
+    var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>has arg-ctor</b> property asserts that this reference<br>" +  
+        "class has one or more constructors that take arguments.<br>" + 
+        "These constructors can be called from Component Pascal<br>" + 
+        "by calling an <i>init</i>(...) method from the static list<br>" + 
+        "here. Component Pascal types derived from this type<br>" + 
+        "can define constructors with arguments which call the<br>" + 
+        "super-type constructor.<br>" + 
+        "See <i>'Interfacing to constructors'</i> in the Release Notes."; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+</script>
+<!-- END JavaScript --> 
+
+</body></html>

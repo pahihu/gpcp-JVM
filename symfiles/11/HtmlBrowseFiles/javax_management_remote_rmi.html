@@ -1,0 +1,664 @@
+<html><head><title>javax_management_remote_rmi</title>
+<style>
+<!-- BEGIN Inline CSS -->
+/* Popup container */
+.popup {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+/* The actual popup (appears on top) */
+.popup .popuptext {
+    visibility: hidden;
+    width: 430px;
+    background-color: white;
+    color: black;
+    text-align: left;
+    border-radius: 6px;
+    border-style: solid;
+    border-color: black;
+    padding: 8px 8px 8px 8px;
+    position: absolute;
+    z-index: 1;
+    margin-top: 30px;
+}
+
+/* Toggle this class when clicking on the popup container (hide and show the popup) */
+.popup .show {
+    visibility: visible;
+    opacity: 1;
+}
+
+</style>
+<!-- END Inline CSS -->
+</head><body bgcolor="white">
+<hr><pre>
+<font color="green">(*</font>
+<font color="green"> *  Creator PeToCps j2cps version 1.4.07 (March 2018)</font>
+<font color="green"> *  Compiled from jar-file /Library/Java/JavaVirtualMachines/zulu-11.jdk/Contents/Home/jmods/java.management.rmi.jmod</font>
+<font color="green"> *)</font>
+<b>FOREIGN MODULE </b><font color="#cc0033">javax_management_remote_rmi</font>;
+
+<b>IMPORT</b>
+    <a href="javax_management.html">javax_management</a> := "javax.management",
+    <a href="javax_management_remote.html">javax_management_remote</a> := "javax.management.remote",
+    <a href="javax_management_remote_rmi.html">javax_management_remote_rmi</a> := "javax.management.remote.rmi",
+    <a href="javax_security_auth.html">javax_security_auth</a> := "javax.security.auth",
+    <a href="java_io.html">java_io</a> := "java.io",
+    <a href="java_lang.html">java_lang</a> := "java.lang",
+    <a href="java_rmi.html">java_rmi</a> := "java.rmi",
+    <a href="java_rmi_server.html">java_rmi_server</a> := "java.rmi.server",
+    <a href="java_util.html">java_util</a> := "java.util";
+
+<b>TYPE</b>
+
+  <a name="type-RMIConnection"></a><font color="#cc0033">RMIConnection</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_io.html#type-Closeable">java_io.Closeable</a> + <a href="java_rmi.html#type-Remote">java_rmi.Remote</a>)
+                   <font color="green"><b> (* </b><a href="#meths-RMIConnection">Typebound Procedures</a><b> *)</b></font>
+                   <b>END</b>;
+
+  <a name="type-RMIConnectionImpl"></a><font color="#cc0033">RMIConnectionImpl</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-RMIConnection">RMIConnection</a> + <a href="java_rmi_server.html#type-Unreferenced">java_rmi_server.Unreferenced</a>)
+                       <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                       <font color="green"><b> (* </b><a href="#meths-RMIConnectionImpl">Typebound Procedures</a><b> *)</b></font>
+                       <b>STATIC</b>
+                         <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="javax_management_remote_rmi.html#type-RMIServerImpl">javax_management_remote_rmi.RMIServerImpl</a>;
+                                         p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                         p2 : <a href="java_lang.html#type-ClassLoader">java_lang.ClassLoader</a>;
+                                         p3 : <a href="javax_security_auth.html#type-Subject">javax_security_auth.Subject</a>;
+                                         p4 : <a href="java_util.html#type-Map">java_util.Map</a>) : <a href="#type-RMIConnectionImpl">RMIConnectionImpl</a><b>,CONSTRUCTOR</b>;
+                       <b>END</b>;
+
+  <a name="type-RMIConnectionImpl_Stub"></a><font color="#cc0033">RMIConnectionImpl_Stub</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_rmi_server.html#type-RemoteStub">java_rmi_server.RemoteStub</a> + <a href="#type-RMIConnection">RMIConnection</a>)
+                            <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                            <font color="green"><b> (* </b><a href="#meths-RMIConnectionImpl_Stub">Typebound Procedures</a><b> *)</b></font>
+                            <b>STATIC</b>
+                              <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_rmi_server.html#type-RemoteRef">java_rmi_server.RemoteRef</a>) : <a href="#type-RMIConnectionImpl_Stub">RMIConnectionImpl_Stub</a><b>,CONSTRUCTOR</b>;
+                            <b>END</b>;
+
+  <a name="type-RMIConnector"></a><font color="#cc0033">RMIConnector</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="javax_management_remote.html#type-JMXConnector">javax_management_remote.JMXConnector</a> + <a href="java_io.html#type-Serializable">java_io.Serializable</a> + <a href="javax_management_remote.html#type-JMXAddressable">javax_management_remote.JMXAddressable</a>)
+                  <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                  <font color="green"><b> (* </b><a href="#meths-RMIConnector">Typebound Procedures</a><b> *)</b></font>
+                  <b>STATIC</b>
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="javax_management_remote_rmi.html#type-RMIServer">javax_management_remote_rmi.RMIServer</a>;
+                                    p1 : <a href="java_util.html#type-Map">java_util.Map</a>) : <a href="#type-RMIConnector">RMIConnector</a><b>,CONSTRUCTOR</b>;
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="javax_management_remote.html#type-JMXServiceURL">javax_management_remote.JMXServiceURL</a>;
+                                    p1 : <a href="java_util.html#type-Map">java_util.Map</a>) : <a href="#type-RMIConnector">RMIConnector</a><b>,CONSTRUCTOR</b>;
+                  <b>END</b>;
+
+  <a name="type-RMIConnectorServer"></a><font color="#cc0033">RMIConnectorServer</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="javax_management_remote.html#type-JMXConnectorServer">javax_management_remote.JMXConnectorServer</a>)
+                        <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                        <font color="green"><b> (* </b><a href="#meths-RMIConnectorServer">Typebound Procedures</a><b> *)</b></font>
+                        <b>STATIC</b>
+                          <font color="#cc0033">CREDENTIALS_FILTER_PATTERN</font>*          = "jmx.remote.rmi.server.credentials.filter.pattern";
+                          <font color="#cc0033">CREDENTIAL_TYPES</font>*                    = "jmx.remote.rmi.server.credential.types";
+                          <font color="#cc0033">JNDI_REBIND_ATTRIBUTE</font>*               = "jmx.remote.jndi.rebind";
+                          <font color="#cc0033">RMI_CLIENT_SOCKET_FACTORY_ATTRIBUTE</font>* = "jmx.remote.rmi.client.socket.factory";
+                          <font color="#cc0033">RMI_SERVER_SOCKET_FACTORY_ATTRIBUTE</font>* = "jmx.remote.rmi.server.socket.factory";
+                          <font color="#cc0033">SERIAL_FILTER_PATTERN</font>*               = "jmx.remote.rmi.server.serial.filter.pattern";
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="javax_management_remote.html#type-JMXServiceURL">javax_management_remote.JMXServiceURL</a>;
+                                          p1 : <a href="java_util.html#type-Map">java_util.Map</a>;
+                                          p2 : <a href="#type-RMIServerImpl">RMIServerImpl</a>;
+                                          p3 : <a href="javax_management.html#type-MBeanServer">javax_management.MBeanServer</a>) : <a href="#type-RMIConnectorServer">RMIConnectorServer</a><b>,CONSTRUCTOR</b>;
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="javax_management_remote.html#type-JMXServiceURL">javax_management_remote.JMXServiceURL</a>;
+                                          p1 : <a href="java_util.html#type-Map">java_util.Map</a>;
+                                          p2 : <a href="javax_management.html#type-MBeanServer">javax_management.MBeanServer</a>) : <a href="#type-RMIConnectorServer">RMIConnectorServer</a><b>,CONSTRUCTOR</b>;
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="javax_management_remote.html#type-JMXServiceURL">javax_management_remote.JMXServiceURL</a>;
+                                          p1 : <a href="java_util.html#type-Map">java_util.Map</a>) : <a href="#type-RMIConnectorServer">RMIConnectorServer</a><b>,CONSTRUCTOR</b>;
+                        <b>END</b>;
+
+  <a name="type-RMIIIOPServerImpl"></a><font color="#cc0033">RMIIIOPServerImpl</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="javax_management_remote_rmi.html#type-RMIServerImpl">javax_management_remote_rmi.RMIServerImpl</a>)
+                       <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                       <font color="green"><b> (* </b><a href="#meths-RMIIIOPServerImpl">Typebound Procedures</a><b> *)</b></font>
+                       <b>STATIC</b>
+                         <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_util.html#type-Map">java_util.Map</a>) : <a href="#type-RMIIIOPServerImpl">RMIIIOPServerImpl</a><b>,CONSTRUCTOR</b>;
+                       <b>END</b>;
+
+  <a name="type-RMIJRMPServerImpl"></a><font color="#cc0033">RMIJRMPServerImpl</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-RMIServerImpl">RMIServerImpl</a>)
+                       <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                       <font color="green"><b> (* </b><a href="#meths-RMIJRMPServerImpl">Typebound Procedures</a><b> *)</b></font>
+                       <b>STATIC</b>
+                         <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER;
+                                         p1 : <a href="java_rmi_server.html#type-RMIClientSocketFactory">java_rmi_server.RMIClientSocketFactory</a>;
+                                         p2 : <a href="java_rmi_server.html#type-RMIServerSocketFactory">java_rmi_server.RMIServerSocketFactory</a>;
+                                         p3 : <a href="java_util.html#type-Map">java_util.Map</a>) : <a href="#type-RMIJRMPServerImpl">RMIJRMPServerImpl</a><b>,CONSTRUCTOR</b>;
+                       <b>END</b>;
+
+  <a name="type-RMIServer"></a><font color="#cc0033">RMIServer</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_rmi.html#type-Remote">java_rmi.Remote</a>)
+               <font color="green"><b> (* </b><a href="#meths-RMIServer">Typebound Procedures</a><b> *)</b></font>
+               <b>END</b>;
+
+  <a name="type-RMIServerImpl"></a><font color="#cc0033">RMIServerImpl</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_io.html#type-Closeable">java_io.Closeable</a> + <a href="#type-RMIServer">RMIServer</a>)
+                   <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                   <font color="green"><b> (* </b><a href="#meths-RMIServerImpl">Typebound Procedures</a><b> *)</b></font>
+                   <b>STATIC</b>
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_util.html#type-Map">java_util.Map</a>) : <a href="#type-RMIServerImpl">RMIServerImpl</a><b>,CONSTRUCTOR</b>;
+                   <b>END</b>;
+
+  <a name="type-RMIServerImpl_Stub"></a><font color="#cc0033">RMIServerImpl_Stub</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_rmi_server.html#type-RemoteStub">java_rmi_server.RemoteStub</a> + <a href="#type-RMIServer">RMIServer</a>)
+                        <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                        <font color="green"><b> (* </b><a href="#meths-RMIServerImpl_Stub">Typebound Procedures</a><b> *)</b></font>
+                        <b>STATIC</b>
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_rmi_server.html#type-RemoteRef">java_rmi_server.RemoteRef</a>) : <a href="#type-RMIServerImpl_Stub">RMIServerImpl_Stub</a><b>,CONSTRUCTOR</b>;
+                        <b>END</b>;
+
+
+
+<a name="meths-RMIConnection"></a>
+<b>PROCEDURE </b>(self:RMIConnection) <font color="#cc0033">addNotificationListener</font>*(p0 : <a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a>;
+                                                        p1 : <a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a>;
+                                                        p2 : <a href="java_rmi.html#type-MarshalledObject">java_rmi.MarshalledObject</a>;
+                                                        p3 : <a href="java_rmi.html#type-MarshalledObject">java_rmi.MarshalledObject</a>;
+                                                        p4 : <a href="javax_security_auth.html#type-Subject">javax_security_auth.Subject</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RMIConnection) <font color="#cc0033">addNotificationListeners</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a>;
+                                                         IN  p1 : <b>ARRAY </b><b>OF </b><a href="java_rmi.html#type-MarshalledObject">java_rmi.MarshalledObject</a>;
+                                                         IN  p2 : <b>ARRAY </b><b>OF </b><a href="javax_security_auth.html#type-Subject">javax_security_auth.Subject</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Integer">java_lang.Integer</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RMIConnection) <font color="#cc0033">close</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RMIConnection) <font color="#cc0033">createMBean</font>*(    p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                p1 : <a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a>;
+                                                p2 : <a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a>;
+                                                p3 : <a href="java_rmi.html#type-MarshalledObject">java_rmi.MarshalledObject</a>;
+                                            IN  p4 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>;
+                                                p5 : <a href="javax_security_auth.html#type-Subject">javax_security_auth.Subject</a>) : <a href="javax_management.html#type-ObjectInstance">javax_management.ObjectInstance</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RMIConnection) <font color="#cc0033">createMBean</font>*(    p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                p1 : <a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a>;
+                                                p2 : <a href="java_rmi.html#type-MarshalledObject">java_rmi.MarshalledObject</a>;
+                                            IN  p3 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>;
+                                                p4 : <a href="javax_security_auth.html#type-Subject">javax_security_auth.Subject</a>) : <a href="javax_management.html#type-ObjectInstance">javax_management.ObjectInstance</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RMIConnection) <font color="#cc0033">createMBean</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                            p1 : <a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a>;
+                                            p2 : <a href="javax_security_auth.html#type-Subject">javax_security_auth.Subject</a>) : <a href="javax_management.html#type-ObjectInstance">javax_management.ObjectInstance</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RMIConnection) <font color="#cc0033">createMBean</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                            p1 : <a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a>;
+                                            p2 : <a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a>;
+                                            p3 : <a href="javax_security_auth.html#type-Subject">javax_security_auth.Subject</a>) : <a href="javax_management.html#type-ObjectInstance">javax_management.ObjectInstance</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RMIConnection) <font color="#cc0033">fetchNotifications</font>*(p0 : LONGINT;
+                                                   p1 : INTEGER;
+                                                   p2 : LONGINT) : <a href="javax_management_remote.html#type-NotificationResult">javax_management_remote.NotificationResult</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RMIConnection) <font color="#cc0033">getAttribute</font>*(p0 : <a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a>;
+                                             p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                             p2 : <a href="javax_security_auth.html#type-Subject">javax_security_auth.Subject</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RMIConnection) <font color="#cc0033">getAttributes</font>*(    p0 : <a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a>;
+                                              IN  p1 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>;
+                                                  p2 : <a href="javax_security_auth.html#type-Subject">javax_security_auth.Subject</a>) : <a href="javax_management.html#type-AttributeList">javax_management.AttributeList</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RMIConnection) <font color="#cc0033">getConnectionId</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RMIConnection) <font color="#cc0033">getDefaultDomain</font>*(p0 : <a href="javax_security_auth.html#type-Subject">javax_security_auth.Subject</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RMIConnection) <font color="#cc0033">getDomains</font>*(p0 : <a href="javax_security_auth.html#type-Subject">javax_security_auth.Subject</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RMIConnection) <font color="#cc0033">getMBeanCount</font>*(p0 : <a href="javax_security_auth.html#type-Subject">javax_security_auth.Subject</a>) : <a href="java_lang.html#type-Integer">java_lang.Integer</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RMIConnection) <font color="#cc0033">getMBeanInfo</font>*(p0 : <a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a>;
+                                             p1 : <a href="javax_security_auth.html#type-Subject">javax_security_auth.Subject</a>) : <a href="javax_management.html#type-MBeanInfo">javax_management.MBeanInfo</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RMIConnection) <font color="#cc0033">getObjectInstance</font>*(p0 : <a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a>;
+                                                  p1 : <a href="javax_security_auth.html#type-Subject">javax_security_auth.Subject</a>) : <a href="javax_management.html#type-ObjectInstance">javax_management.ObjectInstance</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RMIConnection) <font color="#cc0033">invoke</font>*(    p0 : <a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a>;
+                                           p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                           p2 : <a href="java_rmi.html#type-MarshalledObject">java_rmi.MarshalledObject</a>;
+                                       IN  p3 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>;
+                                           p4 : <a href="javax_security_auth.html#type-Subject">javax_security_auth.Subject</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RMIConnection) <font color="#cc0033">isInstanceOf</font>*(p0 : <a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a>;
+                                             p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                             p2 : <a href="javax_security_auth.html#type-Subject">javax_security_auth.Subject</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RMIConnection) <font color="#cc0033">isRegistered</font>*(p0 : <a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a>;
+                                             p1 : <a href="javax_security_auth.html#type-Subject">javax_security_auth.Subject</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RMIConnection) <font color="#cc0033">queryMBeans</font>*(p0 : <a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a>;
+                                            p1 : <a href="java_rmi.html#type-MarshalledObject">java_rmi.MarshalledObject</a>;
+                                            p2 : <a href="javax_security_auth.html#type-Subject">javax_security_auth.Subject</a>) : <a href="java_util.html#type-Set">java_util.Set</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RMIConnection) <font color="#cc0033">queryNames</font>*(p0 : <a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a>;
+                                           p1 : <a href="java_rmi.html#type-MarshalledObject">java_rmi.MarshalledObject</a>;
+                                           p2 : <a href="javax_security_auth.html#type-Subject">javax_security_auth.Subject</a>) : <a href="java_util.html#type-Set">java_util.Set</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RMIConnection) <font color="#cc0033">removeNotificationListener</font>*(p0 : <a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a>;
+                                                           p1 : <a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a>;
+                                                           p2 : <a href="java_rmi.html#type-MarshalledObject">java_rmi.MarshalledObject</a>;
+                                                           p3 : <a href="java_rmi.html#type-MarshalledObject">java_rmi.MarshalledObject</a>;
+                                                           p4 : <a href="javax_security_auth.html#type-Subject">javax_security_auth.Subject</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RMIConnection) <font color="#cc0033">removeNotificationListener</font>*(p0 : <a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a>;
+                                                           p1 : <a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a>;
+                                                           p2 : <a href="javax_security_auth.html#type-Subject">javax_security_auth.Subject</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RMIConnection) <font color="#cc0033">removeNotificationListeners</font>*(    p0 : <a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a>;
+                                                            IN  p1 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Integer">java_lang.Integer</a>;
+                                                                p2 : <a href="javax_security_auth.html#type-Subject">javax_security_auth.Subject</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RMIConnection) <font color="#cc0033">setAttribute</font>*(p0 : <a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a>;
+                                             p1 : <a href="java_rmi.html#type-MarshalledObject">java_rmi.MarshalledObject</a>;
+                                             p2 : <a href="javax_security_auth.html#type-Subject">javax_security_auth.Subject</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RMIConnection) <font color="#cc0033">setAttributes</font>*(p0 : <a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a>;
+                                              p1 : <a href="java_rmi.html#type-MarshalledObject">java_rmi.MarshalledObject</a>;
+                                              p2 : <a href="javax_security_auth.html#type-Subject">javax_security_auth.Subject</a>) : <a href="javax_management.html#type-AttributeList">javax_management.AttributeList</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RMIConnection) <font color="#cc0033">unregisterMBean</font>*(p0 : <a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a>;
+                                                p1 : <a href="javax_security_auth.html#type-Subject">javax_security_auth.Subject</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-RMIConnectionImpl"></a>
+<b>PROCEDURE </b>(self:RMIConnectionImpl) <font color="#cc0033">addNotificationListener</font>*(p0 : <a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a>;
+                                                            p1 : <a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a>;
+                                                            p2 : <a href="java_rmi.html#type-MarshalledObject">java_rmi.MarshalledObject</a>;
+                                                            p3 : <a href="java_rmi.html#type-MarshalledObject">java_rmi.MarshalledObject</a>;
+                                                            p4 : <a href="javax_security_auth.html#type-Subject">javax_security_auth.Subject</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RMIConnectionImpl) <font color="#cc0033">addNotificationListeners</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a>;
+                                                             IN  p1 : <b>ARRAY </b><b>OF </b><a href="java_rmi.html#type-MarshalledObject">java_rmi.MarshalledObject</a>;
+                                                             IN  p2 : <b>ARRAY </b><b>OF </b><a href="javax_security_auth.html#type-Subject">javax_security_auth.Subject</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Integer">java_lang.Integer</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RMIConnectionImpl) <font color="#cc0033">close</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RMIConnectionImpl) <font color="#cc0033">createMBean</font>*(    p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                    p1 : <a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a>;
+                                                    p2 : <a href="java_rmi.html#type-MarshalledObject">java_rmi.MarshalledObject</a>;
+                                                IN  p3 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>;
+                                                    p4 : <a href="javax_security_auth.html#type-Subject">javax_security_auth.Subject</a>) : <a href="javax_management.html#type-ObjectInstance">javax_management.ObjectInstance</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RMIConnectionImpl) <font color="#cc0033">createMBean</font>*(    p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                    p1 : <a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a>;
+                                                    p2 : <a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a>;
+                                                    p3 : <a href="java_rmi.html#type-MarshalledObject">java_rmi.MarshalledObject</a>;
+                                                IN  p4 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>;
+                                                    p5 : <a href="javax_security_auth.html#type-Subject">javax_security_auth.Subject</a>) : <a href="javax_management.html#type-ObjectInstance">javax_management.ObjectInstance</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RMIConnectionImpl) <font color="#cc0033">createMBean</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                p1 : <a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a>;
+                                                p2 : <a href="javax_security_auth.html#type-Subject">javax_security_auth.Subject</a>) : <a href="javax_management.html#type-ObjectInstance">javax_management.ObjectInstance</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RMIConnectionImpl) <font color="#cc0033">createMBean</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                p1 : <a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a>;
+                                                p2 : <a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a>;
+                                                p3 : <a href="javax_security_auth.html#type-Subject">javax_security_auth.Subject</a>) : <a href="javax_management.html#type-ObjectInstance">javax_management.ObjectInstance</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RMIConnectionImpl) <font color="#cc0033">fetchNotifications</font>*(p0 : LONGINT;
+                                                       p1 : INTEGER;
+                                                       p2 : LONGINT) : <a href="javax_management_remote.html#type-NotificationResult">javax_management_remote.NotificationResult</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RMIConnectionImpl) <font color="#cc0033">getAttribute</font>*(p0 : <a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a>;
+                                                 p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                 p2 : <a href="javax_security_auth.html#type-Subject">javax_security_auth.Subject</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RMIConnectionImpl) <font color="#cc0033">getAttributes</font>*(    p0 : <a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a>;
+                                                  IN  p1 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>;
+                                                      p2 : <a href="javax_security_auth.html#type-Subject">javax_security_auth.Subject</a>) : <a href="javax_management.html#type-AttributeList">javax_management.AttributeList</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RMIConnectionImpl) <font color="#cc0033">getConnectionId</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RMIConnectionImpl) <font color="#cc0033">getDefaultDomain</font>*(p0 : <a href="javax_security_auth.html#type-Subject">javax_security_auth.Subject</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RMIConnectionImpl) <font color="#cc0033">getDomains</font>*(p0 : <a href="javax_security_auth.html#type-Subject">javax_security_auth.Subject</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RMIConnectionImpl) <font color="#cc0033">getMBeanCount</font>*(p0 : <a href="javax_security_auth.html#type-Subject">javax_security_auth.Subject</a>) : <a href="java_lang.html#type-Integer">java_lang.Integer</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RMIConnectionImpl) <font color="#cc0033">getMBeanInfo</font>*(p0 : <a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a>;
+                                                 p1 : <a href="javax_security_auth.html#type-Subject">javax_security_auth.Subject</a>) : <a href="javax_management.html#type-MBeanInfo">javax_management.MBeanInfo</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RMIConnectionImpl) <font color="#cc0033">getObjectInstance</font>*(p0 : <a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a>;
+                                                      p1 : <a href="javax_security_auth.html#type-Subject">javax_security_auth.Subject</a>) : <a href="javax_management.html#type-ObjectInstance">javax_management.ObjectInstance</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RMIConnectionImpl) <font color="#cc0033">invoke</font>*(    p0 : <a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a>;
+                                               p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                               p2 : <a href="java_rmi.html#type-MarshalledObject">java_rmi.MarshalledObject</a>;
+                                           IN  p3 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>;
+                                               p4 : <a href="javax_security_auth.html#type-Subject">javax_security_auth.Subject</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RMIConnectionImpl) <font color="#cc0033">isInstanceOf</font>*(p0 : <a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a>;
+                                                 p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                 p2 : <a href="javax_security_auth.html#type-Subject">javax_security_auth.Subject</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RMIConnectionImpl) <font color="#cc0033">isRegistered</font>*(p0 : <a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a>;
+                                                 p1 : <a href="javax_security_auth.html#type-Subject">javax_security_auth.Subject</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RMIConnectionImpl) <font color="#cc0033">queryMBeans</font>*(p0 : <a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a>;
+                                                p1 : <a href="java_rmi.html#type-MarshalledObject">java_rmi.MarshalledObject</a>;
+                                                p2 : <a href="javax_security_auth.html#type-Subject">javax_security_auth.Subject</a>) : <a href="java_util.html#type-Set">java_util.Set</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RMIConnectionImpl) <font color="#cc0033">queryNames</font>*(p0 : <a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a>;
+                                               p1 : <a href="java_rmi.html#type-MarshalledObject">java_rmi.MarshalledObject</a>;
+                                               p2 : <a href="javax_security_auth.html#type-Subject">javax_security_auth.Subject</a>) : <a href="java_util.html#type-Set">java_util.Set</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RMIConnectionImpl) <font color="#cc0033">removeNotificationListener</font>*(p0 : <a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a>;
+                                                               p1 : <a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a>;
+                                                               p2 : <a href="java_rmi.html#type-MarshalledObject">java_rmi.MarshalledObject</a>;
+                                                               p3 : <a href="java_rmi.html#type-MarshalledObject">java_rmi.MarshalledObject</a>;
+                                                               p4 : <a href="javax_security_auth.html#type-Subject">javax_security_auth.Subject</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RMIConnectionImpl) <font color="#cc0033">removeNotificationListener</font>*(p0 : <a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a>;
+                                                               p1 : <a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a>;
+                                                               p2 : <a href="javax_security_auth.html#type-Subject">javax_security_auth.Subject</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RMIConnectionImpl) <font color="#cc0033">removeNotificationListeners</font>*(    p0 : <a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a>;
+                                                                IN  p1 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Integer">java_lang.Integer</a>;
+                                                                    p2 : <a href="javax_security_auth.html#type-Subject">javax_security_auth.Subject</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RMIConnectionImpl) <font color="#cc0033">setAttribute</font>*(p0 : <a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a>;
+                                                 p1 : <a href="java_rmi.html#type-MarshalledObject">java_rmi.MarshalledObject</a>;
+                                                 p2 : <a href="javax_security_auth.html#type-Subject">javax_security_auth.Subject</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RMIConnectionImpl) <font color="#cc0033">setAttributes</font>*(p0 : <a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a>;
+                                                  p1 : <a href="java_rmi.html#type-MarshalledObject">java_rmi.MarshalledObject</a>;
+                                                  p2 : <a href="javax_security_auth.html#type-Subject">javax_security_auth.Subject</a>) : <a href="javax_management.html#type-AttributeList">javax_management.AttributeList</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RMIConnectionImpl) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RMIConnectionImpl) <font color="#cc0033">unreferenced</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RMIConnectionImpl) <font color="#cc0033">unregisterMBean</font>*(p0 : <a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a>;
+                                                    p1 : <a href="javax_security_auth.html#type-Subject">javax_security_auth.Subject</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-RMIConnectionImpl_Stub"></a>
+<b>PROCEDURE </b>(self:RMIConnectionImpl_Stub) <font color="#cc0033">addNotificationListener</font>*(p0 : <a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a>;
+                                                                 p1 : <a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a>;
+                                                                 p2 : <a href="java_rmi.html#type-MarshalledObject">java_rmi.MarshalledObject</a>;
+                                                                 p3 : <a href="java_rmi.html#type-MarshalledObject">java_rmi.MarshalledObject</a>;
+                                                                 p4 : <a href="javax_security_auth.html#type-Subject">javax_security_auth.Subject</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RMIConnectionImpl_Stub) <font color="#cc0033">addNotificationListeners</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a>;
+                                                                  IN  p1 : <b>ARRAY </b><b>OF </b><a href="java_rmi.html#type-MarshalledObject">java_rmi.MarshalledObject</a>;
+                                                                  IN  p2 : <b>ARRAY </b><b>OF </b><a href="javax_security_auth.html#type-Subject">javax_security_auth.Subject</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Integer">java_lang.Integer</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RMIConnectionImpl_Stub) <font color="#cc0033">close</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RMIConnectionImpl_Stub) <font color="#cc0033">createMBean</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                     p1 : <a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a>;
+                                                     p2 : <a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a>;
+                                                     p3 : <a href="javax_security_auth.html#type-Subject">javax_security_auth.Subject</a>) : <a href="javax_management.html#type-ObjectInstance">javax_management.ObjectInstance</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RMIConnectionImpl_Stub) <font color="#cc0033">createMBean</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                     p1 : <a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a>;
+                                                     p2 : <a href="javax_security_auth.html#type-Subject">javax_security_auth.Subject</a>) : <a href="javax_management.html#type-ObjectInstance">javax_management.ObjectInstance</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RMIConnectionImpl_Stub) <font color="#cc0033">createMBean</font>*(    p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                         p1 : <a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a>;
+                                                         p2 : <a href="java_rmi.html#type-MarshalledObject">java_rmi.MarshalledObject</a>;
+                                                     IN  p3 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>;
+                                                         p4 : <a href="javax_security_auth.html#type-Subject">javax_security_auth.Subject</a>) : <a href="javax_management.html#type-ObjectInstance">javax_management.ObjectInstance</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RMIConnectionImpl_Stub) <font color="#cc0033">createMBean</font>*(    p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                         p1 : <a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a>;
+                                                         p2 : <a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a>;
+                                                         p3 : <a href="java_rmi.html#type-MarshalledObject">java_rmi.MarshalledObject</a>;
+                                                     IN  p4 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>;
+                                                         p5 : <a href="javax_security_auth.html#type-Subject">javax_security_auth.Subject</a>) : <a href="javax_management.html#type-ObjectInstance">javax_management.ObjectInstance</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RMIConnectionImpl_Stub) <font color="#cc0033">fetchNotifications</font>*(p0 : LONGINT;
+                                                            p1 : INTEGER;
+                                                            p2 : LONGINT) : <a href="javax_management_remote.html#type-NotificationResult">javax_management_remote.NotificationResult</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RMIConnectionImpl_Stub) <font color="#cc0033">getAttribute</font>*(p0 : <a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a>;
+                                                      p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                      p2 : <a href="javax_security_auth.html#type-Subject">javax_security_auth.Subject</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RMIConnectionImpl_Stub) <font color="#cc0033">getAttributes</font>*(    p0 : <a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a>;
+                                                       IN  p1 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>;
+                                                           p2 : <a href="javax_security_auth.html#type-Subject">javax_security_auth.Subject</a>) : <a href="javax_management.html#type-AttributeList">javax_management.AttributeList</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RMIConnectionImpl_Stub) <font color="#cc0033">getConnectionId</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RMIConnectionImpl_Stub) <font color="#cc0033">getDefaultDomain</font>*(p0 : <a href="javax_security_auth.html#type-Subject">javax_security_auth.Subject</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RMIConnectionImpl_Stub) <font color="#cc0033">getDomains</font>*(p0 : <a href="javax_security_auth.html#type-Subject">javax_security_auth.Subject</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RMIConnectionImpl_Stub) <font color="#cc0033">getMBeanCount</font>*(p0 : <a href="javax_security_auth.html#type-Subject">javax_security_auth.Subject</a>) : <a href="java_lang.html#type-Integer">java_lang.Integer</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RMIConnectionImpl_Stub) <font color="#cc0033">getMBeanInfo</font>*(p0 : <a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a>;
+                                                      p1 : <a href="javax_security_auth.html#type-Subject">javax_security_auth.Subject</a>) : <a href="javax_management.html#type-MBeanInfo">javax_management.MBeanInfo</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RMIConnectionImpl_Stub) <font color="#cc0033">getObjectInstance</font>*(p0 : <a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a>;
+                                                           p1 : <a href="javax_security_auth.html#type-Subject">javax_security_auth.Subject</a>) : <a href="javax_management.html#type-ObjectInstance">javax_management.ObjectInstance</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RMIConnectionImpl_Stub) <font color="#cc0033">invoke</font>*(    p0 : <a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a>;
+                                                    p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                    p2 : <a href="java_rmi.html#type-MarshalledObject">java_rmi.MarshalledObject</a>;
+                                                IN  p3 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>;
+                                                    p4 : <a href="javax_security_auth.html#type-Subject">javax_security_auth.Subject</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RMIConnectionImpl_Stub) <font color="#cc0033">isInstanceOf</font>*(p0 : <a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a>;
+                                                      p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                      p2 : <a href="javax_security_auth.html#type-Subject">javax_security_auth.Subject</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RMIConnectionImpl_Stub) <font color="#cc0033">isRegistered</font>*(p0 : <a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a>;
+                                                      p1 : <a href="javax_security_auth.html#type-Subject">javax_security_auth.Subject</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RMIConnectionImpl_Stub) <font color="#cc0033">queryMBeans</font>*(p0 : <a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a>;
+                                                     p1 : <a href="java_rmi.html#type-MarshalledObject">java_rmi.MarshalledObject</a>;
+                                                     p2 : <a href="javax_security_auth.html#type-Subject">javax_security_auth.Subject</a>) : <a href="java_util.html#type-Set">java_util.Set</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RMIConnectionImpl_Stub) <font color="#cc0033">queryNames</font>*(p0 : <a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a>;
+                                                    p1 : <a href="java_rmi.html#type-MarshalledObject">java_rmi.MarshalledObject</a>;
+                                                    p2 : <a href="javax_security_auth.html#type-Subject">javax_security_auth.Subject</a>) : <a href="java_util.html#type-Set">java_util.Set</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RMIConnectionImpl_Stub) <font color="#cc0033">removeNotificationListener</font>*(p0 : <a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a>;
+                                                                    p1 : <a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a>;
+                                                                    p2 : <a href="javax_security_auth.html#type-Subject">javax_security_auth.Subject</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RMIConnectionImpl_Stub) <font color="#cc0033">removeNotificationListener</font>*(p0 : <a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a>;
+                                                                    p1 : <a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a>;
+                                                                    p2 : <a href="java_rmi.html#type-MarshalledObject">java_rmi.MarshalledObject</a>;
+                                                                    p3 : <a href="java_rmi.html#type-MarshalledObject">java_rmi.MarshalledObject</a>;
+                                                                    p4 : <a href="javax_security_auth.html#type-Subject">javax_security_auth.Subject</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RMIConnectionImpl_Stub) <font color="#cc0033">removeNotificationListeners</font>*(    p0 : <a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a>;
+                                                                     IN  p1 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Integer">java_lang.Integer</a>;
+                                                                         p2 : <a href="javax_security_auth.html#type-Subject">javax_security_auth.Subject</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RMIConnectionImpl_Stub) <font color="#cc0033">setAttribute</font>*(p0 : <a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a>;
+                                                      p1 : <a href="java_rmi.html#type-MarshalledObject">java_rmi.MarshalledObject</a>;
+                                                      p2 : <a href="javax_security_auth.html#type-Subject">javax_security_auth.Subject</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RMIConnectionImpl_Stub) <font color="#cc0033">setAttributes</font>*(p0 : <a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a>;
+                                                       p1 : <a href="java_rmi.html#type-MarshalledObject">java_rmi.MarshalledObject</a>;
+                                                       p2 : <a href="javax_security_auth.html#type-Subject">javax_security_auth.Subject</a>) : <a href="javax_management.html#type-AttributeList">javax_management.AttributeList</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RMIConnectionImpl_Stub) <font color="#cc0033">unregisterMBean</font>*(p0 : <a href="javax_management.html#type-ObjectName">javax_management.ObjectName</a>;
+                                                         p1 : <a href="javax_security_auth.html#type-Subject">javax_security_auth.Subject</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-RMIConnector"></a>
+<b>PROCEDURE </b>(self:RMIConnector) <font color="#cc0033">addConnectionNotificationListener</font>*(p0 : <a href="javax_management.html#type-NotificationListener">javax_management.NotificationListener</a>;
+                                                                 p1 : <a href="javax_management.html#type-NotificationFilter">javax_management.NotificationFilter</a>;
+                                                                 p2 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RMIConnector) <font color="#cc0033">close</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RMIConnector) <font color="#cc0033">connect</font>*(p0 : <a href="java_util.html#type-Map">java_util.Map</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RMIConnector) <font color="#cc0033">connect</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RMIConnector) <font color="#cc0033">getAddress</font>*() : <a href="javax_management_remote.html#type-JMXServiceURL">javax_management_remote.JMXServiceURL</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RMIConnector) <font color="#cc0033">getConnectionId</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RMIConnector) <font color="#cc0033">getMBeanServerConnection</font>*(p0 : <a href="javax_security_auth.html#type-Subject">javax_security_auth.Subject</a>) : <a href="javax_management.html#type-MBeanServerConnection">javax_management.MBeanServerConnection</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RMIConnector) <font color="#cc0033">getMBeanServerConnection</font>*() : <a href="javax_management.html#type-MBeanServerConnection">javax_management.MBeanServerConnection</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RMIConnector) <font color="#cc0033">removeConnectionNotificationListener</font>*(p0 : <a href="javax_management.html#type-NotificationListener">javax_management.NotificationListener</a>;
+                                                                    p1 : <a href="javax_management.html#type-NotificationFilter">javax_management.NotificationFilter</a>;
+                                                                    p2 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RMIConnector) <font color="#cc0033">removeConnectionNotificationListener</font>*(p0 : <a href="javax_management.html#type-NotificationListener">javax_management.NotificationListener</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RMIConnector) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-RMIConnectorServer"></a>
+<b>PROCEDURE </b>(self:RMIConnectorServer) <font color="#cc0033">connectionClosed</font>!(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                      p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                      p2 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RMIConnectorServer) <font color="#cc0033">connectionFailed</font>!(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                      p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                      p2 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RMIConnectorServer) <font color="#cc0033">connectionOpened</font>!(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                      p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                      p2 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RMIConnectorServer) <font color="#cc0033">getAddress</font>*() : <a href="javax_management_remote.html#type-JMXServiceURL">javax_management_remote.JMXServiceURL</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RMIConnectorServer) <font color="#cc0033">getAttributes</font>*() : <a href="java_util.html#type-Map">java_util.Map</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RMIConnectorServer) <font color="#cc0033">isActive</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RMIConnectorServer) <font color="#cc0033">setMBeanServerForwarder</font>*(p0 : <a href="javax_management_remote.html#type-MBeanServerForwarder">javax_management_remote.MBeanServerForwarder</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RMIConnectorServer) <font color="#cc0033">start</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RMIConnectorServer) <font color="#cc0033">stop</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RMIConnectorServer) <font color="#cc0033">toJMXConnector</font>*(p0 : <a href="java_util.html#type-Map">java_util.Map</a>) : <a href="javax_management_remote.html#type-JMXConnector">javax_management_remote.JMXConnector</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-RMIIIOPServerImpl"></a>
+<b>PROCEDURE </b>(self:RMIIIOPServerImpl) <font color="#cc0033">closeClient</font>!(p0 : <a href="javax_management_remote_rmi.html#type-RMIConnection">javax_management_remote_rmi.RMIConnection</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RMIIIOPServerImpl) <font color="#cc0033">closeServer</font>!()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RMIIIOPServerImpl) <font color="#cc0033">export</font>!()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RMIIIOPServerImpl) <font color="#cc0033">getProtocol</font>!() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RMIIIOPServerImpl) <font color="#cc0033">makeClient</font>!(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                               p1 : <a href="javax_security_auth.html#type-Subject">javax_security_auth.Subject</a>) : <a href="javax_management_remote_rmi.html#type-RMIConnection">javax_management_remote_rmi.RMIConnection</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RMIIIOPServerImpl) <font color="#cc0033">toStub</font>*() : <a href="java_rmi.html#type-Remote">java_rmi.Remote</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-RMIJRMPServerImpl"></a>
+<b>PROCEDURE </b>(self:RMIJRMPServerImpl) <font color="#cc0033">closeClient</font>!(p0 : <a href="#type-RMIConnection">RMIConnection</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RMIJRMPServerImpl) <font color="#cc0033">closeServer</font>!()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RMIJRMPServerImpl) <font color="#cc0033">export</font>!()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RMIJRMPServerImpl) <font color="#cc0033">getProtocol</font>!() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RMIJRMPServerImpl) <font color="#cc0033">makeClient</font>!(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                               p1 : <a href="javax_security_auth.html#type-Subject">javax_security_auth.Subject</a>) : <a href="#type-RMIConnection">RMIConnection</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RMIJRMPServerImpl) <font color="#cc0033">toStub</font>*() : <a href="java_rmi.html#type-Remote">java_rmi.Remote</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-RMIServer"></a>
+<b>PROCEDURE </b>(self:RMIServer) <font color="#cc0033">getVersion</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RMIServer) <font color="#cc0033">newClient</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="#type-RMIConnection">RMIConnection</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-RMIServerImpl"></a>
+<b>PROCEDURE </b>(self:RMIServerImpl) <font color="#cc0033">clientClosed</font>!(p0 : <a href="#type-RMIConnection">RMIConnection</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RMIServerImpl) <font color="#cc0033">close</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RMIServerImpl) <font color="#cc0033">closeClient</font>!(p0 : <a href="#type-RMIConnection">RMIConnection</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RMIServerImpl) <font color="#cc0033">closeServer</font>!()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RMIServerImpl) <font color="#cc0033">export</font>!()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RMIServerImpl) <font color="#cc0033">getDefaultClassLoader</font>*() : <a href="java_lang.html#type-ClassLoader">java_lang.ClassLoader</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RMIServerImpl) <font color="#cc0033">getMBeanServer</font>*() : <a href="javax_management.html#type-MBeanServer">javax_management.MBeanServer</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RMIServerImpl) <font color="#cc0033">getProtocol</font>!() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RMIServerImpl) <font color="#cc0033">getVersion</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RMIServerImpl) <font color="#cc0033">makeClient</font>!(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                           p1 : <a href="javax_security_auth.html#type-Subject">javax_security_auth.Subject</a>) : <a href="#type-RMIConnection">RMIConnection</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RMIServerImpl) <font color="#cc0033">newClient</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="#type-RMIConnection">RMIConnection</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RMIServerImpl) <font color="#cc0033">setDefaultClassLoader</font>*(p0 : <a href="java_lang.html#type-ClassLoader">java_lang.ClassLoader</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RMIServerImpl) <font color="#cc0033">setMBeanServer</font>*(p0 : <a href="javax_management.html#type-MBeanServer">javax_management.MBeanServer</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RMIServerImpl) <font color="#cc0033">toStub</font>*() : <a href="java_rmi.html#type-Remote">java_rmi.Remote</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-RMIServerImpl_Stub"></a>
+<b>PROCEDURE </b>(self:RMIServerImpl_Stub) <font color="#cc0033">getVersion</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RMIServerImpl_Stub) <font color="#cc0033">newClient</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="#type-RMIConnection">RMIConnection</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>END </b><font color="#cc0033">javax_management_remote_rmi</font>.
+</font></pre></hr>
+<!-- BEGIN JavaScript -->
+<script>
+function toggle(node) {
+    node.classList.toggle("show"); 
+  }
+
+function cls(node) {
+    var prnt = node.parentNode;
+    var next = prnt.previousSibling;
+    var text = next.lastChild;
+    text.innerHTML = 
+        "The <b>class</b> property asserts that this type will be<br>" +
+        "implemented as a reference class in the underlying framework.";
+    text.classList.toggle("show");
+  }
+
+function newOk(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>has noArg-ctor</b> property asserts that this reference<br>" +
+        "class has a no-arg constructor, and thus objects of this<br>" +
+        "type can be allocated with NEW(). Component Pascal types<br>" +
+        "derived from this type can also be allocated using NEW().";
+    popuptext.classList.toggle("show"); 
+  }
+
+function noNew(node) { 
+    var prnt = node.parentNode; 
+    var next = prnt.previousSibling; 
+    var text = next.lastChild; 
+    text.innerHTML =  
+        "The <b>no noArg-ctor</b> property asserts that this reference<br>" +
+        "class does not have a noArg constructor. Objects of this<br>" +
+        "type cannot be allocated using NEW(), and Component<br>" +
+        "Pascal types  derived from this type also cannot be<br>" +
+        "allocated using NEW().";
+    text.classList.toggle("show");
+  }
+
+function noCpy(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>no value-assign</b> property asserts that this reference<br>" + 
+        "class does not have a value copy method. Therefore, it<br>" +
+        "is not possible to perform value assignments using<br>" +
+        "statements like <i>dst^</i> := <i>src^</i>";
+    popuptext.classList.toggle("show");
+  }
+
+function valueclass(node) { 
+        var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>valueclass</b> property asserts that this RECORD type is<br>" + 
+        "implemented as a value class in the CLR. It follows that<br>" +  
+        "value assignments can be made of these types. They can<br>" + 
+        "also be passed by value. Even pointers to records of<br>" + 
+        "such types may be dereferenced and copied using syntax<br>" + 
+        "such as  <i>dst^</i> := <i>src^</i>"; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+function argCtor(node) { 
+    var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>has arg-ctor</b> property asserts that this reference<br>" +  
+        "class has one or more constructors that take arguments.<br>" + 
+        "These constructors can be called from Component Pascal<br>" + 
+        "by calling an <i>init</i>(...) method from the static list<br>" + 
+        "here. Component Pascal types derived from this type<br>" + 
+        "can define constructors with arguments which call the<br>" + 
+        "super-type constructor.<br>" + 
+        "See <i>'Interfacing to constructors'</i> in the Release Notes."; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+</script>
+<!-- END JavaScript --> 
+
+</body></html>

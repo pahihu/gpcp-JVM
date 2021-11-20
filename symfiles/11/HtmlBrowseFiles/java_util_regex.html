@@ -1,0 +1,296 @@
+<html><head><title>java_util_regex</title>
+<style>
+<!-- BEGIN Inline CSS -->
+/* Popup container */
+.popup {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+/* The actual popup (appears on top) */
+.popup .popuptext {
+    visibility: hidden;
+    width: 430px;
+    background-color: white;
+    color: black;
+    text-align: left;
+    border-radius: 6px;
+    border-style: solid;
+    border-color: black;
+    padding: 8px 8px 8px 8px;
+    position: absolute;
+    z-index: 1;
+    margin-top: 30px;
+}
+
+/* Toggle this class when clicking on the popup container (hide and show the popup) */
+.popup .show {
+    visibility: visible;
+    opacity: 1;
+}
+
+</style>
+<!-- END Inline CSS -->
+</head><body bgcolor="white">
+<hr><pre>
+<font color="green">(*</font>
+<font color="green"> *  Creator PeToCps j2cps version 1.4.07 (March 2018)</font>
+<font color="green"> *  Compiled from jar-file /Library/Java/JavaVirtualMachines/zulu-11.jdk/Contents/Home/jmods/java.base.jmod</font>
+<font color="green"> *)</font>
+<b>FOREIGN MODULE </b><font color="#cc0033">java_util_regex</font>;
+
+<b>IMPORT</b>
+    <a href="java_io.html">java_io</a> := "java.io",
+    <a href="java_lang.html">java_lang</a> := "java.lang",
+    <a href="java_util_function.html">java_util_function</a> := "java.util.function",
+    <a href="java_util_regex.html">java_util_regex</a> := "java.util.regex",
+    <a href="java_util_stream.html">java_util_stream</a> := "java.util.stream";
+
+<b>TYPE</b>
+
+  <a name="type-Matcher"></a><font color="#cc0033">Matcher</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_util_regex.html#type-MatchResult">java_util_regex.MatchResult</a>)
+             <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> *)</font>
+             <font color="green"><b> (* </b><a href="#meths-Matcher">Typebound Procedures</a><b> *)</b></font>
+             <b>STATIC</b>
+               <b>PROCEDURE </b><font color="#cc0033">quoteReplacement</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-String">java_lang.String</a>;
+             <b>END</b>;
+
+  <a name="type-MatchResult"></a><font color="#cc0033">MatchResult</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                 <font color="green"><b> (* </b><a href="#meths-MatchResult">Typebound Procedures</a><b> *)</b></font>
+                 <b>END</b>;
+
+  <a name="type-Pattern"></a><font color="#cc0033">Pattern</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_io.html#type-Serializable">java_io.Serializable</a>)
+             <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> *)</font>
+             <font color="green"><b> (* </b><a href="#meths-Pattern">Typebound Procedures</a><b> *)</b></font>
+             <b>STATIC</b>
+               <font color="#cc0033">CANON_EQ</font>*                = 128;
+               <font color="#cc0033">CASE_INSENSITIVE</font>*        = 2;
+               <font color="#cc0033">COMMENTS</font>*                = 4;
+               <font color="#cc0033">DOTALL</font>*                  = 32;
+               <font color="#cc0033">LITERAL</font>*                 = 16;
+               <font color="#cc0033">MULTILINE</font>*               = 8;
+               <font color="#cc0033">UNICODE_CASE</font>*            = 64;
+               <font color="#cc0033">UNICODE_CHARACTER_CLASS</font>* = 256;
+               <font color="#cc0033">UNIX_LINES</font>*              = 1;
+               <b>PROCEDURE </b><font color="#cc0033">compile</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                  p1 : INTEGER) : <a href="#type-Pattern">Pattern</a>;
+               <b>PROCEDURE </b><font color="#cc0033">compile</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-Pattern">Pattern</a>;
+               <b>PROCEDURE </b><font color="#cc0033">matches</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                  p1 : <a href="java_lang.html#type-CharSequence">java_lang.CharSequence</a>) : BOOLEAN;
+               <b>PROCEDURE </b><font color="#cc0033">quote</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-String">java_lang.String</a>;
+             <b>END</b>;
+
+  <a name="type-PatternSyntaxException"></a><font color="#cc0033">PatternSyntaxException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-IllegalArgumentException">java_lang.IllegalArgumentException</a>)
+                            <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                            <font color="green"><b> (* </b><a href="#meths-PatternSyntaxException">Typebound Procedures</a><b> *)</b></font>
+                            <b>STATIC</b>
+                              <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                              p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                              p2 : INTEGER) : <a href="#type-PatternSyntaxException">PatternSyntaxException</a><b>,CONSTRUCTOR</b>;
+                            <b>END</b>;
+
+
+
+<a name="meths-Matcher"></a>
+<b>PROCEDURE </b>(self:Matcher) <font color="#cc0033">appendReplacement</font>*(p0 : <a href="java_lang.html#type-StringBuilder">java_lang.StringBuilder</a>;
+                                            p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-Matcher">Matcher</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Matcher) <font color="#cc0033">appendReplacement</font>*(p0 : <a href="java_lang.html#type-StringBuffer">java_lang.StringBuffer</a>;
+                                            p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-Matcher">Matcher</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Matcher) <font color="#cc0033">appendTail</font>*(p0 : <a href="java_lang.html#type-StringBuffer">java_lang.StringBuffer</a>) : <a href="java_lang.html#type-StringBuffer">java_lang.StringBuffer</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Matcher) <font color="#cc0033">appendTail</font>*(p0 : <a href="java_lang.html#type-StringBuilder">java_lang.StringBuilder</a>) : <a href="java_lang.html#type-StringBuilder">java_lang.StringBuilder</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Matcher) <font color="#cc0033">end</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Matcher) <font color="#cc0033">end</font>*(p0 : INTEGER) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Matcher) <font color="#cc0033">end</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Matcher) <font color="#cc0033">find</font>*(p0 : INTEGER) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Matcher) <font color="#cc0033">find</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Matcher) <font color="#cc0033">group</font>*(p0 : INTEGER) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Matcher) <font color="#cc0033">group</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Matcher) <font color="#cc0033">group</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Matcher) <font color="#cc0033">groupCount</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Matcher) <font color="#cc0033">hasAnchoringBounds</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Matcher) <font color="#cc0033">hasTransparentBounds</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Matcher) <font color="#cc0033">hitEnd</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Matcher) <font color="#cc0033">lookingAt</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Matcher) <font color="#cc0033">matches</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Matcher) <font color="#cc0033">pattern</font>*() : <a href="java_util_regex.html#type-Pattern">java_util_regex.Pattern</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Matcher) <font color="#cc0033">region</font>*(p0 : INTEGER;
+                                 p1 : INTEGER) : <a href="#type-Matcher">Matcher</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Matcher) <font color="#cc0033">regionEnd</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Matcher) <font color="#cc0033">regionStart</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Matcher) <font color="#cc0033">replaceAll</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Matcher) <font color="#cc0033">replaceAll</font>*(p0 : <a href="java_util_function.html#type-Function">java_util_function.Function</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Matcher) <font color="#cc0033">replaceFirst</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Matcher) <font color="#cc0033">replaceFirst</font>*(p0 : <a href="java_util_function.html#type-Function">java_util_function.Function</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Matcher) <font color="#cc0033">requireEnd</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Matcher) <font color="#cc0033">reset</font>*(p0 : <a href="java_lang.html#type-CharSequence">java_lang.CharSequence</a>) : <a href="#type-Matcher">Matcher</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Matcher) <font color="#cc0033">reset</font>*() : <a href="#type-Matcher">Matcher</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Matcher) <font color="#cc0033">results</font>*() : <a href="java_util_stream.html#type-Stream">java_util_stream.Stream</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Matcher) <font color="#cc0033">start</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Matcher) <font color="#cc0033">start</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Matcher) <font color="#cc0033">start</font>*(p0 : INTEGER) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Matcher) <font color="#cc0033">toMatchResult</font>*() : <a href="java_util_regex.html#type-MatchResult">java_util_regex.MatchResult</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Matcher) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Matcher) <font color="#cc0033">useAnchoringBounds</font>*(p0 : BOOLEAN) : <a href="#type-Matcher">Matcher</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Matcher) <font color="#cc0033">usePattern</font>*(p0 : <a href="java_util_regex.html#type-Pattern">java_util_regex.Pattern</a>) : <a href="#type-Matcher">Matcher</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Matcher) <font color="#cc0033">useTransparentBounds</font>*(p0 : BOOLEAN) : <a href="#type-Matcher">Matcher</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-MatchResult"></a>
+<b>PROCEDURE </b>(self:MatchResult) <font color="#cc0033">end</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MatchResult) <font color="#cc0033">end</font>*(p0 : INTEGER) : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MatchResult) <font color="#cc0033">group</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MatchResult) <font color="#cc0033">group</font>*(p0 : INTEGER) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MatchResult) <font color="#cc0033">groupCount</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MatchResult) <font color="#cc0033">start</font>*(p0 : INTEGER) : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MatchResult) <font color="#cc0033">start</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+<a name="meths-Pattern"></a>
+<b>PROCEDURE </b>(self:Pattern) <font color="#cc0033">asMatchPredicate</font>*() : <a href="java_util_function.html#type-Predicate">java_util_function.Predicate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Pattern) <font color="#cc0033">asPredicate</font>*() : <a href="java_util_function.html#type-Predicate">java_util_function.Predicate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Pattern) <font color="#cc0033">flags</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Pattern) <font color="#cc0033">matcher</font>*(p0 : <a href="java_lang.html#type-CharSequence">java_lang.CharSequence</a>) : <a href="#type-Matcher">Matcher</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Pattern) <font color="#cc0033">pattern</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Pattern) <font color="#cc0033">split</font>*(p0 : <a href="java_lang.html#type-CharSequence">java_lang.CharSequence</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Pattern) <font color="#cc0033">split</font>*(p0 : <a href="java_lang.html#type-CharSequence">java_lang.CharSequence</a>;
+                                p1 : INTEGER) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Pattern) <font color="#cc0033">splitAsStream</font>*(p0 : <a href="java_lang.html#type-CharSequence">java_lang.CharSequence</a>) : <a href="java_util_stream.html#type-Stream">java_util_stream.Stream</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Pattern) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-PatternSyntaxException"></a>
+<b>PROCEDURE </b>(self:PatternSyntaxException) <font color="#cc0033">getDescription</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PatternSyntaxException) <font color="#cc0033">getIndex</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PatternSyntaxException) <font color="#cc0033">getMessage</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PatternSyntaxException) <font color="#cc0033">getPattern</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>END </b><font color="#cc0033">java_util_regex</font>.
+</font></pre></hr>
+<!-- BEGIN JavaScript -->
+<script>
+function toggle(node) {
+    node.classList.toggle("show"); 
+  }
+
+function cls(node) {
+    var prnt = node.parentNode;
+    var next = prnt.previousSibling;
+    var text = next.lastChild;
+    text.innerHTML = 
+        "The <b>class</b> property asserts that this type will be<br>" +
+        "implemented as a reference class in the underlying framework.";
+    text.classList.toggle("show");
+  }
+
+function newOk(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>has noArg-ctor</b> property asserts that this reference<br>" +
+        "class has a no-arg constructor, and thus objects of this<br>" +
+        "type can be allocated with NEW(). Component Pascal types<br>" +
+        "derived from this type can also be allocated using NEW().";
+    popuptext.classList.toggle("show"); 
+  }
+
+function noNew(node) { 
+    var prnt = node.parentNode; 
+    var next = prnt.previousSibling; 
+    var text = next.lastChild; 
+    text.innerHTML =  
+        "The <b>no noArg-ctor</b> property asserts that this reference<br>" +
+        "class does not have a noArg constructor. Objects of this<br>" +
+        "type cannot be allocated using NEW(), and Component<br>" +
+        "Pascal types  derived from this type also cannot be<br>" +
+        "allocated using NEW().";
+    text.classList.toggle("show");
+  }
+
+function noCpy(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>no value-assign</b> property asserts that this reference<br>" + 
+        "class does not have a value copy method. Therefore, it<br>" +
+        "is not possible to perform value assignments using<br>" +
+        "statements like <i>dst^</i> := <i>src^</i>";
+    popuptext.classList.toggle("show");
+  }
+
+function valueclass(node) { 
+        var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>valueclass</b> property asserts that this RECORD type is<br>" + 
+        "implemented as a value class in the CLR. It follows that<br>" +  
+        "value assignments can be made of these types. They can<br>" + 
+        "also be passed by value. Even pointers to records of<br>" + 
+        "such types may be dereferenced and copied using syntax<br>" + 
+        "such as  <i>dst^</i> := <i>src^</i>"; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+function argCtor(node) { 
+    var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>has arg-ctor</b> property asserts that this reference<br>" +  
+        "class has one or more constructors that take arguments.<br>" + 
+        "These constructors can be called from Component Pascal<br>" + 
+        "by calling an <i>init</i>(...) method from the static list<br>" + 
+        "here. Component Pascal types derived from this type<br>" + 
+        "can define constructors with arguments which call the<br>" + 
+        "super-type constructor.<br>" + 
+        "See <i>'Interfacing to constructors'</i> in the Release Notes."; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+</script>
+<!-- END JavaScript --> 
+
+</body></html>

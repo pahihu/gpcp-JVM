@@ -1,0 +1,848 @@
+<html><head><title>java_nio_file</title>
+<style>
+<!-- BEGIN Inline CSS -->
+/* Popup container */
+.popup {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+/* The actual popup (appears on top) */
+.popup .popuptext {
+    visibility: hidden;
+    width: 430px;
+    background-color: white;
+    color: black;
+    text-align: left;
+    border-radius: 6px;
+    border-style: solid;
+    border-color: black;
+    padding: 8px 8px 8px 8px;
+    position: absolute;
+    z-index: 1;
+    margin-top: 30px;
+}
+
+/* Toggle this class when clicking on the popup container (hide and show the popup) */
+.popup .show {
+    visibility: visible;
+    opacity: 1;
+}
+
+</style>
+<!-- END Inline CSS -->
+</head><body bgcolor="white">
+<hr><pre>
+<font color="green">(*</font>
+<font color="green"> *  Creator PeToCps j2cps version 1.4.07 (March 2018)</font>
+<font color="green"> *  Compiled from jar-file /Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home/jmods/java.base.jmod</font>
+<font color="green"> *)</font>
+<b>FOREIGN MODULE </b><font color="#cc0033">java_nio_file</font>;
+
+<b>IMPORT</b>
+    <a href="java_io.html">java_io</a> := "java.io",
+    <a href="java_lang.html">java_lang</a> := "java.lang",
+    <a href="java_net.html">java_net</a> := "java.net",
+    <a href="java_nio_channels.html">java_nio_channels</a> := "java.nio.channels",
+    <a href="java_nio_charset.html">java_nio_charset</a> := "java.nio.charset",
+    <a href="java_nio_file.html">java_nio_file</a> := "java.nio.file",
+    <a href="java_nio_file_attribute.html">java_nio_file_attribute</a> := "java.nio.file.attribute",
+    <a href="java_nio_file_spi.html">java_nio_file_spi</a> := "java.nio.file.spi",
+    <a href="java_security.html">java_security</a> := "java.security",
+    <a href="java_util.html">java_util</a> := "java.util",
+    <a href="java_util_concurrent.html">java_util_concurrent</a> := "java.util.concurrent",
+    <a href="java_util_function.html">java_util_function</a> := "java.util.function",
+    <a href="java_util_stream.html">java_util_stream</a> := "java.util.stream";
+
+<b>TYPE</b>
+
+  <a name="type-AccessDeniedException"></a><font color="#cc0033">AccessDeniedException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_nio_file.html#type-FileSystemException">java_nio_file.FileSystemException</a>)
+                           <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                           <b>STATIC</b>
+                             <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                             p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                             p2 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-AccessDeniedException">AccessDeniedException</a><b>,CONSTRUCTOR</b>;
+                             <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-AccessDeniedException">AccessDeniedException</a><b>,CONSTRUCTOR</b>;
+                           <b>END</b>;
+
+  <a name="type-AccessMode"></a><font color="#cc0033">AccessMode</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Enum">java_lang.Enum</a>)
+                <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> *)</font>
+                <b>STATIC</b>
+                  <a name="type-EXECUTE"></a><font color="#cc0033">EXECUTE</font>* : <a href="#type-AccessMode">AccessMode</a>;
+                  <a name="type-READ"></a><font color="#cc0033">READ</font>*    : <a href="#type-AccessMode">AccessMode</a>;
+                  <a name="type-WRITE"></a><font color="#cc0033">WRITE</font>*   : <a href="#type-AccessMode">AccessMode</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">valueOf</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-AccessMode">AccessMode</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">values</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-AccessMode">AccessMode</a>;
+                <b>END</b>;
+
+  <a name="type-AtomicMoveNotSupportedException"></a><font color="#cc0033">AtomicMoveNotSupportedException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_nio_file.html#type-FileSystemException">java_nio_file.FileSystemException</a>)
+                                     <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                                     <b>STATIC</b>
+                                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                       p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                       p2 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-AtomicMoveNotSupportedException">AtomicMoveNotSupportedException</a><b>,CONSTRUCTOR</b>;
+                                     <b>END</b>;
+
+  <a name="type-ClosedDirectoryStreamException"></a><font color="#cc0033">ClosedDirectoryStreamException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-IllegalStateException">java_lang.IllegalStateException</a>)
+                                    <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                                    <b>STATIC</b>
+                                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-ClosedDirectoryStreamException">ClosedDirectoryStreamException</a><b>,CONSTRUCTOR</b>;
+                                    <b>END</b>;
+
+  <a name="type-ClosedFileSystemException"></a><font color="#cc0033">ClosedFileSystemException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-IllegalStateException">java_lang.IllegalStateException</a>)
+                               <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                               <b>STATIC</b>
+                                 <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-ClosedFileSystemException">ClosedFileSystemException</a><b>,CONSTRUCTOR</b>;
+                               <b>END</b>;
+
+  <a name="type-ClosedWatchServiceException"></a><font color="#cc0033">ClosedWatchServiceException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-IllegalStateException">java_lang.IllegalStateException</a>)
+                                 <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                                 <b>STATIC</b>
+                                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-ClosedWatchServiceException">ClosedWatchServiceException</a><b>,CONSTRUCTOR</b>;
+                                 <b>END</b>;
+
+  <a name="type-CopyOption"></a><font color="#cc0033">CopyOption</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                <b>END</b>;
+
+  <a name="type-DirectoryIteratorException"></a><font color="#cc0033">DirectoryIteratorException</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_util.html#type-ConcurrentModificationException">java_util.ConcurrentModificationException</a>)
+                                <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                                <font color="green"><b> (* </b><a href="#meths-DirectoryIteratorException">Typebound Procedures</a><b> *)</b></font>
+                                <b>STATIC</b>
+                                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_io.html#type-IOException">java_io.IOException</a>) : <a href="#type-DirectoryIteratorException">DirectoryIteratorException</a><b>,CONSTRUCTOR</b>;
+                                <b>END</b>;
+
+  <a name="type-DirectoryNotEmptyException"></a><font color="#cc0033">DirectoryNotEmptyException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-FileSystemException">FileSystemException</a>)
+                                <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                                <b>STATIC</b>
+                                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-DirectoryNotEmptyException">DirectoryNotEmptyException</a><b>,CONSTRUCTOR</b>;
+                                <b>END</b>;
+
+  <a name="type-DirectoryStream"></a><font color="#cc0033">DirectoryStream</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_io.html#type-Closeable">java_io.Closeable</a> + <a href="java_lang.html#type-Iterable">java_lang.Iterable</a>)
+                     <font color="green"><b> (* </b><a href="#meths-DirectoryStream">Typebound Procedures</a><b> *)</b></font>
+                     <b>END</b>;
+
+  <a name="type-DirectoryStream$Filter"></a><font color="#cc0033">DirectoryStream$Filter</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                            <font color="green"><b> (* </b><a href="#meths-DirectoryStream$Filter">Typebound Procedures</a><b> *)</b></font>
+                            <b>END</b>;
+
+  <a name="type-FileAlreadyExistsException"></a><font color="#cc0033">FileAlreadyExistsException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_nio_file.html#type-FileSystemException">java_nio_file.FileSystemException</a>)
+                                <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                                <b>STATIC</b>
+                                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                  p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                  p2 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-FileAlreadyExistsException">FileAlreadyExistsException</a><b>,CONSTRUCTOR</b>;
+                                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-FileAlreadyExistsException">FileAlreadyExistsException</a><b>,CONSTRUCTOR</b>;
+                                <b>END</b>;
+
+  <a name="type-Files"></a><font color="#cc0033">Files</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+           <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> *)</font>
+           <b>STATIC</b>
+             <b>PROCEDURE </b><font color="#cc0033">copy</font>*(    p0 : <a href="java_nio_file.html#type-Path">java_nio_file.Path</a>;
+                                 p1 : <a href="java_nio_file.html#type-Path">java_nio_file.Path</a>;
+                             IN  p2 : <b>ARRAY </b><b>OF </b><a href="java_nio_file.html#type-CopyOption">java_nio_file.CopyOption</a>) : <a href="java_nio_file.html#type-Path">java_nio_file.Path</a>;
+             <b>PROCEDURE </b><font color="#cc0033">copy</font>*(p0 : <a href="java_nio_file.html#type-Path">java_nio_file.Path</a>;
+                             p1 : <a href="java_io.html#type-OutputStream">java_io.OutputStream</a>) : LONGINT;
+             <b>PROCEDURE </b><font color="#cc0033">copy</font>*(    p0 : <a href="java_io.html#type-InputStream">java_io.InputStream</a>;
+                                 p1 : <a href="java_nio_file.html#type-Path">java_nio_file.Path</a>;
+                             IN  p2 : <b>ARRAY </b><b>OF </b><a href="java_nio_file.html#type-CopyOption">java_nio_file.CopyOption</a>) : LONGINT;
+             <b>PROCEDURE </b><font color="#cc0033">createDirectories</font>*(    p0 : <a href="java_nio_file.html#type-Path">java_nio_file.Path</a>;
+                                          IN  p1 : <b>ARRAY </b><b>OF </b><a href="java_nio_file_attribute.html#type-FileAttribute">java_nio_file_attribute.FileAttribute</a>) : <a href="java_nio_file.html#type-Path">java_nio_file.Path</a>;
+             <b>PROCEDURE </b><font color="#cc0033">createDirectory</font>*(    p0 : <a href="java_nio_file.html#type-Path">java_nio_file.Path</a>;
+                                        IN  p1 : <b>ARRAY </b><b>OF </b><a href="java_nio_file_attribute.html#type-FileAttribute">java_nio_file_attribute.FileAttribute</a>) : <a href="java_nio_file.html#type-Path">java_nio_file.Path</a>;
+             <b>PROCEDURE </b><font color="#cc0033">createFile</font>*(    p0 : <a href="java_nio_file.html#type-Path">java_nio_file.Path</a>;
+                                   IN  p1 : <b>ARRAY </b><b>OF </b><a href="java_nio_file_attribute.html#type-FileAttribute">java_nio_file_attribute.FileAttribute</a>) : <a href="java_nio_file.html#type-Path">java_nio_file.Path</a>;
+             <b>PROCEDURE </b><font color="#cc0033">createLink</font>*(p0 : <a href="java_nio_file.html#type-Path">java_nio_file.Path</a>;
+                                   p1 : <a href="java_nio_file.html#type-Path">java_nio_file.Path</a>) : <a href="java_nio_file.html#type-Path">java_nio_file.Path</a>;
+             <b>PROCEDURE </b><font color="#cc0033">createSymbolicLink</font>*(    p0 : <a href="java_nio_file.html#type-Path">java_nio_file.Path</a>;
+                                               p1 : <a href="java_nio_file.html#type-Path">java_nio_file.Path</a>;
+                                           IN  p2 : <b>ARRAY </b><b>OF </b><a href="java_nio_file_attribute.html#type-FileAttribute">java_nio_file_attribute.FileAttribute</a>) : <a href="java_nio_file.html#type-Path">java_nio_file.Path</a>;
+             <b>PROCEDURE </b><font color="#cc0033">createTempDirectory</font>*(    p0 : <a href="java_nio_file.html#type-Path">java_nio_file.Path</a>;
+                                                p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                            IN  p2 : <b>ARRAY </b><b>OF </b><a href="java_nio_file_attribute.html#type-FileAttribute">java_nio_file_attribute.FileAttribute</a>) : <a href="java_nio_file.html#type-Path">java_nio_file.Path</a>;
+             <b>PROCEDURE </b><font color="#cc0033">createTempDirectory</font>*(    p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                            IN  p1 : <b>ARRAY </b><b>OF </b><a href="java_nio_file_attribute.html#type-FileAttribute">java_nio_file_attribute.FileAttribute</a>) : <a href="java_nio_file.html#type-Path">java_nio_file.Path</a>;
+             <b>PROCEDURE </b><font color="#cc0033">createTempFile</font>*(    p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                           p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                       IN  p2 : <b>ARRAY </b><b>OF </b><a href="java_nio_file_attribute.html#type-FileAttribute">java_nio_file_attribute.FileAttribute</a>) : <a href="java_nio_file.html#type-Path">java_nio_file.Path</a>;
+             <b>PROCEDURE </b><font color="#cc0033">createTempFile</font>*(    p0 : <a href="java_nio_file.html#type-Path">java_nio_file.Path</a>;
+                                           p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                           p2 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                       IN  p3 : <b>ARRAY </b><b>OF </b><a href="java_nio_file_attribute.html#type-FileAttribute">java_nio_file_attribute.FileAttribute</a>) : <a href="java_nio_file.html#type-Path">java_nio_file.Path</a>;
+             <b>PROCEDURE </b><font color="#cc0033">delete</font>*(p0 : <a href="java_nio_file.html#type-Path">java_nio_file.Path</a>);
+             <b>PROCEDURE </b><font color="#cc0033">deleteIfExists</font>*(p0 : <a href="java_nio_file.html#type-Path">java_nio_file.Path</a>) : BOOLEAN;
+             <b>PROCEDURE </b><font color="#cc0033">exists</font>*(    p0 : <a href="java_nio_file.html#type-Path">java_nio_file.Path</a>;
+                               IN  p1 : <b>ARRAY </b><b>OF </b><a href="java_nio_file.html#type-LinkOption">java_nio_file.LinkOption</a>) : BOOLEAN;
+             <b>PROCEDURE </b><font color="#cc0033">find</font>*(    p0 : <a href="java_nio_file.html#type-Path">java_nio_file.Path</a>;
+                                 p1 : INTEGER;
+                                 p2 : <a href="java_util_function.html#type-BiPredicate">java_util_function.BiPredicate</a>;
+                             IN  p3 : <b>ARRAY </b><b>OF </b><a href="java_nio_file.html#type-FileVisitOption">java_nio_file.FileVisitOption</a>) : <a href="java_util_stream.html#type-Stream">java_util_stream.Stream</a>;
+             <b>PROCEDURE </b><font color="#cc0033">getAttribute</font>*(    p0 : <a href="java_nio_file.html#type-Path">java_nio_file.Path</a>;
+                                         p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                     IN  p2 : <b>ARRAY </b><b>OF </b><a href="java_nio_file.html#type-LinkOption">java_nio_file.LinkOption</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+             <b>PROCEDURE </b><font color="#cc0033">getFileAttributeView</font>*(    p0 : <a href="java_nio_file.html#type-Path">java_nio_file.Path</a>;
+                                                 p1 : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                                             IN  p2 : <b>ARRAY </b><b>OF </b><a href="java_nio_file.html#type-LinkOption">java_nio_file.LinkOption</a>) : <a href="java_nio_file_attribute.html#type-FileAttributeView">java_nio_file_attribute.FileAttributeView</a>;
+             <b>PROCEDURE </b><font color="#cc0033">getFileStore</font>*(p0 : <a href="java_nio_file.html#type-Path">java_nio_file.Path</a>) : <a href="java_nio_file.html#type-FileStore">java_nio_file.FileStore</a>;
+             <b>PROCEDURE </b><font color="#cc0033">getLastModifiedTime</font>*(    p0 : <a href="java_nio_file.html#type-Path">java_nio_file.Path</a>;
+                                            IN  p1 : <b>ARRAY </b><b>OF </b><a href="java_nio_file.html#type-LinkOption">java_nio_file.LinkOption</a>) : <a href="java_nio_file_attribute.html#type-FileTime">java_nio_file_attribute.FileTime</a>;
+             <b>PROCEDURE </b><font color="#cc0033">getOwner</font>*(    p0 : <a href="java_nio_file.html#type-Path">java_nio_file.Path</a>;
+                                 IN  p1 : <b>ARRAY </b><b>OF </b><a href="java_nio_file.html#type-LinkOption">java_nio_file.LinkOption</a>) : <a href="java_nio_file_attribute.html#type-UserPrincipal">java_nio_file_attribute.UserPrincipal</a>;
+             <b>PROCEDURE </b><font color="#cc0033">getPosixFilePermissions</font>*(    p0 : <a href="java_nio_file.html#type-Path">java_nio_file.Path</a>;
+                                                IN  p1 : <b>ARRAY </b><b>OF </b><a href="java_nio_file.html#type-LinkOption">java_nio_file.LinkOption</a>) : <a href="java_util.html#type-Set">java_util.Set</a>;
+             <b>PROCEDURE </b><font color="#cc0033">isDirectory</font>*(    p0 : <a href="java_nio_file.html#type-Path">java_nio_file.Path</a>;
+                                    IN  p1 : <b>ARRAY </b><b>OF </b><a href="java_nio_file.html#type-LinkOption">java_nio_file.LinkOption</a>) : BOOLEAN;
+             <b>PROCEDURE </b><font color="#cc0033">isExecutable</font>*(p0 : <a href="java_nio_file.html#type-Path">java_nio_file.Path</a>) : BOOLEAN;
+             <b>PROCEDURE </b><font color="#cc0033">isHidden</font>*(p0 : <a href="java_nio_file.html#type-Path">java_nio_file.Path</a>) : BOOLEAN;
+             <b>PROCEDURE </b><font color="#cc0033">isReadable</font>*(p0 : <a href="java_nio_file.html#type-Path">java_nio_file.Path</a>) : BOOLEAN;
+             <b>PROCEDURE </b><font color="#cc0033">isRegularFile</font>*(    p0 : <a href="java_nio_file.html#type-Path">java_nio_file.Path</a>;
+                                      IN  p1 : <b>ARRAY </b><b>OF </b><a href="java_nio_file.html#type-LinkOption">java_nio_file.LinkOption</a>) : BOOLEAN;
+             <b>PROCEDURE </b><font color="#cc0033">isSameFile</font>*(p0 : <a href="java_nio_file.html#type-Path">java_nio_file.Path</a>;
+                                   p1 : <a href="java_nio_file.html#type-Path">java_nio_file.Path</a>) : BOOLEAN;
+             <b>PROCEDURE </b><font color="#cc0033">isSymbolicLink</font>*(p0 : <a href="java_nio_file.html#type-Path">java_nio_file.Path</a>) : BOOLEAN;
+             <b>PROCEDURE </b><font color="#cc0033">isWritable</font>*(p0 : <a href="java_nio_file.html#type-Path">java_nio_file.Path</a>) : BOOLEAN;
+             <b>PROCEDURE </b><font color="#cc0033">lines</font>*(p0 : <a href="java_nio_file.html#type-Path">java_nio_file.Path</a>) : <a href="java_util_stream.html#type-Stream">java_util_stream.Stream</a>;
+             <b>PROCEDURE </b><font color="#cc0033">lines</font>*(p0 : <a href="java_nio_file.html#type-Path">java_nio_file.Path</a>;
+                              p1 : <a href="java_nio_charset.html#type-Charset">java_nio_charset.Charset</a>) : <a href="java_util_stream.html#type-Stream">java_util_stream.Stream</a>;
+             <b>PROCEDURE </b><font color="#cc0033">list</font>*(p0 : <a href="java_nio_file.html#type-Path">java_nio_file.Path</a>) : <a href="java_util_stream.html#type-Stream">java_util_stream.Stream</a>;
+             <b>PROCEDURE </b><font color="#cc0033">mismatch</font>*(p0 : <a href="java_nio_file.html#type-Path">java_nio_file.Path</a>;
+                                 p1 : <a href="java_nio_file.html#type-Path">java_nio_file.Path</a>) : LONGINT;
+             <b>PROCEDURE </b><font color="#cc0033">move</font>*(    p0 : <a href="java_nio_file.html#type-Path">java_nio_file.Path</a>;
+                                 p1 : <a href="java_nio_file.html#type-Path">java_nio_file.Path</a>;
+                             IN  p2 : <b>ARRAY </b><b>OF </b><a href="java_nio_file.html#type-CopyOption">java_nio_file.CopyOption</a>) : <a href="java_nio_file.html#type-Path">java_nio_file.Path</a>;
+             <b>PROCEDURE </b><font color="#cc0033">newBufferedReader</font>*(p0 : <a href="java_nio_file.html#type-Path">java_nio_file.Path</a>;
+                                          p1 : <a href="java_nio_charset.html#type-Charset">java_nio_charset.Charset</a>) : <a href="java_io.html#type-BufferedReader">java_io.BufferedReader</a>;
+             <b>PROCEDURE </b><font color="#cc0033">newBufferedReader</font>*(p0 : <a href="java_nio_file.html#type-Path">java_nio_file.Path</a>) : <a href="java_io.html#type-BufferedReader">java_io.BufferedReader</a>;
+             <b>PROCEDURE </b><font color="#cc0033">newBufferedWriter</font>*(    p0 : <a href="java_nio_file.html#type-Path">java_nio_file.Path</a>;
+                                          IN  p1 : <b>ARRAY </b><b>OF </b><a href="#type-OpenOption">OpenOption</a>) : <a href="java_io.html#type-BufferedWriter">java_io.BufferedWriter</a>;
+             <b>PROCEDURE </b><font color="#cc0033">newBufferedWriter</font>*(    p0 : <a href="java_nio_file.html#type-Path">java_nio_file.Path</a>;
+                                              p1 : <a href="java_nio_charset.html#type-Charset">java_nio_charset.Charset</a>;
+                                          IN  p2 : <b>ARRAY </b><b>OF </b><a href="#type-OpenOption">OpenOption</a>) : <a href="java_io.html#type-BufferedWriter">java_io.BufferedWriter</a>;
+             <b>PROCEDURE </b><font color="#cc0033">newByteChannel</font>*(    p0 : <a href="java_nio_file.html#type-Path">java_nio_file.Path</a>;
+                                       IN  p1 : <b>ARRAY </b><b>OF </b><a href="#type-OpenOption">OpenOption</a>) : <a href="java_nio_channels.html#type-SeekableByteChannel">java_nio_channels.SeekableByteChannel</a>;
+             <b>PROCEDURE </b><font color="#cc0033">newByteChannel</font>*(    p0 : <a href="java_nio_file.html#type-Path">java_nio_file.Path</a>;
+                                           p1 : <a href="java_util.html#type-Set">java_util.Set</a>;
+                                       IN  p2 : <b>ARRAY </b><b>OF </b><a href="java_nio_file_attribute.html#type-FileAttribute">java_nio_file_attribute.FileAttribute</a>) : <a href="java_nio_channels.html#type-SeekableByteChannel">java_nio_channels.SeekableByteChannel</a>;
+             <b>PROCEDURE </b><font color="#cc0033">newDirectoryStream</font>*(p0 : <a href="java_nio_file.html#type-Path">java_nio_file.Path</a>) : <a href="#type-DirectoryStream">DirectoryStream</a>;
+             <b>PROCEDURE </b><font color="#cc0033">newDirectoryStream</font>*(p0 : <a href="java_nio_file.html#type-Path">java_nio_file.Path</a>;
+                                           p1 : <a href="#type-DirectoryStream$Filter">DirectoryStream$Filter</a>) : <a href="#type-DirectoryStream">DirectoryStream</a>;
+             <b>PROCEDURE </b><font color="#cc0033">newDirectoryStream</font>*(p0 : <a href="java_nio_file.html#type-Path">java_nio_file.Path</a>;
+                                           p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-DirectoryStream">DirectoryStream</a>;
+             <b>PROCEDURE </b><font color="#cc0033">newInputStream</font>*(    p0 : <a href="java_nio_file.html#type-Path">java_nio_file.Path</a>;
+                                       IN  p1 : <b>ARRAY </b><b>OF </b><a href="#type-OpenOption">OpenOption</a>) : <a href="java_io.html#type-InputStream">java_io.InputStream</a>;
+             <b>PROCEDURE </b><font color="#cc0033">newOutputStream</font>*(    p0 : <a href="java_nio_file.html#type-Path">java_nio_file.Path</a>;
+                                        IN  p1 : <b>ARRAY </b><b>OF </b><a href="#type-OpenOption">OpenOption</a>) : <a href="java_io.html#type-OutputStream">java_io.OutputStream</a>;
+             <b>PROCEDURE </b><font color="#cc0033">notExists</font>*(    p0 : <a href="java_nio_file.html#type-Path">java_nio_file.Path</a>;
+                                  IN  p1 : <b>ARRAY </b><b>OF </b><a href="java_nio_file.html#type-LinkOption">java_nio_file.LinkOption</a>) : BOOLEAN;
+             <b>PROCEDURE </b><font color="#cc0033">probeContentType</font>*(p0 : <a href="java_nio_file.html#type-Path">java_nio_file.Path</a>) : <a href="java_lang.html#type-String">java_lang.String</a>;
+             <b>PROCEDURE </b><font color="#cc0033">readAllBytes</font>*(p0 : <a href="java_nio_file.html#type-Path">java_nio_file.Path</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE;
+             <b>PROCEDURE </b><font color="#cc0033">readAllLines</font>*(p0 : <a href="java_nio_file.html#type-Path">java_nio_file.Path</a>) : <a href="java_util.html#type-List">java_util.List</a>;
+             <b>PROCEDURE </b><font color="#cc0033">readAllLines</font>*(p0 : <a href="java_nio_file.html#type-Path">java_nio_file.Path</a>;
+                                     p1 : <a href="java_nio_charset.html#type-Charset">java_nio_charset.Charset</a>) : <a href="java_util.html#type-List">java_util.List</a>;
+             <b>PROCEDURE </b><font color="#cc0033">readAttributes</font>*(    p0 : <a href="java_nio_file.html#type-Path">java_nio_file.Path</a>;
+                                           p1 : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                                       IN  p2 : <b>ARRAY </b><b>OF </b><a href="java_nio_file.html#type-LinkOption">java_nio_file.LinkOption</a>) : <a href="java_nio_file_attribute.html#type-BasicFileAttributes">java_nio_file_attribute.BasicFileAttributes</a>;
+             <b>PROCEDURE </b><font color="#cc0033">readAttributes</font>*(    p0 : <a href="java_nio_file.html#type-Path">java_nio_file.Path</a>;
+                                           p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                       IN  p2 : <b>ARRAY </b><b>OF </b><a href="java_nio_file.html#type-LinkOption">java_nio_file.LinkOption</a>) : <a href="java_util.html#type-Map">java_util.Map</a>;
+             <b>PROCEDURE </b><font color="#cc0033">readString</font>*(p0 : <a href="java_nio_file.html#type-Path">java_nio_file.Path</a>) : <a href="java_lang.html#type-String">java_lang.String</a>;
+             <b>PROCEDURE </b><font color="#cc0033">readString</font>*(p0 : <a href="java_nio_file.html#type-Path">java_nio_file.Path</a>;
+                                   p1 : <a href="java_nio_charset.html#type-Charset">java_nio_charset.Charset</a>) : <a href="java_lang.html#type-String">java_lang.String</a>;
+             <b>PROCEDURE </b><font color="#cc0033">readSymbolicLink</font>*(p0 : <a href="java_nio_file.html#type-Path">java_nio_file.Path</a>) : <a href="java_nio_file.html#type-Path">java_nio_file.Path</a>;
+             <b>PROCEDURE </b><font color="#cc0033">setAttribute</font>*(    p0 : <a href="java_nio_file.html#type-Path">java_nio_file.Path</a>;
+                                         p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                         p2 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                     IN  p3 : <b>ARRAY </b><b>OF </b><a href="java_nio_file.html#type-LinkOption">java_nio_file.LinkOption</a>) : <a href="java_nio_file.html#type-Path">java_nio_file.Path</a>;
+             <b>PROCEDURE </b><font color="#cc0033">setLastModifiedTime</font>*(p0 : <a href="java_nio_file.html#type-Path">java_nio_file.Path</a>;
+                                            p1 : <a href="java_nio_file_attribute.html#type-FileTime">java_nio_file_attribute.FileTime</a>) : <a href="java_nio_file.html#type-Path">java_nio_file.Path</a>;
+             <b>PROCEDURE </b><font color="#cc0033">setOwner</font>*(p0 : <a href="java_nio_file.html#type-Path">java_nio_file.Path</a>;
+                                 p1 : <a href="java_nio_file_attribute.html#type-UserPrincipal">java_nio_file_attribute.UserPrincipal</a>) : <a href="java_nio_file.html#type-Path">java_nio_file.Path</a>;
+             <b>PROCEDURE </b><font color="#cc0033">setPosixFilePermissions</font>*(p0 : <a href="java_nio_file.html#type-Path">java_nio_file.Path</a>;
+                                                p1 : <a href="java_util.html#type-Set">java_util.Set</a>) : <a href="java_nio_file.html#type-Path">java_nio_file.Path</a>;
+             <b>PROCEDURE </b><font color="#cc0033">size</font>*(p0 : <a href="java_nio_file.html#type-Path">java_nio_file.Path</a>) : LONGINT;
+             <b>PROCEDURE </b><font color="#cc0033">walk</font>*(    p0 : <a href="java_nio_file.html#type-Path">java_nio_file.Path</a>;
+                                 p1 : INTEGER;
+                             IN  p2 : <b>ARRAY </b><b>OF </b><a href="java_nio_file.html#type-FileVisitOption">java_nio_file.FileVisitOption</a>) : <a href="java_util_stream.html#type-Stream">java_util_stream.Stream</a>;
+             <b>PROCEDURE </b><font color="#cc0033">walk</font>*(    p0 : <a href="java_nio_file.html#type-Path">java_nio_file.Path</a>;
+                             IN  p1 : <b>ARRAY </b><b>OF </b><a href="java_nio_file.html#type-FileVisitOption">java_nio_file.FileVisitOption</a>) : <a href="java_util_stream.html#type-Stream">java_util_stream.Stream</a>;
+             <b>PROCEDURE </b><font color="#cc0033">walkFileTree</font>*(p0 : <a href="java_nio_file.html#type-Path">java_nio_file.Path</a>;
+                                     p1 : <a href="java_util.html#type-Set">java_util.Set</a>;
+                                     p2 : INTEGER;
+                                     p3 : <a href="#type-FileVisitor">FileVisitor</a>) : <a href="java_nio_file.html#type-Path">java_nio_file.Path</a>;
+             <b>PROCEDURE </b><font color="#cc0033">walkFileTree</font>*(p0 : <a href="java_nio_file.html#type-Path">java_nio_file.Path</a>;
+                                     p1 : <a href="#type-FileVisitor">FileVisitor</a>) : <a href="java_nio_file.html#type-Path">java_nio_file.Path</a>;
+             <b>PROCEDURE </b><font color="#cc0033">write</font>*(    p0 : <a href="java_nio_file.html#type-Path">java_nio_file.Path</a>;
+                                  p1 : <a href="java_lang.html#type-Iterable">java_lang.Iterable</a>;
+                                  p2 : <a href="java_nio_charset.html#type-Charset">java_nio_charset.Charset</a>;
+                              IN  p3 : <b>ARRAY </b><b>OF </b><a href="#type-OpenOption">OpenOption</a>) : <a href="java_nio_file.html#type-Path">java_nio_file.Path</a>;
+             <b>PROCEDURE </b><font color="#cc0033">write</font>*(    p0 : <a href="java_nio_file.html#type-Path">java_nio_file.Path</a>;
+                                  p1 : <a href="java_lang.html#type-Iterable">java_lang.Iterable</a>;
+                              IN  p2 : <b>ARRAY </b><b>OF </b><a href="#type-OpenOption">OpenOption</a>) : <a href="java_nio_file.html#type-Path">java_nio_file.Path</a>;
+             <b>PROCEDURE </b><font color="#cc0033">write</font>*(    p0 : <a href="java_nio_file.html#type-Path">java_nio_file.Path</a>;
+                              IN  p1 : <b>ARRAY </b><b>OF </b>BYTE;
+                              IN  p2 : <b>ARRAY </b><b>OF </b><a href="#type-OpenOption">OpenOption</a>) : <a href="java_nio_file.html#type-Path">java_nio_file.Path</a>;
+             <b>PROCEDURE </b><font color="#cc0033">writeString</font>*(    p0 : <a href="java_nio_file.html#type-Path">java_nio_file.Path</a>;
+                                        p1 : <a href="java_lang.html#type-CharSequence">java_lang.CharSequence</a>;
+                                    IN  p2 : <b>ARRAY </b><b>OF </b><a href="#type-OpenOption">OpenOption</a>) : <a href="java_nio_file.html#type-Path">java_nio_file.Path</a>;
+             <b>PROCEDURE </b><font color="#cc0033">writeString</font>*(    p0 : <a href="java_nio_file.html#type-Path">java_nio_file.Path</a>;
+                                        p1 : <a href="java_lang.html#type-CharSequence">java_lang.CharSequence</a>;
+                                        p2 : <a href="java_nio_charset.html#type-Charset">java_nio_charset.Charset</a>;
+                                    IN  p3 : <b>ARRAY </b><b>OF </b><a href="#type-OpenOption">OpenOption</a>) : <a href="java_nio_file.html#type-Path">java_nio_file.Path</a>;
+           <b>END</b>;
+
+  <a name="type-FileStore"></a><font color="#cc0033">FileStore</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+               <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+               <font color="green"><b> (* </b><a href="#meths-FileStore">Typebound Procedures</a><b> *)</b></font>
+               <b>STATIC</b>
+                 <b>PROCEDURE </b><font color="#cc0033">Init</font>!() : <a href="#type-FileStore">FileStore</a><b>,CONSTRUCTOR</b>;
+               <b>END</b>;
+
+  <a name="type-FileSystem"></a><font color="#cc0033">FileSystem</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_io.html#type-Closeable">java_io.Closeable</a>)
+                <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                <font color="green"><b> (* </b><a href="#meths-FileSystem">Typebound Procedures</a><b> *)</b></font>
+                <b>STATIC</b>
+                  <b>PROCEDURE </b><font color="#cc0033">Init</font>!() : <a href="#type-FileSystem">FileSystem</a><b>,CONSTRUCTOR</b>;
+                <b>END</b>;
+
+  <a name="type-FileSystemAlreadyExistsException"></a><font color="#cc0033">FileSystemAlreadyExistsException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-RuntimeException">java_lang.RuntimeException</a>)
+                                      <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                                      <b>STATIC</b>
+                                        <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-FileSystemAlreadyExistsException">FileSystemAlreadyExistsException</a><b>,CONSTRUCTOR</b>;
+                                        <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-FileSystemAlreadyExistsException">FileSystemAlreadyExistsException</a><b>,CONSTRUCTOR</b>;
+                                      <b>END</b>;
+
+  <a name="type-FileSystemException"></a><font color="#cc0033">FileSystemException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_io.html#type-IOException">java_io.IOException</a>)
+                         <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                         <font color="green"><b> (* </b><a href="#meths-FileSystemException">Typebound Procedures</a><b> *)</b></font>
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                           p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                           p2 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-FileSystemException">FileSystemException</a><b>,CONSTRUCTOR</b>;
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-FileSystemException">FileSystemException</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-FileSystemLoopException"></a><font color="#cc0033">FileSystemLoopException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-FileSystemException">FileSystemException</a>)
+                             <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                             <b>STATIC</b>
+                               <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-FileSystemLoopException">FileSystemLoopException</a><b>,CONSTRUCTOR</b>;
+                             <b>END</b>;
+
+  <a name="type-FileSystemNotFoundException"></a><font color="#cc0033">FileSystemNotFoundException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-RuntimeException">java_lang.RuntimeException</a>)
+                                 <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                                 <b>STATIC</b>
+                                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-FileSystemNotFoundException">FileSystemNotFoundException</a><b>,CONSTRUCTOR</b>;
+                                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-FileSystemNotFoundException">FileSystemNotFoundException</a><b>,CONSTRUCTOR</b>;
+                                 <b>END</b>;
+
+  <a name="type-FileSystems"></a><font color="#cc0033">FileSystems</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                 <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> *)</font>
+                 <b>STATIC</b>
+                   <b>PROCEDURE </b><font color="#cc0033">getDefault</font>*() : <a href="#type-FileSystem">FileSystem</a>;
+                   <b>PROCEDURE </b><font color="#cc0033">getFileSystem</font>*(p0 : <a href="java_net.html#type-URI">java_net.URI</a>) : <a href="#type-FileSystem">FileSystem</a>;
+                   <b>PROCEDURE </b><font color="#cc0033">newFileSystem</font>*(p0 : <a href="#type-Path">Path</a>;
+                                            p1 : <a href="java_util.html#type-Map">java_util.Map</a>) : <a href="#type-FileSystem">FileSystem</a>;
+                   <b>PROCEDURE </b><font color="#cc0033">newFileSystem</font>*(p0 : <a href="#type-Path">Path</a>) : <a href="#type-FileSystem">FileSystem</a>;
+                   <b>PROCEDURE </b><font color="#cc0033">newFileSystem</font>*(p0 : <a href="#type-Path">Path</a>;
+                                            p1 : <a href="java_util.html#type-Map">java_util.Map</a>;
+                                            p2 : <a href="java_lang.html#type-ClassLoader">java_lang.ClassLoader</a>) : <a href="#type-FileSystem">FileSystem</a>;
+                   <b>PROCEDURE </b><font color="#cc0033">newFileSystem</font>*(p0 : <a href="java_net.html#type-URI">java_net.URI</a>;
+                                            p1 : <a href="java_util.html#type-Map">java_util.Map</a>) : <a href="#type-FileSystem">FileSystem</a>;
+                   <b>PROCEDURE </b><font color="#cc0033">newFileSystem</font>*(p0 : <a href="java_net.html#type-URI">java_net.URI</a>;
+                                            p1 : <a href="java_util.html#type-Map">java_util.Map</a>;
+                                            p2 : <a href="java_lang.html#type-ClassLoader">java_lang.ClassLoader</a>) : <a href="#type-FileSystem">FileSystem</a>;
+                   <b>PROCEDURE </b><font color="#cc0033">newFileSystem</font>*(p0 : <a href="#type-Path">Path</a>;
+                                            p1 : <a href="java_lang.html#type-ClassLoader">java_lang.ClassLoader</a>) : <a href="#type-FileSystem">FileSystem</a>;
+                 <b>END</b>;
+
+  <a name="type-FileVisitOption"></a><font color="#cc0033">FileVisitOption</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Enum">java_lang.Enum</a>)
+                     <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> *)</font>
+                     <b>STATIC</b>
+                       <a name="type-FOLLOW_LINKS"></a><font color="#cc0033">FOLLOW_LINKS</font>* : <a href="#type-FileVisitOption">FileVisitOption</a>;
+                       <b>PROCEDURE </b><font color="#cc0033">valueOf</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-FileVisitOption">FileVisitOption</a>;
+                       <b>PROCEDURE </b><font color="#cc0033">values</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-FileVisitOption">FileVisitOption</a>;
+                     <b>END</b>;
+
+  <a name="type-FileVisitor"></a><font color="#cc0033">FileVisitor</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                 <font color="green"><b> (* </b><a href="#meths-FileVisitor">Typebound Procedures</a><b> *)</b></font>
+                 <b>END</b>;
+
+  <a name="type-FileVisitResult"></a><font color="#cc0033">FileVisitResult</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Enum">java_lang.Enum</a>)
+                     <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> *)</font>
+                     <b>STATIC</b>
+                       <a name="type-CONTINUE"></a><font color="#cc0033">CONTINUE</font>*      : <a href="#type-FileVisitResult">FileVisitResult</a>;
+                       <a name="type-SKIP_SIBLINGS"></a><font color="#cc0033">SKIP_SIBLINGS</font>* : <a href="#type-FileVisitResult">FileVisitResult</a>;
+                       <a name="type-SKIP_SUBTREE"></a><font color="#cc0033">SKIP_SUBTREE</font>*  : <a href="#type-FileVisitResult">FileVisitResult</a>;
+                       <a name="type-TERMINATE"></a><font color="#cc0033">TERMINATE</font>*     : <a href="#type-FileVisitResult">FileVisitResult</a>;
+                       <b>PROCEDURE </b><font color="#cc0033">valueOf</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-FileVisitResult">FileVisitResult</a>;
+                       <b>PROCEDURE </b><font color="#cc0033">values</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-FileVisitResult">FileVisitResult</a>;
+                     <b>END</b>;
+
+  <a name="type-InvalidPathException"></a><font color="#cc0033">InvalidPathException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-IllegalArgumentException">java_lang.IllegalArgumentException</a>)
+                          <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                          <font color="green"><b> (* </b><a href="#meths-InvalidPathException">Typebound Procedures</a><b> *)</b></font>
+                          <b>STATIC</b>
+                            <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                            p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-InvalidPathException">InvalidPathException</a><b>,CONSTRUCTOR</b>;
+                            <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                            p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                            p2 : INTEGER) : <a href="#type-InvalidPathException">InvalidPathException</a><b>,CONSTRUCTOR</b>;
+                          <b>END</b>;
+
+  <a name="type-LinkOption"></a><font color="#cc0033">LinkOption</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Enum">java_lang.Enum</a> + <a href="#type-OpenOption">OpenOption</a> + <a href="java_nio_file.html#type-CopyOption">java_nio_file.CopyOption</a>)
+                <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> *)</font>
+                <b>STATIC</b>
+                  <a name="type-NOFOLLOW_LINKS"></a><font color="#cc0033">NOFOLLOW_LINKS</font>* : <a href="#type-LinkOption">LinkOption</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">valueOf</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-LinkOption">LinkOption</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">values</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-LinkOption">LinkOption</a>;
+                <b>END</b>;
+
+  <a name="type-LinkPermission"></a><font color="#cc0033">LinkPermission</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_security.html#type-BasicPermission">java_security.BasicPermission</a>)
+                    <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                    <b>STATIC</b>
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                      p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-LinkPermission">LinkPermission</a><b>,CONSTRUCTOR</b>;
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-LinkPermission">LinkPermission</a><b>,CONSTRUCTOR</b>;
+                    <b>END</b>;
+
+  <a name="type-NoSuchFileException"></a><font color="#cc0033">NoSuchFileException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-FileSystemException">FileSystemException</a>)
+                         <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                           p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                           p2 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-NoSuchFileException">NoSuchFileException</a><b>,CONSTRUCTOR</b>;
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-NoSuchFileException">NoSuchFileException</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-NotDirectoryException"></a><font color="#cc0033">NotDirectoryException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-FileSystemException">FileSystemException</a>)
+                           <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                           <b>STATIC</b>
+                             <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-NotDirectoryException">NotDirectoryException</a><b>,CONSTRUCTOR</b>;
+                           <b>END</b>;
+
+  <a name="type-NotLinkException"></a><font color="#cc0033">NotLinkException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_nio_file.html#type-FileSystemException">java_nio_file.FileSystemException</a>)
+                      <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                      <b>STATIC</b>
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                        p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                        p2 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-NotLinkException">NotLinkException</a><b>,CONSTRUCTOR</b>;
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-NotLinkException">NotLinkException</a><b>,CONSTRUCTOR</b>;
+                      <b>END</b>;
+
+  <a name="type-OpenOption"></a><font color="#cc0033">OpenOption</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                <b>END</b>;
+
+  <a name="type-Path"></a><font color="#cc0033">Path</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_lang.html#type-Comparable">java_lang.Comparable</a> + <a href="java_lang.html#type-Iterable">java_lang.Iterable</a> + <a href="#type-Watchable">Watchable</a>)
+          <font color="green"><b> (* </b><a href="#meths-Path">Typebound Procedures</a><b> *)</b></font>
+          <b>STATIC</b>
+            <b>PROCEDURE </b><font color="#cc0033">of</font>*(p0 : <a href="java_net.html#type-URI">java_net.URI</a>) : <a href="#type-Path">Path</a>;
+            <b>PROCEDURE </b><font color="#cc0033">of</font>*(    p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                          IN  p1 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-Path">Path</a>;
+          <b>END</b>;
+
+  <a name="type-PathMatcher"></a><font color="#cc0033">PathMatcher</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                 <font color="green"><b> (* </b><a href="#meths-PathMatcher">Typebound Procedures</a><b> *)</b></font>
+                 <b>END</b>;
+
+  <a name="type-Paths"></a><font color="#cc0033">Paths</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+           <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> *)</font>
+           <b>STATIC</b>
+             <b>PROCEDURE </b><font color="#cc0033">get</font>*(p0 : <a href="java_net.html#type-URI">java_net.URI</a>) : <a href="java_nio_file.html#type-Path">java_nio_file.Path</a>;
+             <b>PROCEDURE </b><font color="#cc0033">get</font>*(    p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                            IN  p1 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_nio_file.html#type-Path">java_nio_file.Path</a>;
+           <b>END</b>;
+
+  <a name="type-ProviderMismatchException"></a><font color="#cc0033">ProviderMismatchException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-IllegalArgumentException">java_lang.IllegalArgumentException</a>)
+                               <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                               <b>STATIC</b>
+                                 <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-ProviderMismatchException">ProviderMismatchException</a><b>,CONSTRUCTOR</b>;
+                                 <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-ProviderMismatchException">ProviderMismatchException</a><b>,CONSTRUCTOR</b>;
+                               <b>END</b>;
+
+  <a name="type-ProviderNotFoundException"></a><font color="#cc0033">ProviderNotFoundException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-RuntimeException">java_lang.RuntimeException</a>)
+                               <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                               <b>STATIC</b>
+                                 <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-ProviderNotFoundException">ProviderNotFoundException</a><b>,CONSTRUCTOR</b>;
+                                 <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-ProviderNotFoundException">ProviderNotFoundException</a><b>,CONSTRUCTOR</b>;
+                               <b>END</b>;
+
+  <a name="type-ReadOnlyFileSystemException"></a><font color="#cc0033">ReadOnlyFileSystemException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-UnsupportedOperationException">java_lang.UnsupportedOperationException</a>)
+                                 <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                                 <b>STATIC</b>
+                                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-ReadOnlyFileSystemException">ReadOnlyFileSystemException</a><b>,CONSTRUCTOR</b>;
+                                 <b>END</b>;
+
+  <a name="type-SecureDirectoryStream"></a><font color="#cc0033">SecureDirectoryStream</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-DirectoryStream">DirectoryStream</a>)
+                           <font color="green"><b> (* </b><a href="#meths-SecureDirectoryStream">Typebound Procedures</a><b> *)</b></font>
+                           <b>END</b>;
+
+  <a name="type-SimpleFileVisitor"></a><font color="#cc0033">SimpleFileVisitor</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-FileVisitor">FileVisitor</a>)
+                       <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                       <font color="green"><b> (* </b><a href="#meths-SimpleFileVisitor">Typebound Procedures</a><b> *)</b></font>
+                       <b>STATIC</b>
+                         <b>PROCEDURE </b><font color="#cc0033">Init</font>!() : <a href="#type-SimpleFileVisitor">SimpleFileVisitor</a><b>,CONSTRUCTOR</b>;
+                       <b>END</b>;
+
+  <a name="type-StandardCopyOption"></a><font color="#cc0033">StandardCopyOption</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Enum">java_lang.Enum</a> + <a href="java_nio_file.html#type-CopyOption">java_nio_file.CopyOption</a>)
+                        <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> *)</font>
+                        <b>STATIC</b>
+                          <a name="type-ATOMIC_MOVE"></a><font color="#cc0033">ATOMIC_MOVE</font>*      : <a href="#type-StandardCopyOption">StandardCopyOption</a>;
+                          <a name="type-COPY_ATTRIBUTES"></a><font color="#cc0033">COPY_ATTRIBUTES</font>*  : <a href="#type-StandardCopyOption">StandardCopyOption</a>;
+                          <a name="type-REPLACE_EXISTING"></a><font color="#cc0033">REPLACE_EXISTING</font>* : <a href="#type-StandardCopyOption">StandardCopyOption</a>;
+                          <b>PROCEDURE </b><font color="#cc0033">valueOf</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-StandardCopyOption">StandardCopyOption</a>;
+                          <b>PROCEDURE </b><font color="#cc0033">values</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-StandardCopyOption">StandardCopyOption</a>;
+                        <b>END</b>;
+
+  <a name="type-StandardOpenOption"></a><font color="#cc0033">StandardOpenOption</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Enum">java_lang.Enum</a> + <a href="#type-OpenOption">OpenOption</a>)
+                        <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> *)</font>
+                        <b>STATIC</b>
+                          <a name="type-APPEND"></a><font color="#cc0033">APPEND</font>*            : <a href="#type-StandardOpenOption">StandardOpenOption</a>;
+                          <a name="type-CREATE"></a><font color="#cc0033">CREATE</font>*            : <a href="#type-StandardOpenOption">StandardOpenOption</a>;
+                          <a name="type-CREATE_NEW"></a><font color="#cc0033">CREATE_NEW</font>*        : <a href="#type-StandardOpenOption">StandardOpenOption</a>;
+                          <a name="type-DELETE_ON_CLOSE"></a><font color="#cc0033">DELETE_ON_CLOSE</font>*   : <a href="#type-StandardOpenOption">StandardOpenOption</a>;
+                          <a name="type-DSYNC"></a><font color="#cc0033">DSYNC</font>*             : <a href="#type-StandardOpenOption">StandardOpenOption</a>;
+                          <a name="type-READ"></a><font color="#cc0033">READ</font>*              : <a href="#type-StandardOpenOption">StandardOpenOption</a>;
+                          <a name="type-SPARSE"></a><font color="#cc0033">SPARSE</font>*            : <a href="#type-StandardOpenOption">StandardOpenOption</a>;
+                          <a name="type-SYNC"></a><font color="#cc0033">SYNC</font>*              : <a href="#type-StandardOpenOption">StandardOpenOption</a>;
+                          <a name="type-TRUNCATE_EXISTING"></a><font color="#cc0033">TRUNCATE_EXISTING</font>* : <a href="#type-StandardOpenOption">StandardOpenOption</a>;
+                          <a name="type-WRITE"></a><font color="#cc0033">WRITE</font>*             : <a href="#type-StandardOpenOption">StandardOpenOption</a>;
+                          <b>PROCEDURE </b><font color="#cc0033">valueOf</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-StandardOpenOption">StandardOpenOption</a>;
+                          <b>PROCEDURE </b><font color="#cc0033">values</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-StandardOpenOption">StandardOpenOption</a>;
+                        <b>END</b>;
+
+  <a name="type-StandardWatchEventKinds"></a><font color="#cc0033">StandardWatchEventKinds</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                             <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> *)</font>
+                             <b>STATIC</b>
+                               <a name="type-ENTRY_CREATE"></a><font color="#cc0033">ENTRY_CREATE</font>* : <a href="java_nio_file.html#type-WatchEvent$Kind">java_nio_file.WatchEvent$Kind</a>;
+                               <a name="type-ENTRY_DELETE"></a><font color="#cc0033">ENTRY_DELETE</font>* : <a href="java_nio_file.html#type-WatchEvent$Kind">java_nio_file.WatchEvent$Kind</a>;
+                               <a name="type-ENTRY_MODIFY"></a><font color="#cc0033">ENTRY_MODIFY</font>* : <a href="java_nio_file.html#type-WatchEvent$Kind">java_nio_file.WatchEvent$Kind</a>;
+                               <a name="type-OVERFLOW"></a><font color="#cc0033">OVERFLOW</font>*     : <a href="java_nio_file.html#type-WatchEvent$Kind">java_nio_file.WatchEvent$Kind</a>;
+                             <b>END</b>;
+
+  <a name="type-Watchable"></a><font color="#cc0033">Watchable</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+               <font color="green"><b> (* </b><a href="#meths-Watchable">Typebound Procedures</a><b> *)</b></font>
+               <b>END</b>;
+
+  <a name="type-WatchEvent"></a><font color="#cc0033">WatchEvent</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                <font color="green"><b> (* </b><a href="#meths-WatchEvent">Typebound Procedures</a><b> *)</b></font>
+                <b>END</b>;
+
+  <a name="type-WatchEvent$Kind"></a><font color="#cc0033">WatchEvent$Kind</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                     <font color="green"><b> (* </b><a href="#meths-WatchEvent$Kind">Typebound Procedures</a><b> *)</b></font>
+                     <b>END</b>;
+
+  <a name="type-WatchEvent$Modifier"></a><font color="#cc0033">WatchEvent$Modifier</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                         <font color="green"><b> (* </b><a href="#meths-WatchEvent$Modifier">Typebound Procedures</a><b> *)</b></font>
+                         <b>END</b>;
+
+  <a name="type-WatchKey"></a><font color="#cc0033">WatchKey</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+              <font color="green"><b> (* </b><a href="#meths-WatchKey">Typebound Procedures</a><b> *)</b></font>
+              <b>END</b>;
+
+  <a name="type-WatchService"></a><font color="#cc0033">WatchService</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_io.html#type-Closeable">java_io.Closeable</a>)
+                  <font color="green"><b> (* </b><a href="#meths-WatchService">Typebound Procedures</a><b> *)</b></font>
+                  <b>END</b>;
+
+
+
+<a name="meths-DirectoryIteratorException"></a>
+<b>PROCEDURE </b>(self:DirectoryIteratorException) <font color="#cc0033">getCause</font>*() : <a href="java_lang.html#type-Throwable">java_lang.Throwable</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DirectoryIteratorException) <font color="#cc0033">getCause</font>*() : <a href="java_io.html#type-IOException">java_io.IOException</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-DirectoryStream"></a>
+<b>PROCEDURE </b>(self:DirectoryStream) <font color="#cc0033">iterator</font>*() : <a href="java_util.html#type-Iterator">java_util.Iterator</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-DirectoryStream$Filter"></a>
+<b>PROCEDURE </b>(self:DirectoryStream$Filter) <font color="#cc0033">accept</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+<a name="meths-FileStore"></a>
+<b>PROCEDURE </b>(self:FileStore) <font color="#cc0033">getAttribute</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:FileStore) <font color="#cc0033">getBlockSize</font>*() : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FileStore) <font color="#cc0033">getFileStoreAttributeView</font>*(p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>) : <a href="java_nio_file_attribute.html#type-FileStoreAttributeView">java_nio_file_attribute.FileStoreAttributeView</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:FileStore) <font color="#cc0033">getTotalSpace</font>*() : LONGINT<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:FileStore) <font color="#cc0033">getUnallocatedSpace</font>*() : LONGINT<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:FileStore) <font color="#cc0033">getUsableSpace</font>*() : LONGINT<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:FileStore) <font color="#cc0033">isReadOnly</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:FileStore) <font color="#cc0033">name</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:FileStore) <font color="#cc0033">supportsFileAttributeView</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:FileStore) <font color="#cc0033">supportsFileAttributeView</font>*(p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:FileStore) <font color="#cc0033">type</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-FileSystem"></a>
+<b>PROCEDURE </b>(self:FileSystem) <font color="#cc0033">close</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:FileSystem) <font color="#cc0033">getFileStores</font>*() : <a href="java_lang.html#type-Iterable">java_lang.Iterable</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:FileSystem) <font color="#cc0033">getPath</font>*(    p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                     IN  p1 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_nio_file.html#type-Path">java_nio_file.Path</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:FileSystem) <font color="#cc0033">getPathMatcher</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-PathMatcher">PathMatcher</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:FileSystem) <font color="#cc0033">getRootDirectories</font>*() : <a href="java_lang.html#type-Iterable">java_lang.Iterable</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:FileSystem) <font color="#cc0033">getSeparator</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:FileSystem) <font color="#cc0033">getUserPrincipalLookupService</font>*() : <a href="java_nio_file_attribute.html#type-UserPrincipalLookupService">java_nio_file_attribute.UserPrincipalLookupService</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:FileSystem) <font color="#cc0033">isOpen</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:FileSystem) <font color="#cc0033">isReadOnly</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:FileSystem) <font color="#cc0033">newWatchService</font>*() : <a href="#type-WatchService">WatchService</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:FileSystem) <font color="#cc0033">provider</font>*() : <a href="java_nio_file_spi.html#type-FileSystemProvider">java_nio_file_spi.FileSystemProvider</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:FileSystem) <font color="#cc0033">supportedFileAttributeViews</font>*() : <a href="java_util.html#type-Set">java_util.Set</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-FileSystemException"></a>
+<b>PROCEDURE </b>(self:FileSystemException) <font color="#cc0033">getFile</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FileSystemException) <font color="#cc0033">getMessage</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FileSystemException) <font color="#cc0033">getOtherFile</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FileSystemException) <font color="#cc0033">getReason</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-FileVisitor"></a>
+<b>PROCEDURE </b>(self:FileVisitor) <font color="#cc0033">postVisitDirectory</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                 p1 : <a href="java_io.html#type-IOException">java_io.IOException</a>) : <a href="java_nio_file.html#type-FileVisitResult">java_nio_file.FileVisitResult</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:FileVisitor) <font color="#cc0033">preVisitDirectory</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                p1 : <a href="java_nio_file_attribute.html#type-BasicFileAttributes">java_nio_file_attribute.BasicFileAttributes</a>) : <a href="java_nio_file.html#type-FileVisitResult">java_nio_file.FileVisitResult</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:FileVisitor) <font color="#cc0033">visitFile</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                        p1 : <a href="java_nio_file_attribute.html#type-BasicFileAttributes">java_nio_file_attribute.BasicFileAttributes</a>) : <a href="java_nio_file.html#type-FileVisitResult">java_nio_file.FileVisitResult</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:FileVisitor) <font color="#cc0033">visitFileFailed</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                              p1 : <a href="java_io.html#type-IOException">java_io.IOException</a>) : <a href="java_nio_file.html#type-FileVisitResult">java_nio_file.FileVisitResult</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-InvalidPathException"></a>
+<b>PROCEDURE </b>(self:InvalidPathException) <font color="#cc0033">getIndex</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:InvalidPathException) <font color="#cc0033">getInput</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:InvalidPathException) <font color="#cc0033">getMessage</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:InvalidPathException) <font color="#cc0033">getReason</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-Path"></a>
+<b>PROCEDURE </b>(self:Path) <font color="#cc0033">compareTo</font>*(p0 : <a href="#type-Path">Path</a>) : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Path) <font color="#cc0033">compareTo</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Path) <font color="#cc0033">endsWith</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Path) <font color="#cc0033">endsWith</font>*(p0 : <a href="#type-Path">Path</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Path) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Path) <font color="#cc0033">getFileName</font>*() : <a href="#type-Path">Path</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Path) <font color="#cc0033">getFileSystem</font>*() : <a href="#type-FileSystem">FileSystem</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Path) <font color="#cc0033">getName</font>*(p0 : INTEGER) : <a href="#type-Path">Path</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Path) <font color="#cc0033">getNameCount</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Path) <font color="#cc0033">getParent</font>*() : <a href="#type-Path">Path</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Path) <font color="#cc0033">getRoot</font>*() : <a href="#type-Path">Path</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Path) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Path) <font color="#cc0033">isAbsolute</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Path) <font color="#cc0033">iterator</font>*() : <a href="java_util.html#type-Iterator">java_util.Iterator</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Path) <font color="#cc0033">normalize</font>*() : <a href="#type-Path">Path</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Path) <font color="#cc0033">register</font>*(    p0 : <a href="#type-WatchService">WatchService</a>;
+                                IN  p1 : <b>ARRAY </b><b>OF </b><a href="java_nio_file.html#type-WatchEvent$Kind">java_nio_file.WatchEvent$Kind</a>;
+                                IN  p2 : <b>ARRAY </b><b>OF </b><a href="#type-WatchEvent$Modifier">WatchEvent$Modifier</a>) : <a href="#type-WatchKey">WatchKey</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Path) <font color="#cc0033">register</font>*(    p0 : <a href="#type-WatchService">WatchService</a>;
+                                IN  p1 : <b>ARRAY </b><b>OF </b><a href="java_nio_file.html#type-WatchEvent$Kind">java_nio_file.WatchEvent$Kind</a>) : <a href="#type-WatchKey">WatchKey</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Path) <font color="#cc0033">relativize</font>*(p0 : <a href="#type-Path">Path</a>) : <a href="#type-Path">Path</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Path) <font color="#cc0033">resolve</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-Path">Path</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Path) <font color="#cc0033">resolve</font>*(p0 : <a href="#type-Path">Path</a>) : <a href="#type-Path">Path</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Path) <font color="#cc0033">resolveSibling</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-Path">Path</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Path) <font color="#cc0033">resolveSibling</font>*(p0 : <a href="#type-Path">Path</a>) : <a href="#type-Path">Path</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Path) <font color="#cc0033">startsWith</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Path) <font color="#cc0033">startsWith</font>*(p0 : <a href="#type-Path">Path</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Path) <font color="#cc0033">subpath</font>*(p0 : INTEGER;
+                               p1 : INTEGER) : <a href="#type-Path">Path</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Path) <font color="#cc0033">toAbsolutePath</font>*() : <a href="#type-Path">Path</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Path) <font color="#cc0033">toFile</font>*() : <a href="java_io.html#type-File">java_io.File</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Path) <font color="#cc0033">toRealPath</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="java_nio_file.html#type-LinkOption">java_nio_file.LinkOption</a>) : <a href="#type-Path">Path</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Path) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Path) <font color="#cc0033">toUri</font>*() : <a href="java_net.html#type-URI">java_net.URI</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-PathMatcher"></a>
+<b>PROCEDURE </b>(self:PathMatcher) <font color="#cc0033">matches</font>*(p0 : <a href="java_nio_file.html#type-Path">java_nio_file.Path</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+<a name="meths-SecureDirectoryStream"></a>
+<b>PROCEDURE </b>(self:SecureDirectoryStream) <font color="#cc0033">deleteDirectory</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SecureDirectoryStream) <font color="#cc0033">deleteFile</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SecureDirectoryStream) <font color="#cc0033">getFileAttributeView</font>*(p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>) : <a href="java_nio_file_attribute.html#type-FileAttributeView">java_nio_file_attribute.FileAttributeView</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SecureDirectoryStream) <font color="#cc0033">getFileAttributeView</font>*(    p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                                 p1 : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                                                             IN  p2 : <b>ARRAY </b><b>OF </b><a href="java_nio_file.html#type-LinkOption">java_nio_file.LinkOption</a>) : <a href="java_nio_file_attribute.html#type-FileAttributeView">java_nio_file_attribute.FileAttributeView</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SecureDirectoryStream) <font color="#cc0033">move</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                             p1 : <a href="#type-SecureDirectoryStream">SecureDirectoryStream</a>;
+                                             p2 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SecureDirectoryStream) <font color="#cc0033">newByteChannel</font>*(    p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                           p1 : <a href="java_util.html#type-Set">java_util.Set</a>;
+                                                       IN  p2 : <b>ARRAY </b><b>OF </b><a href="java_nio_file_attribute.html#type-FileAttribute">java_nio_file_attribute.FileAttribute</a>) : <a href="java_nio_channels.html#type-SeekableByteChannel">java_nio_channels.SeekableByteChannel</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SecureDirectoryStream) <font color="#cc0033">newDirectoryStream</font>*(    p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                           IN  p1 : <b>ARRAY </b><b>OF </b><a href="java_nio_file.html#type-LinkOption">java_nio_file.LinkOption</a>) : <a href="#type-SecureDirectoryStream">SecureDirectoryStream</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-SimpleFileVisitor"></a>
+<b>PROCEDURE </b>(self:SimpleFileVisitor) <font color="#cc0033">postVisitDirectory</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                       p1 : <a href="java_io.html#type-IOException">java_io.IOException</a>) : <a href="java_nio_file.html#type-FileVisitResult">java_nio_file.FileVisitResult</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SimpleFileVisitor) <font color="#cc0033">preVisitDirectory</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                      p1 : <a href="java_nio_file_attribute.html#type-BasicFileAttributes">java_nio_file_attribute.BasicFileAttributes</a>) : <a href="java_nio_file.html#type-FileVisitResult">java_nio_file.FileVisitResult</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SimpleFileVisitor) <font color="#cc0033">visitFile</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                              p1 : <a href="java_nio_file_attribute.html#type-BasicFileAttributes">java_nio_file_attribute.BasicFileAttributes</a>) : <a href="java_nio_file.html#type-FileVisitResult">java_nio_file.FileVisitResult</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SimpleFileVisitor) <font color="#cc0033">visitFileFailed</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                    p1 : <a href="java_io.html#type-IOException">java_io.IOException</a>) : <a href="java_nio_file.html#type-FileVisitResult">java_nio_file.FileVisitResult</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-Watchable"></a>
+<b>PROCEDURE </b>(self:Watchable) <font color="#cc0033">register</font>*(    p0 : <a href="#type-WatchService">WatchService</a>;
+                                     IN  p1 : <b>ARRAY </b><b>OF </b><a href="java_nio_file.html#type-WatchEvent$Kind">java_nio_file.WatchEvent$Kind</a>) : <a href="#type-WatchKey">WatchKey</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Watchable) <font color="#cc0033">register</font>*(    p0 : <a href="#type-WatchService">WatchService</a>;
+                                     IN  p1 : <b>ARRAY </b><b>OF </b><a href="java_nio_file.html#type-WatchEvent$Kind">java_nio_file.WatchEvent$Kind</a>;
+                                     IN  p2 : <b>ARRAY </b><b>OF </b><a href="java_nio_file.html#type-WatchEvent$Modifier">java_nio_file.WatchEvent$Modifier</a>) : <a href="#type-WatchKey">WatchKey</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-WatchEvent"></a>
+<b>PROCEDURE </b>(self:WatchEvent) <font color="#cc0033">context</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:WatchEvent) <font color="#cc0033">count</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:WatchEvent) <font color="#cc0033">kind</font>*() : <a href="java_nio_file.html#type-WatchEvent$Kind">java_nio_file.WatchEvent$Kind</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-WatchEvent$Kind"></a>
+<b>PROCEDURE </b>(self:WatchEvent$Kind) <font color="#cc0033">name</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:WatchEvent$Kind) <font color="#cc0033">type</font>*() : <a href="java_lang.html#type-Class">java_lang.Class</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-WatchEvent$Modifier"></a>
+<b>PROCEDURE </b>(self:WatchEvent$Modifier) <font color="#cc0033">name</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-WatchKey"></a>
+<b>PROCEDURE </b>(self:WatchKey) <font color="#cc0033">cancel</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:WatchKey) <font color="#cc0033">isValid</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:WatchKey) <font color="#cc0033">pollEvents</font>*() : <a href="java_util.html#type-List">java_util.List</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:WatchKey) <font color="#cc0033">reset</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:WatchKey) <font color="#cc0033">watchable</font>*() : <a href="java_nio_file.html#type-Watchable">java_nio_file.Watchable</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-WatchService"></a>
+<b>PROCEDURE </b>(self:WatchService) <font color="#cc0033">close</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:WatchService) <font color="#cc0033">poll</font>*(p0 : LONGINT;
+                                    p1 : <a href="java_util_concurrent.html#type-TimeUnit">java_util_concurrent.TimeUnit</a>) : <a href="java_nio_file.html#type-WatchKey">java_nio_file.WatchKey</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:WatchService) <font color="#cc0033">poll</font>*() : <a href="java_nio_file.html#type-WatchKey">java_nio_file.WatchKey</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:WatchService) <font color="#cc0033">take</font>*() : <a href="java_nio_file.html#type-WatchKey">java_nio_file.WatchKey</a><b>,NEW,ABSTRACT</b>;
+
+<b>END </b><font color="#cc0033">java_nio_file</font>.
+</font></pre></hr>
+<!-- BEGIN JavaScript -->
+<script>
+function toggle(node) {
+    node.classList.toggle("show"); 
+  }
+
+function cls(node) {
+    var prnt = node.parentNode;
+    var next = prnt.previousSibling;
+    var text = next.lastChild;
+    text.innerHTML = 
+        "The <b>class</b> property asserts that this type will be<br>" +
+        "implemented as a reference class in the underlying framework.";
+    text.classList.toggle("show");
+  }
+
+function newOk(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>has noArg-ctor</b> property asserts that this reference<br>" +
+        "class has a no-arg constructor, and thus objects of this<br>" +
+        "type can be allocated with NEW(). Component Pascal types<br>" +
+        "derived from this type can also be allocated using NEW().";
+    popuptext.classList.toggle("show"); 
+  }
+
+function noNew(node) { 
+    var prnt = node.parentNode; 
+    var next = prnt.previousSibling; 
+    var text = next.lastChild; 
+    text.innerHTML =  
+        "The <b>no noArg-ctor</b> property asserts that this reference<br>" +
+        "class does not have a noArg constructor. Objects of this<br>" +
+        "type cannot be allocated using NEW(), and Component<br>" +
+        "Pascal types  derived from this type also cannot be<br>" +
+        "allocated using NEW().";
+    text.classList.toggle("show");
+  }
+
+function noCpy(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>no value-assign</b> property asserts that this reference<br>" + 
+        "class does not have a value copy method. Therefore, it<br>" +
+        "is not possible to perform value assignments using<br>" +
+        "statements like <i>dst^</i> := <i>src^</i>";
+    popuptext.classList.toggle("show");
+  }
+
+function valueclass(node) { 
+        var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>valueclass</b> property asserts that this RECORD type is<br>" + 
+        "implemented as a value class in the CLR. It follows that<br>" +  
+        "value assignments can be made of these types. They can<br>" + 
+        "also be passed by value. Even pointers to records of<br>" + 
+        "such types may be dereferenced and copied using syntax<br>" + 
+        "such as  <i>dst^</i> := <i>src^</i>"; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+function argCtor(node) { 
+    var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>has arg-ctor</b> property asserts that this reference<br>" +  
+        "class has one or more constructors that take arguments.<br>" + 
+        "These constructors can be called from Component Pascal<br>" + 
+        "by calling an <i>init</i>(...) method from the static list<br>" + 
+        "here. Component Pascal types derived from this type<br>" + 
+        "can define constructors with arguments which call the<br>" + 
+        "super-type constructor.<br>" + 
+        "See <i>'Interfacing to constructors'</i> in the Release Notes."; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+</script>
+<!-- END JavaScript --> 
+
+</body></html>

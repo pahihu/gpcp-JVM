@@ -1,0 +1,502 @@
+<html><head><title>java_rmi_server</title>
+<style>
+<!-- BEGIN Inline CSS -->
+/* Popup container */
+.popup {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+/* The actual popup (appears on top) */
+.popup .popuptext {
+    visibility: hidden;
+    width: 430px;
+    background-color: white;
+    color: black;
+    text-align: left;
+    border-radius: 6px;
+    border-style: solid;
+    border-color: black;
+    padding: 8px 8px 8px 8px;
+    position: absolute;
+    z-index: 1;
+    margin-top: 30px;
+}
+
+/* Toggle this class when clicking on the popup container (hide and show the popup) */
+.popup .show {
+    visibility: visible;
+    opacity: 1;
+}
+
+</style>
+<!-- END Inline CSS -->
+</head><body bgcolor="white">
+<hr><pre>
+<font color="green">(*</font>
+<font color="green"> *  Creator PeToCps j2cps version 1.4.07 (March 2018)</font>
+<font color="green"> *  Compiled from jar-file /Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home/jmods/java.rmi.jmod</font>
+<font color="green"> *)</font>
+<b>FOREIGN MODULE </b><font color="#cc0033">java_rmi_server</font>;
+
+<b>IMPORT</b>
+    <a href="java_io.html">java_io</a> := "java.io",
+    <a href="java_lang.html">java_lang</a> := "java.lang",
+    <a href="java_lang_reflect.html">java_lang_reflect</a> := "java.lang.reflect",
+    <a href="java_net.html">java_net</a> := "java.net",
+    <a href="java_rmi.html">java_rmi</a> := "java.rmi",
+    <a href="java_rmi.html">java_rmi</a> := "java.rmi",
+    <a href="java_rmi_server.html">java_rmi_server</a> := "java.rmi.server";
+
+<b>TYPE</b>
+
+  <a name="type-ExportException"></a><font color="#cc0033">ExportException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_rmi.html#type-RemoteException">java_rmi.RemoteException</a>)
+                     <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                     <b>STATIC</b>
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                       p1 : <a href="java_lang.html#type-Exception">java_lang.Exception</a>) : <a href="#type-ExportException">ExportException</a><b>,CONSTRUCTOR</b>;
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-ExportException">ExportException</a><b>,CONSTRUCTOR</b>;
+                     <b>END</b>;
+
+  <a name="type-LoaderHandler"></a><font color="#cc0033">LoaderHandler</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                   <font color="green"><b> (* </b><a href="#meths-LoaderHandler">Typebound Procedures</a><b> *)</b></font>
+                   <b>STATIC</b>
+                     <font color="#cc0033">packagePrefix</font>* = "sun.rmi.server";
+                   <b>END</b>;
+
+  <a name="type-LogStream"></a><font color="#cc0033">LogStream</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_io.html#type-PrintStream">java_io.PrintStream</a>)
+               <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> *)</font>
+               <font color="green"><b> (* </b><a href="#meths-LogStream">Typebound Procedures</a><b> *)</b></font>
+               <b>STATIC</b>
+                 <font color="#cc0033">BRIEF</font>*            = 10;
+                 <font color="#cc0033">SILENT</font>*           = 0;
+                 <font color="#cc0033">VERBOSE</font>*          = 20;
+                 <b>PROCEDURE </b><font color="#cc0033">getDefaultStream</font>*() : <a href="java_io.html#type-PrintStream">java_io.PrintStream</a>;
+                 <b>PROCEDURE </b><font color="#cc0033">log</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-LogStream">LogStream</a>;
+                 <b>PROCEDURE </b><font color="#cc0033">parseLevel</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : INTEGER;
+                 <b>PROCEDURE </b><font color="#cc0033">setDefaultStream</font>*(p0 : <a href="java_io.html#type-PrintStream">java_io.PrintStream</a>);
+               <b>END</b>;
+
+  <a name="type-ObjID"></a><font color="#cc0033">ObjID</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_io.html#type-Serializable">java_io.Serializable</a>)
+           <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+           <font color="green"><b> (* </b><a href="#meths-ObjID">Typebound Procedures</a><b> *)</b></font>
+           <b>STATIC</b>
+             <font color="#cc0033">ACTIVATOR_ID</font>* = 1;
+             <font color="#cc0033">DGC_ID</font>*       = 2;
+             <font color="#cc0033">REGISTRY_ID</font>*  = 0;
+             <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER) : <a href="#type-ObjID">ObjID</a><b>,CONSTRUCTOR</b>;
+             <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-ObjID">ObjID</a><b>,CONSTRUCTOR</b>;
+             <b>PROCEDURE </b><font color="#cc0033">read</font>*(p0 : <a href="java_io.html#type-ObjectInput">java_io.ObjectInput</a>) : <a href="#type-ObjID">ObjID</a>;
+           <b>END</b>;
+
+  <a name="type-Operation"></a><font color="#cc0033">Operation</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+               <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+               <font color="green"><b> (* </b><a href="#meths-Operation">Typebound Procedures</a><b> *)</b></font>
+               <b>STATIC</b>
+                 <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-Operation">Operation</a><b>,CONSTRUCTOR</b>;
+               <b>END</b>;
+
+  <a name="type-RemoteCall"></a><font color="#cc0033">RemoteCall</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                <font color="green"><b> (* </b><a href="#meths-RemoteCall">Typebound Procedures</a><b> *)</b></font>
+                <b>END</b>;
+
+  <a name="type-RemoteObject"></a><font color="#cc0033">RemoteObject</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_rmi.html#type-Remote">java_rmi.Remote</a> + <a href="java_io.html#type-Serializable">java_io.Serializable</a>)
+                  <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                  <font color="green"><b> (* </b><a href="#meths-RemoteObject">Typebound Procedures</a><b> *)</b></font>
+                    <font color="#cc0033">ref</font>! : <a href="java_rmi_server.html#type-RemoteRef">java_rmi_server.RemoteRef</a>;
+                  <b>STATIC</b>
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : <a href="java_rmi_server.html#type-RemoteRef">java_rmi_server.RemoteRef</a>) : <a href="#type-RemoteObject">RemoteObject</a><b>,CONSTRUCTOR</b>;
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>!() : <a href="#type-RemoteObject">RemoteObject</a><b>,CONSTRUCTOR</b>;
+                    <b>PROCEDURE </b><font color="#cc0033">toStub</font>*(p0 : <a href="java_rmi.html#type-Remote">java_rmi.Remote</a>) : <a href="java_rmi.html#type-Remote">java_rmi.Remote</a>;
+                  <b>END</b>;
+
+  <a name="type-RemoteObjectInvocationHandler"></a><font color="#cc0033">RemoteObjectInvocationHandler</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-RemoteObject">RemoteObject</a> + <a href="java_lang_reflect.html#type-InvocationHandler">java_lang_reflect.InvocationHandler</a>)
+                                   <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                                   <font color="green"><b> (* </b><a href="#meths-RemoteObjectInvocationHandler">Typebound Procedures</a><b> *)</b></font>
+                                   <b>STATIC</b>
+                                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="#type-RemoteRef">RemoteRef</a>) : <a href="#type-RemoteObjectInvocationHandler">RemoteObjectInvocationHandler</a><b>,CONSTRUCTOR</b>;
+                                   <b>END</b>;
+
+  <a name="type-RemoteRef"></a><font color="#cc0033">RemoteRef</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_io.html#type-Externalizable">java_io.Externalizable</a>)
+               <font color="green"><b> (* </b><a href="#meths-RemoteRef">Typebound Procedures</a><b> *)</b></font>
+               <b>STATIC</b>
+                 <font color="#cc0033">packagePrefix</font>*    = "sun.rmi.server";
+                 <font color="#cc0033">serialVersionUID</font>* = 3632638527362204081;
+               <b>END</b>;
+
+  <a name="type-RemoteServer"></a><font color="#cc0033">RemoteServer</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="#type-RemoteObject">RemoteObject</a>)
+                  <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                  <b>STATIC</b>
+                    <b>PROCEDURE </b><font color="#cc0033">getClientHost</font>*() : <a href="java_lang.html#type-String">java_lang.String</a>;
+                    <b>PROCEDURE </b><font color="#cc0033">getLog</font>*() : <a href="java_io.html#type-PrintStream">java_io.PrintStream</a>;
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>!() : <a href="#type-RemoteServer">RemoteServer</a><b>,CONSTRUCTOR</b>;
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : <a href="#type-RemoteRef">RemoteRef</a>) : <a href="#type-RemoteServer">RemoteServer</a><b>,CONSTRUCTOR</b>;
+                    <b>PROCEDURE </b><font color="#cc0033">setLog</font>*(p0 : <a href="java_io.html#type-OutputStream">java_io.OutputStream</a>);
+                  <b>END</b>;
+
+  <a name="type-RemoteStub"></a><font color="#cc0033">RemoteStub</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="#type-RemoteObject">RemoteObject</a>)
+                <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                <b>STATIC</b>
+                  <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : <a href="java_rmi_server.html#type-RemoteRef">java_rmi_server.RemoteRef</a>) : <a href="#type-RemoteStub">RemoteStub</a><b>,CONSTRUCTOR</b>;
+                  <b>PROCEDURE </b><font color="#cc0033">Init</font>!() : <a href="#type-RemoteStub">RemoteStub</a><b>,CONSTRUCTOR</b>;
+                  <b>PROCEDURE </b><font color="#cc0033">setRef</font>!(p0 : <a href="#type-RemoteStub">RemoteStub</a>;
+                                    p1 : <a href="java_rmi_server.html#type-RemoteRef">java_rmi_server.RemoteRef</a>);
+                <b>END</b>;
+
+  <a name="type-RMIClassLoader"></a><font color="#cc0033">RMIClassLoader</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                    <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> *)</font>
+                    <b>STATIC</b>
+                      <b>PROCEDURE </b><font color="#cc0033">getClassAnnotation</font>*(p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>) : <a href="java_lang.html#type-String">java_lang.String</a>;
+                      <b>PROCEDURE </b><font color="#cc0033">getClassLoader</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-ClassLoader">java_lang.ClassLoader</a>;
+                      <b>PROCEDURE </b><font color="#cc0033">getDefaultProviderInstance</font>*() : <a href="java_rmi_server.html#type-RMIClassLoaderSpi">java_rmi_server.RMIClassLoaderSpi</a>;
+                      <b>PROCEDURE </b><font color="#cc0033">getSecurityContext</font>*(p0 : <a href="java_lang.html#type-ClassLoader">java_lang.ClassLoader</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                      <b>PROCEDURE </b><font color="#cc0033">loadClass</font>*(p0 : <a href="java_net.html#type-URL">java_net.URL</a>;
+                                           p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                      <b>PROCEDURE </b><font color="#cc0033">loadClass</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                      <b>PROCEDURE </b><font color="#cc0033">loadClass</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                           p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                           p2 : <a href="java_lang.html#type-ClassLoader">java_lang.ClassLoader</a>) : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                      <b>PROCEDURE </b><font color="#cc0033">loadClass</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                           p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                      <b>PROCEDURE </b><font color="#cc0033">loadProxyClass</font>*(    p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                IN  p1 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>;
+                                                    p2 : <a href="java_lang.html#type-ClassLoader">java_lang.ClassLoader</a>) : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                    <b>END</b>;
+
+  <a name="type-RMIClassLoaderSpi"></a><font color="#cc0033">RMIClassLoaderSpi</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                       <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                       <font color="green"><b> (* </b><a href="#meths-RMIClassLoaderSpi">Typebound Procedures</a><b> *)</b></font>
+                       <b>STATIC</b>
+                         <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-RMIClassLoaderSpi">RMIClassLoaderSpi</a><b>,CONSTRUCTOR</b>;
+                       <b>END</b>;
+
+  <a name="type-RMIClientSocketFactory"></a><font color="#cc0033">RMIClientSocketFactory</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                            <font color="green"><b> (* </b><a href="#meths-RMIClientSocketFactory">Typebound Procedures</a><b> *)</b></font>
+                            <b>END</b>;
+
+  <a name="type-RMIFailureHandler"></a><font color="#cc0033">RMIFailureHandler</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                       <font color="green"><b> (* </b><a href="#meths-RMIFailureHandler">Typebound Procedures</a><b> *)</b></font>
+                       <b>END</b>;
+
+  <a name="type-RMIServerSocketFactory"></a><font color="#cc0033">RMIServerSocketFactory</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                            <font color="green"><b> (* </b><a href="#meths-RMIServerSocketFactory">Typebound Procedures</a><b> *)</b></font>
+                            <b>END</b>;
+
+  <a name="type-RMISocketFactory"></a><font color="#cc0033">RMISocketFactory</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_rmi_server.html#type-RMIClientSocketFactory">java_rmi_server.RMIClientSocketFactory</a> + <a href="java_rmi_server.html#type-RMIServerSocketFactory">java_rmi_server.RMIServerSocketFactory</a>)
+                      <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                      <font color="green"><b> (* </b><a href="#meths-RMISocketFactory">Typebound Procedures</a><b> *)</b></font>
+                      <b>STATIC</b>
+                        <b>PROCEDURE </b><font color="#cc0033">getDefaultSocketFactory</font>*() : <a href="#type-RMISocketFactory">RMISocketFactory</a>;
+                        <b>PROCEDURE </b><font color="#cc0033">getFailureHandler</font>*() : <a href="java_rmi_server.html#type-RMIFailureHandler">java_rmi_server.RMIFailureHandler</a>;
+                        <b>PROCEDURE </b><font color="#cc0033">getSocketFactory</font>*() : <a href="#type-RMISocketFactory">RMISocketFactory</a>;
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-RMISocketFactory">RMISocketFactory</a><b>,CONSTRUCTOR</b>;
+                        <b>PROCEDURE </b><font color="#cc0033">setFailureHandler</font>*(p0 : <a href="java_rmi_server.html#type-RMIFailureHandler">java_rmi_server.RMIFailureHandler</a>);
+                        <b>PROCEDURE </b><font color="#cc0033">setSocketFactory</font>*(p0 : <a href="#type-RMISocketFactory">RMISocketFactory</a>);
+                      <b>END</b>;
+
+  <a name="type-ServerCloneException"></a><font color="#cc0033">ServerCloneException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-CloneNotSupportedException">java_lang.CloneNotSupportedException</a>)
+                          <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                          <font color="green"><b> (* </b><a href="#meths-ServerCloneException">Typebound Procedures</a><b> *)</b></font>
+                            <font color="#cc0033">detail</font>* : <a href="java_lang.html#type-Exception">java_lang.Exception</a>;
+                          <b>STATIC</b>
+                            <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                            p1 : <a href="java_lang.html#type-Exception">java_lang.Exception</a>) : <a href="#type-ServerCloneException">ServerCloneException</a><b>,CONSTRUCTOR</b>;
+                            <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-ServerCloneException">ServerCloneException</a><b>,CONSTRUCTOR</b>;
+                          <b>END</b>;
+
+  <a name="type-ServerNotActiveException"></a><font color="#cc0033">ServerNotActiveException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Exception">java_lang.Exception</a>)
+                              <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                              <b>STATIC</b>
+                                <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-ServerNotActiveException">ServerNotActiveException</a><b>,CONSTRUCTOR</b>;
+                                <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-ServerNotActiveException">ServerNotActiveException</a><b>,CONSTRUCTOR</b>;
+                              <b>END</b>;
+
+  <a name="type-ServerRef"></a><font color="#cc0033">ServerRef</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_rmi_server.html#type-RemoteRef">java_rmi_server.RemoteRef</a>)
+               <font color="green"><b> (* </b><a href="#meths-ServerRef">Typebound Procedures</a><b> *)</b></font>
+               <b>STATIC</b>
+                 <font color="#cc0033">serialVersionUID</font>* = -4557750989390278438;
+               <b>END</b>;
+
+  <a name="type-Skeleton"></a><font color="#cc0033">Skeleton</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+              <font color="green"><b> (* </b><a href="#meths-Skeleton">Typebound Procedures</a><b> *)</b></font>
+              <b>END</b>;
+
+  <a name="type-SkeletonMismatchException"></a><font color="#cc0033">SkeletonMismatchException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_rmi.html#type-RemoteException">java_rmi.RemoteException</a>)
+                               <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                               <b>STATIC</b>
+                                 <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-SkeletonMismatchException">SkeletonMismatchException</a><b>,CONSTRUCTOR</b>;
+                               <b>END</b>;
+
+  <a name="type-SkeletonNotFoundException"></a><font color="#cc0033">SkeletonNotFoundException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_rmi.html#type-RemoteException">java_rmi.RemoteException</a>)
+                               <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                               <b>STATIC</b>
+                                 <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                 p1 : <a href="java_lang.html#type-Exception">java_lang.Exception</a>) : <a href="#type-SkeletonNotFoundException">SkeletonNotFoundException</a><b>,CONSTRUCTOR</b>;
+                                 <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-SkeletonNotFoundException">SkeletonNotFoundException</a><b>,CONSTRUCTOR</b>;
+                               <b>END</b>;
+
+  <a name="type-SocketSecurityException"></a><font color="#cc0033">SocketSecurityException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_rmi_server.html#type-ExportException">java_rmi_server.ExportException</a>)
+                             <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                             <b>STATIC</b>
+                               <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                               p1 : <a href="java_lang.html#type-Exception">java_lang.Exception</a>) : <a href="#type-SocketSecurityException">SocketSecurityException</a><b>,CONSTRUCTOR</b>;
+                               <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-SocketSecurityException">SocketSecurityException</a><b>,CONSTRUCTOR</b>;
+                             <b>END</b>;
+
+  <a name="type-UID"></a><font color="#cc0033">UID</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_io.html#type-Serializable">java_io.Serializable</a>)
+         <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+         <font color="green"><b> (* </b><a href="#meths-UID">Typebound Procedures</a><b> *)</b></font>
+         <b>STATIC</b>
+           <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : SHORTINT) : <a href="#type-UID">UID</a><b>,CONSTRUCTOR</b>;
+           <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-UID">UID</a><b>,CONSTRUCTOR</b>;
+           <b>PROCEDURE </b><font color="#cc0033">read</font>*(p0 : <a href="java_io.html#type-DataInput">java_io.DataInput</a>) : <a href="#type-UID">UID</a>;
+         <b>END</b>;
+
+  <a name="type-UnicastRemoteObject"></a><font color="#cc0033">UnicastRemoteObject</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-RemoteServer">RemoteServer</a>)
+                         <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                         <font color="green"><b> (* </b><a href="#meths-UnicastRemoteObject">Typebound Procedures</a><b> *)</b></font>
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">exportObject</font>*(p0 : <a href="java_rmi.html#type-Remote">java_rmi.Remote</a>;
+                                                   p1 : INTEGER;
+                                                   p2 : <a href="#type-RMIClientSocketFactory">RMIClientSocketFactory</a>;
+                                                   p3 : <a href="#type-RMIServerSocketFactory">RMIServerSocketFactory</a>) : <a href="java_rmi.html#type-Remote">java_rmi.Remote</a>;
+                           <b>PROCEDURE </b><font color="#cc0033">exportObject</font>*(p0 : <a href="java_rmi.html#type-Remote">java_rmi.Remote</a>;
+                                                   p1 : INTEGER) : <a href="java_rmi.html#type-Remote">java_rmi.Remote</a>;
+                           <b>PROCEDURE </b><font color="#cc0033">exportObject</font>*(p0 : <a href="java_rmi.html#type-Remote">java_rmi.Remote</a>;
+                                                   p1 : INTEGER;
+                                                   p2 : <a href="#type-RMIClientSocketFactory">RMIClientSocketFactory</a>;
+                                                   p3 : <a href="#type-RMIServerSocketFactory">RMIServerSocketFactory</a>;
+                                                   p4 : <a href="java_io.html#type-ObjectInputFilter">java_io.ObjectInputFilter</a>) : <a href="java_rmi.html#type-Remote">java_rmi.Remote</a>;
+                           <b>PROCEDURE </b><font color="#cc0033">exportObject</font>*(p0 : <a href="java_rmi.html#type-Remote">java_rmi.Remote</a>;
+                                                   p1 : INTEGER;
+                                                   p2 : <a href="java_io.html#type-ObjectInputFilter">java_io.ObjectInputFilter</a>) : <a href="java_rmi.html#type-Remote">java_rmi.Remote</a>;
+                           <b>PROCEDURE </b><font color="#cc0033">exportObject</font>*(p0 : <a href="java_rmi.html#type-Remote">java_rmi.Remote</a>) : <a href="#type-RemoteStub">RemoteStub</a>;
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>!() : <a href="#type-UnicastRemoteObject">UnicastRemoteObject</a><b>,CONSTRUCTOR</b>;
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : INTEGER) : <a href="#type-UnicastRemoteObject">UnicastRemoteObject</a><b>,CONSTRUCTOR</b>;
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : INTEGER;
+                                           p1 : <a href="#type-RMIClientSocketFactory">RMIClientSocketFactory</a>;
+                                           p2 : <a href="#type-RMIServerSocketFactory">RMIServerSocketFactory</a>) : <a href="#type-UnicastRemoteObject">UnicastRemoteObject</a><b>,CONSTRUCTOR</b>;
+                           <b>PROCEDURE </b><font color="#cc0033">unexportObject</font>*(p0 : <a href="java_rmi.html#type-Remote">java_rmi.Remote</a>;
+                                                     p1 : BOOLEAN) : BOOLEAN;
+                         <b>END</b>;
+
+  <a name="type-Unreferenced"></a><font color="#cc0033">Unreferenced</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                  <font color="green"><b> (* </b><a href="#meths-Unreferenced">Typebound Procedures</a><b> *)</b></font>
+                  <b>END</b>;
+
+
+
+<a name="meths-LoaderHandler"></a>
+<b>PROCEDURE </b>(self:LoaderHandler) <font color="#cc0033">getSecurityContext</font>*(p0 : <a href="java_lang.html#type-ClassLoader">java_lang.ClassLoader</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:LoaderHandler) <font color="#cc0033">loadClass</font>*(p0 : <a href="java_net.html#type-URL">java_net.URL</a>;
+                                          p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-Class">java_lang.Class</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:LoaderHandler) <font color="#cc0033">loadClass</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-Class">java_lang.Class</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-LogStream"></a>
+<b>PROCEDURE </b>(self:LogStream) <font color="#cc0033">getOutputStream</font>*() : <a href="java_io.html#type-OutputStream">java_io.OutputStream</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LogStream) <font color="#cc0033">setOutputStream</font>*(p0 : <a href="java_io.html#type-OutputStream">java_io.OutputStream</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LogStream) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LogStream) <font color="#cc0033">write</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE;
+                                      p1 : INTEGER;
+                                      p2 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LogStream) <font color="#cc0033">write</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-ObjID"></a>
+<b>PROCEDURE </b>(self:ObjID) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ObjID) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ObjID) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ObjID) <font color="#cc0033">write</font>*(p0 : <a href="java_io.html#type-ObjectOutput">java_io.ObjectOutput</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-Operation"></a>
+<b>PROCEDURE </b>(self:Operation) <font color="#cc0033">getOperation</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Operation) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-RemoteCall"></a>
+<b>PROCEDURE </b>(self:RemoteCall) <font color="#cc0033">done</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RemoteCall) <font color="#cc0033">executeCall</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RemoteCall) <font color="#cc0033">getInputStream</font>*() : <a href="java_io.html#type-ObjectInput">java_io.ObjectInput</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RemoteCall) <font color="#cc0033">getOutputStream</font>*() : <a href="java_io.html#type-ObjectOutput">java_io.ObjectOutput</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RemoteCall) <font color="#cc0033">getResultStream</font>*(p0 : BOOLEAN) : <a href="java_io.html#type-ObjectOutput">java_io.ObjectOutput</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RemoteCall) <font color="#cc0033">releaseInputStream</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RemoteCall) <font color="#cc0033">releaseOutputStream</font>*()<b>,NEW,ABSTRACT</b>;
+<a name="meths-RemoteObject"></a>
+<b>PROCEDURE </b>(self:RemoteObject) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RemoteObject) <font color="#cc0033">getRef</font>*() : <a href="java_rmi_server.html#type-RemoteRef">java_rmi_server.RemoteRef</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RemoteObject) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RemoteObject) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-RemoteObjectInvocationHandler"></a>
+<b>PROCEDURE </b>(self:RemoteObjectInvocationHandler) <font color="#cc0033">invoke</font>*(    p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                           p1 : <a href="java_lang_reflect.html#type-Method">java_lang_reflect.Method</a>;
+                                                       IN  p2 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-RemoteRef"></a>
+<b>PROCEDURE </b>(self:RemoteRef) <font color="#cc0033">done</font>*(p0 : <a href="java_rmi_server.html#type-RemoteCall">java_rmi_server.RemoteCall</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RemoteRef) <font color="#cc0033">getRefClass</font>*(p0 : <a href="java_io.html#type-ObjectOutput">java_io.ObjectOutput</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RemoteRef) <font color="#cc0033">invoke</font>*(    p0 : <a href="java_rmi.html#type-Remote">java_rmi.Remote</a>;
+                                       p1 : <a href="java_lang_reflect.html#type-Method">java_lang_reflect.Method</a>;
+                                   IN  p2 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                       p3 : LONGINT) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RemoteRef) <font color="#cc0033">invoke</font>*(p0 : <a href="java_rmi_server.html#type-RemoteCall">java_rmi_server.RemoteCall</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RemoteRef) <font color="#cc0033">newCall</font>*(    p0 : <a href="#type-RemoteObject">RemoteObject</a>;
+                                    IN  p1 : <b>ARRAY </b><b>OF </b><a href="java_rmi_server.html#type-Operation">java_rmi_server.Operation</a>;
+                                        p2 : INTEGER;
+                                        p3 : LONGINT) : <a href="java_rmi_server.html#type-RemoteCall">java_rmi_server.RemoteCall</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RemoteRef) <font color="#cc0033">remoteEquals</font>*(p0 : <a href="#type-RemoteRef">RemoteRef</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RemoteRef) <font color="#cc0033">remoteHashCode</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RemoteRef) <font color="#cc0033">remoteToString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-RMIClassLoaderSpi"></a>
+<b>PROCEDURE </b>(self:RMIClassLoaderSpi) <font color="#cc0033">getClassAnnotation</font>*(p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RMIClassLoaderSpi) <font color="#cc0033">getClassLoader</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-ClassLoader">java_lang.ClassLoader</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RMIClassLoaderSpi) <font color="#cc0033">loadClass</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                              p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                              p2 : <a href="java_lang.html#type-ClassLoader">java_lang.ClassLoader</a>) : <a href="java_lang.html#type-Class">java_lang.Class</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RMIClassLoaderSpi) <font color="#cc0033">loadProxyClass</font>*(    p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                   IN  p1 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>;
+                                                       p2 : <a href="java_lang.html#type-ClassLoader">java_lang.ClassLoader</a>) : <a href="java_lang.html#type-Class">java_lang.Class</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-RMIClientSocketFactory"></a>
+<b>PROCEDURE </b>(self:RMIClientSocketFactory) <font color="#cc0033">createSocket</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                      p1 : INTEGER) : <a href="java_net.html#type-Socket">java_net.Socket</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-RMIFailureHandler"></a>
+<b>PROCEDURE </b>(self:RMIFailureHandler) <font color="#cc0033">failure</font>*(p0 : <a href="java_lang.html#type-Exception">java_lang.Exception</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+<a name="meths-RMIServerSocketFactory"></a>
+<b>PROCEDURE </b>(self:RMIServerSocketFactory) <font color="#cc0033">createServerSocket</font>*(p0 : INTEGER) : <a href="java_net.html#type-ServerSocket">java_net.ServerSocket</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-RMISocketFactory"></a>
+<b>PROCEDURE </b>(self:RMISocketFactory) <font color="#cc0033">createServerSocket</font>*(p0 : INTEGER) : <a href="java_net.html#type-ServerSocket">java_net.ServerSocket</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RMISocketFactory) <font color="#cc0033">createSocket</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                p1 : INTEGER) : <a href="java_net.html#type-Socket">java_net.Socket</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-ServerCloneException"></a>
+<b>PROCEDURE </b>(self:ServerCloneException) <font color="#cc0033">getCause</font>*() : <a href="java_lang.html#type-Throwable">java_lang.Throwable</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ServerCloneException) <font color="#cc0033">getMessage</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-ServerRef"></a>
+<b>PROCEDURE </b>(self:ServerRef) <font color="#cc0033">exportObject</font>*(p0 : <a href="java_rmi.html#type-Remote">java_rmi.Remote</a>;
+                                         p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_rmi_server.html#type-RemoteStub">java_rmi_server.RemoteStub</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ServerRef) <font color="#cc0033">getClientHost</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-Skeleton"></a>
+<b>PROCEDURE </b>(self:Skeleton) <font color="#cc0033">dispatch</font>*(p0 : <a href="java_rmi.html#type-Remote">java_rmi.Remote</a>;
+                                    p1 : <a href="java_rmi_server.html#type-RemoteCall">java_rmi_server.RemoteCall</a>;
+                                    p2 : INTEGER;
+                                    p3 : LONGINT)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Skeleton) <font color="#cc0033">getOperations</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_rmi_server.html#type-Operation">java_rmi_server.Operation</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-UID"></a>
+<b>PROCEDURE </b>(self:UID) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:UID) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:UID) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:UID) <font color="#cc0033">write</font>*(p0 : <a href="java_io.html#type-DataOutput">java_io.DataOutput</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-UnicastRemoteObject"></a>
+<b>PROCEDURE </b>(self:UnicastRemoteObject) <font color="#cc0033">clone</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-Unreferenced"></a>
+<b>PROCEDURE </b>(self:Unreferenced) <font color="#cc0033">unreferenced</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>END </b><font color="#cc0033">java_rmi_server</font>.
+</font></pre></hr>
+<!-- BEGIN JavaScript -->
+<script>
+function toggle(node) {
+    node.classList.toggle("show"); 
+  }
+
+function cls(node) {
+    var prnt = node.parentNode;
+    var next = prnt.previousSibling;
+    var text = next.lastChild;
+    text.innerHTML = 
+        "The <b>class</b> property asserts that this type will be<br>" +
+        "implemented as a reference class in the underlying framework.";
+    text.classList.toggle("show");
+  }
+
+function newOk(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>has noArg-ctor</b> property asserts that this reference<br>" +
+        "class has a no-arg constructor, and thus objects of this<br>" +
+        "type can be allocated with NEW(). Component Pascal types<br>" +
+        "derived from this type can also be allocated using NEW().";
+    popuptext.classList.toggle("show"); 
+  }
+
+function noNew(node) { 
+    var prnt = node.parentNode; 
+    var next = prnt.previousSibling; 
+    var text = next.lastChild; 
+    text.innerHTML =  
+        "The <b>no noArg-ctor</b> property asserts that this reference<br>" +
+        "class does not have a noArg constructor. Objects of this<br>" +
+        "type cannot be allocated using NEW(), and Component<br>" +
+        "Pascal types  derived from this type also cannot be<br>" +
+        "allocated using NEW().";
+    text.classList.toggle("show");
+  }
+
+function noCpy(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>no value-assign</b> property asserts that this reference<br>" + 
+        "class does not have a value copy method. Therefore, it<br>" +
+        "is not possible to perform value assignments using<br>" +
+        "statements like <i>dst^</i> := <i>src^</i>";
+    popuptext.classList.toggle("show");
+  }
+
+function valueclass(node) { 
+        var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>valueclass</b> property asserts that this RECORD type is<br>" + 
+        "implemented as a value class in the CLR. It follows that<br>" +  
+        "value assignments can be made of these types. They can<br>" + 
+        "also be passed by value. Even pointers to records of<br>" + 
+        "such types may be dereferenced and copied using syntax<br>" + 
+        "such as  <i>dst^</i> := <i>src^</i>"; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+function argCtor(node) { 
+    var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>has arg-ctor</b> property asserts that this reference<br>" +  
+        "class has one or more constructors that take arguments.<br>" + 
+        "These constructors can be called from Component Pascal<br>" + 
+        "by calling an <i>init</i>(...) method from the static list<br>" + 
+        "here. Component Pascal types derived from this type<br>" + 
+        "can define constructors with arguments which call the<br>" + 
+        "super-type constructor.<br>" + 
+        "See <i>'Interfacing to constructors'</i> in the Release Notes."; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+</script>
+<!-- END JavaScript --> 
+
+</body></html>

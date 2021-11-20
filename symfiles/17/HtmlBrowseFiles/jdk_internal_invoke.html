@@ -1,0 +1,161 @@
+<html><head><title>jdk_internal_invoke</title>
+<style>
+<!-- BEGIN Inline CSS -->
+/* Popup container */
+.popup {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+/* The actual popup (appears on top) */
+.popup .popuptext {
+    visibility: hidden;
+    width: 430px;
+    background-color: white;
+    color: black;
+    text-align: left;
+    border-radius: 6px;
+    border-style: solid;
+    border-color: black;
+    padding: 8px 8px 8px 8px;
+    position: absolute;
+    z-index: 1;
+    margin-top: 30px;
+}
+
+/* Toggle this class when clicking on the popup container (hide and show the popup) */
+.popup .show {
+    visibility: visible;
+    opacity: 1;
+}
+
+</style>
+<!-- END Inline CSS -->
+</head><body bgcolor="white">
+<hr><pre>
+<font color="green">(*</font>
+<font color="green"> *  Creator PeToCps j2cps version 1.4.07 (March 2018)</font>
+<font color="green"> *  Compiled from jar-file /Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home/jmods/java.base.jmod</font>
+<font color="green"> *)</font>
+<b>FOREIGN MODULE </b><font color="#cc0033">jdk_internal_invoke</font>;
+
+<b>IMPORT</b>
+    <a href="java_lang.html">java_lang</a> := "java.lang",
+    <a href="java_lang_invoke.html">java_lang_invoke</a> := "java.lang.invoke",
+    <a href="jdk_internal_invoke.html">jdk_internal_invoke</a> := "jdk.internal.invoke";
+
+<b>TYPE</b>
+
+  <a name="type-ABIDescriptorProxy"></a><font color="#cc0033">ABIDescriptorProxy</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                        <font color="green"><b> (* </b><a href="#meths-ABIDescriptorProxy">Typebound Procedures</a><b> *)</b></font>
+                        <b>END</b>;
+
+  <a name="type-NativeEntryPoint"></a><font color="#cc0033">NativeEntryPoint</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                      <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> *)</font>
+                      <font color="green"><b> (* </b><a href="#meths-NativeEntryPoint">Typebound Procedures</a><b> *)</b></font>
+                      <b>STATIC</b>
+                        <b>PROCEDURE </b><font color="#cc0033">make</font>*(    p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                            p1 : <a href="#type-ABIDescriptorProxy">ABIDescriptorProxy</a>;
+                                        IN  p2 : <b>ARRAY </b><b>OF </b><a href="jdk_internal_invoke.html#type-VMStorageProxy">jdk_internal_invoke.VMStorageProxy</a>;
+                                        IN  p3 : <b>ARRAY </b><b>OF </b><a href="jdk_internal_invoke.html#type-VMStorageProxy">jdk_internal_invoke.VMStorageProxy</a>;
+                                            p4 : BOOLEAN;
+                                            p5 : <a href="java_lang_invoke.html#type-MethodType">java_lang_invoke.MethodType</a>) : <a href="#type-NativeEntryPoint">NativeEntryPoint</a>;
+                      <b>END</b>;
+
+  <a name="type-VMStorageProxy"></a><font color="#cc0033">VMStorageProxy</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                    <font color="green"><b> (* </b><a href="#meths-VMStorageProxy">Typebound Procedures</a><b> *)</b></font>
+                    <b>END</b>;
+
+
+
+<a name="meths-ABIDescriptorProxy"></a>
+<b>PROCEDURE </b>(self:ABIDescriptorProxy) <font color="#cc0033">shadowSpaceBytes</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+<a name="meths-NativeEntryPoint"></a>
+<b>PROCEDURE </b>(self:NativeEntryPoint) <font color="#cc0033">type</font>*() : <a href="java_lang_invoke.html#type-MethodType">java_lang_invoke.MethodType</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-VMStorageProxy"></a>
+<b>PROCEDURE </b>(self:VMStorageProxy) <font color="#cc0033">index</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:VMStorageProxy) <font color="#cc0033">type</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>END </b><font color="#cc0033">jdk_internal_invoke</font>.
+</font></pre></hr>
+<!-- BEGIN JavaScript -->
+<script>
+function toggle(node) {
+    node.classList.toggle("show"); 
+  }
+
+function cls(node) {
+    var prnt = node.parentNode;
+    var next = prnt.previousSibling;
+    var text = next.lastChild;
+    text.innerHTML = 
+        "The <b>class</b> property asserts that this type will be<br>" +
+        "implemented as a reference class in the underlying framework.";
+    text.classList.toggle("show");
+  }
+
+function newOk(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>has noArg-ctor</b> property asserts that this reference<br>" +
+        "class has a no-arg constructor, and thus objects of this<br>" +
+        "type can be allocated with NEW(). Component Pascal types<br>" +
+        "derived from this type can also be allocated using NEW().";
+    popuptext.classList.toggle("show"); 
+  }
+
+function noNew(node) { 
+    var prnt = node.parentNode; 
+    var next = prnt.previousSibling; 
+    var text = next.lastChild; 
+    text.innerHTML =  
+        "The <b>no noArg-ctor</b> property asserts that this reference<br>" +
+        "class does not have a noArg constructor. Objects of this<br>" +
+        "type cannot be allocated using NEW(), and Component<br>" +
+        "Pascal types  derived from this type also cannot be<br>" +
+        "allocated using NEW().";
+    text.classList.toggle("show");
+  }
+
+function noCpy(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>no value-assign</b> property asserts that this reference<br>" + 
+        "class does not have a value copy method. Therefore, it<br>" +
+        "is not possible to perform value assignments using<br>" +
+        "statements like <i>dst^</i> := <i>src^</i>";
+    popuptext.classList.toggle("show");
+  }
+
+function valueclass(node) { 
+        var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>valueclass</b> property asserts that this RECORD type is<br>" + 
+        "implemented as a value class in the CLR. It follows that<br>" +  
+        "value assignments can be made of these types. They can<br>" + 
+        "also be passed by value. Even pointers to records of<br>" + 
+        "such types may be dereferenced and copied using syntax<br>" + 
+        "such as  <i>dst^</i> := <i>src^</i>"; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+function argCtor(node) { 
+    var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>has arg-ctor</b> property asserts that this reference<br>" +  
+        "class has one or more constructors that take arguments.<br>" + 
+        "These constructors can be called from Component Pascal<br>" + 
+        "by calling an <i>init</i>(...) method from the static list<br>" + 
+        "here. Component Pascal types derived from this type<br>" + 
+        "can define constructors with arguments which call the<br>" + 
+        "super-type constructor.<br>" + 
+        "See <i>'Interfacing to constructors'</i> in the Release Notes."; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+</script>
+<!-- END JavaScript --> 
+
+</body></html>

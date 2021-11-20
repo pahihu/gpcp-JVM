@@ -1,0 +1,442 @@
+<html><head><title>javax_imageio_spi</title>
+<style>
+<!-- BEGIN Inline CSS -->
+/* Popup container */
+.popup {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+/* The actual popup (appears on top) */
+.popup .popuptext {
+    visibility: hidden;
+    width: 430px;
+    background-color: white;
+    color: black;
+    text-align: left;
+    border-radius: 6px;
+    border-style: solid;
+    border-color: black;
+    padding: 8px 8px 8px 8px;
+    position: absolute;
+    z-index: 1;
+    margin-top: 30px;
+}
+
+/* Toggle this class when clicking on the popup container (hide and show the popup) */
+.popup .show {
+    visibility: visible;
+    opacity: 1;
+}
+
+</style>
+<!-- END Inline CSS -->
+</head><body bgcolor="white">
+<hr><pre>
+<font color="green">(*</font>
+<font color="green"> *  Creator PeToCps j2cps version 1.4.07 (March 2018)</font>
+<font color="green"> *  Compiled from jar-file /Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home/jmods/java.desktop.jmod</font>
+<font color="green"> *)</font>
+<b>FOREIGN MODULE </b><font color="#cc0033">javax_imageio_spi</font>;
+
+<b>IMPORT</b>
+    <a href="javax_imageio.html">javax_imageio</a> := "javax.imageio",
+    <a href="javax_imageio.html">javax_imageio</a> := "javax.imageio",
+    <a href="javax_imageio_metadata.html">javax_imageio_metadata</a> := "javax.imageio.metadata",
+    <a href="javax_imageio_spi.html">javax_imageio_spi</a> := "javax.imageio.spi",
+    <a href="javax_imageio_stream.html">javax_imageio_stream</a> := "javax.imageio.stream",
+    <a href="java_awt_image.html">java_awt_image</a> := "java.awt.image",
+    <a href="java_io.html">java_io</a> := "java.io",
+    <a href="java_lang.html">java_lang</a> := "java.lang",
+    <a href="java_util.html">java_util</a> := "java.util";
+
+<b>TYPE</b>
+
+  <a name="type-IIORegistry"></a><font color="#cc0033">IIORegistry</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="javax_imageio_spi.html#type-ServiceRegistry">javax_imageio_spi.ServiceRegistry</a>)
+                 <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> *)</font>
+                 <font color="green"><b> (* </b><a href="#meths-IIORegistry">Typebound Procedures</a><b> *)</b></font>
+                 <b>STATIC</b>
+                   <b>PROCEDURE </b><font color="#cc0033">getDefaultInstance</font>*() : <a href="#type-IIORegistry">IIORegistry</a>;
+                 <b>END</b>;
+
+  <a name="type-IIOServiceProvider"></a><font color="#cc0033">IIOServiceProvider</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="javax_imageio_spi.html#type-RegisterableService">javax_imageio_spi.RegisterableService</a>)
+                        <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                        <font color="green"><b> (* </b><a href="#meths-IIOServiceProvider">Typebound Procedures</a><b> *)</b></font>
+                          <font color="#cc0033">vendorName</font>! : <a href="java_lang.html#type-String">java_lang.String</a>;
+                          <font color="#cc0033">version</font>!    : <a href="java_lang.html#type-String">java_lang.String</a>;
+                        <b>STATIC</b>
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-IIOServiceProvider">IIOServiceProvider</a><b>,CONSTRUCTOR</b>;
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                          p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-IIOServiceProvider">IIOServiceProvider</a><b>,CONSTRUCTOR</b>;
+                        <b>END</b>;
+
+  <a name="type-ImageInputStreamSpi"></a><font color="#cc0033">ImageInputStreamSpi</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="javax_imageio_spi.html#type-IIOServiceProvider">javax_imageio_spi.IIOServiceProvider</a>)
+                         <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                         <font color="green"><b> (* </b><a href="#meths-ImageInputStreamSpi">Typebound Procedures</a><b> *)</b></font>
+                           <font color="#cc0033">inputClass</font>! : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                           p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                           p2 : <a href="java_lang.html#type-Class">java_lang.Class</a>) : <a href="#type-ImageInputStreamSpi">ImageInputStreamSpi</a><b>,CONSTRUCTOR</b>;
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>!() : <a href="#type-ImageInputStreamSpi">ImageInputStreamSpi</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-ImageOutputStreamSpi"></a><font color="#cc0033">ImageOutputStreamSpi</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="javax_imageio_spi.html#type-IIOServiceProvider">javax_imageio_spi.IIOServiceProvider</a>)
+                          <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                          <font color="green"><b> (* </b><a href="#meths-ImageOutputStreamSpi">Typebound Procedures</a><b> *)</b></font>
+                            <font color="#cc0033">outputClass</font>! : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                          <b>STATIC</b>
+                            <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                            p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                            p2 : <a href="java_lang.html#type-Class">java_lang.Class</a>) : <a href="#type-ImageOutputStreamSpi">ImageOutputStreamSpi</a><b>,CONSTRUCTOR</b>;
+                            <b>PROCEDURE </b><font color="#cc0033">Init</font>!() : <a href="#type-ImageOutputStreamSpi">ImageOutputStreamSpi</a><b>,CONSTRUCTOR</b>;
+                          <b>END</b>;
+
+  <a name="type-ImageReaderSpi"></a><font color="#cc0033">ImageReaderSpi</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="javax_imageio_spi.html#type-ImageReaderWriterSpi">javax_imageio_spi.ImageReaderWriterSpi</a>)
+                    <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                    <font color="green"><b> (* </b><a href="#meths-ImageReaderSpi">Typebound Procedures</a><b> *)</b></font>
+                      <font color="#cc0033">inputTypes</font>!     : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Class">java_lang.Class</a>;
+                      <font color="#cc0033">writerSpiNames</font>! : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>;
+                    <b>STATIC</b>
+                      <a name="type-STANDARD_INPUT_TYPE"></a><font color="#cc0033">STANDARD_INPUT_TYPE</font>* : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Class">java_lang.Class</a>;
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*(    p0  : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                          p1  : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                      IN  p2  : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>;
+                                      IN  p3  : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>;
+                                      IN  p4  : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>;
+                                          p5  : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                      IN  p6  : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Class">java_lang.Class</a>;
+                                      IN  p7  : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>;
+                                          p8  : BOOLEAN;
+                                          p9  : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                          p10 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                      IN  p11 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>;
+                                      IN  p12 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>;
+                                          p13 : BOOLEAN;
+                                          p14 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                          p15 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                      IN  p16 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>;
+                                      IN  p17 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-ImageReaderSpi">ImageReaderSpi</a><b>,CONSTRUCTOR</b>;
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>!() : <a href="#type-ImageReaderSpi">ImageReaderSpi</a><b>,CONSTRUCTOR</b>;
+                    <b>END</b>;
+
+  <a name="type-ImageReaderWriterSpi"></a><font color="#cc0033">ImageReaderWriterSpi</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="#type-IIOServiceProvider">IIOServiceProvider</a>)
+                          <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                          <font color="green"><b> (* </b><a href="#meths-ImageReaderWriterSpi">Typebound Procedures</a><b> *)</b></font>
+                            <font color="#cc0033">names</font>!                                : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>;
+                            <font color="#cc0033">suffixes</font>!                             : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>;
+                            <font color="#cc0033">MIMETypes</font>!                            : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>;
+                            <font color="#cc0033">pluginClassName</font>!                      : <a href="java_lang.html#type-String">java_lang.String</a>;
+                            <font color="#cc0033">supportsStandardStreamMetadataFormat</font>! : BOOLEAN;
+                            <font color="#cc0033">nativeStreamMetadataFormatName</font>!       : <a href="java_lang.html#type-String">java_lang.String</a>;
+                            <font color="#cc0033">nativeStreamMetadataFormatClassName</font>!  : <a href="java_lang.html#type-String">java_lang.String</a>;
+                            <font color="#cc0033">extraStreamMetadataFormatNames</font>!       : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>;
+                            <font color="#cc0033">extraStreamMetadataFormatClassNames</font>!  : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>;
+                            <font color="#cc0033">supportsStandardImageMetadataFormat</font>!  : BOOLEAN;
+                            <font color="#cc0033">nativeImageMetadataFormatName</font>!        : <a href="java_lang.html#type-String">java_lang.String</a>;
+                            <font color="#cc0033">nativeImageMetadataFormatClassName</font>!   : <a href="java_lang.html#type-String">java_lang.String</a>;
+                            <font color="#cc0033">extraImageMetadataFormatNames</font>!        : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>;
+                            <font color="#cc0033">extraImageMetadataFormatClassNames</font>!   : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>;
+                          <b>STATIC</b>
+                            <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-ImageReaderWriterSpi">ImageReaderWriterSpi</a><b>,CONSTRUCTOR</b>;
+                            <b>PROCEDURE </b><font color="#cc0033">Init</font>*(    p0  : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                p1  : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                            IN  p2  : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>;
+                                            IN  p3  : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>;
+                                            IN  p4  : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>;
+                                                p5  : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                p6  : BOOLEAN;
+                                                p7  : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                p8  : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                            IN  p9  : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>;
+                                            IN  p10 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>;
+                                                p11 : BOOLEAN;
+                                                p12 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                p13 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                            IN  p14 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>;
+                                            IN  p15 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-ImageReaderWriterSpi">ImageReaderWriterSpi</a><b>,CONSTRUCTOR</b>;
+                          <b>END</b>;
+
+  <a name="type-ImageTranscoderSpi"></a><font color="#cc0033">ImageTranscoderSpi</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="javax_imageio_spi.html#type-IIOServiceProvider">javax_imageio_spi.IIOServiceProvider</a>)
+                        <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                        <font color="green"><b> (* </b><a href="#meths-ImageTranscoderSpi">Typebound Procedures</a><b> *)</b></font>
+                        <b>STATIC</b>
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                          p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-ImageTranscoderSpi">ImageTranscoderSpi</a><b>,CONSTRUCTOR</b>;
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>!() : <a href="#type-ImageTranscoderSpi">ImageTranscoderSpi</a><b>,CONSTRUCTOR</b>;
+                        <b>END</b>;
+
+  <a name="type-ImageWriterSpi"></a><font color="#cc0033">ImageWriterSpi</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="javax_imageio_spi.html#type-ImageReaderWriterSpi">javax_imageio_spi.ImageReaderWriterSpi</a>)
+                    <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                    <font color="green"><b> (* </b><a href="#meths-ImageWriterSpi">Typebound Procedures</a><b> *)</b></font>
+                      <font color="#cc0033">outputTypes</font>!    : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Class">java_lang.Class</a>;
+                      <font color="#cc0033">readerSpiNames</font>! : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>;
+                    <b>STATIC</b>
+                      <a name="type-STANDARD_OUTPUT_TYPE"></a><font color="#cc0033">STANDARD_OUTPUT_TYPE</font>* : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Class">java_lang.Class</a>;
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*(    p0  : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                          p1  : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                      IN  p2  : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>;
+                                      IN  p3  : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>;
+                                      IN  p4  : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>;
+                                          p5  : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                      IN  p6  : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Class">java_lang.Class</a>;
+                                      IN  p7  : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>;
+                                          p8  : BOOLEAN;
+                                          p9  : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                          p10 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                      IN  p11 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>;
+                                      IN  p12 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>;
+                                          p13 : BOOLEAN;
+                                          p14 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                          p15 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                      IN  p16 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>;
+                                      IN  p17 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-ImageWriterSpi">ImageWriterSpi</a><b>,CONSTRUCTOR</b>;
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>!() : <a href="#type-ImageWriterSpi">ImageWriterSpi</a><b>,CONSTRUCTOR</b>;
+                    <b>END</b>;
+
+  <a name="type-RegisterableService"></a><font color="#cc0033">RegisterableService</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                         <font color="green"><b> (* </b><a href="#meths-RegisterableService">Typebound Procedures</a><b> *)</b></font>
+                         <b>END</b>;
+
+  <a name="type-ServiceRegistry"></a><font color="#cc0033">ServiceRegistry</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                     <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                     <font color="green"><b> (* </b><a href="#meths-ServiceRegistry">Typebound Procedures</a><b> *)</b></font>
+                     <b>STATIC</b>
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_util.html#type-Iterator">java_util.Iterator</a>) : <a href="#type-ServiceRegistry">ServiceRegistry</a><b>,CONSTRUCTOR</b>;
+                       <b>PROCEDURE </b><font color="#cc0033">lookupProviders</font>*(p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>) : <a href="java_util.html#type-Iterator">java_util.Iterator</a>;
+                       <b>PROCEDURE </b><font color="#cc0033">lookupProviders</font>*(p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                                                  p1 : <a href="java_lang.html#type-ClassLoader">java_lang.ClassLoader</a>) : <a href="java_util.html#type-Iterator">java_util.Iterator</a>;
+                     <b>END</b>;
+
+  <a name="type-ServiceRegistry$Filter"></a><font color="#cc0033">ServiceRegistry$Filter</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                            <font color="green"><b> (* </b><a href="#meths-ServiceRegistry$Filter">Typebound Procedures</a><b> *)</b></font>
+                            <b>END</b>;
+
+
+
+<a name="meths-IIORegistry"></a>
+<b>PROCEDURE </b>(self:IIORegistry) <font color="#cc0033">registerApplicationClasspathSpis</font>*()<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-IIOServiceProvider"></a>
+<b>PROCEDURE </b>(self:IIOServiceProvider) <font color="#cc0033">getDescription</font>*(p0 : <a href="java_util.html#type-Locale">java_util.Locale</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:IIOServiceProvider) <font color="#cc0033">getVendorName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IIOServiceProvider) <font color="#cc0033">getVersion</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IIOServiceProvider) <font color="#cc0033">onDeregistration</font>*(p0 : <a href="#type-ServiceRegistry">ServiceRegistry</a>;
+                                                      p1 : <a href="java_lang.html#type-Class">java_lang.Class</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IIOServiceProvider) <font color="#cc0033">onRegistration</font>*(p0 : <a href="#type-ServiceRegistry">ServiceRegistry</a>;
+                                                    p1 : <a href="java_lang.html#type-Class">java_lang.Class</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-ImageInputStreamSpi"></a>
+<b>PROCEDURE </b>(self:ImageInputStreamSpi) <font color="#cc0033">canUseCacheFile</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageInputStreamSpi) <font color="#cc0033">createInputStreamInstance</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                                p1 : BOOLEAN;
+                                                                p2 : <a href="java_io.html#type-File">java_io.File</a>) : <a href="javax_imageio_stream.html#type-ImageInputStream">javax_imageio_stream.ImageInputStream</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ImageInputStreamSpi) <font color="#cc0033">createInputStreamInstance</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="javax_imageio_stream.html#type-ImageInputStream">javax_imageio_stream.ImageInputStream</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageInputStreamSpi) <font color="#cc0033">getInputClass</font>*() : <a href="java_lang.html#type-Class">java_lang.Class</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageInputStreamSpi) <font color="#cc0033">needsCacheFile</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-ImageOutputStreamSpi"></a>
+<b>PROCEDURE </b>(self:ImageOutputStreamSpi) <font color="#cc0033">canUseCacheFile</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageOutputStreamSpi) <font color="#cc0033">createOutputStreamInstance</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                                  p1 : BOOLEAN;
+                                                                  p2 : <a href="java_io.html#type-File">java_io.File</a>) : <a href="javax_imageio_stream.html#type-ImageOutputStream">javax_imageio_stream.ImageOutputStream</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ImageOutputStreamSpi) <font color="#cc0033">createOutputStreamInstance</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="javax_imageio_stream.html#type-ImageOutputStream">javax_imageio_stream.ImageOutputStream</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageOutputStreamSpi) <font color="#cc0033">getOutputClass</font>*() : <a href="java_lang.html#type-Class">java_lang.Class</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageOutputStreamSpi) <font color="#cc0033">needsCacheFile</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-ImageReaderSpi"></a>
+<b>PROCEDURE </b>(self:ImageReaderSpi) <font color="#cc0033">canDecodeInput</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ImageReaderSpi) <font color="#cc0033">createReaderInstance</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="javax_imageio.html#type-ImageReader">javax_imageio.ImageReader</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ImageReaderSpi) <font color="#cc0033">createReaderInstance</font>*() : <a href="javax_imageio.html#type-ImageReader">javax_imageio.ImageReader</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageReaderSpi) <font color="#cc0033">getImageWriterSpiNames</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageReaderSpi) <font color="#cc0033">getInputTypes</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Class">java_lang.Class</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageReaderSpi) <font color="#cc0033">isOwnReader</font>*(p0 : <a href="javax_imageio.html#type-ImageReader">javax_imageio.ImageReader</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-ImageReaderWriterSpi"></a>
+<b>PROCEDURE </b>(self:ImageReaderWriterSpi) <font color="#cc0033">getExtraImageMetadataFormatNames</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageReaderWriterSpi) <font color="#cc0033">getExtraStreamMetadataFormatNames</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageReaderWriterSpi) <font color="#cc0033">getFileSuffixes</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageReaderWriterSpi) <font color="#cc0033">getFormatNames</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageReaderWriterSpi) <font color="#cc0033">getImageMetadataFormat</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="javax_imageio_metadata.html#type-IIOMetadataFormat">javax_imageio_metadata.IIOMetadataFormat</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageReaderWriterSpi) <font color="#cc0033">getMIMETypes</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageReaderWriterSpi) <font color="#cc0033">getNativeImageMetadataFormatName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageReaderWriterSpi) <font color="#cc0033">getNativeStreamMetadataFormatName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageReaderWriterSpi) <font color="#cc0033">getPluginClassName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageReaderWriterSpi) <font color="#cc0033">getStreamMetadataFormat</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="javax_imageio_metadata.html#type-IIOMetadataFormat">javax_imageio_metadata.IIOMetadataFormat</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageReaderWriterSpi) <font color="#cc0033">isStandardImageMetadataFormatSupported</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageReaderWriterSpi) <font color="#cc0033">isStandardStreamMetadataFormatSupported</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-ImageTranscoderSpi"></a>
+<b>PROCEDURE </b>(self:ImageTranscoderSpi) <font color="#cc0033">createTranscoderInstance</font>*() : <a href="javax_imageio.html#type-ImageTranscoder">javax_imageio.ImageTranscoder</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ImageTranscoderSpi) <font color="#cc0033">getReaderServiceProviderName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ImageTranscoderSpi) <font color="#cc0033">getWriterServiceProviderName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-ImageWriterSpi"></a>
+<b>PROCEDURE </b>(self:ImageWriterSpi) <font color="#cc0033">canEncodeImage</font>*(p0 : <a href="javax_imageio.html#type-ImageTypeSpecifier">javax_imageio.ImageTypeSpecifier</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ImageWriterSpi) <font color="#cc0033">canEncodeImage</font>*(p0 : <a href="java_awt_image.html#type-RenderedImage">java_awt_image.RenderedImage</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageWriterSpi) <font color="#cc0033">createWriterInstance</font>*() : <a href="javax_imageio.html#type-ImageWriter">javax_imageio.ImageWriter</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageWriterSpi) <font color="#cc0033">createWriterInstance</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="javax_imageio.html#type-ImageWriter">javax_imageio.ImageWriter</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ImageWriterSpi) <font color="#cc0033">getImageReaderSpiNames</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageWriterSpi) <font color="#cc0033">getOutputTypes</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Class">java_lang.Class</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageWriterSpi) <font color="#cc0033">isFormatLossless</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageWriterSpi) <font color="#cc0033">isOwnWriter</font>*(p0 : <a href="javax_imageio.html#type-ImageWriter">javax_imageio.ImageWriter</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-RegisterableService"></a>
+<b>PROCEDURE </b>(self:RegisterableService) <font color="#cc0033">onDeregistration</font>*(p0 : <a href="#type-ServiceRegistry">ServiceRegistry</a>;
+                                                       p1 : <a href="java_lang.html#type-Class">java_lang.Class</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RegisterableService) <font color="#cc0033">onRegistration</font>*(p0 : <a href="#type-ServiceRegistry">ServiceRegistry</a>;
+                                                     p1 : <a href="java_lang.html#type-Class">java_lang.Class</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-ServiceRegistry"></a>
+<b>PROCEDURE </b>(self:ServiceRegistry) <font color="#cc0033">contains</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ServiceRegistry) <font color="#cc0033">deregisterAll</font>*(p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ServiceRegistry) <font color="#cc0033">deregisterAll</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ServiceRegistry) <font color="#cc0033">deregisterServiceProvider</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ServiceRegistry) <font color="#cc0033">deregisterServiceProvider</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                            p1 : <a href="java_lang.html#type-Class">java_lang.Class</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ServiceRegistry) <font color="#cc0033">finalize</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ServiceRegistry) <font color="#cc0033">getCategories</font>*() : <a href="java_util.html#type-Iterator">java_util.Iterator</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ServiceRegistry) <font color="#cc0033">getServiceProviderByClass</font>*(p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ServiceRegistry) <font color="#cc0033">getServiceProviders</font>*(p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                                                      p1 : <a href="javax_imageio_spi.html#type-ServiceRegistry$Filter">javax_imageio_spi.ServiceRegistry$Filter</a>;
+                                                      p2 : BOOLEAN) : <a href="java_util.html#type-Iterator">java_util.Iterator</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ServiceRegistry) <font color="#cc0033">getServiceProviders</font>*(p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                                                      p1 : BOOLEAN) : <a href="java_util.html#type-Iterator">java_util.Iterator</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ServiceRegistry) <font color="#cc0033">registerServiceProvider</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ServiceRegistry) <font color="#cc0033">registerServiceProvider</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                          p1 : <a href="java_lang.html#type-Class">java_lang.Class</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ServiceRegistry) <font color="#cc0033">registerServiceProviders</font>*(p0 : <a href="java_util.html#type-Iterator">java_util.Iterator</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ServiceRegistry) <font color="#cc0033">setOrdering</font>*(p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                                              p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                              p2 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ServiceRegistry) <font color="#cc0033">unsetOrdering</font>*(p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                                                p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                p2 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-ServiceRegistry$Filter"></a>
+<b>PROCEDURE </b>(self:ServiceRegistry$Filter) <font color="#cc0033">filter</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>END </b><font color="#cc0033">javax_imageio_spi</font>.
+</font></pre></hr>
+<!-- BEGIN JavaScript -->
+<script>
+function toggle(node) {
+    node.classList.toggle("show"); 
+  }
+
+function cls(node) {
+    var prnt = node.parentNode;
+    var next = prnt.previousSibling;
+    var text = next.lastChild;
+    text.innerHTML = 
+        "The <b>class</b> property asserts that this type will be<br>" +
+        "implemented as a reference class in the underlying framework.";
+    text.classList.toggle("show");
+  }
+
+function newOk(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>has noArg-ctor</b> property asserts that this reference<br>" +
+        "class has a no-arg constructor, and thus objects of this<br>" +
+        "type can be allocated with NEW(). Component Pascal types<br>" +
+        "derived from this type can also be allocated using NEW().";
+    popuptext.classList.toggle("show"); 
+  }
+
+function noNew(node) { 
+    var prnt = node.parentNode; 
+    var next = prnt.previousSibling; 
+    var text = next.lastChild; 
+    text.innerHTML =  
+        "The <b>no noArg-ctor</b> property asserts that this reference<br>" +
+        "class does not have a noArg constructor. Objects of this<br>" +
+        "type cannot be allocated using NEW(), and Component<br>" +
+        "Pascal types  derived from this type also cannot be<br>" +
+        "allocated using NEW().";
+    text.classList.toggle("show");
+  }
+
+function noCpy(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>no value-assign</b> property asserts that this reference<br>" + 
+        "class does not have a value copy method. Therefore, it<br>" +
+        "is not possible to perform value assignments using<br>" +
+        "statements like <i>dst^</i> := <i>src^</i>";
+    popuptext.classList.toggle("show");
+  }
+
+function valueclass(node) { 
+        var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>valueclass</b> property asserts that this RECORD type is<br>" + 
+        "implemented as a value class in the CLR. It follows that<br>" +  
+        "value assignments can be made of these types. They can<br>" + 
+        "also be passed by value. Even pointers to records of<br>" + 
+        "such types may be dereferenced and copied using syntax<br>" + 
+        "such as  <i>dst^</i> := <i>src^</i>"; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+function argCtor(node) { 
+    var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>has arg-ctor</b> property asserts that this reference<br>" +  
+        "class has one or more constructors that take arguments.<br>" + 
+        "These constructors can be called from Component Pascal<br>" + 
+        "by calling an <i>init</i>(...) method from the static list<br>" + 
+        "here. Component Pascal types derived from this type<br>" + 
+        "can define constructors with arguments which call the<br>" + 
+        "super-type constructor.<br>" + 
+        "See <i>'Interfacing to constructors'</i> in the Release Notes."; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+</script>
+<!-- END JavaScript --> 
+
+</body></html>

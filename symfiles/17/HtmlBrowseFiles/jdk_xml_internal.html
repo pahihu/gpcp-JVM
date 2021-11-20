@@ -1,0 +1,424 @@
+<html><head><title>jdk_xml_internal</title>
+<style>
+<!-- BEGIN Inline CSS -->
+/* Popup container */
+.popup {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+/* The actual popup (appears on top) */
+.popup .popuptext {
+    visibility: hidden;
+    width: 430px;
+    background-color: white;
+    color: black;
+    text-align: left;
+    border-radius: 6px;
+    border-style: solid;
+    border-color: black;
+    padding: 8px 8px 8px 8px;
+    position: absolute;
+    z-index: 1;
+    margin-top: 30px;
+}
+
+/* Toggle this class when clicking on the popup container (hide and show the popup) */
+.popup .show {
+    visibility: visible;
+    opacity: 1;
+}
+
+</style>
+<!-- END Inline CSS -->
+</head><body bgcolor="white">
+<hr><pre>
+<font color="green">(*</font>
+<font color="green"> *  Creator PeToCps j2cps version 1.4.07 (March 2018)</font>
+<font color="green"> *  Compiled from jar-file /Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home/jmods/java.xml.jmod</font>
+<font color="green"> *)</font>
+<b>FOREIGN MODULE </b><font color="#cc0033">jdk_xml_internal</font>;
+
+<b>IMPORT</b>
+    <a href="com_sun_org_apache_xerces_internal_util.html">com_sun_org_apache_xerces_internal_util</a> := "com.sun.org.apache.xerces.internal.util",
+    <a href="com_sun_org_apache_xerces_internal_xni_parser.html">com_sun_org_apache_xerces_internal_xni_parser</a> := "com.sun.org.apache.xerces.internal.xni.parser",
+    <a href="javax_xml_catalog.html">javax_xml_catalog</a> := "javax.xml.catalog",
+    <a href="javax_xml_parsers.html">javax_xml_parsers</a> := "javax.xml.parsers",
+    <a href="javax_xml_transform.html">javax_xml_transform</a> := "javax.xml.transform",
+    <a href="javax_xml_transform_sax.html">javax_xml_transform_sax</a> := "javax.xml.transform.sax",
+    <a href="java_io.html">java_io</a> := "java.io",
+    <a href="java_lang.html">java_lang</a> := "java.lang",
+    <a href="java_util.html">java_util</a> := "java.util",
+    <a href="jdk_xml_internal.html">jdk_xml_internal</a> := "jdk.xml.internal",
+    <a href="org_w3c_dom.html">org_w3c_dom</a> := "org.w3c.dom",
+    <a href="org_xml_sax.html">org_xml_sax</a> := "org.xml.sax";
+
+<b>TYPE</b>
+
+  <a name="type-ErrorHandlerProxy"></a><font color="#cc0033">ErrorHandlerProxy</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="org_xml_sax.html#type-ErrorHandler">org_xml_sax.ErrorHandler</a>)
+                       <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                       <font color="green"><b> (* </b><a href="#meths-ErrorHandlerProxy">Typebound Procedures</a><b> *)</b></font>
+                       <b>STATIC</b>
+                         <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-ErrorHandlerProxy">ErrorHandlerProxy</a><b>,CONSTRUCTOR</b>;
+                       <b>END</b>;
+
+  <a name="type-JdkConstants"></a><font color="#cc0033">JdkConstants</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                  <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                  <b>STATIC</b>
+                    <font color="#cc0033">ACCESS_EXTERNAL_ALL</font>*               = "all";
+                    <font color="#cc0033">CDATA_CHUNK_SIZE</font>*                  = "jdk.xml.cdataChunkSize";
+                    <a name="type-CDATA_CHUNK_SIZE_DEFAULT"></a><font color="#cc0033">CDATA_CHUNK_SIZE_DEFAULT</font>*          : INTEGER;
+                    <font color="#cc0033">ELEMENT_ATTRIBUTE_LIMIT</font>*           = "elementAttributeLimit";
+                    <font color="#cc0033">ENTITY_EXPANSION_LIMIT</font>*            = "entityExpansionLimit";
+                    <font color="#cc0033">EXTERNAL_ACCESS_DEFAULT</font>*           = "all";
+                    <font color="#cc0033">EXTERNAL_ACCESS_DEFAULT_FSP</font>*       = "";
+                    <font color="#cc0033">FEATURE_FALSE</font>*                     = "false";
+                    <font color="#cc0033">FEATURE_TRUE</font>*                      = "true";
+                    <font color="#cc0033">FQ_IS_STANDALONE</font>*                  = "http://www.oracle.com/xml/jaxp/properties/isStandalone";
+                    <font color="#cc0033">JDK_DEBUG_LIMIT</font>*                   = "jdk.xml.getEntityCountInfo";
+                    <font color="#cc0033">JDK_ELEMENT_ATTRIBUTE_LIMIT</font>*       = "http://www.oracle.com/xml/jaxp/properties/elementAttributeLimit";
+                    <font color="#cc0033">JDK_ENTITY_COUNT_INFO</font>*             = "http://www.oracle.com/xml/jaxp/properties/getEntityCountInfo";
+                    <font color="#cc0033">JDK_ENTITY_EXPANSION_LIMIT</font>*        = "http://www.oracle.com/xml/jaxp/properties/entityExpansionLimit";
+                    <font color="#cc0033">JDK_ENTITY_REPLACEMENT_LIMIT</font>*      = "http://www.oracle.com/xml/jaxp/properties/entityReplacementLimit";
+                    <font color="#cc0033">JDK_EXTENSION_CLASSLOADER</font>*         = "jdk.xml.transform.extensionClassLoader";
+                    <font color="#cc0033">JDK_EXT_CLASSLOADER</font>*               = "jdk.xml.extensionClassLoader";
+                    <font color="#cc0033">JDK_GENERAL_ENTITY_SIZE_LIMIT</font>*     = "http://www.oracle.com/xml/jaxp/properties/maxGeneralEntitySizeLimit";
+                    <font color="#cc0033">JDK_IS_STANDALONE</font>*                 = "http://www.oracle.com/xml/jaxp/properties/xsltcIsStandalone";
+                    <font color="#cc0033">JDK_MAX_ELEMENT_DEPTH</font>*             = "http://www.oracle.com/xml/jaxp/properties/maxElementDepth";
+                    <font color="#cc0033">JDK_MAX_OCCUR_LIMIT</font>*               = "http://www.oracle.com/xml/jaxp/properties/maxOccurLimit";
+                    <font color="#cc0033">JDK_PARAMETER_ENTITY_SIZE_LIMIT</font>*   = "http://www.oracle.com/xml/jaxp/properties/maxParameterEntitySizeLimit";
+                    <font color="#cc0033">JDK_TOTAL_ENTITY_SIZE_LIMIT</font>*       = "http://www.oracle.com/xml/jaxp/properties/totalEntitySizeLimit";
+                    <font color="#cc0033">JDK_XML_NAME_LIMIT</font>*                = "http://www.oracle.com/xml/jaxp/properties/maxXMLNameLimit";
+                    <font color="#cc0033">JDK_YES</font>*                           = "yes";
+                    <font color="#cc0033">MAX_OCCUR_LIMIT</font>*                   = "maxOccurLimit";
+                    <font color="#cc0033">ORACLE_ENABLE_EXTENSION_FUNCTION</font>*  = "http://www.oracle.com/xml/jaxp/properties/enableExtensionFunctions";
+                    <font color="#cc0033">ORACLE_FEATURE_SERVICE_MECHANISM</font>*  = "http://www.oracle.com/feature/use-service-mechanism";
+                    <font color="#cc0033">ORACLE_IS_STANDALONE</font>*              = "http://www.oracle.com/xml/is-standalone";
+                    <font color="#cc0033">ORACLE_JAXP_PROPERTY_PREFIX</font>*       = "http://www.oracle.com/xml/jaxp/properties/";
+                    <font color="#cc0033">OVERRIDE_PARSER</font>*                   = "jdk.xml.overrideDefaultParser";
+                    <a name="type-OVERRIDE_PARSER_DEFAULT"></a><font color="#cc0033">OVERRIDE_PARSER_DEFAULT</font>*           : BOOLEAN;
+                    <font color="#cc0033">RESET_SYMBOL_TABLE</font>*                = "jdk.xml.resetSymbolTable";
+                    <a name="type-RESET_SYMBOL_TABLE_DEFAULT"></a><font color="#cc0033">RESET_SYMBOL_TABLE_DEFAULT</font>*        : BOOLEAN;
+                    <font color="#cc0033">SECURITY_MANAGER</font>*                  = "http://apache.org/xml/properties/security-manager";
+                    <font color="#cc0033">SP_ACCESS_EXTERNAL_DTD</font>*            = "javax.xml.accessExternalDTD";
+                    <font color="#cc0033">SP_ACCESS_EXTERNAL_SCHEMA</font>*         = "javax.xml.accessExternalSchema";
+                    <font color="#cc0033">SP_ACCESS_EXTERNAL_STYLESHEET</font>*     = "javax.xml.accessExternalStylesheet";
+                    <font color="#cc0033">SP_ELEMENT_ATTRIBUTE_LIMIT</font>*        = "jdk.xml.elementAttributeLimit";
+                    <font color="#cc0033">SP_ENABLE_EXTENSION_FUNCTION</font>*      = "javax.xml.enableExtensionFunctions";
+                    <font color="#cc0033">SP_ENABLE_EXTENSION_FUNCTION_SPEC</font>* = "jdk.xml.enableExtensionFunctions";
+                    <font color="#cc0033">SP_ENTITY_EXPANSION_LIMIT</font>*         = "jdk.xml.entityExpansionLimit";
+                    <font color="#cc0033">SP_ENTITY_REPLACEMENT_LIMIT</font>*       = "jdk.xml.entityReplacementLimit";
+                    <font color="#cc0033">SP_GENERAL_ENTITY_SIZE_LIMIT</font>*      = "jdk.xml.maxGeneralEntitySizeLimit";
+                    <font color="#cc0033">SP_IS_STANDALONE</font>*                  = "jdk.xml.isStandalone";
+                    <font color="#cc0033">SP_MAX_ELEMENT_DEPTH</font>*              = "jdk.xml.maxElementDepth";
+                    <font color="#cc0033">SP_MAX_OCCUR_LIMIT</font>*                = "jdk.xml.maxOccurLimit";
+                    <font color="#cc0033">SP_PARAMETER_ENTITY_SIZE_LIMIT</font>*    = "jdk.xml.maxParameterEntitySizeLimit";
+                    <font color="#cc0033">SP_TOTAL_ENTITY_SIZE_LIMIT</font>*        = "jdk.xml.totalEntitySizeLimit";
+                    <font color="#cc0033">SP_XML_NAME_LIMIT</font>*                 = "jdk.xml.maxXMLNameLimit";
+                    <font color="#cc0033">SP_XSLTC_IS_STANDALONE</font>*            = "jdk.xml.xsltcIsStandalone";
+                    <font color="#cc0033">S_IS_STANDALONE</font>*                   = "isStandalone";
+                    <font color="#cc0033">XML_SECURITY_PROPERTY_MANAGER</font>*     = "jdk.xml.xmlSecurityPropertyManager";
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-JdkConstants">JdkConstants</a><b>,CONSTRUCTOR</b>;
+                  <b>END</b>;
+
+  <a name="type-JdkProperty"></a><font color="#cc0033">JdkProperty</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                 <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                 <font color="green"><b> (* </b><a href="#meths-JdkProperty">Typebound Procedures</a><b> *)</b></font>
+                 <b>STATIC</b>
+                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="jdk_xml_internal.html#type-JdkProperty$ImplPropMap">jdk_xml_internal.JdkProperty$ImplPropMap</a>;
+                                   p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                   p2 : <a href="#type-JdkProperty$State">JdkProperty$State</a>) : <a href="#type-JdkProperty">JdkProperty</a><b>,CONSTRUCTOR</b>;
+                 <b>END</b>;
+
+  <a name="type-JdkProperty$ImplPropMap"></a><font color="#cc0033">JdkProperty$ImplPropMap</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Enum">java_lang.Enum</a>)
+                             <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> *)</font>
+                             <font color="green"><b> (* </b><a href="#meths-JdkProperty$ImplPropMap">Typebound Procedures</a><b> *)</b></font>
+                             <b>STATIC</b>
+                               <a name="type-CDATACHUNKSIZE"></a><font color="#cc0033">CDATACHUNKSIZE</font>*    : <a href="#type-JdkProperty$ImplPropMap">JdkProperty$ImplPropMap</a>;
+                               <a name="type-ENABLEEXTFUNC"></a><font color="#cc0033">ENABLEEXTFUNC</font>*     : <a href="#type-JdkProperty$ImplPropMap">JdkProperty$ImplPropMap</a>;
+                               <a name="type-ENTITYCOUNT"></a><font color="#cc0033">ENTITYCOUNT</font>*       : <a href="#type-JdkProperty$ImplPropMap">JdkProperty$ImplPropMap</a>;
+                               <a name="type-EXTCLSLOADER"></a><font color="#cc0033">EXTCLSLOADER</font>*      : <a href="#type-JdkProperty$ImplPropMap">JdkProperty$ImplPropMap</a>;
+                               <a name="type-ISSTANDALONE"></a><font color="#cc0033">ISSTANDALONE</font>*      : <a href="#type-JdkProperty$ImplPropMap">JdkProperty$ImplPropMap</a>;
+                               <a name="type-OVERRIDEPARSER"></a><font color="#cc0033">OVERRIDEPARSER</font>*    : <a href="#type-JdkProperty$ImplPropMap">JdkProperty$ImplPropMap</a>;
+                               <a name="type-RESETSYMBOLTABLE"></a><font color="#cc0033">RESETSYMBOLTABLE</font>*  : <a href="#type-JdkProperty$ImplPropMap">JdkProperty$ImplPropMap</a>;
+                               <a name="type-XSLTCISSTANDALONE"></a><font color="#cc0033">XSLTCISSTANDALONE</font>* : <a href="#type-JdkProperty$ImplPropMap">JdkProperty$ImplPropMap</a>;
+                               <b>PROCEDURE </b><font color="#cc0033">valueOf</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-JdkProperty$ImplPropMap">JdkProperty$ImplPropMap</a>;
+                               <b>PROCEDURE </b><font color="#cc0033">values</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-JdkProperty$ImplPropMap">JdkProperty$ImplPropMap</a>;
+                             <b>END</b>;
+
+  <a name="type-JdkProperty$State"></a><font color="#cc0033">JdkProperty$State</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Enum">java_lang.Enum</a>)
+                       <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> *)</font>
+                       <font color="green"><b> (* </b><a href="#meths-JdkProperty$State">Typebound Procedures</a><b> *)</b></font>
+                       <b>STATIC</b>
+                         <a name="type-APIPROPERTY"></a><font color="#cc0033">APIPROPERTY</font>*           : <a href="#type-JdkProperty$State">JdkProperty$State</a>;
+                         <a name="type-DEFAULT"></a><font color="#cc0033">DEFAULT</font>*               : <a href="#type-JdkProperty$State">JdkProperty$State</a>;
+                         <a name="type-FSP"></a><font color="#cc0033">FSP</font>*                   : <a href="#type-JdkProperty$State">JdkProperty$State</a>;
+                         <a name="type-JAXPDOTPROPERTIES"></a><font color="#cc0033">JAXPDOTPROPERTIES</font>*     : <a href="#type-JdkProperty$State">JdkProperty$State</a>;
+                         <a name="type-LEGACY_APIPROPERTY"></a><font color="#cc0033">LEGACY_APIPROPERTY</font>*    : <a href="#type-JdkProperty$State">JdkProperty$State</a>;
+                         <a name="type-LEGACY_SYSTEMPROPERTY"></a><font color="#cc0033">LEGACY_SYSTEMPROPERTY</font>* : <a href="#type-JdkProperty$State">JdkProperty$State</a>;
+                         <a name="type-SYSTEMPROPERTY"></a><font color="#cc0033">SYSTEMPROPERTY</font>*        : <a href="#type-JdkProperty$State">JdkProperty$State</a>;
+                         <b>PROCEDURE </b><font color="#cc0033">valueOf</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-JdkProperty$State">JdkProperty$State</a>;
+                         <b>PROCEDURE </b><font color="#cc0033">values</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-JdkProperty$State">JdkProperty$State</a>;
+                       <b>END</b>;
+
+  <a name="type-JdkXmlFeatures"></a><font color="#cc0033">JdkXmlFeatures</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                    <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                    <font color="green"><b> (* </b><a href="#meths-JdkXmlFeatures">Typebound Procedures</a><b> *)</b></font>
+                    <b>STATIC</b>
+                      <font color="#cc0033">CATALOG_FEATURES</font>*            = "javax.xml.catalog.catalogFeatures";
+                      <font color="#cc0033">ORACLE_JAXP_PROPERTY_PREFIX</font>* = "http://www.oracle.com/xml/jaxp/properties/";
+                      <font color="#cc0033">PROPERTY_USE_CATALOG</font>*        = "http://javax.xml.XMLConstants/feature/useCatalog";
+                      <font color="#cc0033">XML_FEATURE_MANAGER</font>*         = "http://www.oracle.com/xml/jaxp/properties/XmlFeatureManager";
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : BOOLEAN) : <a href="#type-JdkXmlFeatures">JdkXmlFeatures</a><b>,CONSTRUCTOR</b>;
+                    <b>END</b>;
+
+  <a name="type-JdkXmlFeatures$XmlFeature"></a><font color="#cc0033">JdkXmlFeatures$XmlFeature</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Enum">java_lang.Enum</a>)
+                               <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> *)</font>
+                               <font color="green"><b> (* </b><a href="#meths-JdkXmlFeatures$XmlFeature">Typebound Procedures</a><b> *)</b></font>
+                               <b>STATIC</b>
+                                 <a name="type-ENABLE_EXTENSION_FUNCTION"></a><font color="#cc0033">ENABLE_EXTENSION_FUNCTION</font>*  : <a href="#type-JdkXmlFeatures$XmlFeature">JdkXmlFeatures$XmlFeature</a>;
+                                 <a name="type-JDK_OVERRIDE_PARSER"></a><font color="#cc0033">JDK_OVERRIDE_PARSER</font>*        : <a href="#type-JdkXmlFeatures$XmlFeature">JdkXmlFeatures$XmlFeature</a>;
+                                 <a name="type-RESET_SYMBOL_TABLE_FEATURE"></a><font color="#cc0033">RESET_SYMBOL_TABLE_FEATURE</font>* : <a href="#type-JdkXmlFeatures$XmlFeature">JdkXmlFeatures$XmlFeature</a>;
+                                 <a name="type-USE_CATALOG"></a><font color="#cc0033">USE_CATALOG</font>*                : <a href="#type-JdkXmlFeatures$XmlFeature">JdkXmlFeatures$XmlFeature</a>;
+                                 <b>PROCEDURE </b><font color="#cc0033">valueOf</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-JdkXmlFeatures$XmlFeature">JdkXmlFeatures$XmlFeature</a>;
+                                 <b>PROCEDURE </b><font color="#cc0033">values</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-JdkXmlFeatures$XmlFeature">JdkXmlFeatures$XmlFeature</a>;
+                               <b>END</b>;
+
+  <a name="type-JdkXmlUtils"></a><font color="#cc0033">JdkXmlUtils</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                 <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                 <b>STATIC</b>
+                   <a name="type-CATALOG_DEFER"></a><font color="#cc0033">CATALOG_DEFER</font>*                 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                   <a name="type-CATALOG_FILES"></a><font color="#cc0033">CATALOG_FILES</font>*                 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                   <a name="type-CATALOG_PREFER"></a><font color="#cc0033">CATALOG_PREFER</font>*                : <a href="java_lang.html#type-String">java_lang.String</a>;
+                   <a name="type-CATALOG_RESOLVE"></a><font color="#cc0033">CATALOG_RESOLVE</font>*               : <a href="java_lang.html#type-String">java_lang.String</a>;
+                   <font color="#cc0033">NAMESPACES_FEATURE</font>*            = "http://xml.org/sax/features/namespaces";
+                   <font color="#cc0033">NAMESPACE_PREFIXES_FEATURE</font>*    = "http://xml.org/sax/features/namespace-prefixes";
+                   <font color="#cc0033">SP_USE_CATALOG</font>*                = "javax.xml.useCatalog";
+                   <font color="#cc0033">USE_CATALOG</font>*                   = "http://javax.xml.XMLConstants/feature/useCatalog";
+                   <a name="type-USE_CATALOG_DEFAULT"></a><font color="#cc0033">USE_CATALOG_DEFAULT</font>*           : BOOLEAN;
+                   <b>PROCEDURE </b><font color="#cc0033">catalogFeaturesConfig2Config</font>*(p0 : <a href="com_sun_org_apache_xerces_internal_xni_parser.html#type-XMLComponentManager">com_sun_org_apache_xerces_internal_xni_parser.XMLComponentManager</a>;
+                                                           p1 : <a href="com_sun_org_apache_xerces_internal_util.html#type-ParserConfigurationSettings">com_sun_org_apache_xerces_internal_util.ParserConfigurationSettings</a>);
+                   <b>PROCEDURE </b><font color="#cc0033">catalogFeaturesConfig2Reader</font>*(p0 : <a href="com_sun_org_apache_xerces_internal_xni_parser.html#type-XMLComponentManager">com_sun_org_apache_xerces_internal_xni_parser.XMLComponentManager</a>;
+                                                           p1 : <a href="org_xml_sax.html#type-XMLReader">org_xml_sax.XMLReader</a>);
+                   <b>PROCEDURE </b><font color="#cc0033">getCatalogFeature</font>*(p0 : <a href="javax_xml_catalog.html#type-CatalogFeatures">javax_xml_catalog.CatalogFeatures</a>;
+                                                p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-String">java_lang.String</a>;
+                   <b>PROCEDURE </b><font color="#cc0033">getCatalogFeatures</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                 p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                 p2 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                 p3 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="javax_xml_catalog.html#type-CatalogFeatures">javax_xml_catalog.CatalogFeatures</a>;
+                   <b>PROCEDURE </b><font color="#cc0033">getDOMDocument</font>*() : <a href="org_w3c_dom.html#type-Document">org_w3c_dom.Document</a>;
+                   <b>PROCEDURE </b><font color="#cc0033">getDOMFactory</font>*(p0 : BOOLEAN) : <a href="javax_xml_parsers.html#type-DocumentBuilderFactory">javax_xml_parsers.DocumentBuilderFactory</a>;
+                   <b>PROCEDURE </b><font color="#cc0033">getQuoteChar</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : CHAR;
+                   <b>PROCEDURE </b><font color="#cc0033">getSAXFactory</font>*(p0 : BOOLEAN) : <a href="javax_xml_parsers.html#type-SAXParserFactory">javax_xml_parsers.SAXParserFactory</a>;
+                   <b>PROCEDURE </b><font color="#cc0033">getSAXTransformFactory</font>*(p0 : BOOLEAN) : <a href="javax_xml_transform_sax.html#type-SAXTransformerFactory">javax_xml_transform_sax.SAXTransformerFactory</a>;
+                   <b>PROCEDURE </b><font color="#cc0033">getValue</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                       p1 : INTEGER) : INTEGER;
+                   <b>PROCEDURE </b><font color="#cc0033">getXMLReader</font>*(p0 : BOOLEAN;
+                                           p1 : BOOLEAN) : <a href="org_xml_sax.html#type-XMLReader">org_xml_sax.XMLReader</a>;
+                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-JdkXmlUtils">JdkXmlUtils</a><b>,CONSTRUCTOR</b>;
+                   <b>PROCEDURE </b><font color="#cc0033">setXMLReaderPropertyIfSupport</font>*(p0 : <a href="org_xml_sax.html#type-XMLReader">org_xml_sax.XMLReader</a>;
+                                                            p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                            p2 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                            p3 : BOOLEAN);
+                 <b>END</b>;
+
+  <a name="type-SecuritySupport"></a><font color="#cc0033">SecuritySupport</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                     <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> *)</font>
+                     <b>STATIC</b>
+                       <a name="type-NEWLINE"></a><font color="#cc0033">NEWLINE</font>*               : <a href="java_lang.html#type-String">java_lang.String</a>;
+                       <b>PROCEDURE </b><font color="#cc0033">checkAccess</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                              p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                              p2 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-String">java_lang.String</a>;
+                       <b>PROCEDURE </b><font color="#cc0033">doesFileExist</font>*(p0 : <a href="java_io.html#type-File">java_io.File</a>) : BOOLEAN;
+                       <b>PROCEDURE </b><font color="#cc0033">getClassLoader</font>*() : <a href="java_lang.html#type-ClassLoader">java_lang.ClassLoader</a>;
+                       <b>PROCEDURE </b><font color="#cc0033">getClassSource</font>*(p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>) : <a href="java_lang.html#type-String">java_lang.String</a>;
+                       <b>PROCEDURE </b><font color="#cc0033">getContextClassLoader</font>*() : <a href="java_lang.html#type-ClassLoader">java_lang.ClassLoader</a>;
+                       <b>PROCEDURE </b><font color="#cc0033">getErrorMessage</font>*(    p0 : <a href="java_util.html#type-Locale">java_util.Locale</a>;
+                                                      p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                      p2 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                  IN  p3 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_lang.html#type-String">java_lang.String</a>;
+                       <b>PROCEDURE </b><font color="#cc0033">getFileInputStream</font>*(p0 : <a href="java_io.html#type-File">java_io.File</a>) : <a href="java_io.html#type-FileInputStream">java_io.FileInputStream</a>;
+                       <b>PROCEDURE </b><font color="#cc0033">getJAXPSystemProperty</font>*(p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                                                        p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                        p2 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                       <b>PROCEDURE </b><font color="#cc0033">getJAXPSystemProperty</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-String">java_lang.String</a>;
+                       <b>PROCEDURE </b><font color="#cc0033">getParentClassLoader</font>*(p0 : <a href="java_lang.html#type-ClassLoader">java_lang.ClassLoader</a>) : <a href="java_lang.html#type-ClassLoader">java_lang.ClassLoader</a>;
+                       <b>PROCEDURE </b><font color="#cc0033">getResourceAsStream</font>*(p0 : <a href="java_lang.html#type-ClassLoader">java_lang.ClassLoader</a>;
+                                                      p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_io.html#type-InputStream">java_io.InputStream</a>;
+                       <b>PROCEDURE </b><font color="#cc0033">getResourceAsStream</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_io.html#type-InputStream">java_io.InputStream</a>;
+                       <b>PROCEDURE </b><font color="#cc0033">getResourceBundle</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_util.html#type-ResourceBundle">java_util.ResourceBundle</a>;
+                       <b>PROCEDURE </b><font color="#cc0033">getResourceBundle</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                    p1 : <a href="java_util.html#type-Locale">java_util.Locale</a>) : <a href="java_util.html#type-ResourceBundle">java_util.ResourceBundle</a>;
+                       <b>PROCEDURE </b><font color="#cc0033">getSystemClassLoader</font>*() : <a href="java_lang.html#type-ClassLoader">java_lang.ClassLoader</a>;
+                       <b>PROCEDURE </b><font color="#cc0033">getSystemProperty</font>*(p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                                                    p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                    p2 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                       <b>PROCEDURE </b><font color="#cc0033">getSystemProperty</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-String">java_lang.String</a>;
+                       <b>PROCEDURE </b><font color="#cc0033">getSystemProperty</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                    p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-String">java_lang.String</a>;
+                       <b>PROCEDURE </b><font color="#cc0033">isDirectory</font>*(p0 : <a href="java_io.html#type-File">java_io.File</a>) : BOOLEAN;
+                       <b>PROCEDURE </b><font color="#cc0033">isFileExists</font>*(p0 : <a href="java_io.html#type-File">java_io.File</a>) : BOOLEAN;
+                       <b>PROCEDURE </b><font color="#cc0033">readJAXPProperty</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-String">java_lang.String</a>;
+                       <b>PROCEDURE </b><font color="#cc0033">sanitizePath</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-String">java_lang.String</a>;
+                     <b>END</b>;
+
+  <a name="type-TransformErrorListener"></a><font color="#cc0033">TransformErrorListener</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="javax_xml_transform.html#type-ErrorListener">javax_xml_transform.ErrorListener</a>)
+                            <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                            <font color="green"><b> (* </b><a href="#meths-TransformErrorListener">Typebound Procedures</a><b> *)</b></font>
+                            <b>STATIC</b>
+                              <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-TransformErrorListener">TransformErrorListener</a><b>,CONSTRUCTOR</b>;
+                            <b>END</b>;
+
+
+
+<a name="meths-ErrorHandlerProxy"></a>
+<b>PROCEDURE </b>(self:ErrorHandlerProxy) <font color="#cc0033">error</font>*(p0 : <a href="org_xml_sax.html#type-SAXParseException">org_xml_sax.SAXParseException</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ErrorHandlerProxy) <font color="#cc0033">fatalError</font>*(p0 : <a href="org_xml_sax.html#type-SAXParseException">org_xml_sax.SAXParseException</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ErrorHandlerProxy) <font color="#cc0033">warning</font>*(p0 : <a href="org_xml_sax.html#type-SAXParseException">org_xml_sax.SAXParseException</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-JdkProperty"></a>
+<b>PROCEDURE </b>(self:JdkProperty) <font color="#cc0033">getValue</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:JdkProperty) <font color="#cc0033">setValue</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                       p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                       p2 : <a href="#type-JdkProperty$State">JdkProperty$State</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-JdkProperty$ImplPropMap"></a>
+<b>PROCEDURE </b>(self:JdkProperty$ImplPropMap) <font color="#cc0033">getState</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-JdkProperty$State">JdkProperty$State</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:JdkProperty$ImplPropMap) <font color="#cc0033">is</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:JdkProperty$ImplPropMap) <font color="#cc0033">isNameDiffer</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:JdkProperty$ImplPropMap) <font color="#cc0033">qName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:JdkProperty$ImplPropMap) <font color="#cc0033">qNameOld</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:JdkProperty$ImplPropMap) <font color="#cc0033">systemProperty</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:JdkProperty$ImplPropMap) <font color="#cc0033">systemPropertyOld</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-JdkProperty$State"></a>
+<b>PROCEDURE </b>(self:JdkProperty$State) <font color="#cc0033">literal</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-JdkXmlFeatures"></a>
+<b>PROCEDURE </b>(self:JdkXmlFeatures) <font color="#cc0033">findByName</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="jdk_xml_internal.html#type-JdkXmlFeatures$XmlFeature">jdk_xml_internal.JdkXmlFeatures$XmlFeature</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:JdkXmlFeatures) <font color="#cc0033">getFeature</font>*(p0 : <a href="jdk_xml_internal.html#type-JdkXmlFeatures$XmlFeature">jdk_xml_internal.JdkXmlFeatures$XmlFeature</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:JdkXmlFeatures) <font color="#cc0033">getFeature</font>*(p0 : INTEGER) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:JdkXmlFeatures) <font color="#cc0033">getIndex</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:JdkXmlFeatures) <font color="#cc0033">setFeature</font>*(p0 : INTEGER;
+                                            p1 : <a href="jdk_xml_internal.html#type-JdkProperty$State">jdk_xml_internal.JdkProperty$State</a>;
+                                            p2 : BOOLEAN)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:JdkXmlFeatures) <font color="#cc0033">setFeature</font>*(p0 : INTEGER;
+                                            p1 : <a href="jdk_xml_internal.html#type-JdkProperty$State">jdk_xml_internal.JdkProperty$State</a>;
+                                            p2 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:JdkXmlFeatures) <font color="#cc0033">setFeature</font>*(p0 : <a href="jdk_xml_internal.html#type-JdkXmlFeatures$XmlFeature">jdk_xml_internal.JdkXmlFeatures$XmlFeature</a>;
+                                            p1 : <a href="jdk_xml_internal.html#type-JdkProperty$State">jdk_xml_internal.JdkProperty$State</a>;
+                                            p2 : BOOLEAN)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:JdkXmlFeatures) <font color="#cc0033">setFeature</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                            p1 : <a href="jdk_xml_internal.html#type-JdkProperty$State">jdk_xml_internal.JdkProperty$State</a>;
+                                            p2 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:JdkXmlFeatures) <font color="#cc0033">update</font>*()<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-JdkXmlFeatures$XmlFeature"></a>
+<b>PROCEDURE </b>(self:JdkXmlFeatures$XmlFeature) <font color="#cc0033">apiProperty</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:JdkXmlFeatures$XmlFeature) <font color="#cc0033">defaultValue</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:JdkXmlFeatures$XmlFeature) <font color="#cc0033">enforcedValue</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:JdkXmlFeatures$XmlFeature) <font color="#cc0033">getState</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-JdkProperty$State">JdkProperty$State</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-TransformErrorListener"></a>
+<b>PROCEDURE </b>(self:TransformErrorListener) <font color="#cc0033">error</font>*(p0 : <a href="javax_xml_transform.html#type-TransformerException">javax_xml_transform.TransformerException</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TransformErrorListener) <font color="#cc0033">fatalError</font>*(p0 : <a href="javax_xml_transform.html#type-TransformerException">javax_xml_transform.TransformerException</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TransformErrorListener) <font color="#cc0033">warning</font>*(p0 : <a href="javax_xml_transform.html#type-TransformerException">javax_xml_transform.TransformerException</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>END </b><font color="#cc0033">jdk_xml_internal</font>.
+</font></pre></hr>
+<!-- BEGIN JavaScript -->
+<script>
+function toggle(node) {
+    node.classList.toggle("show"); 
+  }
+
+function cls(node) {
+    var prnt = node.parentNode;
+    var next = prnt.previousSibling;
+    var text = next.lastChild;
+    text.innerHTML = 
+        "The <b>class</b> property asserts that this type will be<br>" +
+        "implemented as a reference class in the underlying framework.";
+    text.classList.toggle("show");
+  }
+
+function newOk(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>has noArg-ctor</b> property asserts that this reference<br>" +
+        "class has a no-arg constructor, and thus objects of this<br>" +
+        "type can be allocated with NEW(). Component Pascal types<br>" +
+        "derived from this type can also be allocated using NEW().";
+    popuptext.classList.toggle("show"); 
+  }
+
+function noNew(node) { 
+    var prnt = node.parentNode; 
+    var next = prnt.previousSibling; 
+    var text = next.lastChild; 
+    text.innerHTML =  
+        "The <b>no noArg-ctor</b> property asserts that this reference<br>" +
+        "class does not have a noArg constructor. Objects of this<br>" +
+        "type cannot be allocated using NEW(), and Component<br>" +
+        "Pascal types  derived from this type also cannot be<br>" +
+        "allocated using NEW().";
+    text.classList.toggle("show");
+  }
+
+function noCpy(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>no value-assign</b> property asserts that this reference<br>" + 
+        "class does not have a value copy method. Therefore, it<br>" +
+        "is not possible to perform value assignments using<br>" +
+        "statements like <i>dst^</i> := <i>src^</i>";
+    popuptext.classList.toggle("show");
+  }
+
+function valueclass(node) { 
+        var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>valueclass</b> property asserts that this RECORD type is<br>" + 
+        "implemented as a value class in the CLR. It follows that<br>" +  
+        "value assignments can be made of these types. They can<br>" + 
+        "also be passed by value. Even pointers to records of<br>" + 
+        "such types may be dereferenced and copied using syntax<br>" + 
+        "such as  <i>dst^</i> := <i>src^</i>"; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+function argCtor(node) { 
+    var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>has arg-ctor</b> property asserts that this reference<br>" +  
+        "class has one or more constructors that take arguments.<br>" + 
+        "These constructors can be called from Component Pascal<br>" + 
+        "by calling an <i>init</i>(...) method from the static list<br>" + 
+        "here. Component Pascal types derived from this type<br>" + 
+        "can define constructors with arguments which call the<br>" + 
+        "super-type constructor.<br>" + 
+        "See <i>'Interfacing to constructors'</i> in the Release Notes."; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+</script>
+<!-- END JavaScript --> 
+
+</body></html>

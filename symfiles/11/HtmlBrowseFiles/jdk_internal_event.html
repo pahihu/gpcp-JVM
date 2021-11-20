@@ -1,0 +1,222 @@
+<html><head><title>jdk_internal_event</title>
+<style>
+<!-- BEGIN Inline CSS -->
+/* Popup container */
+.popup {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+/* The actual popup (appears on top) */
+.popup .popuptext {
+    visibility: hidden;
+    width: 430px;
+    background-color: white;
+    color: black;
+    text-align: left;
+    border-radius: 6px;
+    border-style: solid;
+    border-color: black;
+    padding: 8px 8px 8px 8px;
+    position: absolute;
+    z-index: 1;
+    margin-top: 30px;
+}
+
+/* Toggle this class when clicking on the popup container (hide and show the popup) */
+.popup .show {
+    visibility: visible;
+    opacity: 1;
+}
+
+</style>
+<!-- END Inline CSS -->
+</head><body bgcolor="white">
+<hr><pre>
+<font color="green">(*</font>
+<font color="green"> *  Creator PeToCps j2cps version 1.4.07 (March 2018)</font>
+<font color="green"> *  Compiled from jar-file /Library/Java/JavaVirtualMachines/zulu-11.jdk/Contents/Home/jmods/java.base.jmod</font>
+<font color="green"> *)</font>
+<b>FOREIGN MODULE </b><font color="#cc0033">jdk_internal_event</font>;
+
+<b>IMPORT</b>
+    <a href="java_lang.html">java_lang</a> := "java.lang",
+    <a href="java_time.html">java_time</a> := "java.time",
+    <a href="jdk_internal_event.html">jdk_internal_event</a> := "jdk.internal.event";
+
+<b>TYPE</b>
+
+  <a name="type-Event"></a><font color="#cc0033">Event</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+           <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+           <font color="green"><b> (* </b><a href="#meths-Event">Typebound Procedures</a><b> *)</b></font>
+           <b>STATIC</b>
+             <b>PROCEDURE </b><font color="#cc0033">Init</font>!() : <a href="#type-Event">Event</a><b>,CONSTRUCTOR</b>;
+           <b>END</b>;
+
+  <a name="type-EventHelper"></a><font color="#cc0033">EventHelper</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                 <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                 <b>STATIC</b>
+                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-EventHelper">EventHelper</a><b>,CONSTRUCTOR</b>;
+                   <b>PROCEDURE </b><font color="#cc0033">isLoggingSecurity</font>*() : BOOLEAN;
+                   <b>PROCEDURE </b><font color="#cc0033">logSecurityPropertyEvent</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                       p1 : <a href="java_lang.html#type-String">java_lang.String</a>);
+                   <b>PROCEDURE </b><font color="#cc0033">logTLSHandshakeEvent</font>*(p0 : <a href="java_time.html#type-Instant">java_time.Instant</a>;
+                                                   p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                   p2 : INTEGER;
+                                                   p3 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                   p4 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                   p5 : LONGINT);
+                   <b>PROCEDURE </b><font color="#cc0033">logX509CertificateEvent</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                      p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                      p2 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                      p3 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                      p4 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                      p5 : INTEGER;
+                                                      p6 : LONGINT;
+                                                      p7 : LONGINT;
+                                                      p8 : LONGINT);
+                   <b>PROCEDURE </b><font color="#cc0033">logX509ValidationEvent</font>*(    p0 : INTEGER;
+                                                     IN  p1 : <b>ARRAY </b><b>OF </b>INTEGER);
+                 <b>END</b>;
+
+  <a name="type-SecurityPropertyModificationEvent"></a><font color="#cc0033">SecurityPropertyModificationEvent</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="jdk_internal_event.html#type-Event">jdk_internal_event.Event</a>)
+                                       <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                                         <font color="#cc0033">key</font>*   : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                         <font color="#cc0033">value</font>* : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                       <b>STATIC</b>
+                                         <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-SecurityPropertyModificationEvent">SecurityPropertyModificationEvent</a><b>,CONSTRUCTOR</b>;
+                                       <b>END</b>;
+
+  <a name="type-TLSHandshakeEvent"></a><font color="#cc0033">TLSHandshakeEvent</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-Event">Event</a>)
+                       <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                         <font color="#cc0033">peerHost</font>*        : <a href="java_lang.html#type-String">java_lang.String</a>;
+                         <font color="#cc0033">peerPort</font>*        : INTEGER;
+                         <font color="#cc0033">protocolVersion</font>* : <a href="java_lang.html#type-String">java_lang.String</a>;
+                         <font color="#cc0033">cipherSuite</font>*     : <a href="java_lang.html#type-String">java_lang.String</a>;
+                         <font color="#cc0033">certificateId</font>*   : LONGINT;
+                       <b>STATIC</b>
+                         <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-TLSHandshakeEvent">TLSHandshakeEvent</a><b>,CONSTRUCTOR</b>;
+                       <b>END</b>;
+
+  <a name="type-X509CertificateEvent"></a><font color="#cc0033">X509CertificateEvent</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-Event">Event</a>)
+                          <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                            <font color="#cc0033">algorithm</font>*     : <a href="java_lang.html#type-String">java_lang.String</a>;
+                            <font color="#cc0033">serialNumber</font>*  : <a href="java_lang.html#type-String">java_lang.String</a>;
+                            <font color="#cc0033">subject</font>*       : <a href="java_lang.html#type-String">java_lang.String</a>;
+                            <font color="#cc0033">issuer</font>*        : <a href="java_lang.html#type-String">java_lang.String</a>;
+                            <font color="#cc0033">keyType</font>*       : <a href="java_lang.html#type-String">java_lang.String</a>;
+                            <font color="#cc0033">keyLength</font>*     : INTEGER;
+                            <font color="#cc0033">certificateId</font>* : LONGINT;
+                            <font color="#cc0033">validFrom</font>*     : LONGINT;
+                            <font color="#cc0033">validUntil</font>*    : LONGINT;
+                          <b>STATIC</b>
+                            <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-X509CertificateEvent">X509CertificateEvent</a><b>,CONSTRUCTOR</b>;
+                          <b>END</b>;
+
+  <a name="type-X509ValidationEvent"></a><font color="#cc0033">X509ValidationEvent</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-Event">Event</a>)
+                         <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                           <font color="#cc0033">certificateId</font>*       : LONGINT;
+                           <font color="#cc0033">certificatePosition</font>* : INTEGER;
+                           <font color="#cc0033">validationCounter</font>*   : LONGINT;
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-X509ValidationEvent">X509ValidationEvent</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+
+
+<a name="meths-Event"></a>
+<b>PROCEDURE </b>(self:Event) <font color="#cc0033">begin</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Event) <font color="#cc0033">commit</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Event) <font color="#cc0033">end</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Event) <font color="#cc0033">isEnabled</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Event) <font color="#cc0033">set</font>*(p0 : INTEGER;
+                            p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Event) <font color="#cc0033">shouldCommit</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>END </b><font color="#cc0033">jdk_internal_event</font>.
+</font></pre></hr>
+<!-- BEGIN JavaScript -->
+<script>
+function toggle(node) {
+    node.classList.toggle("show"); 
+  }
+
+function cls(node) {
+    var prnt = node.parentNode;
+    var next = prnt.previousSibling;
+    var text = next.lastChild;
+    text.innerHTML = 
+        "The <b>class</b> property asserts that this type will be<br>" +
+        "implemented as a reference class in the underlying framework.";
+    text.classList.toggle("show");
+  }
+
+function newOk(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>has noArg-ctor</b> property asserts that this reference<br>" +
+        "class has a no-arg constructor, and thus objects of this<br>" +
+        "type can be allocated with NEW(). Component Pascal types<br>" +
+        "derived from this type can also be allocated using NEW().";
+    popuptext.classList.toggle("show"); 
+  }
+
+function noNew(node) { 
+    var prnt = node.parentNode; 
+    var next = prnt.previousSibling; 
+    var text = next.lastChild; 
+    text.innerHTML =  
+        "The <b>no noArg-ctor</b> property asserts that this reference<br>" +
+        "class does not have a noArg constructor. Objects of this<br>" +
+        "type cannot be allocated using NEW(), and Component<br>" +
+        "Pascal types  derived from this type also cannot be<br>" +
+        "allocated using NEW().";
+    text.classList.toggle("show");
+  }
+
+function noCpy(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>no value-assign</b> property asserts that this reference<br>" + 
+        "class does not have a value copy method. Therefore, it<br>" +
+        "is not possible to perform value assignments using<br>" +
+        "statements like <i>dst^</i> := <i>src^</i>";
+    popuptext.classList.toggle("show");
+  }
+
+function valueclass(node) { 
+        var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>valueclass</b> property asserts that this RECORD type is<br>" + 
+        "implemented as a value class in the CLR. It follows that<br>" +  
+        "value assignments can be made of these types. They can<br>" + 
+        "also be passed by value. Even pointers to records of<br>" + 
+        "such types may be dereferenced and copied using syntax<br>" + 
+        "such as  <i>dst^</i> := <i>src^</i>"; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+function argCtor(node) { 
+    var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>has arg-ctor</b> property asserts that this reference<br>" +  
+        "class has one or more constructors that take arguments.<br>" + 
+        "These constructors can be called from Component Pascal<br>" + 
+        "by calling an <i>init</i>(...) method from the static list<br>" + 
+        "here. Component Pascal types derived from this type<br>" + 
+        "can define constructors with arguments which call the<br>" + 
+        "super-type constructor.<br>" + 
+        "See <i>'Interfacing to constructors'</i> in the Release Notes."; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+</script>
+<!-- END JavaScript --> 
+
+</body></html>

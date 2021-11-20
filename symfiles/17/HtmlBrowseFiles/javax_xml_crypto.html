@@ -1,0 +1,339 @@
+<html><head><title>javax_xml_crypto</title>
+<style>
+<!-- BEGIN Inline CSS -->
+/* Popup container */
+.popup {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+/* The actual popup (appears on top) */
+.popup .popuptext {
+    visibility: hidden;
+    width: 430px;
+    background-color: white;
+    color: black;
+    text-align: left;
+    border-radius: 6px;
+    border-style: solid;
+    border-color: black;
+    padding: 8px 8px 8px 8px;
+    position: absolute;
+    z-index: 1;
+    margin-top: 30px;
+}
+
+/* Toggle this class when clicking on the popup container (hide and show the popup) */
+.popup .show {
+    visibility: visible;
+    opacity: 1;
+}
+
+</style>
+<!-- END Inline CSS -->
+</head><body bgcolor="white">
+<hr><pre>
+<font color="green">(*</font>
+<font color="green"> *  Creator PeToCps j2cps version 1.4.07 (March 2018)</font>
+<font color="green"> *  Compiled from jar-file /Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home/jmods/java.xml.crypto.jmod</font>
+<font color="green"> *)</font>
+<b>FOREIGN MODULE </b><font color="#cc0033">javax_xml_crypto</font>;
+
+<b>IMPORT</b>
+    <a href="javax_xml_crypto.html">javax_xml_crypto</a> := "javax.xml.crypto",
+    <a href="javax_xml_crypto_dsig_keyinfo.html">javax_xml_crypto_dsig_keyinfo</a> := "javax.xml.crypto.dsig.keyinfo",
+    <a href="java_io.html">java_io</a> := "java.io",
+    <a href="java_lang.html">java_lang</a> := "java.lang",
+    <a href="java_security.html">java_security</a> := "java.security",
+    <a href="java_security_spec.html">java_security_spec</a> := "java.security.spec",
+    <a href="java_util.html">java_util</a> := "java.util";
+
+<b>TYPE</b>
+
+  <a name="type-AlgorithmMethod"></a><font color="#cc0033">AlgorithmMethod</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                     <font color="green"><b> (* </b><a href="#meths-AlgorithmMethod">Typebound Procedures</a><b> *)</b></font>
+                     <b>END</b>;
+
+  <a name="type-Data"></a><font color="#cc0033">Data</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+          <b>END</b>;
+
+  <a name="type-KeySelector"></a><font color="#cc0033">KeySelector</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                 <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                 <font color="green"><b> (* </b><a href="#meths-KeySelector">Typebound Procedures</a><b> *)</b></font>
+                 <b>STATIC</b>
+                   <b>PROCEDURE </b><font color="#cc0033">Init</font>!() : <a href="#type-KeySelector">KeySelector</a><b>,CONSTRUCTOR</b>;
+                   <b>PROCEDURE </b><font color="#cc0033">singletonKeySelector</font>*(p0 : <a href="java_security.html#type-Key">java_security.Key</a>) : <a href="#type-KeySelector">KeySelector</a>;
+                 <b>END</b>;
+
+  <a name="type-KeySelector$Purpose"></a><font color="#cc0033">KeySelector$Purpose</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                         <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> *)</font>
+                         <font color="green"><b> (* </b><a href="#meths-KeySelector$Purpose">Typebound Procedures</a><b> *)</b></font>
+                         <b>STATIC</b>
+                           <a name="type-DECRYPT"></a><font color="#cc0033">DECRYPT</font>* : <a href="#type-KeySelector$Purpose">KeySelector$Purpose</a>;
+                           <a name="type-ENCRYPT"></a><font color="#cc0033">ENCRYPT</font>* : <a href="#type-KeySelector$Purpose">KeySelector$Purpose</a>;
+                           <a name="type-SIGN"></a><font color="#cc0033">SIGN</font>*    : <a href="#type-KeySelector$Purpose">KeySelector$Purpose</a>;
+                           <a name="type-VERIFY"></a><font color="#cc0033">VERIFY</font>*  : <a href="#type-KeySelector$Purpose">KeySelector$Purpose</a>;
+                         <b>END</b>;
+
+  <a name="type-KeySelectorException"></a><font color="#cc0033">KeySelectorException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Exception">java_lang.Exception</a>)
+                          <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                          <font color="green"><b> (* </b><a href="#meths-KeySelectorException">Typebound Procedures</a><b> *)</b></font>
+                          <b>STATIC</b>
+                            <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                            p1 : <a href="java_lang.html#type-Throwable">java_lang.Throwable</a>) : <a href="#type-KeySelectorException">KeySelectorException</a><b>,CONSTRUCTOR</b>;
+                            <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-Throwable">java_lang.Throwable</a>) : <a href="#type-KeySelectorException">KeySelectorException</a><b>,CONSTRUCTOR</b>;
+                            <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-KeySelectorException">KeySelectorException</a><b>,CONSTRUCTOR</b>;
+                            <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-KeySelectorException">KeySelectorException</a><b>,CONSTRUCTOR</b>;
+                          <b>END</b>;
+
+  <a name="type-KeySelectorResult"></a><font color="#cc0033">KeySelectorResult</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                       <font color="green"><b> (* </b><a href="#meths-KeySelectorResult">Typebound Procedures</a><b> *)</b></font>
+                       <b>END</b>;
+
+  <a name="type-MarshalException"></a><font color="#cc0033">MarshalException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Exception">java_lang.Exception</a>)
+                      <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                      <font color="green"><b> (* </b><a href="#meths-MarshalException">Typebound Procedures</a><b> *)</b></font>
+                      <b>STATIC</b>
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                        p1 : <a href="java_lang.html#type-Throwable">java_lang.Throwable</a>) : <a href="#type-MarshalException">MarshalException</a><b>,CONSTRUCTOR</b>;
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-Throwable">java_lang.Throwable</a>) : <a href="#type-MarshalException">MarshalException</a><b>,CONSTRUCTOR</b>;
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-MarshalException">MarshalException</a><b>,CONSTRUCTOR</b>;
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-MarshalException">MarshalException</a><b>,CONSTRUCTOR</b>;
+                      <b>END</b>;
+
+  <a name="type-NodeSetData"></a><font color="#cc0033">NodeSetData</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="javax_xml_crypto.html#type-Data">javax_xml_crypto.Data</a> + <a href="java_lang.html#type-Iterable">java_lang.Iterable</a>)
+                 <font color="green"><b> (* </b><a href="#meths-NodeSetData">Typebound Procedures</a><b> *)</b></font>
+                 <b>END</b>;
+
+  <a name="type-NoSuchMechanismException"></a><font color="#cc0033">NoSuchMechanismException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-RuntimeException">java_lang.RuntimeException</a>)
+                              <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                              <font color="green"><b> (* </b><a href="#meths-NoSuchMechanismException">Typebound Procedures</a><b> *)</b></font>
+                              <b>STATIC</b>
+                                <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                p1 : <a href="java_lang.html#type-Throwable">java_lang.Throwable</a>) : <a href="#type-NoSuchMechanismException">NoSuchMechanismException</a><b>,CONSTRUCTOR</b>;
+                                <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-Throwable">java_lang.Throwable</a>) : <a href="#type-NoSuchMechanismException">NoSuchMechanismException</a><b>,CONSTRUCTOR</b>;
+                                <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-NoSuchMechanismException">NoSuchMechanismException</a><b>,CONSTRUCTOR</b>;
+                                <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-NoSuchMechanismException">NoSuchMechanismException</a><b>,CONSTRUCTOR</b>;
+                              <b>END</b>;
+
+  <a name="type-OctetStreamData"></a><font color="#cc0033">OctetStreamData</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-Data">Data</a>)
+                     <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                     <font color="green"><b> (* </b><a href="#meths-OctetStreamData">Typebound Procedures</a><b> *)</b></font>
+                     <b>STATIC</b>
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_io.html#type-InputStream">java_io.InputStream</a>;
+                                       p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                       p2 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-OctetStreamData">OctetStreamData</a><b>,CONSTRUCTOR</b>;
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_io.html#type-InputStream">java_io.InputStream</a>) : <a href="#type-OctetStreamData">OctetStreamData</a><b>,CONSTRUCTOR</b>;
+                     <b>END</b>;
+
+  <a name="type-URIDereferencer"></a><font color="#cc0033">URIDereferencer</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                     <font color="green"><b> (* </b><a href="#meths-URIDereferencer">Typebound Procedures</a><b> *)</b></font>
+                     <b>END</b>;
+
+  <a name="type-URIReference"></a><font color="#cc0033">URIReference</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                  <font color="green"><b> (* </b><a href="#meths-URIReference">Typebound Procedures</a><b> *)</b></font>
+                  <b>END</b>;
+
+  <a name="type-URIReferenceException"></a><font color="#cc0033">URIReferenceException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Exception">java_lang.Exception</a>)
+                           <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                           <font color="green"><b> (* </b><a href="#meths-URIReferenceException">Typebound Procedures</a><b> *)</b></font>
+                           <b>STATIC</b>
+                             <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                             p1 : <a href="java_lang.html#type-Throwable">java_lang.Throwable</a>;
+                                             p2 : <a href="#type-URIReference">URIReference</a>) : <a href="#type-URIReferenceException">URIReferenceException</a><b>,CONSTRUCTOR</b>;
+                             <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-Throwable">java_lang.Throwable</a>) : <a href="#type-URIReferenceException">URIReferenceException</a><b>,CONSTRUCTOR</b>;
+                             <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                             p1 : <a href="java_lang.html#type-Throwable">java_lang.Throwable</a>) : <a href="#type-URIReferenceException">URIReferenceException</a><b>,CONSTRUCTOR</b>;
+                             <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-URIReferenceException">URIReferenceException</a><b>,CONSTRUCTOR</b>;
+                             <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-URIReferenceException">URIReferenceException</a><b>,CONSTRUCTOR</b>;
+                           <b>END</b>;
+
+  <a name="type-XMLCryptoContext"></a><font color="#cc0033">XMLCryptoContext</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                      <font color="green"><b> (* </b><a href="#meths-XMLCryptoContext">Typebound Procedures</a><b> *)</b></font>
+                      <b>END</b>;
+
+  <a name="type-XMLStructure"></a><font color="#cc0033">XMLStructure</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                  <font color="green"><b> (* </b><a href="#meths-XMLStructure">Typebound Procedures</a><b> *)</b></font>
+                  <b>END</b>;
+
+
+
+<a name="meths-AlgorithmMethod"></a>
+<b>PROCEDURE </b>(self:AlgorithmMethod) <font color="#cc0033">getAlgorithm</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AlgorithmMethod) <font color="#cc0033">getParameterSpec</font>*() : <a href="java_security_spec.html#type-AlgorithmParameterSpec">java_security_spec.AlgorithmParameterSpec</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-KeySelector"></a>
+<b>PROCEDURE </b>(self:KeySelector) <font color="#cc0033">select</font>*(p0 : <a href="javax_xml_crypto_dsig_keyinfo.html#type-KeyInfo">javax_xml_crypto_dsig_keyinfo.KeyInfo</a>;
+                                     p1 : <a href="javax_xml_crypto.html#type-KeySelector$Purpose">javax_xml_crypto.KeySelector$Purpose</a>;
+                                     p2 : <a href="#type-AlgorithmMethod">AlgorithmMethod</a>;
+                                     p3 : <a href="#type-XMLCryptoContext">XMLCryptoContext</a>) : <a href="#type-KeySelectorResult">KeySelectorResult</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-KeySelector$Purpose"></a>
+<b>PROCEDURE </b>(self:KeySelector$Purpose) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-KeySelectorException"></a>
+<b>PROCEDURE </b>(self:KeySelectorException) <font color="#cc0033">getCause</font>*() : <a href="java_lang.html#type-Throwable">java_lang.Throwable</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:KeySelectorException) <font color="#cc0033">printStackTrace</font>*(p0 : <a href="java_io.html#type-PrintWriter">java_io.PrintWriter</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:KeySelectorException) <font color="#cc0033">printStackTrace</font>*(p0 : <a href="java_io.html#type-PrintStream">java_io.PrintStream</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:KeySelectorException) <font color="#cc0033">printStackTrace</font>*()<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-KeySelectorResult"></a>
+<b>PROCEDURE </b>(self:KeySelectorResult) <font color="#cc0033">getKey</font>*() : <a href="java_security.html#type-Key">java_security.Key</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-MarshalException"></a>
+<b>PROCEDURE </b>(self:MarshalException) <font color="#cc0033">getCause</font>*() : <a href="java_lang.html#type-Throwable">java_lang.Throwable</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MarshalException) <font color="#cc0033">printStackTrace</font>*(p0 : <a href="java_io.html#type-PrintWriter">java_io.PrintWriter</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MarshalException) <font color="#cc0033">printStackTrace</font>*(p0 : <a href="java_io.html#type-PrintStream">java_io.PrintStream</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MarshalException) <font color="#cc0033">printStackTrace</font>*()<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-NodeSetData"></a>
+<b>PROCEDURE </b>(self:NodeSetData) <font color="#cc0033">iterator</font>*() : <a href="java_util.html#type-Iterator">java_util.Iterator</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-NoSuchMechanismException"></a>
+<b>PROCEDURE </b>(self:NoSuchMechanismException) <font color="#cc0033">getCause</font>*() : <a href="java_lang.html#type-Throwable">java_lang.Throwable</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:NoSuchMechanismException) <font color="#cc0033">printStackTrace</font>*(p0 : <a href="java_io.html#type-PrintWriter">java_io.PrintWriter</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:NoSuchMechanismException) <font color="#cc0033">printStackTrace</font>*(p0 : <a href="java_io.html#type-PrintStream">java_io.PrintStream</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:NoSuchMechanismException) <font color="#cc0033">printStackTrace</font>*()<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-OctetStreamData"></a>
+<b>PROCEDURE </b>(self:OctetStreamData) <font color="#cc0033">getMimeType</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:OctetStreamData) <font color="#cc0033">getOctetStream</font>*() : <a href="java_io.html#type-InputStream">java_io.InputStream</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:OctetStreamData) <font color="#cc0033">getURI</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-URIDereferencer"></a>
+<b>PROCEDURE </b>(self:URIDereferencer) <font color="#cc0033">dereference</font>*(p0 : <a href="#type-URIReference">URIReference</a>;
+                                              p1 : <a href="#type-XMLCryptoContext">XMLCryptoContext</a>) : <a href="#type-Data">Data</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-URIReference"></a>
+<b>PROCEDURE </b>(self:URIReference) <font color="#cc0033">getType</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:URIReference) <font color="#cc0033">getURI</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-URIReferenceException"></a>
+<b>PROCEDURE </b>(self:URIReferenceException) <font color="#cc0033">getCause</font>*() : <a href="java_lang.html#type-Throwable">java_lang.Throwable</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:URIReferenceException) <font color="#cc0033">getURIReference</font>*() : <a href="#type-URIReference">URIReference</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:URIReferenceException) <font color="#cc0033">printStackTrace</font>*(p0 : <a href="java_io.html#type-PrintWriter">java_io.PrintWriter</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:URIReferenceException) <font color="#cc0033">printStackTrace</font>*(p0 : <a href="java_io.html#type-PrintStream">java_io.PrintStream</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:URIReferenceException) <font color="#cc0033">printStackTrace</font>*()<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-XMLCryptoContext"></a>
+<b>PROCEDURE </b>(self:XMLCryptoContext) <font color="#cc0033">get</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLCryptoContext) <font color="#cc0033">getBaseURI</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLCryptoContext) <font color="#cc0033">getDefaultNamespacePrefix</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLCryptoContext) <font color="#cc0033">getKeySelector</font>*() : <a href="javax_xml_crypto.html#type-KeySelector">javax_xml_crypto.KeySelector</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLCryptoContext) <font color="#cc0033">getNamespacePrefix</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                      p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLCryptoContext) <font color="#cc0033">getProperty</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLCryptoContext) <font color="#cc0033">getURIDereferencer</font>*() : <a href="javax_xml_crypto.html#type-URIDereferencer">javax_xml_crypto.URIDereferencer</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLCryptoContext) <font color="#cc0033">put</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                       p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLCryptoContext) <font color="#cc0033">putNamespacePrefix</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                      p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLCryptoContext) <font color="#cc0033">setBaseURI</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLCryptoContext) <font color="#cc0033">setDefaultNamespacePrefix</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLCryptoContext) <font color="#cc0033">setKeySelector</font>*(p0 : <a href="javax_xml_crypto.html#type-KeySelector">javax_xml_crypto.KeySelector</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLCryptoContext) <font color="#cc0033">setProperty</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                               p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLCryptoContext) <font color="#cc0033">setURIDereferencer</font>*(p0 : <a href="javax_xml_crypto.html#type-URIDereferencer">javax_xml_crypto.URIDereferencer</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-XMLStructure"></a>
+<b>PROCEDURE </b>(self:XMLStructure) <font color="#cc0033">isFeatureSupported</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>END </b><font color="#cc0033">javax_xml_crypto</font>.
+</font></pre></hr>
+<!-- BEGIN JavaScript -->
+<script>
+function toggle(node) {
+    node.classList.toggle("show"); 
+  }
+
+function cls(node) {
+    var prnt = node.parentNode;
+    var next = prnt.previousSibling;
+    var text = next.lastChild;
+    text.innerHTML = 
+        "The <b>class</b> property asserts that this type will be<br>" +
+        "implemented as a reference class in the underlying framework.";
+    text.classList.toggle("show");
+  }
+
+function newOk(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>has noArg-ctor</b> property asserts that this reference<br>" +
+        "class has a no-arg constructor, and thus objects of this<br>" +
+        "type can be allocated with NEW(). Component Pascal types<br>" +
+        "derived from this type can also be allocated using NEW().";
+    popuptext.classList.toggle("show"); 
+  }
+
+function noNew(node) { 
+    var prnt = node.parentNode; 
+    var next = prnt.previousSibling; 
+    var text = next.lastChild; 
+    text.innerHTML =  
+        "The <b>no noArg-ctor</b> property asserts that this reference<br>" +
+        "class does not have a noArg constructor. Objects of this<br>" +
+        "type cannot be allocated using NEW(), and Component<br>" +
+        "Pascal types  derived from this type also cannot be<br>" +
+        "allocated using NEW().";
+    text.classList.toggle("show");
+  }
+
+function noCpy(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>no value-assign</b> property asserts that this reference<br>" + 
+        "class does not have a value copy method. Therefore, it<br>" +
+        "is not possible to perform value assignments using<br>" +
+        "statements like <i>dst^</i> := <i>src^</i>";
+    popuptext.classList.toggle("show");
+  }
+
+function valueclass(node) { 
+        var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>valueclass</b> property asserts that this RECORD type is<br>" + 
+        "implemented as a value class in the CLR. It follows that<br>" +  
+        "value assignments can be made of these types. They can<br>" + 
+        "also be passed by value. Even pointers to records of<br>" + 
+        "such types may be dereferenced and copied using syntax<br>" + 
+        "such as  <i>dst^</i> := <i>src^</i>"; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+function argCtor(node) { 
+    var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>has arg-ctor</b> property asserts that this reference<br>" +  
+        "class has one or more constructors that take arguments.<br>" + 
+        "These constructors can be called from Component Pascal<br>" + 
+        "by calling an <i>init</i>(...) method from the static list<br>" + 
+        "here. Component Pascal types derived from this type<br>" + 
+        "can define constructors with arguments which call the<br>" + 
+        "super-type constructor.<br>" + 
+        "See <i>'Interfacing to constructors'</i> in the Release Notes."; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+</script>
+<!-- END JavaScript --> 
+
+</body></html>

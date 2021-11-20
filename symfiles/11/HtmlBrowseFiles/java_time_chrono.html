@@ -1,0 +1,1472 @@
+<html><head><title>java_time_chrono</title>
+<style>
+<!-- BEGIN Inline CSS -->
+/* Popup container */
+.popup {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+/* The actual popup (appears on top) */
+.popup .popuptext {
+    visibility: hidden;
+    width: 430px;
+    background-color: white;
+    color: black;
+    text-align: left;
+    border-radius: 6px;
+    border-style: solid;
+    border-color: black;
+    padding: 8px 8px 8px 8px;
+    position: absolute;
+    z-index: 1;
+    margin-top: 30px;
+}
+
+/* Toggle this class when clicking on the popup container (hide and show the popup) */
+.popup .show {
+    visibility: visible;
+    opacity: 1;
+}
+
+</style>
+<!-- END Inline CSS -->
+</head><body bgcolor="white">
+<hr><pre>
+<font color="green">(*</font>
+<font color="green"> *  Creator PeToCps j2cps version 1.4.07 (March 2018)</font>
+<font color="green"> *  Compiled from jar-file /Library/Java/JavaVirtualMachines/zulu-11.jdk/Contents/Home/jmods/java.base.jmod</font>
+<font color="green"> *)</font>
+<b>FOREIGN MODULE </b><font color="#cc0033">java_time_chrono</font>;
+
+<b>IMPORT</b>
+    <a href="java_io.html">java_io</a> := "java.io",
+    <a href="java_lang.html">java_lang</a> := "java.lang",
+    <a href="java_time.html">java_time</a> := "java.time",
+    <a href="java_time.html">java_time</a> := "java.time",
+    <a href="java_time_chrono.html">java_time_chrono</a> := "java.time.chrono",
+    <a href="java_time_format.html">java_time_format</a> := "java.time.format",
+    <a href="java_time_temporal.html">java_time_temporal</a> := "java.time.temporal",
+    <a href="java_util.html">java_util</a> := "java.util";
+
+<b>TYPE</b>
+
+  <a name="type-AbstractChronology"></a><font color="#cc0033">AbstractChronology</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_time_chrono.html#type-Chronology">java_time_chrono.Chronology</a>)
+                        <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                        <font color="green"><b> (* </b><a href="#meths-AbstractChronology">Typebound Procedures</a><b> *)</b></font>
+                        <b>STATIC</b>
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>!() : <a href="#type-AbstractChronology">AbstractChronology</a><b>,CONSTRUCTOR</b>;
+                        <b>END</b>;
+
+  <a name="type-ChronoLocalDate"></a><font color="#cc0033">ChronoLocalDate</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_time_temporal.html#type-Temporal">java_time_temporal.Temporal</a> + <a href="java_time_temporal.html#type-TemporalAdjuster">java_time_temporal.TemporalAdjuster</a> + <a href="java_lang.html#type-Comparable">java_lang.Comparable</a>)
+                     <font color="green"><b> (* </b><a href="#meths-ChronoLocalDate">Typebound Procedures</a><b> *)</b></font>
+                     <b>STATIC</b>
+                       <b>PROCEDURE </b><font color="#cc0033">from</font>*(p0 : <a href="java_time_temporal.html#type-TemporalAccessor">java_time_temporal.TemporalAccessor</a>) : <a href="#type-ChronoLocalDate">ChronoLocalDate</a>;
+                       <b>PROCEDURE </b><font color="#cc0033">timeLineOrder</font>*() : <a href="java_util.html#type-Comparator">java_util.Comparator</a>;
+                     <b>END</b>;
+
+  <a name="type-ChronoLocalDateTime"></a><font color="#cc0033">ChronoLocalDateTime</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_time_temporal.html#type-Temporal">java_time_temporal.Temporal</a> + <a href="java_time_temporal.html#type-TemporalAdjuster">java_time_temporal.TemporalAdjuster</a> + <a href="java_lang.html#type-Comparable">java_lang.Comparable</a>)
+                         <font color="green"><b> (* </b><a href="#meths-ChronoLocalDateTime">Typebound Procedures</a><b> *)</b></font>
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">from</font>*(p0 : <a href="java_time_temporal.html#type-TemporalAccessor">java_time_temporal.TemporalAccessor</a>) : <a href="#type-ChronoLocalDateTime">ChronoLocalDateTime</a>;
+                           <b>PROCEDURE </b><font color="#cc0033">timeLineOrder</font>*() : <a href="java_util.html#type-Comparator">java_util.Comparator</a>;
+                         <b>END</b>;
+
+  <a name="type-Chronology"></a><font color="#cc0033">Chronology</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_lang.html#type-Comparable">java_lang.Comparable</a>)
+                <font color="green"><b> (* </b><a href="#meths-Chronology">Typebound Procedures</a><b> *)</b></font>
+                <b>STATIC</b>
+                  <b>PROCEDURE </b><font color="#cc0033">from</font>*(p0 : <a href="java_time_temporal.html#type-TemporalAccessor">java_time_temporal.TemporalAccessor</a>) : <a href="#type-Chronology">Chronology</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">getAvailableChronologies</font>*() : <a href="java_util.html#type-Set">java_util.Set</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">of</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-Chronology">Chronology</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">ofLocale</font>*(p0 : <a href="java_util.html#type-Locale">java_util.Locale</a>) : <a href="#type-Chronology">Chronology</a>;
+                <b>END</b>;
+
+  <a name="type-ChronoPeriod"></a><font color="#cc0033">ChronoPeriod</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_time_temporal.html#type-TemporalAmount">java_time_temporal.TemporalAmount</a>)
+                  <font color="green"><b> (* </b><a href="#meths-ChronoPeriod">Typebound Procedures</a><b> *)</b></font>
+                  <b>STATIC</b>
+                    <b>PROCEDURE </b><font color="#cc0033">between</font>*(p0 : <a href="java_time_chrono.html#type-ChronoLocalDate">java_time_chrono.ChronoLocalDate</a>;
+                                       p1 : <a href="java_time_chrono.html#type-ChronoLocalDate">java_time_chrono.ChronoLocalDate</a>) : <a href="#type-ChronoPeriod">ChronoPeriod</a>;
+                  <b>END</b>;
+
+  <a name="type-ChronoZonedDateTime"></a><font color="#cc0033">ChronoZonedDateTime</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_time_temporal.html#type-Temporal">java_time_temporal.Temporal</a> + <a href="java_lang.html#type-Comparable">java_lang.Comparable</a>)
+                         <font color="green"><b> (* </b><a href="#meths-ChronoZonedDateTime">Typebound Procedures</a><b> *)</b></font>
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">from</font>*(p0 : <a href="java_time_temporal.html#type-TemporalAccessor">java_time_temporal.TemporalAccessor</a>) : <a href="#type-ChronoZonedDateTime">ChronoZonedDateTime</a>;
+                           <b>PROCEDURE </b><font color="#cc0033">timeLineOrder</font>*() : <a href="java_util.html#type-Comparator">java_util.Comparator</a>;
+                         <b>END</b>;
+
+  <a name="type-Era"></a><font color="#cc0033">Era</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_time_temporal.html#type-TemporalAccessor">java_time_temporal.TemporalAccessor</a> + <a href="java_time_temporal.html#type-TemporalAdjuster">java_time_temporal.TemporalAdjuster</a>)
+         <font color="green"><b> (* </b><a href="#meths-Era">Typebound Procedures</a><b> *)</b></font>
+         <b>END</b>;
+
+  <a name="type-HijrahChronology"></a><font color="#cc0033">HijrahChronology</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-AbstractChronology">AbstractChronology</a> + <a href="java_io.html#type-Serializable">java_io.Serializable</a>)
+                      <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> *)</font>
+                      <font color="green"><b> (* </b><a href="#meths-HijrahChronology">Typebound Procedures</a><b> *)</b></font>
+                      <b>STATIC</b>
+                        <a name="type-INSTANCE"></a><font color="#cc0033">INSTANCE</font>* : <a href="#type-HijrahChronology">HijrahChronology</a>;
+                      <b>END</b>;
+
+  <a name="type-HijrahDate"></a><font color="#cc0033">HijrahDate</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_time_chrono.html#type-ChronoLocalDateImpl">java_time_chrono.ChronoLocalDateImpl</a> + <a href="java_time_chrono.html#type-ChronoLocalDate">java_time_chrono.ChronoLocalDate</a> + <a href="java_io.html#type-Serializable">java_io.Serializable</a>)
+                <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> *)</font>
+                <font color="green"><b> (* </b><a href="#meths-HijrahDate">Typebound Procedures</a><b> *)</b></font>
+                <b>STATIC</b>
+                  <b>PROCEDURE </b><font color="#cc0033">from</font>*(p0 : <a href="java_time_temporal.html#type-TemporalAccessor">java_time_temporal.TemporalAccessor</a>) : <a href="#type-HijrahDate">HijrahDate</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">now</font>*(p0 : <a href="java_time.html#type-Clock">java_time.Clock</a>) : <a href="#type-HijrahDate">HijrahDate</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">now</font>*() : <a href="#type-HijrahDate">HijrahDate</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">now</font>*(p0 : <a href="java_time.html#type-ZoneId">java_time.ZoneId</a>) : <a href="#type-HijrahDate">HijrahDate</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">of</font>*(p0 : INTEGER;
+                                p1 : INTEGER;
+                                p2 : INTEGER) : <a href="#type-HijrahDate">HijrahDate</a>;
+                <b>END</b>;
+
+  <a name="type-HijrahEra"></a><font color="#cc0033">HijrahEra</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Enum">java_lang.Enum</a> + <a href="java_time_chrono.html#type-Era">java_time_chrono.Era</a>)
+               <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> *)</font>
+               <font color="green"><b> (* </b><a href="#meths-HijrahEra">Typebound Procedures</a><b> *)</b></font>
+               <b>STATIC</b>
+                 <a name="type-AH"></a><font color="#cc0033">AH</font>*      : <a href="#type-HijrahEra">HijrahEra</a>;
+                 <b>PROCEDURE </b><font color="#cc0033">of</font>*(p0 : INTEGER) : <a href="#type-HijrahEra">HijrahEra</a>;
+                 <b>PROCEDURE </b><font color="#cc0033">valueOf</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-HijrahEra">HijrahEra</a>;
+                 <b>PROCEDURE </b><font color="#cc0033">values</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-HijrahEra">HijrahEra</a>;
+               <b>END</b>;
+
+  <a name="type-IsoChronology"></a><font color="#cc0033">IsoChronology</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-AbstractChronology">AbstractChronology</a> + <a href="java_io.html#type-Serializable">java_io.Serializable</a>)
+                   <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> *)</font>
+                   <font color="green"><b> (* </b><a href="#meths-IsoChronology">Typebound Procedures</a><b> *)</b></font>
+                   <b>STATIC</b>
+                     <a name="type-INSTANCE"></a><font color="#cc0033">INSTANCE</font>* : <a href="#type-IsoChronology">IsoChronology</a>;
+                   <b>END</b>;
+
+  <a name="type-IsoEra"></a><font color="#cc0033">IsoEra</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Enum">java_lang.Enum</a> + <a href="java_time_chrono.html#type-Era">java_time_chrono.Era</a>)
+            <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> *)</font>
+            <font color="green"><b> (* </b><a href="#meths-IsoEra">Typebound Procedures</a><b> *)</b></font>
+            <b>STATIC</b>
+              <a name="type-BCE"></a><font color="#cc0033">BCE</font>*     : <a href="#type-IsoEra">IsoEra</a>;
+              <a name="type-CE"></a><font color="#cc0033">CE</font>*      : <a href="#type-IsoEra">IsoEra</a>;
+              <b>PROCEDURE </b><font color="#cc0033">of</font>*(p0 : INTEGER) : <a href="#type-IsoEra">IsoEra</a>;
+              <b>PROCEDURE </b><font color="#cc0033">valueOf</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-IsoEra">IsoEra</a>;
+              <b>PROCEDURE </b><font color="#cc0033">values</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-IsoEra">IsoEra</a>;
+            <b>END</b>;
+
+  <a name="type-JapaneseChronology"></a><font color="#cc0033">JapaneseChronology</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-AbstractChronology">AbstractChronology</a> + <a href="java_io.html#type-Serializable">java_io.Serializable</a>)
+                        <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> *)</font>
+                        <font color="green"><b> (* </b><a href="#meths-JapaneseChronology">Typebound Procedures</a><b> *)</b></font>
+                        <b>STATIC</b>
+                          <a name="type-INSTANCE"></a><font color="#cc0033">INSTANCE</font>* : <a href="#type-JapaneseChronology">JapaneseChronology</a>;
+                        <b>END</b>;
+
+  <a name="type-JapaneseDate"></a><font color="#cc0033">JapaneseDate</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_time_chrono.html#type-ChronoLocalDateImpl">java_time_chrono.ChronoLocalDateImpl</a> + <a href="java_time_chrono.html#type-ChronoLocalDate">java_time_chrono.ChronoLocalDate</a> + <a href="java_io.html#type-Serializable">java_io.Serializable</a>)
+                  <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> *)</font>
+                  <font color="green"><b> (* </b><a href="#meths-JapaneseDate">Typebound Procedures</a><b> *)</b></font>
+                  <b>STATIC</b>
+                    <b>PROCEDURE </b><font color="#cc0033">from</font>*(p0 : <a href="java_time_temporal.html#type-TemporalAccessor">java_time_temporal.TemporalAccessor</a>) : <a href="#type-JapaneseDate">JapaneseDate</a>;
+                    <b>PROCEDURE </b><font color="#cc0033">now</font>*(p0 : <a href="java_time.html#type-Clock">java_time.Clock</a>) : <a href="#type-JapaneseDate">JapaneseDate</a>;
+                    <b>PROCEDURE </b><font color="#cc0033">now</font>*() : <a href="#type-JapaneseDate">JapaneseDate</a>;
+                    <b>PROCEDURE </b><font color="#cc0033">now</font>*(p0 : <a href="java_time.html#type-ZoneId">java_time.ZoneId</a>) : <a href="#type-JapaneseDate">JapaneseDate</a>;
+                    <b>PROCEDURE </b><font color="#cc0033">of</font>*(p0 : INTEGER;
+                                  p1 : INTEGER;
+                                  p2 : INTEGER) : <a href="#type-JapaneseDate">JapaneseDate</a>;
+                    <b>PROCEDURE </b><font color="#cc0033">of</font>*(p0 : <a href="java_time_chrono.html#type-JapaneseEra">java_time_chrono.JapaneseEra</a>;
+                                  p1 : INTEGER;
+                                  p2 : INTEGER;
+                                  p3 : INTEGER) : <a href="#type-JapaneseDate">JapaneseDate</a>;
+                  <b>END</b>;
+
+  <a name="type-JapaneseEra"></a><font color="#cc0033">JapaneseEra</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_time_chrono.html#type-Era">java_time_chrono.Era</a> + <a href="java_io.html#type-Serializable">java_io.Serializable</a>)
+                 <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> *)</font>
+                 <font color="green"><b> (* </b><a href="#meths-JapaneseEra">Typebound Procedures</a><b> *)</b></font>
+                 <b>STATIC</b>
+                   <a name="type-HEISEI"></a><font color="#cc0033">HEISEI</font>*  : <a href="#type-JapaneseEra">JapaneseEra</a>;
+                   <a name="type-MEIJI"></a><font color="#cc0033">MEIJI</font>*   : <a href="#type-JapaneseEra">JapaneseEra</a>;
+                   <a name="type-SHOWA"></a><font color="#cc0033">SHOWA</font>*   : <a href="#type-JapaneseEra">JapaneseEra</a>;
+                   <a name="type-TAISHO"></a><font color="#cc0033">TAISHO</font>*  : <a href="#type-JapaneseEra">JapaneseEra</a>;
+                   <b>PROCEDURE </b><font color="#cc0033">of</font>*(p0 : INTEGER) : <a href="#type-JapaneseEra">JapaneseEra</a>;
+                   <b>PROCEDURE </b><font color="#cc0033">valueOf</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-JapaneseEra">JapaneseEra</a>;
+                   <b>PROCEDURE </b><font color="#cc0033">values</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-JapaneseEra">JapaneseEra</a>;
+                 <b>END</b>;
+
+  <a name="type-MinguoChronology"></a><font color="#cc0033">MinguoChronology</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-AbstractChronology">AbstractChronology</a> + <a href="java_io.html#type-Serializable">java_io.Serializable</a>)
+                      <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> *)</font>
+                      <font color="green"><b> (* </b><a href="#meths-MinguoChronology">Typebound Procedures</a><b> *)</b></font>
+                      <b>STATIC</b>
+                        <a name="type-INSTANCE"></a><font color="#cc0033">INSTANCE</font>* : <a href="#type-MinguoChronology">MinguoChronology</a>;
+                      <b>END</b>;
+
+  <a name="type-MinguoDate"></a><font color="#cc0033">MinguoDate</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_time_chrono.html#type-ChronoLocalDateImpl">java_time_chrono.ChronoLocalDateImpl</a> + <a href="java_time_chrono.html#type-ChronoLocalDate">java_time_chrono.ChronoLocalDate</a> + <a href="java_io.html#type-Serializable">java_io.Serializable</a>)
+                <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> *)</font>
+                <font color="green"><b> (* </b><a href="#meths-MinguoDate">Typebound Procedures</a><b> *)</b></font>
+                <b>STATIC</b>
+                  <b>PROCEDURE </b><font color="#cc0033">from</font>*(p0 : <a href="java_time_temporal.html#type-TemporalAccessor">java_time_temporal.TemporalAccessor</a>) : <a href="#type-MinguoDate">MinguoDate</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">now</font>*(p0 : <a href="java_time.html#type-Clock">java_time.Clock</a>) : <a href="#type-MinguoDate">MinguoDate</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">now</font>*() : <a href="#type-MinguoDate">MinguoDate</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">now</font>*(p0 : <a href="java_time.html#type-ZoneId">java_time.ZoneId</a>) : <a href="#type-MinguoDate">MinguoDate</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">of</font>*(p0 : INTEGER;
+                                p1 : INTEGER;
+                                p2 : INTEGER) : <a href="#type-MinguoDate">MinguoDate</a>;
+                <b>END</b>;
+
+  <a name="type-MinguoEra"></a><font color="#cc0033">MinguoEra</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Enum">java_lang.Enum</a> + <a href="java_time_chrono.html#type-Era">java_time_chrono.Era</a>)
+               <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> *)</font>
+               <font color="green"><b> (* </b><a href="#meths-MinguoEra">Typebound Procedures</a><b> *)</b></font>
+               <b>STATIC</b>
+                 <a name="type-BEFORE_ROC"></a><font color="#cc0033">BEFORE_ROC</font>* : <a href="#type-MinguoEra">MinguoEra</a>;
+                 <a name="type-ROC"></a><font color="#cc0033">ROC</font>*        : <a href="#type-MinguoEra">MinguoEra</a>;
+                 <b>PROCEDURE </b><font color="#cc0033">of</font>*(p0 : INTEGER) : <a href="#type-MinguoEra">MinguoEra</a>;
+                 <b>PROCEDURE </b><font color="#cc0033">valueOf</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-MinguoEra">MinguoEra</a>;
+                 <b>PROCEDURE </b><font color="#cc0033">values</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-MinguoEra">MinguoEra</a>;
+               <b>END</b>;
+
+  <a name="type-ThaiBuddhistChronology"></a><font color="#cc0033">ThaiBuddhistChronology</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-AbstractChronology">AbstractChronology</a> + <a href="java_io.html#type-Serializable">java_io.Serializable</a>)
+                            <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> *)</font>
+                            <font color="green"><b> (* </b><a href="#meths-ThaiBuddhistChronology">Typebound Procedures</a><b> *)</b></font>
+                            <b>STATIC</b>
+                              <a name="type-INSTANCE"></a><font color="#cc0033">INSTANCE</font>* : <a href="#type-ThaiBuddhistChronology">ThaiBuddhistChronology</a>;
+                            <b>END</b>;
+
+  <a name="type-ThaiBuddhistDate"></a><font color="#cc0033">ThaiBuddhistDate</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_time_chrono.html#type-ChronoLocalDateImpl">java_time_chrono.ChronoLocalDateImpl</a> + <a href="java_time_chrono.html#type-ChronoLocalDate">java_time_chrono.ChronoLocalDate</a> + <a href="java_io.html#type-Serializable">java_io.Serializable</a>)
+                      <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> *)</font>
+                      <font color="green"><b> (* </b><a href="#meths-ThaiBuddhistDate">Typebound Procedures</a><b> *)</b></font>
+                      <b>STATIC</b>
+                        <b>PROCEDURE </b><font color="#cc0033">from</font>*(p0 : <a href="java_time_temporal.html#type-TemporalAccessor">java_time_temporal.TemporalAccessor</a>) : <a href="#type-ThaiBuddhistDate">ThaiBuddhistDate</a>;
+                        <b>PROCEDURE </b><font color="#cc0033">now</font>*(p0 : <a href="java_time.html#type-Clock">java_time.Clock</a>) : <a href="#type-ThaiBuddhistDate">ThaiBuddhistDate</a>;
+                        <b>PROCEDURE </b><font color="#cc0033">now</font>*() : <a href="#type-ThaiBuddhistDate">ThaiBuddhistDate</a>;
+                        <b>PROCEDURE </b><font color="#cc0033">now</font>*(p0 : <a href="java_time.html#type-ZoneId">java_time.ZoneId</a>) : <a href="#type-ThaiBuddhistDate">ThaiBuddhistDate</a>;
+                        <b>PROCEDURE </b><font color="#cc0033">of</font>*(p0 : INTEGER;
+                                      p1 : INTEGER;
+                                      p2 : INTEGER) : <a href="#type-ThaiBuddhistDate">ThaiBuddhistDate</a>;
+                      <b>END</b>;
+
+  <a name="type-ThaiBuddhistEra"></a><font color="#cc0033">ThaiBuddhistEra</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Enum">java_lang.Enum</a> + <a href="#type-Era">Era</a>)
+                     <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> *)</font>
+                     <font color="green"><b> (* </b><a href="#meths-ThaiBuddhistEra">Typebound Procedures</a><b> *)</b></font>
+                     <b>STATIC</b>
+                       <a name="type-BE"></a><font color="#cc0033">BE</font>*        : <a href="#type-ThaiBuddhistEra">ThaiBuddhistEra</a>;
+                       <a name="type-BEFORE_BE"></a><font color="#cc0033">BEFORE_BE</font>* : <a href="#type-ThaiBuddhistEra">ThaiBuddhistEra</a>;
+                       <b>PROCEDURE </b><font color="#cc0033">of</font>*(p0 : INTEGER) : <a href="#type-ThaiBuddhistEra">ThaiBuddhistEra</a>;
+                       <b>PROCEDURE </b><font color="#cc0033">valueOf</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-ThaiBuddhistEra">ThaiBuddhistEra</a>;
+                       <b>PROCEDURE </b><font color="#cc0033">values</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-ThaiBuddhistEra">ThaiBuddhistEra</a>;
+                     <b>END</b>;
+
+
+
+<a name="meths-AbstractChronology"></a>
+<b>PROCEDURE </b>(self:AbstractChronology) <font color="#cc0033">compareTo</font>*(p0 : <a href="java_time_chrono.html#type-Chronology">java_time_chrono.Chronology</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AbstractChronology) <font color="#cc0033">compareTo</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AbstractChronology) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AbstractChronology) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AbstractChronology) <font color="#cc0033">resolveDate</font>*(p0 : <a href="java_util.html#type-Map">java_util.Map</a>;
+                                                 p1 : <a href="java_time_format.html#type-ResolverStyle">java_time_format.ResolverStyle</a>) : <a href="java_time_chrono.html#type-ChronoLocalDate">java_time_chrono.ChronoLocalDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AbstractChronology) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-ChronoLocalDate"></a>
+<b>PROCEDURE </b>(self:ChronoLocalDate) <font color="#cc0033">adjustInto</font>*(p0 : <a href="java_time_temporal.html#type-Temporal">java_time_temporal.Temporal</a>) : <a href="java_time_temporal.html#type-Temporal">java_time_temporal.Temporal</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ChronoLocalDate) <font color="#cc0033">atTime</font>*(p0 : <a href="java_time.html#type-LocalTime">java_time.LocalTime</a>) : <a href="#type-ChronoLocalDateTime">ChronoLocalDateTime</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ChronoLocalDate) <font color="#cc0033">compareTo</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ChronoLocalDate) <font color="#cc0033">compareTo</font>*(p0 : <a href="#type-ChronoLocalDate">ChronoLocalDate</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ChronoLocalDate) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ChronoLocalDate) <font color="#cc0033">format</font>*(p0 : <a href="java_time_format.html#type-DateTimeFormatter">java_time_format.DateTimeFormatter</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ChronoLocalDate) <font color="#cc0033">getChronology</font>*() : <a href="#type-Chronology">Chronology</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ChronoLocalDate) <font color="#cc0033">getEra</font>*() : <a href="java_time_chrono.html#type-Era">java_time_chrono.Era</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ChronoLocalDate) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ChronoLocalDate) <font color="#cc0033">isAfter</font>*(p0 : <a href="#type-ChronoLocalDate">ChronoLocalDate</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ChronoLocalDate) <font color="#cc0033">isBefore</font>*(p0 : <a href="#type-ChronoLocalDate">ChronoLocalDate</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ChronoLocalDate) <font color="#cc0033">isEqual</font>*(p0 : <a href="#type-ChronoLocalDate">ChronoLocalDate</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ChronoLocalDate) <font color="#cc0033">isLeapYear</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ChronoLocalDate) <font color="#cc0033">isSupported</font>*(p0 : <a href="java_time_temporal.html#type-TemporalUnit">java_time_temporal.TemporalUnit</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ChronoLocalDate) <font color="#cc0033">isSupported</font>*(p0 : <a href="java_time_temporal.html#type-TemporalField">java_time_temporal.TemporalField</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ChronoLocalDate) <font color="#cc0033">lengthOfMonth</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ChronoLocalDate) <font color="#cc0033">lengthOfYear</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ChronoLocalDate) <font color="#cc0033">minus</font>*(p0 : LONGINT;
+                                        p1 : <a href="java_time_temporal.html#type-TemporalUnit">java_time_temporal.TemporalUnit</a>) : <a href="#type-ChronoLocalDate">ChronoLocalDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ChronoLocalDate) <font color="#cc0033">minus</font>*(p0 : <a href="java_time_temporal.html#type-TemporalAmount">java_time_temporal.TemporalAmount</a>) : <a href="#type-ChronoLocalDate">ChronoLocalDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ChronoLocalDate) <font color="#cc0033">minus</font>*(p0 : LONGINT;
+                                        p1 : <a href="java_time_temporal.html#type-TemporalUnit">java_time_temporal.TemporalUnit</a>) : <a href="java_time_temporal.html#type-Temporal">java_time_temporal.Temporal</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ChronoLocalDate) <font color="#cc0033">minus</font>*(p0 : <a href="java_time_temporal.html#type-TemporalAmount">java_time_temporal.TemporalAmount</a>) : <a href="java_time_temporal.html#type-Temporal">java_time_temporal.Temporal</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ChronoLocalDate) <font color="#cc0033">plus</font>*(p0 : <a href="java_time_temporal.html#type-TemporalAmount">java_time_temporal.TemporalAmount</a>) : <a href="#type-ChronoLocalDate">ChronoLocalDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ChronoLocalDate) <font color="#cc0033">plus</font>*(p0 : <a href="java_time_temporal.html#type-TemporalAmount">java_time_temporal.TemporalAmount</a>) : <a href="java_time_temporal.html#type-Temporal">java_time_temporal.Temporal</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ChronoLocalDate) <font color="#cc0033">plus</font>*(p0 : LONGINT;
+                                       p1 : <a href="java_time_temporal.html#type-TemporalUnit">java_time_temporal.TemporalUnit</a>) : <a href="java_time_temporal.html#type-Temporal">java_time_temporal.Temporal</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ChronoLocalDate) <font color="#cc0033">plus</font>*(p0 : LONGINT;
+                                       p1 : <a href="java_time_temporal.html#type-TemporalUnit">java_time_temporal.TemporalUnit</a>) : <a href="#type-ChronoLocalDate">ChronoLocalDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ChronoLocalDate) <font color="#cc0033">query</font>*(p0 : <a href="java_time_temporal.html#type-TemporalQuery">java_time_temporal.TemporalQuery</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ChronoLocalDate) <font color="#cc0033">toEpochDay</font>*() : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ChronoLocalDate) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ChronoLocalDate) <font color="#cc0033">until</font>*(p0 : <a href="java_time_temporal.html#type-Temporal">java_time_temporal.Temporal</a>;
+                                        p1 : <a href="java_time_temporal.html#type-TemporalUnit">java_time_temporal.TemporalUnit</a>) : LONGINT<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ChronoLocalDate) <font color="#cc0033">until</font>*(p0 : <a href="#type-ChronoLocalDate">ChronoLocalDate</a>) : <a href="#type-ChronoPeriod">ChronoPeriod</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ChronoLocalDate) <font color="#cc0033">with</font>*(p0 : <a href="java_time_temporal.html#type-TemporalAdjuster">java_time_temporal.TemporalAdjuster</a>) : <a href="java_time_temporal.html#type-Temporal">java_time_temporal.Temporal</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ChronoLocalDate) <font color="#cc0033">with</font>*(p0 : <a href="java_time_temporal.html#type-TemporalAdjuster">java_time_temporal.TemporalAdjuster</a>) : <a href="#type-ChronoLocalDate">ChronoLocalDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ChronoLocalDate) <font color="#cc0033">with</font>*(p0 : <a href="java_time_temporal.html#type-TemporalField">java_time_temporal.TemporalField</a>;
+                                       p1 : LONGINT) : <a href="#type-ChronoLocalDate">ChronoLocalDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ChronoLocalDate) <font color="#cc0033">with</font>*(p0 : <a href="java_time_temporal.html#type-TemporalField">java_time_temporal.TemporalField</a>;
+                                       p1 : LONGINT) : <a href="java_time_temporal.html#type-Temporal">java_time_temporal.Temporal</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-ChronoLocalDateTime"></a>
+<b>PROCEDURE </b>(self:ChronoLocalDateTime) <font color="#cc0033">adjustInto</font>*(p0 : <a href="java_time_temporal.html#type-Temporal">java_time_temporal.Temporal</a>) : <a href="java_time_temporal.html#type-Temporal">java_time_temporal.Temporal</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ChronoLocalDateTime) <font color="#cc0033">atZone</font>*(p0 : <a href="java_time.html#type-ZoneId">java_time.ZoneId</a>) : <a href="#type-ChronoZonedDateTime">ChronoZonedDateTime</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ChronoLocalDateTime) <font color="#cc0033">compareTo</font>*(p0 : <a href="#type-ChronoLocalDateTime">ChronoLocalDateTime</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ChronoLocalDateTime) <font color="#cc0033">compareTo</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ChronoLocalDateTime) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ChronoLocalDateTime) <font color="#cc0033">format</font>*(p0 : <a href="java_time_format.html#type-DateTimeFormatter">java_time_format.DateTimeFormatter</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ChronoLocalDateTime) <font color="#cc0033">getChronology</font>*() : <a href="java_time_chrono.html#type-Chronology">java_time_chrono.Chronology</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ChronoLocalDateTime) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ChronoLocalDateTime) <font color="#cc0033">isAfter</font>*(p0 : <a href="#type-ChronoLocalDateTime">ChronoLocalDateTime</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ChronoLocalDateTime) <font color="#cc0033">isBefore</font>*(p0 : <a href="#type-ChronoLocalDateTime">ChronoLocalDateTime</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ChronoLocalDateTime) <font color="#cc0033">isEqual</font>*(p0 : <a href="#type-ChronoLocalDateTime">ChronoLocalDateTime</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ChronoLocalDateTime) <font color="#cc0033">isSupported</font>*(p0 : <a href="java_time_temporal.html#type-TemporalField">java_time_temporal.TemporalField</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ChronoLocalDateTime) <font color="#cc0033">isSupported</font>*(p0 : <a href="java_time_temporal.html#type-TemporalUnit">java_time_temporal.TemporalUnit</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ChronoLocalDateTime) <font color="#cc0033">minus</font>*(p0 : LONGINT;
+                                            p1 : <a href="java_time_temporal.html#type-TemporalUnit">java_time_temporal.TemporalUnit</a>) : <a href="java_time_temporal.html#type-Temporal">java_time_temporal.Temporal</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ChronoLocalDateTime) <font color="#cc0033">minus</font>*(p0 : <a href="java_time_temporal.html#type-TemporalAmount">java_time_temporal.TemporalAmount</a>) : <a href="java_time_temporal.html#type-Temporal">java_time_temporal.Temporal</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ChronoLocalDateTime) <font color="#cc0033">minus</font>*(p0 : <a href="java_time_temporal.html#type-TemporalAmount">java_time_temporal.TemporalAmount</a>) : <a href="#type-ChronoLocalDateTime">ChronoLocalDateTime</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ChronoLocalDateTime) <font color="#cc0033">minus</font>*(p0 : LONGINT;
+                                            p1 : <a href="java_time_temporal.html#type-TemporalUnit">java_time_temporal.TemporalUnit</a>) : <a href="#type-ChronoLocalDateTime">ChronoLocalDateTime</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ChronoLocalDateTime) <font color="#cc0033">plus</font>*(p0 : LONGINT;
+                                           p1 : <a href="java_time_temporal.html#type-TemporalUnit">java_time_temporal.TemporalUnit</a>) : <a href="java_time_temporal.html#type-Temporal">java_time_temporal.Temporal</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ChronoLocalDateTime) <font color="#cc0033">plus</font>*(p0 : <a href="java_time_temporal.html#type-TemporalAmount">java_time_temporal.TemporalAmount</a>) : <a href="java_time_temporal.html#type-Temporal">java_time_temporal.Temporal</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ChronoLocalDateTime) <font color="#cc0033">plus</font>*(p0 : LONGINT;
+                                           p1 : <a href="java_time_temporal.html#type-TemporalUnit">java_time_temporal.TemporalUnit</a>) : <a href="#type-ChronoLocalDateTime">ChronoLocalDateTime</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ChronoLocalDateTime) <font color="#cc0033">plus</font>*(p0 : <a href="java_time_temporal.html#type-TemporalAmount">java_time_temporal.TemporalAmount</a>) : <a href="#type-ChronoLocalDateTime">ChronoLocalDateTime</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ChronoLocalDateTime) <font color="#cc0033">query</font>*(p0 : <a href="java_time_temporal.html#type-TemporalQuery">java_time_temporal.TemporalQuery</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ChronoLocalDateTime) <font color="#cc0033">toEpochSecond</font>*(p0 : <a href="java_time.html#type-ZoneOffset">java_time.ZoneOffset</a>) : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ChronoLocalDateTime) <font color="#cc0033">toInstant</font>*(p0 : <a href="java_time.html#type-ZoneOffset">java_time.ZoneOffset</a>) : <a href="java_time.html#type-Instant">java_time.Instant</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ChronoLocalDateTime) <font color="#cc0033">toLocalDate</font>*() : <a href="java_time_chrono.html#type-ChronoLocalDate">java_time_chrono.ChronoLocalDate</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ChronoLocalDateTime) <font color="#cc0033">toLocalTime</font>*() : <a href="java_time.html#type-LocalTime">java_time.LocalTime</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ChronoLocalDateTime) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ChronoLocalDateTime) <font color="#cc0033">with</font>*(p0 : <a href="java_time_temporal.html#type-TemporalAdjuster">java_time_temporal.TemporalAdjuster</a>) : <a href="java_time_temporal.html#type-Temporal">java_time_temporal.Temporal</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ChronoLocalDateTime) <font color="#cc0033">with</font>*(p0 : <a href="java_time_temporal.html#type-TemporalField">java_time_temporal.TemporalField</a>;
+                                           p1 : LONGINT) : <a href="java_time_temporal.html#type-Temporal">java_time_temporal.Temporal</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ChronoLocalDateTime) <font color="#cc0033">with</font>*(p0 : <a href="java_time_temporal.html#type-TemporalField">java_time_temporal.TemporalField</a>;
+                                           p1 : LONGINT) : <a href="#type-ChronoLocalDateTime">ChronoLocalDateTime</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ChronoLocalDateTime) <font color="#cc0033">with</font>*(p0 : <a href="java_time_temporal.html#type-TemporalAdjuster">java_time_temporal.TemporalAdjuster</a>) : <a href="#type-ChronoLocalDateTime">ChronoLocalDateTime</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-Chronology"></a>
+<b>PROCEDURE </b>(self:Chronology) <font color="#cc0033">compareTo</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Chronology) <font color="#cc0033">compareTo</font>*(p0 : <a href="#type-Chronology">Chronology</a>) : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Chronology) <font color="#cc0033">date</font>*(p0 : <a href="java_time_temporal.html#type-TemporalAccessor">java_time_temporal.TemporalAccessor</a>) : <a href="java_time_chrono.html#type-ChronoLocalDate">java_time_chrono.ChronoLocalDate</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Chronology) <font color="#cc0033">date</font>*(p0 : INTEGER;
+                                  p1 : INTEGER;
+                                  p2 : INTEGER) : <a href="java_time_chrono.html#type-ChronoLocalDate">java_time_chrono.ChronoLocalDate</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Chronology) <font color="#cc0033">date</font>*(p0 : <a href="java_time_chrono.html#type-Era">java_time_chrono.Era</a>;
+                                  p1 : INTEGER;
+                                  p2 : INTEGER;
+                                  p3 : INTEGER) : <a href="java_time_chrono.html#type-ChronoLocalDate">java_time_chrono.ChronoLocalDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Chronology) <font color="#cc0033">dateEpochDay</font>*(p0 : LONGINT) : <a href="java_time_chrono.html#type-ChronoLocalDate">java_time_chrono.ChronoLocalDate</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Chronology) <font color="#cc0033">dateNow</font>*(p0 : <a href="java_time.html#type-ZoneId">java_time.ZoneId</a>) : <a href="java_time_chrono.html#type-ChronoLocalDate">java_time_chrono.ChronoLocalDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Chronology) <font color="#cc0033">dateNow</font>*(p0 : <a href="java_time.html#type-Clock">java_time.Clock</a>) : <a href="java_time_chrono.html#type-ChronoLocalDate">java_time_chrono.ChronoLocalDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Chronology) <font color="#cc0033">dateNow</font>*() : <a href="java_time_chrono.html#type-ChronoLocalDate">java_time_chrono.ChronoLocalDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Chronology) <font color="#cc0033">dateYearDay</font>*(p0 : <a href="java_time_chrono.html#type-Era">java_time_chrono.Era</a>;
+                                         p1 : INTEGER;
+                                         p2 : INTEGER) : <a href="java_time_chrono.html#type-ChronoLocalDate">java_time_chrono.ChronoLocalDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Chronology) <font color="#cc0033">dateYearDay</font>*(p0 : INTEGER;
+                                         p1 : INTEGER) : <a href="java_time_chrono.html#type-ChronoLocalDate">java_time_chrono.ChronoLocalDate</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Chronology) <font color="#cc0033">epochSecond</font>*(p0 : <a href="java_time_chrono.html#type-Era">java_time_chrono.Era</a>;
+                                         p1 : INTEGER;
+                                         p2 : INTEGER;
+                                         p3 : INTEGER;
+                                         p4 : INTEGER;
+                                         p5 : INTEGER;
+                                         p6 : INTEGER;
+                                         p7 : <a href="java_time.html#type-ZoneOffset">java_time.ZoneOffset</a>) : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Chronology) <font color="#cc0033">epochSecond</font>*(p0 : INTEGER;
+                                         p1 : INTEGER;
+                                         p2 : INTEGER;
+                                         p3 : INTEGER;
+                                         p4 : INTEGER;
+                                         p5 : INTEGER;
+                                         p6 : <a href="java_time.html#type-ZoneOffset">java_time.ZoneOffset</a>) : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Chronology) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Chronology) <font color="#cc0033">eraOf</font>*(p0 : INTEGER) : <a href="java_time_chrono.html#type-Era">java_time_chrono.Era</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Chronology) <font color="#cc0033">eras</font>*() : <a href="java_util.html#type-List">java_util.List</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Chronology) <font color="#cc0033">getCalendarType</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Chronology) <font color="#cc0033">getDisplayName</font>*(p0 : <a href="java_time_format.html#type-TextStyle">java_time_format.TextStyle</a>;
+                                            p1 : <a href="java_util.html#type-Locale">java_util.Locale</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Chronology) <font color="#cc0033">getId</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Chronology) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Chronology) <font color="#cc0033">isLeapYear</font>*(p0 : LONGINT) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Chronology) <font color="#cc0033">localDateTime</font>*(p0 : <a href="java_time_temporal.html#type-TemporalAccessor">java_time_temporal.TemporalAccessor</a>) : <a href="#type-ChronoLocalDateTime">ChronoLocalDateTime</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Chronology) <font color="#cc0033">period</font>*(p0 : INTEGER;
+                                    p1 : INTEGER;
+                                    p2 : INTEGER) : <a href="#type-ChronoPeriod">ChronoPeriod</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Chronology) <font color="#cc0033">prolepticYear</font>*(p0 : <a href="java_time_chrono.html#type-Era">java_time_chrono.Era</a>;
+                                           p1 : INTEGER) : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Chronology) <font color="#cc0033">range</font>*(p0 : <a href="java_time_temporal.html#type-ChronoField">java_time_temporal.ChronoField</a>) : <a href="java_time_temporal.html#type-ValueRange">java_time_temporal.ValueRange</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Chronology) <font color="#cc0033">resolveDate</font>*(p0 : <a href="java_util.html#type-Map">java_util.Map</a>;
+                                         p1 : <a href="java_time_format.html#type-ResolverStyle">java_time_format.ResolverStyle</a>) : <a href="java_time_chrono.html#type-ChronoLocalDate">java_time_chrono.ChronoLocalDate</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Chronology) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Chronology) <font color="#cc0033">zonedDateTime</font>*(p0 : <a href="java_time.html#type-Instant">java_time.Instant</a>;
+                                           p1 : <a href="java_time.html#type-ZoneId">java_time.ZoneId</a>) : <a href="#type-ChronoZonedDateTime">ChronoZonedDateTime</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Chronology) <font color="#cc0033">zonedDateTime</font>*(p0 : <a href="java_time_temporal.html#type-TemporalAccessor">java_time_temporal.TemporalAccessor</a>) : <a href="#type-ChronoZonedDateTime">ChronoZonedDateTime</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-ChronoPeriod"></a>
+<b>PROCEDURE </b>(self:ChronoPeriod) <font color="#cc0033">addTo</font>*(p0 : <a href="java_time_temporal.html#type-Temporal">java_time_temporal.Temporal</a>) : <a href="java_time_temporal.html#type-Temporal">java_time_temporal.Temporal</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ChronoPeriod) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ChronoPeriod) <font color="#cc0033">get</font>*(p0 : <a href="java_time_temporal.html#type-TemporalUnit">java_time_temporal.TemporalUnit</a>) : LONGINT<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ChronoPeriod) <font color="#cc0033">getChronology</font>*() : <a href="java_time_chrono.html#type-Chronology">java_time_chrono.Chronology</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ChronoPeriod) <font color="#cc0033">getUnits</font>*() : <a href="java_util.html#type-List">java_util.List</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ChronoPeriod) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ChronoPeriod) <font color="#cc0033">isNegative</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ChronoPeriod) <font color="#cc0033">isZero</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ChronoPeriod) <font color="#cc0033">minus</font>*(p0 : <a href="java_time_temporal.html#type-TemporalAmount">java_time_temporal.TemporalAmount</a>) : <a href="#type-ChronoPeriod">ChronoPeriod</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ChronoPeriod) <font color="#cc0033">multipliedBy</font>*(p0 : INTEGER) : <a href="#type-ChronoPeriod">ChronoPeriod</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ChronoPeriod) <font color="#cc0033">negated</font>*() : <a href="#type-ChronoPeriod">ChronoPeriod</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ChronoPeriod) <font color="#cc0033">normalized</font>*() : <a href="#type-ChronoPeriod">ChronoPeriod</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ChronoPeriod) <font color="#cc0033">plus</font>*(p0 : <a href="java_time_temporal.html#type-TemporalAmount">java_time_temporal.TemporalAmount</a>) : <a href="#type-ChronoPeriod">ChronoPeriod</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ChronoPeriod) <font color="#cc0033">subtractFrom</font>*(p0 : <a href="java_time_temporal.html#type-Temporal">java_time_temporal.Temporal</a>) : <a href="java_time_temporal.html#type-Temporal">java_time_temporal.Temporal</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ChronoPeriod) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-ChronoZonedDateTime"></a>
+<b>PROCEDURE </b>(self:ChronoZonedDateTime) <font color="#cc0033">compareTo</font>*(p0 : <a href="#type-ChronoZonedDateTime">ChronoZonedDateTime</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ChronoZonedDateTime) <font color="#cc0033">compareTo</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ChronoZonedDateTime) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ChronoZonedDateTime) <font color="#cc0033">format</font>*(p0 : <a href="java_time_format.html#type-DateTimeFormatter">java_time_format.DateTimeFormatter</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ChronoZonedDateTime) <font color="#cc0033">get</font>*(p0 : <a href="java_time_temporal.html#type-TemporalField">java_time_temporal.TemporalField</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ChronoZonedDateTime) <font color="#cc0033">getChronology</font>*() : <a href="java_time_chrono.html#type-Chronology">java_time_chrono.Chronology</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ChronoZonedDateTime) <font color="#cc0033">getLong</font>*(p0 : <a href="java_time_temporal.html#type-TemporalField">java_time_temporal.TemporalField</a>) : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ChronoZonedDateTime) <font color="#cc0033">getOffset</font>*() : <a href="java_time.html#type-ZoneOffset">java_time.ZoneOffset</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ChronoZonedDateTime) <font color="#cc0033">getZone</font>*() : <a href="java_time.html#type-ZoneId">java_time.ZoneId</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ChronoZonedDateTime) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ChronoZonedDateTime) <font color="#cc0033">isAfter</font>*(p0 : <a href="#type-ChronoZonedDateTime">ChronoZonedDateTime</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ChronoZonedDateTime) <font color="#cc0033">isBefore</font>*(p0 : <a href="#type-ChronoZonedDateTime">ChronoZonedDateTime</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ChronoZonedDateTime) <font color="#cc0033">isEqual</font>*(p0 : <a href="#type-ChronoZonedDateTime">ChronoZonedDateTime</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ChronoZonedDateTime) <font color="#cc0033">isSupported</font>*(p0 : <a href="java_time_temporal.html#type-TemporalUnit">java_time_temporal.TemporalUnit</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ChronoZonedDateTime) <font color="#cc0033">isSupported</font>*(p0 : <a href="java_time_temporal.html#type-TemporalField">java_time_temporal.TemporalField</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ChronoZonedDateTime) <font color="#cc0033">minus</font>*(p0 : LONGINT;
+                                            p1 : <a href="java_time_temporal.html#type-TemporalUnit">java_time_temporal.TemporalUnit</a>) : <a href="#type-ChronoZonedDateTime">ChronoZonedDateTime</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ChronoZonedDateTime) <font color="#cc0033">minus</font>*(p0 : <a href="java_time_temporal.html#type-TemporalAmount">java_time_temporal.TemporalAmount</a>) : <a href="#type-ChronoZonedDateTime">ChronoZonedDateTime</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ChronoZonedDateTime) <font color="#cc0033">minus</font>*(p0 : LONGINT;
+                                            p1 : <a href="java_time_temporal.html#type-TemporalUnit">java_time_temporal.TemporalUnit</a>) : <a href="java_time_temporal.html#type-Temporal">java_time_temporal.Temporal</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ChronoZonedDateTime) <font color="#cc0033">minus</font>*(p0 : <a href="java_time_temporal.html#type-TemporalAmount">java_time_temporal.TemporalAmount</a>) : <a href="java_time_temporal.html#type-Temporal">java_time_temporal.Temporal</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ChronoZonedDateTime) <font color="#cc0033">plus</font>*(p0 : LONGINT;
+                                           p1 : <a href="java_time_temporal.html#type-TemporalUnit">java_time_temporal.TemporalUnit</a>) : <a href="java_time_temporal.html#type-Temporal">java_time_temporal.Temporal</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ChronoZonedDateTime) <font color="#cc0033">plus</font>*(p0 : <a href="java_time_temporal.html#type-TemporalAmount">java_time_temporal.TemporalAmount</a>) : <a href="java_time_temporal.html#type-Temporal">java_time_temporal.Temporal</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ChronoZonedDateTime) <font color="#cc0033">plus</font>*(p0 : LONGINT;
+                                           p1 : <a href="java_time_temporal.html#type-TemporalUnit">java_time_temporal.TemporalUnit</a>) : <a href="#type-ChronoZonedDateTime">ChronoZonedDateTime</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ChronoZonedDateTime) <font color="#cc0033">plus</font>*(p0 : <a href="java_time_temporal.html#type-TemporalAmount">java_time_temporal.TemporalAmount</a>) : <a href="#type-ChronoZonedDateTime">ChronoZonedDateTime</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ChronoZonedDateTime) <font color="#cc0033">query</font>*(p0 : <a href="java_time_temporal.html#type-TemporalQuery">java_time_temporal.TemporalQuery</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ChronoZonedDateTime) <font color="#cc0033">range</font>*(p0 : <a href="java_time_temporal.html#type-TemporalField">java_time_temporal.TemporalField</a>) : <a href="java_time_temporal.html#type-ValueRange">java_time_temporal.ValueRange</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ChronoZonedDateTime) <font color="#cc0033">toEpochSecond</font>*() : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ChronoZonedDateTime) <font color="#cc0033">toInstant</font>*() : <a href="java_time.html#type-Instant">java_time.Instant</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ChronoZonedDateTime) <font color="#cc0033">toLocalDate</font>*() : <a href="java_time_chrono.html#type-ChronoLocalDate">java_time_chrono.ChronoLocalDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ChronoZonedDateTime) <font color="#cc0033">toLocalDateTime</font>*() : <a href="java_time_chrono.html#type-ChronoLocalDateTime">java_time_chrono.ChronoLocalDateTime</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ChronoZonedDateTime) <font color="#cc0033">toLocalTime</font>*() : <a href="java_time.html#type-LocalTime">java_time.LocalTime</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ChronoZonedDateTime) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ChronoZonedDateTime) <font color="#cc0033">with</font>*(p0 : <a href="java_time_temporal.html#type-TemporalAdjuster">java_time_temporal.TemporalAdjuster</a>) : <a href="#type-ChronoZonedDateTime">ChronoZonedDateTime</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ChronoZonedDateTime) <font color="#cc0033">with</font>*(p0 : <a href="java_time_temporal.html#type-TemporalField">java_time_temporal.TemporalField</a>;
+                                           p1 : LONGINT) : <a href="#type-ChronoZonedDateTime">ChronoZonedDateTime</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ChronoZonedDateTime) <font color="#cc0033">with</font>*(p0 : <a href="java_time_temporal.html#type-TemporalAdjuster">java_time_temporal.TemporalAdjuster</a>) : <a href="java_time_temporal.html#type-Temporal">java_time_temporal.Temporal</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ChronoZonedDateTime) <font color="#cc0033">with</font>*(p0 : <a href="java_time_temporal.html#type-TemporalField">java_time_temporal.TemporalField</a>;
+                                           p1 : LONGINT) : <a href="java_time_temporal.html#type-Temporal">java_time_temporal.Temporal</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ChronoZonedDateTime) <font color="#cc0033">withEarlierOffsetAtOverlap</font>*() : <a href="#type-ChronoZonedDateTime">ChronoZonedDateTime</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ChronoZonedDateTime) <font color="#cc0033">withLaterOffsetAtOverlap</font>*() : <a href="#type-ChronoZonedDateTime">ChronoZonedDateTime</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ChronoZonedDateTime) <font color="#cc0033">withZoneSameInstant</font>*(p0 : <a href="java_time.html#type-ZoneId">java_time.ZoneId</a>) : <a href="#type-ChronoZonedDateTime">ChronoZonedDateTime</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ChronoZonedDateTime) <font color="#cc0033">withZoneSameLocal</font>*(p0 : <a href="java_time.html#type-ZoneId">java_time.ZoneId</a>) : <a href="#type-ChronoZonedDateTime">ChronoZonedDateTime</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-Era"></a>
+<b>PROCEDURE </b>(self:Era) <font color="#cc0033">adjustInto</font>*(p0 : <a href="java_time_temporal.html#type-Temporal">java_time_temporal.Temporal</a>) : <a href="java_time_temporal.html#type-Temporal">java_time_temporal.Temporal</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Era) <font color="#cc0033">get</font>*(p0 : <a href="java_time_temporal.html#type-TemporalField">java_time_temporal.TemporalField</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Era) <font color="#cc0033">getDisplayName</font>*(p0 : <a href="java_time_format.html#type-TextStyle">java_time_format.TextStyle</a>;
+                                     p1 : <a href="java_util.html#type-Locale">java_util.Locale</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Era) <font color="#cc0033">getLong</font>*(p0 : <a href="java_time_temporal.html#type-TemporalField">java_time_temporal.TemporalField</a>) : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Era) <font color="#cc0033">getValue</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Era) <font color="#cc0033">isSupported</font>*(p0 : <a href="java_time_temporal.html#type-TemporalField">java_time_temporal.TemporalField</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Era) <font color="#cc0033">query</font>*(p0 : <a href="java_time_temporal.html#type-TemporalQuery">java_time_temporal.TemporalQuery</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Era) <font color="#cc0033">range</font>*(p0 : <a href="java_time_temporal.html#type-TemporalField">java_time_temporal.TemporalField</a>) : <a href="java_time_temporal.html#type-ValueRange">java_time_temporal.ValueRange</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-HijrahChronology"></a>
+<b>PROCEDURE </b>(self:HijrahChronology) <font color="#cc0033">date</font>*(p0 : <a href="java_time_chrono.html#type-Era">java_time_chrono.Era</a>;
+                                        p1 : INTEGER;
+                                        p2 : INTEGER;
+                                        p3 : INTEGER) : <a href="java_time_chrono.html#type-ChronoLocalDate">java_time_chrono.ChronoLocalDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HijrahChronology) <font color="#cc0033">date</font>*(p0 : <a href="java_time_temporal.html#type-TemporalAccessor">java_time_temporal.TemporalAccessor</a>) : <a href="java_time_chrono.html#type-HijrahDate">java_time_chrono.HijrahDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HijrahChronology) <font color="#cc0033">date</font>*(p0 : <a href="java_time_temporal.html#type-TemporalAccessor">java_time_temporal.TemporalAccessor</a>) : <a href="java_time_chrono.html#type-ChronoLocalDate">java_time_chrono.ChronoLocalDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HijrahChronology) <font color="#cc0033">date</font>*(p0 : INTEGER;
+                                        p1 : INTEGER;
+                                        p2 : INTEGER) : <a href="java_time_chrono.html#type-ChronoLocalDate">java_time_chrono.ChronoLocalDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HijrahChronology) <font color="#cc0033">date</font>*(p0 : INTEGER;
+                                        p1 : INTEGER;
+                                        p2 : INTEGER) : <a href="java_time_chrono.html#type-HijrahDate">java_time_chrono.HijrahDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HijrahChronology) <font color="#cc0033">date</font>*(p0 : <a href="java_time_chrono.html#type-Era">java_time_chrono.Era</a>;
+                                        p1 : INTEGER;
+                                        p2 : INTEGER;
+                                        p3 : INTEGER) : <a href="java_time_chrono.html#type-HijrahDate">java_time_chrono.HijrahDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HijrahChronology) <font color="#cc0033">dateEpochDay</font>*(p0 : LONGINT) : <a href="java_time_chrono.html#type-ChronoLocalDate">java_time_chrono.ChronoLocalDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HijrahChronology) <font color="#cc0033">dateEpochDay</font>*(p0 : LONGINT) : <a href="java_time_chrono.html#type-HijrahDate">java_time_chrono.HijrahDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HijrahChronology) <font color="#cc0033">dateNow</font>*(p0 : <a href="java_time.html#type-ZoneId">java_time.ZoneId</a>) : <a href="java_time_chrono.html#type-ChronoLocalDate">java_time_chrono.ChronoLocalDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HijrahChronology) <font color="#cc0033">dateNow</font>*() : <a href="java_time_chrono.html#type-ChronoLocalDate">java_time_chrono.ChronoLocalDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HijrahChronology) <font color="#cc0033">dateNow</font>*(p0 : <a href="java_time.html#type-Clock">java_time.Clock</a>) : <a href="java_time_chrono.html#type-ChronoLocalDate">java_time_chrono.ChronoLocalDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HijrahChronology) <font color="#cc0033">dateNow</font>*(p0 : <a href="java_time.html#type-ZoneId">java_time.ZoneId</a>) : <a href="java_time_chrono.html#type-HijrahDate">java_time_chrono.HijrahDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HijrahChronology) <font color="#cc0033">dateNow</font>*() : <a href="java_time_chrono.html#type-HijrahDate">java_time_chrono.HijrahDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HijrahChronology) <font color="#cc0033">dateNow</font>*(p0 : <a href="java_time.html#type-Clock">java_time.Clock</a>) : <a href="java_time_chrono.html#type-HijrahDate">java_time_chrono.HijrahDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HijrahChronology) <font color="#cc0033">dateYearDay</font>*(p0 : INTEGER;
+                                               p1 : INTEGER) : <a href="java_time_chrono.html#type-HijrahDate">java_time_chrono.HijrahDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HijrahChronology) <font color="#cc0033">dateYearDay</font>*(p0 : INTEGER;
+                                               p1 : INTEGER) : <a href="java_time_chrono.html#type-ChronoLocalDate">java_time_chrono.ChronoLocalDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HijrahChronology) <font color="#cc0033">dateYearDay</font>*(p0 : <a href="java_time_chrono.html#type-Era">java_time_chrono.Era</a>;
+                                               p1 : INTEGER;
+                                               p2 : INTEGER) : <a href="java_time_chrono.html#type-HijrahDate">java_time_chrono.HijrahDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HijrahChronology) <font color="#cc0033">dateYearDay</font>*(p0 : <a href="java_time_chrono.html#type-Era">java_time_chrono.Era</a>;
+                                               p1 : INTEGER;
+                                               p2 : INTEGER) : <a href="java_time_chrono.html#type-ChronoLocalDate">java_time_chrono.ChronoLocalDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HijrahChronology) <font color="#cc0033">eraOf</font>*(p0 : INTEGER) : <a href="java_time_chrono.html#type-Era">java_time_chrono.Era</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HijrahChronology) <font color="#cc0033">eraOf</font>*(p0 : INTEGER) : <a href="java_time_chrono.html#type-HijrahEra">java_time_chrono.HijrahEra</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HijrahChronology) <font color="#cc0033">eras</font>*() : <a href="java_util.html#type-List">java_util.List</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HijrahChronology) <font color="#cc0033">getCalendarType</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HijrahChronology) <font color="#cc0033">getId</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HijrahChronology) <font color="#cc0033">isLeapYear</font>*(p0 : LONGINT) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HijrahChronology) <font color="#cc0033">localDateTime</font>*(p0 : <a href="java_time_temporal.html#type-TemporalAccessor">java_time_temporal.TemporalAccessor</a>) : <a href="java_time_chrono.html#type-ChronoLocalDateTime">java_time_chrono.ChronoLocalDateTime</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HijrahChronology) <font color="#cc0033">prolepticYear</font>*(p0 : <a href="java_time_chrono.html#type-Era">java_time_chrono.Era</a>;
+                                                 p1 : INTEGER) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HijrahChronology) <font color="#cc0033">range</font>*(p0 : <a href="java_time_temporal.html#type-ChronoField">java_time_temporal.ChronoField</a>) : <a href="java_time_temporal.html#type-ValueRange">java_time_temporal.ValueRange</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HijrahChronology) <font color="#cc0033">resolveDate</font>*(p0 : <a href="java_util.html#type-Map">java_util.Map</a>;
+                                               p1 : <a href="java_time_format.html#type-ResolverStyle">java_time_format.ResolverStyle</a>) : <a href="java_time_chrono.html#type-ChronoLocalDate">java_time_chrono.ChronoLocalDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HijrahChronology) <font color="#cc0033">resolveDate</font>*(p0 : <a href="java_util.html#type-Map">java_util.Map</a>;
+                                               p1 : <a href="java_time_format.html#type-ResolverStyle">java_time_format.ResolverStyle</a>) : <a href="java_time_chrono.html#type-HijrahDate">java_time_chrono.HijrahDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HijrahChronology) <font color="#cc0033">zonedDateTime</font>*(p0 : <a href="java_time_temporal.html#type-TemporalAccessor">java_time_temporal.TemporalAccessor</a>) : <a href="java_time_chrono.html#type-ChronoZonedDateTime">java_time_chrono.ChronoZonedDateTime</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HijrahChronology) <font color="#cc0033">zonedDateTime</font>*(p0 : <a href="java_time.html#type-Instant">java_time.Instant</a>;
+                                                 p1 : <a href="java_time.html#type-ZoneId">java_time.ZoneId</a>) : <a href="java_time_chrono.html#type-ChronoZonedDateTime">java_time_chrono.ChronoZonedDateTime</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-HijrahDate"></a>
+<b>PROCEDURE </b>(self:HijrahDate) <font color="#cc0033">atTime</font>*(p0 : <a href="java_time.html#type-LocalTime">java_time.LocalTime</a>) : <a href="java_time_chrono.html#type-ChronoLocalDateTime">java_time_chrono.ChronoLocalDateTime</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:HijrahDate) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HijrahDate) <font color="#cc0033">getChronology</font>*() : <a href="#type-HijrahChronology">HijrahChronology</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HijrahDate) <font color="#cc0033">getChronology</font>*() : <a href="java_time_chrono.html#type-Chronology">java_time_chrono.Chronology</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HijrahDate) <font color="#cc0033">getEra</font>*() : <a href="java_time_chrono.html#type-HijrahEra">java_time_chrono.HijrahEra</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HijrahDate) <font color="#cc0033">getEra</font>*() : <a href="java_time_chrono.html#type-Era">java_time_chrono.Era</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HijrahDate) <font color="#cc0033">getLong</font>*(p0 : <a href="java_time_temporal.html#type-TemporalField">java_time_temporal.TemporalField</a>) : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HijrahDate) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HijrahDate) <font color="#cc0033">isLeapYear</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HijrahDate) <font color="#cc0033">lengthOfMonth</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HijrahDate) <font color="#cc0033">lengthOfYear</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HijrahDate) <font color="#cc0033">minus</font>*(p0 : <a href="java_time_temporal.html#type-TemporalAmount">java_time_temporal.TemporalAmount</a>) : <a href="java_time_chrono.html#type-ChronoLocalDate">java_time_chrono.ChronoLocalDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HijrahDate) <font color="#cc0033">minus</font>*(p0 : LONGINT;
+                                   p1 : <a href="java_time_temporal.html#type-TemporalUnit">java_time_temporal.TemporalUnit</a>) : <a href="java_time_chrono.html#type-ChronoLocalDate">java_time_chrono.ChronoLocalDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HijrahDate) <font color="#cc0033">minus</font>*(p0 : LONGINT;
+                                   p1 : <a href="java_time_temporal.html#type-TemporalUnit">java_time_temporal.TemporalUnit</a>) : <a href="java_time_temporal.html#type-Temporal">java_time_temporal.Temporal</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HijrahDate) <font color="#cc0033">minus</font>*(p0 : <a href="java_time_temporal.html#type-TemporalAmount">java_time_temporal.TemporalAmount</a>) : <a href="java_time_temporal.html#type-Temporal">java_time_temporal.Temporal</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HijrahDate) <font color="#cc0033">minus</font>*(p0 : <a href="java_time_temporal.html#type-TemporalAmount">java_time_temporal.TemporalAmount</a>) : <a href="#type-HijrahDate">HijrahDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HijrahDate) <font color="#cc0033">minus</font>*(p0 : LONGINT;
+                                   p1 : <a href="java_time_temporal.html#type-TemporalUnit">java_time_temporal.TemporalUnit</a>) : <a href="#type-HijrahDate">HijrahDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HijrahDate) <font color="#cc0033">plus</font>*(p0 : LONGINT;
+                                  p1 : <a href="java_time_temporal.html#type-TemporalUnit">java_time_temporal.TemporalUnit</a>) : <a href="java_time_chrono.html#type-ChronoLocalDate">java_time_chrono.ChronoLocalDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HijrahDate) <font color="#cc0033">plus</font>*(p0 : <a href="java_time_temporal.html#type-TemporalAmount">java_time_temporal.TemporalAmount</a>) : <a href="java_time_temporal.html#type-Temporal">java_time_temporal.Temporal</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HijrahDate) <font color="#cc0033">plus</font>*(p0 : <a href="java_time_temporal.html#type-TemporalAmount">java_time_temporal.TemporalAmount</a>) : <a href="java_time_chrono.html#type-ChronoLocalDate">java_time_chrono.ChronoLocalDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HijrahDate) <font color="#cc0033">plus</font>*(p0 : <a href="java_time_temporal.html#type-TemporalAmount">java_time_temporal.TemporalAmount</a>) : <a href="#type-HijrahDate">HijrahDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HijrahDate) <font color="#cc0033">plus</font>*(p0 : LONGINT;
+                                  p1 : <a href="java_time_temporal.html#type-TemporalUnit">java_time_temporal.TemporalUnit</a>) : <a href="java_time_temporal.html#type-Temporal">java_time_temporal.Temporal</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HijrahDate) <font color="#cc0033">plus</font>*(p0 : LONGINT;
+                                  p1 : <a href="java_time_temporal.html#type-TemporalUnit">java_time_temporal.TemporalUnit</a>) : <a href="#type-HijrahDate">HijrahDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HijrahDate) <font color="#cc0033">range</font>*(p0 : <a href="java_time_temporal.html#type-TemporalField">java_time_temporal.TemporalField</a>) : <a href="java_time_temporal.html#type-ValueRange">java_time_temporal.ValueRange</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HijrahDate) <font color="#cc0033">toEpochDay</font>*() : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HijrahDate) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HijrahDate) <font color="#cc0033">until</font>*(p0 : <a href="java_time_temporal.html#type-Temporal">java_time_temporal.Temporal</a>;
+                                   p1 : <a href="java_time_temporal.html#type-TemporalUnit">java_time_temporal.TemporalUnit</a>) : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HijrahDate) <font color="#cc0033">until</font>*(p0 : <a href="java_time_chrono.html#type-ChronoLocalDate">java_time_chrono.ChronoLocalDate</a>) : <a href="#type-ChronoPeriod">ChronoPeriod</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HijrahDate) <font color="#cc0033">with</font>*(p0 : <a href="java_time_temporal.html#type-TemporalField">java_time_temporal.TemporalField</a>;
+                                  p1 : LONGINT) : <a href="java_time_temporal.html#type-Temporal">java_time_temporal.Temporal</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HijrahDate) <font color="#cc0033">with</font>*(p0 : <a href="java_time_temporal.html#type-TemporalAdjuster">java_time_temporal.TemporalAdjuster</a>) : <a href="#type-HijrahDate">HijrahDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HijrahDate) <font color="#cc0033">with</font>*(p0 : <a href="java_time_temporal.html#type-TemporalAdjuster">java_time_temporal.TemporalAdjuster</a>) : <a href="java_time_temporal.html#type-Temporal">java_time_temporal.Temporal</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HijrahDate) <font color="#cc0033">with</font>*(p0 : <a href="java_time_temporal.html#type-TemporalAdjuster">java_time_temporal.TemporalAdjuster</a>) : <a href="java_time_chrono.html#type-ChronoLocalDate">java_time_chrono.ChronoLocalDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HijrahDate) <font color="#cc0033">with</font>*(p0 : <a href="java_time_temporal.html#type-TemporalField">java_time_temporal.TemporalField</a>;
+                                  p1 : LONGINT) : <a href="java_time_chrono.html#type-ChronoLocalDate">java_time_chrono.ChronoLocalDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HijrahDate) <font color="#cc0033">with</font>*(p0 : <a href="java_time_temporal.html#type-TemporalField">java_time_temporal.TemporalField</a>;
+                                  p1 : LONGINT) : <a href="#type-HijrahDate">HijrahDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HijrahDate) <font color="#cc0033">withVariant</font>*(p0 : <a href="#type-HijrahChronology">HijrahChronology</a>) : <a href="#type-HijrahDate">HijrahDate</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-HijrahEra"></a>
+<b>PROCEDURE </b>(self:HijrahEra) <font color="#cc0033">getDisplayName</font>*(p0 : <a href="java_time_format.html#type-TextStyle">java_time_format.TextStyle</a>;
+                                           p1 : <a href="java_util.html#type-Locale">java_util.Locale</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HijrahEra) <font color="#cc0033">getValue</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HijrahEra) <font color="#cc0033">range</font>*(p0 : <a href="java_time_temporal.html#type-TemporalField">java_time_temporal.TemporalField</a>) : <a href="java_time_temporal.html#type-ValueRange">java_time_temporal.ValueRange</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-IsoChronology"></a>
+<b>PROCEDURE </b>(self:IsoChronology) <font color="#cc0033">date</font>*(p0 : INTEGER;
+                                     p1 : INTEGER;
+                                     p2 : INTEGER) : <a href="java_time.html#type-LocalDate">java_time.LocalDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IsoChronology) <font color="#cc0033">date</font>*(p0 : <a href="java_time_temporal.html#type-TemporalAccessor">java_time_temporal.TemporalAccessor</a>) : <a href="#type-ChronoLocalDate">ChronoLocalDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IsoChronology) <font color="#cc0033">date</font>*(p0 : <a href="java_time_temporal.html#type-TemporalAccessor">java_time_temporal.TemporalAccessor</a>) : <a href="java_time.html#type-LocalDate">java_time.LocalDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IsoChronology) <font color="#cc0033">date</font>*(p0 : <a href="#type-Era">Era</a>;
+                                     p1 : INTEGER;
+                                     p2 : INTEGER;
+                                     p3 : INTEGER) : <a href="#type-ChronoLocalDate">ChronoLocalDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IsoChronology) <font color="#cc0033">date</font>*(p0 : INTEGER;
+                                     p1 : INTEGER;
+                                     p2 : INTEGER) : <a href="#type-ChronoLocalDate">ChronoLocalDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IsoChronology) <font color="#cc0033">date</font>*(p0 : <a href="#type-Era">Era</a>;
+                                     p1 : INTEGER;
+                                     p2 : INTEGER;
+                                     p3 : INTEGER) : <a href="java_time.html#type-LocalDate">java_time.LocalDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IsoChronology) <font color="#cc0033">dateEpochDay</font>*(p0 : LONGINT) : <a href="#type-ChronoLocalDate">ChronoLocalDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IsoChronology) <font color="#cc0033">dateEpochDay</font>*(p0 : LONGINT) : <a href="java_time.html#type-LocalDate">java_time.LocalDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IsoChronology) <font color="#cc0033">dateNow</font>*(p0 : <a href="java_time.html#type-Clock">java_time.Clock</a>) : <a href="#type-ChronoLocalDate">ChronoLocalDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IsoChronology) <font color="#cc0033">dateNow</font>*() : <a href="java_time.html#type-LocalDate">java_time.LocalDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IsoChronology) <font color="#cc0033">dateNow</font>*(p0 : <a href="java_time.html#type-ZoneId">java_time.ZoneId</a>) : <a href="java_time.html#type-LocalDate">java_time.LocalDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IsoChronology) <font color="#cc0033">dateNow</font>*(p0 : <a href="java_time.html#type-ZoneId">java_time.ZoneId</a>) : <a href="#type-ChronoLocalDate">ChronoLocalDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IsoChronology) <font color="#cc0033">dateNow</font>*() : <a href="#type-ChronoLocalDate">ChronoLocalDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IsoChronology) <font color="#cc0033">dateNow</font>*(p0 : <a href="java_time.html#type-Clock">java_time.Clock</a>) : <a href="java_time.html#type-LocalDate">java_time.LocalDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IsoChronology) <font color="#cc0033">dateYearDay</font>*(p0 : <a href="#type-Era">Era</a>;
+                                            p1 : INTEGER;
+                                            p2 : INTEGER) : <a href="java_time.html#type-LocalDate">java_time.LocalDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IsoChronology) <font color="#cc0033">dateYearDay</font>*(p0 : INTEGER;
+                                            p1 : INTEGER) : <a href="java_time.html#type-LocalDate">java_time.LocalDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IsoChronology) <font color="#cc0033">dateYearDay</font>*(p0 : INTEGER;
+                                            p1 : INTEGER) : <a href="#type-ChronoLocalDate">ChronoLocalDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IsoChronology) <font color="#cc0033">dateYearDay</font>*(p0 : <a href="#type-Era">Era</a>;
+                                            p1 : INTEGER;
+                                            p2 : INTEGER) : <a href="#type-ChronoLocalDate">ChronoLocalDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IsoChronology) <font color="#cc0033">epochSecond</font>*(p0 : INTEGER;
+                                            p1 : INTEGER;
+                                            p2 : INTEGER;
+                                            p3 : INTEGER;
+                                            p4 : INTEGER;
+                                            p5 : INTEGER;
+                                            p6 : <a href="java_time.html#type-ZoneOffset">java_time.ZoneOffset</a>) : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IsoChronology) <font color="#cc0033">eraOf</font>*(p0 : INTEGER) : <a href="#type-Era">Era</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IsoChronology) <font color="#cc0033">eraOf</font>*(p0 : INTEGER) : <a href="#type-IsoEra">IsoEra</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IsoChronology) <font color="#cc0033">eras</font>*() : <a href="java_util.html#type-List">java_util.List</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IsoChronology) <font color="#cc0033">getCalendarType</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IsoChronology) <font color="#cc0033">getId</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IsoChronology) <font color="#cc0033">isLeapYear</font>*(p0 : LONGINT) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IsoChronology) <font color="#cc0033">localDateTime</font>*(p0 : <a href="java_time_temporal.html#type-TemporalAccessor">java_time_temporal.TemporalAccessor</a>) : <a href="#type-ChronoLocalDateTime">ChronoLocalDateTime</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IsoChronology) <font color="#cc0033">localDateTime</font>*(p0 : <a href="java_time_temporal.html#type-TemporalAccessor">java_time_temporal.TemporalAccessor</a>) : <a href="java_time.html#type-LocalDateTime">java_time.LocalDateTime</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IsoChronology) <font color="#cc0033">period</font>*(p0 : INTEGER;
+                                       p1 : INTEGER;
+                                       p2 : INTEGER) : <a href="java_time.html#type-Period">java_time.Period</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IsoChronology) <font color="#cc0033">period</font>*(p0 : INTEGER;
+                                       p1 : INTEGER;
+                                       p2 : INTEGER) : <a href="#type-ChronoPeriod">ChronoPeriod</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IsoChronology) <font color="#cc0033">prolepticYear</font>*(p0 : <a href="#type-Era">Era</a>;
+                                              p1 : INTEGER) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IsoChronology) <font color="#cc0033">range</font>*(p0 : <a href="java_time_temporal.html#type-ChronoField">java_time_temporal.ChronoField</a>) : <a href="java_time_temporal.html#type-ValueRange">java_time_temporal.ValueRange</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IsoChronology) <font color="#cc0033">resolveDate</font>*(p0 : <a href="java_util.html#type-Map">java_util.Map</a>;
+                                            p1 : <a href="java_time_format.html#type-ResolverStyle">java_time_format.ResolverStyle</a>) : <a href="#type-ChronoLocalDate">ChronoLocalDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IsoChronology) <font color="#cc0033">resolveDate</font>*(p0 : <a href="java_util.html#type-Map">java_util.Map</a>;
+                                            p1 : <a href="java_time_format.html#type-ResolverStyle">java_time_format.ResolverStyle</a>) : <a href="java_time.html#type-LocalDate">java_time.LocalDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IsoChronology) <font color="#cc0033">zonedDateTime</font>*(p0 : <a href="java_time.html#type-Instant">java_time.Instant</a>;
+                                              p1 : <a href="java_time.html#type-ZoneId">java_time.ZoneId</a>) : <a href="#type-ChronoZonedDateTime">ChronoZonedDateTime</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IsoChronology) <font color="#cc0033">zonedDateTime</font>*(p0 : <a href="java_time_temporal.html#type-TemporalAccessor">java_time_temporal.TemporalAccessor</a>) : <a href="#type-ChronoZonedDateTime">ChronoZonedDateTime</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IsoChronology) <font color="#cc0033">zonedDateTime</font>*(p0 : <a href="java_time.html#type-Instant">java_time.Instant</a>;
+                                              p1 : <a href="java_time.html#type-ZoneId">java_time.ZoneId</a>) : <a href="java_time.html#type-ZonedDateTime">java_time.ZonedDateTime</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IsoChronology) <font color="#cc0033">zonedDateTime</font>*(p0 : <a href="java_time_temporal.html#type-TemporalAccessor">java_time_temporal.TemporalAccessor</a>) : <a href="java_time.html#type-ZonedDateTime">java_time.ZonedDateTime</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-IsoEra"></a>
+<b>PROCEDURE </b>(self:IsoEra) <font color="#cc0033">getValue</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-JapaneseChronology"></a>
+<b>PROCEDURE </b>(self:JapaneseChronology) <font color="#cc0033">date</font>*(p0 : <a href="#type-Era">Era</a>;
+                                          p1 : INTEGER;
+                                          p2 : INTEGER;
+                                          p3 : INTEGER) : <a href="#type-ChronoLocalDate">ChronoLocalDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:JapaneseChronology) <font color="#cc0033">date</font>*(p0 : <a href="java_time_temporal.html#type-TemporalAccessor">java_time_temporal.TemporalAccessor</a>) : <a href="#type-JapaneseDate">JapaneseDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:JapaneseChronology) <font color="#cc0033">date</font>*(p0 : <a href="java_time_temporal.html#type-TemporalAccessor">java_time_temporal.TemporalAccessor</a>) : <a href="#type-ChronoLocalDate">ChronoLocalDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:JapaneseChronology) <font color="#cc0033">date</font>*(p0 : INTEGER;
+                                          p1 : INTEGER;
+                                          p2 : INTEGER) : <a href="#type-ChronoLocalDate">ChronoLocalDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:JapaneseChronology) <font color="#cc0033">date</font>*(p0 : INTEGER;
+                                          p1 : INTEGER;
+                                          p2 : INTEGER) : <a href="#type-JapaneseDate">JapaneseDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:JapaneseChronology) <font color="#cc0033">date</font>*(p0 : <a href="#type-Era">Era</a>;
+                                          p1 : INTEGER;
+                                          p2 : INTEGER;
+                                          p3 : INTEGER) : <a href="#type-JapaneseDate">JapaneseDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:JapaneseChronology) <font color="#cc0033">dateEpochDay</font>*(p0 : LONGINT) : <a href="#type-ChronoLocalDate">ChronoLocalDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:JapaneseChronology) <font color="#cc0033">dateEpochDay</font>*(p0 : LONGINT) : <a href="#type-JapaneseDate">JapaneseDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:JapaneseChronology) <font color="#cc0033">dateNow</font>*(p0 : <a href="java_time.html#type-ZoneId">java_time.ZoneId</a>) : <a href="#type-ChronoLocalDate">ChronoLocalDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:JapaneseChronology) <font color="#cc0033">dateNow</font>*() : <a href="#type-ChronoLocalDate">ChronoLocalDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:JapaneseChronology) <font color="#cc0033">dateNow</font>*(p0 : <a href="java_time.html#type-Clock">java_time.Clock</a>) : <a href="#type-ChronoLocalDate">ChronoLocalDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:JapaneseChronology) <font color="#cc0033">dateNow</font>*(p0 : <a href="java_time.html#type-ZoneId">java_time.ZoneId</a>) : <a href="#type-JapaneseDate">JapaneseDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:JapaneseChronology) <font color="#cc0033">dateNow</font>*() : <a href="#type-JapaneseDate">JapaneseDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:JapaneseChronology) <font color="#cc0033">dateNow</font>*(p0 : <a href="java_time.html#type-Clock">java_time.Clock</a>) : <a href="#type-JapaneseDate">JapaneseDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:JapaneseChronology) <font color="#cc0033">dateYearDay</font>*(p0 : INTEGER;
+                                                 p1 : INTEGER) : <a href="#type-JapaneseDate">JapaneseDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:JapaneseChronology) <font color="#cc0033">dateYearDay</font>*(p0 : INTEGER;
+                                                 p1 : INTEGER) : <a href="#type-ChronoLocalDate">ChronoLocalDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:JapaneseChronology) <font color="#cc0033">dateYearDay</font>*(p0 : <a href="#type-Era">Era</a>;
+                                                 p1 : INTEGER;
+                                                 p2 : INTEGER) : <a href="#type-JapaneseDate">JapaneseDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:JapaneseChronology) <font color="#cc0033">dateYearDay</font>*(p0 : <a href="#type-Era">Era</a>;
+                                                 p1 : INTEGER;
+                                                 p2 : INTEGER) : <a href="#type-ChronoLocalDate">ChronoLocalDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:JapaneseChronology) <font color="#cc0033">eraOf</font>*(p0 : INTEGER) : <a href="#type-Era">Era</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:JapaneseChronology) <font color="#cc0033">eraOf</font>*(p0 : INTEGER) : <a href="#type-JapaneseEra">JapaneseEra</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:JapaneseChronology) <font color="#cc0033">eras</font>*() : <a href="java_util.html#type-List">java_util.List</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:JapaneseChronology) <font color="#cc0033">getCalendarType</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:JapaneseChronology) <font color="#cc0033">getId</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:JapaneseChronology) <font color="#cc0033">isLeapYear</font>*(p0 : LONGINT) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:JapaneseChronology) <font color="#cc0033">localDateTime</font>*(p0 : <a href="java_time_temporal.html#type-TemporalAccessor">java_time_temporal.TemporalAccessor</a>) : <a href="#type-ChronoLocalDateTime">ChronoLocalDateTime</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:JapaneseChronology) <font color="#cc0033">prolepticYear</font>*(p0 : <a href="#type-Era">Era</a>;
+                                                   p1 : INTEGER) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:JapaneseChronology) <font color="#cc0033">range</font>*(p0 : <a href="java_time_temporal.html#type-ChronoField">java_time_temporal.ChronoField</a>) : <a href="java_time_temporal.html#type-ValueRange">java_time_temporal.ValueRange</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:JapaneseChronology) <font color="#cc0033">resolveDate</font>*(p0 : <a href="java_util.html#type-Map">java_util.Map</a>;
+                                                 p1 : <a href="java_time_format.html#type-ResolverStyle">java_time_format.ResolverStyle</a>) : <a href="#type-ChronoLocalDate">ChronoLocalDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:JapaneseChronology) <font color="#cc0033">resolveDate</font>*(p0 : <a href="java_util.html#type-Map">java_util.Map</a>;
+                                                 p1 : <a href="java_time_format.html#type-ResolverStyle">java_time_format.ResolverStyle</a>) : <a href="#type-JapaneseDate">JapaneseDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:JapaneseChronology) <font color="#cc0033">zonedDateTime</font>*(p0 : <a href="java_time_temporal.html#type-TemporalAccessor">java_time_temporal.TemporalAccessor</a>) : <a href="#type-ChronoZonedDateTime">ChronoZonedDateTime</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:JapaneseChronology) <font color="#cc0033">zonedDateTime</font>*(p0 : <a href="java_time.html#type-Instant">java_time.Instant</a>;
+                                                   p1 : <a href="java_time.html#type-ZoneId">java_time.ZoneId</a>) : <a href="#type-ChronoZonedDateTime">ChronoZonedDateTime</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-JapaneseDate"></a>
+<b>PROCEDURE </b>(self:JapaneseDate) <font color="#cc0033">atTime</font>*(p0 : <a href="java_time.html#type-LocalTime">java_time.LocalTime</a>) : <a href="java_time_chrono.html#type-ChronoLocalDateTime">java_time_chrono.ChronoLocalDateTime</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:JapaneseDate) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:JapaneseDate) <font color="#cc0033">getChronology</font>*() : <a href="java_time_chrono.html#type-JapaneseChronology">java_time_chrono.JapaneseChronology</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:JapaneseDate) <font color="#cc0033">getChronology</font>*() : <a href="java_time_chrono.html#type-Chronology">java_time_chrono.Chronology</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:JapaneseDate) <font color="#cc0033">getEra</font>*() : <a href="java_time_chrono.html#type-JapaneseEra">java_time_chrono.JapaneseEra</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:JapaneseDate) <font color="#cc0033">getEra</font>*() : <a href="java_time_chrono.html#type-Era">java_time_chrono.Era</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:JapaneseDate) <font color="#cc0033">getLong</font>*(p0 : <a href="java_time_temporal.html#type-TemporalField">java_time_temporal.TemporalField</a>) : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:JapaneseDate) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:JapaneseDate) <font color="#cc0033">isSupported</font>*(p0 : <a href="java_time_temporal.html#type-TemporalField">java_time_temporal.TemporalField</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:JapaneseDate) <font color="#cc0033">lengthOfMonth</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:JapaneseDate) <font color="#cc0033">lengthOfYear</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:JapaneseDate) <font color="#cc0033">minus</font>*(p0 : LONGINT;
+                                     p1 : <a href="java_time_temporal.html#type-TemporalUnit">java_time_temporal.TemporalUnit</a>) : <a href="java_time_chrono.html#type-ChronoLocalDate">java_time_chrono.ChronoLocalDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:JapaneseDate) <font color="#cc0033">minus</font>*(p0 : <a href="java_time_temporal.html#type-TemporalAmount">java_time_temporal.TemporalAmount</a>) : <a href="java_time_temporal.html#type-Temporal">java_time_temporal.Temporal</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:JapaneseDate) <font color="#cc0033">minus</font>*(p0 : LONGINT;
+                                     p1 : <a href="java_time_temporal.html#type-TemporalUnit">java_time_temporal.TemporalUnit</a>) : <a href="java_time_temporal.html#type-Temporal">java_time_temporal.Temporal</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:JapaneseDate) <font color="#cc0033">minus</font>*(p0 : <a href="java_time_temporal.html#type-TemporalAmount">java_time_temporal.TemporalAmount</a>) : <a href="java_time_chrono.html#type-ChronoLocalDate">java_time_chrono.ChronoLocalDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:JapaneseDate) <font color="#cc0033">minus</font>*(p0 : <a href="java_time_temporal.html#type-TemporalAmount">java_time_temporal.TemporalAmount</a>) : <a href="#type-JapaneseDate">JapaneseDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:JapaneseDate) <font color="#cc0033">minus</font>*(p0 : LONGINT;
+                                     p1 : <a href="java_time_temporal.html#type-TemporalUnit">java_time_temporal.TemporalUnit</a>) : <a href="#type-JapaneseDate">JapaneseDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:JapaneseDate) <font color="#cc0033">plus</font>*(p0 : <a href="java_time_temporal.html#type-TemporalAmount">java_time_temporal.TemporalAmount</a>) : <a href="java_time_temporal.html#type-Temporal">java_time_temporal.Temporal</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:JapaneseDate) <font color="#cc0033">plus</font>*(p0 : <a href="java_time_temporal.html#type-TemporalAmount">java_time_temporal.TemporalAmount</a>) : <a href="java_time_chrono.html#type-ChronoLocalDate">java_time_chrono.ChronoLocalDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:JapaneseDate) <font color="#cc0033">plus</font>*(p0 : LONGINT;
+                                    p1 : <a href="java_time_temporal.html#type-TemporalUnit">java_time_temporal.TemporalUnit</a>) : <a href="java_time_temporal.html#type-Temporal">java_time_temporal.Temporal</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:JapaneseDate) <font color="#cc0033">plus</font>*(p0 : <a href="java_time_temporal.html#type-TemporalAmount">java_time_temporal.TemporalAmount</a>) : <a href="#type-JapaneseDate">JapaneseDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:JapaneseDate) <font color="#cc0033">plus</font>*(p0 : LONGINT;
+                                    p1 : <a href="java_time_temporal.html#type-TemporalUnit">java_time_temporal.TemporalUnit</a>) : <a href="#type-JapaneseDate">JapaneseDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:JapaneseDate) <font color="#cc0033">plus</font>*(p0 : LONGINT;
+                                    p1 : <a href="java_time_temporal.html#type-TemporalUnit">java_time_temporal.TemporalUnit</a>) : <a href="java_time_chrono.html#type-ChronoLocalDate">java_time_chrono.ChronoLocalDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:JapaneseDate) <font color="#cc0033">range</font>*(p0 : <a href="java_time_temporal.html#type-TemporalField">java_time_temporal.TemporalField</a>) : <a href="java_time_temporal.html#type-ValueRange">java_time_temporal.ValueRange</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:JapaneseDate) <font color="#cc0033">toEpochDay</font>*() : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:JapaneseDate) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:JapaneseDate) <font color="#cc0033">until</font>*(p0 : <a href="java_time_chrono.html#type-ChronoLocalDate">java_time_chrono.ChronoLocalDate</a>) : <a href="#type-ChronoPeriod">ChronoPeriod</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:JapaneseDate) <font color="#cc0033">until</font>*(p0 : <a href="java_time_temporal.html#type-Temporal">java_time_temporal.Temporal</a>;
+                                     p1 : <a href="java_time_temporal.html#type-TemporalUnit">java_time_temporal.TemporalUnit</a>) : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:JapaneseDate) <font color="#cc0033">with</font>*(p0 : <a href="java_time_temporal.html#type-TemporalAdjuster">java_time_temporal.TemporalAdjuster</a>) : <a href="java_time_temporal.html#type-Temporal">java_time_temporal.Temporal</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:JapaneseDate) <font color="#cc0033">with</font>*(p0 : <a href="java_time_temporal.html#type-TemporalField">java_time_temporal.TemporalField</a>;
+                                    p1 : LONGINT) : <a href="java_time_temporal.html#type-Temporal">java_time_temporal.Temporal</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:JapaneseDate) <font color="#cc0033">with</font>*(p0 : <a href="java_time_temporal.html#type-TemporalField">java_time_temporal.TemporalField</a>;
+                                    p1 : LONGINT) : <a href="java_time_chrono.html#type-ChronoLocalDate">java_time_chrono.ChronoLocalDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:JapaneseDate) <font color="#cc0033">with</font>*(p0 : <a href="java_time_temporal.html#type-TemporalField">java_time_temporal.TemporalField</a>;
+                                    p1 : LONGINT) : <a href="#type-JapaneseDate">JapaneseDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:JapaneseDate) <font color="#cc0033">with</font>*(p0 : <a href="java_time_temporal.html#type-TemporalAdjuster">java_time_temporal.TemporalAdjuster</a>) : <a href="#type-JapaneseDate">JapaneseDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:JapaneseDate) <font color="#cc0033">with</font>*(p0 : <a href="java_time_temporal.html#type-TemporalAdjuster">java_time_temporal.TemporalAdjuster</a>) : <a href="java_time_chrono.html#type-ChronoLocalDate">java_time_chrono.ChronoLocalDate</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-JapaneseEra"></a>
+<b>PROCEDURE </b>(self:JapaneseEra) <font color="#cc0033">getDisplayName</font>*(p0 : <a href="java_time_format.html#type-TextStyle">java_time_format.TextStyle</a>;
+                                             p1 : <a href="java_util.html#type-Locale">java_util.Locale</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:JapaneseEra) <font color="#cc0033">getValue</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:JapaneseEra) <font color="#cc0033">range</font>*(p0 : <a href="java_time_temporal.html#type-TemporalField">java_time_temporal.TemporalField</a>) : <a href="java_time_temporal.html#type-ValueRange">java_time_temporal.ValueRange</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:JapaneseEra) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-MinguoChronology"></a>
+<b>PROCEDURE </b>(self:MinguoChronology) <font color="#cc0033">date</font>*(p0 : <a href="java_time_chrono.html#type-Era">java_time_chrono.Era</a>;
+                                        p1 : INTEGER;
+                                        p2 : INTEGER;
+                                        p3 : INTEGER) : <a href="java_time_chrono.html#type-ChronoLocalDate">java_time_chrono.ChronoLocalDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MinguoChronology) <font color="#cc0033">date</font>*(p0 : <a href="java_time_temporal.html#type-TemporalAccessor">java_time_temporal.TemporalAccessor</a>) : <a href="java_time_chrono.html#type-MinguoDate">java_time_chrono.MinguoDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MinguoChronology) <font color="#cc0033">date</font>*(p0 : <a href="java_time_temporal.html#type-TemporalAccessor">java_time_temporal.TemporalAccessor</a>) : <a href="java_time_chrono.html#type-ChronoLocalDate">java_time_chrono.ChronoLocalDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MinguoChronology) <font color="#cc0033">date</font>*(p0 : INTEGER;
+                                        p1 : INTEGER;
+                                        p2 : INTEGER) : <a href="java_time_chrono.html#type-ChronoLocalDate">java_time_chrono.ChronoLocalDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MinguoChronology) <font color="#cc0033">date</font>*(p0 : INTEGER;
+                                        p1 : INTEGER;
+                                        p2 : INTEGER) : <a href="java_time_chrono.html#type-MinguoDate">java_time_chrono.MinguoDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MinguoChronology) <font color="#cc0033">date</font>*(p0 : <a href="java_time_chrono.html#type-Era">java_time_chrono.Era</a>;
+                                        p1 : INTEGER;
+                                        p2 : INTEGER;
+                                        p3 : INTEGER) : <a href="java_time_chrono.html#type-MinguoDate">java_time_chrono.MinguoDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MinguoChronology) <font color="#cc0033">dateEpochDay</font>*(p0 : LONGINT) : <a href="java_time_chrono.html#type-ChronoLocalDate">java_time_chrono.ChronoLocalDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MinguoChronology) <font color="#cc0033">dateEpochDay</font>*(p0 : LONGINT) : <a href="java_time_chrono.html#type-MinguoDate">java_time_chrono.MinguoDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MinguoChronology) <font color="#cc0033">dateNow</font>*(p0 : <a href="java_time.html#type-ZoneId">java_time.ZoneId</a>) : <a href="java_time_chrono.html#type-ChronoLocalDate">java_time_chrono.ChronoLocalDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MinguoChronology) <font color="#cc0033">dateNow</font>*() : <a href="java_time_chrono.html#type-ChronoLocalDate">java_time_chrono.ChronoLocalDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MinguoChronology) <font color="#cc0033">dateNow</font>*(p0 : <a href="java_time.html#type-Clock">java_time.Clock</a>) : <a href="java_time_chrono.html#type-ChronoLocalDate">java_time_chrono.ChronoLocalDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MinguoChronology) <font color="#cc0033">dateNow</font>*(p0 : <a href="java_time.html#type-ZoneId">java_time.ZoneId</a>) : <a href="java_time_chrono.html#type-MinguoDate">java_time_chrono.MinguoDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MinguoChronology) <font color="#cc0033">dateNow</font>*() : <a href="java_time_chrono.html#type-MinguoDate">java_time_chrono.MinguoDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MinguoChronology) <font color="#cc0033">dateNow</font>*(p0 : <a href="java_time.html#type-Clock">java_time.Clock</a>) : <a href="java_time_chrono.html#type-MinguoDate">java_time_chrono.MinguoDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MinguoChronology) <font color="#cc0033">dateYearDay</font>*(p0 : INTEGER;
+                                               p1 : INTEGER) : <a href="java_time_chrono.html#type-MinguoDate">java_time_chrono.MinguoDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MinguoChronology) <font color="#cc0033">dateYearDay</font>*(p0 : INTEGER;
+                                               p1 : INTEGER) : <a href="java_time_chrono.html#type-ChronoLocalDate">java_time_chrono.ChronoLocalDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MinguoChronology) <font color="#cc0033">dateYearDay</font>*(p0 : <a href="java_time_chrono.html#type-Era">java_time_chrono.Era</a>;
+                                               p1 : INTEGER;
+                                               p2 : INTEGER) : <a href="java_time_chrono.html#type-MinguoDate">java_time_chrono.MinguoDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MinguoChronology) <font color="#cc0033">dateYearDay</font>*(p0 : <a href="java_time_chrono.html#type-Era">java_time_chrono.Era</a>;
+                                               p1 : INTEGER;
+                                               p2 : INTEGER) : <a href="java_time_chrono.html#type-ChronoLocalDate">java_time_chrono.ChronoLocalDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MinguoChronology) <font color="#cc0033">eraOf</font>*(p0 : INTEGER) : <a href="java_time_chrono.html#type-Era">java_time_chrono.Era</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MinguoChronology) <font color="#cc0033">eraOf</font>*(p0 : INTEGER) : <a href="#type-MinguoEra">MinguoEra</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MinguoChronology) <font color="#cc0033">eras</font>*() : <a href="java_util.html#type-List">java_util.List</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MinguoChronology) <font color="#cc0033">getCalendarType</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MinguoChronology) <font color="#cc0033">getId</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MinguoChronology) <font color="#cc0033">isLeapYear</font>*(p0 : LONGINT) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MinguoChronology) <font color="#cc0033">localDateTime</font>*(p0 : <a href="java_time_temporal.html#type-TemporalAccessor">java_time_temporal.TemporalAccessor</a>) : <a href="java_time_chrono.html#type-ChronoLocalDateTime">java_time_chrono.ChronoLocalDateTime</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MinguoChronology) <font color="#cc0033">prolepticYear</font>*(p0 : <a href="java_time_chrono.html#type-Era">java_time_chrono.Era</a>;
+                                                 p1 : INTEGER) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MinguoChronology) <font color="#cc0033">range</font>*(p0 : <a href="java_time_temporal.html#type-ChronoField">java_time_temporal.ChronoField</a>) : <a href="java_time_temporal.html#type-ValueRange">java_time_temporal.ValueRange</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MinguoChronology) <font color="#cc0033">resolveDate</font>*(p0 : <a href="java_util.html#type-Map">java_util.Map</a>;
+                                               p1 : <a href="java_time_format.html#type-ResolverStyle">java_time_format.ResolverStyle</a>) : <a href="java_time_chrono.html#type-ChronoLocalDate">java_time_chrono.ChronoLocalDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MinguoChronology) <font color="#cc0033">resolveDate</font>*(p0 : <a href="java_util.html#type-Map">java_util.Map</a>;
+                                               p1 : <a href="java_time_format.html#type-ResolverStyle">java_time_format.ResolverStyle</a>) : <a href="java_time_chrono.html#type-MinguoDate">java_time_chrono.MinguoDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MinguoChronology) <font color="#cc0033">zonedDateTime</font>*(p0 : <a href="java_time_temporal.html#type-TemporalAccessor">java_time_temporal.TemporalAccessor</a>) : <a href="java_time_chrono.html#type-ChronoZonedDateTime">java_time_chrono.ChronoZonedDateTime</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MinguoChronology) <font color="#cc0033">zonedDateTime</font>*(p0 : <a href="java_time.html#type-Instant">java_time.Instant</a>;
+                                                 p1 : <a href="java_time.html#type-ZoneId">java_time.ZoneId</a>) : <a href="java_time_chrono.html#type-ChronoZonedDateTime">java_time_chrono.ChronoZonedDateTime</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-MinguoDate"></a>
+<b>PROCEDURE </b>(self:MinguoDate) <font color="#cc0033">atTime</font>*(p0 : <a href="java_time.html#type-LocalTime">java_time.LocalTime</a>) : <a href="java_time_chrono.html#type-ChronoLocalDateTime">java_time_chrono.ChronoLocalDateTime</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:MinguoDate) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MinguoDate) <font color="#cc0033">getChronology</font>*() : <a href="java_time_chrono.html#type-Chronology">java_time_chrono.Chronology</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MinguoDate) <font color="#cc0033">getChronology</font>*() : <a href="#type-MinguoChronology">MinguoChronology</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MinguoDate) <font color="#cc0033">getEra</font>*() : <a href="java_time_chrono.html#type-Era">java_time_chrono.Era</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MinguoDate) <font color="#cc0033">getEra</font>*() : <a href="#type-MinguoEra">MinguoEra</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MinguoDate) <font color="#cc0033">getLong</font>*(p0 : <a href="java_time_temporal.html#type-TemporalField">java_time_temporal.TemporalField</a>) : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MinguoDate) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MinguoDate) <font color="#cc0033">lengthOfMonth</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MinguoDate) <font color="#cc0033">minus</font>*(p0 : <a href="java_time_temporal.html#type-TemporalAmount">java_time_temporal.TemporalAmount</a>) : <a href="java_time_chrono.html#type-ChronoLocalDate">java_time_chrono.ChronoLocalDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MinguoDate) <font color="#cc0033">minus</font>*(p0 : LONGINT;
+                                   p1 : <a href="java_time_temporal.html#type-TemporalUnit">java_time_temporal.TemporalUnit</a>) : <a href="java_time_chrono.html#type-ChronoLocalDate">java_time_chrono.ChronoLocalDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MinguoDate) <font color="#cc0033">minus</font>*(p0 : LONGINT;
+                                   p1 : <a href="java_time_temporal.html#type-TemporalUnit">java_time_temporal.TemporalUnit</a>) : <a href="java_time_temporal.html#type-Temporal">java_time_temporal.Temporal</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MinguoDate) <font color="#cc0033">minus</font>*(p0 : <a href="java_time_temporal.html#type-TemporalAmount">java_time_temporal.TemporalAmount</a>) : <a href="java_time_temporal.html#type-Temporal">java_time_temporal.Temporal</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MinguoDate) <font color="#cc0033">minus</font>*(p0 : LONGINT;
+                                   p1 : <a href="java_time_temporal.html#type-TemporalUnit">java_time_temporal.TemporalUnit</a>) : <a href="#type-MinguoDate">MinguoDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MinguoDate) <font color="#cc0033">minus</font>*(p0 : <a href="java_time_temporal.html#type-TemporalAmount">java_time_temporal.TemporalAmount</a>) : <a href="#type-MinguoDate">MinguoDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MinguoDate) <font color="#cc0033">plus</font>*(p0 : <a href="java_time_temporal.html#type-TemporalAmount">java_time_temporal.TemporalAmount</a>) : <a href="java_time_chrono.html#type-ChronoLocalDate">java_time_chrono.ChronoLocalDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MinguoDate) <font color="#cc0033">plus</font>*(p0 : LONGINT;
+                                  p1 : <a href="java_time_temporal.html#type-TemporalUnit">java_time_temporal.TemporalUnit</a>) : <a href="java_time_chrono.html#type-ChronoLocalDate">java_time_chrono.ChronoLocalDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MinguoDate) <font color="#cc0033">plus</font>*(p0 : <a href="java_time_temporal.html#type-TemporalAmount">java_time_temporal.TemporalAmount</a>) : <a href="java_time_temporal.html#type-Temporal">java_time_temporal.Temporal</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MinguoDate) <font color="#cc0033">plus</font>*(p0 : LONGINT;
+                                  p1 : <a href="java_time_temporal.html#type-TemporalUnit">java_time_temporal.TemporalUnit</a>) : <a href="#type-MinguoDate">MinguoDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MinguoDate) <font color="#cc0033">plus</font>*(p0 : LONGINT;
+                                  p1 : <a href="java_time_temporal.html#type-TemporalUnit">java_time_temporal.TemporalUnit</a>) : <a href="java_time_temporal.html#type-Temporal">java_time_temporal.Temporal</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MinguoDate) <font color="#cc0033">plus</font>*(p0 : <a href="java_time_temporal.html#type-TemporalAmount">java_time_temporal.TemporalAmount</a>) : <a href="#type-MinguoDate">MinguoDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MinguoDate) <font color="#cc0033">range</font>*(p0 : <a href="java_time_temporal.html#type-TemporalField">java_time_temporal.TemporalField</a>) : <a href="java_time_temporal.html#type-ValueRange">java_time_temporal.ValueRange</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MinguoDate) <font color="#cc0033">toEpochDay</font>*() : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MinguoDate) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MinguoDate) <font color="#cc0033">until</font>*(p0 : <a href="java_time_chrono.html#type-ChronoLocalDate">java_time_chrono.ChronoLocalDate</a>) : <a href="#type-ChronoPeriod">ChronoPeriod</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MinguoDate) <font color="#cc0033">until</font>*(p0 : <a href="java_time_temporal.html#type-Temporal">java_time_temporal.Temporal</a>;
+                                   p1 : <a href="java_time_temporal.html#type-TemporalUnit">java_time_temporal.TemporalUnit</a>) : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MinguoDate) <font color="#cc0033">with</font>*(p0 : <a href="java_time_temporal.html#type-TemporalAdjuster">java_time_temporal.TemporalAdjuster</a>) : <a href="java_time_temporal.html#type-Temporal">java_time_temporal.Temporal</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MinguoDate) <font color="#cc0033">with</font>*(p0 : <a href="java_time_temporal.html#type-TemporalField">java_time_temporal.TemporalField</a>;
+                                  p1 : LONGINT) : <a href="java_time_temporal.html#type-Temporal">java_time_temporal.Temporal</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MinguoDate) <font color="#cc0033">with</font>*(p0 : <a href="java_time_temporal.html#type-TemporalField">java_time_temporal.TemporalField</a>;
+                                  p1 : LONGINT) : <a href="#type-MinguoDate">MinguoDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MinguoDate) <font color="#cc0033">with</font>*(p0 : <a href="java_time_temporal.html#type-TemporalAdjuster">java_time_temporal.TemporalAdjuster</a>) : <a href="#type-MinguoDate">MinguoDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MinguoDate) <font color="#cc0033">with</font>*(p0 : <a href="java_time_temporal.html#type-TemporalAdjuster">java_time_temporal.TemporalAdjuster</a>) : <a href="java_time_chrono.html#type-ChronoLocalDate">java_time_chrono.ChronoLocalDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MinguoDate) <font color="#cc0033">with</font>*(p0 : <a href="java_time_temporal.html#type-TemporalField">java_time_temporal.TemporalField</a>;
+                                  p1 : LONGINT) : <a href="java_time_chrono.html#type-ChronoLocalDate">java_time_chrono.ChronoLocalDate</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-MinguoEra"></a>
+<b>PROCEDURE </b>(self:MinguoEra) <font color="#cc0033">getDisplayName</font>*(p0 : <a href="java_time_format.html#type-TextStyle">java_time_format.TextStyle</a>;
+                                           p1 : <a href="java_util.html#type-Locale">java_util.Locale</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MinguoEra) <font color="#cc0033">getValue</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-ThaiBuddhistChronology"></a>
+<b>PROCEDURE </b>(self:ThaiBuddhistChronology) <font color="#cc0033">date</font>*(p0 : <a href="java_time_chrono.html#type-Era">java_time_chrono.Era</a>;
+                                              p1 : INTEGER;
+                                              p2 : INTEGER;
+                                              p3 : INTEGER) : <a href="java_time_chrono.html#type-ChronoLocalDate">java_time_chrono.ChronoLocalDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ThaiBuddhistChronology) <font color="#cc0033">date</font>*(p0 : <a href="java_time_temporal.html#type-TemporalAccessor">java_time_temporal.TemporalAccessor</a>) : <a href="java_time_chrono.html#type-ThaiBuddhistDate">java_time_chrono.ThaiBuddhistDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ThaiBuddhistChronology) <font color="#cc0033">date</font>*(p0 : <a href="java_time_temporal.html#type-TemporalAccessor">java_time_temporal.TemporalAccessor</a>) : <a href="java_time_chrono.html#type-ChronoLocalDate">java_time_chrono.ChronoLocalDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ThaiBuddhistChronology) <font color="#cc0033">date</font>*(p0 : INTEGER;
+                                              p1 : INTEGER;
+                                              p2 : INTEGER) : <a href="java_time_chrono.html#type-ChronoLocalDate">java_time_chrono.ChronoLocalDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ThaiBuddhistChronology) <font color="#cc0033">date</font>*(p0 : INTEGER;
+                                              p1 : INTEGER;
+                                              p2 : INTEGER) : <a href="java_time_chrono.html#type-ThaiBuddhistDate">java_time_chrono.ThaiBuddhistDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ThaiBuddhistChronology) <font color="#cc0033">date</font>*(p0 : <a href="java_time_chrono.html#type-Era">java_time_chrono.Era</a>;
+                                              p1 : INTEGER;
+                                              p2 : INTEGER;
+                                              p3 : INTEGER) : <a href="java_time_chrono.html#type-ThaiBuddhistDate">java_time_chrono.ThaiBuddhistDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ThaiBuddhistChronology) <font color="#cc0033">dateEpochDay</font>*(p0 : LONGINT) : <a href="java_time_chrono.html#type-ChronoLocalDate">java_time_chrono.ChronoLocalDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ThaiBuddhistChronology) <font color="#cc0033">dateEpochDay</font>*(p0 : LONGINT) : <a href="java_time_chrono.html#type-ThaiBuddhistDate">java_time_chrono.ThaiBuddhistDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ThaiBuddhistChronology) <font color="#cc0033">dateNow</font>*(p0 : <a href="java_time.html#type-ZoneId">java_time.ZoneId</a>) : <a href="java_time_chrono.html#type-ChronoLocalDate">java_time_chrono.ChronoLocalDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ThaiBuddhistChronology) <font color="#cc0033">dateNow</font>*() : <a href="java_time_chrono.html#type-ChronoLocalDate">java_time_chrono.ChronoLocalDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ThaiBuddhistChronology) <font color="#cc0033">dateNow</font>*(p0 : <a href="java_time.html#type-Clock">java_time.Clock</a>) : <a href="java_time_chrono.html#type-ChronoLocalDate">java_time_chrono.ChronoLocalDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ThaiBuddhistChronology) <font color="#cc0033">dateNow</font>*(p0 : <a href="java_time.html#type-ZoneId">java_time.ZoneId</a>) : <a href="java_time_chrono.html#type-ThaiBuddhistDate">java_time_chrono.ThaiBuddhistDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ThaiBuddhistChronology) <font color="#cc0033">dateNow</font>*() : <a href="java_time_chrono.html#type-ThaiBuddhistDate">java_time_chrono.ThaiBuddhistDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ThaiBuddhistChronology) <font color="#cc0033">dateNow</font>*(p0 : <a href="java_time.html#type-Clock">java_time.Clock</a>) : <a href="java_time_chrono.html#type-ThaiBuddhistDate">java_time_chrono.ThaiBuddhistDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ThaiBuddhistChronology) <font color="#cc0033">dateYearDay</font>*(p0 : INTEGER;
+                                                     p1 : INTEGER) : <a href="java_time_chrono.html#type-ThaiBuddhistDate">java_time_chrono.ThaiBuddhistDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ThaiBuddhistChronology) <font color="#cc0033">dateYearDay</font>*(p0 : INTEGER;
+                                                     p1 : INTEGER) : <a href="java_time_chrono.html#type-ChronoLocalDate">java_time_chrono.ChronoLocalDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ThaiBuddhistChronology) <font color="#cc0033">dateYearDay</font>*(p0 : <a href="java_time_chrono.html#type-Era">java_time_chrono.Era</a>;
+                                                     p1 : INTEGER;
+                                                     p2 : INTEGER) : <a href="java_time_chrono.html#type-ThaiBuddhistDate">java_time_chrono.ThaiBuddhistDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ThaiBuddhistChronology) <font color="#cc0033">dateYearDay</font>*(p0 : <a href="java_time_chrono.html#type-Era">java_time_chrono.Era</a>;
+                                                     p1 : INTEGER;
+                                                     p2 : INTEGER) : <a href="java_time_chrono.html#type-ChronoLocalDate">java_time_chrono.ChronoLocalDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ThaiBuddhistChronology) <font color="#cc0033">eraOf</font>*(p0 : INTEGER) : <a href="java_time_chrono.html#type-Era">java_time_chrono.Era</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ThaiBuddhistChronology) <font color="#cc0033">eraOf</font>*(p0 : INTEGER) : <a href="java_time_chrono.html#type-ThaiBuddhistEra">java_time_chrono.ThaiBuddhistEra</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ThaiBuddhistChronology) <font color="#cc0033">eras</font>*() : <a href="java_util.html#type-List">java_util.List</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ThaiBuddhistChronology) <font color="#cc0033">getCalendarType</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ThaiBuddhistChronology) <font color="#cc0033">getId</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ThaiBuddhistChronology) <font color="#cc0033">isLeapYear</font>*(p0 : LONGINT) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ThaiBuddhistChronology) <font color="#cc0033">localDateTime</font>*(p0 : <a href="java_time_temporal.html#type-TemporalAccessor">java_time_temporal.TemporalAccessor</a>) : <a href="java_time_chrono.html#type-ChronoLocalDateTime">java_time_chrono.ChronoLocalDateTime</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ThaiBuddhistChronology) <font color="#cc0033">prolepticYear</font>*(p0 : <a href="java_time_chrono.html#type-Era">java_time_chrono.Era</a>;
+                                                       p1 : INTEGER) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ThaiBuddhistChronology) <font color="#cc0033">range</font>*(p0 : <a href="java_time_temporal.html#type-ChronoField">java_time_temporal.ChronoField</a>) : <a href="java_time_temporal.html#type-ValueRange">java_time_temporal.ValueRange</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ThaiBuddhistChronology) <font color="#cc0033">resolveDate</font>*(p0 : <a href="java_util.html#type-Map">java_util.Map</a>;
+                                                     p1 : <a href="java_time_format.html#type-ResolverStyle">java_time_format.ResolverStyle</a>) : <a href="java_time_chrono.html#type-ChronoLocalDate">java_time_chrono.ChronoLocalDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ThaiBuddhistChronology) <font color="#cc0033">resolveDate</font>*(p0 : <a href="java_util.html#type-Map">java_util.Map</a>;
+                                                     p1 : <a href="java_time_format.html#type-ResolverStyle">java_time_format.ResolverStyle</a>) : <a href="java_time_chrono.html#type-ThaiBuddhistDate">java_time_chrono.ThaiBuddhistDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ThaiBuddhistChronology) <font color="#cc0033">zonedDateTime</font>*(p0 : <a href="java_time_temporal.html#type-TemporalAccessor">java_time_temporal.TemporalAccessor</a>) : <a href="#type-ChronoZonedDateTime">ChronoZonedDateTime</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ThaiBuddhistChronology) <font color="#cc0033">zonedDateTime</font>*(p0 : <a href="java_time.html#type-Instant">java_time.Instant</a>;
+                                                       p1 : <a href="java_time.html#type-ZoneId">java_time.ZoneId</a>) : <a href="#type-ChronoZonedDateTime">ChronoZonedDateTime</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-ThaiBuddhistDate"></a>
+<b>PROCEDURE </b>(self:ThaiBuddhistDate) <font color="#cc0033">atTime</font>*(p0 : <a href="java_time.html#type-LocalTime">java_time.LocalTime</a>) : <a href="#type-ChronoLocalDateTime">ChronoLocalDateTime</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:ThaiBuddhistDate) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ThaiBuddhistDate) <font color="#cc0033">getChronology</font>*() : <a href="java_time_chrono.html#type-Chronology">java_time_chrono.Chronology</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ThaiBuddhistDate) <font color="#cc0033">getChronology</font>*() : <a href="#type-ThaiBuddhistChronology">ThaiBuddhistChronology</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ThaiBuddhistDate) <font color="#cc0033">getEra</font>*() : <a href="java_time_chrono.html#type-Era">java_time_chrono.Era</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ThaiBuddhistDate) <font color="#cc0033">getEra</font>*() : <a href="java_time_chrono.html#type-ThaiBuddhistEra">java_time_chrono.ThaiBuddhistEra</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ThaiBuddhistDate) <font color="#cc0033">getLong</font>*(p0 : <a href="java_time_temporal.html#type-TemporalField">java_time_temporal.TemporalField</a>) : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ThaiBuddhistDate) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ThaiBuddhistDate) <font color="#cc0033">lengthOfMonth</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ThaiBuddhistDate) <font color="#cc0033">minus</font>*(p0 : <a href="java_time_temporal.html#type-TemporalAmount">java_time_temporal.TemporalAmount</a>) : <a href="java_time_chrono.html#type-ChronoLocalDate">java_time_chrono.ChronoLocalDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ThaiBuddhistDate) <font color="#cc0033">minus</font>*(p0 : LONGINT;
+                                         p1 : <a href="java_time_temporal.html#type-TemporalUnit">java_time_temporal.TemporalUnit</a>) : <a href="java_time_chrono.html#type-ChronoLocalDate">java_time_chrono.ChronoLocalDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ThaiBuddhistDate) <font color="#cc0033">minus</font>*(p0 : LONGINT;
+                                         p1 : <a href="java_time_temporal.html#type-TemporalUnit">java_time_temporal.TemporalUnit</a>) : <a href="java_time_temporal.html#type-Temporal">java_time_temporal.Temporal</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ThaiBuddhistDate) <font color="#cc0033">minus</font>*(p0 : <a href="java_time_temporal.html#type-TemporalAmount">java_time_temporal.TemporalAmount</a>) : <a href="java_time_temporal.html#type-Temporal">java_time_temporal.Temporal</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ThaiBuddhistDate) <font color="#cc0033">minus</font>*(p0 : LONGINT;
+                                         p1 : <a href="java_time_temporal.html#type-TemporalUnit">java_time_temporal.TemporalUnit</a>) : <a href="#type-ThaiBuddhistDate">ThaiBuddhistDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ThaiBuddhistDate) <font color="#cc0033">minus</font>*(p0 : <a href="java_time_temporal.html#type-TemporalAmount">java_time_temporal.TemporalAmount</a>) : <a href="#type-ThaiBuddhistDate">ThaiBuddhistDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ThaiBuddhistDate) <font color="#cc0033">plus</font>*(p0 : <a href="java_time_temporal.html#type-TemporalAmount">java_time_temporal.TemporalAmount</a>) : <a href="java_time_chrono.html#type-ChronoLocalDate">java_time_chrono.ChronoLocalDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ThaiBuddhistDate) <font color="#cc0033">plus</font>*(p0 : LONGINT;
+                                        p1 : <a href="java_time_temporal.html#type-TemporalUnit">java_time_temporal.TemporalUnit</a>) : <a href="java_time_chrono.html#type-ChronoLocalDate">java_time_chrono.ChronoLocalDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ThaiBuddhistDate) <font color="#cc0033">plus</font>*(p0 : <a href="java_time_temporal.html#type-TemporalAmount">java_time_temporal.TemporalAmount</a>) : <a href="java_time_temporal.html#type-Temporal">java_time_temporal.Temporal</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ThaiBuddhistDate) <font color="#cc0033">plus</font>*(p0 : LONGINT;
+                                        p1 : <a href="java_time_temporal.html#type-TemporalUnit">java_time_temporal.TemporalUnit</a>) : <a href="#type-ThaiBuddhistDate">ThaiBuddhistDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ThaiBuddhistDate) <font color="#cc0033">plus</font>*(p0 : LONGINT;
+                                        p1 : <a href="java_time_temporal.html#type-TemporalUnit">java_time_temporal.TemporalUnit</a>) : <a href="java_time_temporal.html#type-Temporal">java_time_temporal.Temporal</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ThaiBuddhistDate) <font color="#cc0033">plus</font>*(p0 : <a href="java_time_temporal.html#type-TemporalAmount">java_time_temporal.TemporalAmount</a>) : <a href="#type-ThaiBuddhistDate">ThaiBuddhistDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ThaiBuddhistDate) <font color="#cc0033">range</font>*(p0 : <a href="java_time_temporal.html#type-TemporalField">java_time_temporal.TemporalField</a>) : <a href="java_time_temporal.html#type-ValueRange">java_time_temporal.ValueRange</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ThaiBuddhistDate) <font color="#cc0033">toEpochDay</font>*() : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ThaiBuddhistDate) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ThaiBuddhistDate) <font color="#cc0033">until</font>*(p0 : <a href="java_time_chrono.html#type-ChronoLocalDate">java_time_chrono.ChronoLocalDate</a>) : <a href="#type-ChronoPeriod">ChronoPeriod</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ThaiBuddhistDate) <font color="#cc0033">until</font>*(p0 : <a href="java_time_temporal.html#type-Temporal">java_time_temporal.Temporal</a>;
+                                         p1 : <a href="java_time_temporal.html#type-TemporalUnit">java_time_temporal.TemporalUnit</a>) : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ThaiBuddhistDate) <font color="#cc0033">with</font>*(p0 : <a href="java_time_temporal.html#type-TemporalAdjuster">java_time_temporal.TemporalAdjuster</a>) : <a href="java_time_temporal.html#type-Temporal">java_time_temporal.Temporal</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ThaiBuddhistDate) <font color="#cc0033">with</font>*(p0 : <a href="java_time_temporal.html#type-TemporalField">java_time_temporal.TemporalField</a>;
+                                        p1 : LONGINT) : <a href="java_time_temporal.html#type-Temporal">java_time_temporal.Temporal</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ThaiBuddhistDate) <font color="#cc0033">with</font>*(p0 : <a href="java_time_temporal.html#type-TemporalField">java_time_temporal.TemporalField</a>;
+                                        p1 : LONGINT) : <a href="#type-ThaiBuddhistDate">ThaiBuddhistDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ThaiBuddhistDate) <font color="#cc0033">with</font>*(p0 : <a href="java_time_temporal.html#type-TemporalAdjuster">java_time_temporal.TemporalAdjuster</a>) : <a href="#type-ThaiBuddhistDate">ThaiBuddhistDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ThaiBuddhistDate) <font color="#cc0033">with</font>*(p0 : <a href="java_time_temporal.html#type-TemporalAdjuster">java_time_temporal.TemporalAdjuster</a>) : <a href="java_time_chrono.html#type-ChronoLocalDate">java_time_chrono.ChronoLocalDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ThaiBuddhistDate) <font color="#cc0033">with</font>*(p0 : <a href="java_time_temporal.html#type-TemporalField">java_time_temporal.TemporalField</a>;
+                                        p1 : LONGINT) : <a href="java_time_chrono.html#type-ChronoLocalDate">java_time_chrono.ChronoLocalDate</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-ThaiBuddhistEra"></a>
+<b>PROCEDURE </b>(self:ThaiBuddhistEra) <font color="#cc0033">getDisplayName</font>*(p0 : <a href="java_time_format.html#type-TextStyle">java_time_format.TextStyle</a>;
+                                                 p1 : <a href="java_util.html#type-Locale">java_util.Locale</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ThaiBuddhistEra) <font color="#cc0033">getValue</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>END </b><font color="#cc0033">java_time_chrono</font>.
+</font></pre></hr>
+<!-- BEGIN JavaScript -->
+<script>
+function toggle(node) {
+    node.classList.toggle("show"); 
+  }
+
+function cls(node) {
+    var prnt = node.parentNode;
+    var next = prnt.previousSibling;
+    var text = next.lastChild;
+    text.innerHTML = 
+        "The <b>class</b> property asserts that this type will be<br>" +
+        "implemented as a reference class in the underlying framework.";
+    text.classList.toggle("show");
+  }
+
+function newOk(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>has noArg-ctor</b> property asserts that this reference<br>" +
+        "class has a no-arg constructor, and thus objects of this<br>" +
+        "type can be allocated with NEW(). Component Pascal types<br>" +
+        "derived from this type can also be allocated using NEW().";
+    popuptext.classList.toggle("show"); 
+  }
+
+function noNew(node) { 
+    var prnt = node.parentNode; 
+    var next = prnt.previousSibling; 
+    var text = next.lastChild; 
+    text.innerHTML =  
+        "The <b>no noArg-ctor</b> property asserts that this reference<br>" +
+        "class does not have a noArg constructor. Objects of this<br>" +
+        "type cannot be allocated using NEW(), and Component<br>" +
+        "Pascal types  derived from this type also cannot be<br>" +
+        "allocated using NEW().";
+    text.classList.toggle("show");
+  }
+
+function noCpy(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>no value-assign</b> property asserts that this reference<br>" + 
+        "class does not have a value copy method. Therefore, it<br>" +
+        "is not possible to perform value assignments using<br>" +
+        "statements like <i>dst^</i> := <i>src^</i>";
+    popuptext.classList.toggle("show");
+  }
+
+function valueclass(node) { 
+        var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>valueclass</b> property asserts that this RECORD type is<br>" + 
+        "implemented as a value class in the CLR. It follows that<br>" +  
+        "value assignments can be made of these types. They can<br>" + 
+        "also be passed by value. Even pointers to records of<br>" + 
+        "such types may be dereferenced and copied using syntax<br>" + 
+        "such as  <i>dst^</i> := <i>src^</i>"; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+function argCtor(node) { 
+    var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>has arg-ctor</b> property asserts that this reference<br>" +  
+        "class has one or more constructors that take arguments.<br>" + 
+        "These constructors can be called from Component Pascal<br>" + 
+        "by calling an <i>init</i>(...) method from the static list<br>" + 
+        "here. Component Pascal types derived from this type<br>" + 
+        "can define constructors with arguments which call the<br>" + 
+        "super-type constructor.<br>" + 
+        "See <i>'Interfacing to constructors'</i> in the Release Notes."; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+</script>
+<!-- END JavaScript --> 
+
+</body></html>

@@ -1,0 +1,624 @@
+<html><head><title>javax_imageio_metadata</title>
+<style>
+<!-- BEGIN Inline CSS -->
+/* Popup container */
+.popup {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+/* The actual popup (appears on top) */
+.popup .popuptext {
+    visibility: hidden;
+    width: 430px;
+    background-color: white;
+    color: black;
+    text-align: left;
+    border-radius: 6px;
+    border-style: solid;
+    border-color: black;
+    padding: 8px 8px 8px 8px;
+    position: absolute;
+    z-index: 1;
+    margin-top: 30px;
+}
+
+/* Toggle this class when clicking on the popup container (hide and show the popup) */
+.popup .show {
+    visibility: visible;
+    opacity: 1;
+}
+
+</style>
+<!-- END Inline CSS -->
+</head><body bgcolor="white">
+<hr><pre>
+<font color="green">(*</font>
+<font color="green"> *  Creator PeToCps j2cps version 1.4.07 (March 2018)</font>
+<font color="green"> *  Compiled from jar-file /Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home/jmods/java.desktop.jmod</font>
+<font color="green"> *)</font>
+<b>FOREIGN MODULE </b><font color="#cc0033">javax_imageio_metadata</font>;
+
+<b>IMPORT</b>
+    <a href="javax_imageio.html">javax_imageio</a> := "javax.imageio",
+    <a href="javax_imageio_metadata.html">javax_imageio_metadata</a> := "javax.imageio.metadata",
+    <a href="java_lang.html">java_lang</a> := "java.lang",
+    <a href="java_util.html">java_util</a> := "java.util",
+    <a href="org_w3c_dom.html">org_w3c_dom</a> := "org.w3c.dom";
+
+<b>TYPE</b>
+
+  <a name="type-IIOInvalidTreeException"></a><font color="#cc0033">IIOInvalidTreeException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="javax_imageio.html#type-IIOException">javax_imageio.IIOException</a>)
+                             <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                             <font color="green"><b> (* </b><a href="#meths-IIOInvalidTreeException">Typebound Procedures</a><b> *)</b></font>
+                               <font color="#cc0033">offendingNode</font>! : <a href="org_w3c_dom.html#type-Node">org_w3c_dom.Node</a>;
+                             <b>STATIC</b>
+                               <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                               p1 : <a href="java_lang.html#type-Throwable">java_lang.Throwable</a>;
+                                               p2 : <a href="org_w3c_dom.html#type-Node">org_w3c_dom.Node</a>) : <a href="#type-IIOInvalidTreeException">IIOInvalidTreeException</a><b>,CONSTRUCTOR</b>;
+                               <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                               p1 : <a href="org_w3c_dom.html#type-Node">org_w3c_dom.Node</a>) : <a href="#type-IIOInvalidTreeException">IIOInvalidTreeException</a><b>,CONSTRUCTOR</b>;
+                             <b>END</b>;
+
+  <a name="type-IIOMetadata"></a><font color="#cc0033">IIOMetadata</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                 <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                 <font color="green"><b> (* </b><a href="#meths-IIOMetadata">Typebound Procedures</a><b> *)</b></font>
+                   <font color="#cc0033">standardFormatSupported</font>!       : BOOLEAN;
+                   <font color="#cc0033">nativeMetadataFormatName</font>!      : <a href="java_lang.html#type-String">java_lang.String</a>;
+                   <font color="#cc0033">nativeMetadataFormatClassName</font>! : <a href="java_lang.html#type-String">java_lang.String</a>;
+                   <font color="#cc0033">extraMetadataFormatNames</font>!      : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>;
+                   <font color="#cc0033">extraMetadataFormatClassNames</font>! : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>;
+                   <font color="#cc0033">defaultController</font>!             : <a href="javax_imageio_metadata.html#type-IIOMetadataController">javax_imageio_metadata.IIOMetadataController</a>;
+                   <font color="#cc0033">controller</font>!                    : <a href="javax_imageio_metadata.html#type-IIOMetadataController">javax_imageio_metadata.IIOMetadataController</a>;
+                 <b>STATIC</b>
+                   <b>PROCEDURE </b><font color="#cc0033">Init</font>!(    p0 : BOOLEAN;
+                                       p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                       p2 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                   IN  p3 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>;
+                                   IN  p4 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-IIOMetadata">IIOMetadata</a><b>,CONSTRUCTOR</b>;
+                   <b>PROCEDURE </b><font color="#cc0033">Init</font>!() : <a href="#type-IIOMetadata">IIOMetadata</a><b>,CONSTRUCTOR</b>;
+                 <b>END</b>;
+
+  <a name="type-IIOMetadataController"></a><font color="#cc0033">IIOMetadataController</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                           <font color="green"><b> (* </b><a href="#meths-IIOMetadataController">Typebound Procedures</a><b> *)</b></font>
+                           <b>END</b>;
+
+  <a name="type-IIOMetadataFormat"></a><font color="#cc0033">IIOMetadataFormat</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                       <font color="green"><b> (* </b><a href="#meths-IIOMetadataFormat">Typebound Procedures</a><b> *)</b></font>
+                       <b>STATIC</b>
+                         <font color="#cc0033">CHILD_POLICY_ALL</font>*               = 1;
+                         <font color="#cc0033">CHILD_POLICY_CHOICE</font>*            = 3;
+                         <font color="#cc0033">CHILD_POLICY_EMPTY</font>*             = 0;
+                         <font color="#cc0033">CHILD_POLICY_MAX</font>*               = 5;
+                         <font color="#cc0033">CHILD_POLICY_REPEAT</font>*            = 5;
+                         <font color="#cc0033">CHILD_POLICY_SEQUENCE</font>*          = 4;
+                         <font color="#cc0033">CHILD_POLICY_SOME</font>*              = 2;
+                         <font color="#cc0033">DATATYPE_BOOLEAN</font>*               = 1;
+                         <font color="#cc0033">DATATYPE_DOUBLE</font>*                = 4;
+                         <font color="#cc0033">DATATYPE_FLOAT</font>*                 = 3;
+                         <font color="#cc0033">DATATYPE_INTEGER</font>*               = 2;
+                         <font color="#cc0033">DATATYPE_STRING</font>*                = 0;
+                         <font color="#cc0033">VALUE_ARBITRARY</font>*                = 1;
+                         <font color="#cc0033">VALUE_ENUMERATION</font>*              = 16;
+                         <font color="#cc0033">VALUE_LIST</font>*                     = 32;
+                         <font color="#cc0033">VALUE_NONE</font>*                     = 0;
+                         <font color="#cc0033">VALUE_RANGE</font>*                    = 2;
+                         <font color="#cc0033">VALUE_RANGE_MAX_INCLUSIVE</font>*      = 10;
+                         <font color="#cc0033">VALUE_RANGE_MAX_INCLUSIVE_MASK</font>* = 8;
+                         <font color="#cc0033">VALUE_RANGE_MIN_INCLUSIVE</font>*      = 6;
+                         <font color="#cc0033">VALUE_RANGE_MIN_INCLUSIVE_MASK</font>* = 4;
+                         <font color="#cc0033">VALUE_RANGE_MIN_MAX_INCLUSIVE</font>*  = 14;
+                       <b>END</b>;
+
+  <a name="type-IIOMetadataFormatImpl"></a><font color="#cc0033">IIOMetadataFormatImpl</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="javax_imageio_metadata.html#type-IIOMetadataFormat">javax_imageio_metadata.IIOMetadataFormat</a>)
+                           <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                           <font color="green"><b> (* </b><a href="#meths-IIOMetadataFormatImpl">Typebound Procedures</a><b> *)</b></font>
+                           <b>STATIC</b>
+                             <font color="#cc0033">standardMetadataFormatName</font>* = "javax_imageio_1.0";
+                             <b>PROCEDURE </b><font color="#cc0033">getStandardFormatInstance</font>*() : <a href="javax_imageio_metadata.html#type-IIOMetadataFormat">javax_imageio_metadata.IIOMetadataFormat</a>;
+                             <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                             p1 : INTEGER;
+                                             p2 : INTEGER) : <a href="#type-IIOMetadataFormatImpl">IIOMetadataFormatImpl</a><b>,CONSTRUCTOR</b>;
+                             <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                             p1 : INTEGER) : <a href="#type-IIOMetadataFormatImpl">IIOMetadataFormatImpl</a><b>,CONSTRUCTOR</b>;
+                           <b>END</b>;
+
+  <a name="type-IIOMetadataNode"></a><font color="#cc0033">IIOMetadataNode</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="org_w3c_dom.html#type-Element">org_w3c_dom.Element</a> + <a href="org_w3c_dom.html#type-NodeList">org_w3c_dom.NodeList</a>)
+                     <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                     <font color="green"><b> (* </b><a href="#meths-IIOMetadataNode">Typebound Procedures</a><b> *)</b></font>
+                     <b>STATIC</b>
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-IIOMetadataNode">IIOMetadataNode</a><b>,CONSTRUCTOR</b>;
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-IIOMetadataNode">IIOMetadataNode</a><b>,CONSTRUCTOR</b>;
+                     <b>END</b>;
+
+
+
+<a name="meths-IIOInvalidTreeException"></a>
+<b>PROCEDURE </b>(self:IIOInvalidTreeException) <font color="#cc0033">getOffendingNode</font>*() : <a href="org_w3c_dom.html#type-Node">org_w3c_dom.Node</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-IIOMetadata"></a>
+<b>PROCEDURE </b>(self:IIOMetadata) <font color="#cc0033">activateController</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadata) <font color="#cc0033">getAsTree</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="org_w3c_dom.html#type-Node">org_w3c_dom.Node</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadata) <font color="#cc0033">getController</font>*() : <a href="javax_imageio_metadata.html#type-IIOMetadataController">javax_imageio_metadata.IIOMetadataController</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadata) <font color="#cc0033">getDefaultController</font>*() : <a href="javax_imageio_metadata.html#type-IIOMetadataController">javax_imageio_metadata.IIOMetadataController</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadata) <font color="#cc0033">getExtraMetadataFormatNames</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadata) <font color="#cc0033">getMetadataFormat</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="javax_imageio_metadata.html#type-IIOMetadataFormat">javax_imageio_metadata.IIOMetadataFormat</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadata) <font color="#cc0033">getMetadataFormatNames</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadata) <font color="#cc0033">getNativeMetadataFormatName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadata) <font color="#cc0033">getStandardChromaNode</font>!() : <a href="#type-IIOMetadataNode">IIOMetadataNode</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadata) <font color="#cc0033">getStandardCompressionNode</font>!() : <a href="#type-IIOMetadataNode">IIOMetadataNode</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadata) <font color="#cc0033">getStandardDataNode</font>!() : <a href="#type-IIOMetadataNode">IIOMetadataNode</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadata) <font color="#cc0033">getStandardDimensionNode</font>!() : <a href="#type-IIOMetadataNode">IIOMetadataNode</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadata) <font color="#cc0033">getStandardDocumentNode</font>!() : <a href="#type-IIOMetadataNode">IIOMetadataNode</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadata) <font color="#cc0033">getStandardTextNode</font>!() : <a href="#type-IIOMetadataNode">IIOMetadataNode</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadata) <font color="#cc0033">getStandardTileNode</font>!() : <a href="#type-IIOMetadataNode">IIOMetadataNode</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadata) <font color="#cc0033">getStandardTransparencyNode</font>!() : <a href="#type-IIOMetadataNode">IIOMetadataNode</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadata) <font color="#cc0033">getStandardTree</font>!() : <a href="#type-IIOMetadataNode">IIOMetadataNode</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadata) <font color="#cc0033">hasController</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadata) <font color="#cc0033">isReadOnly</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadata) <font color="#cc0033">isStandardMetadataFormatSupported</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadata) <font color="#cc0033">mergeTree</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                        p1 : <a href="org_w3c_dom.html#type-Node">org_w3c_dom.Node</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadata) <font color="#cc0033">reset</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadata) <font color="#cc0033">setController</font>*(p0 : <a href="javax_imageio_metadata.html#type-IIOMetadataController">javax_imageio_metadata.IIOMetadataController</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadata) <font color="#cc0033">setFromTree</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                          p1 : <a href="org_w3c_dom.html#type-Node">org_w3c_dom.Node</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-IIOMetadataController"></a>
+<b>PROCEDURE </b>(self:IIOMetadataController) <font color="#cc0033">activate</font>*(p0 : <a href="#type-IIOMetadata">IIOMetadata</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+<a name="meths-IIOMetadataFormat"></a>
+<b>PROCEDURE </b>(self:IIOMetadataFormat) <font color="#cc0033">canNodeAppear</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                  p1 : <a href="javax_imageio.html#type-ImageTypeSpecifier">javax_imageio.ImageTypeSpecifier</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadataFormat) <font color="#cc0033">getAttributeDataType</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                         p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadataFormat) <font color="#cc0033">getAttributeDefaultValue</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                             p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadataFormat) <font color="#cc0033">getAttributeDescription</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                            p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                            p2 : <a href="java_util.html#type-Locale">java_util.Locale</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadataFormat) <font color="#cc0033">getAttributeEnumerations</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                             p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadataFormat) <font color="#cc0033">getAttributeListMaxLength</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                              p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadataFormat) <font color="#cc0033">getAttributeListMinLength</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                              p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadataFormat) <font color="#cc0033">getAttributeMaxValue</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                         p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadataFormat) <font color="#cc0033">getAttributeMinValue</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                         p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadataFormat) <font color="#cc0033">getAttributeNames</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadataFormat) <font color="#cc0033">getAttributeValueType</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                          p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadataFormat) <font color="#cc0033">getChildNames</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadataFormat) <font color="#cc0033">getChildPolicy</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadataFormat) <font color="#cc0033">getElementDescription</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                          p1 : <a href="java_util.html#type-Locale">java_util.Locale</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadataFormat) <font color="#cc0033">getElementMaxChildren</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadataFormat) <font color="#cc0033">getElementMinChildren</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadataFormat) <font color="#cc0033">getObjectArrayMaxLength</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadataFormat) <font color="#cc0033">getObjectArrayMinLength</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadataFormat) <font color="#cc0033">getObjectClass</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-Class">java_lang.Class</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadataFormat) <font color="#cc0033">getObjectDefaultValue</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadataFormat) <font color="#cc0033">getObjectEnumerations</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadataFormat) <font color="#cc0033">getObjectMaxValue</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-Comparable">java_lang.Comparable</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadataFormat) <font color="#cc0033">getObjectMinValue</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-Comparable">java_lang.Comparable</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadataFormat) <font color="#cc0033">getObjectValueType</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadataFormat) <font color="#cc0033">getRootName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadataFormat) <font color="#cc0033">isAttributeRequired</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                        p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+<a name="meths-IIOMetadataFormatImpl"></a>
+<b>PROCEDURE </b>(self:IIOMetadataFormatImpl) <font color="#cc0033">addAttribute</font>!(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                     p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                     p2 : INTEGER;
+                                                     p3 : BOOLEAN;
+                                                     p4 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadataFormatImpl) <font color="#cc0033">addAttribute</font>!(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                     p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                     p2 : INTEGER;
+                                                     p3 : BOOLEAN;
+                                                     p4 : INTEGER;
+                                                     p5 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadataFormatImpl) <font color="#cc0033">addAttribute</font>!(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                     p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                     p2 : INTEGER;
+                                                     p3 : BOOLEAN;
+                                                     p4 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                     p5 : <a href="java_util.html#type-List">java_util.List</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadataFormatImpl) <font color="#cc0033">addAttribute</font>!(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                     p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                     p2 : INTEGER;
+                                                     p3 : BOOLEAN;
+                                                     p4 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                     p5 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                     p6 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                     p7 : BOOLEAN;
+                                                     p8 : BOOLEAN)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadataFormatImpl) <font color="#cc0033">addBooleanAttribute</font>!(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                            p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                            p2 : BOOLEAN;
+                                                            p3 : BOOLEAN)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadataFormatImpl) <font color="#cc0033">addChildElement</font>!(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                        p1 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadataFormatImpl) <font color="#cc0033">addElement</font>!(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                   p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                   p2 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadataFormatImpl) <font color="#cc0033">addElement</font>!(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                   p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                   p2 : INTEGER;
+                                                   p3 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadataFormatImpl) <font color="#cc0033">addObjectValue</font>!(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                       p1 : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                                                       p2 : BOOLEAN;
+                                                       p3 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadataFormatImpl) <font color="#cc0033">addObjectValue</font>!(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                       p1 : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                                                       p2 : INTEGER;
+                                                       p3 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadataFormatImpl) <font color="#cc0033">addObjectValue</font>!(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                       p1 : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                                                       p2 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                       p3 : <a href="java_lang.html#type-Comparable">java_lang.Comparable</a>;
+                                                       p4 : <a href="java_lang.html#type-Comparable">java_lang.Comparable</a>;
+                                                       p5 : BOOLEAN;
+                                                       p6 : BOOLEAN)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadataFormatImpl) <font color="#cc0033">addObjectValue</font>!(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                       p1 : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                                                       p2 : BOOLEAN;
+                                                       p3 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                       p4 : <a href="java_util.html#type-List">java_util.List</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadataFormatImpl) <font color="#cc0033">canNodeAppear</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                      p1 : <a href="javax_imageio.html#type-ImageTypeSpecifier">javax_imageio.ImageTypeSpecifier</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadataFormatImpl) <font color="#cc0033">getAttributeDataType</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                             p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadataFormatImpl) <font color="#cc0033">getAttributeDefaultValue</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                                 p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadataFormatImpl) <font color="#cc0033">getAttributeDescription</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                                p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                                p2 : <a href="java_util.html#type-Locale">java_util.Locale</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadataFormatImpl) <font color="#cc0033">getAttributeEnumerations</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                                 p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadataFormatImpl) <font color="#cc0033">getAttributeListMaxLength</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                                  p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadataFormatImpl) <font color="#cc0033">getAttributeListMinLength</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                                  p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadataFormatImpl) <font color="#cc0033">getAttributeMaxValue</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                             p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadataFormatImpl) <font color="#cc0033">getAttributeMinValue</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                             p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadataFormatImpl) <font color="#cc0033">getAttributeNames</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadataFormatImpl) <font color="#cc0033">getAttributeValueType</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                              p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadataFormatImpl) <font color="#cc0033">getChildNames</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadataFormatImpl) <font color="#cc0033">getChildPolicy</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadataFormatImpl) <font color="#cc0033">getElementDescription</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                              p1 : <a href="java_util.html#type-Locale">java_util.Locale</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadataFormatImpl) <font color="#cc0033">getElementMaxChildren</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadataFormatImpl) <font color="#cc0033">getElementMinChildren</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadataFormatImpl) <font color="#cc0033">getObjectArrayMaxLength</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadataFormatImpl) <font color="#cc0033">getObjectArrayMinLength</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadataFormatImpl) <font color="#cc0033">getObjectClass</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-Class">java_lang.Class</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadataFormatImpl) <font color="#cc0033">getObjectDefaultValue</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadataFormatImpl) <font color="#cc0033">getObjectEnumerations</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadataFormatImpl) <font color="#cc0033">getObjectMaxValue</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-Comparable">java_lang.Comparable</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadataFormatImpl) <font color="#cc0033">getObjectMinValue</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-Comparable">java_lang.Comparable</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadataFormatImpl) <font color="#cc0033">getObjectValueType</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadataFormatImpl) <font color="#cc0033">getResourceBaseName</font>!() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadataFormatImpl) <font color="#cc0033">getRootName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadataFormatImpl) <font color="#cc0033">isAttributeRequired</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                            p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadataFormatImpl) <font color="#cc0033">removeAttribute</font>!(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                        p1 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadataFormatImpl) <font color="#cc0033">removeElement</font>!(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadataFormatImpl) <font color="#cc0033">removeObjectValue</font>!(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadataFormatImpl) <font color="#cc0033">setResourceBaseName</font>!(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-IIOMetadataNode"></a>
+<b>PROCEDURE </b>(self:IIOMetadataNode) <font color="#cc0033">appendChild</font>*(p0 : <a href="org_w3c_dom.html#type-Node">org_w3c_dom.Node</a>) : <a href="org_w3c_dom.html#type-Node">org_w3c_dom.Node</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadataNode) <font color="#cc0033">cloneNode</font>*(p0 : BOOLEAN) : <a href="org_w3c_dom.html#type-Node">org_w3c_dom.Node</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadataNode) <font color="#cc0033">compareDocumentPosition</font>*(p0 : <a href="org_w3c_dom.html#type-Node">org_w3c_dom.Node</a>) : SHORTINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadataNode) <font color="#cc0033">getAttribute</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadataNode) <font color="#cc0033">getAttributeNode</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="org_w3c_dom.html#type-Attr">org_w3c_dom.Attr</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadataNode) <font color="#cc0033">getAttributeNodeNS</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                     p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="org_w3c_dom.html#type-Attr">org_w3c_dom.Attr</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadataNode) <font color="#cc0033">getAttributeNS</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                 p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadataNode) <font color="#cc0033">getAttributes</font>*() : <a href="org_w3c_dom.html#type-NamedNodeMap">org_w3c_dom.NamedNodeMap</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadataNode) <font color="#cc0033">getBaseURI</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadataNode) <font color="#cc0033">getChildNodes</font>*() : <a href="org_w3c_dom.html#type-NodeList">org_w3c_dom.NodeList</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadataNode) <font color="#cc0033">getElementsByTagName</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="org_w3c_dom.html#type-NodeList">org_w3c_dom.NodeList</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadataNode) <font color="#cc0033">getElementsByTagNameNS</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                         p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="org_w3c_dom.html#type-NodeList">org_w3c_dom.NodeList</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadataNode) <font color="#cc0033">getFeature</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                             p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadataNode) <font color="#cc0033">getFirstChild</font>*() : <a href="org_w3c_dom.html#type-Node">org_w3c_dom.Node</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadataNode) <font color="#cc0033">getLastChild</font>*() : <a href="org_w3c_dom.html#type-Node">org_w3c_dom.Node</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadataNode) <font color="#cc0033">getLength</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadataNode) <font color="#cc0033">getLocalName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadataNode) <font color="#cc0033">getNamespaceURI</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadataNode) <font color="#cc0033">getNextSibling</font>*() : <a href="org_w3c_dom.html#type-Node">org_w3c_dom.Node</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadataNode) <font color="#cc0033">getNodeName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadataNode) <font color="#cc0033">getNodeType</font>*() : SHORTINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadataNode) <font color="#cc0033">getNodeValue</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadataNode) <font color="#cc0033">getOwnerDocument</font>*() : <a href="org_w3c_dom.html#type-Document">org_w3c_dom.Document</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadataNode) <font color="#cc0033">getParentNode</font>*() : <a href="org_w3c_dom.html#type-Node">org_w3c_dom.Node</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadataNode) <font color="#cc0033">getPrefix</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadataNode) <font color="#cc0033">getPreviousSibling</font>*() : <a href="org_w3c_dom.html#type-Node">org_w3c_dom.Node</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadataNode) <font color="#cc0033">getSchemaTypeInfo</font>*() : <a href="org_w3c_dom.html#type-TypeInfo">org_w3c_dom.TypeInfo</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadataNode) <font color="#cc0033">getTagName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadataNode) <font color="#cc0033">getTextContent</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadataNode) <font color="#cc0033">getUserData</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadataNode) <font color="#cc0033">getUserObject</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadataNode) <font color="#cc0033">hasAttribute</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadataNode) <font color="#cc0033">hasAttributeNS</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                 p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadataNode) <font color="#cc0033">hasAttributes</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadataNode) <font color="#cc0033">hasChildNodes</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadataNode) <font color="#cc0033">insertBefore</font>*(p0 : <a href="org_w3c_dom.html#type-Node">org_w3c_dom.Node</a>;
+                                               p1 : <a href="org_w3c_dom.html#type-Node">org_w3c_dom.Node</a>) : <a href="org_w3c_dom.html#type-Node">org_w3c_dom.Node</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadataNode) <font color="#cc0033">isDefaultNamespace</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadataNode) <font color="#cc0033">isEqualNode</font>*(p0 : <a href="org_w3c_dom.html#type-Node">org_w3c_dom.Node</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadataNode) <font color="#cc0033">isSameNode</font>*(p0 : <a href="org_w3c_dom.html#type-Node">org_w3c_dom.Node</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadataNode) <font color="#cc0033">isSupported</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                              p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadataNode) <font color="#cc0033">item</font>*(p0 : INTEGER) : <a href="org_w3c_dom.html#type-Node">org_w3c_dom.Node</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadataNode) <font color="#cc0033">lookupNamespaceURI</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadataNode) <font color="#cc0033">lookupPrefix</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadataNode) <font color="#cc0033">normalize</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadataNode) <font color="#cc0033">removeAttribute</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadataNode) <font color="#cc0033">removeAttributeNode</font>*(p0 : <a href="org_w3c_dom.html#type-Attr">org_w3c_dom.Attr</a>) : <a href="org_w3c_dom.html#type-Attr">org_w3c_dom.Attr</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadataNode) <font color="#cc0033">removeAttributeNS</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                    p1 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadataNode) <font color="#cc0033">removeChild</font>*(p0 : <a href="org_w3c_dom.html#type-Node">org_w3c_dom.Node</a>) : <a href="org_w3c_dom.html#type-Node">org_w3c_dom.Node</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadataNode) <font color="#cc0033">replaceChild</font>*(p0 : <a href="org_w3c_dom.html#type-Node">org_w3c_dom.Node</a>;
+                                               p1 : <a href="org_w3c_dom.html#type-Node">org_w3c_dom.Node</a>) : <a href="org_w3c_dom.html#type-Node">org_w3c_dom.Node</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadataNode) <font color="#cc0033">setAttribute</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                               p1 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadataNode) <font color="#cc0033">setAttributeNode</font>*(p0 : <a href="org_w3c_dom.html#type-Attr">org_w3c_dom.Attr</a>) : <a href="org_w3c_dom.html#type-Attr">org_w3c_dom.Attr</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadataNode) <font color="#cc0033">setAttributeNodeNS</font>*(p0 : <a href="org_w3c_dom.html#type-Attr">org_w3c_dom.Attr</a>) : <a href="org_w3c_dom.html#type-Attr">org_w3c_dom.Attr</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadataNode) <font color="#cc0033">setAttributeNS</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                 p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                 p2 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadataNode) <font color="#cc0033">setIdAttribute</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                 p1 : BOOLEAN)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadataNode) <font color="#cc0033">setIdAttributeNode</font>*(p0 : <a href="org_w3c_dom.html#type-Attr">org_w3c_dom.Attr</a>;
+                                                     p1 : BOOLEAN)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadataNode) <font color="#cc0033">setIdAttributeNS</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                   p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                   p2 : BOOLEAN)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadataNode) <font color="#cc0033">setNodeValue</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadataNode) <font color="#cc0033">setPrefix</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadataNode) <font color="#cc0033">setTextContent</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadataNode) <font color="#cc0033">setUserData</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                              p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                              p2 : <a href="org_w3c_dom.html#type-UserDataHandler">org_w3c_dom.UserDataHandler</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IIOMetadataNode) <font color="#cc0033">setUserObject</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>END </b><font color="#cc0033">javax_imageio_metadata</font>.
+</font></pre></hr>
+<!-- BEGIN JavaScript -->
+<script>
+function toggle(node) {
+    node.classList.toggle("show"); 
+  }
+
+function cls(node) {
+    var prnt = node.parentNode;
+    var next = prnt.previousSibling;
+    var text = next.lastChild;
+    text.innerHTML = 
+        "The <b>class</b> property asserts that this type will be<br>" +
+        "implemented as a reference class in the underlying framework.";
+    text.classList.toggle("show");
+  }
+
+function newOk(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>has noArg-ctor</b> property asserts that this reference<br>" +
+        "class has a no-arg constructor, and thus objects of this<br>" +
+        "type can be allocated with NEW(). Component Pascal types<br>" +
+        "derived from this type can also be allocated using NEW().";
+    popuptext.classList.toggle("show"); 
+  }
+
+function noNew(node) { 
+    var prnt = node.parentNode; 
+    var next = prnt.previousSibling; 
+    var text = next.lastChild; 
+    text.innerHTML =  
+        "The <b>no noArg-ctor</b> property asserts that this reference<br>" +
+        "class does not have a noArg constructor. Objects of this<br>" +
+        "type cannot be allocated using NEW(), and Component<br>" +
+        "Pascal types  derived from this type also cannot be<br>" +
+        "allocated using NEW().";
+    text.classList.toggle("show");
+  }
+
+function noCpy(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>no value-assign</b> property asserts that this reference<br>" + 
+        "class does not have a value copy method. Therefore, it<br>" +
+        "is not possible to perform value assignments using<br>" +
+        "statements like <i>dst^</i> := <i>src^</i>";
+    popuptext.classList.toggle("show");
+  }
+
+function valueclass(node) { 
+        var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>valueclass</b> property asserts that this RECORD type is<br>" + 
+        "implemented as a value class in the CLR. It follows that<br>" +  
+        "value assignments can be made of these types. They can<br>" + 
+        "also be passed by value. Even pointers to records of<br>" + 
+        "such types may be dereferenced and copied using syntax<br>" + 
+        "such as  <i>dst^</i> := <i>src^</i>"; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+function argCtor(node) { 
+    var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>has arg-ctor</b> property asserts that this reference<br>" +  
+        "class has one or more constructors that take arguments.<br>" + 
+        "These constructors can be called from Component Pascal<br>" + 
+        "by calling an <i>init</i>(...) method from the static list<br>" + 
+        "here. Component Pascal types derived from this type<br>" + 
+        "can define constructors with arguments which call the<br>" + 
+        "super-type constructor.<br>" + 
+        "See <i>'Interfacing to constructors'</i> in the Release Notes."; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+</script>
+<!-- END JavaScript --> 
+
+</body></html>

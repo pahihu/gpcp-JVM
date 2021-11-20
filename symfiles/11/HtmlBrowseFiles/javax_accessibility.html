@@ -1,0 +1,827 @@
+<html><head><title>javax_accessibility</title>
+<style>
+<!-- BEGIN Inline CSS -->
+/* Popup container */
+.popup {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+/* The actual popup (appears on top) */
+.popup .popuptext {
+    visibility: hidden;
+    width: 430px;
+    background-color: white;
+    color: black;
+    text-align: left;
+    border-radius: 6px;
+    border-style: solid;
+    border-color: black;
+    padding: 8px 8px 8px 8px;
+    position: absolute;
+    z-index: 1;
+    margin-top: 30px;
+}
+
+/* Toggle this class when clicking on the popup container (hide and show the popup) */
+.popup .show {
+    visibility: visible;
+    opacity: 1;
+}
+
+</style>
+<!-- END Inline CSS -->
+</head><body bgcolor="white">
+<hr><pre>
+<font color="green">(*</font>
+<font color="green"> *  Creator PeToCps j2cps version 1.4.07 (March 2018)</font>
+<font color="green"> *  Compiled from jar-file /Library/Java/JavaVirtualMachines/zulu-11.jdk/Contents/Home/jmods/java.desktop.jmod</font>
+<font color="green"> *)</font>
+<b>FOREIGN MODULE </b><font color="#cc0033">javax_accessibility</font>;
+
+<b>IMPORT</b>
+    <a href="javax_accessibility.html">javax_accessibility</a> := "javax.accessibility",
+    <a href="javax_swing_text.html">javax_swing_text</a> := "javax.swing.text",
+    <a href="java_awt.html">java_awt</a> := "java.awt",
+    <a href="java_awt_datatransfer.html">java_awt_datatransfer</a> := "java.awt.datatransfer",
+    <a href="java_awt_event.html">java_awt_event</a> := "java.awt.event",
+    <a href="java_beans.html">java_beans</a> := "java.beans",
+    <a href="java_io.html">java_io</a> := "java.io",
+    <a href="java_lang.html">java_lang</a> := "java.lang",
+    <a href="java_util.html">java_util</a> := "java.util";
+
+<b>TYPE</b>
+
+  <a name="type-AccessibilityProvider"></a><font color="#cc0033">AccessibilityProvider</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                           <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                           <font color="green"><b> (* </b><a href="#meths-AccessibilityProvider">Typebound Procedures</a><b> *)</b></font>
+                           <b>STATIC</b>
+                             <b>PROCEDURE </b><font color="#cc0033">Init</font>!() : <a href="#type-AccessibilityProvider">AccessibilityProvider</a><b>,CONSTRUCTOR</b>;
+                           <b>END</b>;
+
+  <a name="type-Accessible"></a><font color="#cc0033">Accessible</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                <font color="green"><b> (* </b><a href="#meths-Accessible">Typebound Procedures</a><b> *)</b></font>
+                <b>END</b>;
+
+  <a name="type-AccessibleAction"></a><font color="#cc0033">AccessibleAction</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                      <font color="green"><b> (* </b><a href="#meths-AccessibleAction">Typebound Procedures</a><b> *)</b></font>
+                      <b>STATIC</b>
+                        <a name="type-CLICK"></a><font color="#cc0033">CLICK</font>*         : <a href="java_lang.html#type-String">java_lang.String</a>;
+                        <a name="type-DECREMENT"></a><font color="#cc0033">DECREMENT</font>*     : <a href="java_lang.html#type-String">java_lang.String</a>;
+                        <a name="type-INCREMENT"></a><font color="#cc0033">INCREMENT</font>*     : <a href="java_lang.html#type-String">java_lang.String</a>;
+                        <a name="type-TOGGLE_EXPAND"></a><font color="#cc0033">TOGGLE_EXPAND</font>* : <a href="java_lang.html#type-String">java_lang.String</a>;
+                        <a name="type-TOGGLE_POPUP"></a><font color="#cc0033">TOGGLE_POPUP</font>*  : <a href="java_lang.html#type-String">java_lang.String</a>;
+                      <b>END</b>;
+
+  <a name="type-AccessibleAttributeSequence"></a><font color="#cc0033">AccessibleAttributeSequence</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                                 <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                                   <font color="#cc0033">startIndex</font>* : INTEGER;
+                                   <font color="#cc0033">endIndex</font>*   : INTEGER;
+                                   <font color="#cc0033">attributes</font>* : <a href="javax_swing_text.html#type-AttributeSet">javax_swing_text.AttributeSet</a>;
+                                 <b>STATIC</b>
+                                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER;
+                                                   p1 : INTEGER;
+                                                   p2 : <a href="javax_swing_text.html#type-AttributeSet">javax_swing_text.AttributeSet</a>) : <a href="#type-AccessibleAttributeSequence">AccessibleAttributeSequence</a><b>,CONSTRUCTOR</b>;
+                                 <b>END</b>;
+
+  <a name="type-AccessibleBundle"></a><font color="#cc0033">AccessibleBundle</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                      <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                      <font color="green"><b> (* </b><a href="#meths-AccessibleBundle">Typebound Procedures</a><b> *)</b></font>
+                        <font color="#cc0033">key</font>! : <a href="java_lang.html#type-String">java_lang.String</a>;
+                      <b>STATIC</b>
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-AccessibleBundle">AccessibleBundle</a><b>,CONSTRUCTOR</b>;
+                      <b>END</b>;
+
+  <a name="type-AccessibleComponent"></a><font color="#cc0033">AccessibleComponent</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                         <font color="green"><b> (* </b><a href="#meths-AccessibleComponent">Typebound Procedures</a><b> *)</b></font>
+                         <b>END</b>;
+
+  <a name="type-AccessibleContext"></a><font color="#cc0033">AccessibleContext</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                       <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                       <font color="green"><b> (* </b><a href="#meths-AccessibleContext">Typebound Procedures</a><b> *)</b></font>
+                         <font color="#cc0033">accessibleParent</font>!      : <a href="#type-Accessible">Accessible</a>;
+                         <font color="#cc0033">accessibleName</font>!        : <a href="java_lang.html#type-String">java_lang.String</a>;
+                         <font color="#cc0033">accessibleDescription</font>! : <a href="java_lang.html#type-String">java_lang.String</a>;
+                       <b>STATIC</b>
+                         <font color="#cc0033">ACCESSIBLE_ACTION_PROPERTY</font>*                  = "accessibleActionProperty";
+                         <font color="#cc0033">ACCESSIBLE_ACTIVE_DESCENDANT_PROPERTY</font>*       = "AccessibleActiveDescendant";
+                         <font color="#cc0033">ACCESSIBLE_CARET_PROPERTY</font>*                   = "AccessibleCaret";
+                         <font color="#cc0033">ACCESSIBLE_CHILD_PROPERTY</font>*                   = "AccessibleChild";
+                         <font color="#cc0033">ACCESSIBLE_COMPONENT_BOUNDS_CHANGED</font>*         = "accessibleComponentBoundsChanged";
+                         <font color="#cc0033">ACCESSIBLE_DESCRIPTION_PROPERTY</font>*             = "AccessibleDescription";
+                         <font color="#cc0033">ACCESSIBLE_HYPERTEXT_OFFSET</font>*                 = "AccessibleHypertextOffset";
+                         <font color="#cc0033">ACCESSIBLE_INVALIDATE_CHILDREN</font>*              = "accessibleInvalidateChildren";
+                         <font color="#cc0033">ACCESSIBLE_NAME_PROPERTY</font>*                    = "AccessibleName";
+                         <font color="#cc0033">ACCESSIBLE_SELECTION_PROPERTY</font>*               = "AccessibleSelection";
+                         <font color="#cc0033">ACCESSIBLE_STATE_PROPERTY</font>*                   = "AccessibleState";
+                         <font color="#cc0033">ACCESSIBLE_TABLE_CAPTION_CHANGED</font>*            = "accessibleTableCaptionChanged";
+                         <font color="#cc0033">ACCESSIBLE_TABLE_COLUMN_DESCRIPTION_CHANGED</font>* = "accessibleTableColumnDescriptionChanged";
+                         <font color="#cc0033">ACCESSIBLE_TABLE_COLUMN_HEADER_CHANGED</font>*      = "accessibleTableColumnHeaderChanged";
+                         <font color="#cc0033">ACCESSIBLE_TABLE_MODEL_CHANGED</font>*              = "accessibleTableModelChanged";
+                         <font color="#cc0033">ACCESSIBLE_TABLE_ROW_DESCRIPTION_CHANGED</font>*    = "accessibleTableRowDescriptionChanged";
+                         <font color="#cc0033">ACCESSIBLE_TABLE_ROW_HEADER_CHANGED</font>*         = "accessibleTableRowHeaderChanged";
+                         <font color="#cc0033">ACCESSIBLE_TABLE_SUMMARY_CHANGED</font>*            = "accessibleTableSummaryChanged";
+                         <font color="#cc0033">ACCESSIBLE_TEXT_ATTRIBUTES_CHANGED</font>*          = "accessibleTextAttributesChanged";
+                         <font color="#cc0033">ACCESSIBLE_TEXT_PROPERTY</font>*                    = "AccessibleText";
+                         <font color="#cc0033">ACCESSIBLE_VALUE_PROPERTY</font>*                   = "AccessibleValue";
+                         <font color="#cc0033">ACCESSIBLE_VISIBLE_DATA_PROPERTY</font>*            = "AccessibleVisibleData";
+                         <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-AccessibleContext">AccessibleContext</a><b>,CONSTRUCTOR</b>;
+                       <b>END</b>;
+
+  <a name="type-AccessibleEditableText"></a><font color="#cc0033">AccessibleEditableText</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="javax_accessibility.html#type-AccessibleText">javax_accessibility.AccessibleText</a>)
+                            <font color="green"><b> (* </b><a href="#meths-AccessibleEditableText">Typebound Procedures</a><b> *)</b></font>
+                            <b>END</b>;
+
+  <a name="type-AccessibleExtendedComponent"></a><font color="#cc0033">AccessibleExtendedComponent</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="javax_accessibility.html#type-AccessibleComponent">javax_accessibility.AccessibleComponent</a>)
+                                 <font color="green"><b> (* </b><a href="#meths-AccessibleExtendedComponent">Typebound Procedures</a><b> *)</b></font>
+                                 <b>END</b>;
+
+  <a name="type-AccessibleExtendedTable"></a><font color="#cc0033">AccessibleExtendedTable</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-AccessibleTable">AccessibleTable</a>)
+                             <font color="green"><b> (* </b><a href="#meths-AccessibleExtendedTable">Typebound Procedures</a><b> *)</b></font>
+                             <b>END</b>;
+
+  <a name="type-AccessibleExtendedText"></a><font color="#cc0033">AccessibleExtendedText</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                            <font color="green"><b> (* </b><a href="#meths-AccessibleExtendedText">Typebound Procedures</a><b> *)</b></font>
+                            <b>STATIC</b>
+                              <font color="#cc0033">ATTRIBUTE_RUN</font>* = 5;
+                              <font color="#cc0033">LINE</font>*          = 4;
+                            <b>END</b>;
+
+  <a name="type-AccessibleHyperlink"></a><font color="#cc0033">AccessibleHyperlink</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-AccessibleAction">AccessibleAction</a>)
+                         <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                         <font color="green"><b> (* </b><a href="#meths-AccessibleHyperlink">Typebound Procedures</a><b> *)</b></font>
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-AccessibleHyperlink">AccessibleHyperlink</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-AccessibleHypertext"></a><font color="#cc0033">AccessibleHypertext</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-AccessibleText">AccessibleText</a>)
+                         <font color="green"><b> (* </b><a href="#meths-AccessibleHypertext">Typebound Procedures</a><b> *)</b></font>
+                         <b>END</b>;
+
+  <a name="type-AccessibleIcon"></a><font color="#cc0033">AccessibleIcon</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                    <font color="green"><b> (* </b><a href="#meths-AccessibleIcon">Typebound Procedures</a><b> *)</b></font>
+                    <b>END</b>;
+
+  <a name="type-AccessibleKeyBinding"></a><font color="#cc0033">AccessibleKeyBinding</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                          <font color="green"><b> (* </b><a href="#meths-AccessibleKeyBinding">Typebound Procedures</a><b> *)</b></font>
+                          <b>END</b>;
+
+  <a name="type-AccessibleRelation"></a><font color="#cc0033">AccessibleRelation</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-AccessibleBundle">AccessibleBundle</a>)
+                        <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                        <font color="green"><b> (* </b><a href="#meths-AccessibleRelation">Typebound Procedures</a><b> *)</b></font>
+                        <b>STATIC</b>
+                          <font color="#cc0033">CHILD_NODE_OF</font>*             = "childNodeOf";
+                          <font color="#cc0033">CHILD_NODE_OF_PROPERTY</font>*    = "childNodeOfProperty";
+                          <a name="type-CONTROLLED_BY"></a><font color="#cc0033">CONTROLLED_BY</font>*             : <a href="java_lang.html#type-String">java_lang.String</a>;
+                          <font color="#cc0033">CONTROLLED_BY_PROPERTY</font>*    = "controlledByProperty";
+                          <a name="type-CONTROLLER_FOR"></a><font color="#cc0033">CONTROLLER_FOR</font>*            : <a href="java_lang.html#type-String">java_lang.String</a>;
+                          <font color="#cc0033">CONTROLLER_FOR_PROPERTY</font>*   = "controllerForProperty";
+                          <font color="#cc0033">EMBEDDED_BY</font>*               = "embeddedBy";
+                          <font color="#cc0033">EMBEDDED_BY_PROPERTY</font>*      = "embeddedByProperty";
+                          <font color="#cc0033">EMBEDS</font>*                    = "embeds";
+                          <font color="#cc0033">EMBEDS_PROPERTY</font>*           = "embedsProperty";
+                          <font color="#cc0033">FLOWS_FROM</font>*                = "flowsFrom";
+                          <font color="#cc0033">FLOWS_FROM_PROPERTY</font>*       = "flowsFromProperty";
+                          <font color="#cc0033">FLOWS_TO</font>*                  = "flowsTo";
+                          <font color="#cc0033">FLOWS_TO_PROPERTY</font>*         = "flowsToProperty";
+                          <a name="type-LABELED_BY"></a><font color="#cc0033">LABELED_BY</font>*                : <a href="java_lang.html#type-String">java_lang.String</a>;
+                          <font color="#cc0033">LABELED_BY_PROPERTY</font>*       = "labeledByProperty";
+                          <a name="type-LABEL_FOR"></a><font color="#cc0033">LABEL_FOR</font>*                 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                          <font color="#cc0033">LABEL_FOR_PROPERTY</font>*        = "labelForProperty";
+                          <a name="type-MEMBER_OF"></a><font color="#cc0033">MEMBER_OF</font>*                 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                          <font color="#cc0033">MEMBER_OF_PROPERTY</font>*        = "memberOfProperty";
+                          <font color="#cc0033">PARENT_WINDOW_OF</font>*          = "parentWindowOf";
+                          <font color="#cc0033">PARENT_WINDOW_OF_PROPERTY</font>* = "parentWindowOfProperty";
+                          <font color="#cc0033">SUBWINDOW_OF</font>*              = "subwindowOf";
+                          <font color="#cc0033">SUBWINDOW_OF_PROPERTY</font>*     = "subwindowOfProperty";
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>*(    p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                          IN  p1 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="#type-AccessibleRelation">AccessibleRelation</a><b>,CONSTRUCTOR</b>;
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                          p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="#type-AccessibleRelation">AccessibleRelation</a><b>,CONSTRUCTOR</b>;
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-AccessibleRelation">AccessibleRelation</a><b>,CONSTRUCTOR</b>;
+                        <b>END</b>;
+
+  <a name="type-AccessibleRelationSet"></a><font color="#cc0033">AccessibleRelationSet</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                           <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                           <font color="green"><b> (* </b><a href="#meths-AccessibleRelationSet">Typebound Procedures</a><b> *)</b></font>
+                             <font color="#cc0033">relations</font>! : <a href="java_util.html#type-Vector">java_util.Vector</a>;
+                           <b>STATIC</b>
+                             <b>PROCEDURE </b><font color="#cc0033">Init</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="javax_accessibility.html#type-AccessibleRelation">javax_accessibility.AccessibleRelation</a>) : <a href="#type-AccessibleRelationSet">AccessibleRelationSet</a><b>,CONSTRUCTOR</b>;
+                             <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-AccessibleRelationSet">AccessibleRelationSet</a><b>,CONSTRUCTOR</b>;
+                           <b>END</b>;
+
+  <a name="type-AccessibleResourceBundle"></a><font color="#cc0033">AccessibleResourceBundle</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_util.html#type-ListResourceBundle">java_util.ListResourceBundle</a>)
+                              <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> *)</font>
+                              <font color="green"><b> (* </b><a href="#meths-AccessibleResourceBundle">Typebound Procedures</a><b> *)</b></font>
+                              <b>STATIC</b>
+                                <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-AccessibleResourceBundle">AccessibleResourceBundle</a><b>,CONSTRUCTOR</b>;
+                              <b>END</b>;
+
+  <a name="type-AccessibleRole"></a><font color="#cc0033">AccessibleRole</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-AccessibleBundle">AccessibleBundle</a>)
+                    <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                    <b>STATIC</b>
+                      <a name="type-ALERT"></a><font color="#cc0033">ALERT</font>*            : <a href="#type-AccessibleRole">AccessibleRole</a>;
+                      <a name="type-AWT_COMPONENT"></a><font color="#cc0033">AWT_COMPONENT</font>*    : <a href="#type-AccessibleRole">AccessibleRole</a>;
+                      <a name="type-CANVAS"></a><font color="#cc0033">CANVAS</font>*           : <a href="#type-AccessibleRole">AccessibleRole</a>;
+                      <a name="type-CHECK_BOX"></a><font color="#cc0033">CHECK_BOX</font>*        : <a href="#type-AccessibleRole">AccessibleRole</a>;
+                      <a name="type-COLOR_CHOOSER"></a><font color="#cc0033">COLOR_CHOOSER</font>*    : <a href="#type-AccessibleRole">AccessibleRole</a>;
+                      <a name="type-COLUMN_HEADER"></a><font color="#cc0033">COLUMN_HEADER</font>*    : <a href="#type-AccessibleRole">AccessibleRole</a>;
+                      <a name="type-COMBO_BOX"></a><font color="#cc0033">COMBO_BOX</font>*        : <a href="#type-AccessibleRole">AccessibleRole</a>;
+                      <a name="type-DATE_EDITOR"></a><font color="#cc0033">DATE_EDITOR</font>*      : <a href="#type-AccessibleRole">AccessibleRole</a>;
+                      <a name="type-DESKTOP_ICON"></a><font color="#cc0033">DESKTOP_ICON</font>*     : <a href="#type-AccessibleRole">AccessibleRole</a>;
+                      <a name="type-DESKTOP_PANE"></a><font color="#cc0033">DESKTOP_PANE</font>*     : <a href="#type-AccessibleRole">AccessibleRole</a>;
+                      <a name="type-DIALOG"></a><font color="#cc0033">DIALOG</font>*           : <a href="#type-AccessibleRole">AccessibleRole</a>;
+                      <a name="type-DIRECTORY_PANE"></a><font color="#cc0033">DIRECTORY_PANE</font>*   : <a href="#type-AccessibleRole">AccessibleRole</a>;
+                      <a name="type-EDITBAR"></a><font color="#cc0033">EDITBAR</font>*          : <a href="#type-AccessibleRole">AccessibleRole</a>;
+                      <a name="type-FILE_CHOOSER"></a><font color="#cc0033">FILE_CHOOSER</font>*     : <a href="#type-AccessibleRole">AccessibleRole</a>;
+                      <a name="type-FILLER"></a><font color="#cc0033">FILLER</font>*           : <a href="#type-AccessibleRole">AccessibleRole</a>;
+                      <a name="type-FONT_CHOOSER"></a><font color="#cc0033">FONT_CHOOSER</font>*     : <a href="#type-AccessibleRole">AccessibleRole</a>;
+                      <a name="type-FOOTER"></a><font color="#cc0033">FOOTER</font>*           : <a href="#type-AccessibleRole">AccessibleRole</a>;
+                      <a name="type-FRAME"></a><font color="#cc0033">FRAME</font>*            : <a href="#type-AccessibleRole">AccessibleRole</a>;
+                      <a name="type-GLASS_PANE"></a><font color="#cc0033">GLASS_PANE</font>*       : <a href="#type-AccessibleRole">AccessibleRole</a>;
+                      <a name="type-GROUP_BOX"></a><font color="#cc0033">GROUP_BOX</font>*        : <a href="#type-AccessibleRole">AccessibleRole</a>;
+                      <a name="type-HEADER"></a><font color="#cc0033">HEADER</font>*           : <a href="#type-AccessibleRole">AccessibleRole</a>;
+                      <a name="type-HTML_CONTAINER"></a><font color="#cc0033">HTML_CONTAINER</font>*   : <a href="#type-AccessibleRole">AccessibleRole</a>;
+                      <a name="type-HYPERLINK"></a><font color="#cc0033">HYPERLINK</font>*        : <a href="#type-AccessibleRole">AccessibleRole</a>;
+                      <a name="type-ICON"></a><font color="#cc0033">ICON</font>*             : <a href="#type-AccessibleRole">AccessibleRole</a>;
+                      <a name="type-INTERNAL_FRAME"></a><font color="#cc0033">INTERNAL_FRAME</font>*   : <a href="#type-AccessibleRole">AccessibleRole</a>;
+                      <a name="type-LABEL"></a><font color="#cc0033">LABEL</font>*            : <a href="#type-AccessibleRole">AccessibleRole</a>;
+                      <a name="type-LAYERED_PANE"></a><font color="#cc0033">LAYERED_PANE</font>*     : <a href="#type-AccessibleRole">AccessibleRole</a>;
+                      <a name="type-LIST"></a><font color="#cc0033">LIST</font>*             : <a href="#type-AccessibleRole">AccessibleRole</a>;
+                      <a name="type-LIST_ITEM"></a><font color="#cc0033">LIST_ITEM</font>*        : <a href="#type-AccessibleRole">AccessibleRole</a>;
+                      <a name="type-MENU"></a><font color="#cc0033">MENU</font>*             : <a href="#type-AccessibleRole">AccessibleRole</a>;
+                      <a name="type-MENU_BAR"></a><font color="#cc0033">MENU_BAR</font>*         : <a href="#type-AccessibleRole">AccessibleRole</a>;
+                      <a name="type-MENU_ITEM"></a><font color="#cc0033">MENU_ITEM</font>*        : <a href="#type-AccessibleRole">AccessibleRole</a>;
+                      <a name="type-OPTION_PANE"></a><font color="#cc0033">OPTION_PANE</font>*      : <a href="#type-AccessibleRole">AccessibleRole</a>;
+                      <a name="type-PAGE_TAB"></a><font color="#cc0033">PAGE_TAB</font>*         : <a href="#type-AccessibleRole">AccessibleRole</a>;
+                      <a name="type-PAGE_TAB_LIST"></a><font color="#cc0033">PAGE_TAB_LIST</font>*    : <a href="#type-AccessibleRole">AccessibleRole</a>;
+                      <a name="type-PANEL"></a><font color="#cc0033">PANEL</font>*            : <a href="#type-AccessibleRole">AccessibleRole</a>;
+                      <a name="type-PARAGRAPH"></a><font color="#cc0033">PARAGRAPH</font>*        : <a href="#type-AccessibleRole">AccessibleRole</a>;
+                      <a name="type-PASSWORD_TEXT"></a><font color="#cc0033">PASSWORD_TEXT</font>*    : <a href="#type-AccessibleRole">AccessibleRole</a>;
+                      <a name="type-POPUP_MENU"></a><font color="#cc0033">POPUP_MENU</font>*       : <a href="#type-AccessibleRole">AccessibleRole</a>;
+                      <a name="type-PROGRESS_BAR"></a><font color="#cc0033">PROGRESS_BAR</font>*     : <a href="#type-AccessibleRole">AccessibleRole</a>;
+                      <a name="type-PROGRESS_MONITOR"></a><font color="#cc0033">PROGRESS_MONITOR</font>* : <a href="#type-AccessibleRole">AccessibleRole</a>;
+                      <a name="type-PUSH_BUTTON"></a><font color="#cc0033">PUSH_BUTTON</font>*      : <a href="#type-AccessibleRole">AccessibleRole</a>;
+                      <a name="type-RADIO_BUTTON"></a><font color="#cc0033">RADIO_BUTTON</font>*     : <a href="#type-AccessibleRole">AccessibleRole</a>;
+                      <a name="type-ROOT_PANE"></a><font color="#cc0033">ROOT_PANE</font>*        : <a href="#type-AccessibleRole">AccessibleRole</a>;
+                      <a name="type-ROW_HEADER"></a><font color="#cc0033">ROW_HEADER</font>*       : <a href="#type-AccessibleRole">AccessibleRole</a>;
+                      <a name="type-RULER"></a><font color="#cc0033">RULER</font>*            : <a href="#type-AccessibleRole">AccessibleRole</a>;
+                      <a name="type-SCROLL_BAR"></a><font color="#cc0033">SCROLL_BAR</font>*       : <a href="#type-AccessibleRole">AccessibleRole</a>;
+                      <a name="type-SCROLL_PANE"></a><font color="#cc0033">SCROLL_PANE</font>*      : <a href="#type-AccessibleRole">AccessibleRole</a>;
+                      <a name="type-SEPARATOR"></a><font color="#cc0033">SEPARATOR</font>*        : <a href="#type-AccessibleRole">AccessibleRole</a>;
+                      <a name="type-SLIDER"></a><font color="#cc0033">SLIDER</font>*           : <a href="#type-AccessibleRole">AccessibleRole</a>;
+                      <a name="type-SPIN_BOX"></a><font color="#cc0033">SPIN_BOX</font>*         : <a href="#type-AccessibleRole">AccessibleRole</a>;
+                      <a name="type-SPLIT_PANE"></a><font color="#cc0033">SPLIT_PANE</font>*       : <a href="#type-AccessibleRole">AccessibleRole</a>;
+                      <a name="type-STATUS_BAR"></a><font color="#cc0033">STATUS_BAR</font>*       : <a href="#type-AccessibleRole">AccessibleRole</a>;
+                      <a name="type-SWING_COMPONENT"></a><font color="#cc0033">SWING_COMPONENT</font>*  : <a href="#type-AccessibleRole">AccessibleRole</a>;
+                      <a name="type-TABLE"></a><font color="#cc0033">TABLE</font>*            : <a href="#type-AccessibleRole">AccessibleRole</a>;
+                      <a name="type-TEXT"></a><font color="#cc0033">TEXT</font>*             : <a href="#type-AccessibleRole">AccessibleRole</a>;
+                      <a name="type-TOGGLE_BUTTON"></a><font color="#cc0033">TOGGLE_BUTTON</font>*    : <a href="#type-AccessibleRole">AccessibleRole</a>;
+                      <a name="type-TOOL_BAR"></a><font color="#cc0033">TOOL_BAR</font>*         : <a href="#type-AccessibleRole">AccessibleRole</a>;
+                      <a name="type-TOOL_TIP"></a><font color="#cc0033">TOOL_TIP</font>*         : <a href="#type-AccessibleRole">AccessibleRole</a>;
+                      <a name="type-TREE"></a><font color="#cc0033">TREE</font>*             : <a href="#type-AccessibleRole">AccessibleRole</a>;
+                      <a name="type-UNKNOWN"></a><font color="#cc0033">UNKNOWN</font>*          : <a href="#type-AccessibleRole">AccessibleRole</a>;
+                      <a name="type-VIEWPORT"></a><font color="#cc0033">VIEWPORT</font>*         : <a href="#type-AccessibleRole">AccessibleRole</a>;
+                      <a name="type-WINDOW"></a><font color="#cc0033">WINDOW</font>*           : <a href="#type-AccessibleRole">AccessibleRole</a>;
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-AccessibleRole">AccessibleRole</a><b>,CONSTRUCTOR</b>;
+                    <b>END</b>;
+
+  <a name="type-AccessibleSelection"></a><font color="#cc0033">AccessibleSelection</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                         <font color="green"><b> (* </b><a href="#meths-AccessibleSelection">Typebound Procedures</a><b> *)</b></font>
+                         <b>END</b>;
+
+  <a name="type-AccessibleState"></a><font color="#cc0033">AccessibleState</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-AccessibleBundle">AccessibleBundle</a>)
+                     <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                     <b>STATIC</b>
+                       <a name="type-ACTIVE"></a><font color="#cc0033">ACTIVE</font>*              : <a href="#type-AccessibleState">AccessibleState</a>;
+                       <a name="type-ARMED"></a><font color="#cc0033">ARMED</font>*               : <a href="#type-AccessibleState">AccessibleState</a>;
+                       <a name="type-BUSY"></a><font color="#cc0033">BUSY</font>*                : <a href="#type-AccessibleState">AccessibleState</a>;
+                       <a name="type-CHECKED"></a><font color="#cc0033">CHECKED</font>*             : <a href="#type-AccessibleState">AccessibleState</a>;
+                       <a name="type-COLLAPSED"></a><font color="#cc0033">COLLAPSED</font>*           : <a href="#type-AccessibleState">AccessibleState</a>;
+                       <a name="type-EDITABLE"></a><font color="#cc0033">EDITABLE</font>*            : <a href="#type-AccessibleState">AccessibleState</a>;
+                       <a name="type-ENABLED"></a><font color="#cc0033">ENABLED</font>*             : <a href="#type-AccessibleState">AccessibleState</a>;
+                       <a name="type-EXPANDABLE"></a><font color="#cc0033">EXPANDABLE</font>*          : <a href="#type-AccessibleState">AccessibleState</a>;
+                       <a name="type-EXPANDED"></a><font color="#cc0033">EXPANDED</font>*            : <a href="#type-AccessibleState">AccessibleState</a>;
+                       <a name="type-FOCUSABLE"></a><font color="#cc0033">FOCUSABLE</font>*           : <a href="#type-AccessibleState">AccessibleState</a>;
+                       <a name="type-FOCUSED"></a><font color="#cc0033">FOCUSED</font>*             : <a href="#type-AccessibleState">AccessibleState</a>;
+                       <a name="type-HORIZONTAL"></a><font color="#cc0033">HORIZONTAL</font>*          : <a href="#type-AccessibleState">AccessibleState</a>;
+                       <a name="type-ICONIFIED"></a><font color="#cc0033">ICONIFIED</font>*           : <a href="#type-AccessibleState">AccessibleState</a>;
+                       <a name="type-INDETERMINATE"></a><font color="#cc0033">INDETERMINATE</font>*       : <a href="#type-AccessibleState">AccessibleState</a>;
+                       <a name="type-MANAGES_DESCENDANTS"></a><font color="#cc0033">MANAGES_DESCENDANTS</font>* : <a href="#type-AccessibleState">AccessibleState</a>;
+                       <a name="type-MODAL"></a><font color="#cc0033">MODAL</font>*               : <a href="#type-AccessibleState">AccessibleState</a>;
+                       <a name="type-MULTISELECTABLE"></a><font color="#cc0033">MULTISELECTABLE</font>*     : <a href="#type-AccessibleState">AccessibleState</a>;
+                       <a name="type-MULTI_LINE"></a><font color="#cc0033">MULTI_LINE</font>*          : <a href="#type-AccessibleState">AccessibleState</a>;
+                       <a name="type-OPAQUE"></a><font color="#cc0033">OPAQUE</font>*              : <a href="#type-AccessibleState">AccessibleState</a>;
+                       <a name="type-PRESSED"></a><font color="#cc0033">PRESSED</font>*             : <a href="#type-AccessibleState">AccessibleState</a>;
+                       <a name="type-RESIZABLE"></a><font color="#cc0033">RESIZABLE</font>*           : <a href="#type-AccessibleState">AccessibleState</a>;
+                       <a name="type-SELECTABLE"></a><font color="#cc0033">SELECTABLE</font>*          : <a href="#type-AccessibleState">AccessibleState</a>;
+                       <a name="type-SELECTED"></a><font color="#cc0033">SELECTED</font>*            : <a href="#type-AccessibleState">AccessibleState</a>;
+                       <a name="type-SHOWING"></a><font color="#cc0033">SHOWING</font>*             : <a href="#type-AccessibleState">AccessibleState</a>;
+                       <a name="type-SINGLE_LINE"></a><font color="#cc0033">SINGLE_LINE</font>*         : <a href="#type-AccessibleState">AccessibleState</a>;
+                       <a name="type-TRANSIENT"></a><font color="#cc0033">TRANSIENT</font>*           : <a href="#type-AccessibleState">AccessibleState</a>;
+                       <a name="type-TRUNCATED"></a><font color="#cc0033">TRUNCATED</font>*           : <a href="#type-AccessibleState">AccessibleState</a>;
+                       <a name="type-VERTICAL"></a><font color="#cc0033">VERTICAL</font>*            : <a href="#type-AccessibleState">AccessibleState</a>;
+                       <a name="type-VISIBLE"></a><font color="#cc0033">VISIBLE</font>*             : <a href="#type-AccessibleState">AccessibleState</a>;
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-AccessibleState">AccessibleState</a><b>,CONSTRUCTOR</b>;
+                     <b>END</b>;
+
+  <a name="type-AccessibleStateSet"></a><font color="#cc0033">AccessibleStateSet</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                        <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="newOk(this)">has noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                        <font color="green"><b> (* </b><a href="#meths-AccessibleStateSet">Typebound Procedures</a><b> *)</b></font>
+                          <font color="#cc0033">states</font>! : <a href="java_util.html#type-Vector">java_util.Vector</a>;
+                        <b>STATIC</b>
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="javax_accessibility.html#type-AccessibleState">javax_accessibility.AccessibleState</a>) : <a href="#type-AccessibleStateSet">AccessibleStateSet</a><b>,CONSTRUCTOR</b>;
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-AccessibleStateSet">AccessibleStateSet</a><b>,CONSTRUCTOR</b>;
+                        <b>END</b>;
+
+  <a name="type-AccessibleStreamable"></a><font color="#cc0033">AccessibleStreamable</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                          <font color="green"><b> (* </b><a href="#meths-AccessibleStreamable">Typebound Procedures</a><b> *)</b></font>
+                          <b>END</b>;
+
+  <a name="type-AccessibleTable"></a><font color="#cc0033">AccessibleTable</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                     <font color="green"><b> (* </b><a href="#meths-AccessibleTable">Typebound Procedures</a><b> *)</b></font>
+                     <b>END</b>;
+
+  <a name="type-AccessibleTableModelChange"></a><font color="#cc0033">AccessibleTableModelChange</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                                <font color="green"><b> (* </b><a href="#meths-AccessibleTableModelChange">Typebound Procedures</a><b> *)</b></font>
+                                <b>STATIC</b>
+                                  <font color="#cc0033">DELETE</font>* = -1;
+                                  <font color="#cc0033">INSERT</font>* = 1;
+                                  <font color="#cc0033">UPDATE</font>* = 0;
+                                <b>END</b>;
+
+  <a name="type-AccessibleText"></a><font color="#cc0033">AccessibleText</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                    <font color="green"><b> (* </b><a href="#meths-AccessibleText">Typebound Procedures</a><b> *)</b></font>
+                    <b>STATIC</b>
+                      <font color="#cc0033">CHARACTER</font>* = 1;
+                      <font color="#cc0033">SENTENCE</font>*  = 3;
+                      <font color="#cc0033">WORD</font>*      = 2;
+                    <b>END</b>;
+
+  <a name="type-AccessibleTextSequence"></a><font color="#cc0033">AccessibleTextSequence</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                            <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                              <font color="#cc0033">startIndex</font>* : INTEGER;
+                              <font color="#cc0033">endIndex</font>*   : INTEGER;
+                              <font color="#cc0033">text</font>*       : <a href="java_lang.html#type-String">java_lang.String</a>;
+                            <b>STATIC</b>
+                              <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER;
+                                              p1 : INTEGER;
+                                              p2 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-AccessibleTextSequence">AccessibleTextSequence</a><b>,CONSTRUCTOR</b>;
+                            <b>END</b>;
+
+  <a name="type-AccessibleValue"></a><font color="#cc0033">AccessibleValue</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                     <font color="green"><b> (* </b><a href="#meths-AccessibleValue">Typebound Procedures</a><b> *)</b></font>
+                     <b>END</b>;
+
+
+
+<a name="meths-AccessibilityProvider"></a>
+<b>PROCEDURE </b>(self:AccessibilityProvider) <font color="#cc0033">activate</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AccessibilityProvider) <font color="#cc0033">getName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-Accessible"></a>
+<b>PROCEDURE </b>(self:Accessible) <font color="#cc0033">getAccessibleContext</font>*() : <a href="javax_accessibility.html#type-AccessibleContext">javax_accessibility.AccessibleContext</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-AccessibleAction"></a>
+<b>PROCEDURE </b>(self:AccessibleAction) <font color="#cc0033">doAccessibleAction</font>*(p0 : INTEGER) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AccessibleAction) <font color="#cc0033">getAccessibleActionCount</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AccessibleAction) <font color="#cc0033">getAccessibleActionDescription</font>*(p0 : INTEGER) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-AccessibleBundle"></a>
+<b>PROCEDURE </b>(self:AccessibleBundle) <font color="#cc0033">toDisplayString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AccessibleBundle) <font color="#cc0033">toDisplayString</font>*(p0 : <a href="java_util.html#type-Locale">java_util.Locale</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AccessibleBundle) <font color="#cc0033">toDisplayString</font>!(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                   p1 : <a href="java_util.html#type-Locale">java_util.Locale</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AccessibleBundle) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-AccessibleComponent"></a>
+<b>PROCEDURE </b>(self:AccessibleComponent) <font color="#cc0033">addFocusListener</font>*(p0 : <a href="java_awt_event.html#type-FocusListener">java_awt_event.FocusListener</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AccessibleComponent) <font color="#cc0033">contains</font>*(p0 : <a href="java_awt.html#type-Point">java_awt.Point</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AccessibleComponent) <font color="#cc0033">getAccessibleAt</font>*(p0 : <a href="java_awt.html#type-Point">java_awt.Point</a>) : <a href="#type-Accessible">Accessible</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AccessibleComponent) <font color="#cc0033">getBackground</font>*() : <a href="java_awt.html#type-Color">java_awt.Color</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AccessibleComponent) <font color="#cc0033">getBounds</font>*() : <a href="java_awt.html#type-Rectangle">java_awt.Rectangle</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AccessibleComponent) <font color="#cc0033">getCursor</font>*() : <a href="java_awt.html#type-Cursor">java_awt.Cursor</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AccessibleComponent) <font color="#cc0033">getFont</font>*() : <a href="java_awt.html#type-Font">java_awt.Font</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AccessibleComponent) <font color="#cc0033">getFontMetrics</font>*(p0 : <a href="java_awt.html#type-Font">java_awt.Font</a>) : <a href="java_awt.html#type-FontMetrics">java_awt.FontMetrics</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AccessibleComponent) <font color="#cc0033">getForeground</font>*() : <a href="java_awt.html#type-Color">java_awt.Color</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AccessibleComponent) <font color="#cc0033">getLocation</font>*() : <a href="java_awt.html#type-Point">java_awt.Point</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AccessibleComponent) <font color="#cc0033">getLocationOnScreen</font>*() : <a href="java_awt.html#type-Point">java_awt.Point</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AccessibleComponent) <font color="#cc0033">getSize</font>*() : <a href="java_awt.html#type-Dimension">java_awt.Dimension</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AccessibleComponent) <font color="#cc0033">isEnabled</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AccessibleComponent) <font color="#cc0033">isFocusTraversable</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AccessibleComponent) <font color="#cc0033">isShowing</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AccessibleComponent) <font color="#cc0033">isVisible</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AccessibleComponent) <font color="#cc0033">removeFocusListener</font>*(p0 : <a href="java_awt_event.html#type-FocusListener">java_awt_event.FocusListener</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AccessibleComponent) <font color="#cc0033">requestFocus</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AccessibleComponent) <font color="#cc0033">setBackground</font>*(p0 : <a href="java_awt.html#type-Color">java_awt.Color</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AccessibleComponent) <font color="#cc0033">setBounds</font>*(p0 : <a href="java_awt.html#type-Rectangle">java_awt.Rectangle</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AccessibleComponent) <font color="#cc0033">setCursor</font>*(p0 : <a href="java_awt.html#type-Cursor">java_awt.Cursor</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AccessibleComponent) <font color="#cc0033">setEnabled</font>*(p0 : BOOLEAN)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AccessibleComponent) <font color="#cc0033">setFont</font>*(p0 : <a href="java_awt.html#type-Font">java_awt.Font</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AccessibleComponent) <font color="#cc0033">setForeground</font>*(p0 : <a href="java_awt.html#type-Color">java_awt.Color</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AccessibleComponent) <font color="#cc0033">setLocation</font>*(p0 : <a href="java_awt.html#type-Point">java_awt.Point</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AccessibleComponent) <font color="#cc0033">setSize</font>*(p0 : <a href="java_awt.html#type-Dimension">java_awt.Dimension</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AccessibleComponent) <font color="#cc0033">setVisible</font>*(p0 : BOOLEAN)<b>,NEW,ABSTRACT</b>;
+<a name="meths-AccessibleContext"></a>
+<b>PROCEDURE </b>(self:AccessibleContext) <font color="#cc0033">addPropertyChangeListener</font>*(p0 : <a href="java_beans.html#type-PropertyChangeListener">java_beans.PropertyChangeListener</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AccessibleContext) <font color="#cc0033">firePropertyChange</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                       p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                       p2 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AccessibleContext) <font color="#cc0033">getAccessibleAction</font>*() : <a href="#type-AccessibleAction">AccessibleAction</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AccessibleContext) <font color="#cc0033">getAccessibleChild</font>*(p0 : INTEGER) : <a href="#type-Accessible">Accessible</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AccessibleContext) <font color="#cc0033">getAccessibleChildrenCount</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AccessibleContext) <font color="#cc0033">getAccessibleComponent</font>*() : <a href="#type-AccessibleComponent">AccessibleComponent</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AccessibleContext) <font color="#cc0033">getAccessibleDescription</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AccessibleContext) <font color="#cc0033">getAccessibleEditableText</font>*() : <a href="#type-AccessibleEditableText">AccessibleEditableText</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AccessibleContext) <font color="#cc0033">getAccessibleIcon</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-AccessibleIcon">AccessibleIcon</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AccessibleContext) <font color="#cc0033">getAccessibleIndexInParent</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AccessibleContext) <font color="#cc0033">getAccessibleName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AccessibleContext) <font color="#cc0033">getAccessibleParent</font>*() : <a href="#type-Accessible">Accessible</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AccessibleContext) <font color="#cc0033">getAccessibleRelationSet</font>*() : <a href="#type-AccessibleRelationSet">AccessibleRelationSet</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AccessibleContext) <font color="#cc0033">getAccessibleRole</font>*() : <a href="javax_accessibility.html#type-AccessibleRole">javax_accessibility.AccessibleRole</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AccessibleContext) <font color="#cc0033">getAccessibleSelection</font>*() : <a href="javax_accessibility.html#type-AccessibleSelection">javax_accessibility.AccessibleSelection</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AccessibleContext) <font color="#cc0033">getAccessibleStateSet</font>*() : <a href="#type-AccessibleStateSet">AccessibleStateSet</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AccessibleContext) <font color="#cc0033">getAccessibleTable</font>*() : <a href="#type-AccessibleTable">AccessibleTable</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AccessibleContext) <font color="#cc0033">getAccessibleText</font>*() : <a href="#type-AccessibleText">AccessibleText</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AccessibleContext) <font color="#cc0033">getAccessibleValue</font>*() : <a href="#type-AccessibleValue">AccessibleValue</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AccessibleContext) <font color="#cc0033">getLocale</font>*() : <a href="java_util.html#type-Locale">java_util.Locale</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AccessibleContext) <font color="#cc0033">removePropertyChangeListener</font>*(p0 : <a href="java_beans.html#type-PropertyChangeListener">java_beans.PropertyChangeListener</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AccessibleContext) <font color="#cc0033">setAccessibleDescription</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AccessibleContext) <font color="#cc0033">setAccessibleName</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AccessibleContext) <font color="#cc0033">setAccessibleParent</font>*(p0 : <a href="#type-Accessible">Accessible</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-AccessibleEditableText"></a>
+<b>PROCEDURE </b>(self:AccessibleEditableText) <font color="#cc0033">cut</font>*(p0 : INTEGER;
+                                             p1 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AccessibleEditableText) <font color="#cc0033">delete</font>*(p0 : INTEGER;
+                                                p1 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AccessibleEditableText) <font color="#cc0033">getTextRange</font>*(p0 : INTEGER;
+                                                      p1 : INTEGER) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AccessibleEditableText) <font color="#cc0033">insertTextAtIndex</font>*(p0 : INTEGER;
+                                                           p1 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AccessibleEditableText) <font color="#cc0033">paste</font>*(p0 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AccessibleEditableText) <font color="#cc0033">replaceText</font>*(p0 : INTEGER;
+                                                     p1 : INTEGER;
+                                                     p2 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AccessibleEditableText) <font color="#cc0033">selectText</font>*(p0 : INTEGER;
+                                                    p1 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AccessibleEditableText) <font color="#cc0033">setAttributes</font>*(p0 : INTEGER;
+                                                       p1 : INTEGER;
+                                                       p2 : <a href="javax_swing_text.html#type-AttributeSet">javax_swing_text.AttributeSet</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AccessibleEditableText) <font color="#cc0033">setTextContents</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-AccessibleExtendedComponent"></a>
+<b>PROCEDURE </b>(self:AccessibleExtendedComponent) <font color="#cc0033">getAccessibleKeyBinding</font>*() : <a href="javax_accessibility.html#type-AccessibleKeyBinding">javax_accessibility.AccessibleKeyBinding</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AccessibleExtendedComponent) <font color="#cc0033">getTitledBorderText</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AccessibleExtendedComponent) <font color="#cc0033">getToolTipText</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-AccessibleExtendedTable"></a>
+<b>PROCEDURE </b>(self:AccessibleExtendedTable) <font color="#cc0033">getAccessibleColumn</font>*(p0 : INTEGER) : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AccessibleExtendedTable) <font color="#cc0033">getAccessibleIndex</font>*(p0 : INTEGER;
+                                                             p1 : INTEGER) : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AccessibleExtendedTable) <font color="#cc0033">getAccessibleRow</font>*(p0 : INTEGER) : INTEGER<b>,NEW,ABSTRACT</b>;
+<a name="meths-AccessibleExtendedText"></a>
+<b>PROCEDURE </b>(self:AccessibleExtendedText) <font color="#cc0033">getTextBounds</font>*(p0 : INTEGER;
+                                                       p1 : INTEGER) : <a href="java_awt.html#type-Rectangle">java_awt.Rectangle</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AccessibleExtendedText) <font color="#cc0033">getTextRange</font>*(p0 : INTEGER;
+                                                      p1 : INTEGER) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AccessibleExtendedText) <font color="#cc0033">getTextSequenceAfter</font>*(p0 : INTEGER;
+                                                              p1 : INTEGER) : <a href="javax_accessibility.html#type-AccessibleTextSequence">javax_accessibility.AccessibleTextSequence</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AccessibleExtendedText) <font color="#cc0033">getTextSequenceAt</font>*(p0 : INTEGER;
+                                                           p1 : INTEGER) : <a href="javax_accessibility.html#type-AccessibleTextSequence">javax_accessibility.AccessibleTextSequence</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AccessibleExtendedText) <font color="#cc0033">getTextSequenceBefore</font>*(p0 : INTEGER;
+                                                               p1 : INTEGER) : <a href="javax_accessibility.html#type-AccessibleTextSequence">javax_accessibility.AccessibleTextSequence</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-AccessibleHyperlink"></a>
+<b>PROCEDURE </b>(self:AccessibleHyperlink) <font color="#cc0033">doAccessibleAction</font>*(p0 : INTEGER) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AccessibleHyperlink) <font color="#cc0033">getAccessibleActionAnchor</font>*(p0 : INTEGER) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AccessibleHyperlink) <font color="#cc0033">getAccessibleActionCount</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AccessibleHyperlink) <font color="#cc0033">getAccessibleActionDescription</font>*(p0 : INTEGER) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AccessibleHyperlink) <font color="#cc0033">getAccessibleActionObject</font>*(p0 : INTEGER) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AccessibleHyperlink) <font color="#cc0033">getEndIndex</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AccessibleHyperlink) <font color="#cc0033">getStartIndex</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AccessibleHyperlink) <font color="#cc0033">isValid</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+<a name="meths-AccessibleHypertext"></a>
+<b>PROCEDURE </b>(self:AccessibleHypertext) <font color="#cc0033">getLink</font>*(p0 : INTEGER) : <a href="#type-AccessibleHyperlink">AccessibleHyperlink</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AccessibleHypertext) <font color="#cc0033">getLinkCount</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AccessibleHypertext) <font color="#cc0033">getLinkIndex</font>*(p0 : INTEGER) : INTEGER<b>,NEW,ABSTRACT</b>;
+<a name="meths-AccessibleIcon"></a>
+<b>PROCEDURE </b>(self:AccessibleIcon) <font color="#cc0033">getAccessibleIconDescription</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AccessibleIcon) <font color="#cc0033">getAccessibleIconHeight</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AccessibleIcon) <font color="#cc0033">getAccessibleIconWidth</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AccessibleIcon) <font color="#cc0033">setAccessibleIconDescription</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-AccessibleKeyBinding"></a>
+<b>PROCEDURE </b>(self:AccessibleKeyBinding) <font color="#cc0033">getAccessibleKeyBinding</font>*(p0 : INTEGER) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AccessibleKeyBinding) <font color="#cc0033">getAccessibleKeyBindingCount</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+<a name="meths-AccessibleRelation"></a>
+<b>PROCEDURE </b>(self:AccessibleRelation) <font color="#cc0033">getKey</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AccessibleRelation) <font color="#cc0033">getTarget</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AccessibleRelation) <font color="#cc0033">setTarget</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AccessibleRelation) <font color="#cc0033">setTarget</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-AccessibleRelationSet"></a>
+<b>PROCEDURE </b>(self:AccessibleRelationSet) <font color="#cc0033">add</font>*(p0 : <a href="javax_accessibility.html#type-AccessibleRelation">javax_accessibility.AccessibleRelation</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AccessibleRelationSet) <font color="#cc0033">addAll</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="javax_accessibility.html#type-AccessibleRelation">javax_accessibility.AccessibleRelation</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AccessibleRelationSet) <font color="#cc0033">clear</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AccessibleRelationSet) <font color="#cc0033">contains</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AccessibleRelationSet) <font color="#cc0033">get</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="javax_accessibility.html#type-AccessibleRelation">javax_accessibility.AccessibleRelation</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AccessibleRelationSet) <font color="#cc0033">remove</font>*(p0 : <a href="javax_accessibility.html#type-AccessibleRelation">javax_accessibility.AccessibleRelation</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AccessibleRelationSet) <font color="#cc0033">size</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AccessibleRelationSet) <font color="#cc0033">toArray</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="javax_accessibility.html#type-AccessibleRelation">javax_accessibility.AccessibleRelation</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AccessibleRelationSet) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-AccessibleResourceBundle"></a>
+<b>PROCEDURE </b>(self:AccessibleResourceBundle) <font color="#cc0033">getContents</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-AccessibleSelection"></a>
+<b>PROCEDURE </b>(self:AccessibleSelection) <font color="#cc0033">addAccessibleSelection</font>*(p0 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AccessibleSelection) <font color="#cc0033">clearAccessibleSelection</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AccessibleSelection) <font color="#cc0033">getAccessibleSelection</font>*(p0 : INTEGER) : <a href="#type-Accessible">Accessible</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AccessibleSelection) <font color="#cc0033">getAccessibleSelectionCount</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AccessibleSelection) <font color="#cc0033">isAccessibleChildSelected</font>*(p0 : INTEGER) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AccessibleSelection) <font color="#cc0033">removeAccessibleSelection</font>*(p0 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AccessibleSelection) <font color="#cc0033">selectAllAccessibleSelection</font>*()<b>,NEW,ABSTRACT</b>;
+<a name="meths-AccessibleStateSet"></a>
+<b>PROCEDURE </b>(self:AccessibleStateSet) <font color="#cc0033">add</font>*(p0 : <a href="javax_accessibility.html#type-AccessibleState">javax_accessibility.AccessibleState</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AccessibleStateSet) <font color="#cc0033">addAll</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="javax_accessibility.html#type-AccessibleState">javax_accessibility.AccessibleState</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AccessibleStateSet) <font color="#cc0033">clear</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AccessibleStateSet) <font color="#cc0033">contains</font>*(p0 : <a href="javax_accessibility.html#type-AccessibleState">javax_accessibility.AccessibleState</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AccessibleStateSet) <font color="#cc0033">remove</font>*(p0 : <a href="javax_accessibility.html#type-AccessibleState">javax_accessibility.AccessibleState</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AccessibleStateSet) <font color="#cc0033">toArray</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="javax_accessibility.html#type-AccessibleState">javax_accessibility.AccessibleState</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AccessibleStateSet) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-AccessibleStreamable"></a>
+<b>PROCEDURE </b>(self:AccessibleStreamable) <font color="#cc0033">getMimeTypes</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_awt_datatransfer.html#type-DataFlavor">java_awt_datatransfer.DataFlavor</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AccessibleStreamable) <font color="#cc0033">getStream</font>*(p0 : <a href="java_awt_datatransfer.html#type-DataFlavor">java_awt_datatransfer.DataFlavor</a>) : <a href="java_io.html#type-InputStream">java_io.InputStream</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-AccessibleTable"></a>
+<b>PROCEDURE </b>(self:AccessibleTable) <font color="#cc0033">getAccessibleAt</font>*(p0 : INTEGER;
+                                                  p1 : INTEGER) : <a href="javax_accessibility.html#type-Accessible">javax_accessibility.Accessible</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AccessibleTable) <font color="#cc0033">getAccessibleCaption</font>*() : <a href="javax_accessibility.html#type-Accessible">javax_accessibility.Accessible</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AccessibleTable) <font color="#cc0033">getAccessibleColumnCount</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AccessibleTable) <font color="#cc0033">getAccessibleColumnDescription</font>*(p0 : INTEGER) : <a href="javax_accessibility.html#type-Accessible">javax_accessibility.Accessible</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AccessibleTable) <font color="#cc0033">getAccessibleColumnExtentAt</font>*(p0 : INTEGER;
+                                                              p1 : INTEGER) : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AccessibleTable) <font color="#cc0033">getAccessibleColumnHeader</font>*() : <a href="#type-AccessibleTable">AccessibleTable</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AccessibleTable) <font color="#cc0033">getAccessibleRowCount</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AccessibleTable) <font color="#cc0033">getAccessibleRowDescription</font>*(p0 : INTEGER) : <a href="javax_accessibility.html#type-Accessible">javax_accessibility.Accessible</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AccessibleTable) <font color="#cc0033">getAccessibleRowExtentAt</font>*(p0 : INTEGER;
+                                                           p1 : INTEGER) : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AccessibleTable) <font color="#cc0033">getAccessibleRowHeader</font>*() : <a href="#type-AccessibleTable">AccessibleTable</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AccessibleTable) <font color="#cc0033">getAccessibleSummary</font>*() : <a href="javax_accessibility.html#type-Accessible">javax_accessibility.Accessible</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AccessibleTable) <font color="#cc0033">getSelectedAccessibleColumns</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AccessibleTable) <font color="#cc0033">getSelectedAccessibleRows</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AccessibleTable) <font color="#cc0033">isAccessibleColumnSelected</font>*(p0 : INTEGER) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AccessibleTable) <font color="#cc0033">isAccessibleRowSelected</font>*(p0 : INTEGER) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AccessibleTable) <font color="#cc0033">isAccessibleSelected</font>*(p0 : INTEGER;
+                                                       p1 : INTEGER) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AccessibleTable) <font color="#cc0033">setAccessibleCaption</font>*(p0 : <a href="javax_accessibility.html#type-Accessible">javax_accessibility.Accessible</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AccessibleTable) <font color="#cc0033">setAccessibleColumnDescription</font>*(p0 : INTEGER;
+                                                                 p1 : <a href="javax_accessibility.html#type-Accessible">javax_accessibility.Accessible</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AccessibleTable) <font color="#cc0033">setAccessibleColumnHeader</font>*(p0 : <a href="#type-AccessibleTable">AccessibleTable</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AccessibleTable) <font color="#cc0033">setAccessibleRowDescription</font>*(p0 : INTEGER;
+                                                              p1 : <a href="javax_accessibility.html#type-Accessible">javax_accessibility.Accessible</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AccessibleTable) <font color="#cc0033">setAccessibleRowHeader</font>*(p0 : <a href="#type-AccessibleTable">AccessibleTable</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AccessibleTable) <font color="#cc0033">setAccessibleSummary</font>*(p0 : <a href="javax_accessibility.html#type-Accessible">javax_accessibility.Accessible</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-AccessibleTableModelChange"></a>
+<b>PROCEDURE </b>(self:AccessibleTableModelChange) <font color="#cc0033">getFirstColumn</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AccessibleTableModelChange) <font color="#cc0033">getFirstRow</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AccessibleTableModelChange) <font color="#cc0033">getLastColumn</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AccessibleTableModelChange) <font color="#cc0033">getLastRow</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AccessibleTableModelChange) <font color="#cc0033">getType</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+<a name="meths-AccessibleText"></a>
+<b>PROCEDURE </b>(self:AccessibleText) <font color="#cc0033">getAfterIndex</font>*(p0 : INTEGER;
+                                               p1 : INTEGER) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AccessibleText) <font color="#cc0033">getAtIndex</font>*(p0 : INTEGER;
+                                            p1 : INTEGER) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AccessibleText) <font color="#cc0033">getBeforeIndex</font>*(p0 : INTEGER;
+                                                p1 : INTEGER) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AccessibleText) <font color="#cc0033">getCaretPosition</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AccessibleText) <font color="#cc0033">getCharacterAttribute</font>*(p0 : INTEGER) : <a href="javax_swing_text.html#type-AttributeSet">javax_swing_text.AttributeSet</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AccessibleText) <font color="#cc0033">getCharacterBounds</font>*(p0 : INTEGER) : <a href="java_awt.html#type-Rectangle">java_awt.Rectangle</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AccessibleText) <font color="#cc0033">getCharCount</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AccessibleText) <font color="#cc0033">getIndexAtPoint</font>*(p0 : <a href="java_awt.html#type-Point">java_awt.Point</a>) : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AccessibleText) <font color="#cc0033">getSelectedText</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AccessibleText) <font color="#cc0033">getSelectionEnd</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AccessibleText) <font color="#cc0033">getSelectionStart</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+<a name="meths-AccessibleValue"></a>
+<b>PROCEDURE </b>(self:AccessibleValue) <font color="#cc0033">getCurrentAccessibleValue</font>*() : <a href="java_lang.html#type-Number">java_lang.Number</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AccessibleValue) <font color="#cc0033">getMaximumAccessibleValue</font>*() : <a href="java_lang.html#type-Number">java_lang.Number</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AccessibleValue) <font color="#cc0033">getMinimumAccessibleValue</font>*() : <a href="java_lang.html#type-Number">java_lang.Number</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AccessibleValue) <font color="#cc0033">setCurrentAccessibleValue</font>*(p0 : <a href="java_lang.html#type-Number">java_lang.Number</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>END </b><font color="#cc0033">javax_accessibility</font>.
+</font></pre></hr>
+<!-- BEGIN JavaScript -->
+<script>
+function toggle(node) {
+    node.classList.toggle("show"); 
+  }
+
+function cls(node) {
+    var prnt = node.parentNode;
+    var next = prnt.previousSibling;
+    var text = next.lastChild;
+    text.innerHTML = 
+        "The <b>class</b> property asserts that this type will be<br>" +
+        "implemented as a reference class in the underlying framework.";
+    text.classList.toggle("show");
+  }
+
+function newOk(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>has noArg-ctor</b> property asserts that this reference<br>" +
+        "class has a no-arg constructor, and thus objects of this<br>" +
+        "type can be allocated with NEW(). Component Pascal types<br>" +
+        "derived from this type can also be allocated using NEW().";
+    popuptext.classList.toggle("show"); 
+  }
+
+function noNew(node) { 
+    var prnt = node.parentNode; 
+    var next = prnt.previousSibling; 
+    var text = next.lastChild; 
+    text.innerHTML =  
+        "The <b>no noArg-ctor</b> property asserts that this reference<br>" +
+        "class does not have a noArg constructor. Objects of this<br>" +
+        "type cannot be allocated using NEW(), and Component<br>" +
+        "Pascal types  derived from this type also cannot be<br>" +
+        "allocated using NEW().";
+    text.classList.toggle("show");
+  }
+
+function noCpy(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>no value-assign</b> property asserts that this reference<br>" + 
+        "class does not have a value copy method. Therefore, it<br>" +
+        "is not possible to perform value assignments using<br>" +
+        "statements like <i>dst^</i> := <i>src^</i>";
+    popuptext.classList.toggle("show");
+  }
+
+function valueclass(node) { 
+        var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>valueclass</b> property asserts that this RECORD type is<br>" + 
+        "implemented as a value class in the CLR. It follows that<br>" +  
+        "value assignments can be made of these types. They can<br>" + 
+        "also be passed by value. Even pointers to records of<br>" + 
+        "such types may be dereferenced and copied using syntax<br>" + 
+        "such as  <i>dst^</i> := <i>src^</i>"; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+function argCtor(node) { 
+    var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>has arg-ctor</b> property asserts that this reference<br>" +  
+        "class has one or more constructors that take arguments.<br>" + 
+        "These constructors can be called from Component Pascal<br>" + 
+        "by calling an <i>init</i>(...) method from the static list<br>" + 
+        "here. Component Pascal types derived from this type<br>" + 
+        "can define constructors with arguments which call the<br>" + 
+        "super-type constructor.<br>" + 
+        "See <i>'Interfacing to constructors'</i> in the Release Notes."; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+</script>
+<!-- END JavaScript --> 
+
+</body></html>

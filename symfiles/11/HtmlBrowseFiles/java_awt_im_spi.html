@@ -1,0 +1,209 @@
+<html><head><title>java_awt_im_spi</title>
+<style>
+<!-- BEGIN Inline CSS -->
+/* Popup container */
+.popup {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+/* The actual popup (appears on top) */
+.popup .popuptext {
+    visibility: hidden;
+    width: 430px;
+    background-color: white;
+    color: black;
+    text-align: left;
+    border-radius: 6px;
+    border-style: solid;
+    border-color: black;
+    padding: 8px 8px 8px 8px;
+    position: absolute;
+    z-index: 1;
+    margin-top: 30px;
+}
+
+/* Toggle this class when clicking on the popup container (hide and show the popup) */
+.popup .show {
+    visibility: visible;
+    opacity: 1;
+}
+
+</style>
+<!-- END Inline CSS -->
+</head><body bgcolor="white">
+<hr><pre>
+<font color="green">(*</font>
+<font color="green"> *  Creator PeToCps j2cps version 1.4.07 (March 2018)</font>
+<font color="green"> *  Compiled from jar-file /Library/Java/JavaVirtualMachines/zulu-11.jdk/Contents/Home/jmods/java.desktop.jmod</font>
+<font color="green"> *)</font>
+<b>FOREIGN MODULE </b><font color="#cc0033">java_awt_im_spi</font>;
+
+<b>IMPORT</b>
+    <a href="javax_swing.html">javax_swing</a> := "javax.swing",
+    <a href="java_awt.html">java_awt</a> := "java.awt",
+    <a href="java_awt.html">java_awt</a> := "java.awt",
+    <a href="java_awt_font.html">java_awt_font</a> := "java.awt.font",
+    <a href="java_awt_im.html">java_awt_im</a> := "java.awt.im",
+    <a href="java_awt_im_spi.html">java_awt_im_spi</a> := "java.awt.im.spi",
+    <a href="java_lang.html">java_lang</a> := "java.lang",
+    <a href="java_text.html">java_text</a> := "java.text",
+    <a href="java_util.html">java_util</a> := "java.util";
+
+<b>TYPE</b>
+
+  <a name="type-InputMethod"></a><font color="#cc0033">InputMethod</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                 <font color="green"><b> (* </b><a href="#meths-InputMethod">Typebound Procedures</a><b> *)</b></font>
+                 <b>END</b>;
+
+  <a name="type-InputMethodContext"></a><font color="#cc0033">InputMethodContext</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_awt_im.html#type-InputMethodRequests">java_awt_im.InputMethodRequests</a>)
+                        <font color="green"><b> (* </b><a href="#meths-InputMethodContext">Typebound Procedures</a><b> *)</b></font>
+                        <b>END</b>;
+
+  <a name="type-InputMethodDescriptor"></a><font color="#cc0033">InputMethodDescriptor</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                           <font color="green"><b> (* </b><a href="#meths-InputMethodDescriptor">Typebound Procedures</a><b> *)</b></font>
+                           <b>END</b>;
+
+
+
+<a name="meths-InputMethod"></a>
+<b>PROCEDURE </b>(self:InputMethod) <font color="#cc0033">activate</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:InputMethod) <font color="#cc0033">deactivate</font>*(p0 : BOOLEAN)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:InputMethod) <font color="#cc0033">dispatchEvent</font>*(p0 : <a href="java_awt.html#type-AWTEvent">java_awt.AWTEvent</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:InputMethod) <font color="#cc0033">dispose</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:InputMethod) <font color="#cc0033">endComposition</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:InputMethod) <font color="#cc0033">getControlObject</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:InputMethod) <font color="#cc0033">getLocale</font>*() : <a href="java_util.html#type-Locale">java_util.Locale</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:InputMethod) <font color="#cc0033">hideWindows</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:InputMethod) <font color="#cc0033">isCompositionEnabled</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:InputMethod) <font color="#cc0033">notifyClientWindowChange</font>*(p0 : <a href="java_awt.html#type-Rectangle">java_awt.Rectangle</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:InputMethod) <font color="#cc0033">reconvert</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:InputMethod) <font color="#cc0033">removeNotify</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:InputMethod) <font color="#cc0033">setCharacterSubsets</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Character$Subset">java_lang.Character$Subset</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:InputMethod) <font color="#cc0033">setCompositionEnabled</font>*(p0 : BOOLEAN)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:InputMethod) <font color="#cc0033">setInputMethodContext</font>*(p0 : <a href="java_awt_im_spi.html#type-InputMethodContext">java_awt_im_spi.InputMethodContext</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:InputMethod) <font color="#cc0033">setLocale</font>*(p0 : <a href="java_util.html#type-Locale">java_util.Locale</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+<a name="meths-InputMethodContext"></a>
+<b>PROCEDURE </b>(self:InputMethodContext) <font color="#cc0033">createInputMethodJFrame</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                             p1 : BOOLEAN) : <a href="javax_swing.html#type-JFrame">javax_swing.JFrame</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:InputMethodContext) <font color="#cc0033">createInputMethodWindow</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                             p1 : BOOLEAN) : <a href="java_awt.html#type-Window">java_awt.Window</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:InputMethodContext) <font color="#cc0033">dispatchInputMethodEvent</font>*(p0 : INTEGER;
+                                                              p1 : <a href="java_text.html#type-AttributedCharacterIterator">java_text.AttributedCharacterIterator</a>;
+                                                              p2 : INTEGER;
+                                                              p3 : <a href="java_awt_font.html#type-TextHitInfo">java_awt_font.TextHitInfo</a>;
+                                                              p4 : <a href="java_awt_font.html#type-TextHitInfo">java_awt_font.TextHitInfo</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:InputMethodContext) <font color="#cc0033">enableClientWindowNotification</font>*(p0 : <a href="#type-InputMethod">InputMethod</a>;
+                                                                    p1 : BOOLEAN)<b>,NEW,ABSTRACT</b>;
+<a name="meths-InputMethodDescriptor"></a>
+<b>PROCEDURE </b>(self:InputMethodDescriptor) <font color="#cc0033">createInputMethod</font>*() : <a href="#type-InputMethod">InputMethod</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:InputMethodDescriptor) <font color="#cc0033">getAvailableLocales</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_util.html#type-Locale">java_util.Locale</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:InputMethodDescriptor) <font color="#cc0033">getInputMethodDisplayName</font>*(p0 : <a href="java_util.html#type-Locale">java_util.Locale</a>;
+                                                                  p1 : <a href="java_util.html#type-Locale">java_util.Locale</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:InputMethodDescriptor) <font color="#cc0033">getInputMethodIcon</font>*(p0 : <a href="java_util.html#type-Locale">java_util.Locale</a>) : <a href="java_awt.html#type-Image">java_awt.Image</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:InputMethodDescriptor) <font color="#cc0033">hasDynamicLocaleList</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>END </b><font color="#cc0033">java_awt_im_spi</font>.
+</font></pre></hr>
+<!-- BEGIN JavaScript -->
+<script>
+function toggle(node) {
+    node.classList.toggle("show"); 
+  }
+
+function cls(node) {
+    var prnt = node.parentNode;
+    var next = prnt.previousSibling;
+    var text = next.lastChild;
+    text.innerHTML = 
+        "The <b>class</b> property asserts that this type will be<br>" +
+        "implemented as a reference class in the underlying framework.";
+    text.classList.toggle("show");
+  }
+
+function newOk(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>has noArg-ctor</b> property asserts that this reference<br>" +
+        "class has a no-arg constructor, and thus objects of this<br>" +
+        "type can be allocated with NEW(). Component Pascal types<br>" +
+        "derived from this type can also be allocated using NEW().";
+    popuptext.classList.toggle("show"); 
+  }
+
+function noNew(node) { 
+    var prnt = node.parentNode; 
+    var next = prnt.previousSibling; 
+    var text = next.lastChild; 
+    text.innerHTML =  
+        "The <b>no noArg-ctor</b> property asserts that this reference<br>" +
+        "class does not have a noArg constructor. Objects of this<br>" +
+        "type cannot be allocated using NEW(), and Component<br>" +
+        "Pascal types  derived from this type also cannot be<br>" +
+        "allocated using NEW().";
+    text.classList.toggle("show");
+  }
+
+function noCpy(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>no value-assign</b> property asserts that this reference<br>" + 
+        "class does not have a value copy method. Therefore, it<br>" +
+        "is not possible to perform value assignments using<br>" +
+        "statements like <i>dst^</i> := <i>src^</i>";
+    popuptext.classList.toggle("show");
+  }
+
+function valueclass(node) { 
+        var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>valueclass</b> property asserts that this RECORD type is<br>" + 
+        "implemented as a value class in the CLR. It follows that<br>" +  
+        "value assignments can be made of these types. They can<br>" + 
+        "also be passed by value. Even pointers to records of<br>" + 
+        "such types may be dereferenced and copied using syntax<br>" + 
+        "such as  <i>dst^</i> := <i>src^</i>"; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+function argCtor(node) { 
+    var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>has arg-ctor</b> property asserts that this reference<br>" +  
+        "class has one or more constructors that take arguments.<br>" + 
+        "These constructors can be called from Component Pascal<br>" + 
+        "by calling an <i>init</i>(...) method from the static list<br>" + 
+        "here. Component Pascal types derived from this type<br>" + 
+        "can define constructors with arguments which call the<br>" + 
+        "super-type constructor.<br>" + 
+        "See <i>'Interfacing to constructors'</i> in the Release Notes."; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+</script>
+<!-- END JavaScript --> 
+
+</body></html>

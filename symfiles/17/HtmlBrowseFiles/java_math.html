@@ -1,0 +1,489 @@
+<html><head><title>java_math</title>
+<style>
+<!-- BEGIN Inline CSS -->
+/* Popup container */
+.popup {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+/* The actual popup (appears on top) */
+.popup .popuptext {
+    visibility: hidden;
+    width: 430px;
+    background-color: white;
+    color: black;
+    text-align: left;
+    border-radius: 6px;
+    border-style: solid;
+    border-color: black;
+    padding: 8px 8px 8px 8px;
+    position: absolute;
+    z-index: 1;
+    margin-top: 30px;
+}
+
+/* Toggle this class when clicking on the popup container (hide and show the popup) */
+.popup .show {
+    visibility: visible;
+    opacity: 1;
+}
+
+</style>
+<!-- END Inline CSS -->
+</head><body bgcolor="white">
+<hr><pre>
+<font color="green">(*</font>
+<font color="green"> *  Creator PeToCps j2cps version 1.4.07 (March 2018)</font>
+<font color="green"> *  Compiled from jar-file /Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home/jmods/java.base.jmod</font>
+<font color="green"> *)</font>
+<b>FOREIGN MODULE </b><font color="#cc0033">java_math</font>;
+
+<b>IMPORT</b>
+    <a href="java_io.html">java_io</a> := "java.io",
+    <a href="java_lang.html">java_lang</a> := "java.lang",
+    <a href="java_math.html">java_math</a> := "java.math",
+    <a href="java_util.html">java_util</a> := "java.util";
+
+<b>TYPE</b>
+
+  <a name="type-BigDecimal"></a><font color="#cc0033">BigDecimal</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Number">java_lang.Number</a> + <a href="java_lang.html#type-Comparable">java_lang.Comparable</a>)
+                <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                <font color="green"><b> (* </b><a href="#meths-BigDecimal">Typebound Procedures</a><b> *)</b></font>
+                <b>STATIC</b>
+                  <a name="type-ONE"></a><font color="#cc0033">ONE</font>*               : <a href="#type-BigDecimal">BigDecimal</a>;
+                  <font color="#cc0033">ROUND_CEILING</font>*     = 2;
+                  <font color="#cc0033">ROUND_DOWN</font>*        = 1;
+                  <font color="#cc0033">ROUND_FLOOR</font>*       = 3;
+                  <font color="#cc0033">ROUND_HALF_DOWN</font>*   = 5;
+                  <font color="#cc0033">ROUND_HALF_EVEN</font>*   = 6;
+                  <font color="#cc0033">ROUND_HALF_UP</font>*     = 4;
+                  <font color="#cc0033">ROUND_UNNECESSARY</font>* = 7;
+                  <font color="#cc0033">ROUND_UP</font>*          = 0;
+                  <a name="type-TEN"></a><font color="#cc0033">TEN</font>*               : <a href="#type-BigDecimal">BigDecimal</a>;
+                  <a name="type-ZERO"></a><font color="#cc0033">ZERO</font>*              : <a href="#type-BigDecimal">BigDecimal</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a>;
+                                  p1 : INTEGER) : <a href="#type-BigDecimal">BigDecimal</a><b>,CONSTRUCTOR</b>;
+                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a>;
+                                  p1 : INTEGER;
+                                  p2 : <a href="java_math.html#type-MathContext">java_math.MathContext</a>) : <a href="#type-BigDecimal">BigDecimal</a><b>,CONSTRUCTOR</b>;
+                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a>) : <a href="#type-BigDecimal">BigDecimal</a><b>,CONSTRUCTOR</b>;
+                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a>;
+                                  p1 : <a href="java_math.html#type-MathContext">java_math.MathContext</a>) : <a href="#type-BigDecimal">BigDecimal</a><b>,CONSTRUCTOR</b>;
+                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : LONGINT) : <a href="#type-BigDecimal">BigDecimal</a><b>,CONSTRUCTOR</b>;
+                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : LONGINT;
+                                  p1 : <a href="java_math.html#type-MathContext">java_math.MathContext</a>) : <a href="#type-BigDecimal">BigDecimal</a><b>,CONSTRUCTOR</b>;
+                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER) : <a href="#type-BigDecimal">BigDecimal</a><b>,CONSTRUCTOR</b>;
+                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER;
+                                  p1 : <a href="java_math.html#type-MathContext">java_math.MathContext</a>) : <a href="#type-BigDecimal">BigDecimal</a><b>,CONSTRUCTOR</b>;
+                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>CHAR) : <a href="#type-BigDecimal">BigDecimal</a><b>,CONSTRUCTOR</b>;
+                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>CHAR;
+                                      p1 : <a href="java_math.html#type-MathContext">java_math.MathContext</a>) : <a href="#type-BigDecimal">BigDecimal</a><b>,CONSTRUCTOR</b>;
+                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>CHAR;
+                                      p1 : INTEGER;
+                                      p2 : INTEGER) : <a href="#type-BigDecimal">BigDecimal</a><b>,CONSTRUCTOR</b>;
+                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>CHAR;
+                                      p1 : INTEGER;
+                                      p2 : INTEGER;
+                                      p3 : <a href="java_math.html#type-MathContext">java_math.MathContext</a>) : <a href="#type-BigDecimal">BigDecimal</a><b>,CONSTRUCTOR</b>;
+                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : REAL) : <a href="#type-BigDecimal">BigDecimal</a><b>,CONSTRUCTOR</b>;
+                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : REAL;
+                                  p1 : <a href="java_math.html#type-MathContext">java_math.MathContext</a>) : <a href="#type-BigDecimal">BigDecimal</a><b>,CONSTRUCTOR</b>;
+                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-BigDecimal">BigDecimal</a><b>,CONSTRUCTOR</b>;
+                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                  p1 : <a href="java_math.html#type-MathContext">java_math.MathContext</a>) : <a href="#type-BigDecimal">BigDecimal</a><b>,CONSTRUCTOR</b>;
+                  <b>PROCEDURE </b><font color="#cc0033">valueOf</font>*(p0 : REAL) : <a href="#type-BigDecimal">BigDecimal</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">valueOf</font>*(p0 : LONGINT) : <a href="#type-BigDecimal">BigDecimal</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">valueOf</font>*(p0 : LONGINT;
+                                     p1 : INTEGER) : <a href="#type-BigDecimal">BigDecimal</a>;
+                <b>END</b>;
+
+  <a name="type-BigInteger"></a><font color="#cc0033">BigInteger</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Number">java_lang.Number</a> + <a href="java_lang.html#type-Comparable">java_lang.Comparable</a>)
+                <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                <font color="green"><b> (* </b><a href="#meths-BigInteger">Typebound Procedures</a><b> *)</b></font>
+                <b>STATIC</b>
+                  <a name="type-ONE"></a><font color="#cc0033">ONE</font>*           : <a href="#type-BigInteger">BigInteger</a>;
+                  <a name="type-TEN"></a><font color="#cc0033">TEN</font>*           : <a href="#type-BigInteger">BigInteger</a>;
+                  <a name="type-TWO"></a><font color="#cc0033">TWO</font>*           : <a href="#type-BigInteger">BigInteger</a>;
+                  <a name="type-ZERO"></a><font color="#cc0033">ZERO</font>*          : <a href="#type-BigInteger">BigInteger</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-BigInteger">BigInteger</a><b>,CONSTRUCTOR</b>;
+                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                  p1 : INTEGER) : <a href="#type-BigInteger">BigInteger</a><b>,CONSTRUCTOR</b>;
+                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER;
+                                  p1 : INTEGER;
+                                  p2 : <a href="java_util.html#type-Random">java_util.Random</a>) : <a href="#type-BigInteger">BigInteger</a><b>,CONSTRUCTOR</b>;
+                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER;
+                                  p1 : <a href="java_util.html#type-Random">java_util.Random</a>) : <a href="#type-BigInteger">BigInteger</a><b>,CONSTRUCTOR</b>;
+                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE) : <a href="#type-BigInteger">BigInteger</a><b>,CONSTRUCTOR</b>;
+                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE;
+                                      p1 : INTEGER;
+                                      p2 : INTEGER) : <a href="#type-BigInteger">BigInteger</a><b>,CONSTRUCTOR</b>;
+                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*(    p0 : INTEGER;
+                                  IN  p1 : <b>ARRAY </b><b>OF </b>BYTE) : <a href="#type-BigInteger">BigInteger</a><b>,CONSTRUCTOR</b>;
+                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*(    p0 : INTEGER;
+                                  IN  p1 : <b>ARRAY </b><b>OF </b>BYTE;
+                                      p2 : INTEGER;
+                                      p3 : INTEGER) : <a href="#type-BigInteger">BigInteger</a><b>,CONSTRUCTOR</b>;
+                  <b>PROCEDURE </b><font color="#cc0033">probablePrime</font>*(p0 : INTEGER;
+                                           p1 : <a href="java_util.html#type-Random">java_util.Random</a>) : <a href="#type-BigInteger">BigInteger</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">valueOf</font>*(p0 : LONGINT) : <a href="#type-BigInteger">BigInteger</a>;
+                <b>END</b>;
+
+  <a name="type-MathContext"></a><font color="#cc0033">MathContext</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_io.html#type-Serializable">java_io.Serializable</a>)
+                 <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> | <span onclick="argCtor(this)">has arg-ctor</span> *)</font>
+                 <font color="green"><b> (* </b><a href="#meths-MathContext">Typebound Procedures</a><b> *)</b></font>
+                 <b>STATIC</b>
+                   <a name="type-DECIMAL128"></a><font color="#cc0033">DECIMAL128</font>* : <a href="#type-MathContext">MathContext</a>;
+                   <a name="type-DECIMAL32"></a><font color="#cc0033">DECIMAL32</font>*  : <a href="#type-MathContext">MathContext</a>;
+                   <a name="type-DECIMAL64"></a><font color="#cc0033">DECIMAL64</font>*  : <a href="#type-MathContext">MathContext</a>;
+                   <a name="type-UNLIMITED"></a><font color="#cc0033">UNLIMITED</font>*  : <a href="#type-MathContext">MathContext</a>;
+                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-MathContext">MathContext</a><b>,CONSTRUCTOR</b>;
+                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER;
+                                   p1 : <a href="#type-RoundingMode">RoundingMode</a>) : <a href="#type-MathContext">MathContext</a><b>,CONSTRUCTOR</b>;
+                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER) : <a href="#type-MathContext">MathContext</a><b>,CONSTRUCTOR</b>;
+                 <b>END</b>;
+
+  <a name="type-RoundingMode"></a><font color="#cc0033">RoundingMode</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Enum">java_lang.Enum</a>)
+                  <span class="popup"><span class="popuptext" onclick="toggle(this)"></span></span><font color="green"> (* <span onclick="noNew(this)">no noArg-ctor</span> *)</font>
+                  <b>STATIC</b>
+                    <a name="type-CEILING"></a><font color="#cc0033">CEILING</font>*     : <a href="#type-RoundingMode">RoundingMode</a>;
+                    <a name="type-DOWN"></a><font color="#cc0033">DOWN</font>*        : <a href="#type-RoundingMode">RoundingMode</a>;
+                    <a name="type-FLOOR"></a><font color="#cc0033">FLOOR</font>*       : <a href="#type-RoundingMode">RoundingMode</a>;
+                    <a name="type-HALF_DOWN"></a><font color="#cc0033">HALF_DOWN</font>*   : <a href="#type-RoundingMode">RoundingMode</a>;
+                    <a name="type-HALF_EVEN"></a><font color="#cc0033">HALF_EVEN</font>*   : <a href="#type-RoundingMode">RoundingMode</a>;
+                    <a name="type-HALF_UP"></a><font color="#cc0033">HALF_UP</font>*     : <a href="#type-RoundingMode">RoundingMode</a>;
+                    <a name="type-UNNECESSARY"></a><font color="#cc0033">UNNECESSARY</font>* : <a href="#type-RoundingMode">RoundingMode</a>;
+                    <a name="type-UP"></a><font color="#cc0033">UP</font>*          : <a href="#type-RoundingMode">RoundingMode</a>;
+                    <b>PROCEDURE </b><font color="#cc0033">valueOf</font>*(p0 : INTEGER) : <a href="#type-RoundingMode">RoundingMode</a>;
+                    <b>PROCEDURE </b><font color="#cc0033">valueOf</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-RoundingMode">RoundingMode</a>;
+                    <b>PROCEDURE </b><font color="#cc0033">values</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-RoundingMode">RoundingMode</a>;
+                  <b>END</b>;
+
+
+
+<a name="meths-BigDecimal"></a>
+<b>PROCEDURE </b>(self:BigDecimal) <font color="#cc0033">abs</font>*(p0 : <a href="java_math.html#type-MathContext">java_math.MathContext</a>) : <a href="#type-BigDecimal">BigDecimal</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BigDecimal) <font color="#cc0033">abs</font>*() : <a href="#type-BigDecimal">BigDecimal</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BigDecimal) <font color="#cc0033">add</font>*(p0 : <a href="#type-BigDecimal">BigDecimal</a>) : <a href="#type-BigDecimal">BigDecimal</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BigDecimal) <font color="#cc0033">add</font>*(p0 : <a href="#type-BigDecimal">BigDecimal</a>;
+                                 p1 : <a href="java_math.html#type-MathContext">java_math.MathContext</a>) : <a href="#type-BigDecimal">BigDecimal</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BigDecimal) <font color="#cc0033">byteValueExact</font>*() : BYTE<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BigDecimal) <font color="#cc0033">compareTo</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BigDecimal) <font color="#cc0033">compareTo</font>*(p0 : <a href="#type-BigDecimal">BigDecimal</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BigDecimal) <font color="#cc0033">divide</font>*(p0 : <a href="#type-BigDecimal">BigDecimal</a>) : <a href="#type-BigDecimal">BigDecimal</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BigDecimal) <font color="#cc0033">divide</font>*(p0 : <a href="#type-BigDecimal">BigDecimal</a>;
+                                    p1 : <a href="java_math.html#type-MathContext">java_math.MathContext</a>) : <a href="#type-BigDecimal">BigDecimal</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BigDecimal) <font color="#cc0033">divide</font>*(p0 : <a href="#type-BigDecimal">BigDecimal</a>;
+                                    p1 : <a href="#type-RoundingMode">RoundingMode</a>) : <a href="#type-BigDecimal">BigDecimal</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BigDecimal) <font color="#cc0033">divide</font>*(p0 : <a href="#type-BigDecimal">BigDecimal</a>;
+                                    p1 : INTEGER;
+                                    p2 : INTEGER) : <a href="#type-BigDecimal">BigDecimal</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BigDecimal) <font color="#cc0033">divide</font>*(p0 : <a href="#type-BigDecimal">BigDecimal</a>;
+                                    p1 : INTEGER;
+                                    p2 : <a href="#type-RoundingMode">RoundingMode</a>) : <a href="#type-BigDecimal">BigDecimal</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BigDecimal) <font color="#cc0033">divide</font>*(p0 : <a href="#type-BigDecimal">BigDecimal</a>;
+                                    p1 : INTEGER) : <a href="#type-BigDecimal">BigDecimal</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BigDecimal) <font color="#cc0033">divideAndRemainder</font>*(p0 : <a href="#type-BigDecimal">BigDecimal</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-BigDecimal">BigDecimal</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BigDecimal) <font color="#cc0033">divideAndRemainder</font>*(p0 : <a href="#type-BigDecimal">BigDecimal</a>;
+                                                p1 : <a href="java_math.html#type-MathContext">java_math.MathContext</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-BigDecimal">BigDecimal</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BigDecimal) <font color="#cc0033">divideToIntegralValue</font>*(p0 : <a href="#type-BigDecimal">BigDecimal</a>) : <a href="#type-BigDecimal">BigDecimal</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BigDecimal) <font color="#cc0033">divideToIntegralValue</font>*(p0 : <a href="#type-BigDecimal">BigDecimal</a>;
+                                                   p1 : <a href="java_math.html#type-MathContext">java_math.MathContext</a>) : <a href="#type-BigDecimal">BigDecimal</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BigDecimal) <font color="#cc0033">doubleValue</font>*() : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BigDecimal) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BigDecimal) <font color="#cc0033">floatValue</font>*() : SHORTREAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BigDecimal) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BigDecimal) <font color="#cc0033">intValue</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BigDecimal) <font color="#cc0033">intValueExact</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BigDecimal) <font color="#cc0033">longValue</font>*() : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BigDecimal) <font color="#cc0033">longValueExact</font>*() : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BigDecimal) <font color="#cc0033">max</font>*(p0 : <a href="#type-BigDecimal">BigDecimal</a>) : <a href="#type-BigDecimal">BigDecimal</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BigDecimal) <font color="#cc0033">min</font>*(p0 : <a href="#type-BigDecimal">BigDecimal</a>) : <a href="#type-BigDecimal">BigDecimal</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BigDecimal) <font color="#cc0033">movePointLeft</font>*(p0 : INTEGER) : <a href="#type-BigDecimal">BigDecimal</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BigDecimal) <font color="#cc0033">movePointRight</font>*(p0 : INTEGER) : <a href="#type-BigDecimal">BigDecimal</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BigDecimal) <font color="#cc0033">multiply</font>*(p0 : <a href="#type-BigDecimal">BigDecimal</a>) : <a href="#type-BigDecimal">BigDecimal</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BigDecimal) <font color="#cc0033">multiply</font>*(p0 : <a href="#type-BigDecimal">BigDecimal</a>;
+                                      p1 : <a href="java_math.html#type-MathContext">java_math.MathContext</a>) : <a href="#type-BigDecimal">BigDecimal</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BigDecimal) <font color="#cc0033">negate</font>*(p0 : <a href="java_math.html#type-MathContext">java_math.MathContext</a>) : <a href="#type-BigDecimal">BigDecimal</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BigDecimal) <font color="#cc0033">negate</font>*() : <a href="#type-BigDecimal">BigDecimal</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BigDecimal) <font color="#cc0033">plus</font>*() : <a href="#type-BigDecimal">BigDecimal</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BigDecimal) <font color="#cc0033">plus</font>*(p0 : <a href="java_math.html#type-MathContext">java_math.MathContext</a>) : <a href="#type-BigDecimal">BigDecimal</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BigDecimal) <font color="#cc0033">pow</font>*(p0 : INTEGER) : <a href="#type-BigDecimal">BigDecimal</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BigDecimal) <font color="#cc0033">pow</font>*(p0 : INTEGER;
+                                 p1 : <a href="java_math.html#type-MathContext">java_math.MathContext</a>) : <a href="#type-BigDecimal">BigDecimal</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BigDecimal) <font color="#cc0033">precision</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BigDecimal) <font color="#cc0033">remainder</font>*(p0 : <a href="#type-BigDecimal">BigDecimal</a>) : <a href="#type-BigDecimal">BigDecimal</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BigDecimal) <font color="#cc0033">remainder</font>*(p0 : <a href="#type-BigDecimal">BigDecimal</a>;
+                                       p1 : <a href="java_math.html#type-MathContext">java_math.MathContext</a>) : <a href="#type-BigDecimal">BigDecimal</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BigDecimal) <font color="#cc0033">round</font>*(p0 : <a href="java_math.html#type-MathContext">java_math.MathContext</a>) : <a href="#type-BigDecimal">BigDecimal</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BigDecimal) <font color="#cc0033">scale</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BigDecimal) <font color="#cc0033">scaleByPowerOfTen</font>*(p0 : INTEGER) : <a href="#type-BigDecimal">BigDecimal</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BigDecimal) <font color="#cc0033">setScale</font>*(p0 : INTEGER;
+                                      p1 : INTEGER) : <a href="#type-BigDecimal">BigDecimal</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BigDecimal) <font color="#cc0033">setScale</font>*(p0 : INTEGER) : <a href="#type-BigDecimal">BigDecimal</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BigDecimal) <font color="#cc0033">setScale</font>*(p0 : INTEGER;
+                                      p1 : <a href="#type-RoundingMode">RoundingMode</a>) : <a href="#type-BigDecimal">BigDecimal</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BigDecimal) <font color="#cc0033">shortValueExact</font>*() : SHORTINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BigDecimal) <font color="#cc0033">signum</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BigDecimal) <font color="#cc0033">sqrt</font>*(p0 : <a href="java_math.html#type-MathContext">java_math.MathContext</a>) : <a href="#type-BigDecimal">BigDecimal</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BigDecimal) <font color="#cc0033">stripTrailingZeros</font>*() : <a href="#type-BigDecimal">BigDecimal</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BigDecimal) <font color="#cc0033">subtract</font>*(p0 : <a href="#type-BigDecimal">BigDecimal</a>) : <a href="#type-BigDecimal">BigDecimal</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BigDecimal) <font color="#cc0033">subtract</font>*(p0 : <a href="#type-BigDecimal">BigDecimal</a>;
+                                      p1 : <a href="java_math.html#type-MathContext">java_math.MathContext</a>) : <a href="#type-BigDecimal">BigDecimal</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BigDecimal) <font color="#cc0033">toBigInteger</font>*() : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BigDecimal) <font color="#cc0033">toBigIntegerExact</font>*() : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BigDecimal) <font color="#cc0033">toEngineeringString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BigDecimal) <font color="#cc0033">toPlainString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BigDecimal) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BigDecimal) <font color="#cc0033">ulp</font>*() : <a href="#type-BigDecimal">BigDecimal</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BigDecimal) <font color="#cc0033">unscaledValue</font>*() : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-BigInteger"></a>
+<b>PROCEDURE </b>(self:BigInteger) <font color="#cc0033">abs</font>*() : <a href="#type-BigInteger">BigInteger</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BigInteger) <font color="#cc0033">add</font>*(p0 : <a href="#type-BigInteger">BigInteger</a>) : <a href="#type-BigInteger">BigInteger</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BigInteger) <font color="#cc0033">and</font>*(p0 : <a href="#type-BigInteger">BigInteger</a>) : <a href="#type-BigInteger">BigInteger</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BigInteger) <font color="#cc0033">andNot</font>*(p0 : <a href="#type-BigInteger">BigInteger</a>) : <a href="#type-BigInteger">BigInteger</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BigInteger) <font color="#cc0033">bitCount</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BigInteger) <font color="#cc0033">bitLength</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BigInteger) <font color="#cc0033">byteValueExact</font>*() : BYTE<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BigInteger) <font color="#cc0033">clearBit</font>*(p0 : INTEGER) : <a href="#type-BigInteger">BigInteger</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BigInteger) <font color="#cc0033">compareTo</font>*(p0 : <a href="#type-BigInteger">BigInteger</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BigInteger) <font color="#cc0033">compareTo</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BigInteger) <font color="#cc0033">divide</font>*(p0 : <a href="#type-BigInteger">BigInteger</a>) : <a href="#type-BigInteger">BigInteger</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BigInteger) <font color="#cc0033">divideAndRemainder</font>*(p0 : <a href="#type-BigInteger">BigInteger</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-BigInteger">BigInteger</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BigInteger) <font color="#cc0033">doubleValue</font>*() : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BigInteger) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BigInteger) <font color="#cc0033">flipBit</font>*(p0 : INTEGER) : <a href="#type-BigInteger">BigInteger</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BigInteger) <font color="#cc0033">floatValue</font>*() : SHORTREAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BigInteger) <font color="#cc0033">gcd</font>*(p0 : <a href="#type-BigInteger">BigInteger</a>) : <a href="#type-BigInteger">BigInteger</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BigInteger) <font color="#cc0033">getLowestSetBit</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BigInteger) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BigInteger) <font color="#cc0033">intValue</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BigInteger) <font color="#cc0033">intValueExact</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BigInteger) <font color="#cc0033">isProbablePrime</font>*(p0 : INTEGER) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BigInteger) <font color="#cc0033">longValue</font>*() : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BigInteger) <font color="#cc0033">longValueExact</font>*() : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BigInteger) <font color="#cc0033">max</font>*(p0 : <a href="#type-BigInteger">BigInteger</a>) : <a href="#type-BigInteger">BigInteger</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BigInteger) <font color="#cc0033">min</font>*(p0 : <a href="#type-BigInteger">BigInteger</a>) : <a href="#type-BigInteger">BigInteger</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BigInteger) <font color="#cc0033">mod</font>*(p0 : <a href="#type-BigInteger">BigInteger</a>) : <a href="#type-BigInteger">BigInteger</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BigInteger) <font color="#cc0033">modInverse</font>*(p0 : <a href="#type-BigInteger">BigInteger</a>) : <a href="#type-BigInteger">BigInteger</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BigInteger) <font color="#cc0033">modPow</font>*(p0 : <a href="#type-BigInteger">BigInteger</a>;
+                                    p1 : <a href="#type-BigInteger">BigInteger</a>) : <a href="#type-BigInteger">BigInteger</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BigInteger) <font color="#cc0033">multiply</font>*(p0 : <a href="#type-BigInteger">BigInteger</a>) : <a href="#type-BigInteger">BigInteger</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BigInteger) <font color="#cc0033">negate</font>*() : <a href="#type-BigInteger">BigInteger</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BigInteger) <font color="#cc0033">nextProbablePrime</font>*() : <a href="#type-BigInteger">BigInteger</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BigInteger) <font color="#cc0033">not</font>*() : <a href="#type-BigInteger">BigInteger</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BigInteger) <font color="#cc0033">or</font>*(p0 : <a href="#type-BigInteger">BigInteger</a>) : <a href="#type-BigInteger">BigInteger</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BigInteger) <font color="#cc0033">pow</font>*(p0 : INTEGER) : <a href="#type-BigInteger">BigInteger</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BigInteger) <font color="#cc0033">remainder</font>*(p0 : <a href="#type-BigInteger">BigInteger</a>) : <a href="#type-BigInteger">BigInteger</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BigInteger) <font color="#cc0033">setBit</font>*(p0 : INTEGER) : <a href="#type-BigInteger">BigInteger</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BigInteger) <font color="#cc0033">shiftLeft</font>*(p0 : INTEGER) : <a href="#type-BigInteger">BigInteger</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BigInteger) <font color="#cc0033">shiftRight</font>*(p0 : INTEGER) : <a href="#type-BigInteger">BigInteger</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BigInteger) <font color="#cc0033">shortValueExact</font>*() : SHORTINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BigInteger) <font color="#cc0033">signum</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BigInteger) <font color="#cc0033">sqrt</font>*() : <a href="#type-BigInteger">BigInteger</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BigInteger) <font color="#cc0033">sqrtAndRemainder</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-BigInteger">BigInteger</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BigInteger) <font color="#cc0033">subtract</font>*(p0 : <a href="#type-BigInteger">BigInteger</a>) : <a href="#type-BigInteger">BigInteger</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BigInteger) <font color="#cc0033">testBit</font>*(p0 : INTEGER) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BigInteger) <font color="#cc0033">toByteArray</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BigInteger) <font color="#cc0033">toString</font>*(p0 : INTEGER) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BigInteger) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BigInteger) <font color="#cc0033">xor</font>*(p0 : <a href="#type-BigInteger">BigInteger</a>) : <a href="#type-BigInteger">BigInteger</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-MathContext"></a>
+<b>PROCEDURE </b>(self:MathContext) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MathContext) <font color="#cc0033">getPrecision</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MathContext) <font color="#cc0033">getRoundingMode</font>*() : <a href="#type-RoundingMode">RoundingMode</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MathContext) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MathContext) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>END </b><font color="#cc0033">java_math</font>.
+</font></pre></hr>
+<!-- BEGIN JavaScript -->
+<script>
+function toggle(node) {
+    node.classList.toggle("show"); 
+  }
+
+function cls(node) {
+    var prnt = node.parentNode;
+    var next = prnt.previousSibling;
+    var text = next.lastChild;
+    text.innerHTML = 
+        "The <b>class</b> property asserts that this type will be<br>" +
+        "implemented as a reference class in the underlying framework.";
+    text.classList.toggle("show");
+  }
+
+function newOk(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>has noArg-ctor</b> property asserts that this reference<br>" +
+        "class has a no-arg constructor, and thus objects of this<br>" +
+        "type can be allocated with NEW(). Component Pascal types<br>" +
+        "derived from this type can also be allocated using NEW().";
+    popuptext.classList.toggle("show"); 
+  }
+
+function noNew(node) { 
+    var prnt = node.parentNode; 
+    var next = prnt.previousSibling; 
+    var text = next.lastChild; 
+    text.innerHTML =  
+        "The <b>no noArg-ctor</b> property asserts that this reference<br>" +
+        "class does not have a noArg constructor. Objects of this<br>" +
+        "type cannot be allocated using NEW(), and Component<br>" +
+        "Pascal types  derived from this type also cannot be<br>" +
+        "allocated using NEW().";
+    text.classList.toggle("show");
+  }
+
+function noCpy(node) {
+    var popuptext = node.parentNode.previousSibling.lastChild;
+    popuptext.innerHTML = 
+        "The <b>no value-assign</b> property asserts that this reference<br>" + 
+        "class does not have a value copy method. Therefore, it<br>" +
+        "is not possible to perform value assignments using<br>" +
+        "statements like <i>dst^</i> := <i>src^</i>";
+    popuptext.classList.toggle("show");
+  }
+
+function valueclass(node) { 
+        var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>valueclass</b> property asserts that this RECORD type is<br>" + 
+        "implemented as a value class in the CLR. It follows that<br>" +  
+        "value assignments can be made of these types. They can<br>" + 
+        "also be passed by value. Even pointers to records of<br>" + 
+        "such types may be dereferenced and copied using syntax<br>" + 
+        "such as  <i>dst^</i> := <i>src^</i>"; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+function argCtor(node) { 
+    var popuptext = node.parentNode.previousSibling.lastChild; 
+    popuptext.innerHTML =  
+        "The <b>has arg-ctor</b> property asserts that this reference<br>" +  
+        "class has one or more constructors that take arguments.<br>" + 
+        "These constructors can be called from Component Pascal<br>" + 
+        "by calling an <i>init</i>(...) method from the static list<br>" + 
+        "here. Component Pascal types derived from this type<br>" + 
+        "can define constructors with arguments which call the<br>" + 
+        "super-type constructor.<br>" + 
+        "See <i>'Interfacing to constructors'</i> in the Release Notes."; 
+    popuptext.classList.toggle("show"); 
+  } 
+
+</script>
+<!-- END JavaScript --> 
+
+</body></html>
