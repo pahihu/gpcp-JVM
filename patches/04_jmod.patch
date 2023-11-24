@@ -1,0 +1,106 @@
+diff --git a/sources/j2cps/ClassDesc.java b/sources/j2cps/ClassDesc.java
+index 47ccc7a..095848a 100644
+--- a/sources/j2cps/ClassDesc.java
++++ b/sources/j2cps/ClassDesc.java
+@@ -210,8 +210,12 @@ public class ClassDesc extends TypeDesc  {
+       // End experimental code
+ 
+       String clName = ((ClassRef) cp.Get(stream.readUnsignedShort())).GetName();
++      String extClName = "classes/" + clName;
+       if (!qualName.equals(clName)) {
+-        if (clName.startsWith(parentPkg.name)) {
++        if (clName.startsWith(parentPkg.name) ||
++            extClName.startsWith(parentPkg.name)
++           )
++        {
+           if (verbose) { System.out.println(clName + " IS PART OF PACKAGE " + 
+                                             parentPkg.name + " but name is not "
+                                             + qualName); }
+diff --git a/sources/j2cps/ConstantPool.java b/sources/j2cps/ConstantPool.java
+index 83fdbad..5bda94b 100644
+--- a/sources/j2cps/ConstantPool.java
++++ b/sources/j2cps/ConstantPool.java
+@@ -31,6 +31,8 @@ public class ConstantPool {
+   public final static int CONSTANT_MethodHandle       = 15;
+   public final static int CONSTANT_MethodType         = 16;
+   public final static int CONSTANT_InvokeDynamic      = 18;
++  public final static int CONSTANT_Module             = 19;
++  public final static int CONSTANT_Package            = 20;
+ 
+   /* access flags */
+   public static final int ACC_PUBLIC       = 0x0001;
+@@ -109,6 +111,10 @@ public class ConstantPool {
+     case CONSTANT_InvokeDynamic:
+         return SkipInfo(this,tag,stream.readUnsignedShort(),
+                     stream.readUnsignedShort());
++    case CONSTANT_Module:
++	return SkipInfo(this,tag,stream.readUnsignedShort(),0);
++    case CONSTANT_Package:
++	return SkipInfo(this,tag,stream.readUnsignedShort(),0);
+     default:
+       System.out.println("Unrecognized constant type: "+String.valueOf(tag));
+ 	throw new IOException("Unrecognized constant in constant pool");
+diff --git a/sources/j2cps/PackageDesc.java b/sources/j2cps/PackageDesc.java
+index 8427c93..51fd75e 100644
+--- a/sources/j2cps/PackageDesc.java
++++ b/sources/j2cps/PackageDesc.java
+@@ -148,12 +148,24 @@ public class PackageDesc {
+       */
+       desc.set(Util.ONTODO);
+     }
++
++    private String removeCLSU(String pName) {
++        if (pName.startsWith("classes_"))
++            return pName.substring(8);
++        return pName;
++    }
++
++    private String removeCLSDOT(String pName) {
++        if (pName.startsWith("classes."))
++            return pName.substring(8);
++        return pName;
++    }
+   
+     private PackageDesc(String pName, boolean anon) {
+         if (anon) {
+           this.name = pName;
+-          this.cpName = pName;
+-          this.javaName = pName;
++          this.cpName = removeCLSU(pName);
++          this.javaName = removeCLSDOT(pName);
+           this.anonPackage = true;
+         } else {
+           MakeName(pName); 
+@@ -164,8 +176,8 @@ public class PackageDesc {
+     private void MakeName(String pName) {
+         this.name = pName.replace(Util.JAVADOT,Util.FWDSLSH);
+         this.name = this.name.replace(Util.FILESEP,Util.FWDSLSH);  /* name is now .../... */
+-        this.cpName = this.name.replace(Util.FWDSLSH,Util.LOWLINE);
+-        this.javaName = this.name.replace(Util.FWDSLSH,Util.JAVADOT);
++        this.cpName = removeCLSU(this.name.replace(Util.FWDSLSH,Util.LOWLINE));
++        this.javaName = removeCLSDOT(this.name.replace(Util.FWDSLSH,Util.JAVADOT));
+         if (Util.FWDSLSH != Util.FILESEP) {
+             this.dirName = this.name.replace(Util.FWDSLSH,Util.FILESEP);
+         } else {
+@@ -352,4 +364,4 @@ public class PackageDesc {
+         if (( this.status & mask) == mask)
+             throw new IllegalArgumentException();
+     }
+-}
+\ No newline at end of file
++}
+diff --git a/sources/j2cps/j2cps.java b/sources/j2cps/j2cps.java
+index 5eca6c0..2c86568 100644
+--- a/sources/j2cps/j2cps.java
++++ b/sources/j2cps/j2cps.java
+@@ -132,8 +132,8 @@ public class j2cps {
+     }
+     try {
+         if (ClassDesc.useJar) {
+-            if (ClassDesc.useJar && !argStr.toLowerCase().endsWith(".jar")) {
+-                System.err.println("After -jar, filename must end \".jar\"");
++            if (ClassDesc.useJar && !argStr.toLowerCase().endsWith(".jar") & !argStr.toLowerCase().endsWith(".jmod")) {
++                System.err.println("After -jar, filename must end in \".jar\" or \".jmod\"");
+                 System.exit(1);
+             }
+             pkgOrJar = "jar-file " + argStr;
