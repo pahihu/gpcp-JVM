@@ -2,7 +2,9 @@
 Hacked Gardens Point Component Pascal compiler for the BlackBox Component Builder Frankenstein Edition (JVM)
 
 Gardens Point Component Pascal original license: LICENSE.md
+
 gpcp-JVM license (same): LICENSE.md
+
 bbcb-fe-compiler license (same): see below
 
 Copyright (c) 2026, nemavasi
