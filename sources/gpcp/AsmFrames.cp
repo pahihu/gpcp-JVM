@@ -1,3 +1,42 @@
+(*
+New BSD License (BSD)
+Copyright (c) 2000 - 2010, K John Gough
+
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
+
+* Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
+
+* Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
+
+* Neither the name of Queensland University of Technology nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+*)
+
+(*
+Modified in gpcp-JVM by Andras Pahi <pahihu@gmail.com>, 2021-11-19
+(commits 9c08641 and 0521945).
+
+Why: GPCP emits JVM StackMapTable frames through ASM 5.1. For class-file
+versions >= Java 7 the JVM requires these frames. GPCP keeps frame types as
+full JVM descriptors obtained from method signatures (ParseSig, e.g.
+"Ljava/lang/String;") and from RTS return types (procRetS). ASM's
+visitFrame(), however, expects internal names such as "java/lang/String"
+(or array descriptors like "[Ljava/lang/String;"), not field descriptors.
+ASM writes the given string literally as a class name, so "Ljava/lang/String;"
+ended up in the StackMapTable as an illegal class name. Java 7/8 tolerated
+this; JDK 9+ (and 11/17) validate frame types and reject the class with
+ClassFormatError/VerifyError.
+
+What: remSigS() strips the leading 'L' and trailing ';' from a native string
+descriptor, leaving primitive frame codes, NIL and array descriptors
+untouched. It is applied only in GetLocalArr(), GetDclTpArr() and GetEvalArr(),
+i.e. at the point where frame data is handed to ASM, so the compiler's
+internal type tracking is not changed.
+*)
+
 
 
 (* ============================================================ *)

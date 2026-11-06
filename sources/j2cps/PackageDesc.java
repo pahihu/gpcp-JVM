@@ -1,3 +1,36 @@
+/*
+New BSD License (BSD)
+Copyright (c) 2000 - 2010, K John Gough
+
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
+
+* Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
+
+* Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
+
+* Neither the name of Queensland University of Technology nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+*/
+
+/*
+Modified in gpcp-JVM by Andras Pahi <pahihu@gmail.com>, 2021-11-20
+(commit 5688ea0).
+
+Why: package names are derived from jmod entry paths. "classes/java/lang"
+becomes cpName "classes_java_lang" (the Component Pascal module name and the
+.cps file name) and javaName "classes.java.lang". Without normalization the JDK
+symbol files would be generated as classes_java_lang etc., so "IMPORT java_lang"
+would not resolve and the standard packages would be duplicated under bogus
+names.
+
+What: removeCLSU() and removeCLSDOT() strip the leading 8-character prefixes
+"classes_" and "classes." in both the anonymous-package constructor and
+MakeName(), yielding the expected names java_lang / java.lang.
+*/
+
 /**********************************************************************/
 /*                Package Desscriptor class for j2cps                 */
 /*                                                                    */   
