@@ -1,0 +1,6 @@
+MODULE WLibB;
+  IMPORT WLibA;
+  TYPE T* = WLibA.T;
+  PROCEDURE Get*(): T;
+  BEGIN RETURN WLibA.Make() END Get;
+END WLibB.

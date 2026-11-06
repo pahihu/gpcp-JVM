@@ -1,6 +1,18 @@
 # bbcb-fe-compiler
 Hacked Gardens Point Component Pascal compiler for the BlackBox Component Builder Frankenstein Edition (JVM)
 
+## Tests
+
+Regression tests for the ported compiler patches (commit `f4966be`) live in
+`tests/gpcp/`.  The runner rebuilds the compiler from `sources/gpcp` and then
+compiles and executes the Component Pascal test cases:
+
+```bash
+tests/gpcp/run-tests.sh
+```
+
+See `tests/gpcp/README.md` for the case format and the ADR coverage table.
+
 Gardens Point Component Pascal original license: LICENSE.md
 
 gpcp-JVM license (same): LICENSE.md
