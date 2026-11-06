@@ -15,6 +15,34 @@ Redistribution and use in source and binary forms, with or without modification,
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 *)
 
+(*
+Modified in gpcp-JVM by nemavasi <nemavasi@yandex.ru>, 2026-11-06.
+Ported from the bbcb-fe compiler patch set
+(../IdeaProjects/bbcb-fe/tools/gpcp/patch_toolchain.py).
+
+Why: the parser encodes language rules that are stricter than BlackBox (whose
+sources are the compatibility target) and, in one case, scans past the end of
+a module.
+
+What:
+  ADR-224  IMPORT SYSTEM is allowed on the JVM without /unsafe. The JVM
+           compiler implements SYSTEM facilities, and BlackBox allows the
+           import unconditionally.
+  ADR-015  A super call `m.P^` to an implement-only (`P-`) method is accepted:
+           the field selection is not rejected when the next token is `^`.
+  ADR-040  A temporary WITH variable of record type is marked dynamic (bit 5
+           of locAtt), so nested WITH / type guards on the same variable are
+           accepted, matching BlackBox.
+  ADR-043  Exporting a field of a private record is allowed (error 183 is
+           suppressed), as in BlackBox DevCPP.CheckMark.
+  ADR-048  A type name is inserted into the scope before its body is parsed,
+           so a recursive reference resolves to the type being defined; an
+           unfilled type id is treated as a forward type.
+  ADR-238  After `END <Module>.` the next token is not scanned. Text after the
+           module (often Cyrillic in .odc files) previously caused an
+           ArrayIndexOutOfBoundsException in the scanner.
+*)
+
 (* ==================================================================== *)
 (*                                                                      *)
 (*  Parser Module for the Gardens Point Component Pascal Compiler.      *)
@@ -358,8 +386,9 @@ VAR
     IF ident.hash = Bi.sysBkt THEN
       dummy := Cs.thisMod.symTb.enter(Bi.sysBkt, Cs.sysMod);
       IF Cs.verbose THEN Cs.Message("imports unsafe SYSTEM module") END;
-      IF ~Cs.unsafe THEN SemError(227);
-      ELSIF ~Cs.targetIsNET() THEN SemError(228);
+      (* patched (ADR-224): SYSTEM importable on JVM like BlackBox *)
+      IF ~Cs.unsafe & ~Cs.targetIsJVM() THEN SemError(227);
+      ELSIF ~Cs.targetIsNET() & ~Cs.targetIsJVM() THEN SemError(228);
       END;
     ELSE
       INCL(ident.xAttr, Sy.weak);
@@ -975,6 +1004,12 @@ VAR
       tmpId.dfScp := scope;
 
       savedI := predXp.enterGuard(tmpId);
+      (* patched (ADR-040): a temporary WITH variable of record type is
+         marked dynamic (bit 5), so a nested WITH over the same variable
+         is accepted *)
+      IF (tmpId.type # NIL) & tmpId.type.isRecordType() THEN
+        tmpId.locAtt := tmpId.locAtt + {5}
+      END;
       block  := statementSequence(inhLp, scope);
       predXp.ExitGuard(savedI, tmpId);
       Sy.AppendIdnt(synthS.temps, tmpId);
@@ -989,6 +1024,12 @@ VAR
         tmpId.dfScp := scope;
 
         savedI := predXp.enterGuard(tmpId);
+      (* patched (ADR-040): a temporary WITH variable of record type is
+         marked dynamic (bit 5), so a nested WITH over the same variable
+         is accepted *)
+      IF (tmpId.type # NIL) & tmpId.type.isRecordType() THEN
+        tmpId.locAtt := tmpId.locAtt + {5}
+      END;
         block  := statementSequence(inhLp, scope);
         predXp.ExitGuard(savedI, tmpId);
         Sy.AppendIdnt(synthS.temps, tmpId);
@@ -2120,7 +2161,7 @@ VAR
           WITH fId : Id.VarId DO SemError(198);
              | fId : Id.PrcId DO SemError(199);
              | fId : Id.MthId DO
-                 IF fId.callForbidden() THEN SemErrorT(127, tok) END;
+                 IF fId.callForbidden() & (nextT.sym # T.uparrowSym) THEN SemErrorT(127, tok) END;
 (*
  *               IF (fId.vMod = Sy.rdoMode) &
  *                  xNw.type.isImportedType() THEN SemErrorT(127, tok) END;
@@ -2575,7 +2616,7 @@ VAR
       id := seq.a[ix];
       md := id.vMod;
       CASE in OF
-      | Sy.prvMode : IF md # Sy.prvMode THEN id.IdError(183) END;
+      | Sy.prvMode : (* patched (ADR-043): BlackBox permits exporting a field of a private record *)
       | Sy.pubMode :
       | Sy.rdoMode : IF md = Sy.pubMode THEN id.IdError(184) END;
       END;
@@ -3117,12 +3158,14 @@ VAR
     iTmp := identDef(defScp, Id.typId);
     IF iTmp.vMod = Sy.rdoMode THEN SemError(134) END;
     Expect(T.equalSym);
+    (* patched (ADR-048): enter the type name into the scope BEFORE parsing
+       the body, so a recursive reference resolves to THIS type. *)
+    stuck := Sy.refused(iTmp, defScp);
+    IF stuck THEN iTmp.IdError(4) END;
     iTmp.type := type(defScp, iTmp.vMod);
     IF (iTmp.type # NIL) & iTmp.type.isAnonType() THEN
       iTmp.type.idnt := iTmp;
     END;
-    stuck := Sy.refused(iTmp, defScp);
-    IF stuck THEN iTmp.IdError(4) END;
   END TypeDeclaration;
 
 (* ==================================================================== *)
@@ -3321,6 +3364,18 @@ VAR
         RETURN tpId;
       END;
     ELSIF idnt.kind = Id.typId THEN
+      tpId := idnt(Id.TypId);
+      (* patched (ADR-048): an unfilled (currently defined) type is a
+         forward type. *)
+      IF tpId.type = NIL THEN
+        tpTp := Ty.newTmpTp();
+        tpId := Id.newTypId(tpTp);
+        tpId.dfScp := defScp;
+        tpId.token := token;
+        tpId.hash  := hash;
+        tpTp.idnt  := tpId;
+        RETURN tpId;
+      END;
       RETURN idnt(Id.TypId);
     ELSIF (idnt.kind = Id.impId) OR (idnt.kind = Id.alias) THEN
       modS := idnt(Id.BlkId);
@@ -3442,7 +3497,9 @@ VAR
       IF token.sym = T.identSym THEN err := 1 ELSE err := 0 END;
       SemErrorS1(err, Cs.modNam$);
     END;
-    Expect(T.pointSym);
+    (* patched (ADR-238): text after END <Module>. is ignored;
+       do not scan the next token (it may be Cyrillic) *)
+    IF nextT.sym = T.pointSym THEN ELSE Error(T.pointSym) END;
   END Module;
 
 (* ==================================================================== *)

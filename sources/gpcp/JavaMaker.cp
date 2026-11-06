@@ -15,6 +15,26 @@ Redistribution and use in source and binary forms, with or without modification,
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 *)
 
+(*
+Modified in gpcp-JVM by nemavasi <nemavasi@yandex.ru>, 2026-11-06.
+Ported from the bbcb-fe compiler patch set
+(../IdeaProjects/bbcb-fe/tools/gpcp/patch_toolchain.py).
+
+Why: two bytecode-generation defects.
+
+What:
+  ADR-047  A function whose body can fall through to END must still return a
+           value. Only proper procedures emitted a fall-through return; for a
+           function the exit label could lie at code_length, producing
+           "StackMapTable error: bad offset". PushJunkAndReturn() emits a
+           zero/NULL of the result type and the correct return instruction.
+           The same fix is applied to the RESCUE branch.
+  ADR-064  INC/DEC on LONGINT with an INTEGER increment pushed the increment
+           using the variable's type without conversion, so lmul/ladd saw the
+           wrong operand widths and the simulated stack underflowed. The
+           increment is now pushed in its own type and converted with i2l/l2i.
+*)
+
 (* ============================================================ *)
 (*  JavaMaker is the concrete class for emitting java           *)
 (*  class files.                                                *)
@@ -750,16 +770,24 @@ MODULE JavaMaker;
       *  For proper procedures which reach the fall-
       *  through ending, copy OUT params and return.
       *)
-      IF live & proc.type.isProperProcType() THEN
-        out.FixOutPars(proc, retn);
-        out.Return(retn);
+      IF live THEN (* patched (ADR-047): a function reaching END returns a value *)
+        IF proc.type.isProperProcType() THEN
+          out.FixOutPars(proc, retn);
+          out.Return(retn);
+        ELSE
+          out.PushJunkAndReturn();
+        END;
       END;
       IF proc.rescue # NIL THEN
         out.Catch(proc);
         e.EmitStat(proc.rescue, live);
-        IF live & proc.type.isProperProcType() THEN
-          out.FixOutPars(proc, retn);
-          out.Return(retn);
+        IF live THEN (* patched (ADR-047): see above *)
+          IF proc.type.isProperProcType() THEN
+            out.FixOutPars(proc, retn);
+            out.Return(retn);
+          ELSE
+            out.PushJunkAndReturn();
+          END;
         END;
       END;
     END;
@@ -2592,6 +2620,7 @@ MODULE JavaMaker;
         okLb : Ju.Label;
         long : BOOLEAN;
         c    : INTEGER;
+        aTp  : Sy.Type;      (* patched (ADR-064) *)
   BEGIN
     ok := TRUE;
     out  := e.outF;
@@ -2674,7 +2703,16 @@ MODULE JavaMaker;
             out.Code(Jvm.opc_dup2);        (* handle is two slots here *)
             out.GetElement(dstT);
         END;
-        e.PushValue(argX, dstT);
+        aTp := argX.type;    (* patched (ADR-064) *)
+        IF (aTp # NIL) & long & ~aTp.isLongType() THEN
+          e.PushValue(argX, aTp);
+          out.Code(Jvm.opc_i2l)
+        ELSIF (aTp # NIL) & ~long & aTp.isLongType() THEN
+          e.PushValue(argX, aTp);
+          out.Code(Jvm.opc_l2i)
+        ELSE
+          e.PushValue(argX, dstT)
+        END;
         IF long THEN
           IF pOrd = Bi.incP THEN c := Jvm.opc_ladd ELSE c := Jvm.opc_lsub END;
         ELSE

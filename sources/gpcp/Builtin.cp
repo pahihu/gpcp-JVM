@@ -15,6 +15,18 @@ Redistribution and use in source and binary forms, with or without modification,
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 *)
 
+(*
+Modified in gpcp-JVM by nemavasi <nemavasi@yandex.ru>, 2026-11-06.
+Ported from the bbcb-fe compiler patch set
+(../IdeaProjects/bbcb-fe/tools/gpcp/patch_toolchain.py).
+
+Why: BlackBox declares LSH and ROT in the SYSTEM module (DevCPT.Mod). GPCP
+bound them only in the universal scope, so BlackBox sources using
+SYSTEM.LSH / SYSTEM.ROT (for example TetrisViews) did not compile on the JVM.
+What (ADR-224): bind lshPd and rotPd in the SYSTEM scope next to ADR/GET/PUT.
+This only widens name lookup; code generation is unchanged.
+*)
+
 (* ==================================================================== *)
 (*									*)
 (*  Builtin Symbols for the Gardens Point Component Pascal Compiler.	*)
@@ -435,6 +447,9 @@ MODULE Builtin;
     BindSysName(adrPd, "ADR");
     BindSysName(getPd, "GET");
     BindSysName(putPd, "PUT");
+    (* patched (ADR-224): SYSTEM.LSH / SYSTEM.ROT as in BlackBox *)
+    BindSysName(lshPd, "LSH");
+    BindSysName(rotPd, "ROT");
 
     BindName(asrtPd, "ASSERT");
     BindName(decPd,  "DEC");

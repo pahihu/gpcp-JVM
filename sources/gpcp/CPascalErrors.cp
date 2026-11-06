@@ -15,6 +15,22 @@ Redistribution and use in source and binary forms, with or without modification,
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 *)
 
+(*
+Modified in gpcp-JVM by nemavasi <nemavasi@yandex.ru>, 2026-11-06.
+Ported from the bbcb-fe compiler patch set
+(../IdeaProjects/bbcb-fe/tools/gpcp/patch_toolchain.py).
+
+Why: GPCP 1.4.04 turned several "may be uninitialized" / "function may fall
+through" diagnostics into hard errors. BlackBox built its own system modules
+with these conditions, and its conservative flow analysis rejects valid code
+(assignment inside WHILE, VAR parameters of bodyless procedures, functions
+ending at END). gpcp-JVM targets BlackBox sources, so these diagnostics must
+stay warnings.
+What (ADR-019/023/024/045): errors 135, 316, 139, 151 and 136 are excluded
+from the error counter and from the "Error" console label. All other
+diagnostics keep their original severity.
+*)
+
 (* ==================================================================== *)
 (*									*)
 (*  Error Module for the Gardens Point Component Pascal Compiler.	*)
@@ -567,7 +583,9 @@ MODULE CPascalErrors;
       msg[idx] := str[idx];
     END;
     msg[len] := 0X;
-    IF num < 300 THEN
+    (* patched (ADR-019/023/024/045): 135/316/139/151/136 stay warnings *)
+    IF (num < 300) & (num # 135) & (num # 316) & (num # 139) &
+        (num # 151) & (num # 136) THEN
       INC(Scnr.errors); 
       StoreError(num,lin,col,msg); 
     ELSIF ~nowarn THEN 
@@ -576,7 +594,9 @@ MODULE CPascalErrors;
     END;
 
     IF prompt THEN
-      IF num < 300 THEN 
+      (* patched (ADR-019/023/024/045): see above *)
+      IF (num < 300) & (num # 135) & (num # 316) & (num # 139) &
+          (num # 151) & (num # 136) THEN 
         Console.WriteString("Error");
       ELSE 
         Console.WriteString("Warning");

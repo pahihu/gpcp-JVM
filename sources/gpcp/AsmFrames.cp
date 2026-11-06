@@ -37,6 +37,23 @@ i.e. at the point where frame data is handed to ASM, so the compiler's
 internal type tracking is not changed.
 *)
 
+(*
+Modified in gpcp-JVM by nemavasi <nemavasi@yandex.ru>, 2026-11-06.
+Ported from the bbcb-fe compiler patch set
+(../IdeaProjects/bbcb-fe/tools/gpcp/patch_toolchain.py), ADR-027.
+
+Why: the stack-map model marked locals and parameters of the reference base
+types ANYPTR/ANYREC as TOP ("uninitialized"). After the prologue (ADR-019) has
+stored aconst_null into them, a later aload of such a local is rejected by the
+JVM verifier with "Bad local variable type".
+What: Uninitialized() and AddValParam() use the JVM name of ANYPTR/ANYREC as
+dclTp (Builtin sets xName to Ljava/lang/Object;). strN/sStrN/metaN cannot be
+locals and keep TOP. Two related "a merge forgets the local type" patches from
+bbcb-fe are intentionally NOT ported: they are disabled there as well, because
+restoring the declared type after a merge can contradict the real JVM state.
+*)
+
+
 
 
 (* ============================================================ *)
@@ -401,7 +418,9 @@ MODULE AsmFrames;
           elem.dclTp := ASM.Opcodes.INTEGER;
       | Ty.sReaN :
           elem.dclTp := ASM.Opcodes.FLOAT;
-      | Ty.anyRec .. Ty.sStrN :
+      | Ty.anyRec, Ty.anyPtr :
+          elem.dclTp := MKSTR( type.xName^ ); (* patched (ADR-027) *)
+      | Ty.strN, Ty.sStrN, Ty.metaN :
           elem.dclTp := ASM.Opcodes.TOP;  (* ???? *)
       | Ty.lIntN :
           elem.dclTp := ASM.Opcodes.LONG; twoE := TRUE; 
@@ -937,7 +956,9 @@ MODULE AsmFrames;
           newFE.dclTp := ASM.Opcodes.INTEGER;
       | Ty.sReaN :
           newFE.dclTp := ASM.Opcodes.FLOAT;
-      | Ty.anyRec .. Ty.sStrN :
+      | Ty.anyRec, Ty.anyPtr :
+          newFE.dclTp := MKSTR( type.xName^ ); (* patched (ADR-027) *)
+      | Ty.strN, Ty.sStrN, Ty.metaN :
           newFE.dclTp := ASM.Opcodes.TOP;  (* ???? *)
       | Ty.lIntN :
           newFE.dclTp := ASM.Opcodes.LONG; need2 := TRUE;

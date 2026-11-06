@@ -15,6 +15,29 @@ Redistribution and use in source and binary forms, with or without modification,
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 *)
 
+(*
+Modified in gpcp-JVM by nemavasi <nemavasi@yandex.ru>, 2026-11-06.
+Ported from the bbcb-fe compiler patch set
+(../IdeaProjects/bbcb-fe/tools/gpcp/patch_toolchain.py).
+
+Why: expression semantics differed from BlackBox in ways that produced wrong
+values or crashes.
+
+What:
+  ADR-020  An empty set literal `{}` now has an explicit empty-set value;
+           previously i.value stayed NIL and unary minus on it crashed.
+  ADR-021  Unary minus on any set is set complement, not arithmetic negation.
+           `-{}` must be all bits set (mask := -{} in BlackBox), not 0.
+  ADR-046  coerceUp() of a real literal now changes the literal's type to the
+           target real type. MIN(SHORTREAL) is created as a realLt and then
+           typed SHORTREAL; without retyping, REAL >= MIN(SHORTREAL) mixed
+           float and double on the stack.
+  ADR-051  A CHAR literal is accepted where a character array/string is
+           expected: it is converted to a one-character string literal in
+           assign/parameter conversion, in string concatenation and in the
+           range check; Symbols.assignCompat was extended accordingly.
+*)
+
 (* ==================================================================== *)
 (*                                                                      *)
 (*  ExprDesc Module for the Gardens Point Component Pascal Compiler.    *)
@@ -339,6 +362,16 @@ MODULE ExprDesc;
 
 (* -------------------------------------------- *)
 
+  PROCEDURE charStrLit*(ch : CHAR) : D.Expr;
+  (* patched (ADR-051): CHAR literal as a string of length 1 *)
+    VAR s : ARRAY 2 OF CHAR;
+  BEGIN
+    s[0] := ch; s[1] := 0X;
+    RETURN mkStrLt(s);
+  END charStrLit;
+
+(* -------------------------------------------- *)
+
   PROCEDURE mkStrLenLt*(str : L.CharOpen; len : INTEGER) : LeafX;
     VAR l : LeafX;
   BEGIN
@@ -504,7 +537,9 @@ MODULE ExprDesc;
    *   Fix to string arrays coerced to native strings: kjg April 2006
    *)
   BEGIN
-    IF x.kind = realLt THEN RETURN x;
+    IF x.kind = realLt THEN (* patched (ADR-046): the literal receives the target real type *)
+      IF (t # NIL) & t.isRealType() THEN x.type := t END;
+      RETURN x;
     ELSIF (t = G.ntvStr) OR (t = G.ntvObj) & x.isString() THEN
       RETURN newUnaryX(mkNStr, x);
     ELSIF x.kind = numLt THEN
@@ -515,6 +550,9 @@ MODULE ExprDesc;
       END;
     ELSIF x.isInf() THEN
       x.type := t; RETURN x;
+    ELSIF (x.kind = charLt) & t.isCharArrayType() THEN
+      (* patched (ADR-051): CHAR literal to a character array *)
+      RETURN charStrLit(x(LeafX).charValue());
     ELSE
       RETURN convert(x, t);
     END;
@@ -772,6 +810,7 @@ MODULE ExprDesc;
       END;
       i.varSeq.ResetTo(write);    (* truncate elem list *)
     ELSIF write = 0 THEN    (* this is empty set  *)
+      i.value := L.newSetVal(cPart); (* patched (ADR-020): {} *)
       i.SetKind(setLt);
     END;
     i.type := Builtin.setTp;
@@ -790,13 +829,10 @@ MODULE ExprDesc;
     rslt := i;
     CASE i.kind OF
     | neg :      (* Fold constants and mark sets *)
-        IF i.kid.kind = setXp THEN
+        IF (i.kid.kind = setXp) OR (i.kid.kind = setLt) OR
+           (i.kid.type = Builtin.setTp) THEN
           i.SetKind(compl);
           i.type := Builtin.setTp;
-        ELSIF i.kid.kind = setLt THEN
-          leaf := i.kid(LeafX);
-          leaf.value := L.newSetVal(-leaf.value.set());
-          rslt := leaf;
         ELSIF i.kid.kind = numLt THEN
           leaf := i.kid(LeafX);
           leaf.value := L.newIntVal(-leaf.value.long());
@@ -2052,8 +2088,11 @@ MODULE ExprDesc;
     *  Note that this must be done before dealing characters so
     *  as to correctly deal with literal strings of length one.
     *)
-    ELSIF (i.lKid.isString() OR i.lKid.isCharArray()) &
-    (i.rKid.isString() OR i.rKid.isCharArray()) THEN
+    ELSIF (i.lKid.isString() OR i.lKid.isCharArray() OR (i.lKid.kind = charLt)) &
+    (i.rKid.isString() OR i.rKid.isCharArray() OR (i.rKid.kind = charLt)) THEN
+      (* patched (ADR-051): CHAR literal in a string expression *)
+      IF i.lKid.kind = charLt THEN i.lKid := charStrLit(i.lKid(LeafX).charValue()) END;
+      IF i.rKid.kind = charLt THEN i.rKid := charStrLit(i.rKid(LeafX).charValue()) END;
       rslt := strOp(i);
    (*
     *  Deal with character expressions, including constant folding.
@@ -2676,7 +2715,11 @@ MODULE ExprDesc;
  *    IF ~dst.isCharArrayType() THEN
  *)
     ELSIF dst.isCharArrayType() THEN
-      IF x.kind # strLt THEN
+      (* patched (ADR-051): CHAR literal = string of length 1 *)
+      IF x.kind = charLt THEN
+        aLen := dst(T.Array).length;
+        RETURN (aLen = 0) OR (aLen > 1);
+      ELSIF x.kind # strLt THEN
         RETURN FALSE;
       ELSE
         aLen := dst(T.Array).length;
@@ -2712,6 +2755,10 @@ MODULE ExprDesc;
 		valu : INTEGER;
   BEGIN
     expT := expr.type;
+    (* patched (ADR-051): CHAR literal to a character array *)
+    IF (expr.kind = charLt) & dstT.isCharArrayType() THEN
+      RETURN charStrLit(expr(LeafX).charValue());
+    END;
     IF  (expT = dstT) OR
         (dstT.kind # T.basTp) OR
         (dstT = Builtin.anyPtr) THEN

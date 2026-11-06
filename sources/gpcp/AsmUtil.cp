@@ -15,6 +15,35 @@ Redistribution and use in source and binary forms, with or without modification,
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 *)
 
+(*
+Modified in gpcp-JVM by nemavasi <nemavasi@yandex.ru>, 2026-11-06.
+Ported from the bbcb-fe compiler patch set
+(../IdeaProjects/bbcb-fe/tools/gpcp/patch_toolchain.py).
+
+Why: GPCP's JVM back end emits bytecode/stack maps that the compiler itself
+accepts but a modern JVM (JDK 9+, and the verifier in 11/17) rejects, or that
+mis-executes code written for the BlackBox dialect. Each item below fixes one
+concrete defect; the ADR numbers refer to architecture.md in bbcb-fe.
+
+What:
+  ADR-012  ARRAY OF SHORTCHAR is described as [C (char) in field/parameter
+           descriptors, so array allocation must use T_CHAR, not T_SHORT.
+           Mixing the two gives VerifyError "Bad type on operand stack" in
+           every program that creates a SHORTCHAR array.
+  ADR-019  The JVM does not zero-initialize locals. VarInit() used to emit
+           aconst_null for every non-aggregate type; it now emits a zero of
+           the correct JVM category (lconst_0/dconst_0/fconst_0/aconst_null/
+           iconst_0), matching what AsmFrames.Uninitialized() assumes.
+  ADR-067/072  Record classes (including the synthetic CP/$T procedure-type
+           classes) are emitted as ACC_PUBLIC. The JVM does not enforce CP
+           module visibility, but a non-public class whose public method
+           overrides a public abstract method of another module's base class
+           would fail with AbstractMethodError.
+  ADR-072  Covariant result narrowing is not a JVM override. EndProc() now
+           emits a bridge method with the base descriptor that forwards to the
+           covariant method, so virtual calls through the base class work.
+*)
+
 
 (* ============================================================ *)
 (*  AsmUtil is the module which writes java classs file         *)
@@ -419,6 +448,19 @@ MODULE AsmUtil;
     IF clsId # NIL THEN
       IF clsId.vMod = Sym.pubMode THEN INC( recAtt, pubAcc ) END;
     END;
+    (* patched (ADR-067/ADR-072): record classes are always public.
+       ADR-067: classes of structural procedure types CP/$T/... are public:
+       they are used as the superclass of procedure-literal wrappers from
+       other packages.
+       ADR-072: a private (non-exported) type whose PUBLIC method overrides a
+       PUBLIC ABSTRACT method of a base type from another module otherwise
+       gives AbstractMethodError when called through the base class
+       (TextControllers.StdDirectory.NewController). Visibility of CP types is
+       checked by the compiler, not by the JVM, so ACC_PUBLIC does not change
+       behaviour. *)
+    IF ~ODD(recAtt) THEN
+      INC( recAtt, pubAcc )
+    END;
    (*
     *  Get names of interface, if any, into list
     *)
@@ -519,6 +561,92 @@ MODULE AsmUtil;
 
  (* --------------------------------------------------------- *)
 
+ (* patched (ADR-072): covariant-override bridge.
+    In CP a method may narrow the result type relative to the base class
+    (`New*(): Model` -> `New(): StdModel`). On the JVM a method signature
+    includes the result type, so such a method does NOT override the base
+    method: a call through the base class gives AbstractMethodError (for
+    example TextControllers.StdDirectory.NewController). For every such
+    method an extra bridge is emitted - a method with the base descriptor
+    (result type = base) that calls the covariant one. The bridge has no
+    branches, so it needs no StackMapTable. *)
+
+  PROCEDURE (emtr : AsmEmitter)SameParamList*(IN a, b : ARRAY OF CHAR) : BOOLEAN, NEW;
+    VAR i : INTEGER;
+  BEGIN
+    i := 0;
+    WHILE (a[i] = b[i]) & (a[i] # 0X) & (a[i] # ")") DO INC(i) END;
+    RETURN (a[i] = ")") & (b[i] = ")")
+  END SameParamList;
+
+  PROCEDURE (emtr : AsmEmitter)MkBridge*(IN ourDesc, bDesc : ARRAY OF CHAR), NEW;
+    VAR mv : ASM.MethodVisitor;
+        i, slot, maxStack, op : INTEGER;
+        ch : CHAR;
+  BEGIN
+    mv := emtr.clsWrtr.visitMethod( pubAcc, MKSTR(emtr.procNam^),
+                                    MKSTR(bDesc), NIL, jlsEmptyArr );
+    mv.visitCode();
+    mv.visitVarInsn( ASM.Opcodes.ALOAD, 0 );
+    slot := 1; maxStack := 1; i := 1;
+    WHILE (bDesc[i] # 0X) & (bDesc[i] # ")") DO
+      ch := bDesc[i];
+      IF ch = "[" THEN
+        WHILE bDesc[i] = "[" DO INC(i) END;
+        IF bDesc[i] = "L" THEN
+          WHILE (bDesc[i] # ";") & (bDesc[i] # 0X) DO INC(i) END
+        END;
+        op := ASM.Opcodes.ALOAD; INC(maxStack)
+      ELSIF ch = "L" THEN
+        WHILE (bDesc[i] # ";") & (bDesc[i] # 0X) DO INC(i) END;
+        op := ASM.Opcodes.ALOAD; INC(maxStack)
+      ELSIF ch = "J" THEN
+        op := ASM.Opcodes.LLOAD; INC(maxStack, 2)
+      ELSIF ch = "D" THEN
+        op := ASM.Opcodes.DLOAD; INC(maxStack, 2)
+      ELSIF ch = "F" THEN
+        op := ASM.Opcodes.FLOAD; INC(maxStack)
+      ELSE
+        op := ASM.Opcodes.ILOAD; INC(maxStack)
+      END;
+      mv.visitVarInsn( op, slot );
+      IF (ch = "J") OR (ch = "D") THEN INC(slot, 2) ELSE INC(slot) END;
+      INC(i)
+    END;
+    mv.visitMethodInsn( ASM.Opcodes.INVOKEVIRTUAL, MKSTR(emtr.xName^),
+                        MKSTR(emtr.procNam^), MKSTR(ourDesc), FALSE );
+    mv.visitInsn( ASM.Opcodes.ARETURN );
+    mv.visitMaxs( maxStack, slot );
+    mv.visitEnd()
+  END MkBridge;
+
+  PROCEDURE (emtr : AsmEmitter)EmitBridge*(), NEW;
+    VAR mth : Id.MthId;
+        base : Sym.Idnt;
+        bm : Id.Procs;
+        ourDesc, bDesc : Lv.CharOpen;
+        i : INTEGER;
+  BEGIN
+    IF (emtr.thisMth # NIL) & (emtr.thisMth IS Id.MthId) THEN
+      mth := emtr.thisMth(Id.MthId);
+      IF (mth.bndType # NIL) & (mth.type # NIL) & (mth.type.xName # NIL) THEN
+        base := mth.bndType.inheritedFeature(mth);
+        IF (base # NIL) & (base IS Id.Procs) THEN
+          bm := base(Id.Procs);
+          IF (bm.type # NIL) & (bm.type.xName # NIL) THEN
+            ourDesc := mth.type.xName; bDesc := bm.type.xName;
+            i := 0;
+            WHILE (bDesc[i] # 0X) & (bDesc[i] # ")") DO INC(i) END;
+            IF (ourDesc^ # bDesc^) & emtr.SameParamList(ourDesc^, bDesc^)
+               & (bDesc[i] = ")") & (bDesc[i + 1] = "L") THEN
+              emtr.MkBridge(ourDesc^, bDesc^)
+            END
+          END
+        END
+      END
+    END
+  END EmitBridge;
+
   PROCEDURE (emtr : AsmEmitter)EndProc*(); (* NEW,EMPTY *)
     VAR mv : ASM.MethodVisitor;
         xL : AsmLabel;
@@ -536,6 +664,7 @@ MODULE AsmUtil;
     END;
     mv.visitMaxs( emtr.mthFrame.maxEval, emtr.mthFrame.maxLocal ); 
     mv.visitEnd(); 
+    emtr.EmitBridge();   (* patched (ADR-072): covariant-override bridge *)
     emtr.thisMv := NIL;
     emtr.thisMth := NIL;
   END EndProc;
@@ -1652,8 +1781,22 @@ MODULE AsmUtil;
     typ := var.type;
     WITH typ : Ty.Record DO
         emtr.MkNewRecord(typ);
+    | typ : Ty.Vector DO
+        emtr.Code(Jvm.opc_aconst_null);
     | typ : Ty.Array DO
         emtr.MkNewFixedArray(typ.elemTp, typ.length);
+    | typ : Ty.Base DO
+        CASE (typ.tpOrd) OF
+        | Ty.lIntN : emtr.Code(Jvm.opc_lconst_0);
+        | Ty.realN : emtr.Code(Jvm.opc_dconst_0);
+        | Ty.sReaN : emtr.Code(Jvm.opc_fconst_0);
+        | Ty.anyRec, Ty.anyPtr, Ty.strN, Ty.sStrN, Ty.metaN :
+            emtr.Code(Jvm.opc_aconst_null);
+        ELSE
+            emtr.Code(Jvm.opc_iconst_0);
+        END;
+    | typ : Ty.Enum DO
+        emtr.Code(Jvm.opc_iconst_0);
     ELSE
       emtr.Code(Jvm.opc_aconst_null);
     END;
@@ -1909,7 +2052,7 @@ BEGIN  (* Module Body *)
 
  (* Mapping of base types *)
   typeArr[ Ty.boolN] := ASM.Opcodes.T_BOOLEAN;
-  typeArr[ Ty.sChrN] := ASM.Opcodes.T_SHORT;
+  typeArr[ Ty.sChrN] := ASM.Opcodes.T_CHAR;
   typeArr[ Ty.charN] := ASM.Opcodes.T_CHAR;
   typeArr[ Ty.byteN] := ASM.Opcodes.T_BYTE;
   typeArr[ Ty.uBytN] := ASM.Opcodes.T_BYTE;

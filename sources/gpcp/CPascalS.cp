@@ -15,6 +15,24 @@ Redistribution and use in source and binary forms, with or without modification,
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 *)
 
+(*
+Modified in gpcp-JVM by nemavasi <nemavasi@yandex.ru>, 2026-11-06.
+Ported from the bbcb-fe compiler patch set
+(../IdeaProjects/bbcb-fe/tools/gpcp/patch_toolchain.py).
+
+Why: the scanner reads source bytes into CHAR buffers and treats bytes as
+characters. On the JVM CHAR is 16-bit, so UTF-8 sources were corrupted, and a
+non-breaking space (0A0X) was not treated as whitespace.
+
+What:
+  ADR-052  Accept 0A0X (NBSP) as a space character.
+  ADR-180/188  Buffer blocks are CHAR arrays of 1 MiB. Reset() decodes UTF-8
+           from the byte stream into CHAR, carrying an incomplete multibyte
+           sequence across block boundaries; invalid leading bytes are kept as
+           single characters like the original scanner. The GPTextFiles path
+           stores CHAR values directly and terminates the buffer with 0X.
+*)
+
 (* ==================================================================== *)
 (*									*)
 (*  Scanner Module for the Gardens Point Component Pascal Compiler.	*)
@@ -45,8 +63,8 @@ CONST
   eof     = 0X;
   eofByt  = 0;
   EOL     = 0AX;
-  BlkSize = 32768;
-  BlkNmbr = 32;
+  BlkSize = 1048576;
+  BlkNmbr = 8;
   asciiHT = 9X;
   asciiLF = EOL;
 
@@ -56,7 +74,7 @@ CONST
   listNever*   = 0;
 
 TYPE
-  BufBlk     = ARRAY BlkSize OF UBYTE;
+  BufBlk     = ARRAY BlkSize OF CHAR;
   Buffer     = ARRAY BlkNmbr OF POINTER TO BufBlk;
   StartTable = ARRAY 256 OF INTEGER;
 
@@ -455,7 +473,8 @@ END tokToChar;
   BEGIN (*get*)
     WHILE (ch=' ') OR
           (ch >= CHR(9)) & (ch <= CHR(10)) OR
-          (ch = CHR(13)) DO NextCh END;
+          (ch = CHR(13)) OR
+          (ch = 0A0X) DO NextCh END;   (* patched (ADR-052): 0A0X = NBSP *)
     IF ((ch = "(")) & comment() THEN RETURN get() END;
     pos := nextPos;   nextPos := bp;
     col := nextCol;   nextCol := spaces;
@@ -690,25 +709,75 @@ END tokToChar;
 (* ==================================================================== *)
 
   PROCEDURE Reset;
-  VAR
+    VAR
     len: INTEGER;
-    i, read: INTEGER;
+    i, read, k, n, carry, want, j, cp, need, t, tail: INTEGER;
+    eofReached: BOOLEAN;
+    b: UBYTE;
+    bytes: POINTER TO ARRAY BlkSize OF UBYTE;
   BEGIN (*assert: src has been opened*)
     FOR i := 0 TO BlkNmbr - 1 DO savedBuf[i] := NIL END; bufSaved := FALSE;
-    i := -1;
+    NEW(bytes);
+    i := -1; carry := 0;
     inputLen := 0;
-    REPEAT
+    eofReached := FALSE;
+    LOOP
       INC(i);
-     (*
-      *  Conserve memory by not deallocating the buffer.
-      *  Reuse for later compilation, expanding if necessary.
-      *)
       IF buf[i] = NIL THEN NEW(buf[i]) END;
-      read := GPBinFiles.readNBytes(src, buf[i]^, BlkSize);
-      INC(inputLen, read);
-    UNTIL read < BlkSize;
+      k := 0;
+      LOOP
+        want := BlkSize - carry;
+        read := GPBinFiles.readNBytes(src, bytes^, want);
+        IF read < want THEN eofReached := TRUE END;
+        (* move the bytes just read behind the already buffered tail *)
+        FOR j := read - 1 TO 0 BY -1 DO bytes[carry + j] := bytes[j] END;
+        n := carry + read;
+        j := 0; tail := n;
+        WHILE j < n DO
+          b := bytes[j]; cp := 0;
+          need := -1;
+          IF b < 80H THEN cp := b; need := 0
+          ELSIF (b >= 0C0H) & (b < 0E0H) THEN cp := b - 0C0H; need := 1
+          ELSIF (b >= 0E0H) & (b < 0F0H) THEN cp := b - 0E0H; need := 2
+          ELSIF (b >= 0F0H) & (b < 0F8H) THEN cp := b - 0F0H; need := 3
+          END;
+          IF need < 0 THEN
+            (* not the start of UTF-8: a single byte, as in the original scanner *)
+            buf[i][k] := CHR(b); INC(k); INC(j)
+          ELSIF j + need >= n THEN
+            IF eofReached THEN
+              buf[i][k] := CHR(b); INC(k); INC(j)
+            ELSE
+              tail := j; j := n   (* incomplete sequence - keep it in carry *)
+            END
+          ELSE
+            t := 1;
+            WHILE (t <= need) & (bytes[j+t] >= 80H) & (bytes[j+t] < 0C0H) DO
+              cp := cp * 40H + (bytes[j+t] - 80H); INC(t)
+            END;
+            IF t > need THEN
+              buf[i][k] := CHR(cp); INC(k); INC(j, need + 1)
+            ELSE
+              buf[i][k] := CHR(b); INC(k); INC(j)
+            END
+          END
+        END;
+        carry := n - tail;
+        FOR t := 0 TO carry - 1 DO bytes[t] := bytes[tail+t] END;
+        IF k >= BlkSize THEN EXIT END;
+        IF eofReached THEN
+          FOR t := 0 TO carry - 1 DO buf[i][k] := CHR(bytes[t]); INC(k) END;
+          EXIT
+        END
+      END;
+      IF eofReached & (k < BlkSize) THEN
+        buf[i][k] := 0X;
+        INC(inputLen, k);
+        EXIT
+      END;
+      INC(inputLen, BlkSize)
+    END;
     GPBinFiles.CloseFile(src);
-    buf[i][read] := eofByt;
     curLine := 1; lineStart := -2; bp := -1;
     oldEols := 0; apx := 0; errors := 0; warnings := 0;
     spaces := 0; (* # new # *)
@@ -734,12 +803,12 @@ END tokToChar;
       chrIx := 0; 
 	  IF lineP = NIL THEN theCh := 0X ELSE theCh := lineP[0] END;
       WHILE theCh # 0X DO
-        buf[0][index] := USHORT(ORD(theCh)); INC(index); INC(chrIx);
+        buf[0][index] := theCh; INC(index); INC(chrIx);
         theCh := lineP[chrIx];
       END;
-      buf[0][index] := ORD(ASCII.LF); INC(index);
+      buf[0][index] := CHR(10); INC(index);
     END;
-    buf[0][index] := eofByt;
+    buf[0][index] := 0X;
    (*
     *  Initialize the scanner state.
     *)

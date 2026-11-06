@@ -15,6 +15,18 @@ Redistribution and use in source and binary forms, with or without modification,
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 *)
 
+(*
+Modified in gpcp-JVM by nemavasi <nemavasi@yandex.ru>, 2026-11-06.
+Ported from the bbcb-fe compiler patch set
+(../IdeaProjects/bbcb-fe/tools/gpcp/patch_toolchain.py).
+
+Why: ANYREC is the predeclared "any record" type and is used as an extension
+base, but isDynamicType() recognized only ANYPTR. `WITH msg: T DO` over a VAR
+parameter of type ANYREC (the Windows.Handle pattern) was rejected with
+error 17.
+What (ADR-041): also report ANYREC as dynamically typed.
+*)
+
 (* ==================================================================== *)
 (*                                                                      *)
 (*  TypeDesc Module for the Gardens Point Component Pascal Compiler.    *)
@@ -469,7 +481,9 @@ MODULE TypeDesc;
 (* -------------------------------------------- *)
 
   PROCEDURE (t : Base)isDynamicType*() : BOOLEAN;
-  BEGIN RETURN t.tpOrd = anyPtr END isDynamicType;
+  (* patched (ADR-041): ANYREC is a dynamic type too, so WITH/type-guard
+     over a VAR parameter of type ANYREC is accepted *)
+  BEGIN RETURN (t.tpOrd = anyPtr) OR (t.tpOrd = anyRec) END isDynamicType;
 
 (* -------------------------------------------- *)
 

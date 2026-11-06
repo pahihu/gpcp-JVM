@@ -15,6 +15,34 @@ Redistribution and use in source and binary forms, with or without modification,
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 *)
 
+(*
+Modified in gpcp-JVM by nemavasi <nemavasi@yandex.ru>, 2026-11-06.
+Ported from the bbcb-fe compiler patch set
+(../IdeaProjects/bbcb-fe/tools/gpcp/patch_toolchain.py).
+
+Why: the JVM back end must initialize locals explicitly (the verifier requires
+a value of the declared type at every use) and must generate wrapper types in
+an order that works for record fields and cross-module procedure values.
+
+What:
+  ADR-019  Also initialize scalar locals (base types, vectors, pointers,
+           procedures, enums), not only aggregates.
+  ADR-028/039  Initialize the local proxy used for boxed OUT parameters,
+           including every OUT scalar, not just the one returned through the
+           function result. Otherwise reading such a proxy fails verification
+           with "Bad local variable type".
+  ADR-042  getProcVarInvoke() forces lazy generation of the wrapper class for
+           a procedure-typed record field; previously the wrapper was NIL and
+           a call through the field crashed with NPE.
+  ADR-056  MkRecName() tolerates a synthetically named record whose binding
+           pointer has no identifier; it allocates an anonymous id instead of
+           dereferencing NIL.
+  ADR-067  Anonymous procedure types get a structural Java name derived from
+           their signature (CP/$T/...), so the same signature maps to the same
+           class in every module and cross-module procedure assignments do not
+           fail with VerifyError "not assignable to".
+*)
+
 
 (* ============================================================ *)
 (*  JavaUtil is the module which writes java classs file        *)
@@ -812,6 +840,12 @@ CSt.Message( "made mNm name " + mNm^ );
       END;
       tId := typ.idnt;
     END;
+    IF tId = NIL THEN			(* patched (ADR-056): bindTp without an id *)
+      IF typ.idnt = NIL THEN
+        typ.idnt := Id.newAnonId(typ.serial)
+      END;
+      tId := typ.idnt
+    END;
     IF tId.dfScp = NIL THEN tId.dfScp := CSt.thisMod END;
     rNm := Sym.getName.ChPtr(tId);
     mNm := scopeName(tId.dfScp);
@@ -865,6 +899,11 @@ CSt.Message( "made mNm name " + mNm^ );
 
   PROCEDURE getProcVarInvoke*(typ : Ty.Procedure) : Id.MthId;
   BEGIN
+    (* patched (ADR-042): procedure field of a record - the type wrapper
+       has not been generated yet; force lazy generation (otherwise NIL/NPE) *)
+    IF (typ # NIL) & (typ.hostClass = NIL) & (typ.xName = NIL) THEN
+      MkProcTypeName(typ)
+    END;
     IF (typ = NIL) OR (typ.hostClass = NIL) THEN RETURN NIL;
     ELSE RETURN getProcWrapperInvoke(typ.hostClass);
     END;
@@ -905,16 +944,95 @@ CSt.Message( "made mNm name " + mNm^ );
 (* Generate all naming strings for this procedure type, and     *)
 (* put a corresponding emitter record on the work list.         *)
 (* ------------------------------------------------------------ *)
+(* patched (ADR-067): structural name of an anonymous procedure type.
+   The same signature yields the same Java class in all modules, so
+   assigning procedure variables between modules (e.g.
+   `StdTabViews.oldModeHook := StdApi.modeHook`) no longer gives
+   VerifyError "not assignable to". *)
+  PROCEDURE isAnonId(tId : Sym.Idnt) : BOOLEAN;
+    VAR nm : L.CharOpen;
+  BEGIN
+    IF tId = NIL THEN RETURN TRUE END;
+    nm := Sym.getName.ChPtr(tId);
+    IF (nm = NIL) OR (LEN(nm) < 2) THEN RETURN FALSE END;
+    RETURN ((nm[0] = "$") OR (nm[0] = "@")) & (nm[1] = "T")
+  END isAnonId;
+
+  PROCEDURE AppendAnonSig(VAR seq : L.CharOpenSeq; typ : Sym.Type);
+  BEGIN
+    IF typ = NIL THEN
+      L.AppendCharOpen(seq, BOX("?"))
+    ELSE
+      WITH typ : Ty.Base DO
+          IF typ.xName # NIL THEN L.AppendCharOpen(seq, typ.xName) END
+        | typ : Ty.Vector DO
+          IF typ.xName = NIL THEN MkVecName(typ) END;
+          L.AppendCharOpen(seq, typ.xName)
+        | typ : Ty.Array DO
+          L.AppendCharOpen(seq, brac);
+          AppendAnonSig(seq, typ.elemTp)
+        | typ : Ty.Record DO
+          IF typ.xName = NIL THEN MkRecName(typ) END;
+          L.AppendCharOpen(seq, typ.scopeNm)
+        | typ : Ty.Enum DO
+          AppendAnonSig(seq, Blt.intTp)
+        | typ : Ty.Pointer DO
+          AppendAnonSig(seq, typ.boundTp)
+        | typ : Ty.Opaque DO
+          IF typ.xName # NIL THEN
+            L.AppendCharOpen(seq, typ.scopeNm)
+          ELSE      (* anonymous ALIAS: serial number means no unification *)
+            L.AppendCharOpen(seq, BOX("@"));
+            L.AppendCharOpen(seq, L.intToCharOpen(typ.serial))
+          END
+        | typ : Ty.Procedure DO
+          IF typ.xName = NIL THEN MkProcTypeName(typ) END;
+          L.AppendCharOpen(seq, typ.hostClass.scopeNm)
+      END
+    END
+  END AppendAnonSig;
+
+  PROCEDURE anonProcClassName(typ : Ty.Procedure) : L.CharOpen;
+    VAR seq : L.CharOpenSeq;
+        sig : L.CharOpen;
+        par : Id.ParId;
+        i, h : INTEGER;
+  BEGIN
+    L.InitCharOpenSeq(seq, 8);
+    L.AppendCharOpen(seq, BOX("P"));
+    FOR i := 0 TO typ.formals.tide - 1 DO
+      par := typ.formals.a[i];
+      L.AppendCharOpen(seq, BOX("|"));
+      L.AppendCharOpen(seq, L.intToCharOpen(par.parMod));
+      AppendAnonSig(seq, par.type)
+    END;
+    IF typ.retType # NIL THEN
+      L.AppendCharOpen(seq, BOX(":"));
+      AppendAnonSig(seq, typ.retType)
+    END;
+    sig := L.arrayCat(seq);
+    h := 7;
+    i := 0;
+    WHILE (sig # NIL) & (sig[i] # 0X) DO
+      h := (h * 31 + ORD(sig[i])) MOD 1000000007;
+      INC(i)
+    END;
+    RETURN BOX("P" + L.intToCharOpen(h)^)
+  END anonProcClassName;
+
   PROCEDURE MkProcTypeName*(typ : Ty.Procedure);
     VAR tIdent : Sym.Idnt;
         hostTp : Ty.Record;
      (* invoke : Id.MthId; *)
         rNm, mNm, qNm : L.CharOpen;
+        anon : BOOLEAN;   (* patched (ADR-067) *)
   BEGIN
    (* ###################################### *)
     IF typ.xName # NIL THEN RETURN END;
    (* ###################################### *)
-    IF typ.idnt = NIL THEN              (* Anonymous procedure type *)
+    anon := isAnonId(typ.idnt);   (* patched (ADR-067) *)
+    IF anon & (typ.idnt # NIL) THEN typ.idnt.SetMode(Sym.pubMode) END;
+    IF anon THEN                        (* Anonymous procedure type *)
       typ.idnt := Id.newAnonId(typ.serial);
       typ.idnt.type := typ;
     END;
@@ -925,9 +1043,15 @@ CSt.Message( "made mNm name " + mNm^ );
  *  must ALWAYS use the newXxxTp calls
  *)   
     hostTp := Ty.newRecTp();
-    rNm := Sym.getName.ChPtr(tIdent);
-    mNm := scopeName(tIdent.dfScp);
-    qNm := qualScopeName(tIdent.dfScp);
+    IF anon THEN        (* patched (ADR-067): structural name *)
+      rNm := anonProcClassName(typ);
+      mNm := BOX("");
+      qNm := BOX("CP/$T")
+    ELSE
+      rNm := Sym.getName.ChPtr(tIdent);
+      mNm := scopeName(tIdent.dfScp);
+      qNm := qualScopeName(tIdent.dfScp)
+    END;
    (*
     *  At this point:
     *        rNm holds the simple record name
@@ -936,11 +1060,16 @@ CSt.Message( "made mNm name " + mNm^ );
     *  At exit we want:
     *        xName to hold the fully qualified name
     *)
-    hostTp.extrnNm := cat3(mNm, lowL, rNm);
+    IF anon THEN
+      hostTp.extrnNm := rNm
+    ELSE
+      hostTp.extrnNm := cat3(mNm, lowL, rNm)
+    END;
     hostTp.xName := cat3(qNm, slsh, hostTp.extrnNm);
     hostTp.scopeNm := cat3(lCap, hostTp.xName, semi);
     typ.hostClass := hostTp;
     Blt.MkDummyMethodAndInsert("Invoke", Ty.newPrcTp(), hostTp, CSt.thisMod, Sym.pubMode, Sym.var, Id.isAbs);
+    IF anon & (hostTp.bindTp # NIL) THEN hostTp.bindTp.idnt.SetMode(Sym.pubMode) END;   (* patched (ADR-067) *)
     RescopeFormals(typ, getProcVarInvoke(typ));
     typ.xName := hostTp.xName;
    (*
@@ -2248,8 +2377,23 @@ CSt.Message( "made mNm name " + mNm^ );
             jf.LoadLocal(ident.varOrd, ident.type);
             jf.PutGetX(Jvm.opc_putfield, ident);
 	  END;
+          (* patched (ADR-028, ADR-039): OUT-parameter proxy; *)
+          (* ADR-039: initialize ALL boxed OUT proxies, not only the one; *)
+          (* returned through the function result (otherwise reading an; *)
+          (* uninitialized proxy gives `Bad local variable type`). *)
+          IF (ident.parMod = Sym.out) & needsBox(ident) THEN
+            IF Id.uplevA IN ident.locAtt THEN
+              jf.LoadLocal(xhrNo, xhrTp)
+            END;
+            jf.VarInit(ident);
+            jf.PutLocal(ident);
+	  END;
       | ident : Id.LocId DO
-          IF ~scalr THEN
+          IF ~scalr OR (ident.type IS Ty.Base) OR 
+             (ident.type IS Ty.Vector) OR 
+             (ident.type IS Ty.Pointer) OR 
+             (ident.type IS Ty.Procedure) OR 
+             (ident.type IS Ty.Enum) THEN
             IF Id.uplevA IN ident.locAtt THEN jf.LoadLocal(xhrNo, xhrTp) END; 
             jf.VarInit(ident);
             jf.PutLocal(ident);

@@ -15,6 +15,20 @@ Redistribution and use in source and binary forms, with or without modification,
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 *)
 
+(*
+Modified in gpcp-JVM by nemavasi <nemavasi@yandex.ru>, 2026-11-06.
+Ported from the bbcb-fe compiler patch set
+(../IdeaProjects/bbcb-fe/tools/gpcp/patch_toolchain.py).
+
+Why: assignment compatibility was stricter than BlackBox in two cases.
+
+What:
+  ADR-049  An IN parameter is compatible by value as well (string literal for
+           a fixed character array etc.), not only for extensible records and
+           pointers.
+  ADR-051  A CHAR literal is assign-compatible with a character array.
+*)
+
 (* ==================================================================== *)
 (*                                                                      *)
 (*  Symbol Module for the Gardens Point Component Pascal Compiler.      *)
@@ -846,7 +860,7 @@ MODULE Symbols;
     IF x.isNil() THEN
         RETURN lhT.isPointerType() OR lhT.isProcType() END;
     IF x.isNumLit()  & lhT.isIntType() OR
-       x.isCharLit() & lhT.isCharType() OR
+       x.isCharLit() & (lhT.isCharType() OR lhT.isCharArrayType()) OR
        x.isStrLit()  & lhT.isCharArrayType() THEN
         RETURN x.inRangeOf(lhT) END;
     IF x.isString() THEN
@@ -876,7 +890,10 @@ MODULE Symbols;
       | out : RETURN fmType.isPointerType() & acType.isBaseOf(fmType);
       | var : RETURN fmType.isExtnRecType() & fmType.isBaseOf(acType);
       | in  : RETURN fmType.isExtnRecType() & fmType.isBaseOf(acType) OR
-                     fmType.isPointerType() & fmType.assignCompat(actual);
+                     fmType.isPointerType() & fmType.assignCompat(actual) OR
+                     (* patched (ADR-049): an IN-parameter is compatible by value as well
+                        (string literal etc.) *)
+                     fmType.assignCompat(actual);
       (* Special case:  CP-strings ok with IN-mode NativeString/Object *)
       ELSE RETURN FALSE;
       END;

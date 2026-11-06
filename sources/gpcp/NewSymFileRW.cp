@@ -15,6 +15,33 @@ Redistribution and use in source and binary forms, with or without modification,
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 *)
 
+(*
+Modified in gpcp-JVM by nemavasi <nemavasi@yandex.ru>, 2026-11-06.
+Ported from the bbcb-fe compiler patch set
+(../IdeaProjects/bbcb-fe/tools/gpcp/patch_toolchain.py).
+
+Why: symbol files are the boundary between separately compiled modules. The
+original reader is stricter than BlackBox and loses information that CP
+programs rely on, so several valid BlackBox sources fail to compile.
+
+What:
+  ADR-013  Do not set D.noNew on types read from a symbol file: native
+           (SYSTEM MODULE) types do have a no-argument Java constructor, so
+           NEW on an extension of such a type must be allowed.
+  ADR-044  Mark a record as a foreign symbol only for real foreign records
+           (D.isFn). Marking every record of a -special module as falSy made
+           native interface records non-copyable and produced error 152.
+  ADR-050  WalkImports() is declared forward and called after a module's own
+           symbol file is parsed, so indirect (weak) imports are read too.
+           Types named in borrowed signatures then resolve to real types
+           instead of opaque placeholders. res.host is passed so that one
+           module gets one scope.
+  ADR-050  A missing .cps for a weak (indirect) import is not an error: the
+           type simply stays opaque, as in BlackBox.
+  ADR-223  A weak import must not clash with an explicit alias/declaration of
+           the same name; an already-present name silently wins.
+*)
+
 
 
 (* ==================================================================== *)
@@ -190,6 +217,7 @@ MODULE NewSymFileRW;
         fSepArr : ARRAY 2 OF CHAR;
 
   PROCEDURE^ (f : SymFile)EmitType(type : D.Type),NEW;
+  PROCEDURE^ WalkImports*(VAR imps : D.ScpSeq; modI : Id.BlkId);
 
 (* ============================================================ *)
 
@@ -744,7 +772,7 @@ MODULE NewSymFileRW;
    (* ########## *)
       IF t.recAtt = Ty.iFace THEN
         f.Write(truSy);
-      ELSIF CSt.special OR (D.isFn IN t.xAttr) THEN  
+      ELSIF D.isFn IN t.xAttr THEN  
         f.Write(falSy);
       END;
    (* ########## *)
@@ -1189,8 +1217,10 @@ MODULE NewSymFileRW;
     END;
    (* #### *)
     IF f.file = NIL THEN
-      (* S.SemError.Report(129, token.lin, token.col); *)
-      S.SemError.RepSt1(129, BOX(filNm^ + ".cps"), token.lin, token.col); 
+      (* patched (ADR-050): weak == indirect import *)
+      IF ~(D.weak IN scope.xAttr) THEN
+        S.SemError.RepSt1(129, BOX(filNm^ + ".cps"), token.lin, token.col); 
+      END;
       RETURN;
     ELSE
       IF D.weak IN scope.xAttr THEN
@@ -1497,13 +1527,13 @@ MODULE NewSymFileRW;
     f.GetSym();                (* Get past recSy rAtt    *)
     IF f.sSym = falSy THEN
       INCL(rslt.xAttr, D.isFn);  (* This record type is foreign *)
-      INCL(rslt.xAttr, D.noNew); (* Remove if ctor found later  *)
+      (* patched (ADR-013): noNew removed - native types have a no-arg constructor *) (* Remove if ctor found later  *)
       f.GetSym();
     ELSIF f.sSym = truSy THEN
       INCL(rslt.xAttr, D.isFn);  (* This record type is foreign *)
       INCL(rslt.xAttr, D.fnInf); (* This record is an interface *)
       INCL(rslt.xAttr, D.noCpy); (* Record has no __copy__      *)
-      INCL(rslt.xAttr, D.noNew); (* Record has no constructor   *)
+      (* patched (ADR-013): noNew removed - native types have a no-arg constructor *) (* Record has no constructor   *)
       f.GetSym();
     END;
    (* 
@@ -1669,7 +1699,10 @@ MODULE NewSymFileRW;
         f.GetSym();
       END;
     ELSE                (* Importing some other module.    *)
-      oldD := testInsert(impD, f.modS);
+      (* patched (ADR-223): weak indirect import never shadows   *)
+      (* an explicit alias/declaration of the same name.        *)
+      oldD := f.modS.symTb.lookup(impD.hash);
+      IF oldD = NIL THEN oldD := testInsert(impD, f.modS) END;
       IF f.sSym = strSy THEN 
         impD.scopeNm := Lt.arrToCharOpen(f.strAtt, f.strLen);
         f.GetSym();
@@ -2160,6 +2193,11 @@ MODULE NewSymFileRW;
     syFil := newSymFileReader(res.host);
     syFil.rScp := res;
     syFil.Parse(imp);
+    (* patched (ADR-050): also read the module's indirect imports;
+       host (res.host) is required - otherwise DIFFERENT scopes are
+       created for the same module and type inheritance between
+       modules breaks *)
+    WalkImports(syFil.sArray, res.host);
   END ReadThisImport;
 
 (* ============================================ *)

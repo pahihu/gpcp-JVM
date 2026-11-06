@@ -15,6 +15,23 @@ Redistribution and use in source and binary forms, with or without modification,
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 *)
 
+(*
+Modified in gpcp-JVM by nemavasi <nemavasi@yandex.ru>, 2026-11-06.
+Ported from the bbcb-fe compiler patch set
+(../IdeaProjects/bbcb-fe/tools/gpcp/patch_toolchain.py).
+
+Why: two BlackBox language rules are missing in GPCP.
+
+What:
+  ADR-025  FINALIZE (and RELEASE) are predeclared type-bound procedures on
+           ANYPTR in BlackBox, so redefining FINALIZE in a type does not need
+           NEW. GPCP required NEW (error 105). The method name is obtained
+           through FileNames and compared with "FINALIZE".
+  ADR-040  isDynamic() also returns TRUE for a temporary WITH variable of
+           record type marked with locAtt bit 5 (see CPascalP.cp), enabling
+           nested WITH / type guards over records.
+*)
+
 (* ==================================================================== *)
 (*                                                                      *)
 (*  IdDesc Module for the Gardens Point Component Pascal Compiler.      *)
@@ -489,7 +506,8 @@ MODULE IdDesc;
    *  A variable is dynamic if it is a pointer to a record. *
    *  Overrides isDynamic() for Symbols.Idnt.     *)
   BEGIN
-    RETURN (s.type # NIL) & s.type.isDynamicType();
+    RETURN ((s.type # NIL) & s.type.isDynamicType()) OR
+           ((s IS LocId) & (5 IN s(LocId).locAtt));
   END isDynamic;
 
 (* -------------------------------------------- *)
@@ -912,6 +930,7 @@ MODULE IdDesc;
         inhId : D.Idnt;
         prevM : MthId;
         mMask, pMask : SET;
+        nm : FileNames.NameString;  (* patched (ADR-025) *)
   BEGIN
     bndTp := mDesc.bndType;
     rcvTp := mDesc.rcvFrm.type;
@@ -930,7 +949,9 @@ MODULE IdDesc;
      (*
       *  2.0 If not an override, then must be NEW
       *)
-      IF ~(newBit IN mDesc.mthAtt) THEN mDesc.IdError(105);
+      D.getName.Of(mDesc, nm);  (* patched (ADR-025) *)
+      IF ~(newBit IN mDesc.mthAtt) &
+         (nm$ # "FINALIZE") THEN mDesc.IdError(105);
       ELSIF (rcvTp.idnt.vMod = D.prvMode) &
             (mDesc.vMod = D.pubMode) THEN mDesc.IdError(195);
       END;
