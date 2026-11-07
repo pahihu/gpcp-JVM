@@ -91,8 +91,54 @@ passes and must keep passing.
 | `proceq_cross` | values produced in one module compared in another; same name/signature but a different owner stays unequal |
 | `proceq_regression` | pointer/string/CHAR/integer/REAL/SET comparisons keep their existing semantics |
 
+### Imported reference cases (MIT)
+
+The `*_ref_*` cases are adapted from **oberonc**
+(<https://github.com/lboasso/oberonc>, MIT, Copyright (c) 2017 Luca Boasso).
+Each source file repeats the full MIT notice at the top.  Only mechanical
+changes were made for GPCP/Component Pascal: `Console` output, explicit
+`BEGIN`, `EXTENSIBLE` on record bases, and temporary variables where the
+current backend traps on `a[i](...)` (`liveActuals`) or `VAR` procedure
+parameters (`TypeOfBox`).
+
+| Case | Origin | What is checked |
+|---|---|---|
+| `proceq_ref_oberonc` | `ProcComparisons.Mod` | the Oberon reference assertions `P2 = P1`, `P2 = P2`, `P2 # NIL`, `P2 = NIL` (expected `1 2 3`) |
+| `procvars_ref_basic` | `ProcVariables0.Mod` | procedure values in globals/locals, records, pointers and value parameters |
+| `procvars_ref_arrays` | `ProcVariables1.Mod` | arrays of procedure values and calls in a loop |
+| `procvars_ref_fields` | `ProcVariables3.Mod` | procedure-typed record field, array element and parameter |
+| `procvars_ref_ptype` | `ProcType.Mod` | a named procedure type as a value parameter |
+| `procvars_ref_nil` | `ProcVariables7.Mod` | `NIL` assignment, calls, `NIL` as a value argument |
+| `procsig_ref_equal` | `TestEqualSignature00.Mod` | anonymous procedure types with equal signatures and open arrays |
+| `nested_ref_calls` | `TestNestedProcs.Mod` | nested procedure calls (not yet nested procedure *values*) |
+
+Licensed but not imported as-is: `ProcVariables2.Mod` (record extension plus a
+`VAR` procedure parameter), `ProcVariables4.Mod` (procedure `VAR` parameter of a
+function), `ProcVariables5.Mod` (anonymous-to-named procedure type assignment)
+are blocked by the separate backend gaps listed below.  `ProcVariables6.Mod`
+(nested procedure escaping through a `VAR` parameter) is the stage-2 baseline
+and will be imported with the nested-procedure work.
+
+Sources considered but not used: OfrontPlus (BSD-2-Clause) has no
+procedure-value tests (`Mod/Test` covers `SYSTEM`/files/console only);
+Mob/MultiOberon (`Omtest/Mod/Omc*_test.odc`) is LGPLv3 and uses BlackBox `.odc`
+documents — reference only.
+
 ## Not covered
 
+* **Call through an array element.**  `a[i](x)` where `a` is an array of
+  procedure values traps in `ExprDesc.liveActuals` with
+  `WITH else-trap: type = ExprDesc_BinaryX`.  The imported
+  `procvars_ref_arrays` case stores the element in a temporary first.
+* **`VAR` procedure parameter of a function.**  A function with a
+  `VAR`/`OUT` procedure-typed parameter (for example
+  `PROCEDURE F(VAR p: P): INTEGER`) traps in `JavaUtil.TypeOfBox` with
+  `TypeOfBox of non-base type`.  Proper procedures with `VAR` procedure
+  parameters (as in `proceq_fields_params`) work.
+* **Anonymous procedure type assigned to a named one.**  Assigning a value
+  received through an anonymous `PROCEDURE (...)` parameter to a variable of a
+  named procedure type emits a `putstatic` with incompatible types and fails
+  class verification.  This blocks `ProcVariables5.Mod`.
 * **Named exported procedure type + imported procedure literal.**  In the
   current backend `f := ImportedProc` where the type is a named exported
   `PROCEDURE` type emits a bad method descriptor (the call gets the anonymous
