@@ -89,6 +89,7 @@ passes and must keep passing.
 | `proceq_basic` | `=` / `#` on procedure values, `NIL`, literal-vs-literal, literal-vs-variable, calls through values |
 | `proceq_fields_params` | values in record fields, arrays, value and `VAR` parameters |
 | `proceq_cross` | values produced in one module compared in another; same name/signature but a different owner stays unequal |
+| `proceq_named_types` | equal procedure types denoted by different type identifiers compare equal (CP report, Appendix A) |
 | `proceq_regression` | pointer/string/CHAR/integer/REAL/SET comparisons keep their existing semantics |
 
 ### Imported reference cases (MIT)
