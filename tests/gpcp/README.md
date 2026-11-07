@@ -76,8 +76,30 @@ a test failure.  Output is compared byte for byte.
 | 224 | `adr224_system` | `IMPORT SYSTEM` on the JVM, `SYSTEM.LSH` / `SYSTEM.ROT` |
 | 238 | `adr238_after_end` | non-ASCII text after `END <Module>.` is not scanned |
 
+## fixProcEqual (procedure values on the JVM)
+
+These cases define the target semantics for procedure-value equality (the
+Kotlin `FunctionReference` model: owner + name + signature + captured
+environment).  They are the TDD baseline for the `fixProcEqual` branch and are
+expected to **fail** until that change lands.  `proceq_regression` already
+passes and must keep passing.
+
+| Case | What is checked |
+|---|---|
+| `proceq_basic` | `=` / `#` on procedure values, `NIL`, literal-vs-literal, literal-vs-variable, calls through values |
+| `proceq_fields_params` | values in record fields, arrays, value and `VAR` parameters |
+| `proceq_cross` | values produced in one module compared in another; same name/signature but a different owner stays unequal |
+| `proceq_regression` | pointer/string/CHAR/integer/REAL/SET comparisons keep their existing semantics |
+
 ## Not covered
 
+* **Named exported procedure type + imported procedure literal.**  In the
+  current backend `f := ImportedProc` where the type is a named exported
+  `PROCEDURE` type emits a bad method descriptor (the call gets the anonymous
+  proc type as its result type), producing
+  `ClassFormatError: Field ... has illegal signature`.  This is independent of
+  equality, so `proceq_cross` uses exported getters instead of imported
+  literals; it needs its own fix and test.
 * **ADR-015 (super call to an implement-only method).**  The parser gate is
   ported, but the existing semantic check in `CheckSuper` rejects the call with
   error 118 for any concrete method in this GPCP revision (the `extns` mask
