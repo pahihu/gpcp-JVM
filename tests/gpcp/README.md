@@ -82,6 +82,7 @@ a test failure.  Output is compared byte for byte.
 | Case | What is checked |
 |---|---|
 | `array_proc_call` | direct calls through array elements of procedure type (global, local and open-array `ARRAY OF` parameters) |
+| `var_proc_param_function` | functions with `VAR`/`OUT` procedure parameters (explicit result uses the return slot, so parameters are boxed) |
 
 ## fixProcEqual (procedure values on the JVM)
 
