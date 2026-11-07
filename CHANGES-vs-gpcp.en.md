@@ -531,7 +531,11 @@ report (Appendix A) makes such types **equal**.
 - all procedure types with matching formal parameter lists use the **same
   structural host class name** (`CP/$T/P...`). This extends ADR-067 from
   anonymous to all procedure types, because such types are equal by the report.
-  Modules must be recompiled together (already the GPCP model).
+  Modules must be recompiled together (already the GPCP model);
+- direct calls through an array element of procedure type (`a[i](x)`) are
+  supported: `ExprDesc.liveActuals` and `JavaMaker.CheckCall` handle an
+  indirect callee, and `getProcVarInvoke` creates the host class whenever it
+  is missing (not only when `xName` is also NIL).
 
 **Strict CP policy.** This branch follows the Component Pascal report: a
 procedure value may only be a named, non-local procedure.  Method values and
@@ -544,5 +548,5 @@ them.
 
 **Tests.** `tests/gpcp/cases/proceq_*` (including the imported MIT oberonc cases
 `proceq_ref_oberonc`, `procvars_ref_*`, `procsig_ref_equal`),
-`proceq_regression`, `import_literal_named_type` and the `strict_*` cases;
-45/45 cases pass on the `fixProcEqual` branch.
+`proceq_regression`, `array_proc_call`, `import_literal_named_type` and the
+`strict_*` cases; 46/46 cases pass on the `fixProcEqual` branch.
