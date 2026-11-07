@@ -98,6 +98,7 @@ procedure values (see the strict-CP section below).  The full extension variant
 | `proceq_fields_params` | values in record fields, arrays, value and `VAR` parameters |
 | `proceq_cross` | values produced in one module compared in another; same name/signature but a different owner stays unequal |
 | `proceq_named_types` | equal procedure types denoted by different type identifiers compare equal (CP report, Appendix A) |
+| `proceq_special_abi` | named types in a `-special` interface keep `CP/<Mod>/<Mod>_<Type>`; two identical signatures stay distinct; wrappers implement `CP.CPJrts.ProcKey` across the native Java ABI |
 | `proceq_regression` | pointer/string/CHAR/integer/REAL/SET comparisons keep their existing semantics |
 
 ### Imported reference cases (MIT)

@@ -18,6 +18,7 @@ REM this compiles all of the standard java-sourced libraries for GPCP
 javac -d . Console.java
 javac -d . CPJ.java
 javac -d . CPJrts.java
+javac -d . ProcKey.java
 javac -d . XHR.java
 javac -d . CPmain.java
 javac -d . Error.java

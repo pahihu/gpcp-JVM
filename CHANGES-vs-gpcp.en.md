@@ -518,20 +518,28 @@ report (Appendix A) makes such types **equal**.
 
 **What changed.** Implemented the Kotlin `FunctionReference` / .NET delegate model:
 
-- every host class of a procedure type declares an abstract `procKey() : String`;
-  every wrapper returns `owner + "." + name + descriptor`;
-- the host class provides `equals(Object)` and `hashCode()` based on `procKey()`
-  (these are what `Objects.equals` calls);
+- the compiler-generated `Proc$Lit$` wrapper implements
+  `CP.CPJrts.ProcKey` and provides `procKey()` (`owner + "." + name +
+  descriptor`), `procEnv()` (`NIL` on the strict branch), `equals(Object)` and
+  `hashCode()`; equality is therefore shared by wrappers with different host
+  classes;
+- the host class of a procedure type keeps its original Java ABI.  In
+  particular, named types declared in a `-special` interface keep
+  `CP/<Mod>/<Mod>_<Type>` (`Kernel.Handler`, `Meta.CallWithProc`, …), and two
+  such types with identical signatures stay distinct (`Kernel.Handler` vs
+  `Kernel.Command`).  This is what hand-written platform bodies and their
+  method descriptors expect;
 - `DoCmp` emits `java/util/Objects.equals` for `Ty.Procedure` instead of
   `if_acmp*`; `NIL` is handled automatically;
 - two procedure literals are folded during code generation
   (`ProcLitKey`/`sameKey`), so `P = P` creates no wrappers at all;
 - a literal in a comparison is wrapped in the host class of the statically named
   operand (`BinCmp`), so both sides share a base class;
-- all procedure types with matching formal parameter lists use the **same
-  structural host class name** (`CP/$T/P...`). This extends ADR-067 from
-  anonymous to all procedure types, because such types are equal by the report.
-  Modules must be recompiled together (already the GPCP model);
+- ordinary (non-`-special`) modules give every equal signature one structural
+  host class (`CP/$T/P...`), extending ADR-067 from anonymous to named types.
+  A named type and an anonymous type with the same formal list are therefore
+  the same JVM class, and values flow between them without casts.  Modules must
+  be recompiled together (already the GPCP model);
 - direct calls through an array element of procedure type (`a[i](x)`) are
   supported: `ExprDesc.liveActuals` and `JavaMaker.CheckCall` handle an
   indirect callee, and `getProcVarInvoke` creates the host class whenever it
@@ -551,7 +559,8 @@ them.
 
 **Tests.** `tests/gpcp/cases/proceq_*` (including the imported MIT oberonc cases
 `proceq_ref_oberonc`, `procvars_ref_*`, `procsig_ref_equal`),
-`proceq_regression`, `array_proc_call`, `var_proc_param_function`,
+`proceq_regression`, `proceq_special_abi` (named `-special` host classes and
+the `ProcKey` wrapper ABI), `array_proc_call`, `var_proc_param_function`,
 `import_literal_named_type`, the `oberonc_*` general suite and the `strict_*`
-cases (including method/field and nested/array); 77/77 cases pass on the
+cases (including method/field and nested/array); 78/78 cases pass on the
 `fixProcEqual` branch.

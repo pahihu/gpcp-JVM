@@ -461,7 +461,6 @@ MODULE JavaMaker;
     VAR pType  : Ty.Procedure; (* The procedure type that is being emitted *)
         proxy  : Ty.Record;    (* The record that stands for the proc-type *)
         invoke : Id.MthId;    (* The abstract invoke method for this      *)
-        key    : Id.MthId;    (* The abstract procKey method              *)
   BEGIN
     pType := this.prcT;
     proxy := pType.hostClass;
@@ -481,13 +480,9 @@ MODULE JavaMaker;
     out.theP := invoke;
     out.StartProc(invoke);
     out.EndProc();
-
-   (* fixProcEqual: procedure-value identity is owner+name+descriptor.
-      Every wrapper implements procKey(); equals/hashCode live here. *)
-    key := Ju.MkProcKeyAbstract(proxy);
-    out.StartProc(key);
-    out.EndProc();
-    Ju.EmitProcTypeEquality(out, proxy, key);
+   (* fixProcEqual ABI: identity lives on the generated Proc$Lit$ wrapper,
+      not on the host class.  Host classes keep their original Java ABI
+      (including hand-written -special platform classes). *)
   END EmitBody;
 
 (* ============================================================ *)
@@ -581,6 +576,10 @@ MODULE JavaMaker;
         END;
         this.EmitProc(method);
       END;
+    END;
+   (* fixProcEqual ABI: wrapper-level ProcKey/equals/hashCode. *)
+    IF Ju.IsProcLitWrapper(record) THEN
+      Ju.EmitProcWrapperExtras(out, record)
     END;
   END EmitBody;
 
