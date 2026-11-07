@@ -125,6 +125,21 @@ procedure-value tests (`Mod/Test` covers `SYSTEM`/files/console only);
 Mob/MultiOberon (`Omtest/Mod/Omc*_test.odc`) is LGPLv3 and uses BlackBox `.odc`
 documents — reference only.
 
+## Nested procedure values (stage 2)
+
+These cases define the target semantics for nested procedure values: the
+captured activation record (XHR / static link) is part of the value's
+identity.  They are the TDD baseline for the nested-procedure work and are
+expected to **fail** (currently the compiler aborts in code generation)
+until that change lands.
+
+| Case | What is checked |
+|---|---|
+| `nested_capture` | a nested value captures enclosing locals, is callable after the enclosing procedure returns, and two values from one activation compare equal |
+| `nested_activations` | values of the same nested procedure from different activations compare unequal; calls see their own captured state |
+| `nested_nocapture` | a nested value with an empty environment is equal to another value of the same procedure and stays callable |
+| `nested_ref_escape` | `ProcVariables6.Mod` from oberonc (MIT): nested procedure escapes through a `VAR` parameter |
+
 ## Not covered
 
 * **Call through an array element.**  `a[i](x)` where `a` is an array of
