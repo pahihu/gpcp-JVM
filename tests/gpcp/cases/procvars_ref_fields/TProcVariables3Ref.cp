@@ -27,8 +27,6 @@
  * Changes for GPCP / Component Pascal:
  *   - Oberon-07 WriteInt/WriteChar/WriteLn replaced by Console output (width 4).
  *   - BEGIN added where Oberon-07 allows a bare RETURN body.
- *   - The direct a[m](...) call is replaced by f := a[m]; f(...) because the current
- *   - GPCP dataflow pass (ExprDesc.liveActuals) traps on an index expression as callee.
  *)
 
 MODULE TProcVariables3Ref;
@@ -44,8 +42,7 @@ MODULE TProcVariables3Ref;
   BEGIN Console.WriteLn() END WriteLn;
 
   PROCEDURE P(m, n: INTEGER; q: PT; VAR obj: Object);
-    VAR f: PT;
-  BEGIN q(m, n); obj.p(m+1, n); f := a[m]; f(m+2, n)
+  BEGIN q(m, n); obj.p(m+1, n); a[m](m+2, n)
   END P;
 
   PROCEDURE X(x1, x2: INTEGER);

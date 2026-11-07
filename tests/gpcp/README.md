@@ -114,17 +114,18 @@ parameters (`TypeOfBox`).
 |---|---|---|
 | `proceq_ref_oberonc` | `ProcComparisons.Mod` | the Oberon reference assertions `P2 = P1`, `P2 = P2`, `P2 # NIL`, `P2 = NIL` (expected `1 2 3`) |
 | `procvars_ref_basic` | `ProcVariables0.Mod` | procedure values in globals/locals, records, pointers and value parameters |
-| `procvars_ref_arrays` | `ProcVariables1.Mod` | arrays of procedure values and calls in a loop |
-| `procvars_ref_fields` | `ProcVariables3.Mod` | procedure-typed record field, array element and parameter |
+| `procvars_ref_arrays` | `ProcVariables1.Mod` | arrays of procedure values, direct `a[i](...)` calls in a loop |
+| `procvars_ref_fields` | `ProcVariables3.Mod` | procedure-typed record field, direct array-element call, parameter |
 | `procvars_ref_ptype` | `ProcType.Mod` | a named procedure type as a value parameter |
 | `procvars_ref_nil` | `ProcVariables7.Mod` | `NIL` assignment, calls, `NIL` as a value argument |
+| `procvars_ref_recursive` | `ProcVariables5.Mod` | recursive passing of procedure values through anonymous and named types |
+| `procvars_ref_varparams` | `ProcVariables4.Mod` | procedure types with `VAR` parameters, including `VAR` procedure parameters |
 | `procsig_ref_equal` | `TestEqualSignature00.Mod` | anonymous procedure types with equal signatures and open arrays |
 | `nested_ref_calls` | `TestNestedProcs.Mod` | nested procedure calls only (procedure values are forbidden in strict CP) |
 
-Licensed but not imported as-is: `ProcVariables2.Mod` (record extension plus a
-`VAR` procedure parameter), `ProcVariables4.Mod` (procedure `VAR` parameter of a
-function), `ProcVariables5.Mod` (anonymous-to-named procedure type assignment)
-are blocked by the separate backend gaps listed below.  `ProcVariables6.Mod`
+Licensed but not imported as-is: `ProcVariables2.Mod` uses Oberon-07 record
+extension/assignment that Component Pascal rejects (the base would need
+`EXTENSIBLE`, and extension-to-base assignment is illegal).  `ProcVariables6.Mod`
 (nested procedure escaping through a `VAR` parameter) is not imported because
 strict CP rejects local procedures as procedure values (error 165).
 
