@@ -21,5 +21,10 @@ BEGIN
   SpecialProc.Run(c);
   IF h = h THEN Console.WriteString(" eq") END;
   IF h # c THEN Console.WriteString(" ne") END;
+ (* Handler and Command are distinct -special host classes with the same
+    signature; both wrappers implement ProcKey, so the same procedure
+    compares equal across them. *)
+  c := H;
+  IF h = c THEN Console.WriteString(" cross") END;
   Console.WriteLn()
 END TSpecialProc.
