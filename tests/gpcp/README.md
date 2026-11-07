@@ -134,6 +134,35 @@ procedure-value tests (`Mod/Test` covers `SYSTEM`/files/console only);
 Mob/MultiOberon (`Omtest/Mod/Omc*_test.odc`) is LGPLv3 and uses BlackBox `.odc`
 documents — reference only.
 
+## General oberonc tests (MIT)
+
+These are the remaining standalone oberonc tests that compile and run after
+mechanical adaptation (Console output helpers, explicit `BEGIN`, `CPmain`
+import).  Each file carries the MIT notice.
+
+```
+oberonc_CaseNum0, CaseNum1, CommutativeSwap, ConstantFoldingAndLoadOp,
+ForwardPointerRef, OpenArrays, OpenArrays2, Out0, Out1, Out4, Out5, Out6,
+RecordAssignment2, RecordParam, Strings2, TestAnonymousName, TestAssert,
+TestCPS, TestFor, TestFor1, TestFunction0, TestINC1, TestINCLAndEXCL,
+TestReturn0, UniqueTypeAndProcNames, UTF8String
+```
+
+Not imported from this suite:
+
+- tests whose expected output uses `WriteReal` (a CP formatting helper and
+  exact real-number alignment would be needed);
+- Oberon-07-only builtins (`ASR`/`LSL`/`ROR`/`AND`/`BOR`, `ReadInt` in the
+  sample programs), and `WHILE ... ELSIF` syntax (`Out3`);
+- CP type-system differences: record extension without `EXTENSIBLE`,
+  open-array variables, whole-open-array assignment, `BYTE` formals, and
+  name-equivalence of array types;
+- multi-module import suites (`TestImport*`, `TestTypeGuardExt`,
+  `TestStringsMod`) which need auxiliary modules and explicit compile order;
+- tests that currently expose unrelated backend defects (`Out2`, `TestODD`,
+  `CaseChar0`) or Oberon-07 arithmetic/overflow semantics (`DivMul`,
+  `TestINC0`).
+
 ## Strict CP: forbidden procedure values
 
 Component Pascal (report Ch. 6.5) allows a procedure value only for a named,
