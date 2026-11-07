@@ -140,6 +140,20 @@ until that change lands.
 | `nested_nocapture` | a nested value with an empty environment is equal to another value of the same procedure and stays callable |
 | `nested_ref_escape` | `ProcVariables6.Mod` from oberonc (MIT): nested procedure escapes through a `VAR` parameter |
 
+## Imported procedure literals (stage 3)
+
+| Case | What is checked |
+|---|---|
+| `import_literal_named_type` | `f := Lib.Proc` with a named exported `PROCEDURE` type: correct JVM descriptor, calls, equality with a library-produced value, imported literals on both sides, and an anonymous-vs-named comparison |
+
+The original defect was a bogus call descriptor
+(`Field ... has illegal signature`, `ClassFormatError`) when a named exported
+procedure type was combined with an imported procedure literal.  The
+signature-type copy and structural host-class work in stages 1–2 removed it, so
+this case is the regression guard rather than a separate code change.  It was
+verified to fail with the stock `jars/gpcp.jar` (illegal signature) and on the
+stage-1 compiler (anonymous-vs-named comparison).
+
 ## Not covered
 
 * **Call through an array element.**  `a[i](x)` where `a` is an array of
