@@ -714,6 +714,10 @@ MODULE JavaUtil;
     | t : Ty.Pointer DO
        (* could memoize these values ... in t.tgXtn? *)
         RETURN Ty.mkArrayOf( t );
+    | t : Ty.Procedure DO
+       (* procedure values are references, but a VAR/OUT parameter still
+          needs a one-element box when the return slot is already taken *)
+        RETURN Ty.mkArrayOf( t );
     | t : Ty.Opaque DO
         RETURN TypeOfBox(t.resolved);
     ELSE

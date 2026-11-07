@@ -164,11 +164,6 @@ with the stock `jars/gpcp.jar` (illegal signature) and on the stage-1 compiler
 
 ## Not covered
 
-* **`VAR` procedure parameter of a function.**  A function with a
-  `VAR`/`OUT` procedure-typed parameter (for example
-  `PROCEDURE F(VAR p: P): INTEGER`) traps in `JavaUtil.TypeOfBox` with
-  `TypeOfBox of non-base type`.  Proper procedures with `VAR` procedure
-  parameters (as in `proceq_fields_params`) work.
 * **ADR-015 (super call to an implement-only method).**  The parser gate is
   ported, but the existing semantic check in `CheckSuper` rejects the call with
   error 118 for any concrete method in this GPCP revision (the `extns` mask
