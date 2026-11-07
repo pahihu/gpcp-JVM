@@ -80,6 +80,7 @@ MODULE IdDesc;
     assgnd* = 1;        (* ==> is assigned as a proc variable *)
     called* = 2;        (* ==> is directly called in this mod *)
     public* = 3;        (* ==> is exported from this module   *)
+    pvNested* = 4;      (* ==> Invoke wrapper for a nested proc *)
     useMsk* = {1,2,3};  (* pAttr*useMsk={} ==> a useless proc *)
 
 (* ============================================================ *)
@@ -276,6 +277,7 @@ MODULE IdDesc;
     MthId*  = POINTER TO RECORD (Procs)
                 mthAtt*  : SET;         (* mth attributes *)
                 rcvFrm*  : ParId;       (* receiver frmal *)
+                pvTarget* : D.Idnt;     (* proc value: nested target *)
               END;      (* ------------------------------ *)
 
 (* ============================================================ *)

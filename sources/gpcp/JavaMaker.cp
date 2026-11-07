@@ -247,6 +247,20 @@ MODULE JavaMaker;
   END AddNewProcTypeEmitter;
 
 (* ============================================================ *)
+
+  PROCEDURE (list : JavaWorkList)HasProcTypeEmitter*(prc : Ty.Procedure) : BOOLEAN;
+    VAR i : INTEGER;
+  BEGIN
+    FOR i := 0 TO list.tide-1 DO
+      IF (list.work[i] IS JavaProcTypeEmitter) &
+         (list.work[i](JavaProcTypeEmitter).prcT = prc) THEN
+        RETURN TRUE
+      END
+    END;
+    RETURN FALSE
+  END HasProcTypeEmitter;
+
+(* ============================================================ *)
 (*  Mainline emitter, consumes worklist emitting assembler      *)
 (*  files until the worklist is empty.                          *)
 (* ============================================================ *)
@@ -462,12 +476,17 @@ MODULE JavaMaker;
         proxy  : Ty.Record;    (* The record that stands for the proc-type *)
         invoke : Id.MthId;    (* The abstract invoke method for this      *)
         key    : Id.MthId;    (* The abstract procKey method              *)
+        i      : INTEGER;
   BEGIN
     pType := this.prcT;
     proxy := pType.hostClass;
     proxy.idnt := pType.idnt;
     proxy.recAtt := Ty.isAbs;
     out.StartRecClass(proxy);
+    out.InitFields(proxy.fields.tide);
+    FOR i := 0 TO proxy.fields.tide-1 DO
+      out.EmitField(proxy.fields.a[i](Id.FldId))
+    END;
 
    (* Emit the no-arg constructor *) 
     out.RecMakeInit(proxy, NIL);
@@ -489,6 +508,35 @@ MODULE JavaMaker;
     out.EndProc();
     Ju.EmitProcTypeEquality(out, proxy, key);
   END EmitBody;
+
+(* ============================================================ *)
+
+  PROCEDURE EmitNestedInvoke(out : Ju.JavaFile; method : Id.MthId);
+  (** Invoke of a wrapper for a nested procedure: pass the captured XHR
+      as the hidden first argument, then the ordinary formals. *)
+    VAR tgt : Id.Procs;
+        base : Ty.Record;
+        frm : Ty.Procedure;
+        envFld : Id.FldId;
+        par : Id.ParId;
+        i : INTEGER;
+  BEGIN
+    tgt := method.pvTarget(Id.Procs);
+    base := method.bndType(Ty.Record).baseTp(Ty.Record);
+    envFld := base.fields.a[0](Id.FldId);
+    frm := method.type(Ty.Procedure);
+    out.theP := method;
+    out.StartProc(method);
+    out.AloadLocal(0, method.bndType);
+    out.PutGetF(Jvm.opc_getfield, base, envFld);
+    FOR i := 0 TO frm.formals.tide-1 DO
+      par := frm.formals.a[i];
+      out.LoadLocal(par.varOrd, par.type)
+    END;
+    out.CallIT(Jvm.opc_invokestatic, tgt, tgt.type(Ty.Procedure));
+    out.Return(frm.retType);
+    out.EndProc()
+  END EmitNestedInvoke;
 
 (* ============================================================ *)
 
@@ -575,11 +623,15 @@ MODULE JavaMaker;
       ident  := record.methods.a[index];
       method := ident(Id.MthId);
       IF method.kind = Id.conMth THEN
-        IF method.scopeNm = NIL THEN
-          Ju.MkProcName(method);
-          Ju.RenumberLocals(method);
-        END;
-        this.EmitProc(method);
+        IF Id.pvNested IN method.pAttr THEN
+          EmitNestedInvoke(out, method)
+        ELSE
+          IF method.scopeNm = NIL THEN
+            Ju.MkProcName(method);
+            Ju.RenumberLocals(method);
+          END;
+          this.EmitProc(method);
+        END
       END;
     END;
   END EmitBody;
