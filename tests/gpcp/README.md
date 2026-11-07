@@ -82,7 +82,8 @@ a test failure.  Output is compared byte for byte.
 These cases define the target semantics for procedure-value equality: a value
 is identified by owner + name + signature.  This branch follows strict
 Component Pascal, so methods and procedures local to another procedure are not
-procedure values (see the strict-CP section below).
+procedure values (see the strict-CP section below).  The full extension variant
+(nested and method values) lives on the `fixProcEqualExt` branch.
 
 | Case | What is checked |
 |---|---|
