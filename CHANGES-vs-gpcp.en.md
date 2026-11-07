@@ -516,7 +516,13 @@ same object. In addition, every named procedure type got its own host class, so
 `H1 = H2` with matching signatures was `FALSE`, although the Component Pascal
 report (Appendix A) makes such types **equal**.
 
-**What changed.** Implemented the Kotlin `FunctionReference` / .NET delegate model:
+**What changed.** Implemented the Kotlin **callable-reference** (`::f`,
+`obj::m`) / .NET delegate model.  This is deliberately not the Kotlin
+*lambda* model: `kotlin.jvm.internal.Lambda` does not override `equals`, so
+plain lambdas compare by reference.  `FunctionReference.equals`, on the other
+hand, compares owner, name, JVM signature, arity/flags and the **bound
+receiver**.  A Component Pascal procedure value is always a reference to a
+named procedure, so the `FunctionReference` analogue is the correct one.
 
 - the compiler-generated `Proc$Lit$` wrapper implements
   `CP.CPJrts.ProcKey` and provides `procKey()` (`owner + "." + name +
