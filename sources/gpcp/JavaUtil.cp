@@ -904,7 +904,7 @@ CSt.Message( "made mNm name " + mNm^ );
   BEGIN
     (* patched (ADR-042): procedure field of a record - the type wrapper
        has not been generated yet; force lazy generation (otherwise NIL/NPE) *)
-    IF (typ # NIL) & (typ.hostClass = NIL) & (typ.xName = NIL) THEN
+    IF (typ # NIL) & (typ.hostClass = NIL) THEN
       MkProcTypeName(typ)
     END;
     IF (typ = NIL) OR (typ.hostClass = NIL) THEN RETURN NIL;

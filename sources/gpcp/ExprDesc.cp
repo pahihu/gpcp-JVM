@@ -2159,6 +2159,13 @@ MODULE ExprDesc;
           IF xKd.ident.dfScp = scp THEN scp.UplevelInitialize(new) END;
       | xKd : UnaryX DO
           ASSERT(xKd.kind = tCheck);
+      | xKd : BinaryX DO
+         (* indirect call, e.g. a[i](x): assume it may initialize uplevel
+            locals (conservative; strict CP has no nested values here) *)
+          scp.UplevelInitialize(new);
+      ELSE
+         (* other indirect callee (e.g. a function returning a proc value) *)
+          scp.UplevelInitialize(new)
       END (* skip *)
     END;
     (* #### kjg, Sep-2001 *)

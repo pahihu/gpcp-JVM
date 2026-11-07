@@ -2543,7 +2543,15 @@ MODULE JavaMaker;
             IF pTyp.xName = NIL THEN Ju.MkCallAttr(idnt, pTyp) END;
         | idnt : Id.FldId DO
             mthI := Ju.getProcVarInvoke(pTyp);
-            IF mthI.type.xName = NIL THEN Ju.MkCallAttr(mthI, mthI.type(Ty.Procedure)) END;
+            IF (mthI # NIL) & (mthI.type.xName = NIL) THEN
+              Ju.MkCallAttr(mthI, mthI.type(Ty.Procedure))
+            END;
+        END;
+      ELSE
+       (* indirect callee: array element, type guard, call result, ... *)
+        mthI := Ju.getProcVarInvoke(pTyp);
+        IF (mthI # NIL) & (mthI.type.xName = NIL) THEN
+          Ju.MkCallAttr(mthI, mthI.type(Ty.Procedure))
         END;
       END;
     END CheckCall;
