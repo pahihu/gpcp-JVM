@@ -503,3 +503,41 @@ patch came from (`../IdeaProjects/bbcb-fe/tools/gpcp/patch_toolchain.py`), and a
   gpcp-JVM now behaves like the BlackBox-compatible compiler rather than like a
   stock 1.4.07 build, so error-severity and symbol-file expectations differ from
   upstream.
+
+---
+
+## 11. `sources/gpcp/JavaUtil.cp`, `sources/gpcp/JavaMaker.cp` — procedure-value equality (fixProcEqual)
+
+**Before.** On the JVM a procedure value is a wrapper object (`Proc$Lit$N`), and a
+fresh object was allocated for every evaluation of a literal. `=`/`#` compiled to
+`if_acmpeq`/`if_acmpne`, i.e. wrapper references were compared. Consequently
+`P = P` was `FALSE`, while `f = g` was `TRUE` only because both variables held the
+same object. In addition, every named procedure type got its own host class, so
+`H1 = H2` with matching signatures was `FALSE`, although the Component Pascal
+report (Appendix A) makes such types **equal**.
+
+**What changed.** Implemented the Kotlin `FunctionReference` / .NET delegate model:
+
+- every host class of a procedure type declares an abstract `procKey() : String`;
+  every wrapper returns `owner + "." + name + descriptor`;
+- the host class provides `equals(Object)` and `hashCode()` based on `procKey()`
+  (these are what `Objects.equals` calls);
+- `DoCmp` emits `java/util/Objects.equals` for `Ty.Procedure` instead of
+  `if_acmp*`; `NIL` is handled automatically;
+- two procedure literals are folded during code generation
+  (`ProcLitKey`/`sameKey`), so `P = P` creates no wrappers at all;
+- a literal in a comparison is wrapped in the host class of the statically named
+  operand (`BinCmp`), so both sides share a base class;
+- all procedure types with matching formal parameter lists use the **same
+  structural host class name** (`CP/$T/P...`). This extends ADR-067 from
+  anonymous to all procedure types, because such types are equal by the report.
+  Modules must be recompiled together (already the GPCP model).
+
+**Limitation.** The captured environment (method receiver or nested-procedure
+static link) is deliberately **not** part of the key yet; that is the next stage
+(nested/method). Method and nested-procedure values are still unsupported by the
+code generator.
+
+**Tests.** `tests/gpcp/cases/proceq_*` (including the imported MIT oberonc cases
+`proceq_ref_oberonc`, `procvars_ref_*`, `procsig_ref_equal`) and
+`proceq_regression`; 39/39 cases pass on the `fixProcEqual` branch.
