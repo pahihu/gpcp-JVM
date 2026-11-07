@@ -551,6 +551,8 @@ MODULE StatDesc;
         *)
         IF ~rTp.valCopyOK() THEN s.rhsX.ExprError(152) END;
         IF rTp IS T.Procedure THEN
+         (* strict CP: methods and local procedures are not values *)
+          E.CheckProcValue(s.rhsX);
           s.StmtError(301);
           IF G.targetIsJVM() THEN s.StmtError(320 (*213*));
           ELSIF (rTp # lTp) & ~s.rhsX.isProcLit() THEN s.StmtError(191);
@@ -596,6 +598,7 @@ MODULE StatDesc;
           rExp := s.retX.exprAttr();
           s.retX := rExp;
           IF rExp # NIL THEN (* fixed 28 July 2001 *)
+            IF rTyp IS T.Procedure THEN E.CheckProcValue(rExp) END;
             xTyp := rExp.type;
             IF ~rTyp.assignCompat(rExp) THEN
               D.RepTypesErrTok(76, rTyp, xTyp, s.token);

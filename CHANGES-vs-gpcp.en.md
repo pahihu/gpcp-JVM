@@ -506,7 +506,7 @@ patch came from (`../IdeaProjects/bbcb-fe/tools/gpcp/patch_toolchain.py`), and a
 
 ---
 
-## 11. `sources/gpcp/JavaUtil.cp`, `sources/gpcp/JavaMaker.cp` — procedure-value equality (fixProcEqual)
+## 11. `sources/gpcp/JavaUtil.cp`, `JavaMaker.cp`, `ExprDesc.cp`, `StatDesc.cp` — procedure values (fixProcEqual)
 
 **Before.** On the JVM a procedure value is a wrapper object (`Proc$Lit$N`), and a
 fresh object was allocated for every evaluation of a literal. `=`/`#` compiled to
@@ -533,11 +533,16 @@ report (Appendix A) makes such types **equal**.
   anonymous to all procedure types, because such types are equal by the report.
   Modules must be recompiled together (already the GPCP model).
 
-**Limitation.** The captured environment (method receiver or nested-procedure
-static link) is deliberately **not** part of the key yet; that is the next stage
-(nested/method). Method and nested-procedure values are still unsupported by the
-code generator.
+**Strict CP policy.** This branch follows the Component Pascal report: a
+procedure value may only be a named, non-local procedure.  Method values and
+values of procedures local to another procedure are rejected at compile time
+with error 165 (`This procedure cannot be used as a procedure value`) in
+assignments, procedure-typed actual parameters, `RETURN` and `=`/`#`
+comparisons.  The corresponding checks live in `ExprDesc.CheckProcValue` plus
+its call sites in `ExprDesc` and `StatDesc`; the `strict_*` test cases cover
+them.
 
 **Tests.** `tests/gpcp/cases/proceq_*` (including the imported MIT oberonc cases
-`proceq_ref_oberonc`, `procvars_ref_*`, `procsig_ref_equal`) and
-`proceq_regression`; 39/39 cases pass on the `fixProcEqual` branch.
+`proceq_ref_oberonc`, `procvars_ref_*`, `procsig_ref_equal`),
+`proceq_regression`, `import_literal_named_type` and the `strict_*` cases;
+45/45 cases pass on the `fixProcEqual` branch.

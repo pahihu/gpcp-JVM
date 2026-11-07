@@ -75,12 +75,17 @@ is_special() {
 run_case() {
   local src=$1
   local name work m log actual runmod s
+  local expected_err="" compile_failed=0
   local -a mods=() specials=() flags=()
 
   name=$(basename "$src")
   work="$STAGE/cases/$name"
   mkdir -p "$work"
   cp -a "$src/." "$work/"
+
+  if [ -f "$work/compile-error.txt" ]; then
+    expected_err=$(cat "$work/compile-error.txt")
+  fi
 
   if [ -f "$work/prepare.py" ]; then
     if ! ( cd "$work" && python3 prepare.py ); then
@@ -108,11 +113,29 @@ run_case() {
     if ! ( cd "$work" &&
            CPSYM="$CPSYM" "$JAVA" -cp "$COMPILER_CP" \
              CP.gpcp.gpcp "${flags[@]}" "$m" ) >"$log" 2>&1; then
+      if [ -n "$expected_err" ]; then
+        if grep -qF -- "$expected_err" "$log"; then
+          compile_failed=1
+          break
+        else
+          echo "  compile failed without the expected diagnostic: $m"
+          sed 's/^/    /' "$log"
+          return 1
+        fi
+      fi
       echo "  compile failed: $m"
       sed 's/^/    /' "$log"
       return 1
     fi
   done
+
+  if [ -n "$expected_err" ]; then
+    if [ "$compile_failed" = 1 ]; then
+      return 0
+    fi
+    echo "  expected compile error was not produced"
+    return 1
+  fi
 
   if [ -f "$work/run.txt" ]; then
     runmod=$(head -n1 "$work/run.txt" | tr -d '[:space:]')

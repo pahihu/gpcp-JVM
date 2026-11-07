@@ -201,6 +201,7 @@ MODULE ExprDesc;
   PROCEDURE^ (x : LeafX)charValue*() : CHAR,NEW;
   PROCEDURE^ convert(expr : D.Expr; dstT : D.Type) : D.Expr;
   PROCEDURE^ FormalsVsActuals*(prcX : D.Expr; actSeq : D.ExprSeq);
+  PROCEDURE^ CheckProcValue*(exp : D.Expr);
 (* ============================================================ *)
 (*          LeafX Constructor methods     *)
 (* ============================================================ *)
@@ -1999,6 +2000,11 @@ MODULE ExprDesc;
     BEGIN
       lTp := node.lKid.type;
       rTp := node.rKid.type;
+     (* strict CP: a method or a local procedure is not a procedure value *)
+      IF node.lKid.isProcExpr() OR node.rKid.isProcExpr() THEN
+        CheckProcValue(node.lKid);
+        CheckProcValue(node.rKid)
+      END;
       IF (lTp = NIL) OR (rTp = NIL) THEN RETURN END;
      (*
       *  The permitted cases here are:
@@ -2569,6 +2575,27 @@ MODULE ExprDesc;
 
 (* -------------------------------------------- *)
 
+  PROCEDURE CheckProcValue*(exp : D.Expr);
+  (* Strict Component Pascal (report Ch. 6.5): a procedure value may not be
+     a method or a procedure local to another procedure. *)
+    VAR prc : I.Procs;
+  BEGIN
+    IF exp = NIL THEN RETURN END;
+    WITH exp : IdLeaf DO
+      IF exp.isProcLit() THEN
+        prc := exp.ident(I.Procs);
+        IF (prc IS I.MthId) OR (prc.lxDepth > 0) THEN
+          exp.ExprError(165)
+        END
+      END
+    | exp : IdentX DO
+      IF exp.isProcLit() THEN exp.ExprError(165) END
+    ELSE (* calls and other expressions are not literals *)
+    END
+  END CheckProcValue;
+
+(* -------------------------------------------- *)
+
   PROCEDURE (x : LeafX)isNil*() : BOOLEAN;
   BEGIN RETURN x.kind = nilLt END isNil;
 
@@ -2880,6 +2907,8 @@ MODULE ExprDesc;
         actTyp := actual.type;
 
         IF frmTyp IS T.Procedure THEN
+         (* strict CP: methods and local procedures are not values *)
+          CheckProcValue(actual);
           formal.IdError(301);
           IF G.targetIsJVM() THEN formal.IdError(320);
           ELSIF (frmTyp # actTyp) &

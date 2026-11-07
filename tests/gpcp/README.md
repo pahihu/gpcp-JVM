@@ -40,6 +40,7 @@ Each directory under `cases/` is one test:
 | `special.txt` | modules to compile with `-special` (native `SYSTEM MODULE` interfaces) |
 | `run.txt` | module to execute after compilation; run as `CP.<Module>.<Module>` |
 | `expected.txt` | exact expected stdout of `run.txt`; without it the case is compile-only |
+| `compile-error.txt` | expected compiler diagnostic substring; at least one module must fail with it and nothing is executed |
 | `prepare.py` | optional generator run before compilation (used for the >1 MiB UTF-8 source) |
 
 Cases are compiled with the patched compiler and `-nowarn`; a compile error is
@@ -78,11 +79,10 @@ a test failure.  Output is compared byte for byte.
 
 ## fixProcEqual (procedure values on the JVM)
 
-These cases define the target semantics for procedure-value equality (the
-Kotlin `FunctionReference` model: owner + name + signature + captured
-environment).  They are the TDD baseline for the `fixProcEqual` branch and are
-expected to **fail** until that change lands.  `proceq_regression` already
-passes and must keep passing.
+These cases define the target semantics for procedure-value equality: a value
+is identified by owner + name + signature.  This branch follows strict
+Component Pascal, so methods and procedures local to another procedure are not
+procedure values (see the strict-CP section below).
 
 | Case | What is checked |
 |---|---|
@@ -111,34 +111,34 @@ parameters (`TypeOfBox`).
 | `procvars_ref_ptype` | `ProcType.Mod` | a named procedure type as a value parameter |
 | `procvars_ref_nil` | `ProcVariables7.Mod` | `NIL` assignment, calls, `NIL` as a value argument |
 | `procsig_ref_equal` | `TestEqualSignature00.Mod` | anonymous procedure types with equal signatures and open arrays |
-| `nested_ref_calls` | `TestNestedProcs.Mod` | nested procedure calls (not yet nested procedure *values*) |
+| `nested_ref_calls` | `TestNestedProcs.Mod` | nested procedure calls only (procedure values are forbidden in strict CP) |
 
 Licensed but not imported as-is: `ProcVariables2.Mod` (record extension plus a
 `VAR` procedure parameter), `ProcVariables4.Mod` (procedure `VAR` parameter of a
 function), `ProcVariables5.Mod` (anonymous-to-named procedure type assignment)
 are blocked by the separate backend gaps listed below.  `ProcVariables6.Mod`
-(nested procedure escaping through a `VAR` parameter) is the stage-2 baseline
-and will be imported with the nested-procedure work.
+(nested procedure escaping through a `VAR` parameter) is not imported because
+strict CP rejects local procedures as procedure values (error 165).
 
 Sources considered but not used: OfrontPlus (BSD-2-Clause) has no
 procedure-value tests (`Mod/Test` covers `SYSTEM`/files/console only);
 Mob/MultiOberon (`Omtest/Mod/Omc*_test.odc`) is LGPLv3 and uses BlackBox `.odc`
 documents — reference only.
 
-## Nested procedure values (stage 2)
+## Strict CP: forbidden procedure values
 
-These cases define the target semantics for nested procedure values: the
-captured activation record (XHR / static link) is part of the value's
-identity.  They are the TDD baseline for the nested-procedure work and are
-expected to **fail** (currently the compiler aborts in code generation)
-until that change lands.
+Component Pascal (report Ch. 6.5) allows a procedure value only for a named,
+non-local procedure: methods and procedures local to another procedure are
+explicitly excluded.  These cases must fail to compile with error 165
+(`This procedure cannot be used as a procedure value`):
 
 | Case | What is checked |
 |---|---|
-| `nested_capture` | a nested value captures enclosing locals, is callable after the enclosing procedure returns, and two values from one activation compare equal |
-| `nested_activations` | values of the same nested procedure from different activations compare unequal; calls see their own captured state |
-| `nested_nocapture` | a nested value with an empty environment is equal to another value of the same procedure and stays callable |
-| `nested_ref_escape` | `ProcVariables6.Mod` from oberonc (MIT): nested procedure escapes through a `VAR` parameter |
+| `strict_nested_assign` | `f := Inner` for a local procedure |
+| `strict_nested_param` | a local procedure passed to a procedure-typed formal |
+| `strict_nested_compare` | a local procedure in a `=`/`#` comparison |
+| `strict_nested_return` | a local procedure returned as a procedure value |
+| `strict_method_value` | a bound method (`f := t.Add`) |
 
 ## Imported procedure literals (stage 3)
 
@@ -149,10 +149,10 @@ until that change lands.
 The original defect was a bogus call descriptor
 (`Field ... has illegal signature`, `ClassFormatError`) when a named exported
 procedure type was combined with an imported procedure literal.  The
-signature-type copy and structural host-class work in stages 1–2 removed it, so
-this case is the regression guard rather than a separate code change.  It was
-verified to fail with the stock `jars/gpcp.jar` (illegal signature) and on the
-stage-1 compiler (anonymous-vs-named comparison).
+procedure-type host-class work in stage 1 removed it, so this case is the
+regression guard rather than a separate code change.  It was verified to fail
+with the stock `jars/gpcp.jar` (illegal signature) and on the stage-1 compiler
+(anonymous-vs-named comparison).
 
 ## Not covered
 
@@ -169,13 +169,6 @@ stage-1 compiler (anonymous-vs-named comparison).
   received through an anonymous `PROCEDURE (...)` parameter to a variable of a
   named procedure type emits a `putstatic` with incompatible types and fails
   class verification.  This blocks `ProcVariables5.Mod`.
-* **Named exported procedure type + imported procedure literal.**  In the
-  current backend `f := ImportedProc` where the type is a named exported
-  `PROCEDURE` type emits a bad method descriptor (the call gets the anonymous
-  proc type as its result type), producing
-  `ClassFormatError: Field ... has illegal signature`.  This is independent of
-  equality, so `proceq_cross` uses exported getters instead of imported
-  literals; it needs its own fix and test.
 * **ADR-015 (super call to an implement-only method).**  The parser gate is
   ported, but the existing semantic check in `CheckSuper` rejects the call with
   error 118 for any concrete method in this GPCP revision (the `extns` mask
