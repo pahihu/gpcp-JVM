@@ -161,6 +161,7 @@ MODULE JavaUtil;
         vecTide   : Id.FldId;
         vecElms   : ARRAY Ty.anyPtr+1 OF Id.FldId;
         vecExpnd  : ARRAY Ty.anyPtr+1 OF Id.MthId;
+        objectsEquals- : Id.PrcId;
 
 (* ============================================================ *)
   PROCEDURE (lb : Label)Str*() : L.CharOpen,NEW,EXTENSIBLE;
@@ -318,6 +319,8 @@ MODULE JavaUtil;
   PROCEDURE^ MkProcName*(proc : Id.Procs);
   PROCEDURE^ NumberParams(pIdn : Id.Procs; pTyp : Ty.Procedure);
   PROCEDURE^ typeToChOpen(typ : Sym.Type) : L.CharOpen;
+  PROCEDURE^ procKeyText(exp : Sym.Expr) : L.CharOpen;
+  PROCEDURE^ MkProcKeyConcrete(host : Ty.Record; IN key : ARRAY OF CHAR);
 
 
 (* ============================================================ *)
@@ -1024,7 +1027,7 @@ CSt.Message( "made mNm name " + mNm^ );
     VAR tIdent : Sym.Idnt;
         hostTp : Ty.Record;
      (* invoke : Id.MthId; *)
-        rNm, mNm, qNm : L.CharOpen;
+        rNm, qNm : L.CharOpen;
         anon : BOOLEAN;   (* patched (ADR-067) *)
   BEGIN
    (* ###################################### *)
@@ -1043,15 +1046,11 @@ CSt.Message( "made mNm name " + mNm^ );
  *  must ALWAYS use the newXxxTp calls
  *)   
     hostTp := Ty.newRecTp();
-    IF anon THEN        (* patched (ADR-067): structural name *)
-      rNm := anonProcClassName(typ);
-      mNm := BOX("");
-      qNm := BOX("CP/$T")
-    ELSE
-      rNm := Sym.getName.ChPtr(tIdent);
-      mNm := scopeName(tIdent.dfScp);
-      qNm := qualScopeName(tIdent.dfScp)
-    END;
+   (* fixProcEqual: equal procedure types (matching formal parameter lists)
+      must share one JVM host class.  Use the structural name for every
+      procedure type, not only for anonymous ones (ADR-067 extended). *)
+    rNm := anonProcClassName(typ);
+    qNm := BOX("CP/$T");
    (*
     *  At this point:
     *        rNm holds the simple record name
@@ -1060,11 +1059,7 @@ CSt.Message( "made mNm name " + mNm^ );
     *  At exit we want:
     *        xName to hold the fully qualified name
     *)
-    IF anon THEN
-      hostTp.extrnNm := rNm
-    ELSE
-      hostTp.extrnNm := cat3(mNm, lowL, rNm)
-    END;
+    hostTp.extrnNm := rNm;
     hostTp.xName := cat3(qNm, slsh, hostTp.extrnNm);
     hostTp.scopeNm := cat3(lCap, hostTp.xName, semi);
     typ.hostClass := hostTp;
@@ -1125,6 +1120,7 @@ CSt.Message( "made mNm name " + mNm^ );
     VAR singleton : Id.TypId;
         hostClass : Ty.Record;
         newInvoke : Id.MthId;
+        key : L.CharOpen;
   BEGIN
     ASSERT(exp IS Xp.IdLeaf);
     Blt.MkDummyClass(newAnonLit(), CSt.thisMod, Ty.noAtt, singleton);
@@ -1134,6 +1130,8 @@ CSt.Message( "made mNm name " + mNm^ );
     newInvoke := getProcWrapperInvoke(hostClass);
     RescopeFormals(typ, newInvoke);
     newInvoke.body := procLitBodyStatement(exp(Xp.IdLeaf).ident, newInvoke);
+    key := procKeyText(exp);
+    MkProcKeyConcrete(hostClass, key^);
     RETURN hostClass;
   END newProcLitWrapperClass;
 
@@ -1521,6 +1519,207 @@ CSt.Message( "made mNm name " + mNm^ );
     NumberProxies(prcId, frmTp.formals);
     NumberLocals(prcId, prcId.locals);
   END RenumberLocals;
+
+(* ------------------------------------------------------------ *)
+(* Procedure-value identity (Kotlin FunctionReference model).    *)
+(* A procedure value is equal to another when it denotes the     *)
+(* same procedure: owner class + method name + descriptor.       *)
+(* The environment (receiver/static link) is added in a later    *)
+(* stage; for top-level procedures it is empty.                  *)
+(* ------------------------------------------------------------ *)
+
+  PROCEDURE mkMth(IN nam : ARRAY OF CHAR;
+                  host : Ty.Record;
+                  ret : Sym.Type;
+                  abs : BOOLEAN) : Id.MthId;
+    VAR m : Id.MthId;
+        p : Ty.Procedure;
+        rcv : Id.ParId;
+  BEGIN
+    NEW(p);
+    p.retType := ret;
+    Id.InitParSeq(p.formals, 2);
+    m := Id.newMthId();
+    m.SetMode(Sym.pubMode);
+    m.setPrcKind(Id.conMth);
+    m.hash := Hsh.enterStr(nam);
+    m.dfScp := CSt.thisMod;
+    m.type := p;
+    m.bndType := host;
+    m.mthAtt := {};
+    IF abs THEN m.mthAtt := Id.isAbs END;
+    m.SetNameFromString(BOX(nam));
+    NEW(rcv);
+    rcv.varOrd := 0;
+    rcv.parMod := Sym.val;
+    rcv.type := host;
+    rcv.dfScp := m;
+    m.rcvFrm := rcv;
+    RETURN m
+  END mkMth;
+
+(* ------------------------------------------------------------ *)
+
+  PROCEDURE addValPar(p : Ty.Procedure; typ : Sym.Type);
+    VAR par : Id.ParId;
+  BEGIN
+    NEW(par);
+    par.varOrd := 0;
+    par.parMod := Sym.val;
+    par.type := typ;
+    Id.AppendParam(p.formals, par)
+  END addValPar;
+
+(* ------------------------------------------------------------ *)
+
+  PROCEDURE procKeyText(exp : Sym.Expr) : L.CharOpen;
+    VAR prc : Id.Procs;
+        pTyp : Ty.Procedure;
+        rec : Ty.Record;
+        txt : L.CharOpenSeq;
+  BEGIN
+    prc := exp(Xp.IdLeaf).ident(Id.Procs);
+    pTyp := prc.type(Ty.Procedure);
+    MkCallAttr(prc, pTyp);
+    L.ResetCharOpenSeq(txt);
+    IF prc IS Id.PrcId THEN
+      L.AppendCharOpen(txt, prc(Id.PrcId).clsNm)
+    ELSE
+      rec := prc(Id.MthId).bndType(Ty.Record);
+      L.AppendCharOpen(txt, rec.xName)
+    END;
+    L.AppendCharOpen(txt, BOX("."));
+    L.AppendCharOpen(txt, prc.prcNm);
+    L.AppendCharOpen(txt, pTyp.xName);
+    RETURN L.arrayCat(txt)
+  END procKeyText;
+
+(* ------------------------------------------------------------ *)
+
+  PROCEDURE ProcLitKey*(exp : Sym.Expr) : L.CharOpen;
+  BEGIN RETURN procKeyText(exp) END ProcLitKey;
+
+(* ------------------------------------------------------------ *)
+
+  PROCEDURE sameKey*(a, b : L.CharOpen) : BOOLEAN;
+    VAR i : INTEGER;
+  BEGIN
+    i := 0;
+    WHILE (a[i] # 0X) & (a[i] = b[i]) DO INC(i) END;
+    RETURN (a[i] = 0X) & (b[i] = 0X)
+  END sameKey;
+
+(* ------------------------------------------------------------ *)
+
+  PROCEDURE MkProcKeyConcrete(host : Ty.Record; IN key : ARRAY OF CHAR);
+    VAR m : Id.MthId;
+  BEGIN
+    m := mkMth("procKey", host, CSt.ntvStr, FALSE);
+    MkCallAttr(m, m.type(Ty.Procedure));
+    m.body := St.newReturnS(Xp.mkStrLt(key));
+    Sym.AppendIdnt(host.methods, m)
+  END MkProcKeyConcrete;
+
+(* ------------------------------------------------------------ *)
+
+  PROCEDURE MkProcKeyAbstract*(host : Ty.Record) : Id.MthId;
+    VAR m : Id.MthId;
+  BEGIN
+    m := mkMth("procKey", host, CSt.ntvStr, TRUE);
+    MkCallAttr(m, m.type(Ty.Procedure));
+    RETURN m
+  END MkProcKeyAbstract;
+
+(* ------------------------------------------------------------ *)
+
+  PROCEDURE mkStringMth(IN nam : ARRAY OF CHAR;
+                        arg : Sym.Type;
+                        ret : Sym.Type) : Id.MthId;
+    VAR m : Id.MthId;
+        rec : Ty.Record;
+  BEGIN
+    rec := CSt.ntvStr.boundRecTp()(Ty.Record);
+    m := mkMth(nam, rec, ret, FALSE);
+    IF arg # NIL THEN addValPar(m.type(Ty.Procedure), arg) END;
+    MkCallAttr(m, m.type(Ty.Procedure));
+    RETURN m
+  END mkStringMth;
+
+(* ------------------------------------------------------------ *)
+
+  PROCEDURE EmitProcTypeEquality*(out : JavaFile;
+                                  host : Ty.Record;
+                                  keyMth : Id.MthId);
+    VAR eq, hash, strEq, strHash : Id.MthId;
+        keyTp, sEqTp, sHashTp : Ty.Procedure;
+        lf : Label;
+  BEGIN
+    keyTp := keyMth.type(Ty.Procedure);
+    strEq := mkStringMth("equals", CSt.ntvObj, Blt.boolTp);
+    strHash := mkStringMth("hashCode", NIL, Blt.intTp);
+    sEqTp := strEq.type(Ty.Procedure);
+    sHashTp := strHash.type(Ty.Procedure);
+
+   (* public boolean equals(Object o) *)
+    eq := mkMth("equals", host, Blt.boolTp, FALSE);
+    addValPar(eq.type(Ty.Procedure), CSt.ntvObj);
+    MkCallAttr(eq, eq.type(Ty.Procedure));
+    out.StartProc(eq);
+    out.AloadLocal(0, host);
+    out.CallIT(Jvm.opc_invokevirtual, keyMth, keyTp);
+    out.AloadLocal(1, CSt.ntvObj);
+    out.CodeT(Jvm.opc_instanceof, host);
+    lf := out.newLabel();
+    out.CodeLb(Jvm.opc_ifeq, lf);
+    out.AloadLocal(1, CSt.ntvObj);
+    out.CodeT(Jvm.opc_checkcast, host);
+    out.CallIT(Jvm.opc_invokevirtual, keyMth, keyTp);
+    out.CallIT(Jvm.opc_invokevirtual, strEq, sEqTp);
+    out.Code(Jvm.opc_ireturn);
+    out.DefLab(lf);
+    out.Code(Jvm.opc_iconst_0);
+    out.Code(Jvm.opc_ireturn);
+    out.EndProc();
+
+   (* public int hashCode() *)
+    hash := mkMth("hashCode", host, Blt.intTp, FALSE);
+    MkCallAttr(hash, hash.type(Ty.Procedure));
+    out.StartProc(hash);
+    out.AloadLocal(0, host);
+    out.CallIT(Jvm.opc_invokevirtual, keyMth, keyTp);
+    out.CallIT(Jvm.opc_invokevirtual, strHash, sHashTp);
+    out.Code(Jvm.opc_ireturn);
+    out.EndProc();
+  END EmitProcTypeEquality;
+
+(* ------------------------------------------------------------ *)
+
+  PROCEDURE getObjectsEquals*() : Id.PrcId;
+    VAR p : Ty.Procedure;
+        prc : Id.PrcId;
+  BEGIN
+    IF objectsEquals = NIL THEN
+      NEW(p);
+      p.retType := Blt.boolTp;
+      Id.InitParSeq(p.formals, 3);
+      addValPar(p, CSt.ntvObj);
+      addValPar(p, CSt.ntvObj);
+      p.xName := BOX("(Ljava/lang/Object;Ljava/lang/Object;)Z");
+      p.argN := 2;
+      p.retN := 1;
+      prc := Id.newPrcId();
+      prc.SetMode(Sym.pubMode);
+      prc.setPrcKind(Id.conPrc);
+      prc.hash := Hsh.enterStr("equals");
+      prc.dfScp := CSt.thisMod;
+      prc.type := p;
+      prc.clsNm := BOX("java/util/Objects");
+      prc.prcNm := BOX("equals");
+      prc.scopeNm := BOX("java/util/Objects");
+      objectsEquals := prc
+    END;
+    RETURN objectsEquals
+  END getObjectsEquals;
 
 (* ------------------------------------------------------------ *)
 (* ------------------------------------------------------------ *)

@@ -461,6 +461,7 @@ MODULE JavaMaker;
     VAR pType  : Ty.Procedure; (* The procedure type that is being emitted *)
         proxy  : Ty.Record;    (* The record that stands for the proc-type *)
         invoke : Id.MthId;    (* The abstract invoke method for this      *)
+        key    : Id.MthId;    (* The abstract procKey method              *)
   BEGIN
     pType := this.prcT;
     proxy := pType.hostClass;
@@ -480,6 +481,13 @@ MODULE JavaMaker;
     out.theP := invoke;
     out.StartProc(invoke);
     out.EndProc();
+
+   (* fixProcEqual: procedure-value identity is owner+name+descriptor.
+      Every wrapper implements procKey(); equals/hashCode live here. *)
+    key := Ju.MkProcKeyAbstract(proxy);
+    out.StartProc(key);
+    out.EndProc();
+    Ju.EmitProcTypeEquality(out, proxy, key);
   END EmitBody;
 
 (* ============================================================ *)
@@ -900,7 +908,14 @@ MODULE JavaMaker;
           END;
       END;
     ELSE  (* This must be a reference or string comparison *)
-      IF type.isCharArrayType() THEN out.CallRTS(Ju.StrCmp,2,1);
+      IF type IS Ty.Procedure THEN
+       (* fixProcEqual: structural identity, not wrapper-object identity *)
+        out.CallIT(Jvm.opc_invokestatic, Ju.getObjectsEquals(),
+                   Ju.getObjectsEquals().type(Ty.Procedure));
+        IF cmpE = Xp.equal THEN code := Jvm.opc_ifne
+        ELSIF cmpE = Xp.notEq THEN code := Jvm.opc_ifeq
+        END;
+      ELSIF type.isCharArrayType() THEN out.CallRTS(Ju.StrCmp,2,1);
       ELSIF cmpE = Xp.equal     THEN code := Jvm.opc_if_acmpeq;
       ELSIF cmpE = Xp.notEq     THEN code := Jvm.opc_if_acmpne;
       END;
@@ -1018,20 +1033,50 @@ MODULE JavaMaker;
                                     lab : Ju.Label),NEW;
     VAR binOp : Xp.BinaryX;
         lType : Sy.Type;
+        target : Sy.Type;
+        same : BOOLEAN;
   BEGIN
     binOp := exp(Xp.BinaryX);
     lType := binOp.lKid.type;
+    target := lType;
+   (* fixProcEqual: wrap a procedure literal in the host class of the
+      statically named operand, so both sides share a base class. *)
+    IF (lType IS Ty.Procedure) & (binOp.rKid.type IS Ty.Procedure) THEN
+      IF (lType(Ty.Procedure).hostClass = NIL) &
+         (binOp.rKid.type(Ty.Procedure).hostClass # NIL) THEN
+        target := binOp.rKid.type
+      END
+    END;
     IF rev THEN tst := RevTest(tst) END;
+   (* fixProcEqual: two procedure literals are known at compile time. *)
+    IF (binOp.lKid IS Xp.IdLeaf) & (binOp.rKid IS Xp.IdLeaf) &
+       binOp.lKid.isProcLit() & binOp.rKid.isProcLit() &
+       (lType IS Ty.Procedure) THEN
+      same := Ju.sameKey(Ju.ProcLitKey(binOp.lKid),
+                         Ju.ProcLitKey(binOp.rKid));
+      IF (tst = Xp.equal) = same THEN
+        e.outF.Code(Jvm.opc_iconst_1)
+      ELSE
+        e.outF.Code(Jvm.opc_iconst_0)
+      END;
+      e.outF.CodeLb(Jvm.opc_ifne, lab);
+      RETURN
+    END;
     IF  lType = Bi.setTp THEN (* only partially ordered *)
       e.SetCmp(binOp.lKid, binOp.rKid, lab, tst);
     ELSE                      (* a totally ordered type *)
-      e.PushValue(binOp.lKid, lType);
-      IF isStrExp(binOp.lKid) THEN
-        e.outF.CallRTS(Ju.StrToChrOpen,1,1);
-      END;
-      e.PushValue(binOp.rKid, binOp.rKid.type);
-      IF isStrExp(binOp.rKid) THEN
-        e.outF.CallRTS(Ju.StrToChrOpen,1,1);
+      IF lType IS Ty.Procedure THEN
+        e.PushValue(binOp.lKid, target);
+        e.PushValue(binOp.rKid, target)
+      ELSE
+        e.PushValue(binOp.lKid, lType);
+        IF isStrExp(binOp.lKid) THEN
+          e.outF.CallRTS(Ju.StrToChrOpen,1,1);
+        END;
+        e.PushValue(binOp.rKid, binOp.rKid.type);
+        IF isStrExp(binOp.rKid) THEN
+          e.outF.CallRTS(Ju.StrToChrOpen,1,1);
+        END
       END;
       e.DoCmp(tst, lab, lType);
     END;
