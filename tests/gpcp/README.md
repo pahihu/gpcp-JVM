@@ -77,6 +77,12 @@ a test failure.  Output is compared byte for byte.
 | 224 | `adr224_system` | `IMPORT SYSTEM` on the JVM, `SYSTEM.LSH` / `SYSTEM.ROT` |
 | 238 | `adr238_after_end` | non-ASCII text after `END <Module>.` is not scanned |
 
+## CP conformance regressions
+
+| Case | What is checked |
+|---|---|
+| `array_proc_call` | direct calls through array elements of procedure type (global, local and open-array `ARRAY OF` parameters) |
+
 ## fixProcEqual (procedure values on the JVM)
 
 These cases define the target semantics for procedure-value equality: a value
@@ -157,19 +163,11 @@ with the stock `jars/gpcp.jar` (illegal signature) and on the stage-1 compiler
 
 ## Not covered
 
-* **Call through an array element.**  `a[i](x)` where `a` is an array of
-  procedure values traps in `ExprDesc.liveActuals` with
-  `WITH else-trap: type = ExprDesc_BinaryX`.  The imported
-  `procvars_ref_arrays` case stores the element in a temporary first.
 * **`VAR` procedure parameter of a function.**  A function with a
   `VAR`/`OUT` procedure-typed parameter (for example
   `PROCEDURE F(VAR p: P): INTEGER`) traps in `JavaUtil.TypeOfBox` with
   `TypeOfBox of non-base type`.  Proper procedures with `VAR` procedure
   parameters (as in `proceq_fields_params`) work.
-* **Anonymous procedure type assigned to a named one.**  Assigning a value
-  received through an anonymous `PROCEDURE (...)` parameter to a variable of a
-  named procedure type emits a `putstatic` with incompatible types and fails
-  class verification.  This blocks `ProcVariables5.Mod`.
 * **ADR-015 (super call to an implement-only method).**  The parser gate is
   ported, but the existing semantic check in `CheckSuper` rejects the call with
   error 118 for any concrete method in this GPCP revision (the `extns` mask
