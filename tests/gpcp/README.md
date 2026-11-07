@@ -146,7 +146,9 @@ explicitly excluded.  These cases must fail to compile with error 165
 | `strict_nested_param` | a local procedure passed to a procedure-typed formal |
 | `strict_nested_compare` | a local procedure in a `=`/`#` comparison |
 | `strict_nested_return` | a local procedure returned as a procedure value |
+| `strict_nested_array` | a local procedure assigned to a procedure-typed array element |
 | `strict_method_value` | a bound method (`f := t.Add`) |
+| `strict_method_field` | a bound method assigned to a procedure-typed record field |
 
 ## Imported procedure literals (stage 3)
 

@@ -552,5 +552,5 @@ them.
 **Tests.** `tests/gpcp/cases/proceq_*` (including the imported MIT oberonc cases
 `proceq_ref_oberonc`, `procvars_ref_*`, `procsig_ref_equal`),
 `proceq_regression`, `array_proc_call`, `var_proc_param_function`,
-`import_literal_named_type` and the `strict_*` cases; 47/47 cases pass on the
-`fixProcEqual` branch.
+`import_literal_named_type` and the `strict_*` cases (including method/field
+and nested/array); 49/49 cases pass on the `fixProcEqual` branch.

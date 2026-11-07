@@ -531,6 +531,8 @@ MODULE StatDesc;
     IF (s.rhsX # NIL) & (s.rhsX.type # NIL) THEN
       lTp := s.lhsX.type;
       rTp := s.rhsX.type;
+     (* strict CP: methods and local procedures are not values *)
+      IF rTp.isProcType() THEN E.CheckProcValue(s.rhsX) END;
      (*
       * Second check: does the expression need dereferencing.
       *)
@@ -551,8 +553,6 @@ MODULE StatDesc;
         *)
         IF ~rTp.valCopyOK() THEN s.rhsX.ExprError(152) END;
         IF rTp IS T.Procedure THEN
-         (* strict CP: methods and local procedures are not values *)
-          E.CheckProcValue(s.rhsX);
           s.StmtError(301);
           IF G.targetIsJVM() THEN s.StmtError(320 (*213*));
           ELSIF (rTp # lTp) & ~s.rhsX.isProcLit() THEN s.StmtError(191);
@@ -598,8 +598,11 @@ MODULE StatDesc;
           rExp := s.retX.exprAttr();
           s.retX := rExp;
           IF rExp # NIL THEN (* fixed 28 July 2001 *)
-            IF rTyp IS T.Procedure THEN E.CheckProcValue(rExp) END;
             xTyp := rExp.type;
+           (* strict CP: methods and local procedures are not values *)
+            IF (xTyp # NIL) & xTyp.isProcType() THEN
+              E.CheckProcValue(rExp)
+            END;
             IF ~rTyp.assignCompat(rExp) THEN
               D.RepTypesErrTok(76, rTyp, xTyp, s.token);
             ELSIF rTyp # xTyp THEN

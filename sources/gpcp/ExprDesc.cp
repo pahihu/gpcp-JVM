@@ -2905,6 +2905,12 @@ MODULE ExprDesc;
 
      (* compute attributes for the actual param expression *)
       IF actual # NIL THEN actual := actual.exprAttr() END;
+     (* strict CP: methods and local procedures are not values, regardless
+        of the formal type (which may still be opaque here) *)
+      IF (actual # NIL) & (actual.type # NIL) &
+         actual.type.isProcType() THEN
+        CheckProcValue(actual)
+      END;
      (* Now check the semantic rules for conformance *)
       IF (actual # NIL) &
          (formal # NIL) &
@@ -2914,8 +2920,6 @@ MODULE ExprDesc;
         actTyp := actual.type;
 
         IF frmTyp IS T.Procedure THEN
-         (* strict CP: methods and local procedures are not values *)
-          CheckProcValue(actual);
           formal.IdError(301);
           IF G.targetIsJVM() THEN formal.IdError(320);
           ELSIF (frmTyp # actTyp) &
