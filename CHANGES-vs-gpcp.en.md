@@ -506,7 +506,7 @@ patch came from (`../IdeaProjects/bbcb-fe/tools/gpcp/patch_toolchain.py`), and a
 
 ---
 
-## 11. `sources/gpcp/JavaUtil.cp`, `JavaMaker.cp`, `JavaBase.cp`, `IdDesc.cp`, `AsmUtil.cp` — procedure values (fixProcEqual)
+## 11. `sources/gpcp/JavaUtil.cp`, `sources/gpcp/JavaMaker.cp` — procedure-value equality (fixProcEqual)
 
 **Before.** On the JVM a procedure value is a wrapper object (`Proc$Lit$N`), and a
 fresh object was allocated for every evaluation of a literal. `=`/`#` compiled to
@@ -533,33 +533,11 @@ report (Appendix A) makes such types **equal**.
   anonymous to all procedure types, because such types are equal by the report.
   Modules must be recompiled together (already the GPCP model).
 
-**Nested values (stage 2).** The same model now covers nested procedures:
-
-- every procedure host class has an `env` field of type `CP/CPJrts/XHR`;
-  evaluating a literal of a nested procedure stores `PushStaticLink(target)`
-  in that field (NIL for a procedure without an enclosing activation);
-- the wrapper's `Invoke` for a nested target is emitted by
-  `EmitNestedInvoke`: it loads `this.env`, then the ordinary arguments, and
-  calls the target with the hidden XHR as the first JVM argument;
-- `equals` also compares the captured `env` via `Objects.equals`, so values of
-  one nested procedure from the same activation compare equal and values from
-  different activations do not.  `hashCode` stays key-based (consistent with
-  `equals`);
-- nested procedures are emitted package-private instead of private, because the
-  generated wrapper classes live in the same package;
-- `HasProcTypeEmitter` makes sure a host class that was created before the
-  code-generation worklist existed is still emitted;
-- a literal of a top-level procedure may carry that procedure's own signature
-  type object.  Its value uses a copy of that type, so `MkProcTypeName` cannot
-  overwrite the procedure descriptor with a host-class name.
-
-**Limitation.** Method values (`obj.M`) are still unsupported by the code
-generator.  Nested wrappers with `VAR`/`OUT` formals use the simple
-local-load path in `EmitNestedInvoke`; the boxed-parameter/return-slot case is
-not covered by the current tests (all stage-2 tests use value parameters).
+**Limitation.** The captured environment (method receiver or nested-procedure
+static link) is deliberately **not** part of the key yet; that is the next stage
+(nested/method). Method and nested-procedure values are still unsupported by the
+code generator.
 
 **Tests.** `tests/gpcp/cases/proceq_*` (including the imported MIT oberonc cases
-`proceq_ref_oberonc`, `procvars_ref_*`, `procsig_ref_equal`),
-`proceq_regression`, and the stage-2 cases `nested_capture`,
-`nested_activations`, `nested_nocapture`, `nested_ref_escape`; 43/43 cases pass
-on the `fixProcEqual` branch.
+`proceq_ref_oberonc`, `procvars_ref_*`, `procsig_ref_equal`) and
+`proceq_regression`; 39/39 cases pass on the `fixProcEqual` branch.

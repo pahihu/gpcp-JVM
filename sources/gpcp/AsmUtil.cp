@@ -539,9 +539,7 @@ MODULE AsmUtil;
        (proc.vMod = Sym.rdoMode) THEN   (* "implement only"  *)
       INC(attr,pubAcc);
     ELSIF proc.dfScp IS Id.PrcId THEN   (* nested procedure  *)
-     (* fixProcEqual stage 2: generated proc-value wrapper classes live
-        in the same package and must be able to call the nested method. *)
-      INC(attr,pckAcc);
+      INC(attr,prvAcc);
     END;
 
     mv := emtr.clsWrtr.visitMethod( attr, 

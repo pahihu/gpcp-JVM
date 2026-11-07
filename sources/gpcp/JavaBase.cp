@@ -48,8 +48,6 @@ MODULE JavaBase;
 
   PROCEDURE (list : ClassEmitter)AddNewRecEmitter*(rec : Ty.Record),NEW,EMPTY;
   PROCEDURE (list : ClassEmitter)AddNewProcTypeEmitter*(prc : Ty.Procedure),NEW,EMPTY;
-  PROCEDURE (list : ClassEmitter)HasProcTypeEmitter*(prc : Ty.Procedure) : BOOLEAN,NEW,EXTENSIBLE;
-  BEGIN RETURN FALSE END HasProcTypeEmitter;
 
 (* ============================================================ *)
 END JavaBase.

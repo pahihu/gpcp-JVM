@@ -321,9 +321,6 @@ MODULE JavaUtil;
   PROCEDURE^ typeToChOpen(typ : Sym.Type) : L.CharOpen;
   PROCEDURE^ procKeyText(exp : Sym.Expr) : L.CharOpen;
   PROCEDURE^ MkProcKeyConcrete(host : Ty.Record; IN key : ARRAY OF CHAR);
-  PROCEDURE^ getObjectsEquals*() : Id.PrcId;
-  PROCEDURE^ MkCallAttr*(pIdn : Sym.Idnt; pTyp : Ty.Procedure);
-  PROCEDURE^ (jf : JavaFile)PushStaticLink*(tgt : Id.Procs),NEW;
 
 
 (* ============================================================ *)
@@ -1032,10 +1029,9 @@ CSt.Message( "made mNm name " + mNm^ );
      (* invoke : Id.MthId; *)
         rNm, qNm : L.CharOpen;
         anon : BOOLEAN;   (* patched (ADR-067) *)
-        envFld : Id.FldId;
   BEGIN
    (* ###################################### *)
-    IF (typ.xName # NIL) & (typ.hostClass # NIL) THEN RETURN END;
+    IF typ.xName # NIL THEN RETURN END;
    (* ###################################### *)
     anon := isAnonId(typ.idnt);   (* patched (ADR-067) *)
     IF anon & (typ.idnt # NIL) THEN typ.idnt.SetMode(Sym.pubMode) END;
@@ -1067,16 +1063,6 @@ CSt.Message( "made mNm name " + mNm^ );
     hostTp.xName := cat3(qNm, slsh, hostTp.extrnNm);
     hostTp.scopeNm := cat3(lCap, hostTp.xName, semi);
     typ.hostClass := hostTp;
-   (* fixProcEqual stage 2: every procedure value carries the captured
-      activation record (XHR) in this field; NIL for top-level procs. *)
-    envFld := Id.newFldId();
-    envFld.SetMode(Sym.pubMode);
-    envFld.hash := Hsh.enterStr("env");
-    envFld.fldNm := BOX("env");
-    envFld.type := CSt.rtsXHR;
-    envFld.recTyp := hostTp;
-    envFld.dfScp := CSt.thisMod;
-    Sym.AppendIdnt(hostTp.fields, envFld);
     Blt.MkDummyMethodAndInsert("Invoke", Ty.newPrcTp(), hostTp, CSt.thisMod, Sym.pubMode, Sym.var, Id.isAbs);
     IF anon & (hostTp.bindTp # NIL) THEN hostTp.bindTp.idnt.SetMode(Sym.pubMode) END;   (* patched (ADR-067) *)
     RescopeFormals(typ, getProcVarInvoke(typ));
@@ -1135,24 +1121,15 @@ CSt.Message( "made mNm name " + mNm^ );
         hostClass : Ty.Record;
         newInvoke : Id.MthId;
         key : L.CharOpen;
-        target : Id.Procs;
   BEGIN
     ASSERT(exp IS Xp.IdLeaf);
-    target := exp(Xp.IdLeaf).ident(Id.Procs);
     Blt.MkDummyClass(newAnonLit(), CSt.thisMod, Ty.noAtt, singleton);
     hostClass := singleton.type.boundRecTp()(Ty.Record);
     Blt.MkDummyMethodAndInsert("Invoke", Ty.newPrcTp(), hostClass, CSt.thisMod, Sym.pubMode, Sym.var, {});
     MkRecName(hostClass); (* Add this class to the emission work-list *)
     newInvoke := getProcWrapperInvoke(hostClass);
     RescopeFormals(typ, newInvoke);
-    IF target.lxDepth > 0 THEN
-     (* the wrapper captures a static link; Invoke is emitted manually *)
-      INCL(newInvoke.pAttr, Id.pvNested);
-      newInvoke.pvTarget := target;
-      MkCallAttr(newInvoke, newInvoke.type(Ty.Procedure))
-    ELSE
-      newInvoke.body := procLitBodyStatement(target, newInvoke)
-    END;
+    newInvoke.body := procLitBodyStatement(exp(Xp.IdLeaf).ident, newInvoke);
     key := procKeyText(exp);
     MkProcKeyConcrete(hostClass, key^);
     RETURN hostClass;
@@ -1597,22 +1574,13 @@ CSt.Message( "made mNm name " + mNm^ );
 
   PROCEDURE procKeyText(exp : Sym.Expr) : L.CharOpen;
     VAR prc : Id.Procs;
-        pTyp, pc : Ty.Procedure;
+        pTyp : Ty.Procedure;
         rec : Ty.Record;
         txt : L.CharOpenSeq;
   BEGIN
     prc := exp(Xp.IdLeaf).ident(Id.Procs);
     pTyp := prc.type(Ty.Procedure);
-   (* Compute the JVM descriptor on a copy: MkCallAttr overwrites xName,
-      and the signature type object may also be the procedure-type object
-      whose xName is the host class name. *)
-    pc := Ty.newPrcTp();
-    pc.retType := pTyp.retType;
-    pc.receiver := pTyp.receiver;
-    pc.formals := pTyp.formals;
-    pc.hostClass := pTyp.hostClass;
-    pc.xName := NIL;
-    MkCallAttr(prc, pc);
+    MkCallAttr(prc, pTyp);
     L.ResetCharOpenSeq(txt);
     IF prc IS Id.PrcId THEN
       L.AppendCharOpen(txt, prc(Id.PrcId).clsNm)
@@ -1622,7 +1590,7 @@ CSt.Message( "made mNm name " + mNm^ );
     END;
     L.AppendCharOpen(txt, BOX("."));
     L.AppendCharOpen(txt, prc.prcNm);
-    L.AppendCharOpen(txt, pc.xName);
+    L.AppendCharOpen(txt, pTyp.xName);
     RETURN L.arrayCat(txt)
   END procKeyText;
 
@@ -1684,7 +1652,6 @@ CSt.Message( "made mNm name " + mNm^ );
                                   keyMth : Id.MthId);
     VAR eq, hash, strEq, strHash : Id.MthId;
         keyTp, sEqTp, sHashTp : Ty.Procedure;
-        envFld : Id.FldId;
         lf : Label;
   BEGIN
     keyTp := keyMth.type(Ty.Procedure);
@@ -1692,47 +1659,25 @@ CSt.Message( "made mNm name " + mNm^ );
     strHash := mkStringMth("hashCode", NIL, Blt.intTp);
     sEqTp := strEq.type(Ty.Procedure);
     sHashTp := strHash.type(Ty.Procedure);
-    envFld := host.fields.a[0](Id.FldId);
 
    (* public boolean equals(Object o) *)
     eq := mkMth("equals", host, Blt.boolTp, FALSE);
     addValPar(eq.type(Ty.Procedure), CSt.ntvObj);
     MkCallAttr(eq, eq.type(Ty.Procedure));
     out.StartProc(eq);
-   (* if (!(o instanceof host)) return false *)
+    out.AloadLocal(0, host);
+    out.CallIT(Jvm.opc_invokevirtual, keyMth, keyTp);
     out.AloadLocal(1, CSt.ntvObj);
     out.CodeT(Jvm.opc_instanceof, host);
     lf := out.newLabel();
-    out.CodeLb(Jvm.opc_ifne, lf);
-    out.Code(Jvm.opc_iconst_0);
-    out.Code(Jvm.opc_ireturn);
-    out.DefLab(lf);
-   (* if (!procKey().equals(o.procKey())) return false *)
-    out.AloadLocal(0, host);
-    out.CallIT(Jvm.opc_invokevirtual, keyMth, keyTp);
+    out.CodeLb(Jvm.opc_ifeq, lf);
     out.AloadLocal(1, CSt.ntvObj);
     out.CodeT(Jvm.opc_checkcast, host);
     out.CallIT(Jvm.opc_invokevirtual, keyMth, keyTp);
     out.CallIT(Jvm.opc_invokevirtual, strEq, sEqTp);
-    lf := out.newLabel();
-    out.CodeLb(Jvm.opc_ifne, lf);
-    out.Code(Jvm.opc_iconst_0);
     out.Code(Jvm.opc_ireturn);
     out.DefLab(lf);
-   (* if (!Objects.equals(env, o.env)) return false *)
-    out.AloadLocal(0, host);
-    out.PutGetF(Jvm.opc_getfield, host, envFld);
-    out.AloadLocal(1, CSt.ntvObj);
-    out.CodeT(Jvm.opc_checkcast, host);
-    out.PutGetF(Jvm.opc_getfield, host, envFld);
-    out.CallIT(Jvm.opc_invokestatic, getObjectsEquals(),
-               getObjectsEquals().type(Ty.Procedure));
-    lf := out.newLabel();
-    out.CodeLb(Jvm.opc_ifne, lf);
     out.Code(Jvm.opc_iconst_0);
-    out.Code(Jvm.opc_ireturn);
-    out.DefLab(lf);
-    out.Code(Jvm.opc_iconst_1);
     out.Code(Jvm.opc_ireturn);
     out.EndProc();
 
@@ -1782,43 +1727,11 @@ CSt.Message( "made mNm name " + mNm^ );
   PROCEDURE (jf : JavaFile)MakeAndPushProcLitValue*(exp : Sym.Expr; typ : Ty.Procedure),NEW;
     VAR singleton : Id.TypId;
 	    hostClass : Ty.Record;
-        base : Ty.Record;
-        envFld : Id.FldId;
-        target : Id.Procs;
-        litTyp : Ty.Procedure;
   BEGIN
-    target := exp(Xp.IdLeaf).ident(Id.Procs);
-    litTyp := typ;
-   (* A literal of a top-level procedure may carry the procedure's own
-      signature type.  Do not turn that signature object into a host class:
-      use a copy for the value's anonymous proc type. *)
-    IF typ = target.type(Ty.Procedure) THEN
-      litTyp := Ty.newPrcTp();
-      litTyp.retType := typ.retType;
-      litTyp.receiver := typ.receiver;
-      litTyp.formals := typ.formals;
-      litTyp.hostClass := typ.hostClass;
-      litTyp.xName := NIL
-    END;
-	MkProcTypeName(litTyp);
-   (* fixProcEqual stage 2: the host class may have been created in an
-      earlier phase, before this worklist existed.  Make sure the current
-      worklist will emit it. *)
-    IF (JavaBase.worklist # NIL) &
-       ~JavaBase.worklist.HasProcTypeEmitter(litTyp) THEN
-      JavaBase.worklist.AddNewProcTypeEmitter(litTyp)
-    END;
-	hostClass := newProcLitWrapperClass(exp, litTyp);
-	hostClass.baseTp := litTyp.hostClass;
+	MkProcTypeName(typ);
+	hostClass := newProcLitWrapperClass(exp, typ);
+	hostClass.baseTp := typ.hostClass;
 	jf.MkNewRecord(hostClass);
-    IF target.lxDepth > 0 THEN
-     (* fixProcEqual stage 2: capture the current static link in env *)
-      base := litTyp.hostClass;
-      envFld := base.fields.a[0](Id.FldId);
-      jf.Code(Jvm.opc_dup);
-      jf.PushStaticLink(target);
-      jf.PutGetF(Jvm.opc_putfield, base, envFld)
-    END;
   END MakeAndPushProcLitValue;
 
 (* ------------------------------------------------------------ *)
